@@ -5,7 +5,12 @@ var Game = function()
 	this.cameraSpeed = 5;
 	this.player = new Dino();
 	this.gravity = 800;
-	this.layer, this.layer2, this.layer3, this.layer4;
+	this.layerBg1;
+	this.layerBg2;
+	this.layer; 
+	this.layer2; 
+	this.layer3; 
+	this.layer4;
 	this.bg; 		//sprite do backGround (estrelas).
 	this.track;
 	this.humans;
@@ -37,6 +42,8 @@ Game.prototype.create = function()
 	this.map.addTilesetImage('cityThings','cityThings');
 	this.map.addTilesetImage('urbanBuildings1','urbanBuildings1');
 	this.map.addTilesetImage('urbanBuildings2','urbanBuildings2');
+	this.layerBg2 = this.map.createLayer('bg2');
+	this.layerBg1 = this.map.createLayer('bg1');
 	this.layer = this.map.createLayer('Camada de Tiles 1');
 	this.layer2 = this.map.createLayer('Camada de Tiles 2');
 	this.layer3 = this.map.createLayer('Camada de Tiles 3');
@@ -45,6 +52,8 @@ Game.prototype.create = function()
 	this.map.setCollisionBetween(19,26, true,'Camada de Tiles 4'); // intervaldo de IDs dos tiles que colidem (plataformas).
 	this.map.setCollisionBetween(2152,2156, true,'Camada de Tiles 4');
 	this.map.setCollisionBetween(2083,2085, true,'Camada de Tiles 4');
+	this.layerBg1.scrollFactorX = 0.3;
+	this.layerBg2.scrollFactorX = 0.2;
 	//this.layer4.debug = true;
 	
 	this.layer.resizeWorld();
@@ -75,7 +84,9 @@ Game.prototype.create = function()
 	this.cameraMove =game.add.tween(game.camera).to({ x: game.world.width - 960 }, 50000, Phaser.Easing.Linear.None, true).to({ x: 0 }, 50000, Phaser.Easing.Linear.None) .loop();
 	this.player.add(32,1400);
 	this.player.sprite.kill();
-	
+	game.time.advancedTiming = true;
+	this.fpsTxt = game.add.text(0,0,'fps',style);
+	this.fpsTxt.fixedToCamera = true;
 	game.input.onDown.addOnce(function()
 	{
 		this.insertCoinSound.play();
@@ -92,7 +103,10 @@ Game.prototype.create = function()
 Game.prototype.update = function()
 {
 	game.physics.arcade.collide(this.layer4, [this.humans, this.cars, this.player.sprite]);
+	game.physics.arcade.collide(this.player.sprite, [this.humans,this.cars], this.player.smash );
 	
+	this.fpsTxt.text = game.time.fps + ' fps';
+
 	this.player.enableMovement();
 	this.player.enableJump();
 	

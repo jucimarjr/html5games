@@ -62,4 +62,9 @@ Dino.prototype.enableJump = function()
 	}
 }
 
+Dino.prototype.smash = function(dino,target)
+{
+	target.destroy();
+};
+
 

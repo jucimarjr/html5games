@@ -80,8 +80,6 @@ function preload()
 	game.load.image('cityThings', 'assets/tileMaps/cityThings.png');
 	game.load.image('urbanBuildings1', 'assets/tileMaps/urbanBuildings1.png');
 	game.load.image('urbanBuildings2', 'assets/tileMaps/urbanBuildings2.png');
-	game.load.image('back1','assets/sprites/back1.png');
-	game.load.image('back2','assets/sprites/back2.png');
 	game.load.image('playButton', 'assets/screens/play.png', 434, 102);
 	game.load.image('creditsButton','assets/screens/cerdits.png', 606, 98);
     game.load.spritesheet('dino','assets/spriteSheets/dp.png',144,128,10);
@@ -92,7 +90,7 @@ function preload()
 function create()
 {
 	menuTrack = game.add.audio('menuSound',soundLevel,true);
-	game.state.start('splash');
+	game.state.start('game');
 }
 
 </script>
