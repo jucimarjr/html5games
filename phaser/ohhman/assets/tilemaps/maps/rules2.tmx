@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="5" height="5" tilewidth="36" tileheight="36">
+ <tileset firstgid="1" name="regions" tilewidth="36" tileheight="36">
+  <image source="../tiles/regions.png" width="36" height="36"/>
+ </tileset>
+ <tileset firstgid="2" name="fearInput" tilewidth="36" tileheight="36">
+  <image source="../tiles/fearInput.png" width="36" height="36"/>
+ </tileset>
+ <tileset firstgid="3" name="fearOutput" tilewidth="36" tileheight="36">
+  <image source="../tiles/fearOutput.png" width="36" height="36"/>
+ </tileset>
+ <tileset firstgid="4" name="decisionInput" tilewidth="36" tileheight="36">
+  <image source="../tiles/decisionInput.png" width="36" height="36"/>
+ </tileset>
+ <tileset firstgid="5" name="decision" tilewidth="6" tileheight="6">
+  <image source="../tiles/decision.png" width="6" height="6"/>
+ </tileset>
+ <layer name="regions" width="5" height="5">
+  <data encoding="base64" compression="zlib">
+   eJxjYMAOGHGIkwMAALAAAg==
+  </data>
+ </layer>
+ <objectgroup name="output_Decision" width="5" height="5">
+  <object gid="5" x="52" y="43">
+   <properties>
+    <property name="body.checkCollision.left" value="false"/>
+    <property name="body.checkCollision.right" value="false"/>
+    <property name="body.checkCollision.up" value="false"/>
+   </properties>
+  </object>
+  <object gid="5" x="37" y="58">
+   <properties>
+    <property name="body.checkCollision.down" value="false"/>
+    <property name="body.checkCollision.left" value="false"/>
+    <property name="body.checkCollision.up" value="false"/>
+   </properties>
+  </object>
+  <object gid="5" x="54" y="71">
+   <properties>
+    <property name="body.checkCollision.down" value="false"/>
+    <property name="body.checkCollision.left" value="false"/>
+    <property name="body.checkCollision.right" value="false"/>
+   </properties>
+  </object>
+  <object gid="5" x="65" y="57">
+   <properties>
+    <property name="body.checkCollision.down" value="false"/>
+    <property name="body.checkCollision.right" value="false"/>
+    <property name="body.checkCollision.up" value="false"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer name="input_Decision" width="5" height="5">
+  <data encoding="base64" compression="zlib">
+   eJxjYMAOWHCIkwMAAZQABQ==
+  </data>
+ </layer>
+</map>

@@ -1,0 +1,164 @@
+{"frames": [
+
+{
+	"filename": "bt_credits.png",
+	"frame": {"x":2,"y":2,"w":150,"h":57},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":150,"h":57},
+	"sourceSize": {"w":150,"h":57}
+},
+{
+	"filename": "bt_credits_ativo.png",
+	"frame": {"x":154,"y":2,"w":150,"h":57},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":150,"h":57},
+	"sourceSize": {"w":150,"h":57}
+},
+{
+	"filename": "bt_help.png",
+	"frame": {"x":306,"y":2,"w":55,"h":55},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":55,"h":55},
+	"sourceSize": {"w":55,"h":55}
+},
+{
+	"filename": "bt_help_ativo.png",
+	"frame": {"x":363,"y":2,"w":55,"h":55},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":55,"h":55},
+	"sourceSize": {"w":55,"h":55}
+},
+{
+	"filename": "bt_howtoplay.png",
+	"frame": {"x":420,"y":2,"w":150,"h":57},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":150,"h":57},
+	"sourceSize": {"w":150,"h":57}
+},
+{
+	"filename": "bt_howtoplay_ativo.png",
+	"frame": {"x":572,"y":2,"w":150,"h":57},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":150,"h":57},
+	"sourceSize": {"w":150,"h":57}
+},
+{
+	"filename": "bt_ok.png",
+	"frame": {"x":724,"y":2,"w":76,"h":56},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":76,"h":56},
+	"sourceSize": {"w":76,"h":56}
+},
+{
+	"filename": "bt_ok_ativo.png",
+	"frame": {"x":802,"y":2,"w":76,"h":56},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":76,"h":56},
+	"sourceSize": {"w":76,"h":56}
+},
+{
+	"filename": "bt_pause.png",
+	"frame": {"x":880,"y":2,"w":75,"h":57},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":75,"h":57},
+	"sourceSize": {"w":75,"h":57}
+},
+{
+	"filename": "bt_pause_ativo.png",
+	"frame": {"x":957,"y":2,"w":75,"h":57},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":75,"h":57},
+	"sourceSize": {"w":75,"h":57}
+},
+{
+	"filename": "bt_play.png",
+	"frame": {"x":1034,"y":2,"w":150,"h":57},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":150,"h":57},
+	"sourceSize": {"w":150,"h":57}
+},
+{
+	"filename": "bt_play_ativo.png",
+	"frame": {"x":1186,"y":2,"w":150,"h":57},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":150,"h":57},
+	"sourceSize": {"w":150,"h":57}
+},
+{
+	"filename": "bt_play_icon.png",
+	"frame": {"x":1338,"y":2,"w":55,"h":55},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":55,"h":55},
+	"sourceSize": {"w":55,"h":55}
+},
+{
+	"filename": "bt_play_icon_ativo.png",
+	"frame": {"x":1395,"y":2,"w":55,"h":55},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":55,"h":55},
+	"sourceSize": {"w":55,"h":55}
+},
+{
+	"filename": "bt_score.png",
+	"frame": {"x":1452,"y":2,"w":150,"h":57},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":150,"h":57},
+	"sourceSize": {"w":150,"h":57}
+},
+{
+	"filename": "bt_score_ativo.png",
+	"frame": {"x":1604,"y":2,"w":150,"h":57},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":150,"h":57},
+	"sourceSize": {"w":150,"h":57}
+},
+{
+	"filename": "bt_som.png",
+	"frame": {"x":1756,"y":2,"w":55,"h":55},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":55,"h":55},
+	"sourceSize": {"w":55,"h":55}
+},
+{
+	"filename": "bt_som_ativo.png",
+	"frame": {"x":1813,"y":2,"w":55,"h":55},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":55,"h":55},
+	"sourceSize": {"w":55,"h":55}
+},
+{
+	"filename": "voltar.png",
+	"frame": {"x":1870,"y":2,"w":150,"h":57},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":150,"h":57},
+	"sourceSize": {"w":150,"h":57}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker ",
+	"version": "1.0",
+	"image": "buttons.png",
+	"format": "RGBA8888",
+	"size": {"w":2048,"h":64},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:ae14f59ce79e56897616d692c3105833:f92b3be3768f1ec40cac85f8bb7b16c9:b34c8670b11bb20cb1751a70d3683e22$"
+}
+}

@@ -20,5 +20,9 @@ State.LudusSplash.prototype = {
 		setTimeout(function () {
 			this.game.state.start('SponsorSplash');
 		}, Config.ludusSplash.nextState);
+	},
+	update: function () {
+		"use strict";
+		Config.global.screen.resize(this.game);
 	}
 };

@@ -52,6 +52,6 @@ Fire.prototype = {
 	},
 	collision: function (spriteHero, spriteFire) {
 		"use strict";
-		this.hero.sprite.damage(Config.fire.damage);
+		this.hero.hurt(Config.fire.damage);
 	}
 };

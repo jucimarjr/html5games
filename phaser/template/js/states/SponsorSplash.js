@@ -19,5 +19,9 @@ State.SponsorSplash.prototype = {
 		setTimeout(function () {
 			this.game.state.start('GameSplash');
 		}, Config.sponsorSplash.nextState);
+	},
+	update: function () {
+		"use strict";
+		Config.global.screen.resize(this.game);
 	}
 };
