@@ -1,5 +1,5 @@
 var Dino = function()
-{
+{	
 	this.sprite;
 	this.jumpButton
 	this.cursors;
