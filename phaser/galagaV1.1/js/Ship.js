@@ -9,13 +9,6 @@ Ship = function(gameClass) {
 
     this.nextFire = 0;
 
-    //this.bulletsGroup = null;
-    //this.shootInterval = 10;
-    //this.nextFire = 0;
-    //this.fireRate = 200;
-    //this.teleportTime = 3000;
-    //this.nextTeleport = 0;
-    //this.lives = 3;
     this.create(this.game);
 };
 
@@ -29,54 +22,28 @@ Ship.prototype.create = function(game){
 	
 	
 	this.bullets = game.add.group();
-	this.bullets.enableBody = true;
-	this.bullets.physicsBodyType = Phaser.Physics.ARCADE;
+	//this.bullets.enableBody = true;
+	//this.bullets.physicsBodyType = Phaser.Physics.ARCADE;
+	
 	
 	this.bullets.createMultiple(50,'bullet');
 	this.bullets.setAll('anchor.x', 0.5);
     this.bullets.setAll('anchor.y', 1);
 	this.bullets.setAll('outOfBoundsKill', true);
 
-	//this.gameClass.game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
-	
-	
-	
-	//this.sprite.fixedToCamera = true;
-	
-	//fixed = game.add.sprite(480, 600, 'ship');
-    //fixed.fixedToCamera = true;
 
-//	this.sprite = this.game.add.sprite(this.game.width / 2, this.game.height / 2, 'sprites', 'ship_14-24.png');
-//    this.sprite.events.onOutOfBounds.add(this.gameClass.outOfBounds,this);
-//	this.sprite.anchor.x = 0.5;
-//	this.sprite.anchor.y = 0.5;
-//    this.sprite.body.gravity.x = 0;
-//    this.sprite.body.gravity.y = 0;
-//    this.sprite.body.maxVelocity.x = 1000;
-//    this.sprite.body.maxVelocity.y = 500;
-//    this.sprite.body.maxAngularVelocity = 20;
-//    this.shootInterval = 10;
-//    this.bulletsGroup = this.game.add.group();
-//	this.bullet = this.bulletsGroup.create(this.sprite.position.x + Math.cos((this.sprite.body.rotation + 270)*0.0174) *24,
-//			this.sprite.position.y + Math.sin((this.sprite.body.rotation + 270)*0.0174) *24, 'sprites', 'shoot_2-2.png');
-//	this.bullet.kill(); 
-//    this.sprite.animations.add('thrust', ['shipFire1_14-24.png', 'shipFire2_14-24.png'], 15, true, false);
-//    this.sprite.animations.add('stop', ['ship_14-24.png']);
 };
 
 Ship.prototype.update = function () {	
 	
 	 
-
-//    this.game.physics.collide(this.gameClass.groupAsteroids, this.bulletsGroup, this.gameClass.asteroid.die, null, this);
-//    this.game.physics.collide(this.sprite, this.gameClass.groupAsteroids, this.die , null, this);       	
-//    this.game.physics.collide(this.gameClass.ufo.sprite, this.bulletsGroup, this.gameClass.ufo.die, null, this);
+   //console.log("enemy"+this.gameClass.enemy1);
+  //if(this.gameClass.enemy1.die())
+   var teste =  this.game.physics.collide(this.gameClass.enemy1, this.bullets, this.gameClass.enemy1.die, null, this);
+   console.log(">>bullet "+this.bullets);
 };
 
 Ship.prototype.animate = function(){
-//	if(!this.sprite.animations.getAnimation('thrust').isPlaying){
-//		this.sprite.animations.play('thrust');
-//	}
 };
 
 Ship.prototype.stop = function(){
@@ -99,21 +66,11 @@ Ship.prototype.move = function (direction) {
  	
 Ship.prototype.shoot = function () {    
     
-//    if (game.time.now > this.nextFire && this.sprite.alive)
-//    {
-//        this.nextFire = game.time.now + this.fireRate;
-//        this.game.add.audio('shoot', 1).play();
-//        this.bullet = this.bulletsGroup.create(this.sprite.position.x + Math.cos((this.sprite.body.rotation + 270)*0.0174) *24,
-//        			this.sprite.position.y + Math.sin((this.sprite.body.rotation + 270)*0.0174) *24, 'sprites', 'shoot_2-2.png');
-//        this.game.physics.velocityFromAngle(this.sprite.body.rotation - 90, 500, this.bullet.body.velocity);
-//        this.bullet.events.onOutOfBounds.add(this.destroyShoot, this);
-//        this.shootInterval = 10;
-//    }
 
 };
 
 Ship.prototype.destroyShoot = function (shoot) {
-	//shoot.kill();
+	
 };
 
 Ship.prototype.die = function (spaceShip, asteroid) {
@@ -143,4 +100,9 @@ Ship.prototype.fire = function(){
         }
     }
 
+}
+
+function render(){
+	this.game.debug.spriteBounds(this.bullets);
+	
 }
