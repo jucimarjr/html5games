@@ -1,3 +1,5 @@
+
+<!-- baseado em http://gamedeveloper.com.br/blog/2013/08/21/pong-html5-javascript/ -->
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,6 +16,16 @@
         <canvas id="canvas" width="600" height="480">
                 Navegador não compatível com HTML5 Canvas
         </canvas>
+        
+        
+        <audio preload id="toque">
+  			<source src="beep.mp3" type="audio/mpeg">
+		</audio>
+		
+		<audio preload id="morte">
+  			<source src="blackstar.mp3" type="audio/mpeg">
+		</audio>
+        
         
         <script>
             // Variáveis globais utilizadas no jogo
@@ -109,7 +121,9 @@
 							}
 							else {// se o jogador estiver indo para baixo quando tocar na bola...
 	                                bolaAngulo = Math.floor((Math.random() * 10));// mandamos a bola na diagonal pra baixo
-	                        }                        
+	                        }           
+							
+							document.getElementById('toque').play();
 	                    }                    
 					}
 					else if ((bolaPosX + bolaRaio) >= oponentePosX) {// se o oponente enconstar na bola (eixo X)...
@@ -122,6 +136,8 @@
 								bolaAngulo = Math.floor((Math.random() * 10));// mandamos a bola na diagonal pra baixo
 							}  
 						}
+					
+						document.getElementById('toque').play();
 					} 
 	                    
 					if ((bolaPosY - bolaRaio <= 0) || (bolaPosY + bolaRaio > canvas.height)) {// se a bola bater em cima ou em baixo da tela...
@@ -146,6 +162,8 @@
 				            pontosJogador++;// ponto do jogador!
 				        }
 				    
+				        document.getElementById('morte').play();
+				    
 				        bolaPosX = canvas.width / 2;// posiciona a bola no meio da tela
 				        bolaPosY = canvas.height / 2;// posiciona a bola no meio da tela
 				        bolaParaDireita = false;// faz ela ir em direção ao jogador
@@ -161,14 +179,17 @@
 	            context.clearRect(0, 0, canvas.width, canvas.height);// limpa a tela antes de desenhar
 	            
 	            // Jogador e Oponente
+	            context.fillStyle = "green";
 	            context.fillRect(jogadorPosX, jogadorPosY, barraWidth, barraHeight);//desenha jogador
+	            
+	            context.fillStyle = "blue";
 	            context.fillRect(oponentePosX, oponentePosY, barraWidth, barraHeight);//desenha oponente
 	            
 	            // Bola
 	            context.beginPath();// inicia o modo de desenho
 	            context.arc(bolaPosX, bolaPosY, bolaRaio, 0, Math.PI * 2, true); // desenha o círculo desejado com as coordenadas no centro.
 	            context.closePath();// finaliza o caminho (opcional)
-	            
+	            context.fillStyle = "red";
 	            context.fill();
 	            
 	            // Placar
