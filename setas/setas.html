@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>HTML5 - Teste de Setas</title>
+        <style type="text/css">
+                canvas {
+                  border:1px dashed #000000;
+                }
+        </style>
+    </head>
+    
+    <body onload="init()">
+        <canvas id="canvas" width="1280" height="768">
+                Navegador não compatível com HTML5 Canvas
+        </canvas>
+        
+        <script>
+            // Variáveis globais utilizadas no jogo
+            var 
+            	canvas,
+            	context,
+            	barraWidth,
+            	barraHeight,
+            	jogadorPosX,
+            	jogadorPosY, 
+            	fps,
+            	teclaCimaPressionada,
+            	teclaBaixoPressionada,
+            	teclaEsquerdaPressionada,
+            	teclaDireitaPressionada,
+                velocidadeJogador,
+            	imagem;
+            
+            // Método para iniciar o jogo, executado no onload da tag body
+            function init() {
+            	canvas = document.getElementById("canvas");// procura o canvas
+				context = canvas.getContext("2d");// recupera o contexto 2d
+
+				barraWidth = 30;
+				barraHeight = 30;
+				fps = 30;
+				jogadorPosX = (canvas.width - barraWidth) / 2;;
+				jogadorPosY = (canvas.height - barraHeight) / 2;
+				teclaCimaPressionada = false;
+				teclaBaixoPressionada = false;
+				teclaEsquerdaPressionada = false;
+				teclaDireitaPressionada = false;
+				velocidadeJogador = 10;
+				imagem = new Image();
+				imagem.src = 'quadrado-30x30.png';
+				
+				
+
+				document.addEventListener('keyup', keyUp, false);// adiciona evento para keyup
+				document.addEventListener('keydown', keyDown, false);// adiciona evento para keydown
+				document.addEventListener('click', click, false);// adiciona evento para keydown
+				document.addEventListener('mousemove', mouseMove, false);// adiciona evento para keydown
+				
+				//canvas.addEventListener('click', click2,false);
+				
+				
+				
+				setInterval(gameLoop, 1000/fps);// chama a function gameLoop a cada 30 frames
+            }
+            
+            
+            function click(e) {
+            	jogadorPosX = (canvas.width - barraWidth) / 2;;
+				jogadorPosY = (canvas.height - barraHeight) / 2;
+			}
+            
+            function mouseMove(e) {
+            	var rect = canvas.getBoundingClientRect();
+            	jogadorPosX = e.clientX - rect.left;
+            	jogadorPosY = e.clientY - rect.top;
+			}
+            
+            
+			function keyDown(e) {
+				if (e.keyCode == 38) { // up
+					teclaCimaPressionada = true;
+				}
+				if (e.keyCode == 40) { // down
+                	teclaBaixoPressionada = true;
+				}
+				
+				if (e.keyCode == 37) { // esquerda
+                	teclaEsquerdaPressionada = true;
+				}
+				
+				if (e.keyCode == 39) { // direita
+                	teclaDireitaPressionada = true;
+				}
+				
+			}
+                        
+            function keyUp(e) {
+                    if (e.keyCode == 38) { // up
+                            teclaCimaPressionada = false; // jogador soltou tecla cima
+                    }
+                    
+                    if (e.keyCode == 40) { // down
+                            teclaBaixoPressionada = false; // jogador soltou tecla baixo
+                    }
+                    
+                    if (e.keyCode == 37) { // up
+                        teclaEsquerdaPressionada = false; // jogador soltou tecla cima
+                	}
+                	
+                    if (e.keyCode == 39) { // down
+                        teclaDireitaPressionada = false; // jogador soltou tecla baixo
+                	}
+            }
+            
+            
+            function getMousePos(canvas, evt) {
+                var rect = canvas.getBoundingClientRect();
+                return {
+                  x: evt.clientX - rect.left,
+                  y: evt.clientY - rect.top
+                };
+              }
+             
+
+              
+            
+            
+                        
+            function gameLoop() {
+	            // Jogador
+	                    if (teclaCimaPressionada) { // se for para cima...
+	                        if (jogadorPosY > 0) { // se não sair da tela...
+	                        	jogadorPosY -= velocidadeJogador;// muda a posição
+	                        }
+	                    }
+	                    if (teclaBaixoPressionada) { // se for para baixo...
+		            		if (jogadorPosY < (canvas.height - barraHeight)) {// se não sair da tela...
+		                    	jogadorPosY += velocidadeJogador;// muda a posição
+		                    }
+	                    }
+	                    
+	                    if (teclaDireitaPressionada) { // se for para esquerda...
+	                    	if (jogadorPosX < (canvas.width - barraWidth) ) {// se não sair da tela...
+	                    		jogadorPosX += velocidadeJogador;// muda a posição
+	                    	}
+	                    }
+	                    
+	                    if (teclaEsquerdaPressionada) { // se for para esquerda...
+	                    	if (jogadorPosX > 0 ) {// se não sair da tela...
+	                    		jogadorPosX -= velocidadeJogador;// muda a posição
+	                    	}
+	                    }
+	                    
+	                    
+	            // Desenha tudo na tela
+	            context.clearRect(0, 0, canvas.width, canvas.height);// limpa a tela antes de desenhar
+	            
+	            // Jogador e Oponente
+	            //context.fillRect(jogadorPosX, jogadorPosY, barraWidth, barraHeight);//desenha jogador
+	            
+	            context.drawImage(imagem, jogadorPosX, jogadorPosY);
+	            
+	            context.fill();
+	            
+	            context.font = "42pt Helvetica";// tamanho e fonte para desenhar o texto
+	            context.fillStyle = "#F00000";// cor preta (opcional)
+	            context.fillText(jogadorPosX + " " + jogadorPosY, (canvas.width / 2) - 70, 50); // escreve texto na tela na posição desejada
+	            
+	            // Linha divisória
+	            context.beginPath();// inicia o modo de desenho
+	            context.moveTo(canvas.width / 2, 0);// posiciona o "lapiz" para desenhar
+	            context.lineTo(canvas.width / 2, canvas.height);// faz o "risco" na tela
+	            context.strokeStyle = "#000000";// cor preta (opcional)
+	            context.stroke();// aplica o risco na tela
+	            context.closePath();// finaliza o caminho (opcional)
+	            
+	            
+			}
+
+        </script>
+    </body>
+</html>
