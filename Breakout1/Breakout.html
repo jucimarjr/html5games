@@ -1,0 +1,383 @@
+
+<!-- baseado em Pong -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>HTML5 - Canvas API</title>
+        <style type="text/css">      
+        		body {
+        			background-color:black;
+        		}           
+                canvas {      
+                	border-top: 30px solid #696969;          
+                  	border-right: 50px solid #696969;
+                  	border-left: 50px solid #696969;      
+                  	background: black;                   	                            															
+                }                
+        </style>
+    </head>
+    
+    <body onload="init()">	        
+       	<canvas id="canvas" width="600" height="480">
+       		Navegador n�o compat�vel com HTML5 Canvas
+       	</canvas>  
+       	
+        
+        <audio preload id="toque">
+  			<source src="beep.mp3" type="audio/mpeg">
+		</audio>
+		
+		<audio preload id="morte">
+  			<source src="blackstar.mp3" type="audio/mpeg">
+		</audio>
+        
+        
+        <script>
+            // Vari�veis globais utilizadas no jogo
+            var canvas, context, barraWidth, barraHeight, jogadorPosX, jogadorPosY, teclaEsquerdaPressionada, teclaDireitaPressionada, 
+            	bolaRaio, bolaPosX, bolaPosY, bolaParaDireita, bolaAngulo, bolaTempo, velocidadeJogador, velocidadeBola, pontosJogador,
+            	totalWidth, totalHeigh, bricksPerRow, bricksHeight, bricksWidth, bolaDeltaX, bolaDeltaY, bolaDirecaoX, bolaDirecaoY, vidasJogador;
+
+			var bricks = [[1,1,1,1,1,1,1,1],[2,2,2,2,2,2,2,2],[3,3,3,3,3,3,3,3],[4,4,4,4,4,4,4,4],[5,5,5,5,5,5,5,5],[6,6,6,6,6,6,6,6]];			
+            
+            // M�todo para iniciar o jogo, executado no onload da tag body
+            function init() {
+            	canvas = document.getElementById("canvas");// procura o canvas
+				context = canvas.getContext("2d");// recupera o contexto 2d
+
+				barraWidth = 90;
+				barraHeight = 10;
+				jogadorPosX = (canvas.width / 2) - (barraWidth / 2);
+				jogadorPosY = canvas.height - barraHeight;
+				teclaEsquerdaPressionada = false;
+				teclaDireitaPressionada = false;
+				bolaRaio = 10;
+				bolaPosY = jogadorPosY - barraHeight;
+				bolaPosX = jogadorPosX + barraWidth/2;
+				bolaParaDireita = false;
+				bolaAngulo = Math.floor(Math.random() * 21) - 10;
+				bolaTempo = 0;
+				velocidadeJogador = 10;
+				velocidadeBola = 5;
+				pontosJogador = 0;
+				tetoPosX = 0;
+				tetoPosY = 0;
+				tetoHeight = 70;
+				totalWidth = canvas.width;
+				totalHeight = canvas.height;
+				auxBrick = tetoHeight;
+				bolaDeltaX = - 2;
+				bolaDeltaY=  4;
+				vidasJogador = 3;
+				
+				
+				bricksPerRow = 8;                               
+	            bricksHeight = 20;
+	            bricksWidth = canvas.width/bricksPerRow;
+				                
+	            document.addEventListener('keyup', keyUp, false);// adiciona evento para keyup
+                document.addEventListener('keydown', keyDown, false);// adiciona evento para keydown
+                gameLoop = setInterval(game, 30);// chama a function gameLoop a cada 30 frames
+			}
+
+        	function keyDown(e) {
+                if (e.keyCode == 37) { // up
+                        teclaEsquerdaPressionada = true;
+                }
+                else if (e.keyCode == 39) { // down
+        			teclaDireitaPressionada = true;
+                }
+        	}
+        
+			function keyUp(e) {
+    			if (e.keyCode == 37) { // up
+            		teclaEsquerdaPressionada = false; // jogador soltou tecla cima
+    			}
+    			else if (e.keyCode == 39) { // down
+            		teclaDireitaPressionada = false; // jogador soltou tecla baixo
+    			}
+			}
+                        
+                         
+            function game() {         
+	            // Desenha tudo na tela
+	            recalcularDirecao();
+	            context.clearRect(0, 0, canvas.width, canvas.height);// limpa a tela antes de desenhar
+	            colidirParede();
+	            colisaoTijolo();
+	            colisaoBase();
+	            bolaSaiTela();
+	            fillBrick();
+				scoreBoard();
+	            player();
+	            ball();
+	            moverJogador();
+	            endGame();
+	            
+				//moverBola();
+				
+	            
+				
+			}
+			function bolaSaiTela(){
+				if(bolaPosY > canvas.height + bolaRaio*5){
+					bolaPosY = jogadorPosY - barraHeight;
+					bolaPosX = jogadorPosX + barraWidth/2;
+					vidasJogador--;
+				}
+			}
+				
+			
+			function moverJogador(){
+				
+				if (teclaDireitaPressionada!=teclaEsquerdaPressionada) { // se o jogador estiver pressionando a tecla baixo ou cima
+					if (teclaEsquerdaPressionada) { // se for para cima...
+						if (jogadorPosX > 0) { // se n?o sair da tela...
+							jogadorPosX -= velocidadeJogador;// muda a posi??o
+						}
+					}
+					else { // se for para baixo...
+						if (jogadorPosX < (canvas.width - barraWidth)) {// se n?o sair da tela...
+							jogadorPosX += velocidadeJogador;// muda a posi??o
+						}
+					}
+				}
+			}
+			
+			
+
+			                 
+			
+			
+			// Tijolos
+			function fillBrick(){
+				for (var i=0; i < bricks.length; i++) {
+	                for (var j=0; j < bricks[i].length; j++) {
+	                    drawBrick(j,i,bricks[i][j]);
+	                }
+	            }
+			}			
+			
+			// Desenha um tijolo
+			function drawBrick(x,y,type){  
+				
+			    switch(type){
+			        case 1:
+			            context.fillStyle = '#A52A2A';
+			            break;
+			        case 2:
+			            context.fillStyle = '#D2691E';                    
+			            break;
+			        case 3:
+			            context.fillStyle = '#556B2F';
+			            break;
+			        case 4:
+			            context.fillStyle = '#228B22';
+			            break;
+			        case 5:
+			            context.fillStyle = '#7CFC00';
+			            break;
+			        case 6:
+			            context.fillStyle = '#0000FF';
+			            break;			                                         
+			        default:
+			            context.clearRect(x*bricksWidth,y*bricksHeight + 3*bricksHeight,bricksWidth,bricksHeight);
+			            break;
+			 
+			    }
+			    if (type){			        
+			        context.fillRect(x*bricksWidth,y*bricksHeight + 3*bricksHeight, bricksWidth,bricksHeight);				                
+			    } 
+			    
+			}   
+
+			// Jogador
+			function player(){				
+	            context.fillStyle = "#D2691E";
+	            context.fillRect(jogadorPosX, jogadorPosY, barraWidth, barraHeight);//desenha jogador
+			}
+			
+			      
+
+			// Bola
+			function ball(){				
+	            context.beginPath();// inicia o modo de desenho
+	            context.arc(bolaPosX, bolaPosY, bolaRaio, 0, Math.PI * 2, true); // desenha o c�rculo desejado com as coordenadas no centro.
+	            context.closePath();// finaliza o caminho (opcional)
+	            context.fillStyle = "red";
+	            context.fill();
+			}
+
+			// Placar
+			function scoreBoard(){	            
+	            var pontos = pontosJogador;// vari�vel tempor�ria para n�o alterar pontosJogador
+	            var vidas = vidasJogador;// vari�vel tempor�ria para n�o alterar pontosOponente
+	            
+	            if (pontos < 10) {// se o n�mero de pontos for menor que 10, colocamos o zero � esquerda
+	                pontos = "Pontos: 0" + pontos;
+	            }else{
+		            pontos = "Pontos: "+ pontos;
+	            }
+	            vidas = "Vidas: " + vidas;
+	            if(vidas <= 0){
+		            vidas = "Vidas: " + 0;
+	            }
+	            
+	            context.font = "42pt Helvetica";// tamanho e fonte para desenhar o texto
+	            context.fillStyle = "#F00000";// cor preta (opcional)
+	            context.fillText(pontos + " " + vidas, 0, 50); // escreve texto na tela na posi��o desejada
+			}
+			
+				function moverBola(){
+				
+				if( /*bolaPosY - bolaRaio < 0 ||*/ colisaoTijolo()){
+					bolaDeltaY = -bolaDeltaY;
+				}
+				
+				if(bolaPosX - bolaRaio < 0||bolaPosX + bolaRaio > canvas.width || colisaoXComTijolo()){
+					bolaDeltaX = - bolaDeltaX;
+				}
+				
+				if(bolaPosY + bolaDeltaY + bolaRaio > jogadorPosY){
+					if(bolaPosX + bolaDeltaX >= jogadorPosX && bolaPosX + bolaDeltaX < jogadorPosX + barraWidth){
+						bolaDeltaY = - bolaDeltaY;
+						document.getElementById('toque').play();
+					}
+				}
+				
+				
+			
+            }   
+				
+			function recalcularDirecao() {
+				bolaPosX += bolaDeltaX;
+				bolaPosY += bolaDeltaY;
+			}
+			
+			//colis�es
+			function apagarTijolo(i,j) {
+				bricks[i][j] = 0;
+				pontosJogador += 1;
+				document.getElementById('toque').play();
+			}
+			
+			function colidirParede() {
+				if(bolaPosX - bolaRaio <= 0){
+					bolaDeltaX *= -1;
+				}
+				
+				if(bolaPosX + bolaRaio >= canvas.width -1){
+					bolaDeltaX *= -1;
+				}
+				
+				if(bolaPosY - bolaRaio <= 0){
+					bolaDeltaY *= -1;
+				}		
+				
+			}
+			
+			function colisaoBase() {
+				if(bolaPosX + bolaRaio >= jogadorPosX && bolaPosX - bolaRaio <= jogadorPosX+barraWidth){
+					if(bolaPosY + bolaRaio >= jogadorPosY && bolaPosY + bolaRaio < jogadorPosY+barraHeight){
+						var dir = bolaPosX - (jogadorPosX+(barraWidth/2));
+						dir /= (barraWidth/2);
+						bolaDeltaX = dir*(velocidadeBola*0.75);
+						bolaDeltaY = -(velocidadeBola-Math.abs(dir));
+					}
+				}
+			}
+			
+			
+			
+			
+			
+			/*function colisaoXComTijolo(){
+				var tocouX = false;
+				
+				for(var i = 0; i < bricks.length; i++){
+					for(var j = 0; j < bricks[i].length; j++){
+						if(bricks[i][j]){
+							var tijoloX = j * bricksWidth;
+							var tijoloY = i * bricksWidth;
+							if((bolaPosX + bolaRaio <= tijoloX)||(bolaPosX - bolaRaio >= tijoloX + bricksWidth)){
+								if((bolaPosY - bolaRaio <= tijoloY + bricksHeight)){
+									apagarTijolo(i, j);
+									tocouX;
+								}
+							}
+						}
+					}
+				}
+				return tocouX;
+			}*/
+			
+			function colisaoTijolo(){
+				var tocouY = false;
+				for(var i = 0; i < bricks.length; i++){
+					for(var j = 0; j < bricks[i].length; j++){
+						if(bricks[i][j]){
+							
+							//console.log("bricksWidth = "+bricksWidth);
+							//console.log("bricksHeight = "+bricksHeight);
+							var tijoloX = j * bricksWidth;
+							//console.log("tijoloX ="+tijoloX);
+							var tijoloY = i * bricksHeight + 3 * bricksHeight;//Posição do tijolo é 3x mais que o seu heigth
+							//console.log("tijoloy ="+tijoloY);
+							if((bolaPosY + bolaDeltaY - bolaRaio < tijoloY+bricksHeight)&&
+								(bolaPosY + bolaDeltaX +bolaRaio > tijoloY)){
+								if(bolaPosX + bolaDeltaX - bolaRaio < tijoloX +bricksWidth && bolaPosX + bolaDeltaY + bolaRaio > tijoloX)
+								{
+									//console.log("bola pos Y = "+bolaPosY);
+									//console.log("bola pos x = "+bolaPosX);
+									//console.log("tijolo Y = "+tijoloY);
+									//console.log("tijolo x = "+tijoloX);
+									//console.log("tijolo y + altura = "+(tijoloY+bricksHeight));
+									//console.log("tijolo x + largura = "+(tijoloX +bricksWidth));
+									var distX1 = Math.abs((bolaPosX-bolaRaio)-(tijoloX+bricksWidth));
+									var distX2 = Math.abs((bolaPosX+bolaRaio)-(tijoloX));
+									var distY1 = Math.abs((bolaPosY-bolaRaio)-(tijoloY+bricksHeight));
+									var distY2 = Math.abs((bolaPosY+bolaRaio)-(tijoloY));
+									
+									if(distX2 < distX1)
+										distX1 = distX2;
+									if(distY2 < distY1)
+										distY1 = distY2;
+									
+									if(distX1 == distY1){
+										bolaDeltaY *=-1;
+										bolaDeltaX *=-1;
+									}
+									
+									if(distX1 < distY1){
+										bolaDeltaX *= -1;
+									}else{
+										bolaDeltaY *= -1;
+									}
+									//console.log("i = "+i+" j = "+j)
+									apagarTijolo(i, j);
+									tocouY = true;
+									//j = 0;
+									//return;
+									
+								}
+							}
+						}
+					}
+				}
+				return tocouY;
+			}
+			
+			function endGame(){
+				if(vidasJogador <=0 || pontosJogador >=48){
+					clearInterval(gameLoop);
+					bolaPosX = 0;
+					bolaPosY = canvas.height + 100;
+					context.fillText('The End!!!!',canvas.width/4,canvas.height/2);
+				}
+			}
+				
+
+        </script>
+    </body>
+</html>
