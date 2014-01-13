@@ -1,0 +1,276 @@
+
+<!-- Jogo Breakout -->
+<!-- Desenvolvido por: Held, Juliane Silva, Nayana Campelo -->
+<!-- Baseado em: Jogo Pong (http://gamedeveloper.com.br/blog/2013/08/21/pong-html5-javascript/) -->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>HTML5 - Breakout</title>
+        <style type="text/css">
+                canvas {
+					border:1px dashed #000000;
+					background-color: #000000;
+
+					position:absolute;
+					top:50%;
+					left:50%;
+					margin-top:-240px;
+					margin-left:-350px;
+                }
+        </style>
+    </head>
+    
+    <body onload="init()">
+        <canvas id="canvas" width="700" height="480">
+                Navegador não compatível com HTML5 Canvas
+        </canvas>
+        
+        
+        <audio preload id="toque">
+  			<source src="beep.mp3" type="audio/mpeg">
+		</audio>
+		
+		<audio preload id="morte">
+  			<source src="blackstar.mp3" type="audio/mpeg">
+		</audio>
+        
+        
+        <script>
+            // Variáveis globais utilizadas no jogo
+            var canvas, context, tetoPosY,
+				camadasQuantidade, tijolosQuantidade, tijoloWidth, tijoloHeight, tijoloPosX, tijoloPosY,
+                barraWidth, barraHeight, barraPosX, barraPosY, barraVelocidade,
+				bolaRaio, bolaPosX, bolaPosY, bolaParaBaixo, bolaAngulo, bolaAnguloY, bolaTempo, bolaVelocidade,
+				teclaDireitaPressionada, teclaEsquerdaPressionada;
+            
+            // Método para iniciar o jogo, executado no onload da tag body
+            function init() {
+            	canvas = document.getElementById("canvas"); // Procura o canvas
+				context = canvas.getContext("2d"); // Recupera o contexto 2d
+
+				//Sobre o teto
+				tetoPosY = 60; // Posição fixa y. O teto do jogo está um pouco abaixo da tela em si
+				
+				// Sobre os tijolinhos
+				tijolosQuantidade = 6; // Quantidade de tijolos na horizontal
+				tijoloWidth = canvas.width/tijolosQuantidade; // Largura
+				tijoloHeight = 21; // Altura
+
+				// Sobre as camadas de tijolinhos
+				camadasQuantidade = 6; // Quantidade de camadas verticais
+				tijoloPosX = new Array(camadasQuantidade); // Cada tijolinho tem uma posição fixa X 
+				tijoloPosY = new Array(camadasQuantidade); // E uma posição fixa Y
+				constuirTijolos();
+				colorirCamadas();
+
+				// Sobre a barrinha jogadora
+				barraWidth = 110; // Largura
+				barraHeight = 7; // Altura
+				barraPosX = (canvas.width - barraWidth) / 2; // Posição inicial x, no meio
+				barraPosY = canvas.height - barraHeight - 2; // Posição inicial y, encostada no chão
+				barraVelocidade = 10;
+				
+				// Sobre o jogador
+				jogadorPontos = 0; // Pontuação
+
+				// Sobre a bolinha
+				initBola();
+                
+				// Sobre as teclas
+				teclaDireitaPressionada = false; // Para o jogador não andar pra direita automaticamente
+				teclaEsquerdaPressionada = false; // Para o jogador não andar pra esquerda automaticamente
+				
+				document.addEventListener('keydown', keyDown, false); // Adiciona evento para keydown
+				document.addEventListener('keyup', keyUp, false); // Adiciona evento para keyup
+				setInterval(gameLoop, 30); // Chama a function gameLoop a cada 30 frames
+            }
+            
+			function initBola() {
+				bolaRaio = 7; // Raio
+				bolaPosX = canvas.width / 2; // Para a bolinha sair do meio horizontal
+				bolaPosY = canvas.height - barraHeight - 2; // Para a bolinha sair do meio vertical
+				bolaParaBaixo = false; // Para a bolinha não ir pra baixo automaticamente
+		        bolaAngulo = Math.floor(Math.random() * 21) - 10; // Ângulo inicial, aleatório de -10 a 11
+				bolaAnguloY = Math.floor(Math.random() * 21) - 10; // Ângulo auxiliar
+		        bolaTempo = 0; // Zera o tempo de deixar a bolinha invisível e a coloca em jogo novamente
+				bolaVelocidade = 5; // Velocidade do movimento
+			}
+			
+			function keyDown(e) { // Quando pressionada a tecla...
+				if (e.keyCode == 37) { // LEFT
+					teclaEsquerdaPressionada = true; // Esquerda
+				}
+				else if (e.keyCode == 39) { // RIGHT
+                	teclaDireitaPressionada = true; // Direita
+				}
+			}
+                        
+            function keyUp(e) { // Quando liberada a tecla...
+				if (e.keyCode == 37) { // LEFT
+					teclaEsquerdaPressionada = false; // Para
+				}
+				else if (e.keyCode == 39) { // RIGHT
+					teclaDireitaPressionada = false; // Para
+				}
+            }
+			
+			function constuirTijolos() {
+				for (var i = 0; i < camadasQuantidade; i++) {
+						tijoloPosX[i] = new Array(tijolosQuantidade);
+						tijoloPosY[i] = new Array(tijolosQuantidade);
+						for (var j = 0; j < tijolosQuantidade; j++) {
+							tijoloPosX[i][j] = tijoloWidth * j;
+							tijoloPosY[i][j] = tetoPosY + (tijoloHeight * i);
+						}
+				}
+			}
+			
+			function colorirCamadas() {
+				camadasCor = new Array(camadasQuantidade); // Cada camada tem uma cor
+				for (var i = 0; i < camadasQuantidade; i++) {
+					camadasCor[i] = '#'+Math.floor(Math.random()*16777215).toString(16); // A cor de cada camada é aleatória
+					for (var j = 0; j < i; j++) { // Verifica se a cor já foi escolhida pra alguma das outras camadas
+						if ((camadasCor[i] == camadasCor[j]) || (camadasCor[i] == '#000000')) { // Se já foi escolhida, o processo é repetido
+							i--;
+						}
+					}
+				}
+			}
+                        
+			function gameLoop() {
+	            // Barrinha jogadora
+	            if (teclaEsquerdaPressionada != teclaDireitaPressionada) { // Se o jogador estiver pressionando a tecla LEFT ou a RIGHT...
+					if (teclaEsquerdaPressionada) { // Se for a LEFT
+						if (barraPosX > 0) { // E o jogador não estiver encostando na tela (pela esquerda)
+							barraPosX -= barraVelocidade;// Ele se move um pouco mais pra esquerda
+						}
+					}
+					else { // Se for a RIGHT
+						if (barraPosX < (canvas.width - barraWidth)) { // E o jogador não estiver encostando na tela (pela direita)
+							barraPosX += barraVelocidade; // Ele se move um pouco mais pra direita
+						}
+					}
+	            }
+
+	            // Bolinha
+				if (bolaTempo <= 0) { // Se a bolinha estiver em jogo, o tempo é 0 (após marcar ponto, a bolinha fica invisível por um tempo)
+
+					if ((bolaPosY + bolaRaio) >= barraPosY) { // Se a bolinha enconstar na barrinha pelo eixo Y
+						if ((bolaPosX >= barraPosX) && (bolaPosX <= (barraPosX + barraWidth))) { // E pelo eixo X
+							bolaParaBaixo = false; // Ela muda de lado (pra cima) e é rebatida para os tijolinhos
+							if (teclaEsquerdaPressionada) { // Se o jogador estiver indo pra esquerda quando a bolinha encostar nele
+								bolaAngulo = Math.floor(Math.random() * 10) - 9; // Ela é mandada pra diagonal pra esquerda
+							}
+							else { // Se o jogador estiver indo pra direita quando a bolinha encostar nele
+								bolaAngulo = Math.floor((Math.random() * 10)); // Ela é mandada pra diagonal pra direita
+	                        }           
+							
+							document.getElementById('toque').play();
+	                    }                    
+					}
+					else {
+						for (var i = 0; i < camadasQuantidade; i++) {
+							for (var j = 0; j < tijolosQuantidade; j++) {
+								if ((bolaPosY - bolaRaio) <= (tijoloPosY[i][j] + tijoloHeight)) { // Se a bolinha enconstar na barrinha pelo eixo Y
+									if ((bolaPosX >= tijoloPosX[i][j]) && (bolaPosX <= (tijoloPosX[i][j] + tijoloWidth))) { // E pelo eixo X
+										bolaParaBaixo = true; // Ela muda de lado (pra baixo) e é rebatida para a barrinha (no chão)
+										tijoloPosX[i][j] = 0;
+										tijoloPosY[i][j] = 0;
+										
+										bolaVelocidade = 5 + i; // A velocidade da bolinha corresponde a camada alcançada; Quanto mais próxima do teto, maior a velocidade
+										
+										jogadorPontos++;
+										document.getElementById('toque').play();
+									}                    
+								}
+							}
+						}
+					}
+					
+					if ((bolaPosX - bolaRaio <= 0) || (bolaPosX + bolaRaio > canvas.width)) { // Se a bolinha bater na esquerda ou na direita da tela
+					    bolaAngulo = bolaAngulo * -1; // Multiplicamos por -1 para inverter o sinal e a direção da bolinha no eixo X
+					}
+					bolaPosX += bolaAngulo; // Movemos a bolinha pra esquerda ou pra direita, de acordo com o cálculo acima
+					
+					if ((bolaPosY - tetoPosY) - bolaRaio <= 0) { // Se a bolinha bater no teto da tela
+						bolaPosY += bolaRaio; // Movemos a bolinha pra baixo
+						bolaParaBaixo = true;
+					}
+					
+					if (bolaParaBaixo) { // Se a bolinha estiver indo pra baixo
+					    bolaPosY += bolaVelocidade; // Ela continua se movendo pra baixo
+					}
+					else { // Se estiver indo pra cima
+					    bolaPosY -= bolaVelocidade; // Ela continua se movendo pra cima
+					}                    
+				}              
+	                
+				if (((bolaPosY - bolaRaio) >= canvas.height) || (jogadorPontos == camadasQuantidade*tijolosQuantidade)) { // Se a bolinha sair da tela ou jogador ganhar
+					document.getElementById('morte').play();
+					
+					if (bolaTempo >= 40) { // Se o tempo de deixar a bolinha invisível passou
+				        document.getElementById('morte').play();
+						
+						//Reiniciando o jogo...
+						constuirTijolos();
+						colorirCamadas();
+						initBola();
+						jogadorPontos = 0;
+				    }
+				    else { // Se o tempo de deixar a bola invisível ainda não passou
+				        bolaTempo++; // A contagem até 30 continua
+				    }
+				}
+	
+	            // Desenha tudo na tela
+	            context.clearRect(0, 0, canvas.width, canvas.height); // Limpa a tela antes de desenhar
+				//context.fillStyle = "black";
+context.fillStyle = "white";
+				context.fillRect(0, tetoPosY, canvas.width, canvas.height);
+
+	            // Desenha tijolinhos
+				for (var i = 0; i < camadasQuantidade; i++) {
+					context.fillStyle = camadasCor[i];
+					for (var j = 0; j < tijolosQuantidade; j++) {
+						if (tijoloPosY[i][j] != 0) {
+							context.fillRect(tijoloPosX[i][j], tijoloPosY[i][j], tijoloWidth, tijoloHeight); // Desenha os tijolinhos
+							context.strokeStyle = "black";
+							context.strokeRect(tijoloPosX[i][j], tijoloPosY[i][j], tijoloWidth, tijoloHeight);
+						}
+					}
+				}
+
+	            //context.fillStyle = "white";
+context.fillStyle = "black";
+	            context.fillRect(barraPosX, barraPosY, barraWidth, barraHeight); // Desenha a barrinha jogadora
+	            
+	            // Bolinha
+	            context.beginPath(); // Inicia o modo de desenho
+	            context.arc(bolaPosX, bolaPosY, bolaRaio, 0, Math.PI * 2, true); // Desenha o círculo desejado com as coordenadas no centro
+	            context.closePath(); // Finaliza o caminho (opcional)
+	            //context.fillStyle = "white";
+context.fillStyle = "black";
+	            context.fill();
+
+	            // Placar
+	            var pontosA = jogadorPontos; // Variável temporária para não alterar jogadorPontos
+	            
+	            if (pontosA < 10) { // Se o número de pontos for menor que 10, colocamos o zero á esquerda
+	                pontosA = "0" + pontosA;
+	            }
+	            
+	            context.font = "33pt Andy"; // Tamanho e fonte para desenhar o texto
+	            //context.fillStyle = "black"; // Cor preta (opcional)
+context.fillStyle = "white"; // Cor preta (opcional)
+				context.textAlign = 'center';
+				context.fillText("BREAKOUT", canvas.width/2, tetoPosY - 15); // Escreve texto na tela na posição desejada
+	            
+				context.font = "25pt Andy"; // Tamanho e fonte para desenhar o texto
+				context.fillText(pontosA, canvas.width - 30, tetoPosY - 20); // Escreve texto na tela na posição desejada
+			}
+			
+        </script>
+    </body>
+</html>
