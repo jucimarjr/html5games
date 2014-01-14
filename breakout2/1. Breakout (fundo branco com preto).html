@@ -179,7 +179,7 @@
 										tijoloPosX[i][j] = 0;
 										tijoloPosY[i][j] = 0;
 										
-										bolaVelocidade = 5 + i; // A velocidade da bolinha corresponde a camada alcançada; Quanto mais próxima do teto, maior a velocidade
+										bolaVelocidade = 5 + (camadasQuantidade - i); // A velocidade da bolinha corresponde a camada alcançada; Quanto mais próxima do teto, maior a velocidade
 										
 										jogadorPontos++;
 										document.getElementById('toque').play();
