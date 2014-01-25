@@ -12,7 +12,7 @@
         frameRate:60,
         tag:"GC",
         engineDir:"../Cocos2d-html5/cocos2d/",
-        appFiles:[]
+        appFiles:['barra.js','bola.js','controls.js','credits.js','game.js','win.js','menu.js','splash.js']
     };
     window.addEventListener('DOMContentLoaded', function () {
         var s = d.createElement("script");

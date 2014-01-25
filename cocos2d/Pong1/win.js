@@ -1,16 +1,17 @@
-var win = cc.Layer.extend({
+var winlayer = cc.Layer.extend({
 	init:function()
 	{
 		var text = cc.LabelTTF.create("","Arial",40);
-		text.setString("You Win!!\nScore: ");
-		 this.addChild(text);
+		text.setPosition(400,240);
+		text.setString("Player 1 Wins");
+		this.addChild(text);
 	}
-})
+});
 
-var winscene = cc.Scene.extend({
+var win = cc.Scene.extend({
     onEnter:function(){
         this._super();
-        var layer = new win();
+        var layer = new winlayer();
         layer.init();
         this.addChild(layer);
     }

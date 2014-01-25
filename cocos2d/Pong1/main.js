@@ -16,8 +16,11 @@ var cocos2dApp = cc.Application.extend({
         var director = cc.Director.getInstance();
         cc.EGLView.getInstance().setDesignResolutionSize(800, 480, cc.RESOLUTION_POLICY.SHOW_ALL);//Ajusta o tamanho do canvas a tela.
         director.setAnimationInterval(1.0 / this.config["frameRate"]);
-        director.runWithScene(new this.startScene());
+        cc.LoaderScene.preload([{src:'assets/TITLE.png'}], function () {
+            director.replaceScene(new this.startScene());
+        }, this);
+        //director.runWithScene(new this.startScene());
         return true;
     }
 });
-var myApp = new cocos2dApp();
+var myApp = new cocos2dApp(menu);

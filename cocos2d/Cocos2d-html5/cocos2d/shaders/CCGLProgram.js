@@ -258,7 +258,7 @@ cc.GLProgram = cc.Class.extend({
         if (!source || !shader)
             return false;
 
-        var preStr = (type == this._glContext.VERTEX_SHADER) ? "precision highp float;\n" : "precision mediump float;\n";
+        var preStr = (type == this._glContext.VERTEX_SHADER) ? "precision highp float;\n" : "precision highp float;\n";
 
         source = preStr
             + "uniform mat4 CC_PMatrix;         \n"
