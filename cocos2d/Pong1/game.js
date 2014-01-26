@@ -3,6 +3,13 @@ gameLayer = cc.Layer.extend({
     {
         this._super();
         
+        var bola = new Bola();
+        this.addChild(bola);
+        var barraesq = new Barra(0);
+        this.addChild(barraesq);
+        var barradir = new Barra(796);
+        this.addChild(barradir);
+        
         return this;
     }
 });
