@@ -3,6 +3,9 @@ gameLayer = cc.Layer.extend({
 	barradir:null,
 	bola:null,
 	fundo:null,
+	ponto1:0,
+	ponto2:0,
+	score:null,
 	init:function()
     {
         this._super();
@@ -10,18 +13,23 @@ gameLayer = cc.Layer.extend({
         this.fundo = cc.Sprite.create("assets/FUNDO.png");
         this.fundo.setPosition(400,240);
         this.addChild(this.fundo);
+        this.score = cc.LabelTTF.create(this.ponto1 + " " + this.ponto2, "assets/Arcade Classic.ttf", 150);
+        cc.log(this.score.getTextDefinition());
+        this.score.setPosition(400, 400);
+        this.score.setFontFillColor(new cc.Color3B(50, 205, 50));
+        this.addChild(this.score);
         this.bola = new Bola();
         this.addChild(this.bola);
         this.barraesq = new Barra(4);
         this.addChild(this.barraesq);
         this.barradir = new Barra(796);
         this.addChild(this.barradir);
+        cc.Director.getInstance().getScheduler().scheduleCallbackForTarget(this, function(){this.addChild(new Powerup())}, 1000, cc.REPEAT_FOREVER, 0, !this._isRunning );
         this.scheduleUpdate();
-        
         return this;
     },
     dir:0,
-    update:function(){
+    update:function(dt){
     	if(this.collide(this.bola, this.barraesq)){
     		var bolaY = this.bola.getPositionY();
     		var bolaCentro = bolaY - (this.bola.getContentSize().height/2);
@@ -31,40 +39,45 @@ gameLayer = cc.Layer.extend({
     		var distCent = bolaCentro - barraCentroPos;
     		var PorcDistCent = distCent/barraCentro;
     		this.dir = (90 - PorcDistCent*90) + 180;
-    		cc.log("Barraesq:");
-    		cc.log("bolaY: "+bolaY);
-    		cc.log("barraY: "+barraY);
-    		cc.log("barraCentro: "+barraCentro);
-    		cc.log("barraCentroPos: "+barraCentroPos);
-    		cc.log("distCent: "+distCent);
-    		cc.log("PorcDistCent: "+PorcDistCent);
-    		cc.log("Direção: "+this.dir);
     		this.bola.changeDir(this.dir);
     	}
     	if(this.collide(this.bola, this.barradir)){
     		var bolaY = this.bola.getPositionY();
+    		var bolaCentro = bolaY - (this.bola.getContentSize().height/2);
     		var barraY = this.barradir.getPositionY();
     		var barraCentro = this.barradir.getContentSize().height/2;
     		var barraCentroPos = barraY - barraCentro;
-    		var distCent = bolaY - barraCentroPos;
-    		var PorcDistCent = distCent/barraCentroPos;
+    		var distCent = bolaCentro - barraCentroPos;
+    		var PorcDistCent = distCent/barraCentro;
     		this.dir = 180 - (90 - PorcDistCent*90);
-    		cc.log("Barradir:");
-    		cc.log("bolaY: "+bolaY);
-    		cc.log("barraY: "+barraY);
-    		cc.log("barraCentro: "+barraCentro);
-    		cc.log("barraCentroPos: "+barraCentroPos);
-    		cc.log("distCent: "+distCent);
-    		cc.log("PorcDistCent: "+PorcDistCent);
-    		cc.log("Direção: "+this.dir);
     		this.bola.changeDir(this.dir);
     	}
     	if(this.bola.getPositionX()<-20){
+    		this.ponto2++;
     		this.bola.reset();
+    		this.score.setString(this.ponto1 + " " + this.ponto2);
     	}
     	if(this.bola.getPositionX()>820){
+    		this.ponto1++;
     		this.bola.reset();
+    		this.score.setString(this.ponto1 + " " + this.ponto2);
     	}
+    	if(this.bola.getPositionY()>this.barradir.getPositionY()){
+    		this.onKeyDown(cc.KEY.up);
+    		this.onKeyUp(cc.KEY.down);
+    	}
+    	if(this.bola.getPositionY()<this.barradir.getPositionY()){
+    		this.onKeyDown(cc.KEY.down);
+    		this.onKeyUp(cc.KEY.up);
+    	}
+    	/*if(this.bola.getPositionY()>this.barraesq.getPositionY()){
+    		this.onKeyDown(cc.KEY.w);
+    		this.onKeyUp(cc.KEY.s);
+    	}
+    	if(this.bola.getPositionY()<this.barraesq.getPositionY()){
+    		this.onKeyDown(cc.KEY.s);
+    		this.onKeyUp(cc.KEY.w);
+    	}*/
     },
     onKeyDown:function(key) {
         if(key == cc.KEY.up){

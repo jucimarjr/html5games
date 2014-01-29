@@ -12,12 +12,11 @@ var Bola = cc.Sprite.extend({
 	},
 	update:function(){
 		this.setPosition(new cc.Point(this.getPosition().x-this.velx,this.getPosition().y-this.vely));
-		if(this.getPositionY() < 7 || this.getPositionY() > 472){
+		if(this.getPositionY() < 10 || this.getPositionY() > 470){
 			this.vely = -this.vely;
+			this.vel = this.vel + 0.1;
+			cc.log("vel: "+this.vel);
 		}
-		//if(this.getPositionX() < 5 || this.getPositionX() > 800){
-			//this.velx = -this.velx;
-		//}
 	},
 	collideRect:function(p){
         var a = this.getContentSize();
@@ -25,6 +24,8 @@ var Bola = cc.Sprite.extend({
 	},
 	changeDir:function(dir){
 		this.dir = this.dir + dir;
+		this.vel = this.vel + 0.1;
+		cc.log("vel: "+this.vel);
 		this.velx = Math.sin(this.dir * 0.0174)* this.vel;
         this.vely = Math.cos(this.dir * 0.0174) * this.vel;
 	},
@@ -44,7 +45,7 @@ var Bola = cc.Sprite.extend({
 				this.dir = this.dir - 45;
 			}
 		}
-		cc.log("Direção: "+this.dir);
+		this.vel = 4;
 		this.velx = Math.sin(this.dir * 0.0174)* this.vel;
         this.vely = Math.cos(this.dir * 0.0174) * this.vel;
 	}
