@@ -2,17 +2,11 @@ splashLayer = cc.Layer.extend({
 	init:function()
     {
         this._super();
-        var i = 1;
-        var path = "assets/SPLASH" + i + ".png";
-        var tela = cc.Sprite.create(path);
-        int = setInterval(function(){
-        	i++;
-        	tela.setTexture(cc.TextureCache.getInstance().addImage("assets/SPLASH" + i + ".png"));
-        }, 240);
-        if(i > 72){
-        	clearInterval(int);
-        }
-        	
+        
+        var title = cc.Sprite.create("assets/TITLE.png");
+        title.setPosition(400, 400);
+        this.addChild(title);
+                	
         
         return this;
     }

@@ -1,17 +1,30 @@
-var winlayer = cc.Layer.extend({
+winLayer = cc.Layer.extend({
 	init:function()
 	{
-		var text = cc.LabelTTF.create("","Arial",40);
-		text.setPosition(400,240);
-		text.setString("Player 1 Wins");
-		this.addChild(text);
-	}
+		this._super();
+		var playerWin = cc.Sprite.create("assets/playerWin.png");
+		playerWin.setPosition(400, 300);
+		this.addChild(playerWin);
+		
+		var btBack = cc.Sprite.create("assets/btBack.png");
+		var back = cc.MenuItemSprite.create(btBack, null,null, 'btBack', this);
+		back.setPositionY(20);
+		
+        var menu = cc.Menu.create(back);
+        menu.setPosition(400,20);
+        this.addChild(menu);
+		
+		return this;
+	},
+	btBack:function(){
+    	cc.Director.getInstance().replaceScene(new menu());
+    }	
 });
 
-var win = cc.Scene.extend({
+win = cc.Scene.extend({
     onEnter:function(){
         this._super();
-        var layer = new winlayer();
+        var layer = new winLayer();
         layer.init();
         this.addChild(layer);
     }
