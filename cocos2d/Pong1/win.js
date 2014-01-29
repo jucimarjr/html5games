@@ -9,7 +9,7 @@ var winlayer = cc.Layer.extend({
 });
 
 var win = cc.Scene.extend({
-    onEnter:function(){
+    onEnterTransitionDidFinish:function(){
         this._super();
         var layer = new winlayer();
         layer.init();

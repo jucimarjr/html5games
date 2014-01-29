@@ -13,6 +13,8 @@ var Bola = cc.Sprite.extend({
 	update:function(){
 		this.setPosition(new cc.Point(this.getPosition().x-this.velx,this.getPosition().y-this.vely));
 		if(this.getPositionY() < 10 || this.getPositionY() > 470){
+			cc.AudioEngine.getInstance().setEffectsVolume(1);
+	        cc.AudioEngine.getInstance().playEffect("assets/sound2.wav",false);
 			this.vely = -this.vely;
 			this.vel = this.vel + 0.1;
 			cc.log("vel: "+this.vel);
@@ -23,6 +25,8 @@ var Bola = cc.Sprite.extend({
         return cc.rect(p.x - a.width, p.y - a.height,a.width,a.height);
 	},
 	changeDir:function(dir){
+        cc.AudioEngine.getInstance().setEffectsVolume(1);
+        cc.AudioEngine.getInstance().playEffect("assets/sound1.wav",false);
 		this.dir = this.dir + dir;
 		this.vel = this.vel + 0.1;
 		cc.log("vel: "+this.vel);
@@ -48,5 +52,7 @@ var Bola = cc.Sprite.extend({
 		this.vel = 4;
 		this.velx = Math.sin(this.dir * 0.0174)* this.vel;
         this.vely = Math.cos(this.dir * 0.0174) * this.vel;
+        cc.AudioEngine.getInstance().setEffectsVolume(1);
+        cc.AudioEngine.getInstance().playEffect("assets/Hit.wav",false);
 	}
 });

@@ -24,7 +24,12 @@ gameLayer = cc.Layer.extend({
         this.addChild(this.barraesq);
         this.barradir = new Barra(796);
         this.addChild(this.barradir);
-        cc.Director.getInstance().getScheduler().scheduleCallbackForTarget(this, function(){this.addChild(new Powerup())}, 1000, cc.REPEAT_FOREVER, 0, !this._isRunning );
+        /*
+        this.schedule(function(){
+        	var pw = new Powerup();
+        	this.addChild(pw);
+        },8, cc.REPEAT_FOREVER, 0);
+        */
         this.scheduleUpdate();
         return this;
     },
@@ -62,22 +67,25 @@ gameLayer = cc.Layer.extend({
     		this.bola.reset();
     		this.score.setString(this.ponto1 + " " + this.ponto2);
     	}
-    	if(this.bola.getPositionY()>this.barradir.getPositionY()){
+    	/*if(this.bola.getPositionY()>this.barradir.getPositionY()){
     		this.onKeyDown(cc.KEY.up);
     		this.onKeyUp(cc.KEY.down);
     	}
     	if(this.bola.getPositionY()<this.barradir.getPositionY()){
     		this.onKeyDown(cc.KEY.down);
     		this.onKeyUp(cc.KEY.up);
-    	}
-    	/*if(this.bola.getPositionY()>this.barraesq.getPositionY()){
+    	}*/
+    	if(this.bola.getPositionY()>this.barraesq.getPositionY()){
     		this.onKeyDown(cc.KEY.w);
     		this.onKeyUp(cc.KEY.s);
     	}
     	if(this.bola.getPositionY()<this.barraesq.getPositionY()){
     		this.onKeyDown(cc.KEY.s);
     		this.onKeyUp(cc.KEY.w);
-    	}*/
+    	}
+    	if(this.ponto1 >= 10 || this.ponto2 >= 10){
+    		cc.Director.getInstance().replaceScene(cc.TransitionFade.create(0.5, new win()));
+    	}
     },
     onKeyDown:function(key) {
         if(key == cc.KEY.up){
@@ -114,7 +122,7 @@ gameLayer = cc.Layer.extend({
 });
 
 game = cc.Scene.extend({
-    onEnter:function(){
+	onEnterTransitionDidFinish:function(){
     	this._super();
     	var layer = new gameLayer();
     	layer.init();
