@@ -23,4 +23,4 @@ var cocos2dApp = cc.Application.extend({
         return true;
     }
 });
-var myApp = new cocos2dApp(game);
+var myApp = new cocos2dApp(menu);
