@@ -49,7 +49,7 @@ var Bola = cc.Sprite.extend({
 				this.dir = this.dir - 45;
 			}
 		}
-		this.vel = 8;
+		this.vel = 4;
 		this.velx = Math.sin(this.dir * 0.0174)* this.vel;
         this.vely = Math.cos(this.dir * 0.0174) * this.vel;
         cc.AudioEngine.getInstance().setEffectsVolume(1);

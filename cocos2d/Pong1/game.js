@@ -6,7 +6,10 @@ gameLayer = cc.Layer.extend({
 	ponto1:0,
 	ponto2:0,
 	score:null,
-	init:function()
+	verSkew:false,
+	randX:0,
+	randY:0,
+	init:function(skew)
     {
         this._super();
         this.setKeyboardEnabled(true);
@@ -24,6 +27,10 @@ gameLayer = cc.Layer.extend({
         this.addChild(this.barraesq);
         this.barradir = new Barra(795);
         this.addChild(this.barradir);
+        this.verSkew = skew;
+        this.randX = 10 + Math.random()*20;
+        this.randY = 10 + Math.random()*20;
+        
         
         
         /*
@@ -36,7 +43,15 @@ gameLayer = cc.Layer.extend({
         return this;
     },
     dir:0,
+    skewX:0,
+    skewY:0,
     update:function(dt){
+    	if(this.verSkew){
+    		this.skewX = this.skewX + dt * this.randX;
+    		this.skewY = this.skewY + dt * this.randY;
+        	this.setSkewX(this.skewX);
+        	this.setSkewY(this.skewY);
+    	}    	
     	if(this.collide(this.bola, this.barraesq)){
     		cc.log(this.barradir.getContentSize().height);
     		var bolaY = this.bola.getPositionY();
@@ -70,22 +85,33 @@ gameLayer = cc.Layer.extend({
     		this.bola.reset();
     		this.score.setString(this.ponto1 + " " + this.ponto2);
     	}
-    	/*if(this.bola.getPositionY()>this.barradir.getPositionY()){
-    		this.onKeyDown(cc.KEY.up);
-    		this.onKeyUp(cc.KEY.down);
-    	}
-    	if(this.bola.getPositionY()<this.barradir.getPositionY()){
-    		this.onKeyDown(cc.KEY.down);
-    		this.onKeyUp(cc.KEY.up);
-    	}*/
-    	if(this.bola.getPositionY()>this.barraesq.getPositionY()){
-    		this.onKeyDown(cc.KEY.w);
-    		this.onKeyUp(cc.KEY.s);
-    	}
-    	if(this.bola.getPositionY()<this.barraesq.getPositionY()){
-    		this.onKeyDown(cc.KEY.s);
-    		this.onKeyUp(cc.KEY.w);
-    	}
+    	if(players == 0){
+    		if(this.bola.getPositionY()>this.barradir.getPositionY()){
+        		this.onKeyDown(cc.KEY.up);
+        		this.onKeyUp(cc.KEY.down);
+        	}
+        	if(this.bola.getPositionY()<this.barradir.getPositionY()){
+        		this.onKeyDown(cc.KEY.down);
+        		this.onKeyUp(cc.KEY.up);
+        	}
+        	if(this.bola.getPositionY()>this.barraesq.getPositionY()){
+        		this.onKeyDown(cc.KEY.w);
+        		this.onKeyUp(cc.KEY.s);
+        	}
+        	if(this.bola.getPositionY()<this.barraesq.getPositionY()){
+        		this.onKeyDown(cc.KEY.s);
+        		this.onKeyUp(cc.KEY.w);
+        	}
+    	}else if(players == 1){
+    		if(this.bola.getPositionY()>this.barraesq.getPositionY()){
+        		this.onKeyDown(cc.KEY.w);
+        		this.onKeyUp(cc.KEY.s);
+        	}
+        	if(this.bola.getPositionY()<this.barraesq.getPositionY()){
+        		this.onKeyDown(cc.KEY.s);
+        		this.onKeyUp(cc.KEY.w);
+        	}
+    	}    	
     	if(this.ponto1 >= 10 || this.ponto2 >= 10){
     		cc.Director.getInstance().replaceScene(cc.TransitionFade.create(0.5, new win()));
     	}
