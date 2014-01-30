@@ -20,10 +20,12 @@ gameLayer = cc.Layer.extend({
         this.addChild(this.score);
         this.bola = new Bola();
         this.addChild(this.bola);
-        this.barraesq = new Barra(4);
+        this.barraesq = new Barra(5);
         this.addChild(this.barraesq);
-        this.barradir = new Barra(796);
+        this.barradir = new Barra(795);
         this.addChild(this.barradir);
+        
+        
         /*
         this.schedule(function(){
         	var pw = new Powerup();
@@ -36,6 +38,7 @@ gameLayer = cc.Layer.extend({
     dir:0,
     update:function(dt){
     	if(this.collide(this.bola, this.barraesq)){
+    		cc.log(this.barradir.getContentSize().height);
     		var bolaY = this.bola.getPositionY();
     		var bolaCentro = bolaY - (this.bola.getContentSize().height/2);
     		var barraY = this.barraesq.getPositionY();

@@ -10,20 +10,21 @@ var Barra = cc.Sprite.extend({
 	},
 	update:function(dt){			
 		if(this.up){
-			this.setPositionY(this.getPositionY()+4);
+			this.setPositionY(this.getPositionY()+6);
 		}
 		if(this.down){
-			this.setPositionY(this.getPositionY()-4);
+			this.setPositionY(this.getPositionY()-6);
 		}
-		if(this.getPositionY() > 460){
-			this.setPositionY(460);
+		if(this.getPositionY() > (480 - this.getContentSize().height/2)){
+			this.setPositionY((480 - this.getContentSize().height/2));
 		}
-		if(this.getPositionY() < 20){
-			this.setPositionY(20);
+		if(this.getPositionY() < (6 + this.getContentSize().height/2)){
+			this.setPositionY(6 + this.getContentSize().height/2);
 		}
 	},
 	collideRect:function(p){
 			var a = this.getContentSize();
-			return cc.rect(p.x - a.width, p.y - a.height,a.width*1.5,a.height);
+			
+			return cc.rect(p.x - a.width, p.y - a.height,a.width,a.height);
 	}
 });

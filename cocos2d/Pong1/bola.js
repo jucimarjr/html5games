@@ -1,7 +1,7 @@
 var Bola = cc.Sprite.extend({
 	velx:0,
 	vely:0,
-	vel:4,
+	vel:0,
 	dir:0,
 	ctor:function(){
 		this._super();
@@ -49,7 +49,7 @@ var Bola = cc.Sprite.extend({
 				this.dir = this.dir - 45;
 			}
 		}
-		this.vel = 4;
+		this.vel = 8;
 		this.velx = Math.sin(this.dir * 0.0174)* this.vel;
         this.vely = Math.cos(this.dir * 0.0174) * this.vel;
         cc.AudioEngine.getInstance().setEffectsVolume(1);

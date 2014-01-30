@@ -6,7 +6,7 @@ var cocos2dApp = cc.Application.extend({
     config:document.ccConfig,
     ctor:function (scene) {
         this._super();
-        this.startScene = scene; 
+        this.startScene = scene;
         cc.setup(this.config.tag);
         cc.AppController.shareAppController().didFinishLaunchingWithOptions();
         cc.AudioEngine.getInstance().init();
