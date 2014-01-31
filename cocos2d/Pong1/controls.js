@@ -6,17 +6,20 @@ controlsLayer = cc.Layer.extend({
         var image = cc.Sprite.create("assets/controls.png");
         image.setPosition(400, 240);
         this.addChild(image);
-        
-        var back = cc.MenuItemFont.create("BACK", 'back', this);
+                
+		var btBack = cc.Sprite.create("assets/btBack.png");
+		var back = cc.MenuItemSprite.create(btBack, null,null, 'btBack', this);
+		back.setPositionY(20);
+		
         var menu = cc.Menu.create(back);
         menu.setPosition(400,20);
         this.addChild(menu);
         
         return this;
-    },
-    back:function(){
+    },    
+	btBack:function(){
     	cc.Director.getInstance().replaceScene(new menu());
-    }
+    }	
 });
 
 controls = cc.Scene.extend({
