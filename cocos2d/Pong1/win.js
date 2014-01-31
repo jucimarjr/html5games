@@ -2,7 +2,12 @@ winLayer = cc.Layer.extend({
 	init:function()
 	{
 		this._super();
-		var playerWin = cc.Sprite.create("assets/playerWin.png");
+		if(ponto1 <= 10){
+			var playerWin = cc.Sprite.create("assets/playerWin2.png");
+		}else{
+			var playerWin = cc.Sprite.create("assets/playerWin.png");
+		}
+		
 		playerWin.setPosition(400, 300);
 		this.addChild(playerWin);
 		
@@ -17,7 +22,7 @@ winLayer = cc.Layer.extend({
 		return this;
 	},
 	btBack:function(){
-    	cc.Director.getInstance().replaceScene(new menu());
+    	cc.Director.getInstance().replaceScene(cc.TransitionFade.create(0.3, new menu()));
     }	
 });
 

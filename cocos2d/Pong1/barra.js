@@ -10,13 +10,13 @@ var Barra = cc.Sprite.extend({
 	},
 	update:function(dt){			
 		if(this.up){
-			this.setPositionY(this.getPositionY()+6);
+			this.setPositionY(this.getPositionY()+4);
 		}
 		if(this.down){
-			this.setPositionY(this.getPositionY()-6);
+			this.setPositionY(this.getPositionY()-4);
 		}
-		if(this.getPositionY() > (480 - this.getContentSize().height/2)){
-			this.setPositionY((480 - this.getContentSize().height/2));
+		if(this.getPositionY() > (474 - this.getContentSize().height/2)){
+			this.setPositionY((474 - this.getContentSize().height/2));
 		}
 		if(this.getPositionY() < (6 + this.getContentSize().height/2)){
 			this.setPositionY(6 + this.getContentSize().height/2);
@@ -25,6 +25,6 @@ var Barra = cc.Sprite.extend({
 	collideRect:function(p){
 			var a = this.getContentSize();
 			
-			return cc.rect(p.x - a.width, p.y - a.height,a.width,a.height);
+			return cc.rect(p.x - a.width/2, p.y - a.height/2, a.width, a.height);
 	}
 });

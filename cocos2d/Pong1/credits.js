@@ -7,8 +7,8 @@ creditsLayer = cc.Layer.extend({
 		programers_title.setPosition(400, 400);
 		this.addChild(programers_title);
 		
-        var programers = cc.LabelTTF.create("Matheus Palheta\nAnne Oliveira",'Arial',30);
-        programers.setPosition(400,300);
+        var programers = cc.LabelTTF.create("Matheus Palheta\nAnne Oliveira\nGiovanni Ribeiro",'Arial',30);
+        programers.setPosition(400,320);
         programers.setFontFillColor(new cc.Color3B(50, 205, 50));
         programers.setHorizontalAlignment(cc.TEXT_ALIGNMENT_CENTER);
         this.addChild(programers);
@@ -34,7 +34,7 @@ creditsLayer = cc.Layer.extend({
         return this;
     },
 	btBack:function(){
-    	cc.Director.getInstance().replaceScene(new menu());
+    	cc.Director.getInstance().replaceScene(cc.TransitionFade.create(0.3, new menu()));
     }	
 });
 

@@ -3,10 +3,13 @@ menuLayer = cc.Layer.extend({
     {
         this._super();
         
+        var action1 = cc.TintBy.create(3, 255, 255, 255);
+        var action2 = cc.TintBy.create(3, 255, 255, 255);
         
-                
-        var title = cc.Sprite.create("assets/game_title2.png");
+        var title = cc.Sprite.create("assets/game_title.png");
         title.setPosition(400, 400);
+        title.setScale(1.5);
+        title.runAction(action1);
         this.addChild(title);
         
         
@@ -19,16 +22,17 @@ menuLayer = cc.Layer.extend({
         
         var play1 = cc.MenuItemSprite.create(btplayer1, null,null, 'onStart1', this);
         var play2 = cc.MenuItemSprite.create(btplayer2, null,null, 'onStart2', this);
-        play2.setPositionY(-50);
+        play2.setPositionY(-60);
         var credits = cc.MenuItemSprite.create(btcredits, null,null, 'onCredits', this);
-        credits.setPositionY(-100);
+        credits.setPositionY(-120);
         var controls = cc.MenuItemSprite.create(btcontrols, null,null, 'onControls', this);
-        controls.setPositionY(-150);
+        controls.setPositionY(-180);
         
         var menu = cc.Menu.create(play1, play2, credits, controls);
-        menu.setPosition(400, 250);
+        menu.setPosition(400, 280);
+        menu.runAction(action2);
         this.addChild(menu);
-        
+
         return this;
     },
     onStart1:function(){
@@ -47,14 +51,61 @@ menuLayer = cc.Layer.extend({
     }
 });
 
+splashLayer = cc.Layer.extend({
+	init:function()
+    {
+        this._super();
+        var action = cc.TintBy.create(3, 255, 255, 255);
+        
+        var title = cc.Sprite.create("assets/LOGO1.png");
+        title.setPosition(400, 240);
+        title.runAction(action);
+        this.addChild(title);
+                	
+        
+        return this;
+    }
+});
+
+menuInit = cc.Scene.extend({
+    onEnter:function(){
+    	this._super();
+
+        players = 0;
+    	
+    	var bg = new gameLayer();
+    	bg.init(true, 0);
+    	this.addChild(bg);
+
+    	var layer = new splashLayer();
+    	layer.init();
+    	this.addChild(layer);
+    	
+    	this.scheduleOnce(function(){
+    		layer.removeFromParent(true);
+    		var menu = new menuLayer();
+        	menu.init();
+        	this.addChild(menu);
+        },5);
+    	
+    	
+    	
+	}
+});
 menu = cc.Scene.extend({
     onEnter:function(){
     	this._super();
+
+        players = 0;
     	var bg = new gameLayer();
-    	var layer = new menuLayer();
     	bg.init(true, 0);
-    	layer.init();
     	this.addChild(bg);
-    	this.addChild(layer);
+
+    	var menu = new menuLayer();
+        menu.init();
+        this.addChild(menu);
+    	
+    	
+    	
 	}
 });

@@ -3,10 +3,10 @@ controlsLayer = cc.Layer.extend({
     {
         this._super();
         
-        var image = cc.Sprite.create("assets/controls.png");
+        var image = cc.Sprite.create("assets/controlsAlt.png");
         image.setPosition(400, 240);
         this.addChild(image);
-                
+        
 		var btBack = cc.Sprite.create("assets/btBack.png");
 		var back = cc.MenuItemSprite.create(btBack, null,null, 'btBack', this);
 		back.setPositionY(20);
@@ -16,10 +16,10 @@ controlsLayer = cc.Layer.extend({
         this.addChild(menu);
         
         return this;
-    },    
-	btBack:function(){
-    	cc.Director.getInstance().replaceScene(new menu());
-    }	
+    },
+    back:function(){
+    	cc.Director.getInstance().replaceScene(cc.TransitionFade.create(0.3, new menu()));
+    }
 });
 
 controls = cc.Scene.extend({
