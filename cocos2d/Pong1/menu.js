@@ -5,7 +5,7 @@ menuLayer = cc.Layer.extend({
         
         
                 
-        var title = cc.Sprite.create("assets/TITLE.png");
+        var title = cc.Sprite.create("assets/game_title.png");
         title.setPosition(400, 400);
         this.addChild(title);
         
