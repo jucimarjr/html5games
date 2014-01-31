@@ -112,9 +112,12 @@ gameLayer = cc.Layer.extend({
         		this.onKeyUp(cc.KEY.w);
         	}
     	}    	
-    	if(this.ponto1 >= 10 || this.ponto2 >= 10){
+    	if(this.ponto1 >= 10){
     		cc.Director.getInstance().replaceScene(cc.TransitionFade.create(0.5, new win()));
     	}
+		else if(this.ponto2 >= 10){
+    		cc.Director.getInstance().replaceScene(cc.TransitionFade.create(0.5, new win2()));
+    	}		
     },
     onKeyDown:function(key) {
         if(key == cc.KEY.up){
