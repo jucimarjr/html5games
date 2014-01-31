@@ -8,7 +8,7 @@ controlsLayer = cc.Layer.extend({
         this.addChild(image);
         
 		var btBack = cc.Sprite.create("assets/btBack.png");
-		var back = cc.MenuItemSprite.create(btBack, null,null, 'btBack', this);
+		var back = cc.MenuItemSprite.create(btBack, null,null, 'back', this);
 		back.setPositionY(20);
 		
         var menu = cc.Menu.create(back);

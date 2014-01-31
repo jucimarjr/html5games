@@ -17,9 +17,8 @@ gameLayer = cc.Layer.extend({
         this.fundo.setPosition(400,240);
         this.addChild(this.fundo);
         this.score = cc.LabelTTF.create(ponto1 + " " + ponto2, "assets/Arcade Classic.ttf", 150);
-        cc.log(this.score.getTextDefinition());
         this.score.setPosition(400, 400);
-        this.score.setFontFillColor(new cc.Color3B(50, 205, 50));
+        this.score.setColor(new cc.Color3B(50, 205, 50));
         this.addChild(this.score);
         this.bola = new Bola();
         this.addChild(this.bola);
@@ -126,12 +125,14 @@ gameLayer = cc.Layer.extend({
     		}
     		
     	} 
-    	
-    	if(ponto1 >= 10 || ponto2 >= 10){//fim de jogo
-    		this.bola.unscheduleUpdate();
-    		this.unscheduleUpdate();
-    		cc.Director.getInstance().replaceScene(cc.TransitionFade.create(0.5, new win()));
+    	if(!this.verSkew){
+    		if(ponto1 >= 10 || ponto2 >= 10){//fim de jogo
+        		this.bola.unscheduleUpdate();
+        		this.unscheduleUpdate();
+        		cc.Director.getInstance().replaceScene(cc.TransitionFade.create(0.5, new win()));
+        	}
     	}
+    	
     	
     	
     },

@@ -18,7 +18,7 @@ var Bola = cc.Sprite.extend({
 	        cc.AudioEngine.getInstance().playEffect("assets/sound2.wav",false);
 	       
 			this.vely = -this.vely;
-			this.setPositionY(this.getPositionY() + this.vel*2)
+			this.setPositionY(this.getPositionY() - this.vely*2);
 			this.vel = this.vel + 0.1;
 		}
 	},

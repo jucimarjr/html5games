@@ -2,7 +2,7 @@ winLayer = cc.Layer.extend({
 	init:function()
 	{
 		this._super();
-		if(ponto1 <= 10){
+		if(ponto1 >= 10){
 			var playerWin = cc.Sprite.create("assets/playerWin2.png");
 		}else{
 			var playerWin = cc.Sprite.create("assets/playerWin.png");
