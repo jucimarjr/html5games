@@ -4,11 +4,14 @@ var SplashLayer = cc.Layer.extend({
         this._super();
         
         var background = cc.Director.getInstance().getWinSizeInPixels();
+               
         var fundo =  cc.Sprite.create("assets/Telas/Tela_Splash.png");
         fundo.setPositionX(background.width/2);
         fundo.setPositionY(background.height/2);
         this.addChild(fundo);
         
+        cc.AudioEngine.getInstance().playMusic("Som/GhostBusters_.mp3", true);
+
         this.schedule(this.onTick1, 5);
         
        return this;

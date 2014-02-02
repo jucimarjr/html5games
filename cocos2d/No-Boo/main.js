@@ -21,12 +21,24 @@ var cocos2dApp = cc.Application.extend({
 
         //load resources
         cc.Loader.preload(
-        		[{ type: "image", src: "assets/Telas/Tela_Splash.png" },
-//                 { type: "plist", src: "barra_vermelha.plist" },
-//                 { type: "image", src: "Imagens/barra_verde.png" },
-//                 { type: "plist", src: "barra_verde.plist" },
-//                 { type: "image", src: "Imagens/barra_azul.png" },
-//                 { type: "plist", src: "barra_azul.plist" },
+        		[
+                 { type: "image", src: "assets/vermelho.png" },
+                 { type: "plist", src: "assets/vermelho.plist" },
+                 { type: "image", src: "assets/verde.png" },
+                 { type: "plist", src: "assets/verde.plist" },
+                 { type: "image", src: "assets/laranja.png" },
+                 { type: "plist", src: "assets/laranja.plist" },
+                 { type: "image", src: "assets/lilas.png" },
+                 { type: "plist", src: "assets/lilas.plist" },
+                 { type: "image", src: "assets/cinza.png" },
+                 { type: "plist", src: "assets/cinza.plist" },
+
+                 {
+                     fontName: "GhoulySolidRegular",
+                     src: [
+                              { src: "fonts/Halloween.ttf", type: "truetype" }
+                     ]
+                 },
 				],
 				function () {
 				    cc.Director.getInstance().runWithScene(new this.startScene());
