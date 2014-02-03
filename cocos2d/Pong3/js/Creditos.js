@@ -3,12 +3,19 @@ creditsLayer = cc.Layer.extend({
     {
         this._super();
         
-		var btBack = cc.Sprite.create("Imagens/palavras/voltar.png");
-		var back = cc.MenuItemSprite.create(btBack, null,null, 'btBack', this);
+        var background = cc.Director.getInstance().getWinSizeInPixels();
+        var fundo = new cc.Sprite.create("Imagens/Telas/Tela_Creditos_Com_Som.png");
+        fundo.setPositionX(background.width/2);
+        fundo.setPositionY(background.height/2);
+        this.addChild(fundo);
+        
+		var btBack = cc.Sprite.create("Imagens/palavras/bt_voltar.png");
+		var btBack_= cc.Sprite.create("Imagens/palavras/bt_voltar_selecionado.png");
+		var back = cc.MenuItemSprite.create(btBack, btBack_ ,null, 'btBack', this);
 		back.setPositionY(20);
 		
         var menu = cc.Menu.create(back);
-        menu.setPosition(400,20);
+        menu.setPosition(550,40);
         this.addChild(menu);
         
         return this;
