@@ -11,6 +11,10 @@ var Menu1Layer = cc.Layer.extend({
         var btPlay = cc.Sprite.create("Imagens/palavras/play.png");
         var btPlaySelecionado = cc.Sprite.create("Imagens/palavras/play_selecionado.png");
         
+        this.musica = cc.AudioEngine.getInstance();
+        this.musica.setEffectsVolume(0.5);
+        this.musica.playEffect("sons/Jumpshot.mp3", true)
+        
         var start = cc.MenuItemSprite.create(btPlay,btPlaySelecionado,null,'onStart',this);
         var menu = cc.Menu.create(start);
         menu.setPosition(300,250);
@@ -20,8 +24,8 @@ var Menu1Layer = cc.Layer.extend({
         
 		
 	},
-	onStart:function(){
-		cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2,new menuPrincipal()));
+	onStart: function () {
+	    cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2,new menuPrincipal()));
 	}
 });
 	

@@ -30,10 +30,10 @@ var MenuPrincipalLayer = cc.Layer.extend({
         this.addChild(menu);
         
         return this;	
-	},onPLayer1:function(){
-		//cc.Director.getInstance().replaceScene(cc.TranstionFade.create(1.2,new JogoScene()))
-	},onPLayer2:function(){
-		//cc.Director.getInstance().replaceScene(cc.TranstionFade.create(1.2,new JogoScene()))
+	},onPlayer1:function(){
+		cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2,new JogoScene()))
+	},onPlayer2:function(){
+		cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2,new JogoScene()))
 	},onConfiguracoes:function(){
 		//cc.Director.getInstance().replaceScene(cc.TranstionFade.create(1.2,new JogoScene()))
 	},onCreditos:function(){

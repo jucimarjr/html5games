@@ -4,12 +4,12 @@ var SplashLayer = cc.Layer.extend({
         this._super();
         
         var tela = cc.Director.getInstance().getWinSizeInPixels();
-        var fundo = new cc.Sprite.create("Imagens/Telas/Tela_Splash.png");
-        fundo.setPositionX(tela.width/2);
-        fundo.setPositionY(tela.height/2);
+        
+        var fundo = cc.Sprite.create("Imagens/Telas/Tela_Splash.png");
         this.addChild(fundo);
-        //alert("comecou");
-        time = window.setTimeout(function(){
+        fundo.setPosition(tela.width / 2, tela.height / 2);
+                
+        setTimeout(function(){
         	cc.Loader.preload([
         	    {src:"Imagens/palavras/Play.plist"},
 				{src:"Imagens/palavras/Som.plist"},
@@ -21,16 +21,11 @@ var SplashLayer = cc.Layer.extend({
         	})
         },3000);
         
-        /*var btStart = new cc.MenuItemFont.create("Start",'Start',this);
-        btStart.setPosition(new cc.p(tela.width/2,tela.height/2 + 50));
-        var menu = cc.Menu.create(btStart);
+        return this;
 
-        this.addChild(menu);
-        return this;*/
-    }
+    },
+
 });
-
-
 
 var SplashScene = cc.Scene.extend({
     onEnter:function(){
