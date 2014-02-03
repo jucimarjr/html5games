@@ -3,21 +3,9 @@
 <head>
     <title>Missile Command</title>
     <script src="cocos2d.js"></script>
-	 <link rel="stylesheet" type="text/css" href="style.css">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
 </head>
 <body>
-	<canvas height="480" width="800" id="GC"></canvas>
-    <script type="text/javascript">
-        var ctx = document.querySelector('canvas').getContext('2d');
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas, false);
-        function resizeCanvas() {
-            var canvas = document.getElementById('GC'),
-		  		context = canvas.getContext('2d');
-		  		canvas.width = document.body.offsetWidth;
-		  		canvas.height = document.body.offsetHeight;
-        }
-    </script>
+	<canvas id="GC"></canvas>
 </body>
 </html>

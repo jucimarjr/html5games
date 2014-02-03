@@ -13,8 +13,7 @@
         tag:"GC",
         engineDir:"../Cocos2d-html5/cocos2d/",
         appFiles:["MissileCommand.js","Splash.js","Cidade.js",
-                  "Missil.js","Naves.js","FimdeJogo.js","Aviso.js",
-                  "TestColisao.js"]
+                  "Missil.js","Naves.js","FimdeJogo.js","Aviso.js","credits.js"]
     };
     window.addEventListener('DOMContentLoaded', function () {
         var s = d.createElement("script");

@@ -4,22 +4,22 @@ var aviso = cc.Layer.extend({
 		
         this._super();
         this.setTouchEnabled(true);
-        var bg1 = cc.Sprite.create("aviso1.png");
-        bg1.setPosition(400,300);
-        var bg2 = cc.Sprite.create("aviso2.png");
-        bg2.setPosition(400,900);
+        var bg1 = cc.Sprite.create("assets/aviso1.png");
+        bg1.setPosition(tela.width/2,tela.height/2);
+        var bg2 = cc.Sprite.create("assets/aviso2.png");
+        bg2.setPosition(tela.width/2,tela.height/2 * 3);
         this.addChild(bg1);
         this.addChild(bg2);
         bganim = window.setInterval(function(){
-        	cc.log("mudou");
-        	if(bg2.getPosition().y == 900)
-        		bg2.setPosition(400,300);
+        	
+        	if(bg2.getPosition().y == tela.height/2 * 3)
+        		bg2.setPosition(tela.width/2,tela.height/2);
         	else
-        		bg2.setPosition(400,900);
+        		bg2.setPosition(tela.width/2,tela.height/2 * 3);
         }, 500);
         
         var msg = cc.LabelTTF.create("WARNING", "Arial", 40);
-        msg.setPosition(400, 300);
+        msg.setPosition(tela.width/2,tela.height/2);
         msg.setHorizontalAlignment(cc.TEXT_ALIGNMENT_CENTER);
         msg.setVerticalAlignment(cc.VERTICAL_TEXT_ALIGNMENT_CENTER);
         this.addChild(msg);
@@ -36,11 +36,12 @@ var aviso = cc.Layer.extend({
         }, 9000);
         msgtime = window.setTimeout(function(){
         	cc.Loader.preload([
-            {src:"cidade.plist"},
-            {src:"explosao.plist"},
-            {src:"loading.plist"},
-            {src:"missil.mp3"},
-            {src:"bomb.mp3"}
+            {src:"assets/cidade.plist"},
+            {src:"assets/explosao.plist"},
+            {src:"assets/explosao1.plist"},
+            //{src:"assets/loading.plist"},
+            {src:"assets/missil.mp3"},
+            {src:"assets/bomb.mp3"}
         ],function(){
         		var scene = cc.Scene.create();
                 scene.addChild(MissileCommandGame.create());
@@ -57,11 +58,12 @@ var aviso = cc.Layer.extend({
     },
     exit:function(){
     	cc.Loader.preload([
-    	                   {src:"cidade.plist"},
-    	                   {src:"explosao.plist"},
-    	                   {src:"loading.plist"},
-    	                   {src:"missil.mp3"},
-    	                   {src:"bomb.mp3"}
+    	                   {src:"assets/cidade.plist"},
+    	                   //{src:"assets/explosao.plist"},
+    	                   {src:"assets/explosao1.plist"},
+    	                   //{src:"assets/loading.plist"},
+    	                   {src:"assets/missil.mp3"},
+    	                   {src:"assets/bomb.mp3"}
     	               ],function(){
     	               		var scene = cc.Scene.create();
     	                       scene.addChild(MissileCommandGame.create());

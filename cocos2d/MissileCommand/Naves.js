@@ -8,7 +8,7 @@ var Nave = cc.Sprite.extend({
     ctor:function(vel){
         this._super();
         navesKill = 0;
-        this.initWithFile("naves.png");
+        this.initWithFile("assets/naves.png");
         var posx = Math.random()*800;
         var angle;
         this.setPosition(new cc.Point(posx, tela.height));
@@ -45,7 +45,7 @@ var Nave = cc.Sprite.extend({
         if(this.alive == false)
             return cc.rect(30000,30000,1,1)
         var a = this.getContentSize();
-        return cc.rect(p.x - a.width, p.y - a.height,a.width,a.height);
+        return cc.rect(p.x - a.width/2, p.y - a.height/2,a.width,a.height);
     },
     kill:function(){
         this.alive = false;
@@ -54,7 +54,7 @@ var Nave = cc.Sprite.extend({
         this.velx = 0;
         this.vely = 0;
         var cache = cc.SpriteFrameCache.getInstance();
-        cache.addSpriteFrames("explosao.plist", "explosao.png");
+        cache.addSpriteFrames("assets/explosao1.plist", "assets/explosao1.png");
         var iFrame = cc.SpriteFrameCache.getInstance().getSpriteFrame("explosao1.png");
         this.initWithSpriteFrame(iFrame);
         var animFrames = [];

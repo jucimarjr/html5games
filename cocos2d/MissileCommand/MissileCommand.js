@@ -10,54 +10,45 @@ var MissileCommandGame = cc.Layer.extend({
     naves:[],
     bg:null,
     bgind:1,
-    vel:6,
+    vel:2,
     msg:null,
     playing:true,
     verNaves:true,
     navesVivas:0,
     loading:null,
+    
     init:function(){
         this._super();
         
         this.msg = cc.LabelTTF.create("", "Arial", 30);
         
         this.setTouchEnabled(true);
-        var bgtx = "bg" + this.bgind + ".png";
+        var bgtx = "assets/bg" + this.bgind + ".png";
         this.bg = cc.Sprite.create(bgtx);
         this.bg.setPosition(new cc.p(tela.width/2,tela.height/2));
         this.addChild(this.bg);
-
+        
         this.HUDTempo = cc.LabelTTF.create("0:0"+this.time,"Arial", tela.width/40);
         this.HUDTempo.setPosition(new cc.p(tela.width - tela.width/20, tela.height - tela.height/20));
         this.addChild(this.HUDTempo);
-
+		
         score = 0;
+        
         this.HUDscore = cc.LabelTTF.create("Score: "+ score, "Arial", tela.width/40);
         this.HUDscore.setPosition(new cc.p(tela.width/15 ,tela.height - tela.height/20));
         this.addChild(this.HUDscore);
-
-        /*
-        var ldsprite = cc.SpriteFrameCache.getInstance().addSpriteFrames("loading.plist", "loading.png");
-        var animFrames = [];
-        var str = "";
-        for (var i = 1; i <= 17; i++) {
-            str = "loading" + i + ".png";
-            var frame = ldsprite.getSpriteFrame(str);
-            animFrames.push(frame);
-        }
-        var animation = cc.Animation.create(animFrames, 0.1);
-        this.action = cc.Animate.create(animation);
-        this.loading = cc.Sprite.createWithSpriteFrameName("loading1.png");
-        this.loading.setPosition(tela.width/2, tela.height/12);
-        this.loading.runAction(this.action);
-        */
+		
         
-        var bt = cc.MenuItemFont.create("PAUSE", "Pause", this);
-        bt.setPosition(tela.width - tela.width/20, tela.height/40);
-        bt.setFontSize(tela.width/40);
-        var pause = cc.Menu.create(bt);
-        pause.setPosition(0,0);
-        this.addChild(pause);
+        var chao = cc.Sprite.create("assets/chao.png");
+        chao.setPosition(400,30);
+        this.addChild(chao);
+        
+        var btBack = cc.Sprite.create("assets/btPause.png");
+		var back = cc.MenuItemSprite.create(btBack, null,null, 'Pause', this);
+		
+        var menu = cc.Menu.create(back);
+        menu.setPosition(758,12);
+        this.addChild(menu);
         
         for(var i=0;i<6;i++)
         {
@@ -65,35 +56,15 @@ var MissileCommandGame = cc.Layer.extend({
             this.addChild(this.cidades[i]);
         }
         
-        canhaopart2 = cc.Sprite.create("canhaopart2.png");
+        canhaopart2 = cc.Sprite.create("assets/canhaopart2.png");
         canhaopart2.setAnchorPoint(new cc.p(0.5,0));
-        canhaopart2.setPosition(new cc.p(tela.width/2, tela.height/12 - 5));
+        canhaopart2.setPosition(new cc.p(tela.width/2, tela.height/10 - 5));
         this.addChild(canhaopart2);
         
-        var canhaopart1 = cc.Sprite.create("canhaopart1.png");
-        canhaopart1.setPosition(new cc.p(tela.width/2,tela.height/12));
+        var canhaopart1 = cc.Sprite.create("assets/canhaopart1.png");
+        canhaopart1.setPosition(new cc.p(tela.width/2,tela.height/10));
         this.addChild(canhaopart1);
-        /*
-        var cache = cc.SpriteFrameCache.getInstance();
-        cache.addSpriteFrames("loading.plist", "loading.png");
-        var iFrame = cc.SpriteFrameCache.getInstance().getSpriteFrame("load1.png");
-        this.loading = cc.Sprite.createWithSpriteFrameName(iFrame);
-        this.loading.setPosition(tela.width/2, tela.height/12);
-        var animFrames = [];
-        var str = "";
-        for (var i = 1; i <= 8; i++) {
-            str = "load" + i + ".png";
-            var frame = cache.getSpriteFrame(str);
-            animFrames.push(frame);
-        }
-        var animation = cc.Animation.create(animFrames, 0.1);
-        var action = cc.Animate.create(animation);
         
-        this.loading.runAction(action);
-        this.addChild(this.loading);
-        */
-        
-
         this.misseis = [];
 
         this.naves = [];
@@ -165,7 +136,7 @@ var MissileCommandGame = cc.Layer.extend({
 			this.playing = true;
 			this.msg.setPosition(1000,1000);
 			this.msg.removeFromParent(true);
-			this.bg.setTexture(cc.TextureCache.getInstance().addImage("bg" + this.bgind + ".png"));
+			this.bg.setTexture(cc.TextureCache.getInstance().addImage("assets/bg" + this.bgind + ".png"));
 		}
     },
     fimDoNivel:function(){
@@ -264,6 +235,7 @@ var MissileCommandGame = cc.Layer.extend({
         return cc.rectIntersectsRect(aRect, bRect);
     }
 });
+
 
 MissileCommandGame.create = function() {
     var sg = new MissileCommandGame();

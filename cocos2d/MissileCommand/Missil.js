@@ -3,7 +3,7 @@ var Missil = cc.Sprite.extend({
         y:0,
         ctor:function(){
             this._super();
-            this.initWithFile("missil.png");
+            this.initWithFile("assets/missil.png");
             this.setPosition(new cc.Point(tela.width/2, tela.height/12 - 5));
             cc.AudioEngine.getInstance().setEffectsVolume(0.1);
             cc.AudioEngine.getInstance().playEffect("missil",false);
@@ -44,17 +44,17 @@ var Missil = cc.Sprite.extend({
             if(this.alive == false)
                 return cc.rect(60000,60000,1,1)
             var a = this.getContentSize();
-            return cc.rect(p.x - a.width, p.y - a.height,a.width,a.height);
+            return cc.rect(p.x - a.width/2, p.y - a.height/2,a.width,a.height);
         },
         kill:function(){
             this.stopAllActions();
             var cache = cc.SpriteFrameCache.getInstance();
-            cache.addSpriteFrames("explosao.plist", "explosao.png");
+            cache.addSpriteFrames("assets/explosao1.plist", "assets/explosao1.png");
             var iFrame = cc.SpriteFrameCache.getInstance().getSpriteFrame("explosao1.png");
             this.initWithSpriteFrame(iFrame);
             var animFrames = [];
             var str = "";
-            for (var i = 1; i <= 14; i++) {
+            for (var i = 1; i <= 9; i++) {
                 str = "explosao" + i + ".png";
                 var frame = cache.getSpriteFrame(str);
                 animFrames.push(frame);
