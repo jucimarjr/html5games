@@ -9,37 +9,89 @@
 
 <script type="text/javascript">
 
-var game = new Phaser.Game(600, 480, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+var game = new Phaser.Game(600, 480, Phaser.AUTO);
 var instruction;
 
-function preload() {
-	game.load.image('fantasma_vermelho', 'assets/vermelho_direita2.png');
-	game.load.image('fantasma_cinza', 'assets/cinza_esquerda3.png');
-	game.load.image('fantasma_verde', 'assets/verde_direita2.png');
-	game.load.image('coracao', 'assets/coracao.jpg');
-	game.load.image('pac', 'assets/pac_aberto.png');
+var HowToPlay = {
+	preload: function () {
+		game.load.image('fantasma_vermelho', 'assets/vermelho_direita2.png');
+    	game.load.image('fantasma_cinza', 'assets/cinza_esquerda3.png');
+        game.load.image('fantasma_verde', 'assets/verde_direita2.png');
+        game.load.image('coracao', 'assets/coracao.jpg');
+        game.load.image('pac', 'assets/pac_aberto.png');
+    },
+    create: function () {
+    	//instruction = game.add.text(16, 16, 'Mate os fantasmas.\nEvite o pac-man.\nFique de olho no cronômetro.\nVocê dispõe de três vidas.\nDivirta-se!', { fontSize: '32px', fill: '#fff' });
+    	game.add.sprite(10, 10, 'fantasma_vermelho');
+    	instruction = game.add.text(150, 20, 'Mate os fantasmas.', { fontSize: '32px', fill: '#fff' });
+    	game.add.sprite(game.world.width-40, 10, 'fantasma_cinza');
+    	game.add.sprite(10, 100, 'fantasma_verde');
+    	instruction = game.add.text(150, 100, 'Evite o pac-man.', { fontSize: '32px', fill: '#fff' });
+    	game.add.sprite(150, 150, 'pac');
+    	instruction = game.add.text(80, 200, 'Fique de olho no cronômetro.', { fontSize: '32px', fill: '#fff' });
+    	instruction = game.add.text(500, 200, '00:30', { fontSize: '32px', fill: '#19BCE5' });
+    	instruction = game.add.text(80, 300, 'Você dispõe de três vidas.', { fontSize: '32px', fill: '#fff' });
+    	game.add.sprite(450, 300, 'coracao');
+    	game.add.sprite(490, 300, 'coracao');
+    	game.add.sprite(530, 300, 'coracao');
+    	instruction = game.add.text(250, 400, 'Divirta-se!', { fontSize: '32px', fill: '#fff' });
+    },
+    update:function() {
+    	
+    }
 }
 
-function create() {
-	//instruction = game.add.text(16, 16, 'Mate os fantasmas.\nEvite o pac-man.\nFique de olho no cronômetro.\nVocê dispõe de três vidas.\nDivirta-se!', { fontSize: '32px', fill: '#fff' });
-	game.add.sprite(10, 10, 'fantasma_vermelho');
-	instruction = game.add.text(150, 20, 'Mate os fantasmas.', { fontSize: '32px', fill: '#fff' });
-	game.add.sprite(game.world.width-40, 10, 'fantasma_cinza');
-	game.add.sprite(10, 100, 'fantasma_verde');
-	instruction = game.add.text(150, 100, 'Evite o pac-man.', { fontSize: '32px', fill: '#fff' });
-	game.add.sprite(150, 150, 'pac');
-	instruction = game.add.text(80, 200, 'Fique de olho no cronômetro.', { fontSize: '32px', fill: '#fff' });
-	instruction = game.add.text(500, 200, '00:30', { fontSize: '32px', fill: '#19BCE5' });
-	instruction = game.add.text(80, 300, 'Você dispõe de três vidas.', { fontSize: '32px', fill: '#fff' });
-	game.add.sprite(450, 300, 'coracao');
-	game.add.sprite(490, 300, 'coracao');
-	game.add.sprite(530, 300, 'coracao');
-	instruction = game.add.text(250, 400, 'Divirta-se!', { fontSize: '32px', fill: '#fff' });
+var SoundTest = {
+	preload:function(){
+		game.load.image('fantasma_vermelho', 'assets/vermelho_direita2.png');
+		game.load.image('pac', 'assets/pac_aberto.png');
+		game.load.image('BackGround', 'assets/Telas/Wireframes/splash do jogo.png')
+		game.load.audio('MusicaFundo', 'Som/GhostBusters_.mp3')
+		game.load.audio('clickFantasma1', 'Som/plop1.wav')
+		game.load.audio('clickFantasma2', 'Som/plop2.wav')
+		game.load.audio('clickFantasma3', 'Som/plop3.wav')
+		game.load.audio('clickFantasma4', 'Som/plop4.wav')
+		game.load.audio('clickFantasma5', 'Som/plop5.wav')
+		game.load.audio('clickFantasma6', 'Som/plop6.wav')
+		game.load.audio('clickFantasma7', 'Som/plop7.wav')
+		game.load.audio('clickFantasma8', 'Som/plop8.wav')
+		game.load.audio('clickFantasma9', 'Som/plop9.wav')
+		game.load.audio('clickPacMan', 'Som/Fail.wav')
+		game.load.audio('ending', 'Som/ending.wav')
+	},
+	create:function(){
+		game.add.sprite(0,0,'BackGround');
+		var countClickFantasma = 0;
+		var soundEnd = game.add.audio('ending');
+		var fantasma = game.add.sprite(game.width/2 + 30,game.height/2, 'fantasma_vermelho');
+		fantasma.inputEnabled=true;
+	    fantasma.events.onInputDown.add(PlaySound = function(){
+	    	var somFantasma = game.add.audio('clickFantasma'+game.rnd.integerInRange(1, 9));
+			somFantasma.play();
+	    },this);
+    	var somPacMan = game.add.audio('clickPacMan', 0.5);
+		var pacMan = game.add.sprite(game.width/2 - 30, game.height/2, 'pac');
+		pacMan.inputEnabled=true;
+	    pacMan.events.onInputDown.add(PlaySound = function(){
+	    	if(countClickFantasma > 2){
+	    		soundEnd.play();
+	    		countClickFantasma = 0;
+	    	}else{
+				somPacMan.play();
+		    	countClickFantasma++;
+		    }
+	    },this);
+		var somFundo = game.add.audio('MusicaFundo');
+		var somPacMan = game.add.audio('clickPacMan', 0.2);
+		//somFundo.play();
+	},
+	update:function(){
+		
+	}
 }
 
-function update() {
-	
-}
+//game.state.add('HowToPlay', HowToPlay, true);
+game.state.add('Test', SoundTest, true);
 
 
 </script>
