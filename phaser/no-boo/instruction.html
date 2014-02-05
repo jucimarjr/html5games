@@ -1,0 +1,48 @@
+<!doctype html> 
+<html lang="en"> 
+<head> 
+	<meta charset="UTF-8" />
+	<title>No-boo</title>
+	<script type="text/javascript" src="js/phaser.min.js"></script>    
+</head>
+<body>
+
+<script type="text/javascript">
+
+var game = new Phaser.Game(600, 480, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+var instruction;
+
+function preload() {
+	game.load.image('fantasma_vermelho', 'assets/vermelho_direita2.png');
+	game.load.image('fantasma_cinza', 'assets/cinza_esquerda3.png');
+	game.load.image('fantasma_verde', 'assets/verde_direita2.png');
+	game.load.image('coracao', 'assets/coracao.jpg');
+	game.load.image('pac', 'assets/pac_aberto.png');
+}
+
+function create() {
+	//instruction = game.add.text(16, 16, 'Mate os fantasmas.\nEvite o pac-man.\nFique de olho no cronômetro.\nVocê dispõe de três vidas.\nDivirta-se!', { fontSize: '32px', fill: '#fff' });
+	game.add.sprite(10, 10, 'fantasma_vermelho');
+	instruction = game.add.text(150, 20, 'Mate os fantasmas.', { fontSize: '32px', fill: '#fff' });
+	game.add.sprite(game.world.width-40, 10, 'fantasma_cinza');
+	game.add.sprite(10, 100, 'fantasma_verde');
+	instruction = game.add.text(150, 100, 'Evite o pac-man.', { fontSize: '32px', fill: '#fff' });
+	game.add.sprite(150, 150, 'pac');
+	instruction = game.add.text(80, 200, 'Fique de olho no cronômetro.', { fontSize: '32px', fill: '#fff' });
+	instruction = game.add.text(500, 200, '00:30', { fontSize: '32px', fill: '#19BCE5' });
+	instruction = game.add.text(80, 300, 'Você dispõe de três vidas.', { fontSize: '32px', fill: '#fff' });
+	game.add.sprite(450, 300, 'coracao');
+	game.add.sprite(490, 300, 'coracao');
+	game.add.sprite(530, 300, 'coracao');
+	instruction = game.add.text(250, 400, 'Divirta-se!', { fontSize: '32px', fill: '#fff' });
+}
+
+function update() {
+	
+}
+
+
+</script>
+
+</body>
+</html>
