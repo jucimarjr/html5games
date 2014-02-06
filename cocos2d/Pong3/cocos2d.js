@@ -2,7 +2,7 @@
 	var d = document;
 	var c = {
 		menuType:"canvas",
-        	COCOS2D_DEBUG:2, // full debug mode
+        COCOS2D_DEBUG:2, // full debug mode
 		box2d:true, // no physics in this game
 		chipmunk: false, // no chipmunk engine
 		showFPS:false, // let's show the FPS meter
@@ -10,7 +10,7 @@
 		tag:"gameCanvas", // id of the canvas element
 		engineDir: "../Cocos2d-html5/cocos2d/", // path to your cocos2d installation
 
-        appFiles:['js/jogo.js','js/Splash.js','js/Menu1.js','js/MenuPrincipal.js','js/Creditos.js']
+        appFiles:['js/jogo.js','js/Splash.js','js/Menu1.js','js/MenuPrincipal.js','js/Creditos.js','js/Configuracoes.js']
 
 		//appFiles:['js/Splash.js','js/Menu1.js','js/btPlay.js',
 		//          'js/MenuPrincipal.js','js/jogo.js',

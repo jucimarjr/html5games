@@ -35,7 +35,7 @@ var MenuPrincipalLayer = cc.Layer.extend({
 	},onPlayer2:function(){
 		cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2,new JogoScene()))
 	},onConfiguracoes:function(){
-		//cc.Director.getInstance().replaceScene(cc.TranstionFade.create(1.2,new JogoScene()))
+		cc.Director.getInstance().replaceScene(cc.TranstionFade.create(1.2,new configuracoes()))
 	},onCreditos:function(){
 		cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2,new creditos()))
 	}
