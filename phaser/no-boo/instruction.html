@@ -90,8 +90,199 @@ var SoundTest = {
 	}
 }
 
+var animations = {
+		grupoFantasmaCinza:null,
+		grupoFantasmalaranja:null,
+		grupoFantasmalilas:null,
+		grupoFantasmaverde:null,
+		grupoFantasmavermelho:null,
+		grupoPacMan:null,
+		preload:function(){
+			game.load.atlas('Textures', 'assets/AllTextures1.png', 'assets/AllTextures1.json') 
+			game.load.spritesheet('pacman', 'assets/pacman.png', 33, 32)
+			game.load.audio('MusicaFundo', 'audio/GhostBusters.mp3')
+			game.load.audio('clickFantasma1', 'audio/plop1.wav')
+			game.load.audio('clickFantasma2', 'audio/plop2.wav')
+			game.load.audio('clickFantasma3', 'audio/plop3.wav')
+			game.load.audio('clickFantasma4', 'audio/plop4.wav')
+			game.load.audio('clickFantasma5', 'audio/plop5.wav')
+			game.load.audio('clickFantasma6', 'audio/plop6.wav')
+			game.load.audio('clickFantasma7', 'audio/plop7.wav')
+			game.load.audio('clickFantasma8', 'audio/plop8.wav')
+			game.load.audio('clickFantasma9', 'audio/plop9.wav')
+			game.load.audio('clickPacMan', 'audio/Fail.wav')
+		},
+		create:function(){
+			
+			this.grupoFantasmaCinza = game.add.group()
+			this.grupoFantasmalaranja = game.add.group()
+			this.grupoFantasmalilas = game.add.group()
+			this.grupoFantasmaverde = game.add.group()
+			this.grupoFantasmavermelho = game.add.group()
+			
+			for(var i=0;i<3;i++){
+				var fantasmaCinza = game.add.sprite(game.rnd.integerInRange(0, 640), game.rnd.integerInRange(0, 480), 'Textures')
+				fantasmaCinza.anchor.x = 0.5;
+				fantasmaCinza.anchor.y = 0.5;
+				fantasmaCinza.animations.add('MoveDown', Phaser.Animation.generateFrameNames('cinza_baixo', 3, 4, '.png'), 8, true);
+				fantasmaCinza.animations.add('MoveUp', Phaser.Animation.generateFrameNames('cinza_cima', 3, 4, '.png'), 8, true);
+				fantasmaCinza.animations.add('MoveLeft', Phaser.Animation.generateFrameNames('cinza_esquerda', 3, 4, '.png'), 8, true);
+				fantasmaCinza.animations.add('MoveRight', Phaser.Animation.generateFrameNames('cinza_direita', 3, 4, '.png'), 8, true);
+				var direcao = game.rnd.integerInRange(0, 360)
+				fantasmaCinza.body.velocity.x = Math.cos(direcao*0.0174)*50;
+				fantasmaCinza.body.velocity.y = Math.sin(direcao*0.0174)*50;
+				fantasmaCinza.body.collideWorldBounds = true;
+				fantasmaCinza.body.bounce.setTo(1, 1);
+				fantasmaCinza.inputEnabled=true;
+				fantasmaCinza.events.onInputDown.add(elimine = function(fantasma){
+					fantasma.destroy();
+					var somFantasma = game.add.audio('clickFantasma'+game.rnd.integerInRange(1, 9));
+					somFantasma.play();
+					var explosao = game.add.sprite(fantasma.x, fantasma.y, 'Textures')
+					explosao.anchor.x = 0.5;
+					explosao.anchor.y = 0.5;
+					explosao.animations.add('explode', Phaser.Animation.generateFrameNames('explosao', 1, 10, '.png'), 8, false);
+					explosao.animations.play('explode', 30, false, true)
+				},null);
+				this.grupoFantasmaCinza.add(fantasmaCinza)
+			}
+			
+			
+			for(var i=0;i<3;i++){
+				var fantasmalaranja = game.add.sprite(game.rnd.integerInRange(0, 640), game.rnd.integerInRange(0, 480), 'Textures')
+				fantasmalaranja.anchor.x = 0.5;
+				fantasmalaranja.anchor.y = 0.5;
+				fantasmalaranja.animations.add('MoveDown', Phaser.Animation.generateFrameNames('laranja_baixo', 3, 4, '.png'), 8, true);
+				fantasmalaranja.animations.add('MoveUp', Phaser.Animation.generateFrameNames('laranja_cima', 3, 4, '.png'), 8, true);
+				fantasmalaranja.animations.add('MoveLeft', Phaser.Animation.generateFrameNames('laranja_esquerda', 3, 4, '.png'), 8, true);
+				fantasmalaranja.animations.add('MoveRight', Phaser.Animation.generateFrameNames('laranja_direita', 3, 4, '.png'), 8, true);
+				var direcao = game.rnd.integerInRange(0, 360)
+				fantasmalaranja.body.velocity.x = Math.cos(direcao*0.0174)*50;
+				fantasmalaranja.body.velocity.y = Math.sin(direcao*0.0174)*50;
+				fantasmalaranja.body.collideWorldBounds = true;
+				fantasmalaranja.body.bounce.setTo(1, 1);
+				fantasmalaranja.inputEnabled=true;
+				fantasmalaranja.events.onInputDown.add(elimine = function(fantasma){
+					fantasma.destroy();
+					var somFantasma = game.add.audio('clickFantasma'+game.rnd.integerInRange(1, 9));
+					somFantasma.play();
+					var explosao = game.add.sprite(fantasma.x, fantasma.y, 'Textures')
+					explosao.anchor.x = 0.5;
+					explosao.anchor.y = 0.5;
+					explosao.animations.add('explode', Phaser.Animation.generateFrameNames('explosao', 1, 10, '.png'), 8, false);
+					explosao.animations.play('explode', 30, false, true)
+				},null);
+				this.grupoFantasmalaranja.add(fantasmalaranja)
+			}
+			
+			for(var i=0;i<3;i++){
+				var fantasmalilas = game.add.sprite(game.rnd.integerInRange(0, 640), game.rnd.integerInRange(0, 480), 'Textures')
+				fantasmalilas.anchor.x = 0.5;
+				fantasmalilas.anchor.y = 0.5;
+				fantasmalilas.animations.add('MoveDown', Phaser.Animation.generateFrameNames('lilas_baixo', 3, 4, '.png'), 8, true);
+				fantasmalilas.animations.add('MoveUp', Phaser.Animation.generateFrameNames('lilas_cima', 3, 4, '.png'), 8, true);
+				fantasmalilas.animations.add('MoveLeft', Phaser.Animation.generateFrameNames('lilas_esquerda', 3, 4, '.png'), 8, true);
+				fantasmalilas.animations.add('MoveRight', Phaser.Animation.generateFrameNames('lilas_direita', 3, 4, '.png'), 8, true);
+				var direcao = game.rnd.integerInRange(0, 360)
+				fantasmalilas.body.velocity.x = Math.cos(direcao*0.0174)*50;
+				fantasmalilas.body.velocity.y = Math.sin(direcao*0.0174)*50;
+				fantasmalilas.body.collideWorldBounds = true;
+				fantasmalilas.body.bounce.setTo(1, 1);
+				fantasmalilas.inputEnabled=true;
+				fantasmalilas.events.onInputDown.add(elimine = function(fantasma){
+					fantasma.destroy();
+					var somFantasma = game.add.audio('clickFantasma'+game.rnd.integerInRange(1, 9));
+					somFantasma.play();
+					var explosao = game.add.sprite(fantasma.x, fantasma.y, 'Textures')
+					explosao.anchor.x = 0.5;
+					explosao.anchor.y = 0.5;
+					explosao.animations.add('explode', Phaser.Animation.generateFrameNames('explosao', 1, 10, '.png'), 8, false);
+					explosao.animations.play('explode', 30, false, true)
+				},null);
+				this.grupoFantasmalilas.add(fantasmalilas)
+			}
+			
+			for(var i=0;i<3;i++){
+				var fantasmaverde = game.add.sprite(game.rnd.integerInRange(0, 640), game.rnd.integerInRange(0, 480), 'Textures')
+				fantasmaverde.anchor.x = 0.5;
+				fantasmaverde.anchor.y = 0.5;
+				fantasmaverde.animations.add('MoveDown', Phaser.Animation.generateFrameNames('verde_baixo', 3, 4, '.png'), 8, true);
+				fantasmaverde.animations.add('MoveUp', Phaser.Animation.generateFrameNames('verde_cima', 3, 4, '.png'), 8, true);
+				fantasmaverde.animations.add('MoveLeft', Phaser.Animation.generateFrameNames('verde_esquerda', 3, 4, '.png'), 8, true);
+				fantasmaverde.animations.add('MoveRight', Phaser.Animation.generateFrameNames('verde_direita', 3, 4, '.png'), 8, true);
+				var direcao = game.rnd.integerInRange(0, 360)
+				fantasmaverde.body.velocity.x = Math.cos(direcao*0.0174)*50;
+				fantasmaverde.body.velocity.y = Math.sin(direcao*0.0174)*50;
+				fantasmaverde.body.collideWorldBounds = true;
+				fantasmaverde.body.bounce.setTo(1, 1);
+				fantasmaverde.inputEnabled=true;
+				fantasmaverde.events.onInputDown.add(elimine = function(fantasma){
+					fantasma.destroy();
+					var somFantasma = game.add.audio('clickFantasma'+game.rnd.integerInRange(1, 9));
+					somFantasma.play();
+					var explosao = game.add.sprite(fantasma.x, fantasma.y, 'Textures')
+					explosao.anchor.x = 0.5;
+					explosao.anchor.y = 0.5;
+					explosao.animations.add('explode', Phaser.Animation.generateFrameNames('explosao', 1, 10, '.png'), 8, false);
+					explosao.animations.play('explode', 30, false, true)
+				},null);
+				this.grupoFantasmaverde.add(fantasmaverde)
+			}
+			
+			for(var i=0;i<3;i++){
+				var fantasmavermelho = game.add.sprite(game.rnd.integerInRange(0, 640), game.rnd.integerInRange(0, 480), 'Textures')
+				fantasmavermelho.anchor.x = 0.5;
+				fantasmavermelho.anchor.y = 0.5;
+				fantasmavermelho.animations.add('MoveDown', Phaser.Animation.generateFrameNames('vermelho_baixo', 3, 4, '.png'), 8, true);
+				fantasmavermelho.animations.add('MoveUp', Phaser.Animation.generateFrameNames('vermelho_cima', 3, 4, '.png'), 8, true);
+				fantasmavermelho.animations.add('MoveLeft', Phaser.Animation.generateFrameNames('vermelho_esquerda', 3, 4, '.png'), 8, true);
+				fantasmavermelho.animations.add('MoveRight', Phaser.Animation.generateFrameNames('vermelho_direita', 3, 4, '.png'), 8, true);
+				var direcao = game.rnd.integerInRange(0, 360)
+				fantasmavermelho.body.velocity.x = Math.cos(direcao*0.0174)*50;
+				fantasmavermelho.body.velocity.y = Math.sin(direcao*0.0174)*50;
+				fantasmavermelho.body.collideWorldBounds = true;
+				fantasmavermelho.body.bounce.setTo(1, 1);
+				fantasmavermelho.inputEnabled=true;
+				fantasmavermelho.events.onInputDown.add(elimine = function(fantasma){
+					fantasma.destroy();
+					var somFantasma = game.add.audio('clickFantasma'+game.rnd.integerInRange(1, 9));
+					somFantasma.play();
+					var explosao = game.add.sprite(fantasma.x, fantasma.y, 'Textures')
+					explosao.anchor.x = 0.5;
+					explosao.anchor.y = 0.5;
+					explosao.animations.add('explode', Phaser.Animation.generateFrameNames('explosao', 1, 10, '.png'), 8, false);
+					explosao.animations.play('explode', 30, false, true)
+				},null);
+				this.grupoFantasmavermelho.add(fantasmavermelho)
+			}
+			
+			for(var i=0;i<9;i++){
+				var pacman = game.add.sprite(game.rnd.integerInRange(0, 620), game.rnd.integerInRange(0, 460), 'pacman')
+				pacman.animations.add('Move', [2,3], 8, true);
+				var direcao = game.rnd.integerInRange(0, 360)
+				pacman.body.velocity.x = Math.cos(direcao*0.0174)*50;
+				pacman.body.velocity.y = Math.sin(direcao*0.0174)*50;
+				pacman.body.collideWorldBounds = true;
+				pacman.body.bounce.setTo(1, 1);
+				pacman.inputEnabled=true;
+				pacman.events.onInputDown.add(elimine = function(pac){
+					var somPacMan = game.add.audio('clickPacMan', 0.2);
+					somPacMan.play();
+					pac.animations.add('fail', [0,3,1,2,0,3,1,2,0,3,1,2], true);
+					pac.animations.play('fail', 15, false, false)
+				},null);
+				this.grupoFantasmavermelho.add(fantasmavermelho)
+			}
+
+		},
+		update:function(){
+			
+		}
+}
+
 //game.state.add('HowToPlay', HowToPlay, true);
-game.state.add('Test', SoundTest, true);
+//game.state.add('Test', SoundTest, true);
+game.state.add('Animations', animations, true);
 
 
 </script>
