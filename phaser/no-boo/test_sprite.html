@@ -1,0 +1,50 @@
+<!doctype html> 
+
+<html lang="en"> 
+	<head> 
+		<meta charset="UTF-8" />
+		<title>No-BOO</title>
+		<script type="text/javascript" src="js/phaser.min.js"></script>
+	    <style type="text/css">
+	        body {
+				position:absolute;
+				top:50%;
+				left:50%;
+				margin-top:-240px;
+				margin-left:-300px;
+	        }
+	    </style>
+	</head>
+
+	<body>
+		<script type="text/javascript">
+		    var game = new Phaser.Game(600,480, Phaser.AUTO, '', {preload: preload, create: create, update: update});
+		
+		    
+		    function preload() {
+		    	//game.load.image('fundo', 'assets/telas/fundo.png');
+		    	
+		        game.load.image('cinza_baixo3', 'assets/cinza_baixo3.png');
+		        game.load.image('laranja_baixo3', 'assets/laranja_baixo3.png');
+		        game.load.image('lilas_baixo3', 'assets/lilas_baixo3.png');
+		        game.load.image('verde_baixo3', 'assets/verde_baixo3.png');
+		        game.load.image('vermelho_baixo3', 'assets/vermelho_baixo3.png');
+		    }
+		
+		    function create() {
+				//game.add.tileSprite(0, 0, 600, 480, 'fundo');
+		        
+				var tamanhoFantasminha = 32;
+				game.add.sprite(0, 0, 'cinza_baixo3');
+		        game.add.sprite(1*tamanhoFantasminha, 0, 'laranja_baixo3');
+		        game.add.sprite(2*tamanhoFantasminha, 0, 'lilas_baixo3');
+		        game.add.sprite(3*tamanhoFantasminha, 0, 'verde_baixo3');
+		        game.add.sprite(4*tamanhoFantasminha, 0, 'vermelho_baixo3');
+		    }
+		
+		    function update () {
+		
+		    }
+		</script>
+	</body>
+</html>

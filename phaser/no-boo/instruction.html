@@ -90,7 +90,7 @@ var SoundTest = {
 	}
 }
 
-var animations = {
+var Game = {
 		grupoFantasmaCinza:null,
 		grupoFantasmalaranja:null,
 		grupoFantasmalilas:null,
@@ -280,8 +280,8 @@ var animations = {
 		}
 }
 
-//game.state.add('HowToPlay', HowToPlay, true);
-//game.state.add('Test', SoundTest, true);
+game.state.add('HowToPlay', HowToPlay, true);
+game.state.add('Game', Game, true);
 game.state.add('Animations', animations, true);
 
 

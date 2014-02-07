@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $TexturePacker:SmartUpdate:a14432861d062602ece35fce5d3a9463:0c1148a9a42474c8c2415379acdc7b52:991d720580799ae9c9d999bc616077de$ -->
+<x2d version="1.0">
+    <texture n="botoes" path="res/graphics/botoes.png">
+        <sprite n="btn_como_jogar" x="945" y="0" w="189" h="54" />
+        <sprite n="btn_creditos" x="756" y="0" w="189" h="54" />
+        <sprite n="btn_jogar" x="567" y="0" w="189" h="54" />
+        <sprite n="btnselecionado_como_jogar" x="378" y="0" w="189" h="54" />
+        <sprite n="btnselecionado_creditos" x="189" y="0" w="189" h="54" />
+        <sprite n="btnselecionado_jogar" x="0" y="0" w="189" h="54" />
+    </texture>
+</x2d>

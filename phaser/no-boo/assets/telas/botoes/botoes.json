@@ -1,0 +1,60 @@
+{"frames": [
+
+{
+	"filename": "btn_como_jogar.png",
+	"frame": {"x":0,"y":108,"w":189,"h":54},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":189,"h":54},
+	"sourceSize": {"w":189,"h":54}
+},
+{
+	"filename": "btn_creditos.png",
+	"frame": {"x":0,"y":54,"w":189,"h":54},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":189,"h":54},
+	"sourceSize": {"w":189,"h":54}
+},
+{
+	"filename": "btn_jogar.png",
+	"frame": {"x":119,"y":189,"w":119,"h":54},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":119,"h":54},
+	"sourceSize": {"w":119,"h":54}
+},
+{
+	"filename": "btnselecionado_como_jogar.png",
+	"frame": {"x":189,"y":0,"w":189,"h":54},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":189,"h":54},
+	"sourceSize": {"w":189,"h":54}
+},
+{
+	"filename": "btnselecionado_creditos.png",
+	"frame": {"x":0,"y":0,"w":189,"h":54},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":189,"h":54},
+	"sourceSize": {"w":189,"h":54}
+},
+{
+	"filename": "btnselecionado_jogar.png",
+	"frame": {"x":0,"y":189,"w":119,"h":54},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":119,"h":54},
+	"sourceSize": {"w":119,"h":54}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker ",
+	"version": "1.0",
+	"image": "botoes.png",
+	"format": "RGBA8888",
+	"size": {"w":256,"h":256},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:a59fe33c25148ce44ef9a6e54da8ccd6:b0993e6e1282541ac25dddac7fa0efca:2bb7e8327705ab71169d966e17a8e107$"
+}
+}
