@@ -1,7 +1,7 @@
 //Variáveis do JOGO
 var screen = null;
 var timeLabel = null;
-var gameTime = 5;
+var gameTime = null;
     
 var RIGHT_WALL = 1;
 var LEFT_WALL = 2;
@@ -48,7 +48,7 @@ var GameLayer = cc.Layer.extend({
     {
                 
         this._super();
-        gameTime = 40;
+        gameTime = 30;
         
         if( 'touches' in sys.capabilities )
             this.setTouchEnabled(true);
