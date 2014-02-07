@@ -37,11 +37,11 @@ var MenuLayer = cc.Layer.extend({
     },
 
     onCredito: function () {
-        cc.Director.getInstance().replaceScene(cc.TransitionCrossFade.create(1.2, new CreditosScene()));
+        cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2, new CreditosScene()));
     },
 
     onJogar: function () {
-        cc.Director.getInstance().replaceScene(cc.TransitionCrossFade.create(1.2, new ComoJogarScene()));
+        cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2, new ComoJogarScene()));
     }
 
 });

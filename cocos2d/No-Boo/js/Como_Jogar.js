@@ -30,7 +30,7 @@ var ComoJogarLayer = cc.Layer.extend({
     mudaCena: function (dt) {
     	var scene = cc.Scene.create();
 		scene.addChild(new Menu());
-		cc.Director.getInstance().replaceScene(cc.TransitionCrossFade.create(1.0,scene));
+		cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.0,scene));
     }
 });
 
