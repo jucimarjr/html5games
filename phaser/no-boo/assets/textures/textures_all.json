@@ -435,7 +435,7 @@
 "meta": {
 	"app": "http://www.codeandweb.com/texturepacker ",
 	"version": "1.0",
-	"image": "AllTextures1.png",
+	"image": "textures_all.png",
 	"format": "RGBA8888",
 	"size": {"w":256,"h":512},
 	"scale": "1",
