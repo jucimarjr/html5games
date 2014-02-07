@@ -13,6 +13,10 @@ var TIPO_VERMELHO = 2;
 var TIPO_LARANJA = 3;
 var TIPO_LILAS = 4;
 var TIPO_CINZA = 5;
+var TIPO_PACMAN = 6;
+
+var WIN = 1;
+var LOSE = 2;
 
 //Variáveis do BOX2D
 
@@ -39,7 +43,12 @@ var GameLayer = cc.Layer.extend({
     score: 0,
     scoreLabel: null,
     layerGame: null,
-    threads: [],    
+    life: null,
+    threads: [],
+
+    spriteCoracao: null,
+    spriteCoracao2: null,
+    spriteCoracao3: null,
 
     spriteFrameCache: cc.SpriteFrameCache.getInstance(),
     animCache: cc.AnimationCache.getInstance(),
@@ -48,7 +57,8 @@ var GameLayer = cc.Layer.extend({
     {
                 
         this._super();
-        gameTime = 30;
+        this.life = 3;
+        gameTime = 31;
         
         if( 'touches' in sys.capabilities )
             this.setTouchEnabled(true);
@@ -65,6 +75,18 @@ var GameLayer = cc.Layer.extend({
         this.scoreLabel.setPosition(new cc.Point(screen.width - 40, 40));
         this.layerGame.addChild(this.scoreLabel);
         
+        this.spriteHeart = cc.Sprite.create("assets/coracao_cheio.png");
+        this.spriteHeart.setPosition(30, screen.height - 30);
+        this.layerGame.addChild(this.spriteHeart);
+
+        this.spriteHeart2 = cc.Sprite.create("assets/coracao_cheio.png");
+        this.spriteHeart2.setPosition(70, screen.height - 30);
+        this.layerGame.addChild(this.spriteHeart2);
+
+        this.spriteHeart3 = cc.Sprite.create("assets/coracao_cheio.png");
+        this.spriteHeart3.setPosition(110, screen.height - 30);
+        this.layerGame.addChild(this.spriteHeart3);
+
         timeLabel = cc.LabelTTF.create(gameTime, "GhoulySolidRegular", 60);
         timeLabel.setColor( new cc.Color3B(209, 0, 0) );
         timeLabel.setPosition(new cc.Point(screen.width/2, screen.height - 40));
@@ -87,6 +109,8 @@ var GameLayer = cc.Layer.extend({
         this.spriteFrameCache.addSpriteFrames("assets/lilas.plist", "assets/lilas.png");
         this.spriteFrameCache.addSpriteFrames("assets/laranja.plist", "assets/laranja.png");
         this.spriteFrameCache.addSpriteFrames("assets/cinza.plist", "assets/cinza.png");
+        this.spriteFrameCache.addSpriteFrames("assets/pac.plist", "assets/pac.png");
+        this.spriteFrameCache.addSpriteFrames("assets/pacFail.plist", "assets/pacFail.png");
 
         //Cria as animações
         
@@ -115,9 +139,12 @@ var GameLayer = cc.Layer.extend({
         this.createAnimations("cinza_cima", 2, "cinzaCima");
         this.createAnimations("cinza_baixo", 2, "cinzaBaixo");
         
+        this.createAnimations("pac", 2, "pac");
+        this.createAnimations("pacFail", 2, "pacFail");
+
         //Cria os sprites dos personagens
 
-        for (var i = 0 ; i < 10 ; i++) {
+        for (var i = 0 ; i < 15 ; i++) {
             this.createSprite();
         }
 
@@ -157,7 +184,7 @@ var GameLayer = cc.Layer.extend({
     
         var sprite;
         var animation;
-        var tipo = Math.floor(Math.random() * 5 + 1);
+        var tipo = Math.floor(Math.random() * 6 + 1);
                 
         if (tipo == TIPO_VERDE) {
             sprite = cc.Sprite.createWithSpriteFrameName("verde_esquerda1.png");
@@ -187,6 +214,12 @@ var GameLayer = cc.Layer.extend({
             sprite = cc.Sprite.createWithSpriteFrameName("cinza_esquerda1.png");
             sprite.tag = TIPO_CINZA;
             animation = this.animCache.getAnimation("cinzaEsquerda");
+        }
+
+        if (tipo == TIPO_PACMAN) {
+            sprite = cc.Sprite.createWithSpriteFrameName("pac1.png");
+            sprite.tag = TIPO_PACMAN;
+            animation = this.animCache.getAnimation("pac");
         }
 
         sprite.runAction( cc.FadeIn.create(1) );
@@ -243,7 +276,7 @@ var GameLayer = cc.Layer.extend({
         if (bodyA.GetUserData().tag == TIPO_LARANJA)
             animationColor = "laranja";
         if (bodyA.GetUserData().tag == TIPO_CINZA)
-            animationColor = "cinza";
+            animationColor = "cinza";  
 
         //Verifica qual parede o objeto bateu
 
@@ -256,12 +289,27 @@ var GameLayer = cc.Layer.extend({
         if (bodyB.GetUserData() == DOWN_WALL)
             animationSide = "Cima";
 
-        var sprite = bodyA.GetUserData();
-        var animation = cc.AnimationCache.getInstance().getAnimation( animationColor + animationSide );
-        animation.setRestoreOriginalFrame(true);
-        sprite.stopAllActions();
-        sprite.runAction(  cc.RepeatForever.create( cc.Animate.create( animation ) ) );
-        
+        if (bodyA.GetUserData().tag == TIPO_PACMAN) {
+
+            if (bodyB.GetUserData() == RIGHT_WALL)
+                bodyA.GetUserData().setRotation(180);
+            if (bodyB.GetUserData() == LEFT_WALL)
+                bodyA.GetUserData().setRotation(0);
+            if (bodyB.GetUserData() == UP_WALL)
+                bodyA.GetUserData().setRotation(90);
+            if (bodyB.GetUserData() == DOWN_WALL)
+                bodyA.GetUserData().setRotation(270);
+
+        } else {
+
+            var sprite = bodyA.GetUserData();
+            var animation = cc.AnimationCache.getInstance().getAnimation(animationColor + animationSide);
+            animation.setRestoreOriginalFrame(true);
+            sprite.stopAllActions();
+            sprite.runAction(cc.RepeatForever.create(cc.Animate.create(animation)));
+
+        }
+
     },
 
     /*************************************************************************************************************************************/
@@ -336,7 +384,7 @@ var GameLayer = cc.Layer.extend({
         particle.setStartSize(1);
         particle.setPosition(new cc.Point(body.GetPosition().x * PTM_RATIO, body.GetPosition().y * PTM_RATIO));
 
-        var index = Math.floor(Math.random() * 9).toString();
+        var index = Math.floor(Math.random() * 9 + 1).toString();
         cc.AudioEngine.getInstance().playEffect("Som/Plop"+index+".wav", false);
 
         this.layerGame.addChild(particle);
@@ -344,7 +392,7 @@ var GameLayer = cc.Layer.extend({
         this.layerGame.removeChild(body.GetUserData());
         world.DestroyBody(body);
 
-        if (gameTime != 0) {
+        if (gameTime != 0 ) {
             this.createSprite();
             this.score++;
             this.scoreLabel.setString(this.score, 50);
@@ -361,8 +409,51 @@ var GameLayer = cc.Layer.extend({
         for (var b = world.GetBodyList() ; b ; b = b.GetNext()) {
             if (b.GetUserData() != null) {
                 var inside = b.m_fixtureList.TestPoint(touchPoint);
-                if (inside)
-                    this.destroyBody( b );
+                if (inside) {
+                    if (b.GetUserData().tag == TIPO_PACMAN) {
+                        this.life--;
+                        var sprite = b.GetUserData();
+
+                        cc.AudioEngine.getInstance().playEffect("Som/Fail.wav", false);
+
+                        var animation = cc.AnimationCache.getInstance().getAnimation("pacFail");
+                        animation.setRestoreOriginalFrame(true);
+                        sprite.stopAllActions();
+                        sprite.runAction( cc.RepeatForever.create( cc.Animate.create(animation) ) );
+                        sprite.runAction(cc.Blink.create(1, 5));
+
+                        setTimeout(function (sprite) {
+
+                            var animation = cc.AnimationCache.getInstance().getAnimation("pac");
+                            animation.setRestoreOriginalFrame(true);
+                            sprite.stopAllActions();
+                            sprite.runAction(cc.RepeatForever.create(cc.Animate.create(animation)));
+
+                        }, 1500, sprite);
+
+                        if (this.life == 2) {
+                            this.layerGame.removeChild(this.spriteCoracao3);
+                            //this.spriteHeart3 = cc.Sprite.create("assets/coracao_vazio.png");
+                            //this.spriteHeart3.setPosition(110, screen.height - 30);
+                            //this.layerGame.addChild(this.spriteHeart3);
+                        }
+                        if (this.life == 1) {
+                            this.layerGame.removeChild(this.spriteCoracao2);
+                            this.spriteHeart2 = cc.Sprite.create("assets/coracao_vazio.png");
+                            this.spriteHeart2.setPosition(70, screen.height - 30);
+                            this.layerGame.addChild(this.spriteHeart2);
+                        }
+                        if (this.life == 0) {
+                            this.layerGame.removeChild(this.spriteCoracao);
+                            this.spriteHeart = cc.Sprite.create("assets/coracao_vazio.png");
+                            this.spriteHeart.setPosition(30, screen.height - 30);
+                            this.layerGame.addChild(this.spriteHeart);
+                            this.endGame(LOSE);
+                        }
+
+                    }else
+                        this.destroyBody(b);
+                }
             }
         }
 
@@ -376,38 +467,63 @@ var GameLayer = cc.Layer.extend({
 
         gameTime--;
         timeLabel.setString( gameTime , 50 );
-
-        if (gameTime == 0) {
-             
-            for (var b = world.GetBodyList() ; b ; b = b.GetNext()) {
-                if (b.GetUserData() != null) {
-                    layer.destroyBody(b);
-                }
-            }
-
-            var Label = cc.LabelTTF.create("ACABOU!", "GhoulySolidRegular", 80);
-            Label.setPosition(new cc.Point(screen.width/2, screen.height/2));
-            layer.layerGame.addChild(Label);
-            layer.layerGame.removeChild(timeLabel);
-            layer.schedule( layer.onTick1 , 5 );
         
-            delete world;
-            for (var i = 0 ; i < layer.threads.length ; i++)
-                clearInterval( layer.threads[i] );
-
-            cc.AudioEngine.getInstance().playEffect("Som/Explosion.wav", false);
-            cc.AudioEngine.getInstance().playMusic("Som/GhostBusters_.mp3", true);
-
+        if (gameTime == 0) {
+            layer.endGame(WIN);
         }
 
     },
+        
+    /*************************************************************************************************************************************/
+    //Finaliza o Jogo
+    /*************************************************************************************************************************************/
 
-    onTick1:function (dt) {
-        var scene = cc.Scene.create();
-        scene.addChild(new Menu());
-        cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.0,scene));
+    endGame:function( type ){
+    
+        //Destrói os corpos do mundo
+        for (var b = world.GetBodyList() ; b ; b = b.GetNext()) {
+            if (b.GetUserData() != null) {
+                this.destroyBody(b);
+            }
+        }
+
+        delete world;
+
+        //Agenda a mudança de tela
+        if (type == WIN)
+            setTimeout(this.changeScene, 3000, WIN);
+        if (type == LOSE)
+            setTimeout(this.changeScene, 3000, LOSE);
+        
+        sys.localStorage.setItem("finalScore", this.score);
+
+        //Limpa todas as threads criadas
+        for (var i = 0 ; i < this.threads.length ; i++)
+            clearInterval(this.threads[i]);
+        
+        cc.AudioEngine.getInstance().playEffect("Som/Explosion.wav", false);
+        
+        //Põe o label de ACABOU
+        var Label = cc.LabelTTF.create("ACABOU!", "GhoulySolidRegular", 80);
+        Label.setPosition(new cc.Point(screen.width / 2, screen.height / 2));
+        this.layerGame.addChild(Label);
+        this.layerGame.removeChild(timeLabel);
+                
     },
 
+    changeScene: function (type) {
+        var nextScene = null;
+
+        if( type == WIN )
+            nextScene = new GameEndWinScene();
+        if( type == LOSE )
+            nextScene = new GameEndLoseScene();
+
+        var scene = cc.Scene.create();
+        scene.addChild(nextScene);
+        cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.0,scene));
+    },
+    
     /*************************************************************************************************************************************/
     //Função do Mouse
     /*************************************************************************************************************************************/

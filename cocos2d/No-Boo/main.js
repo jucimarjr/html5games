@@ -32,6 +32,10 @@ var cocos2dApp = cc.Application.extend({
                  { type: "plist", src: "assets/lilas.plist" },
                  { type: "image", src: "assets/cinza.png" },
                  { type: "plist", src: "assets/cinza.plist" },
+                 { type: "image", src: "assets/pac.png" },
+                 { type: "plist", src: "assets/pac.plist" },
+                 { type: "image", src: "assets/pacFail.png" },
+                 { type: "plist", src: "assets/pacFail.plist" },
 
                  {
                      fontName: "GhoulySolidRegular",
@@ -39,6 +43,13 @@ var cocos2dApp = cc.Application.extend({
                               { src: "fonts/Halloween.ttf", type: "truetype" }
                      ]
                  },
+
+                 {
+                     fontName: "Grinched",
+                    src: [
+                        { src: "fonts/Grinched.ttf", type: "truetype" }
+                    ]
+                },
 				],
 				function () {
 				    cc.Director.getInstance().runWithScene(new this.startScene());

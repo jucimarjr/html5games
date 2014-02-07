@@ -36,13 +36,13 @@
             <key>format</key>
             <integer>2</integer>
             <key>realTextureFileName</key>
-            <string>pacman.png</string>
+            <string>pac.png</string>
             <key>size</key>
             <string>{64,128}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:6c4614fa19df9eda2e92ec196b297a49:59dafcd4e6c8e9d866da1d5f49fbe45d:42b1375e0b3f7b91a6f32250b66c6f46$</string>
+            <string>$TexturePacker:SmartUpdate:0d0bf9a5660a534c98f37ad207503d62:59dafcd4e6c8e9d866da1d5f49fbe45d:ce578a02d40959c553ea4b8b96351c45$</string>
             <key>textureFileName</key>
-            <string>pacman.png</string>
+            <string>pac.png</string>
         </dict>
     </dict>
 </plist>

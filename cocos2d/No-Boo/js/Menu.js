@@ -33,7 +33,7 @@ var MenuLayer = cc.Layer.extend({
     onPlay: function () {
         if (cc.AudioEngine.getInstance().isMusicPlaying())
             cc.AudioEngine.getInstance().stopMusic();
-        cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2, new GameScene()));
+        cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2, new GameStartScene()));
     },
 
     onCredito: function () {

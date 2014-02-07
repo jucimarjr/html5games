@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>pacfail1.png</key>
+            <key>pacFail1.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{33,32}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{33,32}</string>
             </dict>
-            <key>pacfail2.png</key>
+            <key>pacFail2.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,36},{33,32}}</string>
@@ -36,13 +36,13 @@
             <key>format</key>
             <integer>2</integer>
             <key>realTextureFileName</key>
-            <string>pacmanfail.png</string>
+            <string>pacFail.png</string>
             <key>size</key>
             <string>{64,128}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:7c9843b0dc34da8c7cfabd1bb0fcf27d:97f536bffbd51243dac4c2e39bc45c6e:4f4be6dcbfae2c3c5e0d15fbf750076c$</string>
+            <string>$TexturePacker:SmartUpdate:dc81ecd965f29c20df42f6f42f0d93b2:97f536bffbd51243dac4c2e39bc45c6e:b89364ac2e01d4f2a1b617d92003dd6d$</string>
             <key>textureFileName</key>
-            <string>pacmanfail.png</string>
+            <string>pacFail.png</string>
         </dict>
     </dict>
 </plist>
