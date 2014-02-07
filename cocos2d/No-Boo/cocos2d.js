@@ -10,7 +10,8 @@
 		tag:"gameCanvas", // id of the canvas element
 		engineDir: "../Cocos2d-html5/cocos2d/", // path to your cocos2d installation
 
-        appFiles:['js/Splash.js','js/Splash_Jogo.js','js/Menu.js','js/Jogo.js']
+		appFiles: ['js/Splash.js', 'js/Splash_Jogo.js', 'js/Menu.js',
+                   'js/Jogo.js', 'js/Creditos.js','js/Como_Jogar.js']
 
 	};
 	
