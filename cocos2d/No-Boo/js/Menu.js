@@ -10,8 +10,8 @@ var MenuLayer = cc.Layer.extend({
         fundo.setPositionY(tela.height/2);
         this.addChild(fundo);
         
-        bt_Play = cc.Sprite.create("assets/Telas/botoes/play.png");
-        bt_Play_Selecionado = cc.Sprite.create("assets/Telas/botoes/play_selecionado.png");
+        bt_Play = cc.Sprite.create("assets/Telas/botoes/btn_jogar.png");
+        bt_Play_Selecionado = cc.Sprite.create("assets/Telas/botoes/btnselecionado_jogar.png");
         bt_Creditos = cc.Sprite.create("assets/Telas/botoes/creditos.png");
         bt_Creditos_Selecionado = cc.Sprite.create("assets/Telas/botoes/creditos_selecionados.png");
         bt_Jogar = cc.Sprite.create("assets/Telas/botoes/jogar.png");
@@ -24,7 +24,7 @@ var MenuLayer = cc.Layer.extend({
         comoJogar.setPosition(0,-120);
                 
         var menu = cc.Menu.create(play,creditos,comoJogar);
-        menu.setPosition(300,300);
+        menu.setPosition(320,300);
         this.addChild(menu);
         
         return this;	
