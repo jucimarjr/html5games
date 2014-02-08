@@ -36,6 +36,8 @@ var cocos2dApp = cc.Application.extend({
                  { type: "plist", src: "assets/pac.plist" },
                  { type: "image", src: "assets/pacFail.png" },
                  { type: "plist", src: "assets/pacFail.plist" },
+                 { type: "image", src: "assets/Telas/som.png"},
+                 { type: "image", src: "assets/Telas/som_desligado.png"},
 
                  {
                      fontName: "GhoulySolidRegular",

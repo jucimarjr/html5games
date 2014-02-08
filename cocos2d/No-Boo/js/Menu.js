@@ -1,8 +1,10 @@
+
 var MenuLayer = cc.Layer.extend({
+	
     init:function()
     {
         this._super();
-        
+        var tocando = 1;
         var tela = cc.Director.getInstance().getWinSizeInPixels();
         
         var fundo = cc.Sprite.create("assets/Telas/wireframe_splash_jogo.png");
@@ -16,14 +18,21 @@ var MenuLayer = cc.Layer.extend({
         bt_Creditos_Selecionado = cc.Sprite.create("assets/Telas/botoes/creditos_selecionados.png");
         bt_Jogar = cc.Sprite.create("assets/Telas/botoes/jogar.png");
         bt_Jogar_Selecionado = cc.Sprite.create("assets/Telas/botoes/jogar_selecionado.png");
+        bt_som = cc.Sprite.create("assets/Telas/som.png");
+        bt_som_desligado = cc.Sprite.create("assets/Telas/som_desligado.png");
                 
         var play = cc.MenuItemSprite.create(bt_Play,bt_Play_Selecionado,null,'onPlay',this);
         var creditos = cc.MenuItemSprite.create(bt_Creditos,bt_Creditos_Selecionado,null,'onCredito',this);
         creditos.setPosition(0,-60);
         var comoJogar = cc.MenuItemSprite.create(bt_Jogar,bt_Jogar_Selecionado,null,'onJogar',this);
         comoJogar.setPosition(0,-120);
+        var item1 = cc.MenuItemToggle.create(
+                cc.MenuItemSprite.create(bt_som),
+                cc.MenuItemSprite.create(bt_som_desligado));
+            item1.setCallback(this.onMenuCallback, this);
+            item1.setPosition(-290,-260)
                 
-        var menu = cc.Menu.create(play,creditos,comoJogar);
+        var menu = cc.Menu.create(play,creditos,comoJogar,item1);
         menu.setPosition(320,300);
         this.addChild(menu);
         
@@ -42,6 +51,16 @@ var MenuLayer = cc.Layer.extend({
 
     onJogar: function () {
         cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2, new ComoJogarScene()));
+    },
+    onMenuCallback:function (sender) {
+    	if (cc.AudioEngine.getInstance().isMusicPlaying()){
+    		cc.AudioEngine.getInstance().stopMusic();
+    	}else{
+    		cc.AudioEngine.getInstance().playMusic("Som/GhostBusters_.mp3", true);
+    	}
+            
+    	
+        cc.log("Callback called");
     }
 
 });
