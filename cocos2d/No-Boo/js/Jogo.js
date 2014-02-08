@@ -46,9 +46,9 @@ var GameLayer = cc.Layer.extend({
     life: null,
     threads: [],
 
-    spriteCoracao: null,
-    spriteCoracao2: null,
-    spriteCoracao3: null,
+    spriteHeart: null,
+    spriteHeart2: null,
+    spriteHeart3: null,
 
     spriteFrameCache: cc.SpriteFrameCache.getInstance(),
     animCache: cc.AnimationCache.getInstance(),
@@ -383,7 +383,7 @@ var GameLayer = cc.Layer.extend({
         particle.setLife(0.3);
         particle.setStartSize(1);
         particle.setPosition(new cc.Point(body.GetPosition().x * PTM_RATIO, body.GetPosition().y * PTM_RATIO));
-
+        
         var index = Math.floor(Math.random() * 9 + 1).toString();
         cc.AudioEngine.getInstance().playEffect("Som/Plop"+index+".wav", false);
 
@@ -422,6 +422,26 @@ var GameLayer = cc.Layer.extend({
                         sprite.runAction( cc.RepeatForever.create( cc.Animate.create(animation) ) );
                         sprite.runAction(cc.Blink.create(1, 5));
 
+                        if (this.life == 2) {
+                            this.layerGame.removeChild(this.spriteHeart3);
+                            this.spriteHeart3 = cc.Sprite.create("assets/coracao_vazio.png");
+                            this.spriteHeart3.setPosition(110, screen.height - 30);
+                            this.layerGame.addChild(this.spriteHeart3);
+                        }
+                        if (this.life == 1) {
+                            this.layerGame.removeChild(this.spriteHeart2);
+                            this.spriteHeart2 = cc.Sprite.create("assets/coracao_vazio.png");
+                            this.spriteHeart2.setPosition(70, screen.height - 30);
+                            this.layerGame.addChild(this.spriteHeart2);
+                        }
+                        if (this.life == 0) {
+                            this.layerGame.removeChild(this.spriteHeart);
+                            this.spriteHeart = cc.Sprite.create("assets/coracao_vazio.png");
+                            this.spriteHeart.setPosition(30, screen.height - 30);
+                            this.layerGame.addChild(this.spriteHeart);
+                            this.endGame(LOSE);
+                        }
+                        
                         setTimeout(function (sprite) {
 
                             var animation = cc.AnimationCache.getInstance().getAnimation("pac");
@@ -429,27 +449,7 @@ var GameLayer = cc.Layer.extend({
                             sprite.stopAllActions();
                             sprite.runAction(cc.RepeatForever.create(cc.Animate.create(animation)));
 
-                        }, 1500, sprite);
-
-                        if (this.life == 2) {
-                            this.layerGame.removeChild(this.spriteCoracao3);
-                            //this.spriteHeart3 = cc.Sprite.create("assets/coracao_vazio.png");
-                            //this.spriteHeart3.setPosition(110, screen.height - 30);
-                            //this.layerGame.addChild(this.spriteHeart3);
-                        }
-                        if (this.life == 1) {
-                            this.layerGame.removeChild(this.spriteCoracao2);
-                            this.spriteHeart2 = cc.Sprite.create("assets/coracao_vazio.png");
-                            this.spriteHeart2.setPosition(70, screen.height - 30);
-                            this.layerGame.addChild(this.spriteHeart2);
-                        }
-                        if (this.life == 0) {
-                            this.layerGame.removeChild(this.spriteCoracao);
-                            this.spriteHeart = cc.Sprite.create("assets/coracao_vazio.png");
-                            this.spriteHeart.setPosition(30, screen.height - 30);
-                            this.layerGame.addChild(this.spriteHeart);
-                            this.endGame(LOSE);
-                        }
+                        }, 1500, sprite);                      
 
                     }else
                         this.destroyBody(b);
