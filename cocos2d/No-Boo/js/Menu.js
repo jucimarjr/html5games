@@ -34,6 +34,7 @@ var MenuLayer = cc.Layer.extend({
                 
         var menu = cc.Menu.create(play,creditos,comoJogar,item1);
         menu.setPosition(320,300);
+        
         this.addChild(menu);
         
         return this;	

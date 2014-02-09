@@ -1,34 +1,34 @@
-var SplashLayer = cc.Layer.extend({
+var SplashInicialLayer = cc.Layer.extend({
     init:function()
     {
         this._super();
         
         var background = cc.Director.getInstance().getWinSizeInPixels();
                
-        var fundo =  cc.Sprite.create("assets/Telas/tela.png");
+        var fundo =  cc.Sprite.create("assets/Telas/Tela_Splash.png");
         fundo.setPositionX(background.width/2);
         fundo.setPositionY(background.height/2);
         this.addChild(fundo);
         
-        cc.AudioEngine.getInstance().playMusic("Som/GhostBusters_.mp3", true);
+        
 
-        this.schedule(this.onTick1, 1);
+        this.schedule(this.onTick1, 3);
         
        return this;
 
     },onTick1:function (dt) {
     	var scene = cc.Scene.create();
-		scene.addChild(new SplashInicial());
+		scene.addChild(new SplashJogo());
 		cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.5,scene));
     },
     
 
 });
 
-var SplashScene = cc.Scene.extend({
+var SplashInicial = cc.Scene.extend({
     onEnter:function(){
         this._super();
-        var layer = new SplashLayer();
+        var layer = new SplashInicialLayer();
         layer.init();
         //layer.timeSplash();
         this.addChild(layer);
