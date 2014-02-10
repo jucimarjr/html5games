@@ -11,10 +11,10 @@ Ganhou.prototype = {
 	},
 
 	create:function() {
+		var fundo = game.add.sprite(0, 0, 'tela_ganhou');
 		setTimeout(function(){
-			var fundo = game.add.sprite(0, 0, 'tela_ganhou');
 			game.state.start('menu', Menu);
-		}, 5000);
+		}, 3000);
 		
 		game.input.onDown.add(function() {
 			var fadeout = game.add.tween(fundo).to( { alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
