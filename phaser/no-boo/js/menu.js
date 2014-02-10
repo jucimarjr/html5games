@@ -1,8 +1,7 @@
 var Menu = {};
 
-Menu = function (game, musica) {
+Menu = function (game) {
 	this.game = game;
-	this.musica = musica;
 };
 
 Menu.prototype = {
@@ -20,7 +19,11 @@ Menu.prototype = {
 		var fadeout;
 		
 		var btn_som = game.add.sprite(game.world.width - 50, 15, 'som');
+		if (musica.isPlaying || musica.isDecoding)
+			btn_som = game.add.sprite(game.world.width - 50, 15, 'som');
+		else btn_som = game.add.sprite(game.world.width - 50, 15, 'som_desligado');
 		btn_som.inputEnabled=true;
+			
 		btn_som.events.onInputDown.add(controle = function(btn_som){
 			if (musica.isPlaying) {
 				btn_som.loadTexture('som_desligado'); 

@@ -80,37 +80,39 @@ Jogo.prototype = {
 			for(var i=0;i<3;i++){
 				fantasma = game.add.sprite(game.rnd.integerInRange(0, 640), game.rnd.integerInRange(0, 480), 'textures');
 				fantasma.inputEnabled=true;
-				fantasma.input.start();
-				
-				//Cria um fantasminha (pra uma dessas direções) com a seu respectiva troca de perninhas
-				aleatorio = game.rnd.integerInRange(1, 4);
-				switch (aleatorio) {
-				case 1:
-					fantasma.animations.add('baixo', Phaser.Animation.generateFrameNames(corFantasma + '_baixo', 3, 4, '.png'));
-					fantasma.animations.play('baixo', 8, true);
-					break;
-				case 2:
-					fantasma.animations.add('cima', Phaser.Animation.generateFrameNames(corFantasma + '_cima', 3, 4, '.png'));
-					fantasma.animations.play('cima', 8, true);
-					break;
-				case 3:
-					fantasma.animations.add('direita', Phaser.Animation.generateFrameNames(corFantasma + '_direita', 3, 4, '.png'));
-					fantasma.animations.play('direita', 8, true);
-					break;
-				case 4:
-					fantasma.animations.add('esquerda', Phaser.Animation.generateFrameNames(corFantasma + '_esquerda', 3, 4, '.png'));
-					fantasma.animations.play('esquerda', 8, true);
-					break;
-				}
 				configurarMovimento(fantasma);
-
+				grupoFantasma.add(fantasma);				
+				
+				//Cria um fantasminha de acordo com a direção aleatória escolhida pra ele (com a seu respectiva troca de perninhas)
+				//x > 0 = direita; x < 0 = esquerda
+				//y > 0 = baixo; y < 0 = cima;
+				if (Math.abs(fantasma.body.velocity.x) > Math.abs(fantasma.body.velocity.y)) {
+					if (fantasma.body.velocity.x > 0) {
+						fantasma.animations.add('direita', Phaser.Animation.generateFrameNames(corFantasma + '_direita', 3, 4, '.png'));
+						fantasma.animations.play('direita', 8, true);
+					} else {
+						fantasma.animations.add('esquerda', Phaser.Animation.generateFrameNames(corFantasma + '_esquerda', 3, 4, '.png'));
+						fantasma.animations.play('esquerda', 8, true);					
+					}
+				} else {
+					if (fantasma.body.velocity.y > 0) {
+						fantasma.animations.add('baixo', Phaser.Animation.generateFrameNames(corFantasma + '_baixo', 3, 4, '.png'));
+						fantasma.animations.play('baixo', 8, true);	
+					} else {
+						fantasma.animations.add('cima', Phaser.Animation.generateFrameNames(corFantasma + '_cima', 3, 4, '.png'));
+						fantasma.animations.play('cima', 8, true);						
+					}	
+				}
+			
 				fantasma.events.onInputDown.add(elimine = function(fantasma){
 					fantasma.destroy();
 
-					var somFantasma = game.add.audio('clickFantasma'+game.rnd.integerInRange(1, 9));
-					somFantasma.play();
-					var explosao = game.add.sprite(fantasma.x, fantasma.y, 'textures')
+					if (musica.isPlaying) {
+						var somFantasma = game.add.audio('clickFantasma'+game.rnd.integerInRange(1, 9));
+						somFantasma.play();
+					}
 					
+					var explosao = game.add.sprite(fantasma.x, fantasma.y, 'textures');
 					explosao.anchor.x = 0.5;
 					explosao.anchor.y = 0.5;
 					explosao.animations.add('explode', Phaser.Animation.generateFrameNames('explosao', 1, 10, '.png'), 8, false);
@@ -118,14 +120,12 @@ Jogo.prototype = {
 
 					pontuar();
 				},null);
-
-				grupoFantasma.add(fantasma);
 			}
 		}
 
 		var textures_pacman;
 		function createPacMan() {
-			for(var i=0;i<9;i++){
+			for(var i=0;i<5;i++){
 				textures_pacman = game.add.sprite(game.rnd.integerInRange(0, 620), game.rnd.integerInRange(0, 460), 'textures_pacman')
 				textures_pacman.inputEnabled=true;
 
@@ -136,9 +136,11 @@ Jogo.prototype = {
 				configurarMovimento(textures_pacman);
 				
 				textures_pacman.events.onInputDown.add(elimine = function(pac){
-					var somPacMan = game.add.audio('clickPacMan', 0.2);
-					somPacMan.play();
-
+					if (musica.isPlaying) {
+						var somPacMan = game.add.audio('clickPacMan', 0.2);
+						somPacMan.play();
+					}
+					
 					pac.animations.add('fail', [0,3,1,2,0,3,1,2,0,3,1,2]);
 					pac.animations.play('fail', 15, false);
 

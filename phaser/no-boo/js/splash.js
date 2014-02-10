@@ -29,7 +29,9 @@ Splash.prototype = {
 						game.state.start('menu', Menu);
 					});
 				}, 2500);
+				//}, 0);
 			});
 		}, 3000);
+		//}, 0);
 	}
 };
