@@ -4,6 +4,41 @@ Jogo = function (game) {
 	this.game = game;
 };
 
+//Here is a custom game object
+Fantasma = function (texture) {
+    Phaser.Sprite.call(this, game, game.world.randomX, game.world.randomY, texture);
+    game.add.existing(this);
+    
+    var direita = false;
+    var esquerda = false;
+    var cima = false;
+    var baixo = false;
+};
+
+Fantasma.prototype = Object.create(Phaser.Sprite.prototype);
+Fantasma.prototype.constructor = Fantasma;
+
+/**
+ * Automatically called by World.update
+ */
+Fantasma.prototype.update = function() {
+	if(this.body.velocity.y<0){
+		this.animations.play('baixo')
+	}else {
+		this.animations.play('cima')
+	}
+};
+
+var numFantasma = 3;
+var numPac = 5;
+var grupoFantasmaCinza;
+var grupoFantasmaLaranja;
+var grupoFantasmaLilas;
+var grupoFantasmaVerde;
+var grupoFantasmaVermelho;
+var grupoPacMan;
+var pontos = 0;
+
 Jogo.prototype = {
 	preload:function() {
 		//preload dos sprites
@@ -27,14 +62,9 @@ Jogo.prototype = {
 	
 	create:function() {
 		//grupo de fantasminhas separados por cor
-		var grupoFantasmaCinza;
-		var grupoFantasmaLaranja;
-		var grupoFantasmaLilas;
-		var grupoFantasmaVerde;
-		var grupoFantasmaVermelho;
-		var grupoPacMan;
+
+
 		//informações sobre a partida
-		var pontos = 0;
 		var txt_pontos;
 		var vidas = 3;
 		var coracao1, coracao2, coracao3;
@@ -76,9 +106,11 @@ Jogo.prototype = {
 		
 		var fantasma;
 		var aleatorio;
+	
 		function createFantasma(corFantasma, grupoFantasma) {
-			for(var i=0;i<3;i++){
-				fantasma = game.add.sprite(game.rnd.integerInRange(0, 640), game.rnd.integerInRange(0, 480), 'textures');
+			for(var i=0;i<numFantasma;i++){
+				fantasma = new Fantasma('textures')
+				//fantasma = game.add.sprite(game.rnd.integerInRange(0, 640), game.rnd.integerInRange(0, 480), 'textures');
 				fantasma.inputEnabled=true;
 				configurarMovimento(fantasma);
 				grupoFantasma.add(fantasma);				
@@ -88,17 +120,21 @@ Jogo.prototype = {
 				//y > 0 = baixo; y < 0 = cima;
 				if (Math.abs(fantasma.body.velocity.x) > Math.abs(fantasma.body.velocity.y)) {
 					if (fantasma.body.velocity.x > 0) {
+						fantasma.direita = true;
 						fantasma.animations.add('direita', Phaser.Animation.generateFrameNames(corFantasma + '_direita', 3, 4, '.png'));
 						fantasma.animations.play('direita', 8, true);
 					} else {
+						fantasma.esquerda = true;
 						fantasma.animations.add('esquerda', Phaser.Animation.generateFrameNames(corFantasma + '_esquerda', 3, 4, '.png'));
 						fantasma.animations.play('esquerda', 8, true);					
 					}
 				} else {
 					if (fantasma.body.velocity.y > 0) {
+						fantasma.baixo = true;
 						fantasma.animations.add('baixo', Phaser.Animation.generateFrameNames(corFantasma + '_baixo', 3, 4, '.png'));
 						fantasma.animations.play('baixo', 8, true);	
 					} else {
+						fantasma.cima = true;
 						fantasma.animations.add('cima', Phaser.Animation.generateFrameNames(corFantasma + '_cima', 3, 4, '.png'));
 						fantasma.animations.play('cima', 8, true);						
 					}	
@@ -125,7 +161,7 @@ Jogo.prototype = {
 
 		var textures_pacman;
 		function createPacMan() {
-			for(var i=0;i<5;i++){
+			for(var i=0;i<numPac;i++){
 				textures_pacman = game.add.sprite(game.rnd.integerInRange(0, 620), game.rnd.integerInRange(0, 460), 'textures_pacman')
 				textures_pacman.inputEnabled=true;
 
@@ -190,5 +226,243 @@ Jogo.prototype = {
 			}
 			vidas -= 1;
 		}
-	}
+	},
+	update:function(){
+		grupoFantasmaCinza.forEachAlive(function(fantasma){
+			if (Math.abs(fantasma.body.velocity.x) > Math.abs(fantasma.body.velocity.y)) {
+				if (fantasma.body.velocity.x > 0) {
+					if(!fantasma.direita){
+						fantasma.animations.add('direita', Phaser.Animation.generateFrameNames('cinza_direita', 3, 4, '.png'));
+						fantasma.animations.play('direita', 8, true);
+						fantasma.esquerda = false;
+						fantasma.cima = false;
+						fantasma.baixo = false;
+						fantasma.direita = true;
+					}
+				}else {
+					if(!fantasma.esquerda){
+						fantasma.animations.add('esquerda', Phaser.Animation.generateFrameNames('cinza_esquerda', 3, 4, '.png'));
+						fantasma.animations.play('esquerda', 8, true);	
+						fantasma.direita = false;
+						fantasma.cima = false;
+						fantasma.baixo = false;	
+						fantasma.esquerda = true;
+					}	
+				}
+			} else {
+				if (fantasma.body.velocity.y > 0) {
+					if(!fantasma.baixo){
+						fantasma.animations.add('baixo', Phaser.Animation.generateFrameNames('cinza_baixo', 3, 4, '.png'));
+						fantasma.animations.play('baixo', 8, true);	
+						fantasma.esquerda = false;
+						fantasma.cima = false;
+						fantasma.direita = false;
+						fantasma.baixo = true
+					}
+				} else {
+					if(!fantasma.cima){
+						fantasma.animations.add('cima', Phaser.Animation.generateFrameNames('cinza_cima', 3, 4, '.png'));
+						fantasma.animations.play('cima', 8, true);
+						fantasma.esquerda = false;
+						fantasma.direita = false;
+						fantasma.baixo = false;
+						fantasma.cima = true;
+					}
+				}	
+			}
+		}, this);
+		grupoFantasmaLaranja.forEachAlive(function(fantasma){
+			if (Math.abs(fantasma.body.velocity.x) > Math.abs(fantasma.body.velocity.y)) {
+				if (fantasma.body.velocity.x > 0) {
+					if(!fantasma.direita){
+						fantasma.animations.add('direita', Phaser.Animation.generateFrameNames('laranja_direita', 3, 4, '.png'));
+						fantasma.animations.play('direita', 8, true);
+						fantasma.esquerda = false;
+						fantasma.cima = false;
+						fantasma.baixo = false;
+						fantasma.direita = true;
+					}
+				}else {
+					if(!fantasma.esquerda){
+						fantasma.animations.add('esquerda', Phaser.Animation.generateFrameNames('laranja_esquerda', 3, 4, '.png'));
+						fantasma.animations.play('esquerda', 8, true);	
+						fantasma.direita = false;
+						fantasma.cima = false;
+						fantasma.baixo = false;	
+						fantasma.esquerda = true;
+					}	
+				}
+			} else {
+				if (fantasma.body.velocity.y > 0) {
+					if(!fantasma.baixo){
+						fantasma.animations.add('baixo', Phaser.Animation.generateFrameNames('laranja_baixo', 3, 4, '.png'));
+						fantasma.animations.play('baixo', 8, true);	
+						fantasma.esquerda = false;
+						fantasma.cima = false;
+						fantasma.direita = false;
+						fantasma.baixo = true
+					}
+				} else {
+					if(!fantasma.cima){
+						fantasma.animations.add('cima', Phaser.Animation.generateFrameNames('laranja_cima', 3, 4, '.png'));
+						fantasma.animations.play('cima', 8, true);
+						fantasma.esquerda = false;
+						fantasma.direita = false;
+						fantasma.baixo = false;
+						fantasma.cima = true;
+					}
+				}	
+			}
+		}, this);
+		grupoFantasmaLilas.forEachAlive(function(fantasma){
+			if (Math.abs(fantasma.body.velocity.x) > Math.abs(fantasma.body.velocity.y)) {
+				if (fantasma.body.velocity.x > 0) {
+					if(!fantasma.direita){
+						fantasma.animations.add('direita', Phaser.Animation.generateFrameNames('lilas_direita', 3, 4, '.png'));
+						fantasma.animations.play('direita', 8, true);
+						fantasma.esquerda = false;
+						fantasma.cima = false;
+						fantasma.baixo = false;
+						fantasma.direita = true;
+					}
+				}else {
+					if(!fantasma.esquerda){
+						fantasma.animations.add('esquerda', Phaser.Animation.generateFrameNames('lilas_esquerda', 3, 4, '.png'));
+						fantasma.animations.play('esquerda', 8, true);	
+						fantasma.direita = false;
+						fantasma.cima = false;
+						fantasma.baixo = false;	
+						fantasma.esquerda = true;
+					}	
+				}
+			} else {
+				if (fantasma.body.velocity.y > 0) {
+					if(!fantasma.baixo){
+						fantasma.animations.add('baixo', Phaser.Animation.generateFrameNames('lilas_baixo', 3, 4, '.png'));
+						fantasma.animations.play('baixo', 8, true);	
+						fantasma.esquerda = false;
+						fantasma.cima = false;
+						fantasma.direita = false;
+						fantasma.baixo = true
+					}
+				} else {
+					if(!fantasma.cima){
+						fantasma.animations.add('cima', Phaser.Animation.generateFrameNames('lilas_cima', 3, 4, '.png'));
+						fantasma.animations.play('cima', 8, true);
+						fantasma.esquerda = false;
+						fantasma.direita = false;
+						fantasma.baixo = false;
+						fantasma.cima = true;
+					}
+				}	
+			}
+		}, this);
+		grupoFantasmaVerde.forEachAlive(function(fantasma){
+			if (Math.abs(fantasma.body.velocity.x) > Math.abs(fantasma.body.velocity.y)) {
+				if (fantasma.body.velocity.x > 0) {
+					if(!fantasma.direita){
+						fantasma.animations.add('direita', Phaser.Animation.generateFrameNames('verde_direita', 3, 4, '.png'));
+						fantasma.animations.play('direita', 8, true);
+						fantasma.esquerda = false;
+						fantasma.cima = false;
+						fantasma.baixo = false;
+						fantasma.direita = true;
+					}
+				}else {
+					if(!fantasma.esquerda){
+						fantasma.animations.add('esquerda', Phaser.Animation.generateFrameNames('verde_esquerda', 3, 4, '.png'));
+						fantasma.animations.play('esquerda', 8, true);	
+						fantasma.direita = false;
+						fantasma.cima = false;
+						fantasma.baixo = false;	
+						fantasma.esquerda = true;
+					}	
+				}
+			} else {
+				if (fantasma.body.velocity.y > 0) {
+					if(!fantasma.baixo){
+						fantasma.animations.add('baixo', Phaser.Animation.generateFrameNames('verde_baixo', 3, 4, '.png'));
+						fantasma.animations.play('baixo', 8, true);	
+						fantasma.esquerda = false;
+						fantasma.cima = false;
+						fantasma.direita = false;
+						fantasma.baixo = true
+					}
+				} else {
+					if(!fantasma.cima){
+						fantasma.animations.add('cima', Phaser.Animation.generateFrameNames('verde_cima', 3, 4, '.png'));
+						fantasma.animations.play('cima', 8, true);
+						fantasma.esquerda = false;
+						fantasma.direita = false;
+						fantasma.baixo = false;
+						fantasma.cima = true;
+					}
+				}	
+			}
+		}, this);
+		grupoFantasmaVermelho.forEachAlive(function(fantasma){
+			if (Math.abs(fantasma.body.velocity.x) > Math.abs(fantasma.body.velocity.y)) {
+				if (fantasma.body.velocity.x > 0) {
+					if(!fantasma.direita){
+						fantasma.animations.add('direita', Phaser.Animation.generateFrameNames('vermelho_direita', 3, 4, '.png'));
+						fantasma.animations.play('direita', 8, true);
+						fantasma.esquerda = false;
+						fantasma.cima = false;
+						fantasma.baixo = false;
+						fantasma.direita = true;
+					}
+				}else {
+					if(!fantasma.esquerda){
+						fantasma.animations.add('esquerda', Phaser.Animation.generateFrameNames('vermelho_esquerda', 3, 4, '.png'));
+						fantasma.animations.play('esquerda', 8, true);	
+						fantasma.direita = false;
+						fantasma.cima = false;
+						fantasma.baixo = false;	
+						fantasma.esquerda = true;
+					}	
+				}
+			} else {
+				if (fantasma.body.velocity.y > 0) {
+					if(!fantasma.baixo){
+						fantasma.animations.add('baixo', Phaser.Animation.generateFrameNames('vermelho_baixo', 3, 4, '.png'));
+						fantasma.animations.play('baixo', 8, true);	
+						fantasma.esquerda = false;
+						fantasma.cima = false;
+						fantasma.direita = false;
+						fantasma.baixo = true
+					}
+				} else {
+					if(!fantasma.cima){
+						fantasma.animations.add('cima', Phaser.Animation.generateFrameNames('vermelho_cima', 3, 4, '.png'));
+						fantasma.animations.play('cima', 8, true);
+						fantasma.esquerda = false;
+						fantasma.direita = false;
+						fantasma.baixo = false;
+						fantasma.cima = true;
+					}
+				}	
+			}
+		}, this);
+		grupoPacMan.forEachAlive(function(pac){
+			if (Math.abs(pac.body.velocity.x) > Math.abs(pac.body.velocity.y)) {
+				if (pac.body.velocity.x > 0) {
+					pac.angle = 0;
+				} else {
+					pac.angle = 180;
+				}
+			} else {
+				if (pac.body.velocity.y > 0) {
+					pac.angle = 90;
+				} else {
+					pac.angle = 270;
+				}	
+			}
+		});
+		if(pontos >= numFantasma*5){
+			pontos = 0;
+			numFantasma++;
+			numPac = numPac + 3;
+			game.state.start('ganhou', Ganhou);
+		}
+	}	
 };
