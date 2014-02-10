@@ -220,37 +220,45 @@
 					},
 					create:function(){
 						var bg = game.add.sprite(0,0,'backGround')
-						var btStart = game.add.button(game.world.centerX + 10, game.world.centerY - 45, 'button', function(){
+						var btStart = game.add.button(game.world.centerX + 10, game.world.centerY - 55, 'button', function(){
 							fadeOutJogo();
 						}, null, 0, 3)
 						btStart.anchor.x = 0.5;
-						var btCreditos = game.add.button(game.world.centerX + 10, game.world.centerY + 35, 'button', function(){
+						var btCreditos = game.add.button(game.world.centerX + 10, game.world.centerY, 'button', function(){
 							fadeOutCreditos();
 						}, null, 1, 4)
 						btCreditos.anchor.x = 0.5;
+						var btComoJogar = game.add.button(game.world.centerX + 10, game.world.centerY + 55, 'button', function(){
+							fadeOutComoJogar();
+						}, null, 2, 5)
+						btComoJogar.anchor.x = 0.5;
 						function fadeOutJogo(){
 							var fadeout = game.add.tween(bg).to( { alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
 							var fadeout = game.add.tween(btStart).to( { alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
 							var fadeout = game.add.tween(btCreditos).to( { alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
+							var fadeout = game.add.tween(btComoJogar).to( { alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
 							fadeout.onComplete.add(function(){
-								bg.loadTexture('instrucoes')
-								btStart.kill();
-								btCreditos.kill();
-								var fadein = game.add.tween(bg).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0, 0, true);
-								setTimeout(function(){
-									var fadeout = game.add.tween(bg).to( { alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
-									fadeout.onComplete.add(function(){
-										game.state.start('Jogo', true, true)
-									})
-								}, 5000);
+								game.state.start('Jogo', true, true)				
 							})
 						}
 						function fadeOutCreditos(){
 							var fadeout = game.add.tween(bg).to( { alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
 							var fadeout = game.add.tween(btStart).to( { alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
 							var fadeout = game.add.tween(btCreditos).to( { alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
+							var fadeout = game.add.tween(btComoJogar).to( { alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
 							fadeout.onComplete.add(function(){
 								game.state.start('Creditos', true, true)
+							})
+								
+						}
+						function fadeOutComoJogar(){
+							var fadeout = game.add.tween(bg).to( { alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
+							var fadeout = game.add.tween(btStart).to( { alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
+							var fadeout = game.add.tween(btCreditos).to( { alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
+							var fadeout = game.add.tween(btComoJogar).to( { alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
+
+							fadeout.onComplete.add(function(){
+								game.state.start('ComoJogar', true, true)
 							})
 								
 						}
@@ -291,10 +299,25 @@
 						},3000)
 					}
 			}
+			var ComoJogar = {
+					preload:function(){
+						game.load.image('instrucoes', 'assets/telas/3. instrucoes.png')
+					},
+					create:function(){
+						var bg = game.add.sprite(0,0,'instrucoes')
+						game.input.onDown.add(function(){
+							var fadeout = game.add.tween(bg).to( { alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
+							fadeout.onComplete.add(function(){
+								game.state.start('Menu', true, true)
+							})
+						})
+					}
+			}
 			game.state.add('Splash', Splash, true);
 			game.state.add('Jogo', Jogo);
 			game.state.add('Menu', Menu);
 			game.state.add('Creditos', Creditos);
+			game.state.add('ComoJogar', ComoJogar);
 			game.state.add('Perdeu', Perdeu);
 			
 			
