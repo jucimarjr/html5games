@@ -37,7 +37,12 @@ var grupoFantasmaLilas;
 var grupoFantasmaVerde;
 var grupoFantasmaVermelho;
 var grupoPacMan;
+var cronometro;
+var txt_cronometro;
 var pontos = 0;
+var crono;
+var auxiliar = 1;
+
 
 Jogo.prototype = {
 	preload:function() {
@@ -69,8 +74,23 @@ Jogo.prototype = {
 		var vidas = 3;
 		var coracao1, coracao2, coracao3;
 		var tamanhoCoracao = 35;
-		var txt_cronometro;
-
+		cronometro = 30;
+		if(auxiliar == 1)
+			intervalo = 1000;
+		else intervalo = 0;
+		crono = setInterval(function(){
+			auxiliar++;
+			ponto = 0;
+			numPac = 5;
+			numFantasma = 3;
+			cronometro--;
+			if(cronometro<10){
+				txt_cronometro.content = '00:0' + cronometro;
+			}else{
+				txt_cronometro.content = '00:' + cronometro;
+			}
+		},1000);
+		
 		grupoFantasmaCinza = game.add.group();
 		grupoFantasmaLaranja = game.add.group();
 		grupoFantasmaLilas = game.add.group();
@@ -89,8 +109,9 @@ Jogo.prototype = {
 		coracao1 = game.add.sprite(game.world.width/2 - tamanhoCoracao, 15, 'coracao_cheio');
 		coracao2 = game.add.sprite(game.world.width/2, 15, 'coracao_cheio');
 		coracao3 = game.add.sprite(game.world.width/2 + tamanhoCoracao, 15, 'coracao_cheio');
-		txt_cronometro = game.add.text(game.world.width - 95, 15, '00:00', {font: '35px Grinched', fill: '#fff' });
-	
+		txt_cronometro = game.add.text(game.world.width - 95, 15, '00:30', {font: '35px Grinched', fill: '#fff' });
+		
+
 		
 		var direcao;
 		function configurarMovimento(objeto) {
@@ -195,13 +216,14 @@ Jogo.prototype = {
 			//Acrescenta 1 ponto a cada fantasminha atinjido
 			pontos += 1;
 		    txt_pontos.content = 'Pontos: ' + pontos;
-
+		    /*
 		    if (pontos == 15) {
 		    	//sai do Jogo e vai pra tela de Ganhou
 				setTimeout(function(){
 					game.state.start('ganhou', Ganhou);
 				}, 700);
 		    }
+		    */
 		}
 
 		function perderVida () {
@@ -228,6 +250,13 @@ Jogo.prototype = {
 		}
 	},
 	update:function(){
+        if (cronometro <= 0) {
+            //sai do Jogo e vai pra tela de Perdeu
+        	//clearInterval(crono);
+            setTimeout(function(){
+                game.state.start('perdeu', Perdeu);
+            }, 700);
+        }
 		grupoFantasmaCinza.forEachAlive(function(fantasma){
 			if (Math.abs(fantasma.body.velocity.x) > Math.abs(fantasma.body.velocity.y)) {
 				if (fantasma.body.velocity.x > 0) {
@@ -459,6 +488,7 @@ Jogo.prototype = {
 			}
 		});
 		if(pontos >= numFantasma*5){
+			//clearInterval(crono);
 			pontos = 0;
 			numFantasma++;
 			numPac = numPac + 3;
