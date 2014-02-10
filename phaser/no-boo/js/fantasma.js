@@ -13,7 +13,7 @@
 		 * Automatically called by World.update
 		 */
 		Fantasma.prototype.update = function() {
-			if(this.body.velocity.y<0){
+			if(this.body.velocity.y>0){
 				this.animations.play('baixo')
 			}else {
 				this.animations.play('cima')
