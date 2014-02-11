@@ -5,10 +5,14 @@ Jogo = function (game) {
 };
 
 //Here is a custom game object
-Fantasma = function (texture) {
+Fantasma = function (texture, corFantasma) {
     Phaser.Sprite.call(this, game, game.world.randomX, game.world.randomY, texture);
     game.add.existing(this);
-    
+    this.animations.add('direita', Phaser.Animation.generateFrameNames(corFantasma + '_direita', 3, 4, '.png'));
+    this.animations.add('esquerda', Phaser.Animation.generateFrameNames(corFantasma + '_esquerda', 3, 4, '.png'));
+    this.animations.add('cima', Phaser.Animation.generateFrameNames(corFantasma + '_cima', 3, 4, '.png'));
+    this.animations.add('baixo', Phaser.Animation.generateFrameNames(corFantasma + '_baixo', 3, 4, '.png'));
+    var cor = corFantasma;
     var direita = false;
     var esquerda = false;
     var cima = false;
@@ -22,10 +26,42 @@ Fantasma.prototype.constructor = Fantasma;
  * Automatically called by World.update
  */
 Fantasma.prototype.update = function() {
-	if(this.body.velocity.y>0){
-		this.animations.play('baixo')
-	}else {
-		this.animations.play('cima')
+	if (Math.abs(this.body.velocity.x) > Math.abs(this.body.velocity.y)) {
+		if (this.body.velocity.x > 0) {
+			if(!this.direita){
+				this.animations.play('direita', 8, true);
+				this.esquerda = false;
+				this.cima = false;
+				this.baixo = false;
+				this.direita = true;
+			}
+		}else {
+			if(!this.esquerda){
+				this.animations.play('esquerda', 8, true);	
+				this.direita = false;
+				this.cima = false;
+				this.baixo = false;	
+				this.esquerda = true;
+			}	
+		}
+	} else {
+		if (this.body.velocity.y > 0) {
+			if(!this.baixo){
+				this.animations.play('baixo', 8, true);	
+				this.esquerda = false;
+				this.cima = false;
+				this.direita = false;
+				this.baixo = true
+			}
+		} else {
+			if(!this.cima){
+				this.animations.play('cima', 8, true);
+				this.esquerda = false;
+				this.direita = false;
+				this.baixo = false;
+				this.cima = true;
+			}
+		}	
 	}
 };
 
@@ -69,20 +105,15 @@ Jogo.prototype = {
 		//grupo de fantasminhas separados por cor
 
 
-		//informações sobre a partida
+		//informaï¿½ï¿½es sobre a partida
+		
 		var txt_pontos;
 		var vidas = 3;
 		var coracao1, coracao2, coracao3;
 		var tamanhoCoracao = 35;
 		cronometro = 30;
-		if(auxiliar == 1)
-			intervalo = 1000;
-		else intervalo = 0;
 		crono = setInterval(function(){
-			auxiliar++;
 			ponto = 0;
-			numPac = 5;
-			numFantasma = 3;
 			cronometro--;
 			if(cronometro<10){
 				txt_cronometro.content = '00:0' + cronometro;
@@ -130,37 +161,16 @@ Jogo.prototype = {
 	
 		function createFantasma(corFantasma, grupoFantasma) {
 			for(var i=0;i<numFantasma;i++){
-				fantasma = new Fantasma('textures')
+				fantasma = new Fantasma('textures', corFantasma)
 				//fantasma = game.add.sprite(game.rnd.integerInRange(0, 640), game.rnd.integerInRange(0, 480), 'textures');
 				fantasma.inputEnabled=true;
 				configurarMovimento(fantasma);
 				grupoFantasma.add(fantasma);				
 				
-				//Cria um fantasminha de acordo com a direção aleatória escolhida pra ele (com a seu respectiva troca de perninhas)
+				//Cria um fantasminha de acordo com a direï¿½ï¿½o aleatï¿½ria escolhida pra ele (com a seu respectiva troca de perninhas)
 				//x > 0 = direita; x < 0 = esquerda
 				//y > 0 = baixo; y < 0 = cima;
-				if (Math.abs(fantasma.body.velocity.x) > Math.abs(fantasma.body.velocity.y)) {
-					if (fantasma.body.velocity.x > 0) {
-						fantasma.direita = true;
-						fantasma.animations.add('direita', Phaser.Animation.generateFrameNames(corFantasma + '_direita', 3, 4, '.png'));
-						fantasma.animations.play('direita', 8, true);
-					} else {
-						fantasma.esquerda = true;
-						fantasma.animations.add('esquerda', Phaser.Animation.generateFrameNames(corFantasma + '_esquerda', 3, 4, '.png'));
-						fantasma.animations.play('esquerda', 8, true);					
-					}
-				} else {
-					if (fantasma.body.velocity.y > 0) {
-						fantasma.baixo = true;
-						fantasma.animations.add('baixo', Phaser.Animation.generateFrameNames(corFantasma + '_baixo', 3, 4, '.png'));
-						fantasma.animations.play('baixo', 8, true);	
-					} else {
-						fantasma.cima = true;
-						fantasma.animations.add('cima', Phaser.Animation.generateFrameNames(corFantasma + '_cima', 3, 4, '.png'));
-						fantasma.animations.play('cima', 8, true);						
-					}	
-				}
-			
+				
 				fantasma.events.onInputDown.add(elimine = function(fantasma){
 					fantasma.destroy();
 
@@ -241,10 +251,8 @@ Jogo.prototype = {
 					coracao1.destroy();
 					coracao1 = game.add.sprite(game.world.width/2 - tamanhoCoracao, 15, 'coracao_vazio');
 					//sai do Jogo e vai pra tela de Perdeu
-					setTimeout(function(){
-						game.state.start('perdeu', Perdeu);
-					}, 700);
-					break;
+					clearInterval(crono);
+		        	game.state.start('perdeu', Perdeu);
 			}
 			vidas -= 1;
 		}
@@ -252,226 +260,10 @@ Jogo.prototype = {
 	update:function(){
         if (cronometro <= 0) {
             //sai do Jogo e vai pra tela de Perdeu
-        	//clearInterval(crono);
-            setTimeout(function(){
-                game.state.start('perdeu', Perdeu);
-            }, 700);
+        	clearInterval(crono);
+        	game.state.start('perdeu', Perdeu);
+    		
         }
-		grupoFantasmaCinza.forEachAlive(function(fantasma){
-			if (Math.abs(fantasma.body.velocity.x) > Math.abs(fantasma.body.velocity.y)) {
-				if (fantasma.body.velocity.x > 0) {
-					if(!fantasma.direita){
-						fantasma.animations.add('direita', Phaser.Animation.generateFrameNames('cinza_direita', 3, 4, '.png'));
-						fantasma.animations.play('direita', 8, true);
-						fantasma.esquerda = false;
-						fantasma.cima = false;
-						fantasma.baixo = false;
-						fantasma.direita = true;
-					}
-				}else {
-					if(!fantasma.esquerda){
-						fantasma.animations.add('esquerda', Phaser.Animation.generateFrameNames('cinza_esquerda', 3, 4, '.png'));
-						fantasma.animations.play('esquerda', 8, true);	
-						fantasma.direita = false;
-						fantasma.cima = false;
-						fantasma.baixo = false;	
-						fantasma.esquerda = true;
-					}	
-				}
-			} else {
-				if (fantasma.body.velocity.y > 0) {
-					if(!fantasma.baixo){
-						fantasma.animations.add('baixo', Phaser.Animation.generateFrameNames('cinza_baixo', 3, 4, '.png'));
-						fantasma.animations.play('baixo', 8, true);	
-						fantasma.esquerda = false;
-						fantasma.cima = false;
-						fantasma.direita = false;
-						fantasma.baixo = true
-					}
-				} else {
-					if(!fantasma.cima){
-						fantasma.animations.add('cima', Phaser.Animation.generateFrameNames('cinza_cima', 3, 4, '.png'));
-						fantasma.animations.play('cima', 8, true);
-						fantasma.esquerda = false;
-						fantasma.direita = false;
-						fantasma.baixo = false;
-						fantasma.cima = true;
-					}
-				}	
-			}
-		}, this);
-		grupoFantasmaLaranja.forEachAlive(function(fantasma){
-			if (Math.abs(fantasma.body.velocity.x) > Math.abs(fantasma.body.velocity.y)) {
-				if (fantasma.body.velocity.x > 0) {
-					if(!fantasma.direita){
-						fantasma.animations.add('direita', Phaser.Animation.generateFrameNames('laranja_direita', 3, 4, '.png'));
-						fantasma.animations.play('direita', 8, true);
-						fantasma.esquerda = false;
-						fantasma.cima = false;
-						fantasma.baixo = false;
-						fantasma.direita = true;
-					}
-				}else {
-					if(!fantasma.esquerda){
-						fantasma.animations.add('esquerda', Phaser.Animation.generateFrameNames('laranja_esquerda', 3, 4, '.png'));
-						fantasma.animations.play('esquerda', 8, true);	
-						fantasma.direita = false;
-						fantasma.cima = false;
-						fantasma.baixo = false;	
-						fantasma.esquerda = true;
-					}	
-				}
-			} else {
-				if (fantasma.body.velocity.y > 0) {
-					if(!fantasma.baixo){
-						fantasma.animations.add('baixo', Phaser.Animation.generateFrameNames('laranja_baixo', 3, 4, '.png'));
-						fantasma.animations.play('baixo', 8, true);	
-						fantasma.esquerda = false;
-						fantasma.cima = false;
-						fantasma.direita = false;
-						fantasma.baixo = true
-					}
-				} else {
-					if(!fantasma.cima){
-						fantasma.animations.add('cima', Phaser.Animation.generateFrameNames('laranja_cima', 3, 4, '.png'));
-						fantasma.animations.play('cima', 8, true);
-						fantasma.esquerda = false;
-						fantasma.direita = false;
-						fantasma.baixo = false;
-						fantasma.cima = true;
-					}
-				}	
-			}
-		}, this);
-		grupoFantasmaLilas.forEachAlive(function(fantasma){
-			if (Math.abs(fantasma.body.velocity.x) > Math.abs(fantasma.body.velocity.y)) {
-				if (fantasma.body.velocity.x > 0) {
-					if(!fantasma.direita){
-						fantasma.animations.add('direita', Phaser.Animation.generateFrameNames('lilas_direita', 3, 4, '.png'));
-						fantasma.animations.play('direita', 8, true);
-						fantasma.esquerda = false;
-						fantasma.cima = false;
-						fantasma.baixo = false;
-						fantasma.direita = true;
-					}
-				}else {
-					if(!fantasma.esquerda){
-						fantasma.animations.add('esquerda', Phaser.Animation.generateFrameNames('lilas_esquerda', 3, 4, '.png'));
-						fantasma.animations.play('esquerda', 8, true);	
-						fantasma.direita = false;
-						fantasma.cima = false;
-						fantasma.baixo = false;	
-						fantasma.esquerda = true;
-					}	
-				}
-			} else {
-				if (fantasma.body.velocity.y > 0) {
-					if(!fantasma.baixo){
-						fantasma.animations.add('baixo', Phaser.Animation.generateFrameNames('lilas_baixo', 3, 4, '.png'));
-						fantasma.animations.play('baixo', 8, true);	
-						fantasma.esquerda = false;
-						fantasma.cima = false;
-						fantasma.direita = false;
-						fantasma.baixo = true
-					}
-				} else {
-					if(!fantasma.cima){
-						fantasma.animations.add('cima', Phaser.Animation.generateFrameNames('lilas_cima', 3, 4, '.png'));
-						fantasma.animations.play('cima', 8, true);
-						fantasma.esquerda = false;
-						fantasma.direita = false;
-						fantasma.baixo = false;
-						fantasma.cima = true;
-					}
-				}	
-			}
-		}, this);
-		grupoFantasmaVerde.forEachAlive(function(fantasma){
-			if (Math.abs(fantasma.body.velocity.x) > Math.abs(fantasma.body.velocity.y)) {
-				if (fantasma.body.velocity.x > 0) {
-					if(!fantasma.direita){
-						fantasma.animations.add('direita', Phaser.Animation.generateFrameNames('verde_direita', 3, 4, '.png'));
-						fantasma.animations.play('direita', 8, true);
-						fantasma.esquerda = false;
-						fantasma.cima = false;
-						fantasma.baixo = false;
-						fantasma.direita = true;
-					}
-				}else {
-					if(!fantasma.esquerda){
-						fantasma.animations.add('esquerda', Phaser.Animation.generateFrameNames('verde_esquerda', 3, 4, '.png'));
-						fantasma.animations.play('esquerda', 8, true);	
-						fantasma.direita = false;
-						fantasma.cima = false;
-						fantasma.baixo = false;	
-						fantasma.esquerda = true;
-					}	
-				}
-			} else {
-				if (fantasma.body.velocity.y > 0) {
-					if(!fantasma.baixo){
-						fantasma.animations.add('baixo', Phaser.Animation.generateFrameNames('verde_baixo', 3, 4, '.png'));
-						fantasma.animations.play('baixo', 8, true);	
-						fantasma.esquerda = false;
-						fantasma.cima = false;
-						fantasma.direita = false;
-						fantasma.baixo = true
-					}
-				} else {
-					if(!fantasma.cima){
-						fantasma.animations.add('cima', Phaser.Animation.generateFrameNames('verde_cima', 3, 4, '.png'));
-						fantasma.animations.play('cima', 8, true);
-						fantasma.esquerda = false;
-						fantasma.direita = false;
-						fantasma.baixo = false;
-						fantasma.cima = true;
-					}
-				}	
-			}
-		}, this);
-		grupoFantasmaVermelho.forEachAlive(function(fantasma){
-			if (Math.abs(fantasma.body.velocity.x) > Math.abs(fantasma.body.velocity.y)) {
-				if (fantasma.body.velocity.x > 0) {
-					if(!fantasma.direita){
-						fantasma.animations.add('direita', Phaser.Animation.generateFrameNames('vermelho_direita', 3, 4, '.png'));
-						fantasma.animations.play('direita', 8, true);
-						fantasma.esquerda = false;
-						fantasma.cima = false;
-						fantasma.baixo = false;
-						fantasma.direita = true;
-					}
-				}else {
-					if(!fantasma.esquerda){
-						fantasma.animations.add('esquerda', Phaser.Animation.generateFrameNames('vermelho_esquerda', 3, 4, '.png'));
-						fantasma.animations.play('esquerda', 8, true);	
-						fantasma.direita = false;
-						fantasma.cima = false;
-						fantasma.baixo = false;	
-						fantasma.esquerda = true;
-					}	
-				}
-			} else {
-				if (fantasma.body.velocity.y > 0) {
-					if(!fantasma.baixo){
-						fantasma.animations.add('baixo', Phaser.Animation.generateFrameNames('vermelho_baixo', 3, 4, '.png'));
-						fantasma.animations.play('baixo', 8, true);	
-						fantasma.esquerda = false;
-						fantasma.cima = false;
-						fantasma.direita = false;
-						fantasma.baixo = true
-					}
-				} else {
-					if(!fantasma.cima){
-						fantasma.animations.add('cima', Phaser.Animation.generateFrameNames('vermelho_cima', 3, 4, '.png'));
-						fantasma.animations.play('cima', 8, true);
-						fantasma.esquerda = false;
-						fantasma.direita = false;
-						fantasma.baixo = false;
-						fantasma.cima = true;
-					}
-				}	
-			}
-		}, this);
 		grupoPacMan.forEachAlive(function(pac){
 			if (Math.abs(pac.body.velocity.x) > Math.abs(pac.body.velocity.y)) {
 				if (pac.body.velocity.x > 0) {
@@ -488,11 +280,12 @@ Jogo.prototype = {
 			}
 		});
 		if(pontos >= numFantasma*5){
-			//clearInterval(crono);
+			clearInterval(crono);
 			pontos = 0;
 			numFantasma++;
 			numPac = numPac + 3;
 			game.state.start('ganhou', Ganhou);
+        	
 		}
 	}	
 };
