@@ -1,0 +1,124 @@
+{"frames": {
+
+"asteroid1-117-119.png":
+{
+	"frame": {"x":123,"y":2,"w":117,"h":119},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":117,"h":119},
+	"sourceSize": {"w":117,"h":119}
+},
+"asteroid1_24-24.png":
+{
+	"frame": {"x":204,"y":267,"w":24,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
+	"sourceSize": {"w":24,"h":24}
+},
+"asteroid1_59-60.png":
+{
+	"frame": {"x":2,"y":256,"w":59,"h":60},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":59,"h":60},
+	"sourceSize": {"w":59,"h":60}
+},
+"asteroid2_118-118.png":
+{
+	"frame": {"x":123,"y":121,"w":118,"h":118},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":118,"h":118},
+	"sourceSize": {"w":118,"h":118}
+},
+"asteroid2_24-24.png":
+{
+	"frame": {"x":230,"y":241,"w":24,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
+	"sourceSize": {"w":24,"h":24}
+},
+"asteroid2_59-59.png":
+{
+	"frame": {"x":2,"y":317,"w":59,"h":59},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":59,"h":59},
+	"sourceSize": {"w":59,"h":59}
+},
+"asteroid3_118-119.png":
+{
+	"frame": {"x":2,"y":2,"w":118,"h":119},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":118,"h":119},
+	"sourceSize": {"w":118,"h":119}
+},
+"asteroid3_24-24.png":
+{
+	"frame": {"x":204,"y":241,"w":24,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
+	"sourceSize": {"w":24,"h":24}
+},
+"asteroid3_59-59.png":
+{
+	"frame": {"x":64,"y":304,"w":59,"h":59},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":59,"h":59},
+	"sourceSize": {"w":59,"h":59}
+},
+"particle_1-15.png":
+{
+	"frame": {"x":248,"y":2,"w":1,"h":15},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1,"h":15},
+	"sourceSize": {"w":1,"h":15}
+},
+"shipFire_65-111.png":
+{
+	"frame": {"x":2,"y":122,"w":65,"h":111},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":65,"h":111},
+	"sourceSize": {"w":65,"h":111}
+},
+"ship_65-102.png":
+{
+	"frame": {"x":2,"y":189,"w":65,"h":102},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":65,"h":102},
+	"sourceSize": {"w":65,"h":102}
+},
+"shoot_2-2.png":
+{
+	"frame": {"x":244,"y":2,"w":2,"h":2},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":2,"h":2},
+	"sourceSize": {"w":2,"h":2}
+},
+"ufo_96-61.png":
+{
+	"frame": {"x":106,"y":241,"w":96,"h":61},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":96,"h":61},
+	"sourceSize": {"w":96,"h":61}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker ",
+	"version": "1.0",
+	"image": "SpriteSheet.png",
+	"format": "RGBA8888",
+	"size": {"w":256,"h":512},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:5c65b41c93a4ffbd64f282026fd4dc5a:6cff2f6e1fa9cd84db73d318765f12f8:160eb6758fe4007ba8592b420f92bb0b$"
+}
+}
