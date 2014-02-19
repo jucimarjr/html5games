@@ -1,17 +1,29 @@
-//Variáveis do JOGO
-var ASTEROIDS_GROUP = -1;
+var GameLayer = cc.Layer.extend({
+	spriteFrameCache: cc.SpriteFrameCache.getInstance(),
+	asteroidSprite: null,
+	spaceShipSprite: null,
+	
+    init:function()
+    {
+		//Cria o Layer do jogo
+		this.layerGame = cc.LayerColor.create(new cc.Color4B(0, 0, 0, 255), 800, 480);    
+	    
+		this.asteroidSprite = new AsteroidLayer();
+        this.addChild(this.asteroidSprite);
+		this.spaceShipSprite = new SpaceShipLayer();
+        this.addChild(this.spaceShipSprite);
+        
+        this.addChild(this.layerGame);
+        return true;
+    }
+});
 
-var screen = null;
-
-
-//Variáveis do BOX2D
-var world = null;
-
-var b2Vec2 = Box2D.Common.Math.b2Vec2,
-    b2BodyDef = Box2D.Dynamics.b2BodyDef,
-    b2Body = Box2D.Dynamics.b2Body,
-    b2FixtureDef = Box2D.Dynamics.b2FixtureDef,
-    b2World = Box2D.Dynamics.b2World,
-    b2PolygonShape = Box2D.Collision.Shapes.b2PolygonShape,
-    b2Listener = Box2D.Dynamics.b2ContactListener;
+var GameScene = cc.Scene.extend({
+    onEnter:function(){
+        this._super();
+        var layer = new GameLayer();
+        layer.init();
+        this.addChild(layer);
+    }
+});
 
