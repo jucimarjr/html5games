@@ -2,36 +2,48 @@
 <html lang="en"> 
 <head> 
 	<meta charset="UTF-8" />
-	<title>Phaser - Making your first game, part 1</title>
+	<title>Asteroids</title>
 	<script type="text/javascript" src="js/phaser.min.js"></script>
-    
-	<style type="text/css">
-	        body {
-				position:absolute;
-				top:50%;
-				left:50%;
-				margin-top:-240px;
-				margin-left:-400px;
-	        }
-	</style>
+    <script type="text/javascript" src="Game.js"></script>
+    <script type="text/javascript" src="Nave.js"></script>
+    <script type="text/javascript" src="Tiros.js"></script>
+    <script type="text/javascript" src="HUD.js"></script>
+     <script type="text/javascript" src="Asteroids.js"></script>
+    <style type="text/css">
+        body {
+            margin: 0;
+        }
+    </style>
 </head>
-
 <body>
 
-	<script type="text/javascript">
+<script type="text/javascript">
 
-	var game = new Phaser.Game(800, 480, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 
-	function preload() {
-	}
+var gameScene = null;
 
-	function create() {
-	}
+function preload()
+{
+	game.load.image('nave', 'assets/images/nave.png');
+    game.load.image('tiro', 'assets/images/tiro.png');
+    game.load.image('particula', 'assets/images/particula.png');
+    game.load.audio('thrust', 'assets/sound/asteroids_thrust.mp3');
+    game.load.audio('shoot', 'assets/sound/asteroids_shoot.mp3');
+	gameScene = new Game(game);
+}
 
-	function update() {
-	}
+function create()
+{
+	gameScene.create();
+}
 
-	</script>
+function update() 
+{
+	gameScene.update();
+}
+
+</script>
+
 </body>
-
 </html>
