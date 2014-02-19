@@ -8,9 +8,17 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":117,"h":119},
 	"sourceSize": {"w":117,"h":119}
 },
+"asteroid1_117-119.png":
+{
+	"frame": {"x":123,"y":2,"w":117,"h":119},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":117,"h":119},
+	"sourceSize": {"w":117,"h":119}
+},
 "asteroid1_24-24.png":
 {
-	"frame": {"x":204,"y":267,"w":24,"h":24},
+	"frame": {"x":64,"y":256,"w":24,"h":24},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
@@ -34,7 +42,7 @@
 },
 "asteroid2_24-24.png":
 {
-	"frame": {"x":230,"y":241,"w":24,"h":24},
+	"frame": {"x":230,"y":288,"w":24,"h":24},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
@@ -58,7 +66,7 @@
 },
 "asteroid3_24-24.png":
 {
-	"frame": {"x":204,"y":241,"w":24,"h":24},
+	"frame": {"x":204,"y":288,"w":24,"h":24},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
@@ -80,6 +88,14 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":1,"h":15},
 	"sourceSize": {"w":1,"h":15}
 },
+"shipFire_22-34.png":
+{
+	"frame": {"x":204,"y":265,"w":21,"h":34},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":21,"h":34},
+	"sourceSize": {"w":21,"h":34}
+},
 "shipFire_65-111.png":
 {
 	"frame": {"x":2,"y":122,"w":65,"h":111},
@@ -87,6 +103,14 @@
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":65,"h":111},
 	"sourceSize": {"w":65,"h":111}
+},
+"ship_22-34.png":
+{
+	"frame": {"x":204,"y":241,"w":22,"h":34},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":22,"h":34},
+	"sourceSize": {"w":22,"h":34}
 },
 "ship_65-102.png":
 {
@@ -115,10 +139,10 @@
 "meta": {
 	"app": "http://www.codeandweb.com/texturepacker ",
 	"version": "1.0",
-	"image": "SpriteSheet.png",
+	"image": "GameSpriteSheet.png",
 	"format": "RGBA8888",
 	"size": {"w":256,"h":512},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:5c65b41c93a4ffbd64f282026fd4dc5a:6cff2f6e1fa9cd84db73d318765f12f8:160eb6758fe4007ba8592b420f92bb0b$"
+	"smartupdate": "$TexturePacker:SmartUpdate:36cced2f45b97115c4cfd9e37adfc12b:788b4a894c53e05054e8b51d253a66d0:39770af8806b104322f5367747b7d414$"
 }
 }
