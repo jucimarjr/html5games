@@ -18,7 +18,7 @@
 },
 "asteroid1_24-24.png":
 {
-	"frame": {"x":64,"y":256,"w":24,"h":24},
+	"frame": {"x":64,"y":235,"w":24,"h":24},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
@@ -26,7 +26,7 @@
 },
 "asteroid1_59-60.png":
 {
-	"frame": {"x":2,"y":256,"w":59,"h":60},
+	"frame": {"x":2,"y":185,"w":59,"h":60},
 	"rotated": true,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":59,"h":60},
@@ -42,7 +42,7 @@
 },
 "asteroid2_24-24.png":
 {
-	"frame": {"x":230,"y":288,"w":24,"h":24},
+	"frame": {"x":90,"y":209,"w":24,"h":24},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
@@ -50,7 +50,7 @@
 },
 "asteroid2_59-59.png":
 {
-	"frame": {"x":2,"y":317,"w":59,"h":59},
+	"frame": {"x":90,"y":241,"w":59,"h":59},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":59,"h":59},
@@ -66,7 +66,7 @@
 },
 "asteroid3_24-24.png":
 {
-	"frame": {"x":204,"y":288,"w":24,"h":24},
+	"frame": {"x":64,"y":209,"w":24,"h":24},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
@@ -74,7 +74,7 @@
 },
 "asteroid3_59-59.png":
 {
-	"frame": {"x":64,"y":304,"w":59,"h":59},
+	"frame": {"x":2,"y":246,"w":59,"h":59},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":59,"h":59},
@@ -90,35 +90,19 @@
 },
 "shipFire_22-34.png":
 {
-	"frame": {"x":204,"y":265,"w":21,"h":34},
-	"rotated": true,
+	"frame": {"x":100,"y":122,"w":21,"h":34},
+	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":21,"h":34},
 	"sourceSize": {"w":21,"h":34}
 },
-"shipFire_65-111.png":
-{
-	"frame": {"x":2,"y":122,"w":65,"h":111},
-	"rotated": true,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":65,"h":111},
-	"sourceSize": {"w":65,"h":111}
-},
 "ship_22-34.png":
 {
-	"frame": {"x":204,"y":241,"w":22,"h":34},
+	"frame": {"x":64,"y":185,"w":22,"h":34},
 	"rotated": true,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":22,"h":34},
 	"sourceSize": {"w":22,"h":34}
-},
-"ship_65-102.png":
-{
-	"frame": {"x":2,"y":189,"w":65,"h":102},
-	"rotated": true,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":65,"h":102},
-	"sourceSize": {"w":65,"h":102}
 },
 "shoot_2-2.png":
 {
@@ -130,7 +114,7 @@
 },
 "ufo_96-61.png":
 {
-	"frame": {"x":106,"y":241,"w":96,"h":61},
+	"frame": {"x":2,"y":122,"w":96,"h":61},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":96,"h":61},
@@ -143,6 +127,6 @@
 	"format": "RGBA8888",
 	"size": {"w":256,"h":512},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:36cced2f45b97115c4cfd9e37adfc12b:788b4a894c53e05054e8b51d253a66d0:39770af8806b104322f5367747b7d414$"
+	"smartupdate": "$TexturePacker:SmartUpdate:6112a926939dc6bd406a38473ff98591:4b21fcaaadd69bcdbac73682f088c4f2:39770af8806b104322f5367747b7d414$"
 }
 }

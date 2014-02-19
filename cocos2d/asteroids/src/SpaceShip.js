@@ -33,7 +33,7 @@ var SpaceShipLayer = cc.Layer.extend({
         this.spriteFrameCache.addSpriteFrames("res/spritesheets/GameSpriteSheet.plist", "res/spritesheets/GameSpriteSheet.png");
         
         //Coloca a nave no centro da tela
-        shipSprite = cc.Sprite.createWithSpriteFrameName("ship_65-102.png");
+        shipSprite = cc.Sprite.createWithSpriteFrameName("ship_22-34.png");
         shipSprite.setPosition(new cc.Point(screen.width/2, screen.height/2));
         this.layerGame.setPosition(new cc.Point(0.0,0.0));
         this.layerGame.addChild(shipSprite);
