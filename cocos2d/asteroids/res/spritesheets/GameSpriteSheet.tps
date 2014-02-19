@@ -34,9 +34,9 @@
         <key>dpi</key>
         <uint>72</uint>
         <key>dataFormat</key>
-        <string>json</string>
+        <string>cocos2d</string>
         <key>textureFileName</key>
-        <filename>SpriteSheet.png</filename>
+        <filename></filename>
         <key>flipPVR</key>
         <false/>
         <key>ditherType</key>
@@ -127,7 +127,7 @@
             <key>data</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>SpriteSheet.json</filename>
+                <filename></filename>
             </struct>
         </map>
         <key>multiPack</key>
@@ -166,20 +166,23 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>asteroid1_24-24.png</filename>
-            <filename>asteroid1_59-60.png</filename>
-            <filename>asteroid1-117-119.png</filename>
-            <filename>asteroid2_24-24.png</filename>
-            <filename>asteroid2_59-59.png</filename>
-            <filename>asteroid2_118-118.png</filename>
-            <filename>asteroid3_24-24.png</filename>
-            <filename>asteroid3_59-59.png</filename>
-            <filename>asteroid3_118-119.png</filename>
-            <filename>particle_1-15.png</filename>
-            <filename>ship_65-102.png</filename>
-            <filename>shipFire_65-111.png</filename>
-            <filename>shoot_2-2.png</filename>
-            <filename>ufo_96-61.png</filename>
+            <filename>Nova pasta/html5games/cocos2d/asteroids/res/images/shoot_2-2.png</filename>
+            <filename>Nova pasta/html5games/cocos2d/asteroids/res/images/ufo_96-61.png</filename>
+            <filename>Nova pasta/html5games/cocos2d/asteroids/res/images/asteroid1_24-24.png</filename>
+            <filename>Nova pasta/html5games/cocos2d/asteroids/res/images/asteroid1_59-60.png</filename>
+            <filename>Nova pasta/html5games/cocos2d/asteroids/res/images/asteroid1_117-119.png</filename>
+            <filename>Nova pasta/html5games/cocos2d/asteroids/res/images/asteroid1-117-119.png</filename>
+            <filename>Nova pasta/html5games/cocos2d/asteroids/res/images/asteroid2_24-24.png</filename>
+            <filename>Nova pasta/html5games/cocos2d/asteroids/res/images/asteroid2_59-59.png</filename>
+            <filename>Nova pasta/html5games/cocos2d/asteroids/res/images/asteroid2_118-118.png</filename>
+            <filename>Nova pasta/html5games/cocos2d/asteroids/res/images/asteroid3_24-24.png</filename>
+            <filename>Nova pasta/html5games/cocos2d/asteroids/res/images/asteroid3_59-59.png</filename>
+            <filename>Nova pasta/html5games/cocos2d/asteroids/res/images/asteroid3_118-119.png</filename>
+            <filename>Nova pasta/html5games/cocos2d/asteroids/res/images/particle_1-15.png</filename>
+            <filename>Nova pasta/html5games/cocos2d/asteroids/res/images/ship_22-34.png</filename>
+            <filename>Nova pasta/html5games/cocos2d/asteroids/res/images/ship_65-102.png</filename>
+            <filename>Nova pasta/html5games/cocos2d/asteroids/res/images/shipFire_22-34.png</filename>
+            <filename>Nova pasta/html5games/cocos2d/asteroids/res/images/shipFire_65-111.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

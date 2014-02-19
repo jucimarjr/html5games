@@ -7,8 +7,8 @@ var cocos2dApp = cc.Application.extend({
         cc.initDebugSetting();
         cc.setup(this.config['tag']);
         cc.AppController.shareAppController().didFinishLaunchingWithOptions();
-
     },
+    
     applicationDidFinishLaunching: function () {
         // initialize director
         var director = cc.Director.getInstance();
@@ -22,45 +22,33 @@ var cocos2dApp = cc.Application.extend({
         //load resources
         cc.Loader.preload(
         		[
-                 //{ type: "image", src: "assets/vermelho.png" },
-//                 { type: "plist", src: "assets/vermelho.plist" },
-//                 { type: "image", src: "assets/verde.png" },
-//                 { type: "plist", src: "assets/verde.plist" },
-//                 { type: "image", src: "assets/laranja.png" },
-//                 { type: "plist", src: "assets/laranja.plist" },
-//                 { type: "image", src: "assets/lilas.png" },
-//                 { type: "plist", src: "assets/lilas.plist" },
-//                 { type: "image", src: "assets/cinza.png" },
-//                 { type: "plist", src: "assets/cinza.plist" },
-//                 { type: "image", src: "assets/pac.png" },
-//                 { type: "plist", src: "assets/pac.plist" },
-//                 { type: "image", src: "assets/pacFail.png" },
-//                 { type: "plist", src: "assets/pacFail.plist" },
-//                 { type: "image", src: "assets/Telas/som.png"},
-//                 { type: "image", src: "assets/Telas/som_desligado.png"},
-//                 { type: "image", src: "assets/Telas/Tela_Splash.png"},
-//
-//                 {
-//                     fontName: "GhoulySolidRegular",
-//                     src: [
-//                              { src: "fonts/Halloween.ttf", type: "truetype" }
-//                     ]
-//                 },
-//
-//                 {
-//                     fontName: "Grinched",
-//                    src: [
-//                        { src: "fonts/Grinched.ttf", type: "truetype" }
-//                    ]
-//                },
-				],
-				function () {
+        		 {type: "image", src: "res/screenshots/splashTeam_800-480.png"},
+
+                 {type: "image", src: "res/spritesheets/TitleSpriteSheet.png"},
+                 {type: "image", src: "res/spritesheets/TitleSpriteSheet.plist"},
+        		 
+        		 {type: "image", src: "res/spritesheets/GameSpriteSheet.png"},
+                 {type: "plist", src: "res/spritesheets/GameSpriteSheet.plist"},
+                 {type: "image", src: "res/spritesheets/ButtonsSpriteSheet.png"},
+                 {type: "plist", src: "res/spritesheets/ButtonsSpriteSheet.plist"},
+
+                 {
+                     fontName: "SFAtarianSystem",
+                     src: [{src: "res/fonts/SFAtarianSystem.ttf", type: "truetype"}]
+                 },
+
+                 {
+                    fontName: "VectorB",
+                    src: [{src: "res/fonts/VectorB.ttf", type: "truetype"}]
+                },
+               ],
+               
+               function () {
 				    cc.Director.getInstance().runWithScene(new this.startScene());
-				},
-		this);
+        	   }, this);
 
         return true;
     }
 });
 
-var myApp = new cocos2dApp(SplashScene);
+var myApp = new cocos2dApp(SpaceShipScene);

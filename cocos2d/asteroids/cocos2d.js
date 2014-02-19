@@ -3,15 +3,15 @@
 	var c = {
 		menuType:"canvas",
         COCOS2D_DEBUG:2, // full debug mode
-		box2d:true, // no physics in this game
+		box2d:false, // no physics in this game
 		chipmunk: false, // no chipmunk engine
 		showFPS:false, // let's show the FPS meter
 		frameRate:60, // 60 frames per second
 		tag:"gameCanvas", // id of the canvas element
 		engineDir: "../Cocos2d-html5/cocos2d/", // path to your cocos2d installation
 
-		appFiles: ['src/Splash.js', 'src/SplashGame.js','src/SplashLudus.js','src/Menu.js', 'src/Asteroids.js']
-
+		appFiles: ['src/Splash.js', 'src/SplashGame.js', 'src/SplashLudus.js', 'src/Menu.js',
+		           'src/Asteroids.js', 'src/SpaceShip.js', 'UFO.js']
 	};
 	
 	window.addEventListener('DOMContentLoaded', function () {
