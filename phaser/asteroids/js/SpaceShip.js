@@ -3,6 +3,7 @@ SpaceShip = function(gameClass) {
     this.game = gameClass.game;
     this.gameClass = gameClass;
 
+    //this.sprite = this.game.add.sprite(this.game.width / 2, this.game.height / 2, 'sprites', 'ship_22-34.png');
     this.sprite = this.game.add.sprite(this.game.width / 2, this.game.height / 2, 'nave');
 	this.sprite.events.onOutOfBounds.add(gameClass.outOfBounds,this);
 	this.sprite.anchor.x = 0.5;
@@ -12,7 +13,6 @@ SpaceShip = function(gameClass) {
     this.sprite.body.maxVelocity.x = 1000;
     this.sprite.body.maxVelocity.y = 500;
     this.sprite.body.maxAngularVelocity = 20;
-
     this.shootsGroup = this.game.add.group();
     this.shootInterval = 10;
 
@@ -38,15 +38,8 @@ SpaceShip.prototype.accelerate = function () {
 
     game.add.audio('thrust', 1).play();
     
-    if (this.sprite.body.rotation > 30 && this.sprite.body.rotation < 150)
-        this.sprite.body.acceleration.y += 5;
-    else if (this.sprite.body.rotation < -20 && this.sprite.body.rotation > -150)
-        this.sprite.body.acceleration.y -= 5;
-
-    if (this.sprite.body.rotation < 70 && this.sprite.body.rotation > -70)
-        this.sprite.body.acceleration.x += 5;
-    else if (this.sprite.body.rotation > 110 || this.sprite.body.rotation < -110)
-        this.sprite.body.acceleration.x -= 5;
+    this.sprite.body.acceleration.x = Math.cos((this.sprite.body.rotation + 270)*0.0174) *150;
+	this.sprite.body.acceleration.y = Math.sin((this.sprite.body.rotation + 270)*0.0174) *150;
 
 };
 
@@ -58,8 +51,9 @@ SpaceShip.prototype.shoot = function () {
 
     if (this.shootInterval == 0) {
         this.game.add.audio('shoot', 1).play();
-        var shoot = this.shootsGroup.create(this.sprite.position.x, this.sprite.position.y, 'tiro');
-        this.game.physics.velocityFromAngle(this.sprite.body.rotation, 500, shoot.body.velocity);
+        //var shoot = this.shootsGroup.create(this.sprite.position.x, this.sprite.position.y, 'sprites', 'shoot_2-2.png');
+        var shoot = this.shootsGroup.create(this.sprite.position.x + Math.cos((this.sprite.body.rotation + 270)*0.0174) *24, this.sprite.position.y + Math.sin((this.sprite.body.rotation + 270)*0.0174) *24, 'tiro');
+        this.game.physics.velocityFromAngle(this.sprite.body.rotation - 90, 500, shoot.body.velocity);
         shoot.events.onOutOfBounds.add(this.destroyShoot, this);
         this.shootInterval = 10;
     } else

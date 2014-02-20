@@ -10,12 +10,10 @@ Game = function(game){
 };
 
 Game.prototype.create = function () {
-
     this.groupAsteroids = this.game.add.group();
     this.asteroid = new Asteroid(this);
     this.spaceShip = new SpaceShip(this);    
     this.init();
-
 };
 
 Game.prototype.init = function () {
@@ -40,11 +38,10 @@ Game.prototype.update = function () {
         this.spaceShip.rotate("left");
     else if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT))
         this.spaceShip.rotate("right");
-
     if (game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
         this.spaceShip.accelerate();
     } else{
-        this.spaceShip.stop();       	
+        this.spaceShip.stop();
     }
         	    
     if (game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR))
