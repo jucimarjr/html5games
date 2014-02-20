@@ -25,7 +25,6 @@ Tiros.prototype = {
 	    level.criarAsteroid("medio",asteroid.position.x,asteroid.position.y);
 	    level.criarAsteroid("medio",asteroid.position.x,asteroid.position.y);
 
-	    //  Add and update the score
 	    hud.score += 10;
 	    hud.scoreText.content = 'Score: ' + hud.score;
 	},
@@ -37,7 +36,6 @@ Tiros.prototype = {
 	    level.criarAsteroid("pequeno",asteroid.position.x,asteroid.position.y);
 	    level.criarAsteroid("pequeno",asteroid.position.x,asteroid.position.y);
 
-	    //  Add and update the score
 	    hud.score += 20;
 	    hud.scoreText.content = 'Score: ' + hud.score;
 	},
@@ -46,7 +44,6 @@ Tiros.prototype = {
 	    tiro.kill();	    
 	    asteroid.kill();
 
-	    //  Add and update the score
 	    hud.score += 40;
 	    hud.scoreText.content = 'Score: ' + hud.score;
 	},
