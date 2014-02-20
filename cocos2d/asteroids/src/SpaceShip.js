@@ -7,8 +7,8 @@ var LG = {KEYS: []}; //Verifica se existe alguma tecla pressionada ou não
 //Variáveis da NAVE
 var shipSprite;
 var angularVelocity = 3;
-var velocityX = 3;
-var velocityY = 3;
+var velocityX = 1;
+var velocityY = 1;
 
 var angle = 0;
 var angleAsteroid = 0;
@@ -51,14 +51,9 @@ var SpaceShipLayer = cc.Layer.extend({
 			
 			asteroidSprite.setPosition(new cc.Point(Math.random()*500, Math.random()*500));
 			
-			asteroidSprite.schedule(function(){
-				angleAsteroid += 0.05;
-				this.setRotation(angleAsteroid);
-                if(angleAsteroid > 360)
-                	angleAsteroid = 0;
-				
-     			this.setPosition(new cc.Point(this.getPosition().x + this.xSpeed, this.getPosition().y + this.ySpeed));
-     			if(this.getPosition().x > screen.width){
+			asteroidSprite.schedule(function(){		
+	  			this.setPosition(new cc.Point(this.getPosition().x + this.xSpeed, this.getPosition().y + this.ySpeed));
+	     			if(this.getPosition().x > screen.width){
 					this.setPosition(new cc.Point(this.getPosition().x - screen.width,this.getPosition().y));
 				}
 				if(this.getPosition().x < 0){
