@@ -11,6 +11,7 @@ var velocityX = 3;
 var velocityY = 3;
 
 var angle = 0;
+var angleAsteroid = 0;
 
 
 var SpaceShipLayer = cc.Layer.extend({
@@ -51,6 +52,11 @@ var SpaceShipLayer = cc.Layer.extend({
 			asteroidSprite.setPosition(new cc.Point(Math.random()*500, Math.random()*500));
 			
 			asteroidSprite.schedule(function(){
+				angleAsteroid += 0.05;
+				this.setRotation(angleAsteroid);
+                if(angleAsteroid > 360)
+                	angleAsteroid = 0;
+				
      			this.setPosition(new cc.Point(this.getPosition().x + this.xSpeed, this.getPosition().y + this.ySpeed));
      			if(this.getPosition().x > screen.width){
 					this.setPosition(new cc.Point(this.getPosition().x - screen.width,this.getPosition().y));
@@ -92,20 +98,9 @@ var SpaceShipLayer = cc.Layer.extend({
     	
     	//Move a nave para frente (de acordo com o sentido que ela se encontra)
     	if (LG.KEYS[cc.KEY.up]) {
-    		var atualPosition = shipSprite.getPosition();
-    		
-    		if ((angle < 0 && angle >= -180) || (angle < 360 && angle >= 180)) {
-    			atualPosition.x -= velocityX;
-    			if ((angle < 90 && angle >= -90) || (angle < -270 && angle >= 90) || (Math.abs(angle) > 270))
-    				atualPosition.y += velocityY;
-    			else atualPosition.y -= velocityY;
-    		} else {
-    			atualPosition.x += velocityX;
-    			if ((angle < 90 && angle >= -90) || (angle < -270 && angle >= 90) || (Math.abs(angle) > 270))
-    				atualPosition.y += velocityY;
-    			else atualPosition.y -= velocityY;
-    		}
-            shipSprite.setPosition(atualPosition);
+        	shipSprite.xSpeed = velocityX*Math.sin(Math.PI/180*angle);
+        	shipSprite.ySpeed = velocityY*Math.cos(Math.PI/180*angle);
+        	shipSprite.setPosition(new cc.Point(shipSprite.getPosition().x + shipSprite.xSpeed,shipSprite.getPosition().y + shipSprite.ySpeed));
     	}
     	
     	//Teletransporta a nave
