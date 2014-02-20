@@ -4,11 +4,11 @@
 	<meta charset="UTF-8" />
 	<title>Asteroids</title>
 	<script type="text/javascript" src="js/phaser.min.js"></script>
-    <script type="text/javascript" src="Game.js"></script>
-    <script type="text/javascript" src="Nave.js"></script>
-    <script type="text/javascript" src="Tiros.js"></script>
-    <script type="text/javascript" src="HUD.js"></script>
-     <script type="text/javascript" src="Asteroids.js"></script>
+    <script type="text/javascript" src="js/Game.js"></script>
+    <script type="text/javascript" src="js/SpaceShip.js"></script>
+    <script type="text/javascript" src="js/Shots.js"></script>
+    <script type="text/javascript" src="js/HUD.js"></script>
+    <script type="text/javascript" src="js/Asteroid.js"></script>
     <style type="text/css">
         body {
             margin: 0;
@@ -28,6 +28,9 @@ function preload()
 	game.load.image('nave', 'assets/images/nave.png');
     game.load.image('tiro', 'assets/images/tiro.png');
     game.load.image('particula', 'assets/images/particula.png');
+    game.load.image('small_asteroid', 'assets/images/asteroid_pequeno.png');
+    game.load.image('medium_asteroid', 'assets/images/asteroid_medio.png');
+    game.load.image('large_asteroid', 'assets/images/asteroid_grande.png');
     game.load.audio('thrust', 'assets/sound/asteroids_thrust.mp3');
     game.load.audio('shoot', 'assets/sound/asteroids_shoot.mp3');
 	gameScene = new Game(game);
