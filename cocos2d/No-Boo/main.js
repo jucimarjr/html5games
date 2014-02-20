@@ -10,6 +10,7 @@ var cocos2dApp = cc.Application.extend({
 
     },
     applicationDidFinishLaunching: function () {
+        
         // initialize director
         var director = cc.Director.getInstance();
 

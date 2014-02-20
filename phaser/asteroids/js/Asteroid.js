@@ -1,54 +1,56 @@
-Asteroid = function(game,groupAsteroids) {
-	this.game = game;
-    //this.size = size;
-	this.groupAsteroids = groupAsteroids;
-	this.velocity = 50;
+Asteroid = function(gameClass) {
+    this.game = gameClass.game;
+    this.gameClass = gameClass;
+	this.velocity = 30;
 };
 
-Asteroid.prototype.create = function ( posX , posY , type ) {
+Asteroid.prototype.create = function ( posX , posY , size ) {
 
-    var asteroid;
+    var asteroid, mult;
 
-    if (type == "large") {
-        asteroid = this.groupAsteroids.create(posX, posY, 'large_asteroid');
-        asteroid.body.velocity.x = (Math.random() * this.velocity);
-        asteroid.body.velocity.y = (Math.random() * this.velocity);
+    if (size == "large") {
+        asteroid = this.gameClass.groupAsteroids.create(posX, posY, 'large_asteroid');
+        mult = 1;
     }
-    if (type == "medium") {
-        asteroid = this.groupAsteroids.create(posX, posY, 'medium_asteroid');
-        asteroid.body.velocity.x = (Math.random() * this.velocity) * 2;
-        asteroid.body.velocity.y = (Math.random() * this.velocity) * 2;
+    if (size == "medium") {
+        asteroid = this.gameClass.groupAsteroids.create(posX, posY, 'medium_asteroid');
+        mult = 2;
     }
-    if (type == "small") {
-        asteroid = this.groupAsteroids.create(posX, posY, 'small_asteroid');
-        asteroid.body.velocity.x = (Math.random() * this.velocity) * 4;
-        asteroid.body.velocity.y = (Math.random() * this.velocity) * 4;
+    if (size == "small") {
+        asteroid = this.gameClass.groupAsteroids.create(posX, posY, 'small_asteroid');
+        mult = 4;
     }
 
+    this.move( asteroid , mult );
+    asteroid.size = size;
+    asteroid.events.onOutOfBounds.add(this.gameClass.outOfBounds, this);
+
+};
+
+Asteroid.prototype.move = function (asteroid,mult) {
+
+    asteroid.body.velocity.x = (Math.random() * this.velocity * mult);
+    asteroid.body.velocity.y = (Math.random() * this.velocity * mult);
     asteroid.body.gravity.x = 0;
     asteroid.body.gravity.y = 0;
     asteroid.body.angularVelocity = Math.random() * 50;
-    asteroid.events.onOutOfBounds.add(this.outOfBounds, this);
 
-};
+}
 
-Asteroid.prototype.outOfBounds = function (object) {
+Asteroid.prototype.die = function ( shoot , asteroid ) {
 
-    var velocityX = object.body.velocity.x;
-    var velocityY = object.body.velocity.y;
-    var angularVelocity = object.body.angularVelocity;
-
-    if (object.x < 0)
-        object.reset(game.world.width, object.y);
-    if (object.x > game.world.width)
-        object.reset(0, object.y);
-    if (object.y < 0)
-        object.reset(object.x, game.world.height);
-    if (object.y > game.world.height)
-        object.reset(object.x, 0);
-
-    object.body.velocity.x = velocityX;
-    object.body.velocity.y = velocityY;
-    object.body.angularVelocity = angularVelocity;
+    shoot.kill();
+    
+    if (asteroid.size == "large") {
+        this.gameClass.asteroid.create( asteroid.position.x , asteroid.position.y , "medium" );
+        this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "medium");
+    }
+    if (asteroid.size == "medium") {
+        this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "small");
+        this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "small")
+    }
+    
+    asteroid.kill();
+    this.gameClass.punctuate();
 
 };
