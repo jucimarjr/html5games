@@ -17,7 +17,6 @@ var Asteroid = cc.Sprite.extend({
 			
 			asteroidSprite.setPosition(new cc.Point(Math.random()*500, Math.random()*500));
 			
-<<<<<<< HEAD
 			asteroidSprite.schedule(function(){
 				//Rotaciona os asteroids
 				angle += angularVelocity;
@@ -35,7 +34,7 @@ var Asteroid = cc.Sprite.extend({
 					this.setPosition(new cc.Point(this.getPosition().x, this.getPosition().y - screen.height));
 				if(this.getPosition().y <= 0)
 					this.setPosition(new cc.Point(this.getPosition().x, this.getPosition().y + screen.height));
-=======
+
 			asteroidSprite.schedule(function(){		
 	  			this.setPosition(new cc.Point(this.getPosition().x + this.xSpeed, this.getPosition().y + this.ySpeed));
 	     			if(this.getPosition().x > screen.width){
@@ -50,7 +49,6 @@ var Asteroid = cc.Sprite.extend({
 				if(this.getPosition().y < 0){
 					this.setPosition(new cc.Point(this.getPosition().x ,this.getPosition().y + screen.width));
 				}
->>>>>>> c3a8ac2080469d095d2c809701eb3713ca689687
 			});
 		}
     }
