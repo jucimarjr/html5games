@@ -1,33 +1,14 @@
-//Variáveis de JOGO
-var screen = null;
-
-//Variáveis do ASTEROID
-var asteroidSprite;
-var angularVelocity = 0.05;
-var velocityX = 3;
-var velocityY = 3;
-
-var angle = 0;
-
-
-var AsteroidLayer = cc.Layer.extend({
+var Asteroid = cc.Sprite.extend({
 	spriteFrameCache: cc.SpriteFrameCache.getInstance(),
-	
-    init:function()
-    {
-		var i;
+	asteroidSprite: null,
+	velocityX: 3,
+	velocityY: 3,
+	msg:null,
 
-		//Pega o tamanho da tela
-	    screen = cc.Director.getInstance().getWinSize();
-	    //Cria o Layer do jogo
-		this.layerGame = cc.LayerColor.create(new cc.Color4B(0, 0, 0, 255), 800, 480);    
-	    
-        //Coloca GameSpriteSheet na memória
-        this.spriteFrameCache.addSpriteFrames("res/spritesheets/GameSpriteSheet.plist", "res/spritesheets/GameSpriteSheet.png");
-
-        //Movimenta os asteroids aleatoriamente
+    	initBigAsteroid:function()
+    	{
 		for(i=0; i<7; i++){
-			var asteroidSprite = cc.Sprite.createWithSpriteFrameName("asteroid2_118-118.png");
+			//var asteroidSprite = cc.Sprite.createWithSpriteFrameName("asteroid2_118-118.png");
 			var randomDir = Math.random()*2*Math.PI;
 			
 			asteroidSprite.xSpeed = velocityX*Math.cos(randomDir);
@@ -36,6 +17,7 @@ var AsteroidLayer = cc.Layer.extend({
 			
 			asteroidSprite.setPosition(new cc.Point(Math.random()*500, Math.random()*500));
 			
+<<<<<<< HEAD
 			asteroidSprite.schedule(function(){
 				//Rotaciona os asteroids
 				angle += angularVelocity;
@@ -53,19 +35,23 @@ var AsteroidLayer = cc.Layer.extend({
 					this.setPosition(new cc.Point(this.getPosition().x, this.getPosition().y - screen.height));
 				if(this.getPosition().y <= 0)
 					this.setPosition(new cc.Point(this.getPosition().x, this.getPosition().y + screen.height));
+=======
+			asteroidSprite.schedule(function(){		
+	  			this.setPosition(new cc.Point(this.getPosition().x + this.xSpeed, this.getPosition().y + this.ySpeed));
+	     			if(this.getPosition().x > screen.width){
+					this.setPosition(new cc.Point(this.getPosition().x - screen.width,this.getPosition().y));
+				}
+				if(this.getPosition().x < 0){
+					this.setPosition(new cc.Point(this.getPosition().x + screen.width,this.getPosition().y));
+				}
+				if(this.getPosition().y > screen.width){
+					this.setPosition(new cc.Point(this.getPosition().x ,this.getPosition().y - screen.width));
+				}
+				if(this.getPosition().y < 0){
+					this.setPosition(new cc.Point(this.getPosition().x ,this.getPosition().y + screen.width));
+				}
+>>>>>>> c3a8ac2080469d095d2c809701eb3713ca689687
 			});
 		}
-		
-     	this.addChild(this.layerGame);
-		return true;
-    }
-});
-
-var AsteroidScene = cc.Scene.extend({
-    onEnter:function(){
-        this._super();
-        var layer = new AsteroidLayer();
-        layer.init();
-        this.addChild(layer);
     }
 });

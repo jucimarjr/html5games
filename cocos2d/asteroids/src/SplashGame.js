@@ -6,12 +6,12 @@ var SplashJogoLayer = cc.Layer.extend({
         this._super();
         var tela = cc.Director.getInstance().getWinSizeInPixels();
         
-        var fundo = cc.Sprite.create("res/black_screen.png");
+        /*var fundo = cc.Sprite.create("res/black_screen.png");
         fundo.setPositionX(tela.width/2);
         fundo.setPositionY(tela.height/2);
-        this.addChild(fundo);
+        this.addChild(fundo);*/
         
-        this._title = cc.Sprite.create("res/title_1.png");
+        this._title = cc.Sprite.create("res/images/title1_532-111.png");
         var action1 = cc.Blink.create(3, 10);
         this.addChild(this._title,1);
         this._title.setPosition(410,250);
