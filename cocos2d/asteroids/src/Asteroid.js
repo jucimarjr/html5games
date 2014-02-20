@@ -37,24 +37,22 @@ var AsteroidLayer = cc.Layer.extend({
 			asteroidSprite.setPosition(new cc.Point(Math.random()*500, Math.random()*500));
 			
 			asteroidSprite.schedule(function(){
+				//Rotaciona os asteroids
 				angle += angularVelocity;
 				this.setRotation(angle);
                 if(angle > 360)
                     angle = 0;
 				
      			this.setPosition(new cc.Point(this.getPosition().x + this.xSpeed, this.getPosition().y + this.ySpeed));
-     			if(this.getPosition().x > screen.width){
+     			//Verifica saída da tela por um lado e entrada por outro
+     			if(this.getPosition().x >= screen.width)
 					this.setPosition(new cc.Point(this.getPosition().x - screen.width, this.getPosition().y));
-				}
-				if(this.getPosition().x < 0){
+				if(this.getPosition().x <= 0)
 					this.setPosition(new cc.Point(this.getPosition().x + screen.width, this.getPosition().y));
-				}
-				if(this.getPosition().y > screen.width){
-					this.setPosition(new cc.Point(this.getPosition().x, this.getPosition().y - screen.width));
-				}
-				if(this.getPosition().y < 0){
-					this.setPosition(new cc.Point(this.getPosition().x, this.getPosition().y + screen.width));
-				}
+				if(this.getPosition().y >= screen.height)
+					this.setPosition(new cc.Point(this.getPosition().x, this.getPosition().y - screen.height));
+				if(this.getPosition().y <= 0)
+					this.setPosition(new cc.Point(this.getPosition().x, this.getPosition().y + screen.height));
 			});
 		}
 		
