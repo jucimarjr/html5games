@@ -5,7 +5,7 @@ var SplashInicialLayer = cc.Layer.extend({
         
         var background = cc.Director.getInstance().getWinSizeInPixels();
                
-        var fundo =  cc.Sprite.create("res/splash_screen.png");
+        var fundo =  cc.Sprite.create("res/screenshots/splashTeam_800-480.png");
         fundo.setPositionX(background.width/2);
         fundo.setPositionY(background.height/2);
         this.addChild(fundo);
