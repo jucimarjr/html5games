@@ -28,7 +28,7 @@ var GameLayer = cc.Layer.extend({
     },
     onKeyUp:function (e) {
         MW.KEYS[e] = false;
-    },
+    }
 });
 
 var GameScene = cc.Scene.extend({

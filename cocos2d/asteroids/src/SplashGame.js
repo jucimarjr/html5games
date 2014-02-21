@@ -27,7 +27,7 @@ var SplashJogoLayer = cc.Layer.extend({
     	var scene = cc.Scene.create();
 		scene.addChild(new Menu());
 		cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.0,scene));
-    },
+    }
 });
 
 var SplashGame = cc.Scene.extend({
