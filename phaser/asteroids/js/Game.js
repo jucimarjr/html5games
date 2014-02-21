@@ -1,5 +1,5 @@
 
-Game = function(game){
+var Game = function(game){
     this.game = game;
     this.scores = 0;
     this.lives = 0;
@@ -8,33 +8,19 @@ Game = function(game){
 	this.groupAsteroids = null;
 	this.ufo = null;
 	this.nextAddUfo = 0;
-	this.addUfoTime = 1500;
+	this.addUfoTime = 500;
 };
 
 Game.prototype.create = function () {
-    this.groupAsteroids = this.game.add.group();
-    this.asteroid = new Asteroid(this);
-    this.spaceShip = new SpaceShip(this);
-    this.init();
-};
-
-Game.prototype.init = function () {
+	this.ufo = new Ufo(this);
+	this.asteroid = new Asteroid(this);
+	this.spaceShip = new SpaceShip(this);
+	this.groupAsteroids = this.game.add.group();
 	
-    for (var i = 0 ; i < 7; i++) {
-        this.asteroid.create(Math.random() * game.width, Math.random() * game.height, 'large');
-        //this.groupAsteroids.add(this.asteroid.create(Math.random() * game.width, Math.random() * game.height, 'large'));
-    }
     for (var i = 0 ; i < 5; i++) {
-        this.asteroid.create(Math.random() * game.width, Math.random() * game.height, 'medium');
-        //this.groupAsteroids.add(this.asteroid.create(Math.random() * game.width, Math.random() * game.height, 'large'));
+    	this.asteroid.create(Math.random() * game.width, Math.random() * game.height, 'large');
     }
-    for (var i = 0 ; i < 3; i++) {
-        this.asteroid.create(Math.random() * game.width, Math.random() * game.height, 'small');
-        //this.groupAsteroids.add(this.asteroid.create(Math.random() * game.width, Math.random() * game.height, 'large'));
-    }    
-    
 };
-
 
 Game.prototype.update = function () {
 
@@ -44,12 +30,14 @@ Game.prototype.update = function () {
         this.spaceShip.rotate("left");
     else if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT))
         this.spaceShip.rotate("right");
+    
     if (game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
         this.spaceShip.accelerate();
         this.spaceShip.animate();
     } else{
         this.spaceShip.stop();
     }
+    
     if (game.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
         this.spaceShip.teletransport();
     }
@@ -60,12 +48,12 @@ Game.prototype.update = function () {
     
     
     //Adiciona o Ufo (não funciona)
-    /*
+    
     if(this.game.time.now > this.nextAddUfo){
     	this.nextAddUfo = game.time.now + this.AddUfoTime;
-    	this.ufo = new Ufo(this);
+    	this.ufo.start();
     }
-    */
+    
     
             
 };

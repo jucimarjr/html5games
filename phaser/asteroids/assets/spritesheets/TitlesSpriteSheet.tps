@@ -34,7 +34,7 @@
         <key>dpi</key>
         <uint>72</uint>
         <key>dataFormat</key>
-        <string>json</string>
+        <string>json-array</string>
         <key>textureFileName</key>
         <filename>TitlesSpriteSheet.png</filename>
         <key>flipPVR</key>
@@ -70,7 +70,7 @@
             <key>width</key>
             <int>2048</int>
             <key>height</key>
-            <int>2048</int>
+            <int>1024</int>
         </QSize>
         <key>fixedTextureSize</key>
         <QSize>
@@ -84,11 +84,11 @@
         <key>algorithmSettings</key>
         <struct type="AlgorithmSettings">
             <key>algorithm</key>
-            <enum type="AlgorithmSettings::AlgorithmId">MaxRects</enum>
+            <enum type="AlgorithmSettings::AlgorithmId">Basic</enum>
             <key>freeSizeMode</key>
             <enum type="AlgorithmSettings::AlgorithmFreeSizeMode">Best</enum>
             <key>sizeConstraints</key>
-            <enum type="AlgorithmSettings::SizeConstraints">AnySize</enum>
+            <enum type="AlgorithmSettings::SizeConstraints">POT</enum>
             <key>forceSquared</key>
             <false/>
             <key>forceWordAligned</key>
@@ -160,14 +160,16 @@
             <key>trimThreshold</key>
             <uint>1</uint>
             <key>trimMode</key>
-            <enum type="SpriteSettings::TrimMode">Trim</enum>
+            <enum type="SpriteSettings::TrimMode">None</enum>
             <key>heuristicMask</key>
             <false/>
         </struct>
         <key>fileList</key>
         <array>
-            <filename>../workspace/html5games/cocos2d/asteroids/res/images/title1_532-111.png</filename>
-            <filename>../workspace/html5games/cocos2d/asteroids/res/images/title2_532-111.png</filename>
+            <filename>../images/title1_532-111.png</filename>
+            <filename>../images/title2_532-111.png</filename>
+            <filename>../images/title1_532-111.png</filename>
+            <filename>../images/title2_532-111.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

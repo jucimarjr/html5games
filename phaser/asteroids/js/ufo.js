@@ -1,21 +1,36 @@
-Ufo = function(gameClass){
-	this.game = gameClass.game;
-    this.gameClass = gameClass;
+var Ufo = function(gameClass){
 	this.sprite = game.add.sprite(Math.random()*game.heigth, 0, 'sprites', 'ufo_96-61.png');
-	this.sprite.events.onOutOfBounds.add(gameClass.outOfBounds,this);
+	/*
+	this.sprite.scale.setTo(0.6,0.6);
+	//this.sprite.events.onOutOfBounds.add(gameClass.outOfBounds,this);
+	this.sprite.onOutOfBoundKill = true;
 	this.sprite.anchor.x = 0.5;
 	this.sprite.anchor.y = 0.5;
+	var direction = (45 - Math.random() * 90);
+	this.sprite.body.velocity.x = Math.cos(direction*0.0174) *150;
+	this.sprite.body.velocity.y = Math.sin(direction*0.0174) *150;
+	*/
+	this.game = gameClass.game;
+    this.gameClass = gameClass;
 	this.nextFire = 0;
 	this.fireRate = 1000;
-	var direction = (45 - Math.random() * 90);
-	this.sprite.body.velocity.x = Math.cos(direction*0.0174) *50;
-	this.sprite.body.velocity.y = Math.sin(direction*0.0174) *50;
 	this.shootsUfo = this.game.add.group();
 };
 
-Ufo.prototype.update = function(){
-	if(this.sprite.x >= game.width){
-		Ufo.kill();
+Ufo.prototype.start = function(){
+	if(this.sprite.alive){
+		this.sprite.scale.setTo(0.6,0.6);
+		//this.sprite.events.onOutOfBounds.add(gameClass.outOfBounds,this);
+		this.sprite.onOutOfBoundKill = true;
+		this.sprite.anchor.x = 0.5;
+		this.sprite.anchor.y = 0.5;
+		var direction = (45 - Math.random() * 90);
+		this.sprite.body.velocity.x = Math.cos(direction*0.0174) *150;
+		this.sprite.body.velocity.y = Math.sin(direction*0.0174) *150;
+	}else{
+		this.sprite.reset(Math.random()*game.heigth, 0);
+		this.sprite.body.velocity.x = Math.cos(direction*0.0174) *150;
+		this.sprite.body.velocity.y = Math.sin(direction*0.0174) *150;
 	}
 };
 

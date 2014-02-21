@@ -34,7 +34,7 @@
         <key>dpi</key>
         <uint>72</uint>
         <key>dataFormat</key>
-        <string>json</string>
+        <string>json-array</string>
         <key>textureFileName</key>
         <filename>ButtonsSpriteSheet.png</filename>
         <key>flipPVR</key>
@@ -88,7 +88,7 @@
             <key>freeSizeMode</key>
             <enum type="AlgorithmSettings::AlgorithmFreeSizeMode">Best</enum>
             <key>sizeConstraints</key>
-            <enum type="AlgorithmSettings::SizeConstraints">AnySize</enum>
+            <enum type="AlgorithmSettings::SizeConstraints">POT</enum>
             <key>forceSquared</key>
             <false/>
             <key>forceWordAligned</key>
@@ -166,14 +166,70 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>../workspace/html5games/cocos2d/asteroids/res/images/buttons/btnCredits_256-34.png</filename>
-            <filename>../workspace/html5games/cocos2d/asteroids/res/images/buttons/btnCreditsSelected_256-34.png</filename>
-            <filename>../workspace/html5games/cocos2d/asteroids/res/images/buttons/btnHowToPlay_381-34.png</filename>
-            <filename>../workspace/html5games/cocos2d/asteroids/res/images/buttons/btnHowToPlaySelected_381-34.png</filename>
-            <filename>../workspace/html5games/cocos2d/asteroids/res/images/buttons/btnPlay_155-34.png</filename>
-            <filename>../workspace/html5games/cocos2d/asteroids/res/images/buttons/btnPlaySelected_155-34.png</filename>
-            <filename>../workspace/html5games/cocos2d/asteroids/res/images/buttons/btnScore_356-34.png</filename>
-            <filename>../workspace/html5games/cocos2d/asteroids/res/images/buttons/btnScoreSelected_365-34.png</filename>
+            <filename>../images/buttons/btnCredits_256-34.png</filename>
+            <filename>../images/buttons/btnCreditsSelected_256-34.png</filename>
+            <filename>../images/buttons/btnHowToPlay_381-34.png</filename>
+            <filename>../images/buttons/btnHowToPlaySelected_381-34.png</filename>
+            <filename>../images/buttons/btnPlay_155-34.png</filename>
+            <filename>../images/buttons/btnPlaySelected_155-34.png</filename>
+            <filename>../images/buttons/btnScore_356-34.png</filename>
+            <filename>../images/buttons/btnScoreSelected_365-34.png</filename>
+            <filename>../images/buttons/btnCredits_256-34.png</filename>
+            <filename>../images/buttons/btnCreditsSelected_256-34.png</filename>
+            <filename>../images/buttons/btnHowToPlay_381-34.png</filename>
+            <filename>../images/buttons/btnHowToPlaySelected_381-34.png</filename>
+            <filename>../images/buttons/btnPlay_155-34.png</filename>
+            <filename>../images/buttons/btnPlaySelected_155-34.png</filename>
+            <filename>../images/buttons/btnScore_356-34.png</filename>
+            <filename>../images/buttons/btnScoreSelected_365-34.png</filename>
+            <filename>../images/buttons/btnCredits_256-34.png</filename>
+            <filename>../images/buttons/btnCreditsSelected_256-34.png</filename>
+            <filename>../images/buttons/btnHowToPlay_381-34.png</filename>
+            <filename>../images/buttons/btnHowToPlaySelected_381-34.png</filename>
+            <filename>../images/buttons/btnPlay_155-34.png</filename>
+            <filename>../images/buttons/btnPlaySelected_155-34.png</filename>
+            <filename>../images/buttons/btnScore_356-34.png</filename>
+            <filename>../images/buttons/btnScoreSelected_365-34.png</filename>
+            <filename>../images/buttons/btnCredits_256-34.png</filename>
+            <filename>../images/buttons/btnCreditsSelected_256-34.png</filename>
+            <filename>../images/buttons/btnHowToPlay_381-34.png</filename>
+            <filename>../images/buttons/btnHowToPlaySelected_381-34.png</filename>
+            <filename>../images/buttons/btnPlay_155-34.png</filename>
+            <filename>../images/buttons/btnPlaySelected_155-34.png</filename>
+            <filename>../images/buttons/btnScore_356-34.png</filename>
+            <filename>../images/buttons/btnScoreSelected_365-34.png</filename>
+            <filename>../images/buttons/btnCredits_256-34.png</filename>
+            <filename>../images/buttons/btnCreditsSelected_256-34.png</filename>
+            <filename>../images/buttons/btnHowToPlay_381-34.png</filename>
+            <filename>../images/buttons/btnHowToPlaySelected_381-34.png</filename>
+            <filename>../images/buttons/btnPlay_155-34.png</filename>
+            <filename>../images/buttons/btnPlaySelected_155-34.png</filename>
+            <filename>../images/buttons/btnScore_356-34.png</filename>
+            <filename>../images/buttons/btnScoreSelected_365-34.png</filename>
+            <filename>../images/buttons/btnCredits_256-34.png</filename>
+            <filename>../images/buttons/btnCreditsSelected_256-34.png</filename>
+            <filename>../images/buttons/btnHowToPlay_381-34.png</filename>
+            <filename>../images/buttons/btnHowToPlaySelected_381-34.png</filename>
+            <filename>../images/buttons/btnPlay_155-34.png</filename>
+            <filename>../images/buttons/btnPlaySelected_155-34.png</filename>
+            <filename>../images/buttons/btnScore_356-34.png</filename>
+            <filename>../images/buttons/btnScoreSelected_365-34.png</filename>
+            <filename>../images/buttons/btnCredits_256-34.png</filename>
+            <filename>../images/buttons/btnCreditsSelected_256-34.png</filename>
+            <filename>../images/buttons/btnHowToPlay_381-34.png</filename>
+            <filename>../images/buttons/btnHowToPlaySelected_381-34.png</filename>
+            <filename>../images/buttons/btnPlay_155-34.png</filename>
+            <filename>../images/buttons/btnPlaySelected_155-34.png</filename>
+            <filename>../images/buttons/btnScore_356-34.png</filename>
+            <filename>../images/buttons/btnScoreSelected_365-34.png</filename>
+            <filename>../images/buttons/btnCredits_256-34.png</filename>
+            <filename>../images/buttons/btnCreditsSelected_256-34.png</filename>
+            <filename>../images/buttons/btnHowToPlay_381-34.png</filename>
+            <filename>../images/buttons/btnHowToPlaySelected_381-34.png</filename>
+            <filename>../images/buttons/btnPlay_155-34.png</filename>
+            <filename>../images/buttons/btnPlaySelected_155-34.png</filename>
+            <filename>../images/buttons/btnScore_356-34.png</filename>
+            <filename>../images/buttons/btnScoreSelected_365-34.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

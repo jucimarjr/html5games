@@ -1,22 +1,24 @@
-Asteroid = function(gameClass) {
+var Asteroid = function(gameClass) {
     this.game = gameClass.game;
     this.gameClass = gameClass;
 	this.velocity = 30;
 };
 
 Asteroid.prototype.create = function ( posX , posY , size ) {
-
     var asteroid, mult;
     if (size == "large") {
-        asteroid = this.gameClass.groupAsteroids.create(posX, posY, 'sprites', 'asteroids1-80-80.png');
+    	var i = Math.round(1 + Math.random()*2);
+        asteroid = this.gameClass.groupAsteroids.create(posX, posY, 'sprites', 'asteroids'+i+'_80-80.png');
         mult = 1;
     }
     if (size == "medium") {
-        asteroid = this.gameClass.groupAsteroids.create(posX, posY, 'sprites', 'asteroids1_40-40.png');
+    	var i = Math.round(1 + Math.random()*2);
+        asteroid = this.gameClass.groupAsteroids.create(posX, posY, 'sprites', 'asteroids'+i+'_40-40.png');
     	mult = 2;
     }
     if (size == "small") {
-        asteroid = this.gameClass.groupAsteroids.create(posX, posY, 'sprites', 'asteroids1_20-20.png');
+    	var i = Math.round(1 + Math.random()*2);
+        asteroid = this.gameClass.groupAsteroids.create(posX, posY, 'sprites', 'asteroids'+i+'_20-20.png');
     	mult = 4;
     }
 
@@ -37,8 +39,7 @@ Asteroid.prototype.move = function (asteroid,mult) {
 
 }
 
-Asteroid.prototype.die = function ( shoot , asteroid ) {
-
+Asteroid.prototype.die = function (shoot,asteroid) {
     shoot.kill();
     
     var emitter = this.game.add.emitter(asteroid.x, asteroid.y, 15);
@@ -49,12 +50,12 @@ Asteroid.prototype.die = function ( shoot , asteroid ) {
     emitter.start(true, 500, null, 15);
     
     if (asteroid.size == "large") {
-        this.gameClass.asteroid.create(asteroid.position.x , asteroid.position.y , "medium" );
+        this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "medium" );
         this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "medium");
     }
     if (asteroid.size == "medium") {
         this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "small");
-        this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "small")
+        this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "small");
     }
     
     asteroid.kill();

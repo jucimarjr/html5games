@@ -1,10 +1,18 @@
 SpaceShip = function(gameClass) {
-
 	this.game = gameClass.game;
     this.gameClass = gameClass;
+    this.sprite = null;
+    this.bullet = null;
+    this.bulletsGroup = null;
+    this.shootInterval = 10;
+    this.nextFire = 0;
+    this.fireRate = 200;
+    this.create();
+};
 
-    this.sprite = this.game.add.sprite(this.game.width / 2, this.game.height / 2, 'sprites', 'ship_14-24.png');
-    this.sprite.events.onOutOfBounds.add(gameClass.outOfBounds,this);
+SpaceShip.prototype.create = function(){
+	this.sprite = this.game.add.sprite(this.game.width / 2, this.game.height / 2, 'sprites', 'ship_14-24.png');
+    this.sprite.events.onOutOfBounds.add(this.gameClass.outOfBounds,this);
 	this.sprite.anchor.x = 0.5;
 	this.sprite.anchor.y = 0.5;
     this.sprite.body.gravity.x = 0;
@@ -12,19 +20,19 @@ SpaceShip = function(gameClass) {
     this.sprite.body.maxVelocity.x = 1000;
     this.sprite.body.maxVelocity.y = 500;
     this.sprite.body.maxAngularVelocity = 20;
-    this.shootsGroup = this.game.add.group();
     this.shootInterval = 10;
+    this.bulletsGroup = this.game.add.group();
+	this.bullet = this.bulletsGroup.create(this.sprite.position.x + Math.cos((this.sprite.body.rotation + 270)*0.0174) *24,
+			this.sprite.position.y + Math.sin((this.sprite.body.rotation + 270)*0.0174) *24, 'sprites', 'shoot_2-2.png');
+	this.bullet.kill(); 
     this.sprite.animations.add('thrust', ['shipFire1_14-24.png', 'shipFire3_14-24.png'], 15, true, false);
     this.sprite.animations.add('stop', ['ship_14-24.png']);
-    this.nextFire = 0;
-    this.fireRate = 200;
 };
 
-SpaceShip.prototype.update = function () {
-	
+SpaceShip.prototype.update = function () {	
+	this.game.physics.collide(this.bulletsGroup, this.gameClass.groupAsteroids, this.gameClass.asteroid.die, null, this);
     this.game.physics.collide(this.sprite, this.gameClass.groupAsteroids, this.die , null, this);       	
-    this.game.physics.collide(this.shootsGroup, this.gameClass.groupAsteroids, this.gameClass.asteroid.die, null, this);
-    
+   
 };
 
 SpaceShip.prototype.animate = function(){
@@ -68,10 +76,10 @@ SpaceShip.prototype.shoot = function () {
     {
         this.nextFire = game.time.now + this.fireRate;
         this.game.add.audio('shoot', 1).play();
-        var shoot = this.shootsGroup.create(this.sprite.position.x + Math.cos((this.sprite.body.rotation + 270)*0.0174) *24,
+        this.bullet = this.bulletsGroup.create(this.sprite.position.x + Math.cos((this.sprite.body.rotation + 270)*0.0174) *24,
         			this.sprite.position.y + Math.sin((this.sprite.body.rotation + 270)*0.0174) *24, 'sprites', 'shoot_2-2.png');
-        this.game.physics.velocityFromAngle(this.sprite.body.rotation - 90, 500, shoot.body.velocity);
-        shoot.events.onOutOfBounds.add(this.destroyShoot, this);
+        this.game.physics.velocityFromAngle(this.sprite.body.rotation - 90, 500, this.bullet.body.velocity);
+        this.bullet.events.onOutOfBounds.add(this.destroyShoot, this);
         this.shootInterval = 10;
     }
 

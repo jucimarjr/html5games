@@ -49,7 +49,7 @@
 	"sourceSize": {"w":40,"h":40}
 },
 {
-	"filename": "asteroids2_80-79.png",
+	"filename": "asteroids2_80-80.png",
 	"frame": {"x":2,"y":175,"w":80,"h":79},
 	"rotated": false,
 	"trimmed": false,
@@ -73,7 +73,7 @@
 	"sourceSize": {"w":40,"h":40}
 },
 {
-	"filename": "asteroids3_79-80.png",
+	"filename": "asteroids3_80-80.png",
 	"frame": {"x":2,"y":256,"w":79,"h":80},
 	"rotated": false,
 	"trimmed": false,
