@@ -8,7 +8,7 @@ var Asteroid = cc.Sprite.extend({
     	initBigAsteroid:function()
     	{
 		for(i=0; i<7; i++){
-			//var asteroidSprite = cc.Sprite.createWithSpriteFrameName("asteroid2_118-118.png");
+			//var asteroidSprite = cc.Sprite.createWithSpriteFrameName("asteroids1_80-80.png");
 			var randomDir = Math.random()*2*Math.PI;
 			
 			asteroidSprite.xSpeed = velocityX*Math.cos(randomDir);

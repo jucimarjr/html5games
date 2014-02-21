@@ -24,8 +24,8 @@ var cocos2dApp = cc.Application.extend({
         		[
         		 {type: "image", src: "res/screenshots/splashTeam_800-480.png"},
 
-                 {type: "image", src: "res/spritesheets/TitleSpriteSheet.png"},
-                 {type: "image", src: "res/spritesheets/TitleSpriteSheet.plist"},
+                 {type: "image", src: "res/spritesheets/TitlesSpriteSheet.png"},
+                 {type: "image", src: "res/spritesheets/TitlesSpriteSheet.plist"},
         		 
         		 {type: "image", src: "res/spritesheets/GameSpriteSheet.png"},
                  {type: "plist", src: "res/spritesheets/GameSpriteSheet.plist"},

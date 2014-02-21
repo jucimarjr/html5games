@@ -34,7 +34,7 @@ var SpaceShipLayer = cc.Layer.extend({
         this.spriteFrameCache.addSpriteFrames("res/spritesheets/GameSpriteSheet.plist", "res/spritesheets/GameSpriteSheet.png");
         
         //Coloca a nave no centro da tela
-        shipSprite = cc.Sprite.createWithSpriteFrameName("ship_22-34.png");
+        shipSprite = cc.Sprite.createWithSpriteFrameName("ship_14-24.png");
         shipSprite.setPosition(new cc.Point(screen.width/2, screen.height/2));
         this.layerGame.setPosition(new cc.Point(0.0,0.0));
         this.layerGame.addChild(shipSprite);
@@ -42,7 +42,7 @@ var SpaceShipLayer = cc.Layer.extend({
         
 //COLOCAR PARA O ARQUIVO ASTEROIDS.JS
         for(i=0; i<7; i++){
-			var asteroidSprite = cc.Sprite.createWithSpriteFrameName("asteroid2_118-118.png");
+			var asteroidSprite = cc.Sprite.createWithSpriteFrameName("asteroids1_80-80.png");
 			var randomDir = Math.random()*2*Math.PI;
 			
 			asteroidSprite.xSpeed = velocityX*Math.cos(randomDir);
@@ -99,6 +99,7 @@ var SpaceShipLayer = cc.Layer.extend({
         	shipSprite.xSpeed = velocityX*Math.sin(Math.PI/180*angle);
         	shipSprite.ySpeed = velocityY*Math.cos(Math.PI/180*angle);
         	shipSprite.setPosition(new cc.Point(shipSprite.getPosition().x + shipSprite.xSpeed,shipSprite.getPosition().y + shipSprite.ySpeed));
+			
 			//Verifica saída da tela por um lado e entrada por outro
         	if(shipSprite.getPosition().x >= screen.width)
 				shipSprite.setPosition(new cc.Point(shipSprite.getPosition().x - screen.width, shipSprite.getPosition().y));
@@ -117,33 +118,26 @@ var SpaceShipLayer = cc.Layer.extend({
 			shipSprite.runAction(cc.RepeatForever.create(cc.Animate.create(animation)));
 			//- << Init::Animação da nave
     	}
-		
-		
-    	
-    	
     },
 
     
-    onKeyDown: function (e) {
+    onKeyDown: function(e) {
         LG.KEYS[e] = true;
 		console.log("KeyDown");
-			
     },
 
-    onKeyUp: function (e) {
+    onKeyUp: function(e) {
 		console.log("KeyUp");
-		
         LG.KEYS[e] = false;
     },
+	
 	createAnimation: function(){
 		var animeFrames = [];
-		animeFrames.push(this.spriteFrameCache.getSpriteFrame("ship_22-34.png"));
-		animeFrames.push(this.spriteFrameCache.getSpriteFrame("shipFire_22-34.png"));
+		animeFrames.push(this.spriteFrameCache.getSpriteFrame("ship_14-24.png"));
+		animeFrames.push(this.spriteFrameCache.getSpriteFrame("shipFire1_14-24.png"));
 		var animation = cc.Animation.create(animeFrames,0.1);
 		this.animeCache.addAnimation(animation,"shipFire");
-		
-		
-	},
+	}
 });
 
 var SpaceShipScene = cc.Scene.extend({
