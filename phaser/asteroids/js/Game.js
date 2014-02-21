@@ -44,6 +44,7 @@ Game.prototype.update = function () {
         this.spaceShip.rotate("right");
     if (game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
         this.spaceShip.accelerate();
+        this.spaceShip.animate();
     } else{
         this.spaceShip.stop();
     }

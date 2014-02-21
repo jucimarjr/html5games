@@ -1,132 +1,180 @@
-{"frames": {
+{"frames": [
 
-"asteroids1_20-20.png":
 {
-	"frame": {"x":198,"y":106,"w":20,"h":20},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":20},
-	"sourceSize": {"w":20,"h":20}
-},
-"asteroids1_40-40.png":
-{
-	"frame": {"x":156,"y":84,"w":40,"h":40},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
-	"sourceSize": {"w":40,"h":40}
-},
-"asteroids1_80-80.png":
-{
-	"frame": {"x":65,"y":2,"w":80,"h":80},
+	"filename": "Asteroids_1_80-80.png",
+	"frame": {"x":2,"y":338,"w":80,"h":80},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":80,"h":80},
 	"sourceSize": {"w":80,"h":80}
 },
-"asteroids2_20-20.png":
 {
-	"frame": {"x":198,"y":84,"w":20,"h":20},
+	"filename": "asteroids1_20-20.png",
+	"frame": {"x":53,"y":2,"w":20,"h":20},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":20},
 	"sourceSize": {"w":20,"h":20}
 },
-"asteroids2_40-40.png":
 {
-	"frame": {"x":114,"y":84,"w":40,"h":40},
+	"filename": "asteroids1_40-40.png",
+	"frame": {"x":2,"y":70,"w":40,"h":40},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
 	"sourceSize": {"w":40,"h":40}
 },
-"asteroids2_80-79.png":
 {
-	"frame": {"x":228,"y":2,"w":80,"h":79},
-	"rotated": true,
+	"filename": "asteroids1_80-80.png",
+	"frame": {"x":2,"y":338,"w":80,"h":80},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":80,"h":80},
+	"sourceSize": {"w":80,"h":80}
+},
+{
+	"filename": "asteroids2_20-20.png",
+	"frame": {"x":31,"y":2,"w":20,"h":20},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":20},
+	"sourceSize": {"w":20,"h":20}
+},
+{
+	"filename": "asteroids2_40-40.png",
+	"frame": {"x":44,"y":70,"w":40,"h":40},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
+	"sourceSize": {"w":40,"h":40}
+},
+{
+	"filename": "asteroids2_80-79.png",
+	"frame": {"x":2,"y":175,"w":80,"h":79},
+	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":80,"h":79},
 	"sourceSize": {"w":80,"h":79}
 },
-"asteroids3_20-20.png":
 {
-	"frame": {"x":50,"y":100,"w":20,"h":20},
+	"filename": "asteroids3_20-20.png",
+	"frame": {"x":9,"y":2,"w":20,"h":20},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":20},
 	"sourceSize": {"w":20,"h":20}
 },
-"asteroids3_40-40.png":
 {
-	"frame": {"x":72,"y":84,"w":40,"h":40},
+	"filename": "asteroids3_40-40.png",
+	"frame": {"x":58,"y":28,"w":40,"h":40},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
 	"sourceSize": {"w":40,"h":40}
 },
-"asteroids3_79-80.png":
 {
-	"frame": {"x":147,"y":2,"w":79,"h":80},
+	"filename": "asteroids3_79-80.png",
+	"frame": {"x":2,"y":256,"w":79,"h":80},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":79,"h":80},
 	"sourceSize": {"w":79,"h":80}
 },
-"particle_1-15.png":
 {
-	"frame": {"x":54,"y":122,"w":1,"h":15},
-	"rotated": true,
+	"filename": "asteroids_1_20-20.png",
+	"frame": {"x":53,"y":2,"w":20,"h":20},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":20},
+	"sourceSize": {"w":20,"h":20}
+},
+{
+	"filename": "asteroids_1_40-40.png",
+	"frame": {"x":2,"y":70,"w":40,"h":40},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
+	"sourceSize": {"w":40,"h":40}
+},
+{
+	"filename": "particle_1-15.png",
+	"frame": {"x":6,"y":2,"w":1,"h":15},
+	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":1,"h":15},
 	"sourceSize": {"w":1,"h":15}
 },
-"shipFire1_14-24.png":
 {
-	"frame": {"x":34,"y":100,"w":14,"h":24},
+	"filename": "particula.png",
+	"frame": {"x":6,"y":2,"w":1,"h":15},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1,"h":15},
+	"sourceSize": {"w":1,"h":15}
+},
+{
+	"filename": "shipFire1_14-24.png",
+	"frame": {"x":2,"y":28,"w":14,"h":24},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":14,"h":24},
 	"sourceSize": {"w":14,"h":24}
 },
-"shipFire3_14-24.png":
 {
-	"frame": {"x":18,"y":100,"w":14,"h":24},
+	"filename": "shipFire3_14-24.png",
+	"frame": {"x":75,"y":2,"w":14,"h":24},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":14,"h":24},
 	"sourceSize": {"w":14,"h":24}
 },
-"ship_14-24.png":
 {
-	"frame": {"x":2,"y":100,"w":14,"h":24},
+	"filename": "ship_14-24.png",
+	"frame": {"x":18,"y":28,"w":14,"h":24},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":14,"h":24},
 	"sourceSize": {"w":14,"h":24}
 },
-"shoot_2-2.png":
 {
-	"frame": {"x":50,"y":122,"w":2,"h":2},
+	"filename": "ship_22-34.png",
+	"frame": {"x":34,"y":28,"w":22,"h":34},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":22,"h":34},
+	"sourceSize": {"w":22,"h":34}
+},
+{
+	"filename": "shoot_2-2.png",
+	"frame": {"x":2,"y":2,"w":2,"h":2},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":2,"h":2},
 	"sourceSize": {"w":2,"h":2}
 },
-"ufo_96-61.png":
 {
-	"frame": {"x":2,"y":2,"w":96,"h":61},
-	"rotated": true,
+	"filename": "tiro.png",
+	"frame": {"x":2,"y":2,"w":2,"h":2},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":2,"h":2},
+	"sourceSize": {"w":2,"h":2}
+},
+{
+	"filename": "ufo_96-61.png",
+	"frame": {"x":2,"y":112,"w":96,"h":61},
+	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":96,"h":61},
 	"sourceSize": {"w":96,"h":61}
-}},
+}],
 "meta": {
 	"app": "http://www.codeandweb.com/texturepacker ",
 	"version": "1.0",
 	"image": "GameSpriteSheet.png",
 	"format": "RGBA8888",
-	"size": {"w":512,"h":128},
+	"size": {"w":100,"h":420},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:7806a404a27dd9ec1a4801d4d512365c:b43bee20a9481c905f1e21e827b96563:39770af8806b104322f5367747b7d414$"
+	"smartupdate": "$TexturePacker:SmartUpdate:aa723d0e600c2b466adf26159eee4180:1dc650b22dd1001be18f8c456955f851:39770af8806b104322f5367747b7d414$"
 }
 }

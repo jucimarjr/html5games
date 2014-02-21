@@ -8,26 +8,23 @@ Asteroid.prototype.create = function ( posX , posY , size ) {
 
     var asteroid, mult;
     if (size == "large") {
-        //asteroid = this.gameClass.groupAsteroids.create(posX, posY, 'sprites', 'asteroids_1-80-80.png');
-        asteroid = this.gameClass.groupAsteroids.create(posX, posY, 'large_asteroid');
+        asteroid = this.gameClass.groupAsteroids.create(posX, posY, 'sprites', 'asteroids1-80-80.png');
         mult = 1;
     }
     if (size == "medium") {
-        //asteroid = this.gameClass.groupAsteroids.create(posX, posY, 'sprites', 'asteroids_1-40-40.png');
-    	asteroid = this.gameClass.groupAsteroids.create(posX, posY, 'medium_asteroid');
-        mult = 2;
+        asteroid = this.gameClass.groupAsteroids.create(posX, posY, 'sprites', 'asteroids1_40-40.png');
+    	mult = 2;
     }
     if (size == "small") {
-        //asteroid = this.gameClass.groupAsteroids.create(posX, posY, 'sprites', 'asteroids_1-20-20.png');
-    	asteroid = this.gameClass.groupAsteroids.create(posX, posY, 'small_asteroid');
-        mult = 4;
+        asteroid = this.gameClass.groupAsteroids.create(posX, posY, 'sprites', 'asteroids1_20-20.png');
+    	mult = 4;
     }
 
     this.move( asteroid , mult );
     asteroid.size = size;
     asteroid.anchor.setTo(0.5,0.5);
     asteroid.events.onOutOfBounds.add(this.gameClass.outOfBounds, this);
-
+    
 };
 
 Asteroid.prototype.move = function (asteroid,mult) {
@@ -44,6 +41,13 @@ Asteroid.prototype.die = function ( shoot , asteroid ) {
 
     shoot.kill();
     
+    var emitter = this.game.add.emitter(asteroid.x, asteroid.y, 15);
+    emitter.makeParticles('sprites', ['shoot_2-2.png']);
+    emitter.minParticleSpeed.setTo(-40, -40);
+    emitter.maxParticleSpeed.setTo(40, 40);
+    emitter.gravity = 0;
+    emitter.start(true, 500, null, 15);
+    
     if (asteroid.size == "large") {
         this.gameClass.asteroid.create( asteroid.position.x , asteroid.position.y , "medium" );
         this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "medium");
@@ -57,8 +61,3 @@ Asteroid.prototype.die = function ( shoot , asteroid ) {
     this.gameClass.punctuate();
 
 };
-Asteroid.prototype.render = function () {
-
-    game.debug.renderSpriteBounds(this);
-
-}
