@@ -34,9 +34,9 @@
         <key>dpi</key>
         <uint>72</uint>
         <key>dataFormat</key>
-        <string>json-array</string>
+        <string>cocos2d</string>
         <key>textureFileName</key>
-        <filename>../../res/spritesheets/GameSpriteSheet.png</filename>
+        <filename>GameSpriteSheet.png</filename>
         <key>flipPVR</key>
         <false/>
         <key>ditherType</key>
@@ -70,7 +70,7 @@
             <key>width</key>
             <int>2048</int>
             <key>height</key>
-            <int>2048</int>
+            <int>128</int>
         </QSize>
         <key>fixedTextureSize</key>
         <QSize>
@@ -88,7 +88,7 @@
             <key>freeSizeMode</key>
             <enum type="AlgorithmSettings::AlgorithmFreeSizeMode">Best</enum>
             <key>sizeConstraints</key>
-            <enum type="AlgorithmSettings::SizeConstraints">POT</enum>
+            <enum type="AlgorithmSettings::SizeConstraints">AnySize</enum>
             <key>forceSquared</key>
             <false/>
             <key>forceWordAligned</key>
@@ -124,40 +124,10 @@
         </struct>
         <key>dataFileNames</key>
         <map type="GFileNameMap">
-            <key>2dtoolkit_bytes_file</key>
-            <struct type="DataFile">
-                <key>name</key>
-                <filename></filename>
-            </struct>
-            <key>batterytech_btx</key>
-            <struct type="DataFile">
-                <key>name</key>
-                <filename></filename>
-            </struct>
-            <key>caatjson</key>
-            <struct type="DataFile">
-                <key>name</key>
-                <filename></filename>
-            </struct>
             <key>data</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>GameSpriteSheet.json</filename>
-            </struct>
-            <key>java</key>
-            <struct type="DataFile">
-                <key>name</key>
-                <filename></filename>
-            </struct>
-            <key>json</key>
-            <struct type="DataFile">
-                <key>name</key>
-                <filename></filename>
-            </struct>
-            <key>lua</key>
-            <struct type="DataFile">
-                <key>name</key>
-                <filename></filename>
+                <filename>GameSpriteSheet.plist</filename>
             </struct>
         </map>
         <key>multiPack</key>
@@ -196,295 +166,21 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>../images/asteroids_1_20-20.png</filename>
-            <filename>../images/asteroids_1_40-40.png</filename>
-            <filename>../images/Asteroids_1_80-80.png</filename>
-            <filename>../images/asteroids_2_20-20.png</filename>
-            <filename>../images/asteroids_2_40-40.png</filename>
-            <filename>../images/asteroids_2_80-80.png</filename>
-            <filename>../images/asteroids_3_20-20.png</filename>
-            <filename>../images/asteroids_3_40-40.png</filename>
-            <filename>../images/asteroids_3_80-80.png</filename>
-            <filename>../images/particle_1-15.png</filename>
-            <filename>../images/ship_22-34.png</filename>
-            <filename>../images/ship_24-15.png</filename>
-            <filename>../images/ship_Fire1_24-15.png</filename>
-            <filename>../images/ship_Fire2_24-15.png</filename>
-            <filename>../images/shipFire_22-34.png</filename>
-            <filename>../images/shoot_2-2.png</filename>
-            <filename>../images/ufo_96-61.png</filename>
-            <filename>../images/asteroids_1_20-20.png</filename>
-            <filename>../images/asteroids_1_40-40.png</filename>
-            <filename>../images/Asteroids_1_80-80.png</filename>
-            <filename>../images/asteroids_2_20-20.png</filename>
-            <filename>../images/asteroids_2_40-40.png</filename>
-            <filename>../images/asteroids_2_80-80.png</filename>
-            <filename>../images/asteroids_3_20-20.png</filename>
-            <filename>../images/asteroids_3_40-40.png</filename>
-            <filename>../images/asteroids_3_80-80.png</filename>
-            <filename>../images/particle_1-15.png</filename>
-            <filename>../images/ship_22-34.png</filename>
-            <filename>../images/ship_24-15.png</filename>
-            <filename>../images/ship_Fire1_24-15.png</filename>
-            <filename>../images/ship_Fire2_24-15.png</filename>
-            <filename>../images/shipFire_22-34.png</filename>
-            <filename>../images/shoot_2-2.png</filename>
-            <filename>../images/ufo_96-61.png</filename>
-            <filename>../images/asteroids_1_20-20.png</filename>
-            <filename>../images/asteroids_1_40-40.png</filename>
-            <filename>../images/Asteroids_1_80-80.png</filename>
-            <filename>../images/asteroids_2_20-20.png</filename>
-            <filename>../images/asteroids_2_40-40.png</filename>
-            <filename>../images/asteroids_2_80-80.png</filename>
-            <filename>../images/asteroids_3_20-20.png</filename>
-            <filename>../images/asteroids_3_40-40.png</filename>
-            <filename>../images/asteroids_3_80-80.png</filename>
-            <filename>../images/particle_1-15.png</filename>
-            <filename>../images/ship_22-34.png</filename>
-            <filename>../images/ship_24-15.png</filename>
-            <filename>../images/ship_Fire1_24-15.png</filename>
-            <filename>../images/ship_Fire2_24-15.png</filename>
-            <filename>../images/shipFire_22-34.png</filename>
-            <filename>../images/shoot_2-2.png</filename>
-            <filename>../images/ufo_96-61.png</filename>
-            <filename>../images/asteroids_1_20-20.png</filename>
-            <filename>../images/asteroids_1_40-40.png</filename>
-            <filename>../images/Asteroids_1_80-80.png</filename>
-            <filename>../images/asteroids_2_20-20.png</filename>
-            <filename>../images/asteroids_2_40-40.png</filename>
-            <filename>../images/asteroids_2_80-80.png</filename>
-            <filename>../images/asteroids_3_20-20.png</filename>
-            <filename>../images/asteroids_3_40-40.png</filename>
-            <filename>../images/asteroids_3_80-80.png</filename>
-            <filename>../images/particle_1-15.png</filename>
-            <filename>../images/ship_22-34.png</filename>
-            <filename>../images/ship_24-15.png</filename>
-            <filename>../images/ship_Fire1_24-15.png</filename>
-            <filename>../images/ship_Fire2_24-15.png</filename>
-            <filename>../images/shipFire_22-34.png</filename>
-            <filename>../images/shoot_2-2.png</filename>
-            <filename>../images/ufo_96-61.png</filename>
-            <filename>../images/asteroids_1_20-20.png</filename>
-            <filename>../images/asteroids_1_40-40.png</filename>
-            <filename>../images/Asteroids_1_80-80.png</filename>
-            <filename>../images/asteroids_2_20-20.png</filename>
-            <filename>../images/asteroids_2_40-40.png</filename>
-            <filename>../images/asteroids_2_80-80.png</filename>
-            <filename>../images/asteroids_3_20-20.png</filename>
-            <filename>../images/asteroids_3_40-40.png</filename>
-            <filename>../images/asteroids_3_80-80.png</filename>
-            <filename>../images/particle_1-15.png</filename>
-            <filename>../images/ship_22-34.png</filename>
-            <filename>../images/ship_24-15.png</filename>
-            <filename>../images/ship_Fire1_24-15.png</filename>
-            <filename>../images/ship_Fire2_24-15.png</filename>
-            <filename>../images/shipFire_22-34.png</filename>
-            <filename>../images/shoot_2-2.png</filename>
-            <filename>../images/ufo_96-61.png</filename>
-            <filename>../images/asteroids_1_20-20.png</filename>
-            <filename>../images/asteroids_1_40-40.png</filename>
-            <filename>../images/Asteroids_1_80-80.png</filename>
-            <filename>../images/asteroids_2_20-20.png</filename>
-            <filename>../images/asteroids_2_40-40.png</filename>
-            <filename>../images/asteroids_2_80-80.png</filename>
-            <filename>../images/asteroids_3_20-20.png</filename>
-            <filename>../images/asteroids_3_40-40.png</filename>
-            <filename>../images/asteroids_3_80-80.png</filename>
-            <filename>../images/particle_1-15.png</filename>
-            <filename>../images/ship_22-34.png</filename>
-            <filename>../images/ship_24-15.png</filename>
-            <filename>../images/ship_Fire1_24-15.png</filename>
-            <filename>../images/ship_Fire2_24-15.png</filename>
-            <filename>../images/shipFire_22-34.png</filename>
-            <filename>../images/shoot_2-2.png</filename>
-            <filename>../images/ufo_96-61.png</filename>
-            <filename>../images/asteroids_1_20-20.png</filename>
-            <filename>../images/asteroids_1_40-40.png</filename>
-            <filename>../images/Asteroids_1_80-80.png</filename>
-            <filename>../images/asteroids_2_20-20.png</filename>
-            <filename>../images/asteroids_2_40-40.png</filename>
-            <filename>../images/asteroids_2_80-80.png</filename>
-            <filename>../images/asteroids_3_20-20.png</filename>
-            <filename>../images/asteroids_3_40-40.png</filename>
-            <filename>../images/asteroids_3_80-80.png</filename>
-            <filename>../images/particle_1-15.png</filename>
-            <filename>../images/ship_22-34.png</filename>
-            <filename>../images/ship_24-15.png</filename>
-            <filename>../images/ship_Fire1_24-15.png</filename>
-            <filename>../images/ship_Fire2_24-15.png</filename>
-            <filename>../images/shipFire_22-34.png</filename>
-            <filename>../images/shoot_2-2.png</filename>
-            <filename>../images/ufo_96-61.png</filename>
-            <filename>../images/asteroids_1_20-20.png</filename>
-            <filename>../images/asteroids_1_40-40.png</filename>
-            <filename>../images/Asteroids_1_80-80.png</filename>
-            <filename>../images/asteroids_2_20-20.png</filename>
-            <filename>../images/asteroids_2_40-40.png</filename>
-            <filename>../images/asteroids_2_80-80.png</filename>
-            <filename>../images/asteroids_3_20-20.png</filename>
-            <filename>../images/asteroids_3_40-40.png</filename>
-            <filename>../images/asteroids_3_80-80.png</filename>
-            <filename>../images/particle_1-15.png</filename>
-            <filename>../images/ship_22-34.png</filename>
-            <filename>../images/ship_24-15.png</filename>
-            <filename>../images/ship_Fire1_24-15.png</filename>
-            <filename>../images/ship_Fire2_24-15.png</filename>
-            <filename>../images/shipFire_22-34.png</filename>
-            <filename>../images/shoot_2-2.png</filename>
-            <filename>../images/ufo_96-61.png</filename>
-            <filename>../images/asteroids_1_20-20.png</filename>
-            <filename>../images/asteroids_1_40-40.png</filename>
-            <filename>../images/Asteroids_1_80-80.png</filename>
-            <filename>../images/asteroids_2_20-20.png</filename>
-            <filename>../images/asteroids_2_40-40.png</filename>
-            <filename>../images/asteroids_2_80-80.png</filename>
-            <filename>../images/asteroids_3_20-20.png</filename>
-            <filename>../images/asteroids_3_40-40.png</filename>
-            <filename>../images/asteroids_3_80-80.png</filename>
-            <filename>../images/particle_1-15.png</filename>
-            <filename>../images/ship_22-34.png</filename>
-            <filename>../images/ship_24-15.png</filename>
-            <filename>../images/ship_Fire1_24-15.png</filename>
-            <filename>../images/ship_Fire2_24-15.png</filename>
-            <filename>../images/shipFire_22-34.png</filename>
-            <filename>../images/shoot_2-2.png</filename>
-            <filename>../images/ufo_96-61.png</filename>
-            <filename>../images/asteroids_1_20-20.png</filename>
-            <filename>../images/asteroids_1_40-40.png</filename>
-            <filename>../images/Asteroids_1_80-80.png</filename>
-            <filename>../images/asteroids_2_20-20.png</filename>
-            <filename>../images/asteroids_2_40-40.png</filename>
-            <filename>../images/asteroids_2_80-80.png</filename>
-            <filename>../images/asteroids_3_20-20.png</filename>
-            <filename>../images/asteroids_3_40-40.png</filename>
-            <filename>../images/asteroids_3_80-80.png</filename>
-            <filename>../images/particle_1-15.png</filename>
-            <filename>../images/ship_22-34.png</filename>
-            <filename>../images/ship_24-15.png</filename>
-            <filename>../images/ship_Fire1_24-15.png</filename>
-            <filename>../images/ship_Fire2_24-15.png</filename>
-            <filename>../images/shipFire_22-34.png</filename>
-            <filename>../images/shoot_2-2.png</filename>
-            <filename>../images/ufo_96-61.png</filename>
-            <filename>../images/asteroids_1_20-20.png</filename>
-            <filename>../images/asteroids_1_40-40.png</filename>
-            <filename>../images/Asteroids_1_80-80.png</filename>
-            <filename>../images/asteroids_2_20-20.png</filename>
-            <filename>../images/asteroids_2_40-40.png</filename>
-            <filename>../images/asteroids_2_80-80.png</filename>
-            <filename>../images/asteroids_3_20-20.png</filename>
-            <filename>../images/asteroids_3_40-40.png</filename>
-            <filename>../images/asteroids_3_80-80.png</filename>
-            <filename>../images/particle_1-15.png</filename>
-            <filename>../images/ship_22-34.png</filename>
-            <filename>../images/ship_24-15.png</filename>
-            <filename>../images/ship_Fire1_24-15.png</filename>
-            <filename>../images/ship_Fire2_24-15.png</filename>
-            <filename>../images/shipFire_22-34.png</filename>
-            <filename>../images/shoot_2-2.png</filename>
-            <filename>../images/ufo_96-61.png</filename>
-            <filename>../images/asteroids_1_20-20.png</filename>
-            <filename>../images/asteroids_1_40-40.png</filename>
-            <filename>../images/Asteroids_1_80-80.png</filename>
-            <filename>../images/asteroids_2_20-20.png</filename>
-            <filename>../images/asteroids_2_40-40.png</filename>
-            <filename>../images/asteroids_2_80-80.png</filename>
-            <filename>../images/asteroids_3_20-20.png</filename>
-            <filename>../images/asteroids_3_40-40.png</filename>
-            <filename>../images/asteroids_3_80-80.png</filename>
-            <filename>../images/particle_1-15.png</filename>
-            <filename>../images/ship_22-34.png</filename>
-            <filename>../images/ship_24-15.png</filename>
-            <filename>../images/ship_Fire1_24-15.png</filename>
-            <filename>../images/ship_Fire2_24-15.png</filename>
-            <filename>../images/shipFire_22-34.png</filename>
-            <filename>../images/shoot_2-2.png</filename>
-            <filename>../images/ufo_96-61.png</filename>
-            <filename>../images/asteroids_1_20-20.png</filename>
-            <filename>../images/asteroids_1_40-40.png</filename>
-            <filename>../images/Asteroids_1_80-80.png</filename>
-            <filename>../images/asteroids_2_20-20.png</filename>
-            <filename>../images/asteroids_2_40-40.png</filename>
-            <filename>../images/asteroids_2_80-80.png</filename>
-            <filename>../images/asteroids_3_20-20.png</filename>
-            <filename>../images/asteroids_3_40-40.png</filename>
-            <filename>../images/asteroids_3_80-80.png</filename>
-            <filename>../images/particle_1-15.png</filename>
-            <filename>../images/ship_22-34.png</filename>
-            <filename>../images/ship_24-15.png</filename>
-            <filename>../images/ship_Fire1_24-15.png</filename>
-            <filename>../images/ship_Fire2_24-15.png</filename>
-            <filename>../images/shipFire_22-34.png</filename>
-            <filename>../images/shoot_2-2.png</filename>
-            <filename>../images/ufo_96-61.png</filename>
-            <filename>../images/asteroids_1_20-20.png</filename>
-            <filename>../images/asteroids_1_40-40.png</filename>
-            <filename>../images/Asteroids_1_80-80.png</filename>
-            <filename>../images/asteroids_2_20-20.png</filename>
-            <filename>../images/asteroids_2_40-40.png</filename>
-            <filename>../images/asteroids_2_80-80.png</filename>
-            <filename>../images/asteroids_3_20-20.png</filename>
-            <filename>../images/asteroids_3_40-40.png</filename>
-            <filename>../images/asteroids_3_80-80.png</filename>
-            <filename>../images/particle_1-15.png</filename>
-            <filename>../images/ship_22-34.png</filename>
-            <filename>../images/ship_24-15.png</filename>
-            <filename>../images/ship_Fire1_24-15.png</filename>
-            <filename>../images/ship_Fire2_24-15.png</filename>
-            <filename>../images/shipFire_22-34.png</filename>
-            <filename>../images/shoot_2-2.png</filename>
-            <filename>../images/ufo_96-61.png</filename>
-            <filename>../images/asteroids_1_20-20.png</filename>
-            <filename>../images/asteroids_1_40-40.png</filename>
-            <filename>../images/Asteroids_1_80-80.png</filename>
-            <filename>../images/asteroids_2_20-20.png</filename>
-            <filename>../images/asteroids_2_40-40.png</filename>
-            <filename>../images/asteroids_2_80-80.png</filename>
-            <filename>../images/asteroids_3_20-20.png</filename>
-            <filename>../images/asteroids_3_40-40.png</filename>
-            <filename>../images/asteroids_3_80-80.png</filename>
-            <filename>../images/particle_1-15.png</filename>
-            <filename>../images/ship_22-34.png</filename>
-            <filename>../images/ship_24-15.png</filename>
-            <filename>../images/ship_Fire1_24-15.png</filename>
-            <filename>../images/ship_Fire2_24-15.png</filename>
-            <filename>../images/shipFire_22-34.png</filename>
-            <filename>../images/shoot_2-2.png</filename>
-            <filename>../images/ufo_96-61.png</filename>
-            <filename>../images/asteroids_1_20-20.png</filename>
-            <filename>../images/asteroids_1_40-40.png</filename>
-            <filename>../images/Asteroids_1_80-80.png</filename>
-            <filename>../images/asteroids_2_20-20.png</filename>
-            <filename>../images/asteroids_2_40-40.png</filename>
-            <filename>../images/asteroids_2_80-80.png</filename>
-            <filename>../images/asteroids_3_20-20.png</filename>
-            <filename>../images/asteroids_3_40-40.png</filename>
-            <filename>../images/asteroids_3_80-80.png</filename>
-            <filename>../images/particle_1-15.png</filename>
-            <filename>../images/ship_22-34.png</filename>
-            <filename>../images/ship_24-15.png</filename>
-            <filename>../images/ship_Fire1_24-15.png</filename>
-            <filename>../images/ship_Fire2_24-15.png</filename>
-            <filename>../images/shipFire_22-34.png</filename>
-            <filename>../images/shoot_2-2.png</filename>
-            <filename>../images/ufo_96-61.png</filename>
-            <filename>../images/asteroids_1_20-20.png</filename>
-            <filename>../images/asteroids_1_40-40.png</filename>
-            <filename>../images/Asteroids_1_80-80.png</filename>
-            <filename>../images/asteroids_2_20-20.png</filename>
-            <filename>../images/asteroids_2_40-40.png</filename>
-            <filename>../images/asteroids_2_80-80.png</filename>
-            <filename>../images/asteroids_3_20-20.png</filename>
-            <filename>../images/asteroids_3_40-40.png</filename>
-            <filename>../images/asteroids_3_80-80.png</filename>
-            <filename>../images/particle_1-15.png</filename>
-            <filename>../images/ship_22-34.png</filename>
-            <filename>../images/ship_24-15.png</filename>
-            <filename>../images/ship_Fire1_24-15.png</filename>
-            <filename>../images/ship_Fire2_24-15.png</filename>
-            <filename>../images/shipFire_22-34.png</filename>
-            <filename>../images/shoot_2-2.png</filename>
-            <filename>../images/ufo_96-61.png</filename>
+            <filename>../workspace/html5games/cocos2d/asteroids/res/images/asteroids1_20-20.png</filename>
+            <filename>../workspace/html5games/cocos2d/asteroids/res/images/asteroids1_40-40.png</filename>
+            <filename>../workspace/html5games/cocos2d/asteroids/res/images/asteroids1_80-80.png</filename>
+            <filename>../workspace/html5games/cocos2d/asteroids/res/images/asteroids2_20-20.png</filename>
+            <filename>../workspace/html5games/cocos2d/asteroids/res/images/asteroids2_40-40.png</filename>
+            <filename>../workspace/html5games/cocos2d/asteroids/res/images/asteroids2_80-79.png</filename>
+            <filename>../workspace/html5games/cocos2d/asteroids/res/images/asteroids3_20-20.png</filename>
+            <filename>../workspace/html5games/cocos2d/asteroids/res/images/asteroids3_40-40.png</filename>
+            <filename>../workspace/html5games/cocos2d/asteroids/res/images/asteroids3_79-80.png</filename>
+            <filename>../workspace/html5games/cocos2d/asteroids/res/images/particle_1-15.png</filename>
+            <filename>../workspace/html5games/cocos2d/asteroids/res/images/ship_14-24.png</filename>
+            <filename>../workspace/html5games/cocos2d/asteroids/res/images/shipFire1_14-24.png</filename>
+            <filename>../workspace/html5games/cocos2d/asteroids/res/images/shipFire3_14-24.png</filename>
+            <filename>../workspace/html5games/cocos2d/asteroids/res/images/shoot_2-2.png</filename>
+            <filename>../workspace/html5games/cocos2d/asteroids/res/images/ufo_96-61.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
