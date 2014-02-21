@@ -7,11 +7,11 @@
             <key>btnCreditsSelected_256-34.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{110,74},{256,34}}</string>
+                <string>{{369,74},{256,34}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{256,34}}</string>
                 <key>sourceSize</key>
@@ -20,11 +20,11 @@
             <key>btnCredits_256-34.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{74,74},{256,34}}</string>
+                <string>{{369,38},{256,34}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{256,34}}</string>
                 <key>sourceSize</key>
@@ -33,11 +33,11 @@
             <key>btnHowToPlaySelected_381-34.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{195,2},{381,34}}</string>
+                <string>{{385,2},{381,34}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{381,34}}</string>
                 <key>sourceSize</key>
@@ -46,11 +46,11 @@
             <key>btnHowToPlay_381-34.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{159,2},{381,34}}</string>
+                <string>{{2,2},{381,34}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{381,34}}</string>
                 <key>sourceSize</key>
@@ -59,7 +59,7 @@
             <key>btnPlaySelected_155-34.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,38},{155,34}}</string>
+                <string>{{627,74},{155,34}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -72,7 +72,7 @@
             <key>btnPlay_155-34.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{155,34}}</string>
+                <string>{{627,38},{155,34}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -85,11 +85,11 @@
             <key>btnScoreSelected_365-34.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{38,74},{365,34}}</string>
+                <string>{{2,74},{365,34}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{365,34}}</string>
                 <key>sourceSize</key>
@@ -98,11 +98,11 @@
             <key>btnScore_356-34.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,74},{365,34}}</string>
+                <string>{{2,38},{365,34}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{365,34}}</string>
                 <key>sourceSize</key>
@@ -116,9 +116,9 @@
             <key>realTextureFileName</key>
             <string>ButtonsSpriteSheet.png</string>
             <key>size</key>
-            <string>{256,512}</string>
+            <string>{784,110}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:f3a39f9c3c91cee6c1709872b6b3a95d:0cc746b1a75d56b8ded282e90ea6b7c3:9aa8fec32b0d5f5691387a921d615d0a$</string>
+            <string>$TexturePacker:SmartUpdate:1597b0f7d6f59d5a451582bb628bfc45:0cc746b1a75d56b8ded282e90ea6b7c3:9aa8fec32b0d5f5691387a921d615d0a$</string>
             <key>textureFileName</key>
             <string>ButtonsSpriteSheet.png</string>
         </dict>

@@ -1,0 +1,76 @@
+{"frames": {
+
+"btnCreditsSelected_256-34.png":
+{
+	"frame": {"x":369,"y":74,"w":256,"h":34},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":256,"h":34},
+	"sourceSize": {"w":256,"h":34}
+},
+"btnCredits_256-34.png":
+{
+	"frame": {"x":369,"y":38,"w":256,"h":34},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":256,"h":34},
+	"sourceSize": {"w":256,"h":34}
+},
+"btnHowToPlaySelected_381-34.png":
+{
+	"frame": {"x":385,"y":2,"w":381,"h":34},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":381,"h":34},
+	"sourceSize": {"w":381,"h":34}
+},
+"btnHowToPlay_381-34.png":
+{
+	"frame": {"x":2,"y":2,"w":381,"h":34},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":381,"h":34},
+	"sourceSize": {"w":381,"h":34}
+},
+"btnPlaySelected_155-34.png":
+{
+	"frame": {"x":627,"y":74,"w":155,"h":34},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":155,"h":34},
+	"sourceSize": {"w":155,"h":34}
+},
+"btnPlay_155-34.png":
+{
+	"frame": {"x":627,"y":38,"w":155,"h":34},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":155,"h":34},
+	"sourceSize": {"w":155,"h":34}
+},
+"btnScoreSelected_365-34.png":
+{
+	"frame": {"x":2,"y":74,"w":365,"h":34},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":365,"h":34},
+	"sourceSize": {"w":365,"h":34}
+},
+"btnScore_356-34.png":
+{
+	"frame": {"x":2,"y":38,"w":365,"h":34},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":365,"h":34},
+	"sourceSize": {"w":365,"h":34}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker ",
+	"version": "1.0",
+	"image": "ButtonsSpriteSheet.png",
+	"format": "RGBA8888",
+	"size": {"w":784,"h":110},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:85ab705edbb23ad07559bfc9fed52fa8:0cc746b1a75d56b8ded282e90ea6b7c3:8a7200f3d398031b36450e827ec6c796$"
+}
+}

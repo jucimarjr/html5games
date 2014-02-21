@@ -34,9 +34,9 @@
         <key>dpi</key>
         <uint>72</uint>
         <key>dataFormat</key>
-        <string>cocos2d</string>
+        <string>json</string>
         <key>textureFileName</key>
-        <filename>ButtonsSpriteSheet.png</filename>
+        <filename>TitlesSpriteSheet.png</filename>
         <key>flipPVR</key>
         <false/>
         <key>ditherType</key>
@@ -88,7 +88,7 @@
             <key>freeSizeMode</key>
             <enum type="AlgorithmSettings::AlgorithmFreeSizeMode">Best</enum>
             <key>sizeConstraints</key>
-            <enum type="AlgorithmSettings::SizeConstraints">POT</enum>
+            <enum type="AlgorithmSettings::SizeConstraints">AnySize</enum>
             <key>forceSquared</key>
             <false/>
             <key>forceWordAligned</key>
@@ -127,7 +127,7 @@
             <key>data</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>TitleSpriteSheet.plist</filename>
+                <filename>TitlesSpriteSheet.json</filename>
             </struct>
         </map>
         <key>multiPack</key>
@@ -166,8 +166,8 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>title1_532-111.png</filename>
-            <filename>title2_532-111.png</filename>
+            <filename>../workspace/html5games/cocos2d/asteroids/res/images/title1_532-111.png</filename>
+            <filename>../workspace/html5games/cocos2d/asteroids/res/images/title2_532-111.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

@@ -7,11 +7,11 @@
             <key>title1_532-111.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{115,2},{523,111}}</string>
+                <string>{{527,2},{523,111}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{523,111}}</string>
                 <key>sourceSize</key>
@@ -24,7 +24,7 @@
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{523,111}}</string>
                 <key>sourceSize</key>
@@ -36,13 +36,13 @@
             <key>format</key>
             <integer>2</integer>
             <key>realTextureFileName</key>
-            <string>ButtonsSpriteSheet.png</string>
+            <string>TitlesSpriteSheet.png</string>
             <key>size</key>
-            <string>{256,1024}</string>
+            <string>{1052,115}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:4e2e5fa4dbfbc68c0c1cebb439adf8b4:58958db985f345237ba75efa5c1bfbbb:5f7d9308d50a393ce3badcffc6980351$</string>
+            <string>$TexturePacker:SmartUpdate:ac25a885acdbcbdf77ed71f965b8d638:58958db985f345237ba75efa5c1bfbbb:e38b9730d399205b46f83619832ca877$</string>
             <key>textureFileName</key>
-            <string>ButtonsSpriteSheet.png</string>
+            <string>TitlesSpriteSheet.png</string>
         </dict>
     </dict>
 </plist>

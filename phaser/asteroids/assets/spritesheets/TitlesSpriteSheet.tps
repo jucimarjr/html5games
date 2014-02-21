@@ -36,7 +36,7 @@
         <key>dataFormat</key>
         <string>json</string>
         <key>textureFileName</key>
-        <filename>ButtonsSpriteSheet.png</filename>
+        <filename>TitlesSpriteSheet.png</filename>
         <key>flipPVR</key>
         <false/>
         <key>ditherType</key>
@@ -127,7 +127,7 @@
             <key>data</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>ButtonsSpriteSheet.json</filename>
+                <filename>TitlesSpriteSheet.json</filename>
             </struct>
         </map>
         <key>multiPack</key>
@@ -166,14 +166,8 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>../workspace/html5games/cocos2d/asteroids/res/images/buttons/btnCredits_256-34.png</filename>
-            <filename>../workspace/html5games/cocos2d/asteroids/res/images/buttons/btnCreditsSelected_256-34.png</filename>
-            <filename>../workspace/html5games/cocos2d/asteroids/res/images/buttons/btnHowToPlay_381-34.png</filename>
-            <filename>../workspace/html5games/cocos2d/asteroids/res/images/buttons/btnHowToPlaySelected_381-34.png</filename>
-            <filename>../workspace/html5games/cocos2d/asteroids/res/images/buttons/btnPlay_155-34.png</filename>
-            <filename>../workspace/html5games/cocos2d/asteroids/res/images/buttons/btnPlaySelected_155-34.png</filename>
-            <filename>../workspace/html5games/cocos2d/asteroids/res/images/buttons/btnScore_356-34.png</filename>
-            <filename>../workspace/html5games/cocos2d/asteroids/res/images/buttons/btnScoreSelected_365-34.png</filename>
+            <filename>../workspace/html5games/cocos2d/asteroids/res/images/title1_532-111.png</filename>
+            <filename>../workspace/html5games/cocos2d/asteroids/res/images/title2_532-111.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
