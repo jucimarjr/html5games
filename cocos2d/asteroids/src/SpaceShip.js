@@ -13,6 +13,7 @@ var velocityY = 3;
 var angle = 0;
 var angleAsteroid = 0;
 
+var asteroides = [];
 
 var SpaceShipLayer = cc.Layer.extend({
 	spriteFrameCache: cc.SpriteFrameCache.getInstance(),
@@ -39,36 +40,12 @@ var SpaceShipLayer = cc.Layer.extend({
         this.layerGame.setPosition(new cc.Point(0.0,0.0));
         this.layerGame.addChild(shipSprite);
         
-        
-//COLOCAR PARA O ARQUIVO ASTEROIDS.JS
+        //Coloca os asteroides na tela
         for(i=0; i<7; i++){
-			var asteroidSprite = cc.Sprite.createWithSpriteFrameName("asteroids1_80-80.png");
-			var randomDir = Math.random()*2*Math.PI;
-			
-			asteroidSprite.xSpeed = velocityX*Math.cos(randomDir);
-			asteroidSprite.ySpeed = velocityY*Math.sin(randomDir);
-			this.layerGame.addChild(asteroidSprite);
-			
-			asteroidSprite.setPosition(new cc.Point(Math.random()*500, Math.random()*500));
-			
-			asteroidSprite.schedule(function(){
-				angleAsteroid += 0.05;
-				this.setRotation(angleAsteroid);
-                if(angleAsteroid > 360)
-                	angleAsteroid = 0;
-				
-     			this.setPosition(new cc.Point(this.getPosition().x + this.xSpeed, this.getPosition().y + this.ySpeed));
-     			if(this.getPosition().x > screen.width)
-					this.setPosition(new cc.Point(this.getPosition().x - screen.width,this.getPosition().y));
-				if(this.getPosition().x < 0)
-					this.setPosition(new cc.Point(this.getPosition().x + screen.width,this.getPosition().y));
-				if(this.getPosition().y > screen.height)
-					this.setPosition(new cc.Point(this.getPosition().x ,this.getPosition().y - screen.height));
-				if(this.getPosition().y < 0)
-					this.setPosition(new cc.Point(this.getPosition().x ,this.getPosition().y + screen.height));
-			});
-		}
-//ATÉ AQUI        
+        	this.asteroides = new Asteroid();
+        	this.asteroides.initBigAsteroid();
+        	this.layerGame.addChild(this.asteroides);
+        }      
         
         this.createAnimation();
         this.addChild(this.layerGame);
