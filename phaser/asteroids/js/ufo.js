@@ -1,7 +1,7 @@
 Ufo = function(gameClass){
 	this.game = gameClass.game;
     this.gameClass = gameClass;
-	this.sprite = game.add.sprite(0, Math.random()*game.heigth, 'ufo');
+	this.sprite = game.add.sprite(Math.random()*game.heigth, 0, 'sprites', 'ufo_96-61.png');
 	this.sprite.events.onOutOfBounds.add(gameClass.outOfBounds,this);
 	this.sprite.anchor.x = 0.5;
 	this.sprite.anchor.y = 0.5;
@@ -11,7 +11,6 @@ Ufo = function(gameClass){
 	this.sprite.body.velocity.x = Math.cos(direction*0.0174) *50;
 	this.sprite.body.velocity.y = Math.sin(direction*0.0174) *50;
 	this.shootsUfo = this.game.add.group();
-	setInterval(this.shoot(), 500);
 };
 
 Ufo.prototype.update = function(){

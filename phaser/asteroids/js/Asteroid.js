@@ -49,7 +49,7 @@ Asteroid.prototype.die = function ( shoot , asteroid ) {
     emitter.start(true, 500, null, 15);
     
     if (asteroid.size == "large") {
-        this.gameClass.asteroid.create( asteroid.position.x , asteroid.position.y , "medium" );
+        this.gameClass.asteroid.create(asteroid.position.x , asteroid.position.y , "medium" );
         this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "medium");
     }
     if (asteroid.size == "medium") {

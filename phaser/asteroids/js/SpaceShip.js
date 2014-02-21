@@ -25,7 +25,6 @@ SpaceShip.prototype.update = function () {
     this.game.physics.collide(this.sprite, this.gameClass.groupAsteroids, this.die , null, this);       	
     this.game.physics.collide(this.shootsGroup, this.gameClass.groupAsteroids, this.gameClass.asteroid.die, null, this);
     
-    
 };
 
 SpaceShip.prototype.animate = function(){
