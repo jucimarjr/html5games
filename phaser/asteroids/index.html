@@ -6,9 +6,8 @@
 	<script type="text/javascript" src="js/phaser.min.js"></script>
     <script type="text/javascript" src="js/Game.js"></script>
     <script type="text/javascript" src="js/SpaceShip.js"></script>
-    script type="text/javascript" src="js/Shoot.js"></script>
-    script type="text/javascript" src="js/HUD.js"></script>
     <script type="text/javascript" src="js/Asteroid.js"></script>
+    <script type="text/javascript" src="js/Ufo.js"></script>
     <style type="text/css">
         body {
             margin: 0;
@@ -31,6 +30,7 @@ function preload()
     game.load.image('small_asteroid', 'assets/images/asteroids_1_20-20.png');
     game.load.image('medium_asteroid', 'assets/images/asteroids_1_40-40.png');
     game.load.image('large_asteroid', 'assets/images/asteroids_1_80-80.png');
+    game.load.image('ufo', 'assets/images/ufo_96-61.png')
     //game.load.atlas('sprites', 'assets/spritesheets/GameSpriteSheet.png', 'assets/spritesheets/GameSpriteSheet.json')
     game.load.audio('thrust', 'assets/audios/AsteroidsThrust.mp3');
     game.load.audio('shoot', 'assets/audios/AsteroidsShoot.mp3');

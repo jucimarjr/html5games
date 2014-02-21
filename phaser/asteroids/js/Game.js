@@ -7,17 +7,18 @@ Game = function(game){
     this.asteroid = null;
 	this.groupAsteroids = null;
 	this.ufo = null;
+	this.addUfoTime = 0;
 };
 
 Game.prototype.create = function () {
     this.groupAsteroids = this.game.add.group();
     this.asteroid = new Asteroid(this);
     this.spaceShip = new SpaceShip(this);    
+    this.addUfo();
     this.init();
 };
 
 Game.prototype.init = function () {
-
     for (var i = 0 ; i < 7; i++) {
         this.asteroid.create(Math.random() * game.width, Math.random() * game.height, 'large');
     }
@@ -26,8 +27,11 @@ Game.prototype.init = function () {
     }
     for (var i = 0 ; i < 3; i++) {
         this.asteroid.create(Math.random() * game.width, Math.random() * game.height, 'small');
-    }
+    }    
+};
 
+Game.prototype.addUfo = function(){
+	
 };
 
 Game.prototype.update = function () {
@@ -42,6 +46,9 @@ Game.prototype.update = function () {
         this.spaceShip.accelerate();
     } else{
         this.spaceShip.stop();
+    }
+    if (game.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
+        this.spaceShip.teletransport();
     }
         	    
     if (game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR))

@@ -1,6 +1,6 @@
 SpaceShip = function(gameClass) {
 
-    this.game = gameClass.game;
+	this.game = gameClass.game;
     this.gameClass = gameClass;
 
     //this.sprite = this.game.add.sprite(this.game.width / 2, this.game.height / 2, 'sprites', 'ship_22-34.png');
@@ -19,7 +19,7 @@ SpaceShip = function(gameClass) {
 };
 
 SpaceShip.prototype.update = function () {
-        
+	
     this.game.physics.collide(this.sprite, this.gameClass.groupAsteroids, this.die , null, this);       	
     this.game.physics.collide(this.shootsGroup, this.gameClass.groupAsteroids, this.gameClass.asteroid.die, null, this);
     
@@ -45,6 +45,11 @@ SpaceShip.prototype.accelerate = function () {
 
 SpaceShip.prototype.stop = function () {
     this.sprite.body.acceleration.setTo(0, 0);
+};
+
+SpaceShip.prototype.teletransport = function () {
+	this.sprite.x = Math.random() * game.width;
+	this.sprite.y = Math.random() * game.height;
 };
  	
 SpaceShip.prototype.shoot = function () {
