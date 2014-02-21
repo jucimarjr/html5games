@@ -1,4 +1,4 @@
-//Variáveis de JOGO
+ //Variáveis de JOGO
 var screen = null;
 
 //Variáveis de CONTROLE
@@ -16,7 +16,7 @@ var angleAsteroid = 0;
 
 var SpaceShipLayer = cc.Layer.extend({
 	spriteFrameCache: cc.SpriteFrameCache.getInstance(),
-	
+	animeCache: cc.AnimationCache.getInstance(),
     init:function()
     {
 		//Habilita o teclado/touch como controle
@@ -70,7 +70,7 @@ var SpaceShipLayer = cc.Layer.extend({
 		}
 //ATÉ AQUI        
         
-        
+        this.createAnimation();
         this.addChild(this.layerGame);
         this.scheduleUpdate();
         return true;
@@ -94,11 +94,12 @@ var SpaceShipLayer = cc.Layer.extend({
     	
     	//Move a nave para frente (de acordo com o sentido que ela se encontra)
     	if (LG.KEYS[cc.KEY.up]) {
+			console.log("TecladoUp");
+			
         	shipSprite.xSpeed = velocityX*Math.sin(Math.PI/180*angle);
         	shipSprite.ySpeed = velocityY*Math.cos(Math.PI/180*angle);
         	shipSprite.setPosition(new cc.Point(shipSprite.getPosition().x + shipSprite.xSpeed,shipSprite.getPosition().y + shipSprite.ySpeed));
-    	
-        	//Verifica saída da tela por um lado e entrada por outro
+			//Verifica saída da tela por um lado e entrada por outro
         	if(shipSprite.getPosition().x >= screen.width)
 				shipSprite.setPosition(new cc.Point(shipSprite.getPosition().x - screen.width, shipSprite.getPosition().y));
 			if(shipSprite.getPosition().x <= 0)
@@ -110,9 +111,14 @@ var SpaceShipLayer = cc.Layer.extend({
     	}
     	
     	//Teletransporta a nave
-    	if (LG.KEYS[cc.KEY.down]) {
-    		
+    	if (!LG.KEYS[cc.KEY.up]) {
+    		var animation = this.animeCache.getAnimation("shipFire");
+			animation.setRestoreOriginalFrame(true);
+			shipSprite.runAction(cc.RepeatForever.create(cc.Animate.create(animation)));
+			//- << Init::Animação da nave
     	}
+		
+		
     	
     	
     },
@@ -120,11 +126,24 @@ var SpaceShipLayer = cc.Layer.extend({
     
     onKeyDown: function (e) {
         LG.KEYS[e] = true;
+		console.log("KeyDown");
+			
     },
 
     onKeyUp: function (e) {
+		console.log("KeyUp");
+		
         LG.KEYS[e] = false;
-    }
+    },
+	createAnimation: function(){
+		var animeFrames = [];
+		animeFrames.push(this.spriteFrameCache.getSpriteFrame("ship_22-34.png"));
+		animeFrames.push(this.spriteFrameCache.getSpriteFrame("shipFire_22-34.png"));
+		var animation = cc.Animation.create(animeFrames,0.1);
+		this.animeCache.addAnimation(animation,"shipFire");
+		
+		
+	},
 });
 
 var SpaceShipScene = cc.Scene.extend({

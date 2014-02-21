@@ -31,6 +31,7 @@ var cocos2dApp = cc.Application.extend({
                  {type: "plist", src: "res/spritesheets/GameSpriteSheet.plist"},
                  {type: "image", src: "res/spritesheets/ButtonsSpriteSheet.png"},
                  {type: "plist", src: "res/spritesheets/ButtonsSpriteSheet.plist"},
+				 
 
                  {
                      fontName: "SFAtarianSystem",
