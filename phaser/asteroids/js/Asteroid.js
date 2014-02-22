@@ -39,7 +39,7 @@ Asteroid.prototype.move = function (asteroid,mult) {
 
 }
 
-Asteroid.prototype.die = function (shoot,asteroid) {
+Asteroid.prototype.die = function (asteroid, shoot) {
     shoot.kill();
     
     var emitter = this.game.add.emitter(asteroid.x, asteroid.y, 15);

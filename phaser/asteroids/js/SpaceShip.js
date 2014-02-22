@@ -30,9 +30,9 @@ SpaceShip.prototype.create = function(){
 };
 
 SpaceShip.prototype.update = function () {	
-	this.game.physics.collide(this.bulletsGroup, this.gameClass.groupAsteroids, this.gameClass.asteroid.die, null, this);
+    this.game.physics.collide(this.gameClass.groupAsteroids, this.bulletsGroup, this.gameClass.asteroid.die, null, this);
     this.game.physics.collide(this.sprite, this.gameClass.groupAsteroids, this.die , null, this);       	
-   
+    this.game.physics.collide(this.gameClass.ufo.sprite, this.bulletsGroup, this.gameClass.ufo.die, null, this);
 };
 
 SpaceShip.prototype.animate = function(){
@@ -72,7 +72,7 @@ SpaceShip.prototype.teletransport = function () {
  	
 SpaceShip.prototype.shoot = function () {    
     
-    if (game.time.now > this.nextFire)
+    if (game.time.now > this.nextFire && this.sprite.alive)
     {
         this.nextFire = game.time.now + this.fireRate;
         this.game.add.audio('shoot', 1).play();
@@ -95,9 +95,11 @@ SpaceShip.prototype.die = function (spaceShip, asteroid) {
     emitter.minParticleSpeed.setTo(-40, -40);
     emitter.maxParticleSpeed.setTo(40, 40);
     emitter.gravity = 0;
-    emitter.start(true, 500, null, 5);
+    emitter.start(true, 3000, null, 5);
 
-
+    setTimeout(function (gameClass) {
+        gameClass.spaceShip.sprite.reset(gameClass.game.world.width / 2, gameClass.game.world.height / 2);
+    }, 3000, this.gameClass);
 
     spaceShip.reset(game.world.width/2, game.world.height/2);
     if (asteroid.size == "large") {
@@ -109,5 +111,6 @@ SpaceShip.prototype.die = function (spaceShip, asteroid) {
         this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "small");
     }
     asteroid.kill();
+    spaceShip.kill();
     this.gameClass.loseLife();
 };

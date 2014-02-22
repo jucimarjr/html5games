@@ -8,7 +8,7 @@ var Game = function(game){
 	this.groupAsteroids = null;
 	this.ufo = null;
 	this.nextAddUfo = 0;
-	this.addUfoTime = 500;
+	this.addUfoTime = 10000;
 };
 
 Game.prototype.create = function () {
@@ -16,7 +16,7 @@ Game.prototype.create = function () {
 	this.asteroid = new Asteroid(this);
 	this.spaceShip = new SpaceShip(this);
 	this.groupAsteroids = this.game.add.group();
-	
+	this.nextAddUfo = this.game.time.now + this.addUfoTime;
     for (var i = 0 ; i < 5; i++) {
     	this.asteroid.create(Math.random() * game.width, Math.random() * game.height, 'large');
     }
@@ -25,6 +25,7 @@ Game.prototype.create = function () {
 Game.prototype.update = function () {
 
     this.spaceShip.update();
+    this.ufo.update();
     
     if(game.input.keyboard.isDown(Phaser.Keyboard.LEFT))
         this.spaceShip.rotate("left");
@@ -46,16 +47,11 @@ Game.prototype.update = function () {
         this.spaceShip.shoot();   
     }
     
-    
-    //Adiciona o Ufo (não funciona)
-    
-    if(this.game.time.now > this.nextAddUfo){
-    	this.nextAddUfo = game.time.now + this.AddUfoTime;
-    	this.ufo.start();
+    if (this.game.time.now > this.nextAddUfo) {
+        this.nextAddUfo = this.game.time.now + this.addUfoTime;
+        this.ufo.appear();
     }
-    
-    
-            
+                
 };
 
 Game.prototype.outOfBounds = function (object) {
