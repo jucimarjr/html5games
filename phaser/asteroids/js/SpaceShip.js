@@ -28,7 +28,7 @@ SpaceShip.prototype.create = function(){
 	this.bullet = this.bulletsGroup.create(this.sprite.position.x + Math.cos((this.sprite.body.rotation + 270)*0.0174) *24,
 			this.sprite.position.y + Math.sin((this.sprite.body.rotation + 270)*0.0174) *24, 'sprites', 'shoot_2-2.png');
 	this.bullet.kill(); 
-    this.sprite.animations.add('thrust', ['shipFire1_14-24.png', 'shipFire3_14-24.png'], 15, true, false);
+    this.sprite.animations.add('thrust', ['shipFire1_14-24.png', 'shipFire2_14-24.png'], 15, true, false);
     this.sprite.animations.add('stop', ['ship_14-24.png']);
 };
 
