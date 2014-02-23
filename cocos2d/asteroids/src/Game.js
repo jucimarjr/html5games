@@ -10,6 +10,9 @@ var LG = {KEYS: []}; //Verifica se existe alguma tecla pressionada ou não
 
 
 var GameLayer = cc.Layer.extend({
+	
+	spriteShip: [],
+
 	spriteFrameCache: cc.SpriteFrameCache.getInstance(),
 	animeCache: cc.AnimationCache.getInstance(),
 
@@ -18,6 +21,9 @@ var GameLayer = cc.Layer.extend({
 	    screen = cc.Director.getInstance().getWinSize();
 	    //Cria o Layer do jogo
 		this.layerGame = cc.LayerColor.create(new cc.Color4B(0, 0, 0, 255), 800, 480);    
+
+	    // Coloca as vidas no jogo
+            this.lives();
 	
 		//Habilita o teclado/touch como controle
 		if ('keyboard' in sys.capabilities)
@@ -49,6 +55,17 @@ var GameLayer = cc.Layer.extend({
 
     onKeyUp:function (e) {
         LG.KEYS[e] = false;
+    },
+    
+    lives:function(){
+	count = 0;
+    	for(var i=0; i<3; i++)
+        {
+            this.spriteShip = cc.Sprite.create("res/images/ship_14-24.png");
+            this.spriteShip.setPosition(30 + count, screen.height - 30);
+            this.layerGame.addChild(this.spriteShip);
+	    count = count + 14;
+        }
     }
 });
 
