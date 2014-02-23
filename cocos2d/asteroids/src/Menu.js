@@ -71,7 +71,7 @@ var MenuLayer = cc.Layer.extend({
     },
 
     onHowToPlay: function () {
-     // cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2, new ComoJogarScene()));
+      cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2, new HowToPlay()));
     },
     onHighScore: function () {
       //cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2, new ComoJogarScene()));
