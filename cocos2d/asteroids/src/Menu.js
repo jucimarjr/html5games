@@ -67,7 +67,7 @@ var MenuLayer = cc.Layer.extend({
     },
 
     onCredits: function () {
-     // cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2, new CreditosScene()));
+      cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2, new Credits()));
     },
 
     onHowToPlay: function () {
