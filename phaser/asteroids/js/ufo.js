@@ -11,8 +11,8 @@ Ufo = function (gameClass) {
 Ufo.prototype.appear = function () {
     this.game.add.audio('ufo', 1).play();
     this.sprite.reset(0, Math.random() * this.game.height);
-    this.sprite.anchor.x = 0.5;
-    this.sprite.anchor.y = 0.5;
+    this.sprite.anchor.setTo(0.5,0.5);
+    this.sprite.scale.setTo(0.5,0.5);
     this.sprite.events.onOutOfBounds.add(this.die, (this,null));
     this.move();
 };

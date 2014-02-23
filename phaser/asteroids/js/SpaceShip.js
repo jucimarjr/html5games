@@ -7,6 +7,9 @@ SpaceShip = function(gameClass) {
     this.shootInterval = 10;
     this.nextFire = 0;
     this.fireRate = 200;
+    this.teleportTime = 3000;
+    this.nextTeleport = 0;
+    this.lives = 3;
     this.create();
 };
 
@@ -66,8 +69,12 @@ SpaceShip.prototype.stop = function () {
 };
 
 SpaceShip.prototype.teletransport = function () {
-	this.sprite.x = Math.random() * game.width;
-	this.sprite.y = Math.random() * game.height;
+    if (game.time.now > this.nextTeleport)
+    {
+    	this.nextTeleport = game.time.now + this.teleportTime;
+    	this.sprite.x = Math.random() * game.width;
+    	this.sprite.y = Math.random() * game.height;
+    }
 };
  	
 SpaceShip.prototype.shoot = function () {    
@@ -96,6 +103,13 @@ SpaceShip.prototype.die = function (spaceShip, asteroid) {
     emitter.maxParticleSpeed.setTo(40, 40);
     emitter.gravity = 0;
     emitter.start(true, 3000, null, 5);
+    
+    this.gameClass.livesHud.getFirstAlive().kill();
+    if(this.gameClass.livesHud.countDead() == 3){
+    	//this.game.state.start('menu', Menu);
+    	this.gameClass.loseMSG = game.add.bitmapFont(200, 100, 'YOU LOSE');
+    	
+    }
 
     setTimeout(function (gameClass) {
         gameClass.spaceShip.sprite.reset(gameClass.game.world.width / 2, gameClass.game.world.height / 2);

@@ -1,11 +1,13 @@
 
 var Game = function(game){
     this.game = game;
+    this.game.add.bitmapText(200, 100, 'YOU LOSE');
     this.scores = 0;
-    this.lives = 0;
     this.spaceShip = null;
     this.asteroid = null;
 	this.groupAsteroids = null;
+	this.livesHud = null;
+	this.loseMSG = null;
 	this.ufo = null;
 	this.nextAddUfo = 0;
 	this.addUfoTime = 10000;
@@ -16,9 +18,21 @@ Game.prototype.create = function () {
 	this.asteroid = new Asteroid(this);
 	this.spaceShip = new SpaceShip(this);
 	this.groupAsteroids = this.game.add.group();
+	this.livesHud = this.game.add.group();
+	for(var i = 0; i<3; i++){
+		this.livesHud.create(18 * i + 3, 4, 'sprites', 'ship_14-24.png');
+	}
 	this.nextAddUfo = this.game.time.now + this.addUfoTime;
-    for (var i = 0 ; i < 5; i++) {
-    	this.asteroid.create(Math.random() * game.width, Math.random() * game.height, 'large');
+	
+    for (i = 0 ; i < 5; i++) {
+    	var px = Math.random() * game.width;
+    	var py = Math.random() * game.height;
+    	if((px > this.game.width/2 + 80 && px < this.game.width/2 - 80)
+    	&& (py > this.game.height/2 + 80 && py < this.game.height/2 - 80)){
+    		px += 100;
+    		py += 100;
+    	}
+    	this.asteroid.create(px, py, 'large');
     }
 };
 

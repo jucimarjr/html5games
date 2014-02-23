@@ -35,22 +35,23 @@ function preload()
     game.load.audio('thrust', 'assets/audios/AsteroidsThrust.mp3');
     game.load.audio('shoot', 'assets/audios/AsteroidsShoot.mp3');
     game.load.audio('ufo', 'assets/audios/AsteroidsSaucer.mp3');
-	//gameScene = new Game(game);
-	splashScene = new Splash(game);
-	splashScene.preload();
+    //game.load.bitmapFont('vectorB', 'assets/fonts/vector_battle_regular_65.png', 'assets/fonts/vector_battle_regular_65.xml');
+	gameScene = new Game(game);
+	//splashScene = new Splash(game);
+	//splashScene.preload();
 	
 	
 }
 
 function create()
 {
-	//gameScene.create();
-	splashScene.create();
+	gameScene.create();
+	//splashScene.create();
 }
 
 function update() 
 {
-	//gameScene.update();
+	gameScene.update();
 }
 
 //game.state.add('ganhou', Ganhou);
