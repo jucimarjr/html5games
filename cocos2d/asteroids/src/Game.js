@@ -12,6 +12,8 @@ var LG = {KEYS: []}; //Verifica se existe alguma tecla pressionada ou não
 var GameLayer = cc.Layer.extend({
 	
 	spriteShip: [],
+	score: 0,
+	scoreLabel: null,
 
 	spriteFrameCache: cc.SpriteFrameCache.getInstance(),
 	animeCache: cc.AnimationCache.getInstance(),
@@ -23,7 +25,10 @@ var GameLayer = cc.Layer.extend({
 		this.layerGame = cc.LayerColor.create(new cc.Color4B(0, 0, 0, 255), 800, 480);    
 
 	    // Coloca as vidas no jogo
-            this.lives();
+            this.putLives();
+            
+            // Coloca os pontos
+	    this.putScore();
 	
 		//Habilita o teclado/touch como controle
 		if ('keyboard' in sys.capabilities)
@@ -57,7 +62,7 @@ var GameLayer = cc.Layer.extend({
         LG.KEYS[e] = false;
     },
     
-    lives:function(){
+    putLives:function(){
 	count = 0;
     	for(var i=0; i<3; i++)
         {
@@ -66,6 +71,12 @@ var GameLayer = cc.Layer.extend({
             this.layerGame.addChild(this.spriteShip);
 	    count = count + 14;
         }
+    },
+    putScore:function(){
+        this.scoreLabel = cc.LabelTTF.create(this.score, "VectorB", 24);
+	this.scoreLabel.setColor( new cc.Color3B(255, 255, 255) );
+        this.scoreLabel.setPosition(new cc.Point(screen.width - 40, screen.height - 40) );
+        this.layerGame.addChild(this.scoreLabel);
     }
 });
 
