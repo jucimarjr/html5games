@@ -64,6 +64,11 @@ var Ship = cc.Sprite.extend({
 			//- << Init::Animação da nave
     	}
 		
+		if(LG.KEYS[cc.KEY.down]||LG.KEYS[cc.KEY.s]){
+			console.log("baixo");
+			this.setPosition(new cc.Point(Math.random()*800, Math.random()*480));
+		}
+		
 		//console.log("<< Ship::Update");
 	},
 	
