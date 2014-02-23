@@ -34,7 +34,7 @@ var LG = {KEYS: []};
 
 var OBJECTS_GROUP = -1;
 var WALLS_GROUP = -2;
-var g_sharedGameLayer;
+var layerGame;
 /*************************************************************************************************************************************/
 //Inicia o Layer do Jogo
 /*************************************************************************************************************************************/
@@ -54,17 +54,17 @@ var GameLayer = cc.Layer.extend({
 		
 		this.spriteFrameCache.addSpriteFrames("res/spritesheets/GameSpriteSheet.plist", "res/spritesheets/GameSpriteSheet.png");
 		
-		g_sharedGameLayer = cc.LayerColor.create(new cc.Color4B(0, 0, 0, 255), 800, 480); 
+		layerGame = cc.LayerColor.create(new cc.Color4B(0, 0, 0, 255), 800, 480); 
 		if (sys.capabilities.hasOwnProperty('keyboard'))
 			this.setKeyboardEnabled(true);
 		
 				
-		//this.asteroidSprite = new AsteroidLayer();
-        //this.addChild(this.asteroidSprite);
-		//this.spaceShipSprite = new SpaceShipLayer();
-        //this.addChild(this.spaceShipSprite);
 		
-		
+		for(i=0; i<7; i++){
+        	this.asteroides = new Asteroid();
+        	this.asteroides.initBigAsteroid();
+        	this.addChild(this.asteroides);
+        }
 		
 		//g_sharedGameLayer = cc.LayerColor.create(new cc.Color4B(0, 0, 0, 255), 800, 480);;
 		
@@ -72,7 +72,7 @@ var GameLayer = cc.Layer.extend({
 		this.addChild(this._ship);
 		
 		
-		g_sharedGameLayer = this;
+		layerGame = this;
 		
 		
         
