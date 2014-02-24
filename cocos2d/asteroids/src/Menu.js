@@ -1,4 +1,6 @@
 
+var asteroids = [];
+
 var MenuLayer = cc.Layer.extend({
 	title: null,
 	
@@ -11,13 +13,8 @@ var MenuLayer = cc.Layer.extend({
 		this.title = cc.LabelTTF.create("ASTEROIDS", "SFAtarianSystem", 70);
 		this.title.setColor( new cc.Color3B(255, 255, 255) );
 		this.title.setPosition(new cc.Point(screen.width/2, screen.height - 50) );
-        this.addChild(this.title);
+        this.addChild(this.title);        
 		
-        /*
-        var fundo = cc.Sprite.create("res/black_screen.png");
-        fundo.setPositionX(tela.width/2);
-        fundo.setPositionY(tela.height/2);
-        this.addChild(fundo);*/
         
 //        var animation = cc.Animation.create();
 //        for(var i = 0; i < 2; i++){
@@ -101,7 +98,17 @@ var MenuLayer = cc.Layer.extend({
 var Menu = cc.Scene.extend({
     onEnter:function(){
         this._super();
-        var layerMenu = new MenuLayer();
+		/*
+		O codigo abaixo adiciona o jogo por tras do menu
+		Problema: Nao deveria aparecer a nave / vidas / pontos
+		Pensar numa forma de solucinar
+		Mesma ideia para telas de perdeu / ganhou.
+		
+		var gameLayer = new GameLayer();
+    	gameLayer.init();
+    	this.addChild(gameLayer);
+        */
+		var layerMenu = new MenuLayer();
         layerMenu.init();
         this.addChild(layerMenu);
     }
