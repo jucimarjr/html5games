@@ -1,7 +1,6 @@
 
 var Game = function(game){
     this.game = game;
-    this.game.add.bitmapText(200, 100, 'YOU LOSE');
     this.scores = 0;
     this.spaceShip = null;
     this.asteroid = null;
