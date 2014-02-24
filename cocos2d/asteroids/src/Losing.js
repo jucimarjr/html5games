@@ -4,6 +4,7 @@ var LosingLayer = cc.Layer.extend({
     score: 0,
     scoreLabel: null,*/
     gameOver: null,
+	numberAsteroids: 7,
     
     init: function()
     {
@@ -22,16 +23,14 @@ var LosingLayer = cc.Layer.extend({
 
     },
     addAsteroids: function(){
-	for(i=0; i<7; i++){
-	       	this.asteroids = new Asteroid("large");
-        	this.addChild(this.asteroids);
-        }
+		for(i=0; i<this.numberAsteroids; i++)
+        	asteroids.push(new Asteroid("big", 0));
     },
     addScore:function(){
-        scoreLabel = cc.LabelTTF.create(score, "SFAtarianSystem", 24);
-	scoreLabel.setColor( new cc.Color3B(255, 255, 255) );
-        scoreLabel.setPosition(new cc.Point(screen.width - 40, screen.height - 40) );
-        this.addChild(scoreLabel);
+        scoreGame.scoreLabel = cc.LabelTTF.create(scoreGame.score, "SFAtarianSystem", 24);
+		scoreGame.scoreLabel.setColor( new cc.Color3B(255, 255, 255) );
+        scoreGame.scoreLabel.setPosition(new cc.Point(screen.width - 40, screen.height - 40) );
+        this.addChild(scoreGame.scoreLabel);
     },
     addGameOver:function(){
 	this.gameOver = cc.LabelTTF.create("GAME OVER", "SFAtarianSystem", 40);
