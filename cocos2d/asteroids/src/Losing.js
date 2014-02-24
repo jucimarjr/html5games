@@ -10,15 +10,17 @@ var LosingLayer = cc.Layer.extend({
     {
         this._super();
 
-	if ('touches' in sys.capabilities)
+		if ('touches' in sys.capabilities)
             this.setTouchEnabled(true);
         else if ('mouse' in sys.capabilities)
             this.setMouseEnabled(true);
 
-	this.addAsteroids();
-	this.addScore(); 
-	this.addGameOver(); 	
+		this.addAsteroids();
+		this.addScore(); 
+		this.addGameOver(); 	
         
+		cc.AudioEngine.getInstance().playMusic("res/audios/AsteroidsTonelo.mp3", true);
+		
         return this;
 
     },
