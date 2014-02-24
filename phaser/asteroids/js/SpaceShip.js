@@ -115,12 +115,12 @@ SpaceShip.prototype.die = function (spaceShip, asteroid) {
 
     spaceShip.reset(game.world.width/2, game.world.height/2);
     if (asteroid.size == "large") {
-        this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "medium");
-        this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "medium");
+        this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "medium", this.gameClass.velAsteroids);
+        this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "medium", this.gameClass.velAsteroids);
     }
     if (asteroid.size == "medium") {
-        this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "small");
-        this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "small");
+        this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "small", this.gameClass.velAsteroids);
+        this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "small", this.gameClass.velAsteroids);
     }
     asteroid.kill();
     spaceShip.kill();

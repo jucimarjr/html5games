@@ -12,15 +12,16 @@ var Game = function(game){
 	this.scoreText = null;
 	this.nextAddUfo = 0;
 	this.addUfoTime = 10000;
+	this.velAsteroids = 1;
 };
 
 Game.prototype.create = function () {
-
+	
     this.ufo = new Ufo(this);
     this.asteroid = new Asteroid(this);
     this.spaceShip = new SpaceShip(this);
     this.groupAsteroids = this.game.add.group();
-
+    this.initAsteroids();
     this.score = 0;
     this.scoreText = game.add.text(game.width - 150, 20 , this.score, {
         font: "25px Vector Battle", fill: "#ffffff" , align: "right"
@@ -30,19 +31,9 @@ Game.prototype.create = function () {
 	for(var i = 0; i<3; i++){
 		this.livesHud.create(18 * i + 3, 4, 'sprites', 'ship_14-24.png');
 	}
-
+	
 	this.nextAddUfo = this.game.time.now + this.addUfoTime;
 	
-    for (i = 0 ; i < 5; i++) {
-    	var px = Math.random() * game.width;
-    	var py = Math.random() * game.height;
-    	if((px > this.game.width/2 + 80 && px < this.game.width/2 - 80)
-    	&& (py > this.game.height/2 + 80 && py < this.game.height/2 - 80)){
-    		px += 100;
-    		py += 100;
-    	}
-    	this.asteroid.create(px, py, 'large');
-    }
 
 };
 
@@ -75,7 +66,24 @@ Game.prototype.update = function () {
         this.nextAddUfo = this.game.time.now + this.addUfoTime;
         this.ufo.appear();
     }
+    if(this.groupAsteroids.countLiving() == 0){
+    	this.velAsteroids++;
+    	this.initAsteroids();
+    }
                 
+};
+
+Game.prototype.initAsteroids = function(){
+	for (var i = 0 ; i < 5; i++) {
+    	var px = Math.random() * game.width;
+    	var py = Math.random() * game.height;
+    	if((px > this.game.width/2 + 80 && px < this.game.width/2 - 80)
+    	&& (py > this.game.height/2 + 80 && py < this.game.height/2 - 80)){
+    		px += 100;
+    		py += 100;
+    	}
+    	this.asteroid.create(px, py, 'large', this.velAsteroids);
+    }
 };
 
 Game.prototype.outOfBounds = function (object) {
@@ -90,7 +98,7 @@ Game.prototype.outOfBounds = function (object) {
         object.reset(0, object.y);
     if (object.y < 0)
         object.reset(object.x, game.world.height);
-    if (object.y > game.world.height)
+    if (object.y > game.world.height + object.height/2)
         object.reset(object.x, 0);
 
     object.body.velocity.x = velocityX;

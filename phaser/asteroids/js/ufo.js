@@ -57,12 +57,12 @@ Ufo.prototype.die = function (ufo, asteroid) {
     
     if(asteroid != null){
         if (asteroid.size == "large") {
-            this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "medium");
-            this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "medium");
+            this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "medium", this.gameClass.velAsteroids);
+            this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "medium", this.gameClass.velAsteroids);
         }
         if (asteroid.size == "medium") {
-            this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "small");
-            this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "small");
+            this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "small", this.gameClass.velAsteroids);
+            this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "small", this.gameClass.velAsteroids);
         }
         asteroid.kill();
         this.gameClass.punctuate(30);
