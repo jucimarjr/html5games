@@ -21,6 +21,8 @@ var GameLayer = cc.Layer.extend({
 	animeCache: cc.AnimationCache.getInstance(),
 	
 	numberAsteroids: 7,
+	numberLives: 3,
+	spriteShip: [],
 	
 	
 	init:function(){
@@ -52,9 +54,10 @@ var GameLayer = cc.Layer.extend({
     	
         this.addChild(layer);
         this.scheduleUpdate();
+		
         return true;
     },
-    
+	
 	update:function(){
     	this.collideAsteroidWithSpace();
 	},
@@ -74,6 +77,8 @@ var GameLayer = cc.Layer.extend({
     			asteroids[i].die(asteroids[i].getPosition());
     			asteroids.splice(i, 1); //Remove 1 elemento no index i
 				this.ship.die();
+				this.removeLives(this.numberLives);
+				this.numberLives--;
 			}
 	    }	
     },
@@ -89,12 +94,19 @@ var GameLayer = cc.Layer.extend({
     addLives:function(){
     	count = 0;
     	for(var i=0; i<3; i++) {
-    		this.spriteShip = cc.Sprite.create("res/images/ship_14-24.png");
-            this.spriteShip.setPosition(30 + count, screen.height - 30);
-            layer.addChild(this.spriteShip);
+    		this.spriteShip[i] = cc.Sprite.create("res/images/ship_14-24.png");
+            this.spriteShip[i].setPosition(30 + count, screen.height - 30);
+            layer.addChild(this.spriteShip[i]);
             count = count + 14;
         }
     },
+	
+	removeLives:function(numberLives){
+		layer.removeChild(this.spriteShip[numberLives]);
+        /*this.spriteHeart3 = cc.Sprite.create("assets/coracao_vazio.png");
+        this.spriteHeart3.setPosition(110, screen.height - 30);
+        this.layerGame.addChild(this.spriteHeart3);*/
+	},
         
     addScore:function(){
 		scoreGame.scoreLabel = cc.LabelTTF.create(scoreGame.score, "VectorB", 20);
