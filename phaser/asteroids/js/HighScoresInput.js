@@ -30,6 +30,22 @@ HighScoreInput.prototype.verifyScore = function (score) {
 
 };
 
+HighScoreInput.prototype.setLocalStorageScore = function (score, position) {
+
+    for (var i = 5 ; i >= position ; i--) {
+        if (i != position) {
+            var scoreTemp = localStorage["score" + (i-1)];
+            var nameScoreTemp = localStorage["nameScore" + (i-1)];
+            localStorage["score" + i] = scoreTemp;
+            localStorage["nameScore" + i] = nameScoreTemp;
+        } else {
+            localStorage["score" + position] = score;
+            localStorage["nameScore" + position] = "AAA";
+        }
+    }
+    
+};
+
 HighScoreInput.prototype.inputName = function (score,position) {
 
     game.add.text(this.game.width / 2 - 140, this.game.height / 2 - 150, "NEW RECORD!", {
@@ -39,9 +55,7 @@ HighScoreInput.prototype.inputName = function (score,position) {
         font: "40px Vector Battle", fill: "#ffffff", align: "center"
     });
 
-    localStorage["score" + position] = score;
-    localStorage["nameScore" + position] = "AAA";
-
+    this.setLocalStorageScore(score,position);
     setTimeout(function () { game.state.start('HighScore', HighScore) } , 3000 );
 
 };
