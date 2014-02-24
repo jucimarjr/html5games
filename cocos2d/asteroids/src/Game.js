@@ -2,6 +2,11 @@
 var screen = null;
 var layer = null;
 
+var scoreGame = {
+	scoreLabel: null, 
+	score: 0
+};
+
 //Variáveis dos CONTROLES
 var LG = {KEYS: []}; //Verifica se existe alguma tecla pressionada ou não
 
@@ -30,6 +35,11 @@ var GameLayer = cc.Layer.extend({
 	    //Cria o Layer do jogo
 		layer = cc.LayerColor.create(new cc.Color4B(0, 0, 0, 255), 800, 480);    
 	
+		// Coloca as vidas na tela
+		this.addLives();
+		// Coloca os pontos na tela
+		this.addScore();
+		
 	    //Coloca GameSpriteSheet na memória
 	    this.spriteFrameCache.addSpriteFrames("res/spritesheets/GameSpriteSheet.plist", "res/spritesheets/GameSpriteSheet.png");
 
@@ -74,6 +84,23 @@ var GameLayer = cc.Layer.extend({
         var object2Rect = object2.collideRect(object2.getPosition());
         
         return cc.rectIntersectsRect(object1Rect, object2Rect);
+    },
+    
+    addLives:function(){
+    	count = 0;
+    	for(var i=0; i<3; i++) {
+    		this.spriteShip = cc.Sprite.create("res/images/ship_14-24.png");
+            this.spriteShip.setPosition(30 + count, screen.height - 30);
+            layer.addChild(this.spriteShip);
+            count = count + 14;
+        }
+    },
+        
+    addScore:function(){
+		scoreGame.scoreLabel = cc.LabelTTF.create(scoreGame.score, "VectorB", 20);
+		scoreGame.scoreLabel.setColor( new cc.Color3B(255, 255, 255) );
+		scoreGame.scoreLabel.setPosition(new cc.Point(screen.width - 40, screen.height - 40) );
+		layer.addChild(scoreGame.scoreLabel);	
     }
 });
 
