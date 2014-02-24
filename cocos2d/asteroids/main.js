@@ -52,5 +52,5 @@ var cocos2dApp = cc.Application.extend({
     }
 });
 
-var myApp = new cocos2dApp(SplashInicial);
-//var myApp = new cocos2dApp(SpaceShipScene);
+//var myApp = new cocos2dApp(SplashInicial);
+var myApp = new cocos2dApp(GameScene);

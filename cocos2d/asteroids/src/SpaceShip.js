@@ -2,9 +2,10 @@ var SpaceShip = cc.Sprite.extend({
 	spriteFrameCache: cc.SpriteFrameCache.getInstance(),
 	animeCache: cc.AnimationCache.getInstance(),
 	
-	velocityX: 3,
-	velocityY: 3,
 	angularVelocity: 3,
+	velocityX: 5,
+	velocityY: 5,
+	
 	angle: 0,
 
 	
@@ -18,6 +19,7 @@ var SpaceShip = cc.Sprite.extend({
         
 		this.scheduleUpdate();
         this.createAnimation();
+        layer.addChild(this);
     },
 
     update:function(){
@@ -40,9 +42,10 @@ var SpaceShip = cc.Sprite.extend({
     	if (LG.KEYS[cc.KEY.up] || LG.KEYS[cc.KEY.w]){
         	this.xSpeed = this.velocityX*Math.sin(Math.PI/180*this.angle);
         	this.ySpeed = this.velocityY*Math.cos(Math.PI/180*this.angle);
+        	//Coloca a nave na posição calculada
         	this.setPosition(new cc.Point(this.getPosition().x + this.xSpeed,this.getPosition().y + this.ySpeed));
 			
-			//Verifica saída da tela por um lado e entrada por outro
+			//Verifica saída/entrada na tela
         	if(this.getPosition().x >= screen.width)
 				this.setPosition(new cc.Point(this.getPosition().x - screen.width, this.getPosition().y));
 			if(this.getPosition().x <= 0)
@@ -52,7 +55,6 @@ var SpaceShip = cc.Sprite.extend({
 			if(this.getPosition().y <= 0)
 				this.setPosition(new cc.Point(this.getPosition().x, this.getPosition().y + screen.height));
     	}
-    	
     	
     	//Faz a animação da nave com fogo
     	if (!LG.KEYS[cc.KEY.up]){
@@ -67,28 +69,30 @@ var SpaceShip = cc.Sprite.extend({
 		}
     },
 
+	//Calcula o retângulo que envolve o sprite da nave para verificar a colisão
+	collideRect:function(position){
+		var size = this.getContentSize();
+	    return cc.rect(position.x - size.width/2, position.y - size.height/2, size.width, size.height);
+	},
+    
+	animation: function(){
+		var animation = this.animeCache.getAnimation("shipFire");
+		animation.setRestoreOriginalFrame(true);
+		this.runAction(cc.RepeatForever.create(cc.Animate.create(animation)));	
+	},
+
 	createAnimation: function(){
     	var animeFrames = [];
 		animeFrames.push(this.spriteFrameCache.getSpriteFrame("ship_14-24.png"));
 		animeFrames.push(this.spriteFrameCache.getSpriteFrame("shipFire1_14-24.png"));
 		animeFrames.push(this.spriteFrameCache.getSpriteFrame("shipFire2_14-24.png"));
 		
-		var animation = cc.Animation.create(animeFrames,0.1);
-		this.animeCache.addAnimation(animation,"shipFire");
+		var animation = cc.Animation.create(animeFrames, 0.1);
+		this.animeCache.addAnimation(animation, "shipFire");
 	},
 	
-	animation: function(){
-		var animation = this.animeCache.getAnimation("shipFire");
-		animation.setRestoreOriginalFrame(true);
-		this.runAction(cc.RepeatForever.create(cc.Animate.create(animation)));	
+	
+	die:function(){
+		cc.log("nave colidiu!");
 	}
-});
-
-var SpaceShipScene = cc.Scene.extend({
-    onEnter:function(){
-        this._super();
-        var layer = new SpaceShipLayer();
-        layer.init();
-        this.addChild(layer);
-    }
 });
