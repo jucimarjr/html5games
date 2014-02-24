@@ -1,11 +1,18 @@
 
 var MenuLayer = cc.Layer.extend({
+	title: null,
 	
     init:function()
     {
         this._super();
         var tocando = 1;
-        var tela = cc.Director.getInstance().getWinSizeInPixels();
+        var screen = cc.Director.getInstance().getWinSizeInPixels();
+		
+		this.title = cc.LabelTTF.create("ASTEROIDS", "SFAtarianSystem", 70);
+		this.title.setColor( new cc.Color3B(255, 255, 255) );
+		this.title.setPosition(new cc.Point(screen.width/2, screen.height - 50) );
+        this.addChild(this.title);
+		
         /*
         var fundo = cc.Sprite.create("res/black_screen.png");
         fundo.setPositionX(tela.width/2);
@@ -24,13 +31,13 @@ var MenuLayer = cc.Layer.extend({
 //        var action_1 = cc.Animate.create(animation);
 //        this.nave.runAction(cc.Sequence.create(action,action.reverse()));
         
-        btPlay = cc.Sprite.create("res/images/buttons/btnPlay_155-34.png");
+        btPlay = cc.Sprite.create("res/images/buttons/newBtnPlay_155-34.png");
         btPlaySelected = cc.Sprite.create("res/images/buttons/btnPlaySelected_155-34.png");
-        btHighScore = cc.Sprite.create("res/images/buttons/btnScore_356-34.png");
+        btHighScore = cc.Sprite.create("res/images/buttons/newBtnScore_356-34.png");
         btHighScoreSelected = cc.Sprite.create("res/images/buttons/btnScoreSelected_365-34.png");
-        btHowToPlay = cc.Sprite.create("res/images/buttons/btnHowToPlay_381-34.png");
+        btHowToPlay = cc.Sprite.create("res/images/buttons/newBtnHowToPlay_381-34.png");
         btHowToPLaySelected = cc.Sprite.create("res/images/buttons/btnHowToPlaySelected_381-34.png");
-        btCredits = cc.Sprite.create("res/images/buttons/btnCredits_256-34.png");
+        btCredits = cc.Sprite.create("res/images/buttons/newBtnCredits_256-34.png");
         btCreditsSelected = cc.Sprite.create("res/images/buttons/btnCreditsSelected_256-34.png");
       
       

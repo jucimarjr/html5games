@@ -9,7 +9,7 @@ var HowToPlayLayer = cc.Layer.extend({
             this.setMouseEnabled(true);
 
         var background = cc.Director.getInstance().getWinSizeInPixels();      
-        var fundo =  cc.Sprite.create("res/screenshots/howToPlay_800-480.png");
+        var fundo =  cc.Sprite.create("res/screenshots/newHowToPlay_800-480.png");
         fundo.setPositionX(background.width/2);
         fundo.setPositionY(background.height/2);
         this.addChild(fundo);
