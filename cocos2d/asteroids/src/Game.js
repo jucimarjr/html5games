@@ -8,12 +8,18 @@ var ship;
 //Variáveis dos CONTROLES
 var LG = {KEYS: []}; //Verifica se existe alguma tecla pressionada ou não
 
+var scoreGame = {
+	SCORELABEL: null, 
+	SCORE:0,
+};
+
+var score = 0;
 
 var GameLayer = cc.Layer.extend({
 	
-	spriteShip: [],
-	score: 0,
-	scoreLabel: null,
+	//spriteShip: [],
+	//score: 0,
+	//scoreLabel: null,
 
 	spriteFrameCache: cc.SpriteFrameCache.getInstance(),
 	animeCache: cc.AnimationCache.getInstance(),
@@ -25,10 +31,10 @@ var GameLayer = cc.Layer.extend({
 		this.layerGame = cc.LayerColor.create(new cc.Color4B(0, 0, 0, 255), 800, 480);    
 
 	    // Coloca as vidas no jogo
-            this.putLives();
+            this.addLives();
             
             // Coloca os pontos
-	    this.putScore();
+	    this.addScore();
 	
 		//Habilita o teclado/touch como controle
 		if ('keyboard' in sys.capabilities)
@@ -45,16 +51,19 @@ var GameLayer = cc.Layer.extend({
 	    
         //Coloca o Asteroids.js no jogo
         for(i=0; i<7; i++){
-        	this.asteroids = new Asteroid();
+        	this.asteroids = new Asteroid("large");
         	this.layerGame.addChild(this.asteroids);
         }
         
         this.addChild(this.layerGame);
         this.scheduleUpdate();
+	
+	
+
         return true;
     },
     
-	onKeyDown:function (e) {
+    onKeyDown:function (e) {
         LG.KEYS[e] = true;
     },
 
@@ -62,7 +71,7 @@ var GameLayer = cc.Layer.extend({
         LG.KEYS[e] = false;
     },
     
-    putLives:function(){
+    addLives:function(){
 	count = 0;
     	for(var i=0; i<3; i++)
         {
@@ -72,12 +81,12 @@ var GameLayer = cc.Layer.extend({
 	    count = count + 14;
         }
     },
-    putScore:function(){
-        this.scoreLabel = cc.LabelTTF.create(this.score, "VectorB", 24);
-	this.scoreLabel.setColor( new cc.Color3B(255, 255, 255) );
-        this.scoreLabel.setPosition(new cc.Point(screen.width - 40, screen.height - 40) );
-        this.layerGame.addChild(this.scoreLabel);
-    }
+    addScore:function(){
+        scoreGame.SCORELABEL = cc.LabelTTF.create(scoreGame.SCORE, "SFAtarianSystem", 24);
+	scoreGame.SCORELABEL.setColor( new cc.Color3B(255, 255, 255) );
+        scoreGame.SCORELABEL.setPosition(new cc.Point(screen.width - 40, screen.height - 40) );
+        this.layerGame.addChild(scoreGame.SCORELABEL);	
+    },
 });
 
 var GameScene = cc.Scene.extend({
