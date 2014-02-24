@@ -105,8 +105,9 @@ Game.prototype.punctuate = function (points) {
 };
 
 Game.prototype.gameOver = function () {
+    game.score = this.score;
     game.add.text(this.game.width/2 - 100, this.game.height/2, "Game Over", {
         font: "40px Vector Battle", fill: "#ffffff", align: "center"
     });
-    setTimeout(function () { this.game.state.start('menu', Menu) } , 3000 );
+    setTimeout(function () { this.game.state.start('HighScoreInput', HighScoreInput) } , 3000 );
 };
