@@ -77,8 +77,8 @@ var GameLayer = cc.Layer.extend({
     			asteroids[i].die(asteroids[i].getPosition());
     			asteroids.splice(i, 1); //Remove 1 elemento no index i
 				this.ship.die();
-				this.removeLives(this.numberLives);
 				this.numberLives--;
+				this.removeLives(this.numberLives);						
 			}
 	    }	
     },
@@ -93,7 +93,7 @@ var GameLayer = cc.Layer.extend({
     
     addLives:function(){
     	count = 0;
-    	for(var i=0; i<3; i++) {
+    	for(var i = 0; i < this.numberLives; i++) {
     		this.spriteShip[i] = cc.Sprite.create("res/images/ship_14-24.png");
             this.spriteShip[i].setPosition(30 + count, screen.height - 30);
             layer.addChild(this.spriteShip[i]);
@@ -102,10 +102,10 @@ var GameLayer = cc.Layer.extend({
     },
 	
 	removeLives:function(numberLives){
-		layer.removeChild(this.spriteShip[numberLives]);
-        /*this.spriteHeart3 = cc.Sprite.create("assets/coracao_vazio.png");
-        this.spriteHeart3.setPosition(110, screen.height - 30);
-        this.layerGame.addChild(this.spriteHeart3);*/
+		layer.removeChild(this.spriteShip[numberLives]);		
+		if (this.numberLives == 0)
+			cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2, new Losing()));
+			
 	},
         
     addScore:function(){
