@@ -8,19 +8,29 @@ var Game = function(game){
 	this.livesHud = null;
 	this.loseMSG = null;
 	this.ufo = null;
+	this.score = null;
+	this.scoreText = null;
 	this.nextAddUfo = 0;
 	this.addUfoTime = 10000;
 };
 
 Game.prototype.create = function () {
-	this.ufo = new Ufo(this);
-	this.asteroid = new Asteroid(this);
-	this.spaceShip = new SpaceShip(this);
-	this.groupAsteroids = this.game.add.group();
+
+    this.ufo = new Ufo(this);
+    this.asteroid = new Asteroid(this);
+    this.spaceShip = new SpaceShip(this);
+    this.groupAsteroids = this.game.add.group();
+
+    this.score = 0;
+    this.scoreText = game.add.text(game.width - 150, 20 , this.score, {
+        font: "25px Vector Battle", fill: "#ffffff" , align: "right"
+    });
+
 	this.livesHud = this.game.add.group();
 	for(var i = 0; i<3; i++){
 		this.livesHud.create(18 * i + 3, 4, 'sprites', 'ship_14-24.png');
 	}
+
 	this.nextAddUfo = this.game.time.now + this.addUfoTime;
 	
     for (i = 0 ; i < 5; i++) {
@@ -33,6 +43,7 @@ Game.prototype.create = function () {
     	}
     	this.asteroid.create(px, py, 'large');
     }
+
 };
 
 Game.prototype.update = function () {
@@ -88,10 +99,14 @@ Game.prototype.outOfBounds = function (object) {
 
 };
 
-Game.prototype.punctuate = function () {
-    
+Game.prototype.punctuate = function (points) {
+    this.score += points;
+    this.scoreText.setText( this.score );
 };
 
-Game.prototype.loseLife = function () {
-    
+Game.prototype.gameOver = function () {
+    game.add.text(this.game.width/2 - 100, this.game.height/2, "Game Over", {
+        font: "40px Vector Battle", fill: "#ffffff", align: "center"
+    });
+    setTimeout(function () { this.game.state.start('menu', Menu) } , 3000 );
 };

@@ -50,15 +50,19 @@ Asteroid.prototype.die = function (asteroid, shoot) {
     emitter.start(true, 500, null, 15);
     
     if (asteroid.size == "large") {
+        this.gameClass.punctuate(10);
         this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "medium");
         this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "medium");
     }
     if (asteroid.size == "medium") {
+        this.gameClass.punctuate(20);
         this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "small");
         this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "small");
     }
+    if (asteroid.size == "small") {
+        this.gameClass.punctuate(40);
+    }
     
     asteroid.kill();
-    this.gameClass.punctuate();
 
 };

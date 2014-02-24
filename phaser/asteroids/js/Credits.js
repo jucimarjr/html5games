@@ -1,14 +1,14 @@
-HowToPlay = function (game) {
+Credits = function (game) {
     this.game = game;
-    this.screenName = 'HowToPlayScreen';
-    this.image = 'assets/screenshots/howToPlay_800-480.png';
+    this.screenName = 'creditScreen';
+    this.image = 'assets/screenshots/credits_800-480.png';
 };
 
-HowToPlay.prototype.preload = function(){
+Credits.prototype.preload = function(){
     game.load.image(this.screenName, this.image);
 };
 
-HowToPlay.prototype.create = function() {
+Credits.prototype.create = function() {
     var bg = game.add.sprite(0, 0, this.screenName);
 		
     game.input.onDown.add(function() {

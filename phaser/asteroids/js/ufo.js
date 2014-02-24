@@ -20,7 +20,6 @@ Ufo.prototype.appear = function () {
 Ufo.prototype.move = function () {
     var direction = (45 - Math.random() * 90);
     this.sprite.body.velocity.x = Math.cos(direction * 0.0174) * 150;
-    //this.sprite.body.velocity.y = Math.sin(direction * 0.0174) * 150;
 };
 
 Ufo.prototype.update = function () {
@@ -57,16 +56,16 @@ Ufo.prototype.die = function (ufo, asteroid) {
     emitter.start(true, 500, null, 15);
     
     if(asteroid != null){
-    if (asteroid.size == "large") {
-        this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "medium");
-        this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "medium");
+        if (asteroid.size == "large") {
+            this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "medium");
+            this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "medium");
+        }
+        if (asteroid.size == "medium") {
+            this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "small");
+            this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "small");
+        }
+        asteroid.kill();
+        this.gameClass.punctuate(30);
     }
-    if (asteroid.size == "medium") {
-        this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "small");
-        this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "small");
-    }
-    asteroid.kill();
-    }
-
     ufo.kill();
 };

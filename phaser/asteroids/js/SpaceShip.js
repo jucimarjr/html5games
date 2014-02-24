@@ -106,9 +106,7 @@ SpaceShip.prototype.die = function (spaceShip, asteroid) {
     
     this.gameClass.livesHud.getFirstAlive().kill();
     if(this.gameClass.livesHud.countDead() == 3){
-    	this.game.state.start('menu', Menu);
-    	//this.gameClass.loseMSG = this.gameClass.add.bitmapFont(200, 100, 'YOU LOSE');
-    	
+    	this.gameClass.gameOver();	
     }
 
     setTimeout(function (gameClass) {
@@ -126,5 +124,5 @@ SpaceShip.prototype.die = function (spaceShip, asteroid) {
     }
     asteroid.kill();
     spaceShip.kill();
-    this.gameClass.loseLife();
+   
 };

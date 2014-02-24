@@ -1,6 +1,8 @@
+var HowToPlay = {};
+
 HowToPlay = function (game) {
     this.game = game;
-    this.screenName = 'HowToPlayScreen';
+    this.screenName = 'creditScreen';
     this.image = 'assets/screenshots/howToPlay_800-480.png';
 };
 
