@@ -55,6 +55,8 @@ var GameLayer = cc.Layer.extend({
         this.addChild(layer);
         this.scheduleUpdate();
 		
+		cc.AudioEngine.getInstance().playMusic("res/audios/AsteroidsTonehi.mp3", true);
+		
         return true;
     },
 	
