@@ -94,6 +94,28 @@ var SpaceShip = cc.Sprite.extend({
 		this.animeCache.addAnimation(animation, "shipFire");
 	},
 	
+	createExplosion: function(){
+    	var animeFrames = [];
+		animeFrames.push(this.spriteFrameCache.getSpriteFrame("Explosion1_39-41.png"));
+		animeFrames.push(this.spriteFrameCache.getSpriteFrame("Explosion2_66-68.png"));
+		animeFrames.push(this.spriteFrameCache.getSpriteFrame("Explosion3_91-87.png"));
+		animeFrames.push(this.spriteFrameCache.getSpriteFrame("Explosion4_76-87.png"));
+		animeFrames.push(this.spriteFrameCache.getSpriteFrame("Explosion5_52-57.png"));
+		animeFrames.push(this.spriteFrameCache.getSpriteFrame("Explosion6_25-30.png"));
+		
+		var animation = cc.Animation.create(animeFrames, 0.1);
+		this.animeCache.addAnimation(animation, "explosion");
+		animation = this.animeCache.getAnimation("explosion");
+		animation.setRestoreOriginalFrame(true);
+		this.runAction(cc.Animate.create(animation));
+	},
+	
+	animationExplosion: function(){
+		var animation = this.animeCache.getAnimation("explosion");
+		animation.setRestoreOriginalFrame(true);
+		this.runAction(cc.Animate.create(animation));	
+	}
+	
 	
 	shoot:function(dt) {
         //this.shootEffect();
@@ -125,6 +147,9 @@ var SpaceShip = cc.Sprite.extend({
 	die:function(){
     	layer.removeChild(this);
     	//ADICIONAR A ANIMAÇÃO DA EXPLOSÃO DA NAVE AQUI
+    	this.stopAllActions();
+    	//Não testei...
+    	//this.createExplosion();
     	
     	ship = new SpaceShip();
 	}
