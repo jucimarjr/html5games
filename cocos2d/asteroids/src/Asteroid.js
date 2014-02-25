@@ -39,10 +39,10 @@ var Asteroid = cc.Sprite.extend({
 	
 	//Seta o asteroid: tamanho do sprite, velocidade e posição na tela
 	setAsteroid:function(size, position) {
+		var i = Math.floor((Math.random()*3)+1);
+		
 		switch (size) {
 			case "big":
-				
-				var i = Math.floor((Math.random()*3)+1);
 				this.initWithSpriteFrameName("asteroids"+i+"_80-80.png");
 				this.angularVelocity = 1;
 				this.velocityX = 1;
@@ -53,8 +53,7 @@ var Asteroid = cc.Sprite.extend({
 				break;
 			
 			case "medium":
-				var i = Math.floor((Math.random()*3)+1);
-				this.initWithSpriteFrameName("asteroids"+i+"_40-40.png");				
+				this.initWithSpriteFrameName("asteroids"+i+"_40-40.png");
 				this.angularVelocity = 2;
 				this.velocityX = 2;
 				this.velocityY = 2;
@@ -64,7 +63,6 @@ var Asteroid = cc.Sprite.extend({
 				break;
 			
 			case "small":
-				var i = Math.floor((Math.random()*3)+1);				
 				this.initWithSpriteFrameName("asteroids"+i+"_20-20.png");
 				this.angularVelocity = 3;
 				this.velocityX = 3;

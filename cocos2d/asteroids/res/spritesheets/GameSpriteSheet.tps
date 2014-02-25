@@ -36,7 +36,7 @@
         <key>dataFormat</key>
         <string>cocos2d</string>
         <key>textureFileName</key>
-        <filename>GameSpriteSheet.png</filename>
+        <filename></filename>
         <key>flipPVR</key>
         <false/>
         <key>ditherType</key>
@@ -70,7 +70,7 @@
             <key>width</key>
             <int>2048</int>
             <key>height</key>
-            <int>128</int>
+            <int>2048</int>
         </QSize>
         <key>fixedTextureSize</key>
         <QSize>
@@ -127,7 +127,7 @@
             <key>data</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>GameSpriteSheet.plist</filename>
+                <filename></filename>
             </struct>
         </map>
         <key>multiPack</key>
@@ -171,14 +171,14 @@
             <filename>../workspace/html5games/cocos2d/asteroids/res/images/asteroids1_80-80.png</filename>
             <filename>../workspace/html5games/cocos2d/asteroids/res/images/asteroids2_20-20.png</filename>
             <filename>../workspace/html5games/cocos2d/asteroids/res/images/asteroids2_40-40.png</filename>
-            <filename>../workspace/html5games/cocos2d/asteroids/res/images/asteroids2_80-79.png</filename>
+            <filename>../workspace/html5games/cocos2d/asteroids/res/images/asteroids2_80-80.png</filename>
             <filename>../workspace/html5games/cocos2d/asteroids/res/images/asteroids3_20-20.png</filename>
             <filename>../workspace/html5games/cocos2d/asteroids/res/images/asteroids3_40-40.png</filename>
-            <filename>../workspace/html5games/cocos2d/asteroids/res/images/asteroids3_79-80.png</filename>
+            <filename>../workspace/html5games/cocos2d/asteroids/res/images/asteroids3_80-80.png</filename>
             <filename>../workspace/html5games/cocos2d/asteroids/res/images/particle_1-15.png</filename>
             <filename>../workspace/html5games/cocos2d/asteroids/res/images/ship_14-24.png</filename>
             <filename>../workspace/html5games/cocos2d/asteroids/res/images/shipFire1_14-24.png</filename>
-            <filename>../workspace/html5games/cocos2d/asteroids/res/images/shipFire3_14-24.png</filename>
+            <filename>../workspace/html5games/cocos2d/asteroids/res/images/shipFire2_14-24.png</filename>
             <filename>../workspace/html5games/cocos2d/asteroids/res/images/shoot_2-2.png</filename>
             <filename>../workspace/html5games/cocos2d/asteroids/res/images/ufo_96-61.png</filename>
         </array>

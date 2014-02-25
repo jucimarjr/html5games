@@ -15,7 +15,7 @@ var LosingLayer = cc.Layer.extend({
         else if ('mouse' in sys.capabilities)
             this.setMouseEnabled(true);
 
-		this.addAsteroids();
+		//this.addAsteroids();
 		this.addScore(); 
 		this.addGameOver(); 	
         

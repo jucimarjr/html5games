@@ -22,8 +22,10 @@ var GameLayer = cc.Layer.extend({
 	
 	numberAsteroids: 7,
 	numberLives: 3,
-	spriteShip: [],
+	spriteLives: [],
+	aliveLives: [],
 	
+	gameOver: null,
 	
 	init:function(){
 		//Habilita o teclado/touch como controle
@@ -79,10 +81,10 @@ var GameLayer = cc.Layer.extend({
     			asteroids[i].die(asteroids[i].getPosition());
     			asteroids.splice(i, 1); //Remove 1 elemento no index i
 				this.ship.die();
-				this.numberLives--;
-				this.removeLives(this.numberLives);						
+				
+				this.removeLives(--this.numberLives);						
 			}
-	    }	
+	    }
     },
     
     //Verifica se há uma colisão
@@ -93,29 +95,37 @@ var GameLayer = cc.Layer.extend({
         return cc.rectIntersectsRect(object1Rect, object2Rect);
     },
     
-    addLives:function(){
-    	count = 0;
-    	for(var i = 0; i < this.numberLives; i++) {
-    		this.spriteShip[i] = cc.Sprite.create("res/images/ship_14-24.png");
-            this.spriteShip[i].setPosition(30 + count, screen.height - 30);
-            layer.addChild(this.spriteShip[i]);
-            count = count + 14;
-        }
-    },
-	
-	removeLives:function(numberLives){
-		layer.removeChild(this.spriteShip[numberLives]);		
-		if (this.numberLives == 0)
-			cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2, new Losing()));
-			
-	},
-        
+
     addScore:function(){
 		scoreGame.scoreLabel = cc.LabelTTF.create(scoreGame.score, "VectorB", 20);
 		scoreGame.scoreLabel.setColor( new cc.Color3B(255, 255, 255) );
 		scoreGame.scoreLabel.setPosition(new cc.Point(screen.width - 40, screen.height - 40) );
 		layer.addChild(scoreGame.scoreLabel);	
-    }
+    },
+    
+    addLives:function(){
+    	count = 0;
+    	for(var i=0; i<this.numberLives; i++) {
+    		this.aliveLives[i] = true;
+    		this.spriteLives[i] = cc.Sprite.create("res/images/ship_14-24.png");
+            this.spriteLives[i].setPosition(30 + count, screen.height - 30);
+            layer.addChild(this.spriteLives[i]);
+            count = count + 14;
+        }
+    },
+	
+	removeLives:function(numberLives){
+		cc.log("entrou no removeLives");
+		layer.removeChild(this.spriteLives[numberLives]);		
+		if (this.numberLives == 0){
+		//	cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2, new Losing()));
+		
+			this.gameOver = cc.LabelTTF.create("GAME OVER", "SFAtarianSystem", 100);
+			this.gameOver.setColor(new cc.Color3B(255, 255, 255));
+	        this.gameOver.setPosition(new cc.Point(screen.width/2, screen.height/2) );
+	        layer.addChild(this.gameOver);
+		}
+	}
 });
 
 var GameScene = cc.Scene.extend({
