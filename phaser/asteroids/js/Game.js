@@ -12,7 +12,7 @@ var Game = function(game){
 	this.scoreText = null;
 	this.nextAddUfo = 0;
 	this.addUfoTime = 10000;
-	this.velAsteroids = 1;
+	this.velAsteroids = null;
 };
 
 Game.prototype.create = function () {
@@ -22,6 +22,7 @@ Game.prototype.create = function () {
     this.spaceShip = new SpaceShip(this);
     this.groupAsteroids = this.game.add.group();
     this.initAsteroids();
+    this.velAsteroids = 1;
     this.score = 0;
     this.scoreText = game.add.text(game.width - 150, 20 , this.score, {
         font: "25px Vector Battle", fill: "#ffffff" , align: "right"
