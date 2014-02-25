@@ -7,7 +7,7 @@ var SpaceShip = cc.Sprite.extend({
 	velocityY: 5,
 	
 	angle: 0,
-	_bullet:null,
+	alive: true,
 
 	
 	ctor:function(){
@@ -26,7 +26,12 @@ var SpaceShip = cc.Sprite.extend({
     update:function(){
     	for(i=0; i<asteroids.length; i++)
     		this.collide(asteroids[i]);
-		this.collide(ufo);
+		for(i=0; i<bulletUFO.length; i++){
+			if(bulletUFO != null)
+				this.collide(bulletUFO[i]);
+		}
+    	if(ufo != null)
+			this.collide(ufo);
     	
     	//Rotaciona a nave
     	if (Math.abs(this.angle) >= 360)
@@ -94,39 +99,9 @@ var SpaceShip = cc.Sprite.extend({
 		this.animeCache.addAnimation(animation, "shipFire");
 	},
 	
-	createExplosion: function(){
-    	var animeFrames = [];
-		animeFrames.push(this.spriteFrameCache.getSpriteFrame("Explosion1_39-41.png"));
-		animeFrames.push(this.spriteFrameCache.getSpriteFrame("Explosion2_66-68.png"));
-		animeFrames.push(this.spriteFrameCache.getSpriteFrame("Explosion3_91-87.png"));
-		animeFrames.push(this.spriteFrameCache.getSpriteFrame("Explosion4_76-87.png"));
-		animeFrames.push(this.spriteFrameCache.getSpriteFrame("Explosion5_52-57.png"));
-		animeFrames.push(this.spriteFrameCache.getSpriteFrame("Explosion6_25-30.png"));
-		
-		var animation = cc.Animation.create(animeFrames, 0.1);
-		this.animeCache.addAnimation(animation, "explosion");
-		animation = this.animeCache.getAnimation("explosion");
-		animation.setRestoreOriginalFrame(true);
-		this.runAction(cc.Animate.create(animation));
-	},
-	
-	animationExplosion: function(){
-		var animation = this.animeCache.getAnimation("explosion");
-		animation.setRestoreOriginalFrame(true);
-		this.runAction(cc.Animate.create(animation));	
-	},
-	
 	
 	shoot:function(dt) {
-        //this.shootEffect();
-        //var offset = 13;
-		cc.log("shoot");
-        var p = this.getPosition();
-        var cs = this.getContentSize();
-		var bullet = new Bullet();
-		this.getParent().addChild(bullet);
-		bullet.setPosition(p.x,p.y);
-		
+		bullet.push(new Bullet());
 	},
 	
 	//Calcula o retângulo que envolve o sprite da nave para verificar a colisão
@@ -136,21 +111,46 @@ var SpaceShip = cc.Sprite.extend({
 	},
     //Verifica se há colisão
     collide:function(object){
-        var object1Rect = this.collideRect(this.getPosition());
+		var object1Rect = this.collideRect(this.getPosition());
         var object2Rect = object.collideRect(object.getPosition());
-        
-        if(cc.rectIntersectsRect(object1Rect, object2Rect))
+      
+        if(cc.rectIntersectsRect(object1Rect, object2Rect)){
         	this.die();
+
+        	if(object == ufo)
+        		ufo = null;
+        	for(i=0; i<asteroids.length; i++){
+    			if(object = asteroids[i])
+    				asteroids.splice(i, 1); //Remove 1 elemento no index i
+        	}
+        }
     },
 	
     //Explode a nave
 	die:function(){
-    	layer.removeChild(this);
-    	//ADICIONAR A ANIMAÇÃO DA EXPLOSÃO DA NAVE AQUI
-    	this.stopAllActions();
-    	//Não testei...
-    	//this.createExplosion();
-    	
-    	ship = new SpaceShip();
+    	if (this.alive == true) {
+    		this.removeLives(--numberLives);
+    		cc.log(numberLives);
+
+    		layer.removeChild(this);
+        	//ADICIONAR A ANIMAÇÃO DA EXPLOSÃO DA NAVE AQUI
+        	
+			if (numberLives !== 0)
+				ship = new SpaceShip();
+		}
+    	this.alive = false;
+	},
+    
+	removeLives:function(numberLives){
+		layer.removeChild(spriteLives[numberLives]);		
+		if (numberLives == 0){
+		//	cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2, new Losing()));
+			gameOver = cc.LabelTTF.create("GAME OVER", "SFAtarianSystem", 100);
+			gameOver.setColor(new cc.Color3B(255, 255, 255));
+	        gameOver.setPosition(new cc.Point(screen.width/2, screen.height/2) );
+	        layer.addChild(gameOver);
+	        
+	        layer.removeChild(this);
+		}
 	}
 });

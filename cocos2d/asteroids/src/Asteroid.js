@@ -28,8 +28,19 @@ var Asteroid = cc.Sprite.extend({
 	update:function(){
 		this.move();
 		this.collide(ship);
-		//this.collide(buttet);
-		this.collide(ufo);
+
+		if(bullet != null){
+			for(i=0; i<bullet.length; i++)
+				this.collide(bullet[i]);
+		}
+
+		for(i=0; i<bulletUFO.length; i++){
+			if(bulletUFO != null)
+				this.collide(bulletUFO[i]);
+		}
+		
+		if(ufo != null)
+			this.collide(ufo);
 	},
 
 	
@@ -55,7 +66,7 @@ var Asteroid = cc.Sprite.extend({
 				this.velocityY = 1;
 
 				//Coloca o asteroid na posição em que se encontrava o asteroid grande
-				this.setPosition(new cc.Point(position.x, position.y));
+				this.setPosition(new cc.Point(position.x + 20, position.y + 20));
 				break;
 			
 			case "small":
@@ -65,7 +76,7 @@ var Asteroid = cc.Sprite.extend({
 				this.velocityY = 1.5;
 				
 				//Coloca o asteroid na posição em que se encontrava o asteroid médio
-				this.setPosition(new cc.Point(position.x, position.y));
+				this.setPosition(new cc.Point(position.x + 20, position.y + 20));
 				break;
 		}
 	},
@@ -101,12 +112,25 @@ var Asteroid = cc.Sprite.extend({
         var object1Rect = this.collideRect(this.getPosition());
         var object2Rect = object.collideRect(object.getPosition());
         
-        if(cc.rectIntersectsRect(object1Rect, object2Rect))
+        if(cc.rectIntersectsRect(object1Rect, object2Rect)){
         	this.die();
+
+        	for(i=0; i<bullet.length; i++)
+        		if(object == bullet[i]){
+        			bullet.splice(i, 1); //Remove 1 elemento no index i
+        			this.punctuate();
+        		}
+        	
+        	if(object == ufo)
+        		ufo = null;
+        	
+        }
     },
     
 	die:function(){
-		if (this.alive) {
+    	//O asteroid é removido no SpaceShip.js e no UFO.js
+    	
+    	if (this.alive) {
 			switch (this.size) {
 				case "big":
 					layer.removeChild(this);
@@ -125,5 +149,21 @@ var Asteroid = cc.Sprite.extend({
 			}
 		}
 		this.alive = false;
-	}
+	},
+    
+	
+    punctuate:function(){
+    	switch (this.size) {
+		case "big":
+			scoreGame.score += 20;
+			break;
+		case "medium":
+			scoreGame.score += 50;
+			break;
+		case "small":
+			scoreGame.score += 100;
+			break;
+    	}
+    	scoreGame.scoreLabel.setString(scoreGame.score);
+    }
 });

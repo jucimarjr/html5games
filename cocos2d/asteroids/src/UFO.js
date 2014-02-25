@@ -24,7 +24,11 @@ var UFO = cc.Sprite.extend({
     
     	for(i=0; i<asteroids.length; i++)
     		this.collide(asteroids[i]);
-		//this.collide(buttet);
+    	
+    	if(bullet != null){
+			for(i=0; i<bullet.length; i++)
+				this.collide(bullet[i]);
+		}
     },
     
 	
@@ -41,8 +45,8 @@ var UFO = cc.Sprite.extend({
 			layer.removeChild(this);
 	},
     
-	shoot:function (dt) {
-		
+	shoot:function(dt) {
+		bulletUFO.push(new Bullet());
 	},
 	
 	//Calcula o retângulo que envolve o sprite da nave para verificar a colisão
@@ -55,12 +59,30 @@ var UFO = cc.Sprite.extend({
         var object1Rect = this.collideRect(this.getPosition());
         var object2Rect = object.collideRect(object.getPosition());
         
-        if(cc.rectIntersectsRect(object1Rect, object2Rect))
+        if(cc.rectIntersectsRect(object1Rect, object2Rect)){
         	this.die();
+
+        	for(i=0; i<bullet.length; i++)
+        		if(object == bullet[i]){
+        			bullet.splice(i, 1); //Remove 1 elemento no index i
+        			this.punctuate();
+        		}
+        	
+        	for(i=0; i<asteroids.length; i++){
+    			if(asteroids[i] == object)
+    				asteroids.splice(i, 1); //Remove 1 elemento no index i
+    		}
+        }
     },
 	
     //Disco voador some
 	die:function(){
     	layer.removeChild(this);
-	}
+	},
+    
+    
+    punctuate:function(){
+    	scoreGame.score += 200;
+//    	scoreGame.scoreLabel.setString(scoreGame.score);
+    }
 });

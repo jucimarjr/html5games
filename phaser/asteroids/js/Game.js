@@ -11,8 +11,8 @@ var Game = function(game){
 	this.score = null;
 	this.scoreText = null;
 	this.nextAddUfo = 0;
-	this.addUfoTime = 15000;
-	this.velAsteroids = 1;
+	this.addUfoTime = 10000;
+	this.velAsteroids = null;
 };
 
 Game.prototype.create = function () {
@@ -22,9 +22,10 @@ Game.prototype.create = function () {
     this.spaceShip = new SpaceShip(this);
     this.groupAsteroids = this.game.add.group();
     this.initAsteroids();
+    this.velAsteroids = 1;
     this.score = 0;
     this.scoreText = game.add.text(game.width - 150, 20 , this.score, {
-        font: "24px Vector Battle", fill: "#ffffff" , align: "right"
+        font: "25px Vector Battle", fill: "#ffffff" , align: "right"
     });
 
 	this.livesHud = this.game.add.group();
@@ -121,8 +122,8 @@ Game.prototype.punctuate = function (points) {
 
 Game.prototype.gameOver = function () {
     game.score = this.score;
-    game.add.text(this.game.width, this.game.height/2, "Game Over", {
-        font: "60px Vector Battle", fill: "#ffffff", align: "center"
+    game.add.text(this.game.width/2 - 100, this.game.height/2, "Game Over", {
+        font: "40px Vector Battle", fill: "#ffffff", align: "center"
     });
     setTimeout(function () { this.game.state.start('HighScoreInput', HighScoreInput) } , 3000 );
 };
