@@ -21,15 +21,13 @@ var UFO = cc.Sprite.extend({
 
     update:function(){
     	this.move();
+    
+    	for(i=0; i<asteroids.length; i++)
+    		this.collide(asteroids[i]);
+		//this.collide(buttet);
     },
     
-	//Calcula o retângulo que envolve o sprite do disco voador para verificar a colisão
-	collideRect:function(position){
-		var size = this.getContentSize();
-	    return cc.rect(position.x - size.width/2, position.y - size.height/2, size.width, size.height);
-	},
-    
-    
+	
     appear:function(){
     	
     },
@@ -47,7 +45,22 @@ var UFO = cc.Sprite.extend({
 		
 	},
 	
+	//Calcula o retângulo que envolve o sprite da nave para verificar a colisão
+	collideRect:function(position){
+		var size = this.getContentSize();
+	    return cc.rect(position.x - size.width/2, position.y - size.height/2, size.width, size.height);
+	},
+    //Verifica se há colisão
+    collide:function(object){
+        var object1Rect = this.collideRect(this.getPosition());
+        var object2Rect = object.collideRect(object.getPosition());
+        
+        if(cc.rectIntersectsRect(object1Rect, object2Rect))
+        	this.die();
+    },
+	
+    //Disco voador some
 	die:function(){
-
+    	layer.removeChild(this);
 	}
 });

@@ -24,7 +24,6 @@ var GameLayer = cc.Layer.extend({
 	numberAsteroids: 7,
 	numberLives: 3,
 	spriteLives: [],
-	aliveLives: [],
 	
 	gameOver: null,
 	
@@ -89,7 +88,6 @@ var GameLayer = cc.Layer.extend({
     addLives:function(){
     	count = 0;
     	for(var i=0; i<this.numberLives; i++) {
-    		this.aliveLives[i] = true;
     		this.spriteLives[i] = cc.Sprite.create("res/images/ship_14-24.png");
             this.spriteLives[i].setPosition(30 + count, screen.height - 30);
             layer.addChild(this.spriteLives[i]);
@@ -98,7 +96,6 @@ var GameLayer = cc.Layer.extend({
     },
 	
 	removeLives:function(numberLives){
-		cc.log("entrou no removeLives");
 		layer.removeChild(this.spriteLives[numberLives]);		
 		if (this.numberLives == 0){
 		//	cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2, new Losing()));

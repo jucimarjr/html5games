@@ -24,6 +24,10 @@ var SpaceShip = cc.Sprite.extend({
     },
 
     update:function(){
+    	for(i=0; i<asteroids.length; i++)
+    		this.collide(asteroids[i]);
+		this.collide(ufo);
+    	
     	//Rotaciona a nave
     	if (Math.abs(this.angle) >= 360)
     		this.angle = 0;
@@ -74,12 +78,6 @@ var SpaceShip = cc.Sprite.extend({
 		}
     },
 
-	//Calcula o retângulo que envolve o sprite da nave para verificar a colisão
-	collideRect:function(position){
-		var size = this.getContentSize();
-	    return cc.rect(position.x - size.width/2, position.y - size.height/2, size.width, size.height);
-	},
-    
 	animation: function(){
 		var animation = this.animeCache.getAnimation("shipFire");
 		animation.setRestoreOriginalFrame(true);
@@ -109,7 +107,25 @@ var SpaceShip = cc.Sprite.extend({
 		
 	},
 	
+	//Calcula o retângulo que envolve o sprite da nave para verificar a colisão
+	collideRect:function(position){
+		var size = this.getContentSize();
+	    return cc.rect(position.x - size.width/2, position.y - size.height/2, size.width, size.height);
+	},
+    //Verifica se há colisão
+    collide:function(object){
+        var object1Rect = this.collideRect(this.getPosition());
+        var object2Rect = object.collideRect(object.getPosition());
+        
+        if(cc.rectIntersectsRect(object1Rect, object2Rect))
+        	this.die();
+    },
+	
+    //Explode a nave
 	die:function(){
-		cc.log("nave colidiu!");
+    	layer.removeChild(this);
+    	//ADICIONAR A ANIMAÇÃO DA EXPLOSÃO DA NAVE AQUI
+    	
+    	ship = new SpaceShip();
 	}
 });

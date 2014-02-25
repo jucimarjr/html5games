@@ -32,12 +32,6 @@ var Asteroid = cc.Sprite.extend({
 		this.collide(ufo);
 	},
 
-	//Calcula o retângulo que envolve o sprite do asteroid para verificar a colisão
-	collideRect:function(position){
-		var size = this.getContentSize();
-	    return cc.rect(position.x - size.width/2, position.y - size.height/2, size.width, size.height);
-	},
-	
 	
 	//Seta o asteroid: tamanho do sprite, velocidade e posição na tela
 	setAsteroid:function(size, position) {
@@ -97,6 +91,11 @@ var Asteroid = cc.Sprite.extend({
 			this.setPosition(new cc.Point(this.getPosition().x, this.getPosition().y + screen.height));
 	},
 
+	//Calcula o retângulo que envolve o sprite da nave para verificar a colisão
+	collideRect:function(position){
+		var size = this.getContentSize();
+	    return cc.rect(position.x - size.width/2, position.y - size.height/2, size.width, size.height);
+	},
     //Verifica se há colisão
     collide:function(object){
         var object1Rect = this.collideRect(this.getPosition());
