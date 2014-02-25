@@ -1,3 +1,5 @@
+var shootDelay = true;
+
 var SpaceShip = cc.Sprite.extend({
 	spriteFrameCache: cc.SpriteFrameCache.getInstance(),
 	animeCache: cc.AnimationCache.getInstance(),
@@ -101,7 +103,11 @@ var SpaceShip = cc.Sprite.extend({
 	
 	
 	shoot:function(dt) {
-		bullet.push(new Bullet());
+		if (shootDelay){
+		    shootDelay = false;
+			bullet.push(new Bullet());
+			setTimeout(function(){shootDelay = true;}, 200);
+		}
 	},
 	
 	//Calcula o retângulo que envolve o sprite da nave para verificar a colisão
@@ -143,14 +149,16 @@ var SpaceShip = cc.Sprite.extend({
     
 	removeLives:function(numberLives){
 		layer.removeChild(spriteLives[numberLives]);		
-		if (numberLives == 0){
-		//	cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2, new Losing()));
+		if (numberLives == 0){		
 			gameOver = cc.LabelTTF.create("GAME OVER", "SFAtarianSystem", 100);
 			gameOver.setColor(new cc.Color3B(255, 255, 255));
 	        gameOver.setPosition(new cc.Point(screen.width/2, screen.height/2) );
 	        layer.addChild(gameOver);
 	        
 	        layer.removeChild(this);
+			
+			setTimeout(function(){cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2, new Menu()));}, 1500);
+				
 		}
 	}
 });

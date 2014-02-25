@@ -16,8 +16,12 @@ var Bullet = cc.Sprite.extend({
         this.initWithSpriteFrameName("shoot_2-2.png");
         
         var p = ship.getPosition();
+		var direction = ship.getRotation() + 180;
         var cs = ship.getContentSize();
         this.setPosition(p.x,p.y);
+		
+		this.xVelocity = Math.sin(direction*0.0174)*500;
+		this.yVelocity = Math.cos(direction*0.0174)*500;
         
         this.scheduleUpdate();
         layer.addChild(this);

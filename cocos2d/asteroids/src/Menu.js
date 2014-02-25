@@ -1,5 +1,6 @@
 
 var asteroids = [];
+var verify = null;
 
 var MenuLayer = cc.Layer.extend({
 	title: null,
@@ -15,7 +16,7 @@ var MenuLayer = cc.Layer.extend({
 		this.title.setPosition(new cc.Point(screen.width/2, screen.height - 50) );
         this.addChild(this.title);        
 		
-        
+		
 //        var animation = cc.Animation.create();
 //        for(var i = 0; i < 2; i++){
 //        	var frameName = "res/nave_"+i+".png";
@@ -41,12 +42,12 @@ var MenuLayer = cc.Layer.extend({
         /*btSound = cc.Sprite.create("assets/Telas/som.png");
         btSoundOff = cc.Sprite.create("assets/Telas/som_desligado.png");*/
               
-        var play = cc.MenuItemSprite.create(btPlay,btPlaySelected,null,'onPlay',this);
-        var highScore = cc.MenuItemSprite.create(btHighScore,btHighScoreSelected,null,'onHighScore',this);
+        var play = cc.MenuItemSprite.create(btPlay,null,null,'onPlay',this);
+        var highScore = cc.MenuItemSprite.create(btHighScore,null,null,'onHighScore',this);
         highScore.setPosition(0,-60);
-        var howToPlay = cc.MenuItemSprite.create(btHowToPlay,btHowToPLaySelected,null,'onHowToPlay',this);
+        var howToPlay = cc.MenuItemSprite.create(btHowToPlay,null,null,'onHowToPlay',this);
         howToPlay.setPosition(0,-120);
-        var credits = cc.MenuItemSprite.create(btCredits,btCreditsSelected,null,'onCredits',this);
+        var credits = cc.MenuItemSprite.create(btCredits,null,null,'onCredits',this);
         credits.setPosition(0,-180);
         /*var item1 = cc.MenuItemToggle.create(
               cc.MenuItemSprite.create(btSound),
@@ -59,7 +60,7 @@ var MenuLayer = cc.Layer.extend({
       
         this.addChild(menu);
         
-
+		
         
         return this;	
     },
@@ -103,11 +104,14 @@ var Menu = cc.Scene.extend({
 		Problema: Nao deveria aparecer a nave / vidas / pontos
 		Pensar numa forma de solucinar
 		Mesma ideia para telas de perdeu / ganhou.
+		*/
+		
+		verify = false;
 		
 		var gameLayer = new GameLayer();
-    	gameLayer.init();
+		gameLayer.initAsteroids();  	
     	this.addChild(gameLayer);
-        */
+        
 		var layerMenu = new MenuLayer();
         layerMenu.init();
         this.addChild(layerMenu);

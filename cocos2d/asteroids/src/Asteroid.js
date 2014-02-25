@@ -21,26 +21,31 @@ var Asteroid = cc.Sprite.extend({
 		this.xSpeed = this.velocityX*Math.cos(randomDir);
 		this.ySpeed = this.velocityY*Math.sin(randomDir);
 		
+			
 		this.scheduleUpdate();
+			
 		layer.addChild(this);
 	},
 
 	update:function(){
 		this.move();
-		this.collide(ship);
-
-		if(bullet != null){
-			for(i=0; i<bullet.length; i++)
-				this.collide(bullet[i]);
-		}
-
-		for(i=0; i<bulletUFO.length; i++){
-			if(bulletUFO != null)
-				this.collide(bulletUFO[i]);
-		}
 		
-		if(ufo != null)
-			this.collide(ufo);
+		if (verify)	{
+			this.collide(ship);
+
+			if(bullet != null){
+				for(i=0; i<bullet.length; i++)
+					this.collide(bullet[i]);
+			}
+
+			for(i=0; i<bulletUFO.length; i++){
+				if(bulletUFO != null)
+					this.collide(bulletUFO[i]);
+			}
+			
+			if(ufo != null)
+				this.collide(ufo);
+		}
 	},
 
 	
