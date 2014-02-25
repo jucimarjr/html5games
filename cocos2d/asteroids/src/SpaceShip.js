@@ -95,10 +95,12 @@ var SpaceShip = cc.Sprite.extend({
 		var animation = cc.Animation.create(animeFrames, 0.1);
 		this.animeCache.addAnimation(animation, "shipFire");
 	},
-	shoot:function (dt) {
+	
+	
+	shoot:function(dt) {
         //this.shootEffect();
         //var offset = 13;
-		cc.log("shoot")
+		cc.log("shoot");
         var p = this.getPosition();
         var cs = this.getContentSize();
 		var bullet = new Bullet();

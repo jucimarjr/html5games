@@ -13,6 +13,7 @@ var LG = {KEYS: []}; //Verifica se existe alguma tecla pressionada ou não
 //Variáveis dos PERSONAGENS DO JOGO
 var asteroids = [];
 var ship = null;
+var ufo = null;
 
 
 var GameLayer = cc.Layer.extend({
@@ -53,6 +54,9 @@ var GameLayer = cc.Layer.extend({
         
         //Coloca o SpaceShip.js no jogo
 	    this.ship = new SpaceShip();
+	    
+	    //Coloca o UFO.js no jogo
+	    this.ufo = new UFO();
     	
         this.addChild(layer);
         this.scheduleUpdate();

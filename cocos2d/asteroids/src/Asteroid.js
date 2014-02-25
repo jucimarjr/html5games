@@ -14,7 +14,6 @@ var Asteroid = cc.Sprite.extend({
 		this._super();
 	
 		//Carrega o sprite do asteroid de acordo com o seu tamanho
-		//this.initWithSpriteFrameName("asteroids1_80-80.png");
 		this.size = size;
 		this.setAsteroid(this.size, position);
 		
