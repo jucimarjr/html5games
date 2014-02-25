@@ -53,10 +53,10 @@ var GameLayer = cc.Layer.extend({
         	asteroids.push(new Asteroid("big", 0));
         
         //Coloca o SpaceShip.js no jogo
-	    this.ship = new SpaceShip();
+	    ship = new SpaceShip();
 	    
 	    //Coloca o UFO.js no jogo
-	    this.ufo = new UFO();
+	    ufo = new UFO();
     	
         this.addChild(layer);
         this.scheduleUpdate();
@@ -67,7 +67,7 @@ var GameLayer = cc.Layer.extend({
     },
 	
 	update:function(){
-    	this.collideAsteroidWithSpace();
+
 	},
     
 	onKeyDown:function (e) {
@@ -79,27 +79,6 @@ var GameLayer = cc.Layer.extend({
     },
 
     
-    collideAsteroidWithSpace:function(){
-    	for(var i=0; i<asteroids.length; i++){
-    		if(this.collide(asteroids[i], this.ship)){
-    			asteroids[i].die(asteroids[i].getPosition());
-    			asteroids.splice(i, 1); //Remove 1 elemento no index i
-				this.ship.die();
-				
-				this.removeLives(--this.numberLives);						
-			}
-	    }
-    },
-    
-    //Verifica se há uma colisão
-    collide:function(object1, object2){
-        var object1Rect = object1.collideRect(object1.getPosition());
-        var object2Rect = object2.collideRect(object2.getPosition());
-        
-        return cc.rectIntersectsRect(object1Rect, object2Rect);
-    },
-    
-
     addScore:function(){
 		scoreGame.scoreLabel = cc.LabelTTF.create(scoreGame.score, "VectorB", 20);
 		scoreGame.scoreLabel.setColor( new cc.Color3B(255, 255, 255) );

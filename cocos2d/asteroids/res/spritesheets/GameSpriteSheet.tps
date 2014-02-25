@@ -88,7 +88,7 @@
             <key>freeSizeMode</key>
             <enum type="AlgorithmSettings::AlgorithmFreeSizeMode">Best</enum>
             <key>sizeConstraints</key>
-            <enum type="AlgorithmSettings::SizeConstraints">AnySize</enum>
+            <enum type="AlgorithmSettings::SizeConstraints">POT</enum>
             <key>forceSquared</key>
             <false/>
             <key>forceWordAligned</key>
@@ -166,6 +166,7 @@
         </struct>
         <key>fileList</key>
         <array>
+            <filename>../workspace/html5games/cocos2d/asteroids/res/images/ufo_35-22.png</filename>
             <filename>../workspace/html5games/cocos2d/asteroids/res/images/asteroids1_20-20.png</filename>
             <filename>../workspace/html5games/cocos2d/asteroids/res/images/asteroids1_40-40.png</filename>
             <filename>../workspace/html5games/cocos2d/asteroids/res/images/asteroids1_80-80.png</filename>
@@ -180,7 +181,6 @@
             <filename>../workspace/html5games/cocos2d/asteroids/res/images/shipFire1_14-24.png</filename>
             <filename>../workspace/html5games/cocos2d/asteroids/res/images/shipFire2_14-24.png</filename>
             <filename>../workspace/html5games/cocos2d/asteroids/res/images/shoot_2-2.png</filename>
-            <filename>../workspace/html5games/cocos2d/asteroids/res/images/ufo_96-61.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

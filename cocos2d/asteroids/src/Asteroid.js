@@ -27,6 +27,9 @@ var Asteroid = cc.Sprite.extend({
 
 	update:function(){
 		this.move();
+		this.collide(ship);
+		//this.collide(buttet);
+		this.collide(ufo);
 	},
 
 	//Calcula o retângulo que envolve o sprite do asteroid para verificar a colisão
@@ -43,9 +46,9 @@ var Asteroid = cc.Sprite.extend({
 		switch (size) {
 			case "big":
 				this.initWithSpriteFrameName("asteroids"+i+"_80-80.png");
-				this.angularVelocity = 1;
-				this.velocityX = 1;
-				this.velocityY = 1;
+				this.angularVelocity = 0.5;
+				this.velocityX = 0.5;
+				this.velocityY = 0.5;
 				
 				//Coloca o asteroid numa posição aleatória
 				this.setPosition(new cc.Point(Math.random()*500, Math.random()*500));
@@ -53,9 +56,9 @@ var Asteroid = cc.Sprite.extend({
 			
 			case "medium":
 				this.initWithSpriteFrameName("asteroids"+i+"_40-40.png");
-				this.angularVelocity = 2;
-				this.velocityX = 2;
-				this.velocityY = 2;
+				this.angularVelocity = 1;
+				this.velocityX = 1;
+				this.velocityY = 1;
 
 				//Coloca o asteroid na posição em que se encontrava o asteroid grande
 				this.setPosition(new cc.Point(position.x, position.y));
@@ -63,9 +66,9 @@ var Asteroid = cc.Sprite.extend({
 			
 			case "small":
 				this.initWithSpriteFrameName("asteroids"+i+"_20-20.png");
-				this.angularVelocity = 3;
-				this.velocityX = 3;
-				this.velocityY = 3;
+				this.angularVelocity = 1.5;
+				this.velocityX = 1.5;
+				this.velocityY = 1.5;
 				
 				//Coloca o asteroid na posição em que se encontrava o asteroid médio
 				this.setPosition(new cc.Point(position.x, position.y));
@@ -93,19 +96,28 @@ var Asteroid = cc.Sprite.extend({
 		if(this.getPosition().y < 0)
 			this.setPosition(new cc.Point(this.getPosition().x, this.getPosition().y + screen.height));
 	},
-	
-	die:function(position){
+
+    //Verifica se há colisão
+    collide:function(object){
+        var object1Rect = this.collideRect(this.getPosition());
+        var object2Rect = object.collideRect(object.getPosition());
+        
+        if(cc.rectIntersectsRect(object1Rect, object2Rect))
+        	this.die();
+    },
+    
+	die:function(){
 		if (this.alive) {
 			switch (this.size) {
 				case "big":
 					layer.removeChild(this);
-					asteroids.push(new Asteroid("medium", position));
-		        	asteroids.push(new Asteroid("medium", position));
+					asteroids.push(new Asteroid("medium", this.getPosition()));
+		        	asteroids.push(new Asteroid("medium", this.getPosition()));
 		        	break;
 				case "medium":
 					layer.removeChild(this);
-					asteroids.push(new Asteroid("small", position));
-		        	asteroids.push(new Asteroid("small", position));
+					asteroids.push(new Asteroid("small", this.getPosition()));
+		        	asteroids.push(new Asteroid("small", this.getPosition()));
 					break;
 				case "small":
 					layer.removeChild(this);
