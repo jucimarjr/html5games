@@ -7,6 +7,7 @@ var SpaceShip = cc.Sprite.extend({
 	velocityY: 5,
 	
 	angle: 0,
+	_bullet:null,
 
 	
 	ctor:function(){
@@ -67,6 +68,10 @@ var SpaceShip = cc.Sprite.extend({
 		if(LG.KEYS[cc.KEY.down] || LG.KEYS[cc.KEY.s]){
 			this.setPosition(new cc.Point(Math.random()*800, Math.random()*480));
 		}
+		
+		if(LG.KEYS[cc.KEY.space] || LG.KEYS[cc.KEY.b]){
+			this.shoot();
+		}
     },
 
 	//Calcula o retângulo que envolve o sprite da nave para verificar a colisão
@@ -90,7 +95,17 @@ var SpaceShip = cc.Sprite.extend({
 		var animation = cc.Animation.create(animeFrames, 0.1);
 		this.animeCache.addAnimation(animation, "shipFire");
 	},
-	
+	shoot:function (dt) {
+        //this.shootEffect();
+        //var offset = 13;
+		cc.log("shoot")
+        var p = this.getPosition();
+        var cs = this.getContentSize();
+		var bullet = new Bullet();
+		this.getParent().addChild(bullet);
+		bullet.setPosition(p.x,p.y);
+		
+	},
 	
 	die:function(){
 		cc.log("nave colidiu!");

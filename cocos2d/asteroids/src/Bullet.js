@@ -6,26 +6,31 @@ var Bullet = cc.Sprite.extend({
     HP:1,
     moveType:null,
     zOrder:3000,
+	spriteFrameCache: cc.SpriteFrameCache.getInstance(),
+	animeCache: cc.AnimationCache.getInstance(),
+	bulletSpeed:100,
     //attackMode:MW.ENEMY_MOVE_TYPE.NORMAL,
     //parentType:MW.BULLET_TYPE.PLAYER,
-    ctor:function (bulletSpeed, weaponType, attackMode) {
+    ctor:function () {
         this._super();
 		
-		this.spriteFrameCache.addSpriteFrames("res/spritesheets/GameSpriteSheet.plist", "res/spritesheets/GameSpriteSheet.png");
+		//this.spriteFrameCache.addSpriteFrames("res/spritesheets/GameSpriteSheet.plist", "res/spritesheets/GameSpriteSheet.png");//
         
-		this.yVelocity = -bulletSpeed;
+		this.yVelocity = this.bulletSpeed;
         //this.attackMode = attackMode;
-        this.initWithSpriteFrameName("particle_1-15.png");
-        this.setBlendFunc(gl.SRC_ALPHA, gl.ONE);
+        this.initWithSpriteFrameName("shoot_2-2.png");
+        //this.setBlendFunc(gl.SRC_ALPHA, gl.ONE);
+		this.scheduleUpdate();
     },
     update:function (dt) {
+		cc.log("teste");
         var p = this.getPosition();
         p.x -= this.xVelocity * dt;
         p.y -= this.yVelocity * dt;
         this.setPosition(p);
-        if (p.x < 0 || p.x > g_sharedGameLayer.screenRect.width || p.y < 0 || p.y > g_sharedGameLayer.screenRect.height || this.HP <= 0) {
+        /*if (p.x < 0 || p.x > layer.screenRect.width || p.y < 0 || p.y > layer.screenRect.height || this.HP <= 0) {
             this.destroy();
-        }
+        }*/
     },
     destroy:function () {
         //var explode = HitEffect.getOrCreateHitEffect(this.getPosition(), Math.random() * 360, 0.75);
@@ -37,11 +42,24 @@ var Bullet = cc.Sprite.extend({
     },
     collideRect:function (p) {
         //return cc.rect(p.x - 3, p.y - 3, 6, 6);
-    }
+    },//shoot:function (dt) {
+        //this.shootEffect();
+        //var offset = 13;
+		//log.console("shoot")
+        //var p = this.getPosition();
+        //var cs = this.getContentSize();
+		//var bullet = new Bullet();
+		//bullet.setPosition(p.x,p.y);
+        //var a = Bullet.getOrCreateBullet(this.bulletSpeed, "W1.png", MW.ENEMY_ATTACK_MODE.NORMAL, 3000, MW.UNIT_TAG.PLAYER_BULLET);
+        //a.setPosition(p.x + offset, p.y + 3 + cs.height * 0.3);
+
+        //var b = Bullet.getOrCreateBullet(this.bulletSpeed, "W1.png", MW.ENEMY_ATTACK_MODE.NORMAL, 3000, MW.UNIT_TAG.PLAYER_BULLET);
+        //b.setPosition(p.x - offset, p.y + 3 + cs.height * 0.3);
+    //},
 });
 
-Bullet.getOrCreateBullet = function (bulletSpeed, weaponType, attackMode, zOrder, mode) {
-    /**/
+/*Bullet.getOrCreateBullet = function (bulletSpeed, weaponType, attackMode, zOrder, mode) {
+    
     var selChild = null;
     if (mode == MW.UNIT_TAG.PLAYER_BULLET) {
         for (var j = 0; j < MW.CONTAINER.PLAYER_BULLETS.length; j++) {
@@ -92,4 +110,4 @@ Bullet.preSet = function () {
         bullet.setVisible(false);
         bullet.active = false;
     }
-};
+};*/
