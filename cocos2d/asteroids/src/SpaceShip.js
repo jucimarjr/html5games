@@ -114,7 +114,7 @@ var SpaceShip = cc.Sprite.extend({
 		var animation = this.animeCache.getAnimation("explosion");
 		animation.setRestoreOriginalFrame(true);
 		this.runAction(cc.Animate.create(animation));	
-	}
+	},
 	
 	
 	shoot:function(dt) {

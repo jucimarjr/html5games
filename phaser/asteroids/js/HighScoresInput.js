@@ -56,10 +56,10 @@ HighScoreInput.prototype.setLocalStorageScore = function (score, position) {
 HighScoreInput.prototype.inputName = function (score,position) {
 
     game.add.text(this.game.width / 2 - 140, this.game.height / 2 - 150, "NEW RECORD!", {
-        font: "40px Vector Battle", fill: "#ffffff", align: "center"
+        font: "48px Vector Battle", fill: "#ffffff", align: "center"
     });
     game.add.text(this.game.width / 2 - 100, this.game.height / 2, position + " - " + score, {
-        font: "40px Vector Battle", fill: "#ffffff", align: "center"
+        font: "48px Vector Battle", fill: "#ffffff", align: "center"
     });
 
     this.setLocalStorageScore(score,position);

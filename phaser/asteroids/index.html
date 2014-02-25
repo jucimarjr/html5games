@@ -18,7 +18,11 @@
         body {
             margin: 0;
         }
-    </style>
+        @font-face {
+    		font-family: "Vector";
+    		src: url(assets/fonts/vectorB.ttf) format("truetype");
+		}
+	</style>
 </head>
 <body>
 
@@ -42,19 +46,23 @@ function preload()
     game.load.audio('thrust', 'assets/audios/AsteroidsThrust.mp3');
     game.load.audio('shoot', 'assets/audios/AsteroidsShoot.mp3');
     game.load.audio('ufo', 'assets/audios/AsteroidsSaucer.mp3');
+    //game.load.bitmapFont('vector','assets/fonts/vectorB_0.png','assets/fonts/vectorB.fnt');
     setHighScore();
-	splashScene = new Splash(game);
-	splashScene.preload();
+	//splashScene = new Splash(game);
+	//splashScene.preload();
+	
+	gameScene = new Game(game);
 }
 
 function create()
 {
-	splashScene.create();
+	//splashScene.create();
+	gameScene.create();
 }
 
 function update() 
 {
-	
+	gameScene.update();
 }
 
 function setHighScore()
