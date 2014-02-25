@@ -78,11 +78,18 @@ Game.prototype.initAsteroids = function(){
 	for (var i = 0 ; i < 5; i++) {
     	var px = Math.random() * game.width;
     	var py = Math.random() * game.height;
-    	if((px > this.game.width/2 + 80 && px < this.game.width/2 - 80)
-    	&& (py > this.game.height/2 + 80 && py < this.game.height/2 - 80)){
-    		px += 100;
-    		py += 100;
+    	if(px > this.spaceShip.sprite.x - 100){
+    		if(px < this.spaceShip.sprite.x + 100){
+    			console.log('px:'+px+' '+'py: '+py);
+    			px += 150;
+    		}
     	}
+    	if(py > this.spaceShip.sprite.y - 100){
+    		if(py < this.spaceShip.sprite.y + 100){
+    			console.log('px:'+px+' '+'py: '+py);
+    			py += 150;
+    		}
+    	}    		
     	this.asteroid.create(px, py, 'large', this.velAsteroids);
     }
 };
