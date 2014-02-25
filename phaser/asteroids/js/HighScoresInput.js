@@ -40,10 +40,17 @@ HighScoreInput.prototype.setLocalStorageScore = function (score, position) {
             localStorage["nameScore" + i] = nameScoreTemp;
         } else {
             localStorage["score" + position] = score;
-            localStorage["nameScore" + position] = "AAA";
+            var name = prompt("Enter your name:","");
+            while( name.length > 5 ){
+                alert("Maximum 5 letters!");
+                name = prompt("Enter your name:","");
+            }
+            localStorage["nameScore" + position] = name;
         }
     }
     
+    setTimeout(function () { game.state.start('HighScore', HighScore) }, 3000);
+
 };
 
 HighScoreInput.prototype.inputName = function (score,position) {
@@ -56,6 +63,5 @@ HighScoreInput.prototype.inputName = function (score,position) {
     });
 
     this.setLocalStorageScore(score,position);
-    setTimeout(function () { game.state.start('HighScore', HighScore) } , 3000 );
-
+    
 };
