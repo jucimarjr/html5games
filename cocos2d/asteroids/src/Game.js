@@ -2,6 +2,10 @@
 var screen = null;
 var layer = null;
 
+var numberLives = 3;
+var spriteLives = [];
+var gameOver = null;
+
 var scoreGame = {
 	scoreLabel: null, 
 	score: 0
@@ -22,10 +26,7 @@ var GameLayer = cc.Layer.extend({
 	animeCache: cc.AnimationCache.getInstance(),
 	
 	numberAsteroids: 7,
-	numberLives: 3,
-	spriteLives: [],
 	
-	gameOver: null,
 	
 	init:function(){
 		//Habilita o teclado/touch como controle
@@ -66,7 +67,7 @@ var GameLayer = cc.Layer.extend({
     },
 	
 	update:function(){
-
+//    	scoreGame.scoreLabel.setString(scoreGame.score);    	
 	},
     
 	onKeyDown:function (e) {
@@ -80,30 +81,30 @@ var GameLayer = cc.Layer.extend({
     
     addScore:function(){
 		scoreGame.scoreLabel = cc.LabelTTF.create(scoreGame.score, "VectorB", 20);
-		scoreGame.scoreLabel.setColor( new cc.Color3B(255, 255, 255) );
+		scoreGame.scoreLabel.setColor(new cc.Color3B(255, 255, 255));
 		scoreGame.scoreLabel.setPosition(new cc.Point(screen.width - 40, screen.height - 40) );
 		layer.addChild(scoreGame.scoreLabel);	
     },
     
     addLives:function(){
     	count = 0;
-    	for(var i=0; i<this.numberLives; i++) {
-    		this.spriteLives[i] = cc.Sprite.create("res/images/ship_14-24.png");
-            this.spriteLives[i].setPosition(30 + count, screen.height - 30);
-            layer.addChild(this.spriteLives[i]);
+    	for(var i=0; i<numberLives; i++) {
+    		spriteLives[i] = cc.Sprite.create("res/images/ship_14-24.png");
+            spriteLives[i].setPosition(30 + count, screen.height - 30);
+            layer.addChild(spriteLives[i]);
             count = count + 14;
         }
     },
 	
 	removeLives:function(numberLives){
-		layer.removeChild(this.spriteLives[numberLives]);		
-		if (this.numberLives == 0){
+		layer.removeChild(spriteLives[numberLives]);		
+		if (numberLives == 0){
 		//	cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2, new Losing()));
 		
-			this.gameOver = cc.LabelTTF.create("GAME OVER", "SFAtarianSystem", 100);
-			this.gameOver.setColor(new cc.Color3B(255, 255, 255));
-	        this.gameOver.setPosition(new cc.Point(screen.width/2, screen.height/2) );
-	        layer.addChild(this.gameOver);
+			gameOver = cc.LabelTTF.create("GAME OVER", "SFAtarianSystem", 100);
+			gameOver.setColor(new cc.Color3B(255, 255, 255));
+	        gameOver.setPosition(new cc.Point(screen.width/2, screen.height/2) );
+	        layer.addChild(gameOver);
 		}
 	}
 });

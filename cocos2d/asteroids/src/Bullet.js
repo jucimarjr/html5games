@@ -1,113 +1,40 @@
+var bullet = [];
+var bulletUFO = [];
+
 var Bullet = cc.Sprite.extend({
-    active:true,
-    xVelocity:100,
-    yVelocity:100,
-    power:1,
-    HP:1,
-    moveType:null,
-    zOrder:3000,
 	spriteFrameCache: cc.SpriteFrameCache.getInstance(),
 	animeCache: cc.AnimationCache.getInstance(),
+
+    xVelocity:100,
+    yVelocity:100,
 	bulletSpeed:100,
-    //attackMode:MW.ENEMY_MOVE_TYPE.NORMAL,
-    //parentType:MW.BULLET_TYPE.PLAYER,
-    ctor:function () {
+
+
+	ctor:function () {
         this._super();
 		
-		//this.spriteFrameCache.addSpriteFrames("res/spritesheets/GameSpriteSheet.plist", "res/spritesheets/GameSpriteSheet.png");//
-        
-		this.yVelocity = this.bulletSpeed;
-        //this.attackMode = attackMode;
         this.initWithSpriteFrameName("shoot_2-2.png");
-        //this.setBlendFunc(gl.SRC_ALPHA, gl.ONE);
-		this.scheduleUpdate();
+        
+        var p = ship.getPosition();
+        var cs = ship.getContentSize();
+        this.setPosition(p.x,p.y);
+        
+        this.scheduleUpdate();
+        layer.addChild(this);
     },
+    
     update:function (dt) {
-		cc.log("teste");
-        var p = this.getPosition();
+		var p = this.getPosition();
         p.x -= this.xVelocity * dt;
         p.y -= this.yVelocity * dt;
         this.setPosition(p);
-        /*if (p.x < 0 || p.x > layer.screenRect.width || p.y < 0 || p.y > layer.screenRect.height || this.HP <= 0) {
-            this.destroy();
-        }*/
     },
-    destroy:function () {
-        //var explode = HitEffect.getOrCreateHitEffect(this.getPosition(), Math.random() * 360, 0.75);
-        //this.active = false;
-        //this.setVisible(false);
-    },
-    hurt:function () {
-        //this.HP--;
-    },
-    collideRect:function (p) {
-        //return cc.rect(p.x - 3, p.y - 3, 6, 6);
-    },//shoot:function (dt) {
-        //this.shootEffect();
-        //var offset = 13;
-		//log.console("shoot")
-        //var p = this.getPosition();
-        //var cs = this.getContentSize();
-		//var bullet = new Bullet();
-		//bullet.setPosition(p.x,p.y);
-        //var a = Bullet.getOrCreateBullet(this.bulletSpeed, "W1.png", MW.ENEMY_ATTACK_MODE.NORMAL, 3000, MW.UNIT_TAG.PLAYER_BULLET);
-        //a.setPosition(p.x + offset, p.y + 3 + cs.height * 0.3);
 
-        //var b = Bullet.getOrCreateBullet(this.bulletSpeed, "W1.png", MW.ENEMY_ATTACK_MODE.NORMAL, 3000, MW.UNIT_TAG.PLAYER_BULLET);
-        //b.setPosition(p.x - offset, p.y + 3 + cs.height * 0.3);
-    //},
+  //Calcula o retângulo que envolve o sprite da nave para verificar a colisão
+	collideRect:function(position){
+		var size = this.getContentSize();
+	    return cc.rect(position.x - size.width/2, position.y - size.height/2, size.width, size.height);
+	}
 });
 
-/*Bullet.getOrCreateBullet = function (bulletSpeed, weaponType, attackMode, zOrder, mode) {
-    
-    var selChild = null;
-    if (mode == MW.UNIT_TAG.PLAYER_BULLET) {
-        for (var j = 0; j < MW.CONTAINER.PLAYER_BULLETS.length; j++) {
-            selChild = MW.CONTAINER.PLAYER_BULLETS[j];
-            if (selChild.active == false) {
-                selChild.setVisible(true);
-                selChild.HP = 1;
-                selChild.active = true;
-                return selChild;
-            }
-        }
-    }
-    else {
-        for (var j = 0; j < MW.CONTAINER.ENEMY_BULLETS.length; j++) {
-            selChild = MW.CONTAINER.ENEMY_BULLETS[j];
-            if (selChild.active == false) {
-                selChild.setVisible(true);
-                selChild.HP = 1;
-                selChild.active = true;
-                return selChild;
-            }
-        }
-    }
-    selChild = Bullet.create(bulletSpeed, weaponType, attackMode, zOrder, mode);
-    return selChild;
-};
 
-Bullet.create = function (bulletSpeed, weaponType, attackMode, zOrder, mode) {
-    var bullet = new Bullet(bulletSpeed, weaponType, attackMode);
-    g_sharedGameLayer.addBullet(bullet, zOrder, mode);
-    if (mode == MW.UNIT_TAG.PLAYER_BULLET) {
-        MW.CONTAINER.PLAYER_BULLETS.push(bullet);
-    } else {
-        MW.CONTAINER.ENEMY_BULLETS.push(bullet);
-    }
-    return bullet;
-};
-
-Bullet.preSet = function () {
-    var bullet = null;
-    for (var i = 0; i < 10; i++) {
-        var bullet = Bullet.create(MW.BULLET_SPEED.SHIP, "W1.png", MW.ENEMY_ATTACK_MODE.NORMAL, 3000, MW.UNIT_TAG.PLAYER_BULLET);
-        bullet.setVisible(false);
-        bullet.active = false;
-    }
-    for (var i = 0; i < 10; i++) {
-        bullet = Bullet.create(MW.BULLET_SPEED.ENEMY, "W2.png", MW.ENEMY_ATTACK_MODE.NORMAL, 3000, MW.UNIT_TAG.ENMEY_BULLET);
-        bullet.setVisible(false);
-        bullet.active = false;
-    }
-};*/
