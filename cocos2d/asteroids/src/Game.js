@@ -115,8 +115,12 @@ var GameLayer = cc.Layer.extend({
 		screen = cc.Director.getInstance().getWinSize();
 		layer = cc.LayerColor.create(new cc.Color4B(0, 0, 0, 255), 800, 480);    		
 		//Coloca o Asteroids.js no jogo (sendo que o jogo é iniciado apenas com asteroids grandes)
-        for(i=0; i<this.numberAsteroids; i++)
+        for(i=0; i<3; i++)
         	asteroids.push(new Asteroid("big", 0));
+		for(i=0; i<3; i++)
+        	asteroids.push(new Asteroid("medium", 0));
+		for(i=0; i<3; i++)
+        	asteroids.push(new Asteroid("small", 0));
 		this.addChild(layer);
 	}
 });
