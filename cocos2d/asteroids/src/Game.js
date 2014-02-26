@@ -41,6 +41,7 @@ var GameLayer = cc.Layer.extend({
 	    //Cria o Layer do jogo
 		layer = cc.LayerColor.create(new cc.Color4B(0, 0, 0, 255), 800, 480);    
 	
+		numberLives = 3;
 		// Coloca as vidas na tela
 		this.addLives();
 		// Coloca os pontos na tela

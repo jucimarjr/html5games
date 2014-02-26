@@ -2,8 +2,8 @@ var UFO = cc.Sprite.extend({
 	spriteFrameCache: cc.SpriteFrameCache.getInstance(),
 	animeCache: cc.AnimationCache.getInstance(),
 	
-	velocityX: 3,
-	velocityY: 0,
+	velocityX: 0,
+	velocityY: 3,
 	position: 0,
 	
 	ctor:function(){
@@ -13,7 +13,7 @@ var UFO = cc.Sprite.extend({
 		this.initWithSpriteFrameName("ufo_35-22.png");
 		
 		//Posiciona o disco voador no lado esquerdo da tela numa altura aleatória
-		this.setPosition(new cc.Point(0, Math.floor((Math.random()*screen.height))));
+		this.setPosition(new cc.Point(Math.floor((Math.random()*screen.width), 0)));
         
 		this.scheduleUpdate();
         layer.addChild(this);

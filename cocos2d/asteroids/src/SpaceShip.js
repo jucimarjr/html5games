@@ -136,8 +136,7 @@ var SpaceShip = cc.Sprite.extend({
 	die:function(){
     	if (this.alive == true) {
     		this.removeLives(--numberLives);
-    		cc.log(numberLives);
-
+    		
     		layer.removeChild(this);
         	//ADICIONAR A ANIMAÇÃO DA EXPLOSÃO DA NAVE AQUI
         	
@@ -156,9 +155,8 @@ var SpaceShip = cc.Sprite.extend({
 	        layer.addChild(gameOver);
 	        
 	        layer.removeChild(this);
-			
+	        scoreGame.score = 0;
 			setTimeout(function(){cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2, new Menu()));}, 1500);
-				
 		}
 	}
 });

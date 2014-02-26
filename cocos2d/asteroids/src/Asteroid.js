@@ -61,7 +61,7 @@ var Asteroid = cc.Sprite.extend({
 				this.velocityY = 0.5;
 				
 				//Coloca o asteroid numa posição aleatória
-				this.setPosition(new cc.Point(Math.random()*500, Math.random()*500));
+				this.setPosition(new cc.Point(Math.random()*screen.widht, Math.random()*screen.height));
 				break;
 			
 			case "medium":
