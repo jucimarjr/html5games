@@ -150,10 +150,14 @@ var SpaceShip = cc.Sprite.extend({
 	removeLives:function(numberLives){
 		layer.removeChild(spriteLives[numberLives]);		
 		if (numberLives == 0){		
-        	losing = new Losing();			
+        	losing = new Losing();	
+			window.setTimeout(function(){}, 100000);			
+			layer.removeChild(gameOver);						
+			
+			highScores = new HighScores();			
 			layer.removeChild(this);
-			scoreGame.score = 0;
-			setTimeout(function(){cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2, new Menu()));}, 1500);			
+			
+			scoreGame.score = 0;			
 		}
 	}
 });
