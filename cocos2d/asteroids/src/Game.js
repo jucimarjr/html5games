@@ -5,6 +5,7 @@ var layer = null;
 var numberLives = 3;
 var spriteLives = [];
 var gameOver = null;
+var losing = null;
 
 var scoreGame = {
 	scoreLabel: null, 

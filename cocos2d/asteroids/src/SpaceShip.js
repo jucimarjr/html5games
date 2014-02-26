@@ -23,6 +23,7 @@ var SpaceShip = cc.Sprite.extend({
 		this.scheduleUpdate();
         this.createAnimation();
         layer.addChild(this);
+
     },
 
     update:function(){
@@ -149,14 +150,10 @@ var SpaceShip = cc.Sprite.extend({
 	removeLives:function(numberLives){
 		layer.removeChild(spriteLives[numberLives]);		
 		if (numberLives == 0){		
-			gameOver = cc.LabelTTF.create("GAME OVER", "SFAtarianSystem", 100);
-			gameOver.setColor(new cc.Color3B(255, 255, 255));
-	        gameOver.setPosition(new cc.Point(screen.width/2, screen.height/2) );
-	        layer.addChild(gameOver);
-	        
-	        layer.removeChild(this);
-	        scoreGame.score = 0;
-			setTimeout(function(){cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2, new Menu()));}, 1500);
+        	losing = new Losing();			
+			layer.removeChild(this);
+			scoreGame.score = 0;
+			setTimeout(function(){cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2, new Menu()));}, 1500);			
 		}
 	}
 });
