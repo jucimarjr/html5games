@@ -134,8 +134,9 @@ var Asteroid = cc.Sprite.extend({
     
 	die:function(){
     	//O asteroid é removido no SpaceShip.js e no UFO.js
-    	
+		//var volume = 1;
     	if (this.alive) {
+    		
 			switch (this.size) {
 				case "big":
 					layer.removeChild(this);
@@ -146,14 +147,21 @@ var Asteroid = cc.Sprite.extend({
 					layer.removeChild(this);
 					asteroids.push(new Asteroid("small", this.getPosition()));
 		        	asteroids.push(new Asteroid("small", this.getPosition()));
+		        	//volume = 0.5;
 					break;
 				case "small":
 					layer.removeChild(this);
 					this.size = null;
+					//volume = 0.1;
 					break;
 			}
 		}
 		this.alive = false;
+		//cc.AudioEngine.getInstance().pauseAllEffects();
+		var bomb = cc.AudioEngine.getInstance().playEffect("res/audios/bomb.mp3",false);
+		//cc.AudioEngine.getInstance().setEffectsVolume(volume);
+		//cc.AudioEngine.getInstance().resumeAllEffects();
+		//this.cc.AudioEngine.getInstance().setEffectsVolume(volume);
 	},
     
 	
