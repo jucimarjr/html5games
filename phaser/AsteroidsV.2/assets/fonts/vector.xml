@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<font type="GHL">
+ <description size="48" family="Vector Battle" style="Regular"/>
+ <metrics ascender="71" height="76" descender="-6"/>
+ <texture width="512" height="512" file="vector.png"/>
+ <chars>
+  <char offset="0 0" rect="1 61 0 0" advance="49" id=" "/>
+  <char offset="19 60" rect="2 1 12 60" advance="49" id="!"/>
+  <char offset="20 60" rect="15 1 13 15" advance="49" id="&quot;"/>
+  <char offset="5 51" rect="29 10 39 42" advance="49" id="#"/>
+  <char offset="3 60" rect="69 1 43 60" advance="49" id="$"/>
+  <char offset="1 60" rect="113 1 47 60" advance="49" id="%"/>
+  <char offset="2 50" rect="161 11 46 42" advance="49" id="&amp;"/>
+  <char offset="20 60" rect="208 1 13 15" advance="49" id="'"/>
+  <char offset="9 60" rect="222 1 31 60" advance="49" id="("/>
+  <char offset="9 60" rect="254 1 31 60" advance="49" id=")"/>
+  <char offset="13 47" rect="286 14 23 31" advance="49" id="*"/>
+  <char offset="2 54" rect="310 7 45 43" advance="49" id="+"/>
+  <char offset="20 10" rect="356 51 13 15" advance="49" id=","/>
+  <char offset="3 34" rect="370 27 44 1" advance="49" id="-"/>
+  <char offset="21 10" rect="415 51 12 10" advance="49" id="."/>
+  <char offset="3 60" rect="428 1 44 60" advance="49" id="/"/>
+  <char offset="3 60" rect="1 67 43 60" advance="49" id="0"/>
+  <char offset="24 60" rect="45 67 1 60" advance="49" id="1"/>
+  <char offset="3 60" rect="47 67 43 60" advance="49" id="2"/>
+  <char offset="2 60" rect="91 67 44 60" advance="49" id="3"/>
+  <char offset="3 60" rect="136 67 43 60" advance="49" id="4"/>
+  <char offset="3 60" rect="180 67 43 60" advance="49" id="5"/>
+  <char offset="3 60" rect="224 67 43 60" advance="49" id="6"/>
+  <char offset="2 60" rect="268 67 44 60" advance="49" id="7"/>
+  <char offset="3 60" rect="313 67 43 60" advance="49" id="8"/>
+  <char offset="3 60" rect="357 67 43 60" advance="49" id="9"/>
+  <char offset="21 34" rect="401 93 12 34" advance="49" id=":"/>
+  <char offset="20 34" rect="414 93 13 39" advance="49" id=";"/>
+  <char offset="23 60" rect="428 67 24 60" advance="49" id="&lt;"/>
+  <char offset="3 34" rect="453 93 44 15" advance="49" id="="/>
+  <char offset="3 60" rect="1 134 23 60" advance="49" id=">"/>
+  <char offset="3 60" rect="25 134 44 60" advance="50" id="?"/>
+  <char offset="6 49" rect="70 145 37 38" advance="49" id="@"/>
+  <char offset="3 61" rect="108 133 43 61" advance="49" id="A"/>
+  <char offset="3 60" rect="152 134 43 60" advance="49" id="B"/>
+  <char offset="3 60" rect="196 134 44 60" advance="49" id="C"/>
+  <char offset="3 60" rect="241 134 43 60" advance="49" id="D"/>
+  <char offset="3 60" rect="285 134 44 60" advance="49" id="E"/>
+  <char offset="3 60" rect="330 134 44 60" advance="49" id="F"/>
+  <char offset="3 60" rect="375 134 43 60" advance="49" id="G"/>
+  <char offset="3 60" rect="419 134 43 60" advance="49" id="H"/>
+  <char offset="3 60" rect="463 134 44 60" advance="49" id="I"/>
+  <char offset="2 60" rect="1 195 44 60" advance="49" id="J"/>
+  <char offset="3 60" rect="46 195 44 60" advance="49" id="K"/>
+  <char offset="3 60" rect="91 195 44 60" advance="49" id="L"/>
+  <char offset="3 60" rect="136 195 43 60" advance="49" id="M"/>
+  <char offset="3 60" rect="180 195 43 60" advance="49" id="N"/>
+  <char offset="3 60" rect="224 195 43 60" advance="49" id="O"/>
+  <char offset="3 60" rect="268 195 43 60" advance="49" id="P"/>
+  <char offset="3 60" rect="312 195 43 60" advance="49" id="Q"/>
+  <char offset="3 60" rect="356 195 43 60" advance="49" id="R"/>
+  <char offset="3 60" rect="400 195 43 60" advance="49" id="S"/>
+  <char offset="3 60" rect="444 195 44 60" advance="49" id="T"/>
+  <char offset="3 60" rect="1 257 43 60" advance="49" id="U"/>
+  <char offset="3 60" rect="45 257 44 60" advance="49" id="V"/>
+  <char offset="3 60" rect="90 257 43 60" advance="49" id="W"/>
+  <char offset="3 60" rect="134 257 44 60" advance="49" id="X"/>
+  <char offset="3 60" rect="179 257 44 60" advance="49" id="Y"/>
+  <char offset="3 60" rect="224 257 43 60" advance="49" id="Z"/>
+  <char offset="9 60" rect="268 257 31 60" advance="49" id="["/>
+  <char offset="3 60" rect="300 257 44 60" advance="49" id="\"/>
+  <char offset="9 60" rect="345 257 31 60" advance="49" id="]"/>
+  <char offset="10 60" rect="377 257 29 20" advance="49" id="^"/>
+  <char offset="3 1" rect="407 316 44 1" advance="49" id="_"/>
+  <char offset="20 60" rect="452 257 13 15" advance="49" id="`"/>
+  <char offset="3 61" rect="466 256 43 61" advance="49" id="a"/>
+  <char offset="3 60" rect="1 318 43 60" advance="49" id="b"/>
+  <char offset="3 60" rect="45 318 44 60" advance="49" id="c"/>
+  <char offset="3 60" rect="90 318 43 60" advance="49" id="d"/>
+  <char offset="3 60" rect="134 318 44 60" advance="49" id="e"/>
+  <char offset="3 60" rect="179 318 44 60" advance="49" id="f"/>
+  <char offset="3 60" rect="224 318 43 60" advance="49" id="g"/>
+  <char offset="3 60" rect="268 318 43 60" advance="49" id="h"/>
+  <char offset="3 60" rect="312 318 44 60" advance="49" id="i"/>
+  <char offset="2 60" rect="357 318 44 60" advance="49" id="j"/>
+  <char offset="3 60" rect="402 318 44 60" advance="49" id="k"/>
+  <char offset="3 60" rect="447 318 44 60" advance="49" id="l"/>
+  <char offset="3 60" rect="1 379 43 60" advance="49" id="m"/>
+  <char offset="3 60" rect="45 379 43 60" advance="49" id="n"/>
+  <char offset="3 60" rect="89 379 43 60" advance="49" id="o"/>
+  <char offset="3 60" rect="133 379 43 60" advance="49" id="p"/>
+  <char offset="3 60" rect="177 379 43 60" advance="49" id="q"/>
+  <char offset="3 60" rect="221 379 43 60" advance="49" id="r"/>
+  <char offset="3 60" rect="265 379 43 60" advance="49" id="s"/>
+  <char offset="3 60" rect="309 379 44 60" advance="49" id="t"/>
+  <char offset="3 60" rect="354 379 43 60" advance="49" id="u"/>
+  <char offset="3 60" rect="398 379 44 60" advance="49" id="v"/>
+  <char offset="3 60" rect="443 379 43 60" advance="49" id="w"/>
+  <char offset="3 60" rect="1 440 44 60" advance="49" id="x"/>
+  <char offset="3 60" rect="46 440 44 60" advance="49" id="y"/>
+  <char offset="3 60" rect="91 440 43 60" advance="49" id="z"/>
+  <char offset="9 60" rect="135 440 31 60" advance="49" id="{"/>
+  <char offset="12 60" rect="167 440 1 60" advance="24" id="|"/>
+  <char offset="9 60" rect="169 440 31 60" advance="49" id="}"/>
+  <char offset="0 0" rect="201 500 0 0" advance="64" id="~"/>
+ </chars>
+</font>
