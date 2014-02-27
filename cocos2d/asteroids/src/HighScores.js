@@ -1,25 +1,48 @@
-var HighScores = cc.Sprite.extend({
-    highScore: null,	
-    
-    ctor: function()
-    {
-        this._super();		
-		this.addHighScore(); 	
-        
-		cc.AudioEngine.getInstance().playMusic("res/audios/AsteroidsTonelo.mp3", true);
-    },
-    addHighScore:function(){
-		this.highScore = cc.LabelTTF.create("ENTER YOUR NAME", "SFAtarianSystem", 50);
-		this.highScore.setColor( new cc.Color3B(255, 255, 255) );
-        this.highScore.setPosition(new cc.Point(screen.width/2, screen.height/2) );
-        layer.addChild(this.highScore);		
+var HighScoresLayer = cc.Layer.extend({
 
+	title: null,
+
+    init: function()
+    {
+        this._super();
+
+	if ('touches' in sys.capabilities)
+            this.setTouchEnabled(true);
+        else if ('mouse' in sys.capabilities)
+            this.setMouseEnabled(true);
 		
-		var input = cc.TextFieldTTF.create("<click here for input>",cc.size(screen.width/2, screen.height/2), cc.TEXT_ALIGNMENT_RIGHT,"Arial", 32);
-		input.attachWithIME();
-		input.setString("OK");		
+		this.title = cc.LabelTTF.create("HIGH SCORES", "SFAtarianSystem", 70);
+		this.title.setColor( new cc.Color3B(255, 255, 255) );
+		this.title.setPosition(new cc.Point(screen.width/2, screen.height - 50) );
+        this.addChild(this.title);    
 		
-		//var input = cc.TextFieldDelegate() ;
-		layer.addChild(input);	
-    }	
+		//this.showHighScore();
+		
+        return this;
+
+    },
+	showHighScore: function () {
+		this.localStorage = cc.LabelTTF.create(localStorage["nameScore1"], "SFAtarianSystem", 70);
+		this.localStorage.setColor( new cc.Color3B(255, 255, 255) );
+		this.localStorage.setPosition(new cc.Point(screen.width / 2 - 150, 100, ) );
+        this.addChild(this.localStorage);        
+	},
+    onMouseUp: function (event) {
+        this.backMenu();
+    },
+    onTouchesEnded: function (touches, event) {
+        this.backMenu();
+    },
+    backMenu: function (dt) {
+        cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.0, new Menu()));
+    }
+});
+
+var HighScores = cc.Scene.extend({
+    onEnter: function(){
+        this._super();
+        var layerHighScores = new HighScoresLayer();
+        layerHighScores.init();
+        this.addChild(layerHighScores);
+    }
 });
