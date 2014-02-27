@@ -154,7 +154,7 @@ var SpaceShip = cc.Sprite.extend({
 			window.setTimeout(function(){}, 100000);			
 			layer.removeChild(gameOver);						
 			
-			highScores = new HighScores();			
+			highScoresInput = new HighScoresInput();			
 			layer.removeChild(this);
 			
 			scoreGame.score = 0;			

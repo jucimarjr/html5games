@@ -13,7 +13,7 @@
 		appFiles: ['src/Splash.js', 'src/SplashGame.js', 'src/SplashLudus.js', 'src/Menu.js',
 		           'src/HowToPlay.js', 'src/Credits.js', 'src/Losing.js',
 		           'src/Game.js', 'src/Asteroid.js', 'src/SpaceShip.js', 'src/UFO.js', 
-				   'src/Bullet.js', 'src/HighScores.js']
+				   'src/Bullet.js', 'src/HighScoresInput.js', 'src/HighScores.js']
 	};
 	
 	window.addEventListener('DOMContentLoaded', function () {
