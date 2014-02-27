@@ -15,12 +15,13 @@ var HighScores = cc.Sprite.extend({
         layer.addChild(this.highScore);		
 
 		
-		/*var input = cc.TextFieldTTF.create("<click here for input>",null, cc.TEXT_ALIGNMENT_RIGHT,"Arial", 32);
+		var input = cc.TextFieldTTF.create("<click here for input>",cc.size(screen.width/2, screen.height/2), cc.TEXT_ALIGNMENT_RIGHT,"Arial", 32);
 		input.attachWithIME();
-		input.getString();*/
+		input.setString("OK");
 		
+		document.getElementById("input").style.display = "true";
 		
-		var input = cc.TextFieldDelegate() ;
+		//var input = cc.TextFieldDelegate() ;
 		layer.addChild(input);	
     }	
 });
