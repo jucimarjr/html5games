@@ -5,6 +5,8 @@ var UFO = cc.Sprite.extend({
 	velocityX: 0,
 	velocityY: 3,
 	position: 0,
+	isLive:true,
+	soundEffect:null,
 	
 	ctor:function(){
 		this._super();
@@ -15,20 +17,25 @@ var UFO = cc.Sprite.extend({
 		//Posiciona o disco voador no lado esquerdo da tela numa altura aleatória
 		this.setPosition(new cc.Point(Math.floor((Math.random()*screen.width), 0)));
         
+		this.soundEffect = cc.AudioEngine.getInstance().playEffect("res/audios/AsteroidsSaucer.mp3",true);
+		
 		this.scheduleUpdate();
         layer.addChild(this);
     },
 
     update:function(){
     	this.move();
-    
-    	for(i=0; i<asteroids.length; i++)
+    	
+    	for(i=0; i<asteroids.length; i++){
     		this.collide(asteroids[i]);
+    	}
+    		
     	
     	if(bullet != null){
 			for(i=0; i<bullet.length; i++)
 				this.collide(bullet[i]);
 		}
+    	
     },
     
 	
@@ -41,8 +48,11 @@ var UFO = cc.Sprite.extend({
     	this.setPosition(new cc.Point(this.getPosition().x + this.velocityX, this.getPosition().y + this.velocityY));
 		
 		//Verifica saída da tela
-		if(this.getPosition().x > screen.width)
+		if(this.getPosition().x > 800 || this.getPosition().y > 480){
 			layer.removeChild(this);
+			this.die();
+		}
+			
 	},
     
 	shoot:function(dt) {
@@ -77,6 +87,7 @@ var UFO = cc.Sprite.extend({
 	
     //Disco voador some
 	die:function(){
+		cc.AudioEngine.getInstance().pauseEffect(this.soundEffect);
     	layer.removeChild(this);
 	},
     

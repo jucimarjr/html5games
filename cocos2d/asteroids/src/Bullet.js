@@ -22,6 +22,8 @@ var Bullet = cc.Sprite.extend({
 		
 		this.xVelocity = Math.sin(direction*0.0174)*500;
 		this.yVelocity = Math.cos(direction*0.0174)*500;
+		
+		cc.AudioEngine.getInstance().playEffect("res/audios/AsteroidsShoot.mp3",false);
         
         this.scheduleUpdate();
         layer.addChild(this);
