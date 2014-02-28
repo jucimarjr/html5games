@@ -20,38 +20,42 @@ var Game = function(game){
 	this.numAsteroids = 5;
 	this.addAsteroids = 15000;
 	this.timeAsteroids = 15000;
+	this.mapBox = null;
 };
 
-Game.prototype.create = function () {
-	
+Game.prototype.create = function () {	
 	this.game.world.setBounds(0, 0, 2400, 1440);
 	this.tiled1 = this.game.add.tileSprite(0, 0, this.game.world.width, this.game.world.height, 'tiled1');
-	this.tiled2 = this.game.add.tileSprite(-this.game.world.width*10, -this.game.world.height*10, this.game.world.width * 10, this.game.world.height * 10, 'tiled2');
-	//this.tiled2.fixedToCamera = true;
-	//this.tiled2.cameraOffset.setTo(3,3);	
+	this.tiled2 = this.game.add.tileSprite(-this.game.world.width*5, -this.game.world.height*5, this.game.world.width * 10, this.game.world.height * 10, 'tiled2');
+    this.velAsteroids = 5;
+    this.score = 0;
+    this.scoreText = this.game.add.text(this.game.width/2, 20 , this.score, {
+        font: "25px Vector Battle", fill: "#ffffff" , align: "right"
+    });
+    this.livesHud = this.game.add.group();
+	for(var i = 0; i<3; i++){
+		this.livesHud.create(18 * i + 3, 4, 'sprites', 'ship_14-24.png');
+	}
+	this.nextAddUfo = this.game.time.now + this.addUfoTime;	
+	this.mapBox = this.game.add.graphics();
+	this.mapBox.beginFill(0x000000);
+	this.mapBox.lineStyle(1, 0xffffff);
+	this.mapBox.moveTo(this.game.camera.width - 245,5);
+	this.mapBox.lineTo(this.game.camera.width - 5,5);
+	this.mapBox.lineTo(this.game.camera.width - 5,149);
+	this.mapBox.lineTo(this.game.camera.width - 245,149);
+	this.mapBox.lineTo(this.game.camera.width - 245,5);
 	this.ufo = new Ufo(this);
     this.asteroid = new Asteroid(this);
     this.spaceShip = new SpaceShip(this);
     this.game.camera.follow(this.spaceShip.sprite);
-    //this.game.camera.deadzone = new Phaser.Rectangle(this.game.camera.width - 100, this.game.camera.height - 100, 200, 400);
-    this.groupAsteroids = this.game.add.group();
-    this.initAsteroids(20);
-    this.velAsteroids = 5;
-    this.score = 0;
-    this.scoreText = this.game.add.text(game.width - 150, 20 , this.score, {
-        font: "25px Vector Battle", fill: "#ffffff" , align: "right"
-    });
-    //this.scoreText.fixedToCamera = true;
-	this.livesHud = this.game.add.group();
-	for(var i = 0; i<3; i++){
-		this.livesHud.create(18 * i + 3, 4, 'sprites', 'ship_14-24.png');
-	}
-	this.nextAddUfo = this.game.time.now + this.addUfoTime;
+	this.groupAsteroids = this.game.add.group();
+	this.initAsteroids(20);
 	this.groupResources = this.game.add.group();
 	this.addResources();
-	this.resourcesText = this.game.add.text(game.width - 150, 50, 'Resources \nto colect: '+this.groupResources.countLiving(), {
+	this.resourcesText = this.game.add.text(50, 50, 'Resources \nto colect: '+this.groupResources.countLiving(), {
         font: "12px Vector Battle", fill: "#ffffff" , align: "right"
-    });
+    });	
 };
 
 Game.prototype.colectResources = function(spaceship, resource){
@@ -59,12 +63,60 @@ Game.prototype.colectResources = function(spaceship, resource){
 	//this.resourcesText.content = 'Resources \nto colect: '+this.groupResources.countLiving();
 };
 
+Game.prototype.drawMap = function(){
+	var pxship = Math.round(this.spaceShip.sprite.x/10);
+	var pyship = Math.round(this.spaceShip.sprite.y/10);
+	var ptx = (this.game.camera.width - 245) + pxship;
+	var pty = pyship + 5;
+	//console.log('ptx: '+ptx+' '+'pty: '+pty);
+	this.mapBox.clear();
+	this.mapBox.beginFill(0x000000);
+	this.mapBox.lineStyle(1, 0xffffff);
+	this.mapBox.moveTo(this.game.camera.width - 245,5);
+	this.mapBox.lineTo(this.game.camera.width - 5,5);
+	this.mapBox.lineTo(this.game.camera.width - 5,149);
+	this.mapBox.lineTo(this.game.camera.width - 245,149);
+	this.mapBox.lineTo(this.game.camera.width - 245,5);
+	this.drawPoint(ptx, pty, 0x00ff00);
+	this.groupAsteroids.forEachAlive(function(asteroid){
+		var pxship = Math.round(asteroid.x/10);
+		var pyship = Math.round(asteroid.y/10);
+		var ptx = (this.game.camera.width - 245) + pxship;
+		var pty = pyship + 5;
+		this.drawPoint(ptx, pty, 0xffffff);
+	}, this);
+	this.groupResources.forEachAlive(function(resource){
+		var pxship = Math.round(resource.x/10);
+		var pyship = Math.round(resource.y/10);
+		var ptx = (this.game.camera.width - 245) + pxship;
+		var pty = pyship + 5;
+		this.drawPoint(ptx, pty, 0xff00ff);
+	}, this);
+	if(this.ufo.sprite.alive){
+		pxship = Math.round(this.ufo.sprite.x/10);
+		pyship = Math.round(this.ufo.sprite.y/10);
+		ptx = (this.game.camera.width - 245) + pxship;
+		pty = pyship + 5;
+		this.drawPoint(ptx, pty, 0xff0000);
+	}
+};
+
+Game.prototype.drawPoint = function(px, py, color){
+	this.mapBox.moveTo(px,py);
+	this.mapBox.lineStyle(2, color);
+	this.mapBox.lineTo(px + 1,py);
+	this.mapBox.lineTo(px + 1,py + 2);
+	this.mapBox.lineTo(px,py + 2);
+	this.mapBox.lineTo(px,py);
+};
+
 Game.prototype.update = function () {
     this.spaceShip.update();
     this.ufo.update();
-    this.scoreText.x = this.game.camera.x + 700;
+    this.groupAsteroids.forEachAlive(this.warp,this);
+    this.scoreText.x = this.game.camera.x + 400;
     this.scoreText.y = this.game.camera.y + 10;
-    this.resourcesText.x = this.game.camera.x + 650;
+    this.resourcesText.x = this.game.camera.x + 10;
     this.resourcesText.y = this.game.camera.y + 50;    
     this.livesHud.x = this.game.camera.x + 10;
     this.livesHud.y = this.game.camera.y + 10;
@@ -92,7 +144,7 @@ Game.prototype.update = function () {
     
     if (this.game.time.now > this.nextAddUfo) {
         this.nextAddUfo = this.game.time.now + this.addUfoTime;
-        this.ufo.appear();
+        this.ufo.appear(0, Math.random()*this.game.world.height);
     }
     
     if (this.game.time.now > this.timeAsteroids) {
@@ -100,7 +152,7 @@ Game.prototype.update = function () {
         this.initAsteroids(this.velAsteroids);
         this.numAsteroids++;
     }
-    
+    this.drawMap();
     
     /*
     if(this.groupAsteroids.countLiving() == 0){
@@ -117,13 +169,11 @@ Game.prototype.initAsteroids = function(num){
     	var py = Math.random() * this.game.world.height;
     	if(px > this.spaceShip.sprite.x - 100){
     		if(px < this.spaceShip.sprite.x + 100){
-    			console.log('px:'+px+' '+'py: '+py);
     			px += 150;
     		}
     	}
     	if(py > this.spaceShip.sprite.y - 100){
     		if(py < this.spaceShip.sprite.y + 100){
-    			console.log('px:'+px+' '+'py: '+py);
     			py += 150;
     		}
     	}    		
