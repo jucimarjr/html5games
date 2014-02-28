@@ -37,6 +37,7 @@ SpaceShip.prototype.update = function () {
     this.game.physics.collide(this.gameClass.groupAsteroids, this.bulletsGroup, this.gameClass.asteroid.die, null, this);
     this.game.physics.collide(this.sprite, this.gameClass.groupAsteroids, this.die , null, this);       	
     this.game.physics.collide(this.gameClass.ufo.sprite, this.bulletsGroup, this.gameClass.ufo.die, null, this);
+    this.game.physics.collide(this.gameClass.groupResources, this.sprite, this.gameClass.colectResources, null, this);
     this.gameClass.warp(this.sprite);
 };
 

@@ -5,6 +5,8 @@ var Game = function(game){
     this.spaceShip = null;
     this.asteroid = null;
 	this.groupAsteroids = null;
+	this.groupResources = null;
+	this.resourcesText = null;
 	this.tiled1 = null;
 	this.tiled2 = null;
 	this.livesHud = null;
@@ -22,9 +24,9 @@ var Game = function(game){
 
 Game.prototype.create = function () {
 	
-	this.game.world.setBounds(0, 0, 1000, 1000);
+	this.game.world.setBounds(0, 0, 2400, 1440);
 	this.tiled1 = this.game.add.tileSprite(0, 0, this.game.world.width, this.game.world.height, 'tiled1');
-	this.tiled2 = this.game.add.tileSprite(0, 0, this.game.world.width, this.game.world.height, 'tiled2');
+	this.tiled2 = this.game.add.tileSprite(-this.game.world.width*10, -this.game.world.height*10, this.game.world.width * 10, this.game.world.height * 10, 'tiled2');
 	//this.tiled2.fixedToCamera = true;
 	//this.tiled2.cameraOffset.setTo(3,3);	
 	this.ufo = new Ufo(this);
@@ -34,7 +36,7 @@ Game.prototype.create = function () {
     //this.game.camera.deadzone = new Phaser.Rectangle(this.game.camera.width - 100, this.game.camera.height - 100, 200, 400);
     this.groupAsteroids = this.game.add.group();
     this.initAsteroids(20);
-    this.velAsteroids = 1;
+    this.velAsteroids = 5;
     this.score = 0;
     this.scoreText = this.game.add.text(game.width - 150, 20 , this.score, {
         font: "25px Vector Battle", fill: "#ffffff" , align: "right"
@@ -45,16 +47,29 @@ Game.prototype.create = function () {
 		this.livesHud.create(18 * i + 3, 4, 'sprites', 'ship_14-24.png');
 	}
 	this.nextAddUfo = this.game.time.now + this.addUfoTime;
+	this.groupResources = this.game.add.group();
+	this.addResources();
+	this.resourcesText = this.game.add.text(game.width - 150, 50, 'Resources \nto colect: '+this.groupResources.countLiving(), {
+        font: "12px Vector Battle", fill: "#ffffff" , align: "right"
+    });
+};
+
+Game.prototype.colectResources = function(spaceship, resource){
+	resource.kill();
+	//this.resourcesText.content = 'Resources \nto colect: '+this.groupResources.countLiving();
 };
 
 Game.prototype.update = function () {
-
     this.spaceShip.update();
     this.ufo.update();
     this.scoreText.x = this.game.camera.x + 700;
     this.scoreText.y = this.game.camera.y + 10;
+    this.resourcesText.x = this.game.camera.x + 650;
+    this.resourcesText.y = this.game.camera.y + 50;    
     this.livesHud.x = this.game.camera.x + 10;
     this.livesHud.y = this.game.camera.y + 10;
+    this.tiled2.x -= this.spaceShip.sprite.body.velocity.x/500;
+    this.tiled2.y -= this.spaceShip.sprite.body.velocity.y/500;
     if(game.input.keyboard.isDown(Phaser.Keyboard.LEFT))
         this.spaceShip.rotate("left");
     else if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT))
@@ -82,9 +97,11 @@ Game.prototype.update = function () {
     
     if (this.game.time.now > this.timeAsteroids) {
         this.timeAsteroids = this.game.time.now + this.addAsteroids;
-        this.initAsteroids(this.numAsteroids);
+        this.initAsteroids(this.velAsteroids);
         this.numAsteroids++;
     }
+    
+    
     /*
     if(this.groupAsteroids.countLiving() == 0){
     	this.velAsteroids++;
@@ -112,6 +129,16 @@ Game.prototype.initAsteroids = function(num){
     	}    		
     	this.asteroid.create(px, py, 'large', this.velAsteroids);
     }
+};
+
+Game.prototype.addResources = function(){
+	for(var i = 0;i < 5;i++){
+		var resource = this.game.add.sprite(Math.random() * this.game.world.width, Math.random() * this.game.world.height, 'res');
+		//resource.lifespan = 30000;
+		resource.body.angularVelocity = 5;
+		this.game.add.tween(resource).to( { alpha: 0.5}, 200, Phaser.Easing.Linear.InOut, true, 0, 1000, true);
+		this.groupResources.add(resource);
+	}
 };
 
 Game.prototype.warp = function (object) {

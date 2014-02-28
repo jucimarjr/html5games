@@ -9,8 +9,9 @@ var Cidade = cc.Sprite.extend({
         this.sprites.addSpriteFrames("assets/cidade.plist", "assets/cidade.png");
 
         var frame1 = this.sprites.getSpriteFrame("cidade1.png");
-        this.initWithSpriteFrame(frame1);
-        this.setScale(1.5);
+        //this.initWithSpriteFrame(frame1);
+        this.initWithFile('assets/Sem título.png')
+        //this.setScale(1.5);
 
         if(i < 3)
             this.setPosition(tela.width/40 + tela.width/20 + 120 * i, tela.height/20);
