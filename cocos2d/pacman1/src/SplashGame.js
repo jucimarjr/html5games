@@ -15,7 +15,7 @@ var splashGameLayer = cc.Layer.extend({
 	
 	onClick:function (dt) {
     	var scene = cc.Scene.create();
-		scene.addChild(new Menu());
+		scene.addChild(new menu());
 		cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.5,scene));
     }
 });
