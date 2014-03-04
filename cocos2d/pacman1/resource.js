@@ -34,7 +34,7 @@ var resource = [
     {type:"sound", src:s_shootEffectOgg},
     {type:"sound", src:s_shootEffectWav},
     */
-    {fontName: "Joystix", src: [{src: sJoystixFont, type: "truetype"}]},
+    {fontName: "fontName", src: [{src: sJoystixFont, type: "truetype"}]},
     
     {type: "image", src: sSplashTeam},									  
 	{type: "image", src: sSplashGame},

@@ -16,7 +16,7 @@ var menuLayer = cc.Layer.extend({
 		this.pac = new Pac();
 		this.addChild(this.pac);				
 		        
-        this.play = cc.LabelTTF.create("PLAY GAME", "Joystix", background.width/30);
+        this.play = cc.LabelTTF.create("PLAY GAME", "fontName", background.width/30);
         this.play.setPosition(new cc.Point(background.width/2, background.height - 400));
         this.addChild(this.play);
                 

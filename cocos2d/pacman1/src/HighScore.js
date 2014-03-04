@@ -14,16 +14,16 @@ var highScoreLayer = cc.Layer.extend({
 		this.title.setPosition(new cc.Point(background.width/2, background.height - 70) );
         this.addChild(this.title);
 		        
-        this.play = cc.LabelTTF.create("YOUR SCORE", "Joystix", background.width/30);
+        this.play = cc.LabelTTF.create("YOUR SCORE", "fontName", background.width/30);
         this.play .setColor( new cc.Color3B(255, 255, 51) );
         this.play.setPosition(new cc.Point(background.width/2, background.height - 180));
         this.addChild(this.play);
         
-        this.score = cc.LabelTTF.create("4450", "Joystix", background.width/30);
+        this.score = cc.LabelTTF.create("4450", "fontName", background.width/30);
         this.score.setPosition(new cc.Point(background.width/2, background.height - 250));
         this.addChild(this.score);
         
-        this.back = cc.LabelTTF.create("PLAY AGAIN?", "Joystix", background.width/30);
+        this.back = cc.LabelTTF.create("PLAY AGAIN?", "fontName", background.width/30);
         this.back.setPosition(new cc.Point(background.width/2, background.height - 420));
         this.addChild(this.back);
                 
