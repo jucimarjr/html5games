@@ -1,6 +1,8 @@
 var Pac = cc.Sprite.extend({
 	spriteFrameCache: cc.SpriteFrameCache.getInstance(),
 	animeCache: cc.AnimationCache.getInstance(),
+	xVelocity:300,
+    yVelocity:300,
 	
 	ctor:function(size, position){
 		this._super();
@@ -10,15 +12,21 @@ var Pac = cc.Sprite.extend({
 		
 		this.createAnimation("pac", 2, "pac");
 		
+		var animation = this.animeCache.getAnimation("pac");
+		animation.setRestoreOriginalFrame(true);
+		this.runAction(cc.RepeatForever.create(cc.Animate.create(animation)));
+		
 		this.scheduleUpdate();
 			
 		//layer.addChild(this);
 	},
 	
-	update:function(){
-		var animation = this.animeCache.getAnimation("pac");
-		animation.setRestoreOriginalFrame(true);
-		this.runAction(cc.RepeatForever.create(cc.Animate.create(animation)));
+	update:function(dt){
+		if(this.getPosition().x < background.width/2){
+			var position = this.getPosition();
+			position.x += this.xVelocity * dt;
+	        this.setPosition(position);		        
+		}		
 	},
 	
 	createAnimation: function (spritePrefix, maxIndex, animationName) {        
@@ -36,16 +44,6 @@ var Pac = cc.Sprite.extend({
         }
 
         var animation = cc.Animation.create(animFrames, 0.1);
-        this.animeCache.addAnimation(animation, animationName);
-        
-		/*
-		var animeFrames = [];
-		animeFrames.push(this.spriteFrameCache.getSpriteFrame("pacOpen_98-135.png"));
-		animeFrames.push(this.spriteFrameCache.getSpriteFrame("pacClose_98-135.png"));
-		animeFrames.push(this.spriteFrameCache.getSpriteFrame("pacOpen_98-135.png"));
-		
-		var animation = cc.Animation.create(animeFrames, 0.1);
-		this.animCache.addAnimation(animation, "shipFire");
-		*/
+        this.animeCache.addAnimation(animation, animationName);        
     }
 });
