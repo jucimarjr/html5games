@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="140" height="15" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
+ <tileset firstgid="1" name="tiles" tilewidth="32" tileheight="32">
+  <image source="tiles.png" width="667" height="161"/>
+ </tileset>
+ <layer name="Camada de Tiles 1" width="140" height="15">
+  <data encoding="base64" compression="zlib">
+   eJztmNdPAkEQxseKJbH3mti7IolgebCBD6L4YHtV+f//Bj8CE4Zhdzma54X9kl/C7XF3w+y3M3sQeXl1pnpBH+gHsZBj8fLy6mwNhB2A179So36Ila4dBENgGIyAUTAGxsEEmARTzYfpFXEtgiWwDFbAKlgD62ADbIItsA12QorRqzHJ/a2uCd0OXhz3PAZJkAKnIAHOxNg5uACX4KrVP8irrZoHC2SuCXEqz3fCcGwT+yIpKBw/gix4As8gR0Xf+R4VHR2CIyrWhBMqe8LkFR57KGET+yNFld7h67/AN/gBefI9Kkq6AbfgDtyDNMhQtW/S4hz7yCabX9JU6Tv5vU7rUfq/rnr2AiZ6moynK+B9dB2R8LkMlT3EnglaX7gHsV8Y6Zuo9SjObTPzNkf2vYBeq5K4ojA2A2YDxOuKbTrAfUg9V/uEvVIYk3PNYzbZ/JIS12vf8DPD6FG2+bfll3Nrola+WQfk3gvovHBd12suiF+CeGEX7IH9GnHrta7rCp+TXmmkvvBxVt3H9Pslf9GjbPNvyy/n1kStfLOuqXovoHOt15Os73kq5yvniFXGGzQ2lzgGHZfet+heVK9fGJOPZM3JKGSPcsnVI2rVC9v8tyK/Nr2CN/AOPsAnVdfwvBoznePPQetas9L9weXreusLv0uzN7R3XPCz5HuUywuuHlFvr2infgHJzV95
+  </data>
+ </layer>
+ <objectgroup name="objects" width="140" height="15">
+  <object type="edgeShape" x="77" y="477">
+   <polyline points="0,0 25,-45 219,-156 245,-160 452,-157 541,-157 604,-155 655,-160"/>
+  </object>
+  <object type="edgeShape" x="927" y="432">
+   <polyline points="0,0 1,-71 12,-79 88,-77"/>
+  </object>
+  <object type="edgeShape" x="1215" y="405">
+   <polyline points="0,0 8,-83 88,-81"/>
+  </object>
+  <object type="edgeShape" x="1535" y="473">
+   <polyline points="0,0 0,-161 61,-207 201,-279 229,-281 460,-283 483,-263"/>
+  </object>
+  <object type="edgeShape" x="2208" y="475">
+   <properties>
+    <property name="friction" value="1"/>
+   </properties>
+   <polyline points="0,0 0,-272 103,-331 161,-348 208,-340 373,-241 533,-145 701,-44"/>
+  </object>
+  <object type="edgeShape" x="3136" y="475">
+   <polyline points="0,0 -1,-53 311,-56"/>
+  </object>
+  <object type="edgeShape" x="3615" y="436">
+   <polyline points="0,0 3,-81 215,-77"/>
+  </object>
+  <object type="edgeShape" x="4000" y="401">
+   <polyline points="0,0 1,-80 245,-79"/>
+  </object>
+  <object type="edgeShape" x="2915" y="448">
+   <polyline points="0,0 217,0"/>
+  </object>
+ </objectgroup>
+</map>
