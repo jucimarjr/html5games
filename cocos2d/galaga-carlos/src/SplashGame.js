@@ -21,8 +21,14 @@ var SplashJogoLayer = cc.Layer.extend({
         
        // _title = new ActionBlink();
         
+        this.schedule(this.onTick1, 3);
+        
         return this;
 
+    },onTick1:function (dt) {
+    	var scene = cc.Scene.create();
+		scene.addChild(new Menu());
+		cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.5,scene));
     }
 });
 

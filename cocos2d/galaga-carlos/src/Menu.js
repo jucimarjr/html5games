@@ -11,9 +11,9 @@ var MenuLayer = cc.Layer.extend({
        // var tocando = 1;
         var screen = cc.Director.getInstance().getWinSizeInPixels();
 		
-		var fundo = cc.Sprite.create("res/screenshoots/Menu_480-600.png");
-        fundo.setPositionX(tela.width/2);
-        fundo.setPositionY(tela.height/2);
+		var fundo = cc.Sprite.create("res/screenshoots/Menu6_480-600.png");
+        fundo.setPositionX(screen.width/2);
+        fundo.setPositionY(screen.height/2);
         this.addChild(fundo);
         
 		
@@ -35,25 +35,25 @@ var MenuLayer = cc.Layer.extend({
 //        var action_1 = cc.Animate.create(animation);
 //        this.nave.runAction(cc.Sequence.create(action,action.reverse()));
         
-        /*btPlay = cc.Sprite.create("res/images/buttons/newBtnPlay_155-34.png");
-        btPlaySelected = cc.Sprite.create("res/images/buttons/btnPlaySelected_155-34.png");
-        btHighScore = cc.Sprite.create("res/images/buttons/newBtnScore_356-34.png");
-        btHighScoreSelected = cc.Sprite.create("res/images/buttons/btnScoreSelected_365-34.png");
-        btHowToPlay = cc.Sprite.create("res/images/buttons/newBtnHowToPlay_381-34.png");
-        btHowToPLaySelected = cc.Sprite.create("res/images/buttons/btnHowToPlaySelected_381-34.png");
-        btCredits = cc.Sprite.create("res/images/buttons/newBtnCredits_256-34.png");
-        btCreditsSelected = cc.Sprite.create("res/images/buttons/btnCreditsSelected_256-34.png");*/
+        btPlay = cc.Sprite.create("res/buttons/btPlay_121-27.png");
+        btPlaySelected = cc.Sprite.create("res/buttons/btPlaySelected_121-27.png");
+        btHighScore = cc.Sprite.create("res/buttons/btHigh_341-27.png");
+        btHighScoreSelected = cc.Sprite.create("res/buttons/btHighSelected_341-27.png");
+        btHowToPlay = cc.Sprite.create("res/buttons/btHowTo_341-27.png");
+        btHowToPLaySelected = cc.Sprite.create("res/buttons/btHowToSelected_341-27.png");
+        btCredits = cc.Sprite.create("res/buttons/btCredits_215-27.png");
+        btCreditsSelected = cc.Sprite.create("res/buttons/btCreditsSelected_215-27.png");
       
       
         /*btSound = cc.Sprite.create("assets/Telas/som.png");
         btSoundOff = cc.Sprite.create("assets/Telas/som_desligado.png");*/
               
-       /* var play = cc.MenuItemSprite.create(btPlay,null,null,'onPlay',this);
-        var highScore = cc.MenuItemSprite.create(btHighScore,null,null,'onHighScore',this);
+        var play = cc.MenuItemSprite.create(btPlay,btPlaySelected,null,'onPlay',this);
+        var highScore = cc.MenuItemSprite.create(btHighScore,btHighScoreSelected,null,'onHighScore',this);
         highScore.setPosition(0,-60);
-        var howToPlay = cc.MenuItemSprite.create(btHowToPlay,null,null,'onHowToPlay',this);
+        var howToPlay = cc.MenuItemSprite.create(btHowToPlay,btHowToPLaySelected,null,'onHowToPlay',this);
         howToPlay.setPosition(0,-120);
-        var credits = cc.MenuItemSprite.create(btCredits,null,null,'onCredits',this);
+        var credits = cc.MenuItemSprite.create(btCredits,btCreditsSelected,null,'onCredits',this);
         credits.setPosition(0,-180);
         /*var item1 = cc.MenuItemToggle.create(
               cc.MenuItemSprite.create(btSound),
@@ -61,8 +61,8 @@ var MenuLayer = cc.Layer.extend({
           item1.setCallback(this.onMenuCallback, this);
           item1.setPosition(-290,-260)
         */
-        //var menu = cc.Menu.create(play,highScore,howToPlay,credits/*,item1*/);
-        //menu.setPosition(400,340);
+        var menu = cc.Menu.create(play,highScore,howToPlay,credits/*,item1*/);
+        menu.setPosition(240,273);
       
         this.addChild(menu);
         
@@ -71,23 +71,23 @@ var MenuLayer = cc.Layer.extend({
         return this;	
     },
 
-   /* onPlay: function () {
+   onPlay: function () {
 //      if (cc.AudioEngine.getInstance().isMusicPlaying())
 //          cc.AudioEngine.getInstance().stopMusic();
-      cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2, new GameScene()));
+      //cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2, new GameScene()));
     },
 
     onCredits: function () {
-      cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2, new Credits()));
+     // cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2, new Credits()));
     },
 
     onHowToPlay: function () {
-      cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2, new HowToPlay()));
+      //cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2, new HowToPlay()));
     },
     onHighScore: function () {
       //cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2, new HighScores()));
     },
-    onMenuCallback:function (sender) {
+    //onMenuCallback:function (sender) {
 //  	if (cc.AudioEngine.getInstance().isMusicPlaying()){
 //  		cc.AudioEngine.getInstance().stopMusic();
 //  	}else{
@@ -95,8 +95,8 @@ var MenuLayer = cc.Layer.extend({
 //  	}
           
   	
-      cc.log("Callback called");
-  }*/
+      //cc.log("Callback called");
+  //}
 
 
 
@@ -114,9 +114,9 @@ var Menu = cc.Scene.extend({
 		
 		verify = false;
 		
-		var gameLayer = new GameLayer();
-		gameLayer.initAsteroids();  	
-    	this.addChild(gameLayer);
+		//var gameLayer = new GameLayer();
+		//gameLayer.initAsteroids();  	
+    	//this.addChild(gameLayer);
         
 		var layerMenu = new MenuLayer();
         layerMenu.init();
