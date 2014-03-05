@@ -11,7 +11,7 @@
 		engineDir: "../Cocos2d-html5/cocos2d/", // path to your cocos2d installation
 
 		appFiles: ['resource.js', 'src/SplashTeam.js', 'src/SplashGame.js', 'src/Menu.js',
-		           'src/Game.js', 'src/Pac.js', 'src/HighScore.js'
+		           'src/Game.js', 'src/Pac.js', 'src/HighScore.js', 'src/HowToPlay.js'
 		           ]
 	};
 	
