@@ -8,18 +8,14 @@ Ufo = function (gameClass) {
     this.sprite.kill();
 };
 
-Ufo.prototype.appear = function (px, py) {
+Ufo.prototype.appear = function (px, py, dir) {
     this.game.add.audio('ufo', 1).play();
-    this.sprite.reset(px, py);
+    this.sprite.reset(0, Math.random() * this.game.world.height);
     this.sprite.anchor.setTo(0.5,0.5);
     this.sprite.scale.setTo(0.5,0.5);
     this.sprite.events.onOutOfBounds.add(this.die, (this,null));
-    this.move();
-};
-
-Ufo.prototype.move = function () {
-    var direction = (45 - Math.random() * 90);
-    this.sprite.body.velocity.x = Math.cos(direction * 0.0174) * 150;
+    this.sprite.body.velocity.x = Math.cos(dir * 0.0174) * 150;
+    this.gameClass.groupUfo.add(this.sprite);
 };
 
 Ufo.prototype.update = function () {
@@ -27,8 +23,6 @@ Ufo.prototype.update = function () {
     this.game.physics.collide(this.gameClass.spaceShip.sprite, this.shootsUfo, this.gameClass.spaceShip.die, null, this);
     this.game.physics.collide(this.gameClass.groupAsteroids, this.shootsUfo, this.gameClass.asteroid.die, null, this);
     this.game.physics.collide(this.gameClass.groupAsteroids, this.sprite, this.die, null, this);
-
-
     if (this.game.time.now > this.nextFire && this.sprite.alive) {
         this.nextFire = this.game.time.now + this.fireRate;
         this.shoot();
