@@ -9,14 +9,14 @@ var lifeGame = {
 };
 
 var scoreGame = {
-	label: "SCORE", 
-	score: 0
+	label: null, 
+	score: 0,
+	text: "SCORE"
 };
 
 var gameLayer = cc.Layer.extend({
 
 	gameOver: null,
-	score: 0,
 	
 	init:function()
 	{
@@ -29,8 +29,7 @@ var gameLayer = cc.Layer.extend({
 		return this;
 	},
 	
-	onClick:function (dt) {
-    	cc.log("tentando remover vidas");		
+	onClick:function (dt) {    	
 		if (lifeGame.life != 0){
 			this.removeLives();		
 			this.plusScore();
@@ -40,7 +39,7 @@ var gameLayer = cc.Layer.extend({
 	
 	addLives: function()
 	{
-		lifeGame.label = cc.LabelTTF.create("LIVES", "VectorB", 20);
+		lifeGame.label = cc.LabelTTF.create("LIVES", "fontName", 20);
 		lifeGame.label.setPosition( new cc.Point(background.width/2 + 200, background.height - 460) );
 		this.addChild( lifeGame.label );	
 		
@@ -59,28 +58,23 @@ var gameLayer = cc.Layer.extend({
 		this.removeChild( spriteLives[lifeGame.life] );	
 		if (lifeGame.life == 0){		
 			this.gameOver = new losing();				        
-	        this.addChild( this.gameOver );			
+	        this.addChild( this.gameOver );		
+			cc.Director.getInstance().replaceScene(cc.TransitionFade.create(10,new highScore()));
 		}		
 	},
 	
 	addScore:function()
-	{
-		if (scoreGame.score == 0){
-			cc.log("adicionando o primeiro score");
-			scoreGame.label = cc.LabelTTF.create(scoreGame.label, "VectorB", 20);		
-			scoreGame.label.setPosition(new cc.Point(background.width/2 - 300, background.height - 460) );
-			this.addChild( scoreGame.label );	
-		}
-		
-		scoreGame.score = cc.LabelTTF.create(this.score, "VectorB", 20);		
-		scoreGame.score.setPosition(new cc.Point(background.width/2 - 250, background.height - 460) );
-		this.addChild( scoreGame.score );	
-    },
+	{			
+		scoreGame.label = cc.LabelTTF.create(scoreGame.text + " " + scoreGame.score, "fontName", 20);		
+		scoreGame.label.setPosition(new cc.Point(background.width/2 - 300, background.height - 460) );
+		this.addChild( scoreGame.label );	
+
+    },	
 	
 	plusScore: function()
 	{		
-		this.score += 10;
-		scoreGame.score.setString(this.score);
+		scoreGame.score += 10;
+		scoreGame.label.setString(scoreGame.text + " " + scoreGame.score);
 	}
 	
 });

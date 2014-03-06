@@ -19,7 +19,7 @@ var highScoreLayer = cc.Layer.extend({
         this.play.setPosition(new cc.Point(background.width/2, background.height - 180));
         this.addChild(this.play);
         
-        this.score = cc.LabelTTF.create("4450", "fontName", background.width/30);
+        this.score = cc.LabelTTF.create(scoreGame.score , "fontName", background.width/30);
         this.score.setPosition(new cc.Point(background.width/2, background.height - 250));
         this.addChild(this.score);
         
