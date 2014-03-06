@@ -24,7 +24,7 @@ var HighScoresLayer = cc.Layer.extend({
 	showHighScore: function () {
 		this.localStorage = cc.LabelTTF.create(localStorage["nameScore1"], "SFAtarianSystem", 70);
 		this.localStorage.setColor( new cc.Color3B(255, 255, 255) );
-		this.localStorage.setPosition(new cc.Point(screen.width / 2 - 150, 100, ) );
+		this.localStorage.setPosition(new cc.Point(screen.width / 2 - 150, 100 ) );
         this.addChild(this.localStorage);        
 	},
     onMouseUp: function (event) {
