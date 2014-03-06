@@ -16,6 +16,7 @@ SpaceShip = function(gameClass) {
 SpaceShip.prototype.create = function(){
 	this.sprite = this.game.add.sprite(this.game.world.width/2, this.game.world.height/2, 'sprites', 'ship_14-24.png');
     //this.sprite.events.onOutOfBounds.add(this.gameClass.outOfBounds,this);
+	this.sprite.name = 'ship';
 	this.sprite.anchor.x = 0.5;
 	this.sprite.anchor.y = 0.5;
     this.sprite.body.gravity.x = 0;
@@ -34,10 +35,7 @@ SpaceShip.prototype.create = function(){
 };
 
 SpaceShip.prototype.update = function () {	
-    this.game.physics.collide(this.gameClass.groupAsteroids, this.bulletsGroup, this.gameClass.asteroid.die, null, this);
-    this.game.physics.collide(this.sprite, this.gameClass.groupAsteroids, this.die , null, this);       	
-    this.game.physics.collide(this.gameClass.groupResources, this.sprite, this.gameClass.colectResources, null, this);
-    this.gameClass.warp(this.sprite);
+   this.gameClass.warp(this.sprite);
 };
 
 SpaceShip.prototype.animate = function(){
@@ -89,6 +87,7 @@ SpaceShip.prototype.shoot = function () {
         			this.sprite.position.y + Math.sin((this.sprite.body.rotation + 270)*0.0174) *24, 'sprites', 'shoot_2-2.png');
         this.game.physics.velocityFromAngle(this.sprite.body.rotation - 90, 500, this.bullet.body.velocity);
         this.bullet.events.onOutOfBounds.add(this.destroyShoot, this);
+        this.bullet.name = 'shoot';
         this.shootInterval = 10;
     }
 

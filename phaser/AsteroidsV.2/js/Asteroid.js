@@ -1,32 +1,34 @@
 var Asteroid = function(gameClass) {
     this.game = gameClass.game;
     this.gameClass = gameClass;
-    this.sprite = null;
 	this.velocity = 30;
+	this.sprite = null;
+	this.size
 };
 
 Asteroid.prototype.create = function ( posX , posY , size , vel) {
     var asteroid, mult;
     if (size == "large") {
     	var i = Math.round(1 + Math.random()*2);
-    	asteroid = this.gameClass.groupAsteroids.create(posX, posY, 'sprites', 'asteroids'+i+'_80-80.png');
+    	this.sprite = this.gameClass.groupAsteroids.create(posX, posY, 'sprites', 'asteroids'+i+'_80-80.png');
         mult = 1;
     }
     if (size == "medium") {
     	var i = Math.round(1 + Math.random()*2);
-    	asteroid = this.gameClass.groupAsteroids.create(posX, posY, 'sprites', 'asteroids'+i+'_40-40.png');
+    	this.sprite = this.gameClass.groupAsteroids.create(posX, posY, 'sprites', 'asteroids'+i+'_40-40.png');
     	mult = 2;
     }
     if (size == "small") {
     	var i = Math.round(1 + Math.random()*2);
-    	asteroid = this.gameClass.groupAsteroids.create(posX, posY, 'sprites', 'asteroids'+i+'_20-20.png');
+    	this.sprite = this.gameClass.groupAsteroids.create(posX, posY, 'sprites', 'asteroids'+i+'_20-20.png');
     	mult = 4;
     }
     //asteroid.body.allowCollision.any = true;
     //asteroid.body.bounce.setTo(1,1);
-    this.move( asteroid , mult*vel);
-    asteroid.size = size;
-    asteroid.anchor.setTo(0.5,0.5);
+    this.move( this.sprite , mult*vel);
+    this.sprite.size = size;
+    this.sprite.anchor.setTo(0.5,0.5);
+    this.sprite.name = 'asteroid';
     //asteroid.events.onOutOfBounds.add(this.gameClass.outOfBounds, this);
     
 };
@@ -42,8 +44,7 @@ Asteroid.prototype.move = function (asteroid,mult) {
 }
 
 Asteroid.prototype.die = function (asteroid, shoot) {
-    shoot.kill();
-    
+    shoot.kill();    
     var emitter = this.game.add.emitter(asteroid.x, asteroid.y, 15);
     emitter.makeParticles('sprites', ['shoot_2-2.png']);
     emitter.minParticleSpeed.setTo(-40, -40);

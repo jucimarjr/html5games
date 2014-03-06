@@ -16,7 +16,7 @@ Menu.prototype.preload = function(){
 };
 
 Menu.prototype.create = function() {
-
+	this.game.world.setBounds(0, 0, 2400, 1440);
     var fadeout;
 
     this.btnPlay = game.add.button(game.world.centerX + 15, game.world.centerY - 110, 'botoes',

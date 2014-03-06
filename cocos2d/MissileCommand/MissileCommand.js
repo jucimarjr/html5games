@@ -9,7 +9,7 @@ var MissileCommandGame = cc.Layer.extend({
     misseis:[],
     naves:[],
     bg:null,
-    bgind:1,
+    bgind:4,
     vel:2,
     msg:null,
     playing:true,
@@ -37,12 +37,7 @@ var MissileCommandGame = cc.Layer.extend({
         this.HUDscore = cc.LabelTTF.create("Score: "+ score, "Arial", tela.width/40);
         this.HUDscore.setPosition(new cc.p(tela.width/15 ,tela.height - tela.height/20));
         this.addChild(this.HUDscore);
-		
-        
-        var chao = cc.Sprite.create("assets/chao.png");
-        chao.setPosition(400,30);
-        this.addChild(chao);
-        
+		        
         var btBack = cc.Sprite.create("assets/btPause.png");
 		var back = cc.MenuItemSprite.create(btBack, null,null, 'Pause', this);
 		

@@ -10,13 +10,21 @@ var Cidade = cc.Sprite.extend({
 
         var frame1 = this.sprites.getSpriteFrame("cidade1.png");
         //this.initWithSpriteFrame(frame1);
-        this.initWithFile('assets/Sem título.png')
+        var r = Math.floor(Math.random()*6);
+        switch (r){
+        case 0:this.initWithFile('assets/a.png');break;
+        case 1:this.initWithFile('assets/b.png');break;
+        case 2:this.initWithFile('assets/c.png');break;
+        case 3:this.initWithFile('assets/d.png');break;
+        case 4:this.initWithFile('assets/e.png');break;
+        case 5:this.initWithFile('assets/g.png');break;
+        }
         //this.setScale(1.5);
 
         if(i < 3)
-            this.setPosition(tela.width/40 + tela.width/20 + 120 * i, tela.height/20);
+            this.setPosition(tela.width/40 + tela.width/20 + 120 * i, tela.height/16);
         else
-            this.setPosition(tela.width/2 + tela.width/15 + tela.width/20 + 120 * (i - 3), tela.height/20);
+            this.setPosition(tela.width/2 + tela.width/15 + tela.width/20 + 120 * (i - 3), tela.height/16);
         this.setAnchorPoint(new cc.p(0.5,0));
     },
     alive:true,
