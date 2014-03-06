@@ -22,6 +22,8 @@ var sSplashGame = dirScreenShots + "splashGame_800-480.png";
 var sMenuTitle = dirImages + "menuTitle_595-135.png";
 var ssPacs = dirSpriteSheets + "PacsSpriteSheet.png";
 var ssPacsList = dirSpriteSheets + "PacsSpriteSheet.plist";
+var sPacLife = dirImages + "pac_left_14-16.png";
+var sGameOver = dirImages + "game_over_217-32.png";
  
 var resource = [
     /*
@@ -41,7 +43,10 @@ var resource = [
 	{type: "image", src: sMenuTitle},
 	
 	{type: "image", src: ssPacs},
-    {type: "plist", src: ssPacsList}
+    {type: "plist", src: ssPacsList},
+	
+	{type: "image", src: sPacLife},
+	{type: "image", src: sGameOver}
     
  
 ];
