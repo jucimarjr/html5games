@@ -44,7 +44,7 @@ var menuLayer = cc.Layer.extend({
     },
     
     credits:function () {
-    	cc.Director.getInstance().replaceScene(cc.TransitionFade.create(0.5,new highScore()));
+    	cc.Director.getInstance().replaceScene(cc.TransitionFade.create(0.5,new credits()));
     },
     
     play:function () {
