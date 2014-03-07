@@ -1,26 +1,26 @@
 Ufo = function (gameClass) {
     this.game = gameClass.game;
     this.gameClass = gameClass;
-    this.sprite = null;
+    this.fireRate = 500;
+    //this.shootUfo = this.game.add.group();    
+    this.nextFire = this.game.time.now + this.fireRate;
+    Phaser.Sprite.call(this, this.game, 0, 0, 'sprites', 'ufo_96-61.png');
+    this.game.add.audio('ufo', 1).play();
+    this.reset(0, Math.random() * this.game.world.height);
+    this.anchor.setTo(0.5,0.5);
+    this.scale.setTo(0.5,0.5);
+    this.body.velocity.x = Math.cos(45 * 0.0174) * 150;
+    this.name = 'ufo';
+    this.gameClass.groupUfo.add(this);
     this.fireRate = 500;
     this.nextFire = this.game.time.now + this.fireRate;
-    this.shootsUfo = this.game.add.group();
 };
 
-Ufo.prototype.appear = function (px, py, dir) {
-	this.sprite = this.gameClass.groupUfo.create(-100, -100, 'sprites', 'ufo_96-61.png');
-    this.game.add.audio('ufo', 1).play();
-    this.sprite.reset(0, Math.random() * this.game.world.height);
-    this.sprite.anchor.setTo(0.5,0.5);
-    this.sprite.scale.setTo(0.5,0.5);
-    this.sprite.events.onOutOfBounds.add(this.die, (this,null));
-    this.sprite.body.velocity.x = Math.cos(dir * 0.0174) * 150;
-    this.sprite.name = 'ufo';
-    this.gameClass.groupUfo.add(this.sprite);
-};
+Ufo.prototype = Object.create(Phaser.Sprite.prototype);
+Ufo.prototype.constructor = Ufo;
 
 Ufo.prototype.update = function () {
-    if (this.game.time.now > this.nextFire && this.sprite.alive) {
+    if (this.game.time.now > this.nextFire && this.alive) {
         this.nextFire = this.game.time.now + this.fireRate;
         this.shoot();
     }
@@ -29,8 +29,8 @@ Ufo.prototype.update = function () {
 Ufo.prototype.shoot = function () {
     this.game.add.audio('shoot', 1, true).play();
     var direction = Math.random() * 360;
-    var shoot = this.shootsUfo.create(this.sprite.position.x + Math.cos(direction * 0.0174) * 24,
-        	    this.sprite.position.y + Math.sin(direction * 0.0174) * 24, 'sprites', 'shoot_2-2.png');
+    var shoot = this.gameClass.shootUfo.create(this.position.x + Math.cos(direction * 0.0174) * 24,
+        	    this.position.y + Math.sin(direction * 0.0174) * 24, 'sprites', 'shoot_2-2.png');
     this.game.physics.velocityFromAngle(direction, 500, shoot.body.velocity);
     shoot.events.onOutOfBounds.add(this.destroyShoot, this);
     shoot.name = 'shoot';

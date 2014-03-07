@@ -13,6 +13,7 @@ var Game = function(game){
 	this.loseMSG = null;
 	this.ufo = null;
 	this.groupUfo = null;
+	this.shootUfo = this.game.add.group();
 	this.score = 0;
 	this.scoreText = null;
 	this.nextAddUfo = 0;
@@ -22,12 +23,10 @@ var Game = function(game){
 	this.addAsteroids = 15000;
 	this.timeAsteroids = 15000;
 	this.mapBox = null;
-	this.ufoFireRate = 500;
-    this.ufoNextFire = this.game.time.now + this.fireRate;
-    //this.shootsUfo = this.game.add.group();
 };
 
 Game.prototype.create = function () {	
+	this.shootsUfo = this.game.add.group();
 	this.game.world.setBounds(0, 0, 2400, 1440);
 	this.tiled1 = this.game.add.tileSprite(0, 0, this.game.world.width, this.game.world.height, 'tiled1');
 	this.tiled2 = this.game.add.tileSprite(-this.game.world.width*5, -this.game.world.height*5, this.game.world.width * 10, this.game.world.height * 10, 'tiled2');
@@ -116,20 +115,8 @@ Game.prototype.drawPoint = function(px, py, color){
 
 Game.prototype.update = function () {
     this.spaceShip.update();
-    if (this.game.time.now > this.nextFire && this.sprite.alive) {
-    	this.groupUfo.forEachAlive(function(ufo){
-    		ufo.game.add.audio('shoot', 1, true).play();
-    	    var direction = Math.random() * 360;
-    	    var shoot = this.shootsUfo.create(ufo.sprite.position.x + Math.cos(direction * 0.0174) * 24,
-    	        	    ufo.sprite.position.y + Math.sin(direction * 0.0174) * 24, 'sprites', 'shoot_2-2.png');
-    	    ufo.game.physics.velocityFromAngle(direction, 500, shoot.body.velocity);
-    	    shoot.events.onOutOfBounds.add(ufo.destroyShoot, this);
-    	    shoot.name = 'shoot';
-    	});
-        this.nextFire = this.game.time.now + this.fireRate;
-    }
-    this.groupUfo.callAll('shoot');
     this.groupAsteroids.forEachAlive(this.warp,this);
+    this.groupUfo.callAll('update', null);
     this.scoreText.x = this.game.camera.x + 400;
     this.scoreText.y = this.game.camera.y + 10;
     this.resourcesText.x = this.game.camera.x + 10;
@@ -166,7 +153,11 @@ Game.prototype.update = function () {
     if (this.game.time.now > this.timeAsteroids) {
         this.timeAsteroids = this.game.time.now + this.addAsteroids;
         this.initAsteroids(this.velAsteroids);
-        this.addResources();
+        var resource = this.game.add.sprite(Math.random() * this.game.world.width, Math.random() * this.game.world.height, 'res');
+		//resource.lifespan = 30000;
+		resource.body.angularVelocity = 5;
+		this.game.add.tween(resource).to( { alpha: 0.5}, 200, Phaser.Easing.Linear.InOut, true, 0, 1000, true);
+		this.groupResources.add(resource);
         this.numAsteroids++;
     }
     this.drawMap();
@@ -179,16 +170,14 @@ Game.prototype.collide = function(){
 	 this.game.physics.overlap(this.groupResources, this.spaceShip.sprite, this.collectResources, null, this);
 	 if(this.ufo != null){
 		 this.game.physics.collide(this.groupAsteroids, this.groupUfo, this.collideObj, null, this);
-		 this.game.physics.collide(this.groupAsteroids, this.ufo.shootsUfo, this.collideObj, null, this);
-		 this.game.physics.collide(this.spaceShip.sprite, this.ufo.shootsUfo, this.collideObj, null, this);
+		 this.game.physics.collide(this.groupAsteroids, this.shootUfo, this.collideObj, null, this);
+		 this.game.physics.collide(this.spaceShip.sprite, this.shootUfo, this.collideObj, null, this);
 		 this.game.physics.collide(this.spaceShip.sprite, this.groupUfo, this.collideObj, null, this);
 		 this.game.physics.collide(this.spaceShip.bulletsGroup, this.groupUfo, this.collideObj, null, this);
 	 }
 };
 
 Game.prototype.collideObj = function(obj1, obj2){
-	console.log(obj1.name);
-	console.log(obj2.name);
 	if(obj1.name == 'ufo' || obj2.name == 'ufo'){
 		if(obj1.name == 'ufo'){
 			var ufo = obj1;
@@ -262,11 +251,9 @@ Game.prototype.collideObj = function(obj1, obj2){
 };
 
 Game.prototype.addUfo = function(){
-	this.ufo = new Ufo(this);
-	this.ufo.appear(0, Math.random()*this.game.world.height, 45);
-	this.ufo.appear(0, Math.random()*this.game.world.height, 45);
-	this.ufo.appear(0, Math.random()*this.game.world.height, 45);
-	this.ufo.appear(0, Math.random()*this.game.world.height, 45);
+	for(var i = 0;i < 4;i++){
+		this.ufo = new Ufo(this);
+	}	
 };
 
 Game.prototype.initAsteroids = function(num){
