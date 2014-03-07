@@ -1,0 +1,35 @@
+[Qix][Phaser]  
+
+SEXTA
+x 1. desenhar fundo, borda da tela
+
+x 2. desenhar sprite: bolinha
+x 3. colocar o sprite da bolinha na tela
+ 4. fazer o movimento da bolinha: vertical-horizontal
+ 5. fazer a bolinha desenhar linhas na tela
+ 6. fazer um retângulo com as linhas desenhadas
+
+SÁBADO
+ 1. desenhar sprite: qix
+ 2. colocar o sprite do qix na tela
+ 3. fazer o movimento do qix: todos os lados, ricocheteamento
+
+ 4. desenhar sprite: inimigo
+ 5. colocar o sprite do inimigo na tela
+ 6. fazer o movimento do inimigo: todos os lados, ricocheteamento dentro dos retângulos
+
+ 7. verificar espaços vazios
+
+DOMINGO
+ 1. tratar a colisão do qix com a bolinha/linha/retângulo
+ 2. tratar a colisão do inimigo com a bolinha/linha/retângulo
+ 3. tratar a colisão da linha com ela mesma
+
+ 4. colocar os áudios
+ 5. fazer as fases: aumentar a quantidade de qix, aumentar a quantidade de inimigos e suas respectivas velocidades
+ 6. fazer as telas
+
+SEGUNGA
+ 1. trabalhar nos extras do jogo: pontuação, porcentagem, vidas
+ 2. testar
+ 3. corrigir possíveis erros

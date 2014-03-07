@@ -1,0 +1,84 @@
+<!doctype html> 
+
+<html lang="pt-br"> 
+	<head> 
+		<meta charset="UTF-8" />
+		<title>Kick-75</title>
+		<script type="text/javascript" src="js/phaser.min.js"></script>
+		<script type="text/javascript" src="js/game.js"></script>
+		
+		<style type="text/css">
+	        body {
+	        	border:1px dashed #000000;
+	        	
+				position:absolute;
+				top:50%;
+				left:50%;
+				margin-top:-240px;
+				margin-left:-400px;
+	        }
+	    </style>
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			var game = new Phaser.Game(800, 480, Phaser.AUTO, '', {preload: preload, create: create, update: update});
+			var sizeBorderExtras = 50;
+			var sizeBorderGame = 30;
+//			var bg_audio;
+			
+			function preload() {
+				//Carrega o áudio de fundo
+//				game.load.audio('musica_fundo', ['audio/GhostBusters.mp3', 'audio/GhostBusters.ogg']);
+				
+				//Carrega a tela de Splash
+//				splash = new Splash(game);
+//				splash.preload();
+
+				test = new Game();
+				test.preload();
+			}
+
+			function create() {
+				var graphics;
+
+				//Muda a cor de fundo
+				this.game.stage.backgroundColor = '#444D26';
+
+			  	//Desenha a parte de extras
+				graphics = game.add.graphics(0, 0);
+			    graphics.lineStyle(sizeBorderExtras, 0x000000, 1);
+			    graphics.drawRect(0, sizeBorderExtras/2, game.world.width, 0);
+
+				//Desenha as bordas da tela
+				graphics = game.add.graphics(0, 0);
+			    graphics.lineStyle(sizeBorderGame, 0xA5B592, 1);
+			    graphics.drawRect(sizeBorderGame/2, sizeBorderGame/2 + sizeBorderExtras,
+					    		  game.world.width - sizeBorderGame,
+								  game.world.height - sizeBorderExtras - sizeBorderGame);
+
+			    //Dá play no áudio de fundo
+//				bg_audio = game.add.audio('musica_fundo', 1, true);
+//				bg_audio.override = true;
+//				bg_audio.play('', 0, 1, true);
+				
+				//Chama a tela de Splash
+//				splash.create();
+
+				test.create();
+			}
+
+			function update() {
+				
+			}
+
+//			game.state.add('menu', Menu);
+//			game.state.add('jogo', Jogo);
+//			game.state.add('ganhou', Ganhou);
+//			game.state.add('perdeu', Perdeu);
+//			game.state.add('instrucoes', Instrucoes);
+//			game.state.add('creditos', Creditos);
+		</script>
+	</body>
+
+</html>
