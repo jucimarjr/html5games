@@ -27,8 +27,8 @@ var cocos2dApp = cc.Application.extend({
                  //{type: "image", src: "res/spritesheets/TitlesSpriteSheet.png"},
                  //{type: "image", src: "res/spritesheets/TitlesSpriteSheet.plist"},
         		 
-        		 //{type: "image", src: "res/spritesheets/GameSpriteSheet.png"},
-                 //{type: "plist", src: "res/spritesheets/GameSpriteSheet.plist"},
+        		 {type: "image", src: "res/spritesheets/ship.png"},
+                 {type: "plist", src: "res/spritesheets/ship.plist"},
                  //{type: "image", src: "res/spritesheets/ButtonsSpriteSheet.png"},
                  //{type: "plist", src: "res/spritesheets/ButtonsSpriteSheet.plist"},
 				 
