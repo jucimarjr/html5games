@@ -12,7 +12,7 @@ var SplashInicialLayer = cc.Layer.extend({
         
         
 
-        this.schedule(this.onTick1, 3);
+        this.schedule(this.onTick1, 5);
         
        return this;
 

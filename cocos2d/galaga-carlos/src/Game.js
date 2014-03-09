@@ -20,7 +20,7 @@ var GameLayer = cc.Layer.extend({
 		
 		layer = cc.LayerColor.create(new cc.Color4B(0, 0, 0, 255), 800, 480);
 		
-		this.spriteFrameCache.addSpriteFrames("res/spritesheets/ship.plist", "res/spritesheets/ship.png");
+		//this.spriteFrameCache.addSpriteFrames("res/spritesheets/ship.plist", "res/spritesheets/ship.png");
 		
 		ship = new Ship();
 		
