@@ -20,6 +20,8 @@ var gameLayer = cc.Layer.extend({
 	
 	init:function()
 	{
+		lifeGame.life = 2;
+		scoreGame.score = 0;
 		background = cc.Director.getInstance().getWinSizeInPixels();
 		livePositionX = 30;
 		this.addLives();
