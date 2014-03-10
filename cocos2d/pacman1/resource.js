@@ -22,7 +22,7 @@ var sSplashGame = dirScreenShots + "splashGame_800-480.png";
 var sMenuTitle = dirImages + "menuTitle_595-135.png";
 var ssGame = dirSpriteSheets + "GameSpriteSheet.png";
 var ssGameList = dirSpriteSheets + "GameSpriteSheet.plist";
-var sPacLife = dirImages + "pac_left_14-16.png";
+var sPacLife = dirImages + "pac_left_middle_16-16.png";
 var sGameOver = dirImages + "game_over_217-32.png";
  
 var resource = [
