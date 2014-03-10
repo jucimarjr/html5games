@@ -1,9 +1,9 @@
 Ball = function() {
 	this.sprite = null;
 	this.speed = 10;
-	this.positionInitial;
-	
+
 	this.direction; //LEFT, RIGHT, UP, DOWN
+	this.positionInitial;
 };
 
 Ball.prototype = {
@@ -17,7 +17,8 @@ Ball.prototype = {
 		this.sprite = game.add.sprite(0, 0, 'ball');
 		
 		//Re-posiciona a bolinha para ficar no centro da tela
-		this.sprite.reset(game.world.width/2 - 0.5*this.sprite.width, game.world.height - 1.5*this.sprite.height);
+		this.sprite.reset(game.world.width/2 - 0.5*this.sprite.width,
+						  game.world.height+screenGame.thicknessExtras - 1.5*this.sprite.height);
 	},
 	
 	update : function() {
@@ -59,7 +60,7 @@ Ball.prototype = {
 			this.sprite.x = game.world.width - 1.5*this.sprite.width;
 		if (this.sprite.y <= screenGame.thicknessExtras + 0.5*this.sprite.height)
 			this.sprite.y = screenGame.thicknessExtras + 0.5*this.sprite.height;
-		if (this.sprite.y >= game.world.height - 1.5*this.sprite.height)
-			this.sprite.y = game.world.height - 1.5*this.sprite.height;
+		if (this.sprite.y >= game.world.height+screenGame.thicknessExtras - 1.5*this.sprite.height)
+			this.sprite.y = game.world.height+screenGame.thicknessExtras - 1.5*this.sprite.height;
 	}
 };

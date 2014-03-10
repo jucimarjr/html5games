@@ -16,8 +16,8 @@ x  7.3 quando a bolinha quiser retornar (o que acontece quando ela está indo pra
 
 SÁBADO
 x 1. desenhar sprite: qix
- 2. colocar o sprite do qix na tela
- 3. fazer o movimento do qix: todos os lados, ricocheteamento
+x 2. colocar o sprite do qix na tela
+x 3. fazer o movimento do qix: todos os lados, ricocheteamento
 
  4. desenhar sprite: inimigo
  5. colocar o sprite do inimigo na tela
@@ -30,8 +30,11 @@ DOMINGO
  2. tratar a colisão do inimigo com a bolinha/linha/polígono
  3. tratar a colisão da linha com ela mesma/bordas/polígono
 
- 4. colocar os áudios
- 5. fazer as fases: aumentar a quantidade de qix, aumentar a quantidade de inimigos e suas respectivas velocidades
+ 4. fazer um grupo de qix's
+ 5. fazer um grupo de inimigos
+
+ 6. colocar os áudios
+ 7. fazer as fases: aumentar a quantidade de qix, aumentar a quantidade de inimigos e suas respectivas velocidades
  6. fazer as telas
 
 SEGUNGA

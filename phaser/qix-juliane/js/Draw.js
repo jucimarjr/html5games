@@ -117,10 +117,10 @@ Draw.prototype = {
 			if ((ball.sprite.x <= screenGame.thicknessBGame) ||
 				(ball.sprite.x >= game.world.width - screenGame.thicknessBGame) ||
 				(ball.sprite.y <= screenGame.thicknessBGame) ||
-				(ball.sprite.y >= game.world.height - screenGame.thicknessBGame)) {
+				(ball.sprite.y >= game.world.height+screenGame.thicknessExtras - screenGame.thicknessBGame)) {
 				
 				this.savePositionLine("COLLISION", ball.sprite.x, ball.sprite.y + ball.sprite.width/2 + 0.45);
-				this.savePositionLine("COLLISION", ball.sprite.x, game.world.height - screenGame.thicknessBGame);
+				this.savePositionLine("COLLISION", ball.sprite.x, game.world.height+screenGame.thicknessExtras - screenGame.thicknessBGame);
 				this.drawShape();
 			}
 		}
