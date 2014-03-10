@@ -22,16 +22,26 @@ var cocos2dApp = cc.Application.extend({
         //load resources
         cc.Loader.preload(
         		[
-        		 {type: "image", src: "res/screenshoots/SplashLudus_480-600.png"},
+        		 {type: "image", src: "res/screenshoots/Splash_480-600.png"},
 
-                 //{type: "image", src: "res/spritesheets/TitlesSpriteSheet.png"},
-                 //{type: "image", src: "res/spritesheets/TitlesSpriteSheet.plist"},
-        		 
-        		 {type: "image", src: "res/spritesheets/ship.png"},
+                 {type: "image", src: "res/screenshoots/SplashLudus_480-600.png"},
+                 {type: "image", src: "res/spritesheets/ship.png"},
                  {type: "plist", src: "res/spritesheets/ship.plist"},
+        		 //{type: "image", src: "res/spritesheets/GameSpriteSheet.png"},
+                 //{type: "plist", src: "res/spritesheets/GameSpriteSheet.plist"},
                  //{type: "image", src: "res/spritesheets/ButtonsSpriteSheet.png"},
                  //{type: "plist", src: "res/spritesheets/ButtonsSpriteSheet.plist"},
 				 
+
+                 //{
+                   //  fontName: "SFAtarianSystem",
+                     //src: [{src: "res/fonts/SFAtarianSystem.ttf", type: "truetype"}]
+                 //},
+
+                 //{
+                    //fontName: "VectorB",
+                    //src: [{src: "res/fonts/VectorB.ttf", type: "truetype"}]
+                //},
                ],
                
                function () {

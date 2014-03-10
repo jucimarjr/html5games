@@ -1,39 +1,45 @@
-var SpaceShip = cc.Sprite.extend({
+var shootDelay = true;
+
+var Ship = cc.Sprite.extend({
 	//spriteFrameCache: cc.SpriteFrameCache.getInstance(),
+	animeCache: cc.AnimationCache.getInstance(),
+	speed:220,
+	velocityX: 5,
+	velocityY: 5,
 	
-	//velocityX: 5,
-	//velocityY: 5,
-	//speed:220,
+	alive: true,
 	
 	ctor:function(){
 		this._super();
 		
 		//Carrega o sprite da nave
-		this.initWithSpriteFrameName("ShipWhite2_20-30.png");
+		 var spriteFrameChaceShip = cc.SpriteFrameCache.getInstance();
+         cc.SpriteFrameCache.getInstance().addSpriteFrames("res/spritesheets/ship.plist", "res/spritesheets/ship.png");
+         var _SpriteShip = cc.SpriteFrameCache.getInstance().getSpriteFrame("ShipWhite2_20-30.png");
+         this.initWithSpriteFrame(_SpriteShip);
+        
 		//Posiciona a nave no centro da tela
-		this.setPosition(new cc.Point(screen.width/2, screen.height/2));
+		this.setPosition(new cc.Point(screen.width/2, 50));
         
 		this.scheduleUpdate();
         //this.createAnimation();
         layer.addChild(this);
+       
 
     },
-    
-    /*update:function(){
-    	
-    	//Se a tecla pressionada for "right", gira pra direita
-    	if (LG.KEYS[cc.KEY.right] || LG.KEYS[cc.KEY.d]) {
-    		pos.x += dt * this.speed;
-    		
-    	}
-    	//Se a tecla pressionada for "left", gira pra esquerda
-    	if (LG.KEYS[cc.KEY.left] || LG.KEYS[cc.KEY.a]){
-    		pos.x += dt * this.speed;
-    	}
-    	
-    	//Move a nave para frente (de acordo com o sentido que ela se encontra)
-    	
-    	
-    },*/
 	
-});
+    update:function(dt){
+    	 // Keys are only enabled on the browser
+        if (sys.platform == 'browser') {
+            var pos = this.getPosition();
+            if ((LG.KEYS[cc.KEY.a] || LG.KEYS[cc.KEY.left]) && pos.x >= 0) {
+                pos.x -= dt * this.speed;
+            }
+            if ((LG.KEYS[cc.KEY.d] || LG.KEYS[cc.KEY.right]) && pos.x <= 480) {
+                pos.x += dt * this.speed;
+            }
+            this.setPosition(pos);
+        }
+    },
+	
+})
