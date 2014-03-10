@@ -21,6 +21,25 @@ var gameLayer = cc.Layer.extend({
 	gameOver: null,
 	_pac: null,
 	
+	ctor: function()
+	{
+		/*
+		this._super();
+	    this.initWithTMXFile("res/tiledmap/background.tmx");
+	    */
+		/*var tiledMap = new TiledMeadow();
+		this.addChild(tiledMap);
+		*/
+		
+		/*var map = new cc.TMXTiledMap()
+	    map.initWithTMXFile("res/tiledmap/background.tmx");*/
+		
+		tmx = cc.TMXTiledMap.create(tMap);
+	       
+
+	},
+
+	
 	init:function()
 	{
 		
@@ -30,6 +49,9 @@ var gameLayer = cc.Layer.extend({
 	        this.setTouchEnabled(true);
 		*/
 		
+		
+		 
+	    		
 		this.setKeyboardEnabled(true);
 		
 		lifeGame.life = 2;
