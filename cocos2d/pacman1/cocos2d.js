@@ -12,7 +12,7 @@
 
 		appFiles: ['resource.js', 'src/SplashTeam.js', 'src/SplashGame.js', 'src/Menu.js',
 		           'src/Game.js', 'src/Pac.js', 'src/HighScore.js', 'src/HowToPlay.js',
-				   'src/Credits.js', 'src/Losing.js'
+				   'src/Credits.js', 'src/Losing.js', 'src/Ghost.js'
 		           ]
 	};
 	
