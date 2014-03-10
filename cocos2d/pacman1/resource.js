@@ -20,8 +20,8 @@ var sJoystixFont = dirFonts + "Joystix.ttf";
 var sSplashTeam = dirScreenShots + "splashTeam_800-480.png";
 var sSplashGame = dirScreenShots + "splashGame_800-480.png";
 var sMenuTitle = dirImages + "menuTitle_595-135.png";
-var ssPacs = dirSpriteSheets + "PacsSpriteSheet.png";
-var ssPacsList = dirSpriteSheets + "PacsSpriteSheet.plist";
+var ssGame = dirSpriteSheets + "GameSpriteSheet.png";
+var ssGameList = dirSpriteSheets + "GameSpriteSheet.plist";
 var sPacLife = dirImages + "pac_left_14-16.png";
 var sGameOver = dirImages + "game_over_217-32.png";
  
@@ -42,8 +42,8 @@ var resource = [
 	{type: "image", src: sSplashGame},
 	{type: "image", src: sMenuTitle},
 	
-	{type: "image", src: ssPacs},
-    {type: "plist", src: ssPacsList},
+	{type: "image", src: ssGame},
+    {type: "plist", src: ssGameList},
 	
 	{type: "image", src: sPacLife},
 	{type: "image", src: sGameOver}

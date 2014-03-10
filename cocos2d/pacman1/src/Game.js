@@ -14,21 +14,45 @@ var scoreGame = {
 	text: "SCORE"
 };
 
+var LG = {KEYS: []};
+
 var gameLayer = cc.Layer.extend({
 
 	gameOver: null,
+	_pac: null,
 	
 	init:function()
 	{
+		
+		/*if ('keyboard' in sys.capabilities)
+	    	this.setKeyboardEnabled(true);
+		else if('touches' in sys.capabilities)
+	        this.setTouchEnabled(true);
+		*/
+		
+		this.setKeyboardEnabled(true);
+		
 		lifeGame.life = 2;
 		scoreGame.score = 0;
 		background = cc.Director.getInstance().getWinSizeInPixels();
 		livePositionX = 30;
+		
+		cc.log("chamando game");
+		//this.pac = new Pac();	
+		//this.pac.setAnimation("pac", "right", "36-36", 2, "pac");
+		//this.pac.getAnimation("menu");
+		this._pac = new Pac();
+		this._pac.setPosition(new cc.Point(background.width/2, background.height/2));
+		this.addChild(this._pac);		
+		this._pac.scheduleUpdate();
+				
+		
 		this.addLives();
 		this.addScore();
-		this.schedule(this.onClick, 3);
+		//this.schedule(this.onClick, 3);
 		this.scheduleUpdate();		
-		return this;
+	
+		return true;
 	},
 	
 	onClick:function (dt) {    	
@@ -77,8 +101,18 @@ var gameLayer = cc.Layer.extend({
 	{		
 		scoreGame.score += 10;
 		scoreGame.label.setString(scoreGame.text + " " + scoreGame.score);
-	}
-	
+	},	   
+
+    onKeyUp: function (e) {
+        //LG.KEYS[e] = true;
+    	
+    },
+    
+    onKeyDown: function (e) {
+        //LG.KEYS[e] = false;
+        this._pac.handleKey(e);
+    },
+    
 });
 
 var game = cc.Scene.extend({
