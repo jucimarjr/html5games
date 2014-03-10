@@ -5,11 +5,14 @@
 		<meta charset="UTF-8" />
 		<title>Kick-75</title>
 		<script type="text/javascript" src="js/phaser.min.js"></script>
-		<script type="text/javascript" src="js/game.js"></script>
+		<script type="text/javascript" src="js/Screen.js"></script>
+		<script type="text/javascript" src="js/Game.js"></script>
+		<script type="text/javascript" src="js/Ball.js"></script>
+		<script type="text/javascript" src="js/Draw.js"></script>
 		
 		<style type="text/css">
 	        body {
-	        	border:1px dashed #000000;
+	        	border:1px solid #000000;
 	        	
 				position:absolute;
 				top:50%;
@@ -23,8 +26,10 @@
 	<body>
 		<script type="text/javascript">
 			var game = new Phaser.Game(800, 480, Phaser.AUTO, '', {preload: preload, create: create, update: update});
-			var sizeBorderExtras = 50;
-			var sizeBorderGame = 30;
+			var screenClass = null;
+			var gameClass = null;
+						
+			var graphics;
 //			var bg_audio;
 			
 			function preload() {
@@ -35,49 +40,29 @@
 //				splash = new Splash(game);
 //				splash.preload();
 
-				test = new Game();
-				test.preload();
+				//Carrega o desenho da tela
+				screenClass = new Screen();
+
+				gameClass = new Game();
+				gameClass.preload();
 			}
 
 			function create() {
-				var graphics;
-
-				//Muda a cor de fundo
-				this.game.stage.backgroundColor = '#FAF1D2';
-
-			  	//Desenha a parte de extras
-				graphics = game.add.graphics(0, 0);
-			    graphics.lineStyle(sizeBorderExtras, 0x000000, 1);
-			    graphics.drawRect(0, sizeBorderExtras/2, game.world.width, 0);
-
-				//Desenha as bordas da tela
-				graphics = game.add.graphics(0, 0);
-			    graphics.lineStyle(sizeBorderGame, 0x0B968F, 1);
-			    graphics.drawRect(sizeBorderGame/2, sizeBorderGame/2 + sizeBorderExtras,
-					    		  game.world.width - sizeBorderGame,
-								  game.world.height - sizeBorderExtras - sizeBorderGame);
-
 			    //Dá play no áudio de fundo
 //				bg_audio = game.add.audio('musica_fundo', 1, true);
 //				bg_audio.override = true;
 //				bg_audio.play('', 0, 1, true);
-				
+								
 				//Chama a tela de Splash
 //				splash.create();
 
-				test.create();
+				screenClass.create();
+				gameClass.create();
 			}
 
 			function update() {
-				
+				gameClass.update();
 			}
-
-//			game.state.add('menu', Menu);
-//			game.state.add('jogo', Jogo);
-//			game.state.add('ganhou', Ganhou);
-//			game.state.add('perdeu', Perdeu);
-//			game.state.add('instrucoes', Instrucoes);
-//			game.state.add('creditos', Creditos);
 		</script>
 	</body>
 

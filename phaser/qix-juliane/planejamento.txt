@@ -5,12 +5,17 @@ x 1. desenhar fundo, borda da tela
 
 x 2. desenhar sprite: bolinha
 x 3. colocar o sprite da bolinha na tela
- 4. fazer o movimento da bolinha: vertical-horizontal
- 5. fazer a bolinha desenhar linhas na tela
- 6. fazer um retângulo com as linhas desenhadas
+x 4. fazer o movimento da bolinha: vertical-horizontal
+x 5. fazer a bolinha desenhar linhas na tela
+x 6. fazer um polígono com as linhas desenhadas
+
+~ 7. verificar exceções:
+x  7.1 quando a bolinha atingir o limite da tela
+  7.2 quando a bolinha estiver nas bordas => FAZER DEPOIS QUE O QIX ESTIVER PRONTO
+x  7.3 quando a bolinha quiser retornar (o que acontece quando ela está indo pra direita e quer retornar pra esquerda? não pode)
 
 SÁBADO
- 1. desenhar sprite: qix
+x 1. desenhar sprite: qix
  2. colocar o sprite do qix na tela
  3. fazer o movimento do qix: todos os lados, ricocheteamento
 
@@ -18,12 +23,12 @@ SÁBADO
  5. colocar o sprite do inimigo na tela
  6. fazer o movimento do inimigo: todos os lados, ricocheteamento dentro dos retângulos
 
- 7. verificar espaços vazios
+ 7. verificar exceções: espaços vazios
 
 DOMINGO
- 1. tratar a colisão do qix com a bolinha/linha/retângulo
- 2. tratar a colisão do inimigo com a bolinha/linha/retângulo
- 3. tratar a colisão da linha com ela mesma
+ 1. tratar a colisão do qix com a bolinha/linha/polígono
+ 2. tratar a colisão do inimigo com a bolinha/linha/polígono
+ 3. tratar a colisão da linha com ela mesma/bordas/polígono
 
  4. colocar os áudios
  5. fazer as fases: aumentar a quantidade de qix, aumentar a quantidade de inimigos e suas respectivas velocidades

@@ -1,21 +1,33 @@
 var Game = {};
 
-Game = function () {
+Game = function() {
+	screen = null;
+	ball = null;
+	draw = null;
+	
+	coordinates = function() {
+		x : 0;
+		y : 0;
+	};
 };
 
 Game.prototype = {
-	preload:function() {
-		//Carrega os sprites do jogo
-		game.load.image('ball', 'assets/images/ball.png');
+	preload : function() {
+		screenGame = screenClass;
+	
+		ball = new Ball();
+		ball.preload();
+		
+		draw = new Draw();
 	},
 
-	create:function() {
-		var sizeBall = 15;
-		
-		//Posiciona o sprite da bolinha na tela
-		game.add.sprite(game.world.width/2, game.world.height - 1.5*sizeBall, 'ball');
+	create : function() {
+		ball.create();
+		draw.create();
 	},
 	
-	upload:function() {
+	update : function() {
+		ball.update();
+		draw.update(ball.direction, ball.positionInitial);
 	}
 };
