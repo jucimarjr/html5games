@@ -49,21 +49,25 @@ Game.prototype.create = function () {
 	this.mapBox.lineTo(this.game.camera.width - 245,149);
 	this.mapBox.lineTo(this.game.camera.width - 245,5);
 	this.groupUfo = this.game.add.group();
+	this.groupAsteroids = this.game.add.group();
+	//this.groupAsteroids.createMultiple(200, 'sprites', 'asteroids1_80-80.png');
     this.asteroid = new Asteroid(this);
     this.spaceShip = new SpaceShip(this);
-    this.game.camera.follow(this.spaceShip.sprite);
-	this.groupAsteroids = this.game.add.group();
-	this.initAsteroids(20);
+    this.game.camera.follow(this.spaceShip.sprite);	
+	//this.initAsteroids(50);
 	this.groupResources = this.game.add.group();
 	this.addResources();
-	this.resourcesText = this.game.add.text(50, 50, 'Resources \nto colect: '+this.groupResources.countLiving(), {
+	this.fps = this.game.add.text(10, 470, 'FPS: '+this.game.time.fps, {
         font: "12px Vector Battle", fill: "#ffffff" , align: "right"
+    });
+	this.Hud = this.game.add.text(50, 50, 'Resources \nto colect: '+this.groupResources.countLiving()+'\nShoot Type: ', {
+        font: "12px Vector Battle", fill: "#ffffff" , align: "left"
     });	
 };
 
 Game.prototype.collectResources = function(spaceship, resource){
 	resource.kill();
-	this.resourcesText.content = 'Resources \nto colect: '+this.groupResources.countLiving();
+	this.Hud.content = 'Resources \nto colect: '+this.groupResources.countLiving();
 };
 
 Game.prototype.drawMap = function(){
@@ -114,13 +118,17 @@ Game.prototype.drawPoint = function(px, py, color){
 };
 
 Game.prototype.update = function () {
+	this.Hud.content = 'Resources \nto colect: '+this.groupResources.countLiving()+'\nShoot Type: '+this.spaceShip.shootType;
+	this.fps.content = 'FPS: '+this.game.time.fps;
+	this.fps.x = this.game.camera.x + 10;
+	this.fps.y = this.game.camera.y + 400;
     this.spaceShip.update();
     this.groupAsteroids.forEachAlive(this.warp,this);
     this.groupUfo.callAll('update', null);
     this.scoreText.x = this.game.camera.x + 400;
     this.scoreText.y = this.game.camera.y + 10;
-    this.resourcesText.x = this.game.camera.x + 10;
-    this.resourcesText.y = this.game.camera.y + 50;    
+    this.Hud.x = this.game.camera.x + 10;
+    this.Hud.y = this.game.camera.y + 50;    
     this.livesHud.x = this.game.camera.x + 10;
     this.livesHud.y = this.game.camera.y + 10;
     this.tiled2.x -= this.spaceShip.sprite.body.velocity.x/500;
@@ -152,7 +160,7 @@ Game.prototype.update = function () {
     
     if (this.game.time.now > this.timeAsteroids) {
         this.timeAsteroids = this.game.time.now + this.addAsteroids;
-        this.initAsteroids(this.velAsteroids);
+        //this.initAsteroids(this.velAsteroids);
         var resource = this.game.add.sprite(Math.random() * this.game.world.width, Math.random() * this.game.world.height, 'res');
 		//resource.lifespan = 30000;
 		resource.body.angularVelocity = 5;
@@ -233,16 +241,16 @@ Game.prototype.collideObj = function(obj1, obj2){
 	    	asteroid.body.velocity.x += obj.body.velocity.x/75;
 	    	asteroid.body.velocity.y += obj.body.velocity.y/75;
 	    }else if(obj.name == 'laser'){
-	    	asteroid.body.velocity.x += obj.body.velocity.x/700;
-	    	asteroid.body.velocity.y += obj.body.velocity.y/700;
+	    	asteroid.body.velocity.x += obj.body.velocity.x/750;
+	    	asteroid.body.velocity.y += obj.body.velocity.y/750;
 	    }
 	    if(asteroid.hp<=0){
-	    	if (obj1.size == "large") {
+	    	if (asteroid.size == "large") {
 	    		this.punctuate(10);
 	    		this.asteroid.create(asteroid.position.x, asteroid.position.y, "medium", this.velAsteroids);
 	    		this.asteroid.create(asteroid.position.x, asteroid.position.y, "medium", this.velAsteroids);
 	    	}
-	    	if (obj1.size == "medium") {
+	    	if (asteroid.size == "medium") {
 	    		this.punctuate(20);
 	    		this.asteroid.create(asteroid.position.x, asteroid.position.y, "small", this.velAsteroids);
 	    		this.asteroid.create(asteroid.position.x, asteroid.position.y, "small", this.velAsteroids);
@@ -284,7 +292,7 @@ Game.prototype.collideObj = function(obj1, obj2){
 	    emitter.maxParticleSpeed.setTo(40, 40);
 	    emitter.gravity = 0;
 	    emitter.start(true, 3000, null, 5);
-	    this.livesHud.getFirstAlive().kill();
+	    //this.livesHud.getFirstAlive().kill();
 	    if(this.livesHud.countLiving() <= 0){
 	    	this.gameOver();	
 	    }

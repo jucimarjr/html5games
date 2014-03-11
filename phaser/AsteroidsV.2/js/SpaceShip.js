@@ -31,9 +31,11 @@ SpaceShip.prototype.create = function(){
     this.sprite.body.maxAngularVelocity = 20;
     this.shootInterval = 10;
     this.bulletsGroup = this.game.add.group();
-	this.bullet = this.bulletsGroup.create(this.sprite.position.x + Math.cos((this.sprite.body.rotation + 270)*0.0174) *24,
-			this.sprite.position.y + Math.sin((this.sprite.body.rotation + 270)*0.0174) *24, 'sprites', 'shoot_2-2.png');
-	this.bullet.kill(); 
+    this.bulletsGroup.createMultiple(50, 'sprites', 'shoot_2-2.png');
+    this.bulletsGroup.setAll('anchor.x', 0.5);
+    this.bulletsGroup.setAll('anchor.y', 0.5);
+    this.bulletsGroup.setAll('outOfBoundsKill', true);
+    
     this.sprite.animations.add('thrust', ['shipFire1_14-24.png', 'shipFire3_14-24.png'], 15, true, false);
     this.sprite.animations.add('stop', ['ship_14-24.png']);
     this.game.camera.follow(this.sprite);
@@ -91,13 +93,17 @@ SpaceShip.prototype.teletransport = function () {
 };
  	
 SpaceShip.prototype.shoot = function () {    
+	if(this.sprite.alive){
     if(this.shootType == 0){
     	if (game.time.now > this.nextFire && this.sprite.alive)
     	{
     		this.nextFire = game.time.now + this.fireRate;
     		this.game.add.audio('shoot', 1).play();
-    		this.bullet = this.bulletsGroup.create(this.sprite.position.x + Math.cos((this.sprite.body.rotation + 270)*0.0174) *24,
-        			this.sprite.position.y + Math.sin((this.sprite.body.rotation + 270)*0.0174) *24, 'sprites', 'shoot_2-2.png');
+    		
+    		this.bullet = this.bulletsGroup.getFirstDead();
+    		this.bullet.loadTexture('sprites', 'shoot_2-2.png');
+    		this.bullet.reset(this.sprite.position.x + Math.cos((this.sprite.body.rotation + 270)*0.0174) *24,
+        					  this.sprite.position.y + Math.sin((this.sprite.body.rotation + 270)*0.0174) *24);
     		this.game.physics.velocityFromAngle(this.sprite.body.rotation - 90, 500, this.bullet.body.velocity);
     		this.bullet.events.onOutOfBounds.add(this.destroyShoot, this);
     		this.bullet.name = 'shoot';
@@ -105,13 +111,20 @@ SpaceShip.prototype.shoot = function () {
     		this.shootInterval = 10;
     	}
     }else if(this.shootType == 1 && !game.input.keyboard.isDown(Phaser.Keyboard.LEFT) && !game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)){
-    	this.bullet = this.bulletsGroup.create(this.sprite.position.x + Math.cos((this.sprite.body.rotation + 270)*0.0174) *22,
-    			this.sprite.position.y + Math.sin((this.sprite.body.rotation + 270)*0.0174) *22, 'laser');
-		this.game.physics.velocityFromAngle(this.sprite.body.rotation - 90, 600, this.bullet.body.velocity);
-		this.bullet.events.onOutOfBounds.add(this.destroyShoot, this);
-		this.bullet.rotation = this.sprite.rotation;
-		this.bullet.name = 'laser';
+    	this.bullet = this.bulletsGroup.getFirstDead();
+    	if(this.bullet != null){
+    		this.bullet.loadTexture('laser');
+    		this.bullet.reset(this.sprite.position.x + Math.cos((this.sprite.body.rotation + 270)*0.0174) *15,
+    					      this.sprite.position.y + Math.sin((this.sprite.body.rotation + 270)*0.0174) *15);
+    		this.game.physics.velocityFromAngle(this.sprite.body.rotation - 90, 600, this.bullet.body.velocity);
+    		this.bullet.body.velocity.x += this.sprite.body.velocity.x;
+    		this.bullet.body.velocity.y += this.sprite.body.velocity.y;
+    		this.bullet.events.onOutOfBounds.add(this.destroyShoot, this);
+    		this.bullet.rotation = this.sprite.rotation;
+    		this.bullet.name = 'laser';
+    	}
     }
+	}
 };
 
 SpaceShip.prototype.destroyShoot = function (shoot) {

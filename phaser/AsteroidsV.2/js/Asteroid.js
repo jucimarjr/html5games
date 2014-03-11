@@ -7,7 +7,8 @@ var Asteroid = function(gameClass) {
 };
 
 Asteroid.prototype.create = function ( posX , posY , size , vel) {
-    var asteroid, mult;
+    var mult;
+    //this.sprite = this.gameClass.groupAsteroids.getFirstDead();
     if (size == "large") {
     	var i = Math.round(1 + Math.random()*2);
     	this.sprite = this.gameClass.groupAsteroids.create(posX, posY, 'sprites', 'asteroids'+i+'_80-80.png');
@@ -18,6 +19,7 @@ Asteroid.prototype.create = function ( posX , posY , size , vel) {
     	var i = Math.round(1 + Math.random()*2);
     	this.sprite = this.gameClass.groupAsteroids.create(posX, posY, 'sprites', 'asteroids'+i+'_40-40.png');
     	this.sprite.hp = 40;
+    	console.log('size: '+this.sprite.bounds);
     	mult = 2;
     }
     if (size == "small") {
@@ -26,14 +28,11 @@ Asteroid.prototype.create = function ( posX , posY , size , vel) {
     	this.sprite.hp = 20;
     	mult = 4;
     }
-    //asteroid.body.allowCollision.any = true;
     this.sprite.body.bounce.setTo(1,1);
     this.move( this.sprite , mult*vel);
     this.sprite.size = size;
     this.sprite.anchor.setTo(0.5,0.5);
     this.sprite.name = 'asteroid';
-    //asteroid.events.onOutOfBounds.add(this.gameClass.outOfBounds, this);
-    
 };
 
 Asteroid.prototype.move = function (asteroid,mult) {
