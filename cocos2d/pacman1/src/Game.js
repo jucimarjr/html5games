@@ -17,28 +17,10 @@ var scoreGame = {
 var LG = {KEYS: []};
 
 var gameLayer = cc.Layer.extend({
-
+	spriteFrameCache: cc.SpriteFrameCache.getInstance(),
 	gameOver: null,
-	_pac: null,
-	
-	ctor: function()
-	{
-		/*
-		this._super();
-	    this.initWithTMXFile("res/tiledmap/background.tmx");
-	    */
-		/*var tiledMap = new TiledMeadow();
-		this.addChild(tiledMap);
-		*/
-		
-		/*var map = new cc.TMXTiledMap()
-	    map.initWithTMXFile("res/tiledmap/background.tmx");*/
-		
-		tmx = cc.TMXTiledMap.create(tMap);
-	       
-
-	},
-
+	_pac: null,	
+	_blinky: null,
 	
 	init:function()
 	{
@@ -48,9 +30,14 @@ var gameLayer = cc.Layer.extend({
 		else if('touches' in sys.capabilities)
 	        this.setTouchEnabled(true);
 		*/
+		/*var map = cc.TMXTiledMap.create(tMap);
+		map.setPosition(cc.p(background.width/2, background.height/2));
+		this.addChild(map);*/
 		
 		
-		 
+
+		
+		this._super();
 	    		
 		this.setKeyboardEnabled(true);
 		
@@ -60,21 +47,34 @@ var gameLayer = cc.Layer.extend({
 		livePositionX = 30;
 		
 		cc.log("chamando game");
-		//this.pac = new Pac();	
-		//this.pac.setAnimation("pac", "right", "36-36", 2, "pac");
-		//this.pac.getAnimation("menu");
-		this._pac = new Pac();
+		
+		/*this._pac = new Pac();
 		this._pac.setPosition(new cc.Point(background.width/2, background.height/2));
 		this.addChild(this._pac);		
-		this._pac.scheduleUpdate();
-				
+		this._pac.setAnimation("pac", "left", "16-16", 2, "left");        
+	    this._pac.getAnimation("left");*/ 
+		
+	    this._blinky = new Ghost();
+		this._blinky.setGhost("blinky");
+        this.addChild(this._blinky);
+        this._blinky.setPosition(new cc.Point(background.width/2 - 450, background.height - 250));
+        this._blinky.setAnimation("blinky", "right", "16-16", 2, "right");        
+        this._blinky.getAnimation("right");
 		
 		this.addLives();
 		this.addScore();
 		//this.schedule(this.onClick, 3);
-		this.scheduleUpdate();		
+		//this.scheduleUpdate();	
+		
+		this.schedule(this.update);
 	
 		return true;
+	},
+	
+	update: function()
+	{
+		//this._pac.setPositionOnScreen("left");		
+		
 	},
 	
 	onClick:function (dt) {    	
@@ -126,13 +126,14 @@ var gameLayer = cc.Layer.extend({
 	},	   
 
     onKeyUp: function (e) {
-        //LG.KEYS[e] = true;
+        LG.KEYS[e] = true;
     	
     },
     
     onKeyDown: function (e) {
         //LG.KEYS[e] = false;
-        this._pac.handleKey(e);
+       
+        this._pac.setPositionOnScreen(e);        
     },
     
 });

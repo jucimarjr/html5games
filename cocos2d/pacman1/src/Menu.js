@@ -37,8 +37,7 @@ var menuLayer = cc.Layer.extend({
         this.addChild(this._blinky);
         this._blinky.setPosition(new cc.Point(background.width/2 - 450, background.height - 250));
         this._blinky.setAnimation("blinky", "right", "16-16", 2, "right");        
-        this._blinky.getAnimation("right");
-        
+        this._blinky.getAnimation("right");        
 
 		this._pinky = new Ghost();
 		this._pinky.setGhost("pinky");

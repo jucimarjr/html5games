@@ -4,7 +4,7 @@ var dirScreenShots = "res/screenshots/";
 var dirImages = "res/images/";
 var dirFonts = "res/fonts/";
 var dirSpriteSheets = "res/spritesheets/";
-var dirTiledMap = "res/tiledmap";
+var dirTiledMap = "res/tiledmap/";
 
 /*
  
@@ -25,7 +25,7 @@ var ssGame = dirSpriteSheets + "GameSpriteSheet.png";
 var ssGameList = dirSpriteSheets + "GameSpriteSheet.plist";
 var sPacLife = dirImages + "pac_left_middle_16-16.png";
 var sGameOver = dirImages + "game_over_217-32.png";
-var tMap = dirTiledMap + "background2.tmx";
+var tMap = dirTiledMap + "background.tmx";
 var sMap = dirImages + "background_empty_227-247.png";
  
 var resource = [
@@ -53,6 +53,7 @@ var resource = [
 	
 	{type: 'tmx', src: tMap},
 	{type: 'image', src: sMap},
+	
     
  
 ];
