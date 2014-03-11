@@ -33,10 +33,10 @@ var gameScene = null;
 var splashScene = null;
 game.state.add('menu', Menu);
 game.state.add('game', Game);
-game.state.add('HowToPlay', HowToPlay);
-game.state.add('HighScore', HighScore);
-game.state.add('HighScoreInput', HighScoreInput);
-game.state.add('Credits', Credits);
+game.state.add('howToPlay', HowToPlay);
+game.state.add('highScore', HighScore);
+game.state.add('highScoreInput', HighScoreInput);
+game.state.add('credits', Credits);
 
 function preload()
 {
@@ -44,10 +44,12 @@ function preload()
 	game.load.image('tiled1','assets/images/Tiled1.png');
 	game.load.image('tiled2','assets/images/Tiled2.png');
 	game.load.image('res','assets/images/res.png');
+	game.load.image('laser','assets/images/laser_5-2.png');
     game.load.audio('thrust', 'assets/audios/AsteroidsThrust.mp3');
     game.load.audio('shoot', 'assets/audios/AsteroidsShoot.mp3');
     game.load.audio('ufo', 'assets/audios/AsteroidsSaucer.mp3');
     setHighScore();
+    
 	//splashScene = new Splash(game);
 	//splashScene.preload();
 	

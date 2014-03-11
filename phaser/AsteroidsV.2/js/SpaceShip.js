@@ -10,12 +10,17 @@ SpaceShip = function(gameClass) {
     this.teleportTime = 3000;
     this.nextTeleport = 0;
     this.lives = 3;
+    this.changeShootKey = null;
+    this.shootType = 0;
     this.create();
 };
 
 SpaceShip.prototype.create = function(){
+	this.shootType = 0;
 	this.sprite = this.game.add.sprite(this.game.world.width/2, this.game.world.height/2, 'sprites', 'ship_14-24.png');
     //this.sprite.events.onOutOfBounds.add(this.gameClass.outOfBounds,this);
+	this.changeShootKey = this.game.input.keyboard.addKey(Phaser.Keyboard.Z);
+	this.changeShootKey.onDown.add(this.changeShoot, this);
 	this.sprite.name = 'ship';
 	this.sprite.anchor.x = 0.5;
 	this.sprite.anchor.y = 0.5;
@@ -36,6 +41,14 @@ SpaceShip.prototype.create = function(){
 
 SpaceShip.prototype.update = function () {	
    this.gameClass.warp(this.sprite);
+};
+
+SpaceShip.prototype.changeShoot = function(){
+	this.shootType++;
+	if(this.shootType>=2)
+	{
+		this.shootType = 0;
+	}
 };
 
 SpaceShip.prototype.animate = function(){
@@ -78,54 +91,29 @@ SpaceShip.prototype.teletransport = function () {
 };
  	
 SpaceShip.prototype.shoot = function () {    
-    
-    if (game.time.now > this.nextFire && this.sprite.alive)
-    {
-        this.nextFire = game.time.now + this.fireRate;
-        this.game.add.audio('shoot', 1).play();
-        this.bullet = this.bulletsGroup.create(this.sprite.position.x + Math.cos((this.sprite.body.rotation + 270)*0.0174) *24,
+    if(this.shootType == 0){
+    	if (game.time.now > this.nextFire && this.sprite.alive)
+    	{
+    		this.nextFire = game.time.now + this.fireRate;
+    		this.game.add.audio('shoot', 1).play();
+    		this.bullet = this.bulletsGroup.create(this.sprite.position.x + Math.cos((this.sprite.body.rotation + 270)*0.0174) *24,
         			this.sprite.position.y + Math.sin((this.sprite.body.rotation + 270)*0.0174) *24, 'sprites', 'shoot_2-2.png');
-        this.game.physics.velocityFromAngle(this.sprite.body.rotation - 90, 500, this.bullet.body.velocity);
-        this.bullet.events.onOutOfBounds.add(this.destroyShoot, this);
-        this.bullet.name = 'shoot';
-        this.shootInterval = 10;
+    		this.game.physics.velocityFromAngle(this.sprite.body.rotation - 90, 500, this.bullet.body.velocity);
+    		this.bullet.events.onOutOfBounds.add(this.destroyShoot, this);
+    		this.bullet.name = 'shoot';
+    		this.bullet.scale.setTo(1.5,1.5);
+    		this.shootInterval = 10;
+    	}
+    }else if(this.shootType == 1 && !game.input.keyboard.isDown(Phaser.Keyboard.LEFT) && !game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)){
+    	this.bullet = this.bulletsGroup.create(this.sprite.position.x + Math.cos((this.sprite.body.rotation + 270)*0.0174) *22,
+    			this.sprite.position.y + Math.sin((this.sprite.body.rotation + 270)*0.0174) *22, 'laser');
+		this.game.physics.velocityFromAngle(this.sprite.body.rotation - 90, 600, this.bullet.body.velocity);
+		this.bullet.events.onOutOfBounds.add(this.destroyShoot, this);
+		this.bullet.rotation = this.sprite.rotation;
+		this.bullet.name = 'laser';
     }
-
 };
 
 SpaceShip.prototype.destroyShoot = function (shoot) {
 	shoot.kill();
-};
-
-SpaceShip.prototype.die = function (spaceShip, asteroid) {
-	var emitter = this.game.add.emitter(this.sprite.x, this.sprite.y, 5);
-    emitter.makeParticles('sprites', ['particle_1-15.png']);
-    emitter.minParticleSpeed.setTo(-40, -40);
-    emitter.maxParticleSpeed.setTo(40, 40);
-    emitter.gravity = 0;
-    emitter.start(true, 3000, null, 5);
-    
-    this.gameClass.livesHud.getFirstAlive().kill();
-    if(this.gameClass.livesHud.countDead() == 3){
-    	this.gameClass.gameOver();	
-    }
-
-    setTimeout(function (gameClass) {
-        gameClass.spaceShip.sprite.reset(gameClass.game.world.width / 2, gameClass.game.world.height / 2);
-    }, 3000, this.gameClass);
-
-    //spaceShip.reset(game.world.width/2, game.world.height/2);
-    if (asteroid.size == "large") {
-    	
-        this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "medium", this.gameClass.velAsteroids);
-        this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "medium", this.gameClass.velAsteroids);
-    }
-    if (asteroid.size == "medium") {
-    	
-        this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "small", this.gameClass.velAsteroids);
-        this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "small", this.gameClass.velAsteroids);
-    }
-    asteroid.kill();
-    spaceShip.kill();
-   
 };

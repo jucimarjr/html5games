@@ -9,7 +9,7 @@ HighScoreInput.prototype.create = function () {
     if (scorePosition != 0)
         this.inputName(this.game.score,scorePosition);
     else
-        this.game.state.start('HighScore', HighScore);
+        this.game.state.start('highScore', HighScore);
 
 };
 

@@ -12,6 +12,7 @@ Ufo = function (gameClass) {
     this.body.velocity.x = Math.cos(45 * 0.0174) * 150;
     this.name = 'ufo';
     this.gameClass.groupUfo.add(this);
+    this.hp = 50;
     this.fireRate = 500;
     this.nextFire = this.game.time.now + this.fireRate;
 };
@@ -34,30 +35,9 @@ Ufo.prototype.shoot = function () {
     this.game.physics.velocityFromAngle(direction, 500, shoot.body.velocity);
     shoot.events.onOutOfBounds.add(this.destroyShoot, this);
     shoot.name = 'shoot';
+    shoot.scale.setTo(1.5,1.5);
 };
 
 Ufo.prototype.destroyShoot = function (shoot) {
     shoot.kill();
-};
-
-Ufo.prototype.die = function (ufo, asteroid) {
-    var emitter = this.game.add.emitter(ufo.x, ufo.y, 15);
-    emitter.makeParticles('sprites', ['shoot_2-2.png']);
-    emitter.minParticleSpeed.setTo(-40, -40);
-    emitter.maxParticleSpeed.setTo(40, 40);
-    emitter.gravity = 0;
-    emitter.start(true, 500, null, 15);    
-    if(asteroid != null){
-        if (asteroid.size == "large") {
-            this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "medium", this.gameClass.velAsteroids);
-            this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "medium", this.gameClass.velAsteroids);
-        }
-        if (asteroid.size == "medium") {
-            this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "small", this.gameClass.velAsteroids);
-            this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "small", this.gameClass.velAsteroids);
-        }
-        asteroid.kill();
-        this.gameClass.punctuate(30);
-    }
-    ufo.kill();
 };

@@ -13,7 +13,7 @@ var Game = function(game){
 	this.loseMSG = null;
 	this.ufo = null;
 	this.groupUfo = null;
-	this.shootUfo = this.game.add.group();
+	this.shootUfo = null;
 	this.score = 0;
 	this.scoreText = null;
 	this.nextAddUfo = 0;
@@ -26,7 +26,7 @@ var Game = function(game){
 };
 
 Game.prototype.create = function () {	
-	this.shootsUfo = this.game.add.group();
+	this.shootUfo = this.game.add.group();
 	this.game.world.setBounds(0, 0, 2400, 1440);
 	this.tiled1 = this.game.add.tileSprite(0, 0, this.game.world.width, this.game.world.height, 'tiled1');
 	this.tiled2 = this.game.add.tileSprite(-this.game.world.width*5, -this.game.world.height*5, this.game.world.width * 10, this.game.world.height * 10, 'tiled2');
@@ -165,67 +165,114 @@ Game.prototype.update = function () {
 };
 
 Game.prototype.collide = function(){
-	 this.game.physics.collide(this.groupAsteroids, this.spaceShip.bulletsGroup, this.collideObj, null, this);
-	 this.game.physics.collide(this.groupAsteroids, this.spaceShip.sprite, this.collideObj, null, this);
+	 this.game.physics.overlap(this.groupAsteroids, this.spaceShip.bulletsGroup, this.collideObj, null, this);
+	 //this.game.physics.collide(this.groupAsteroids);
+	 this.game.physics.overlap(this.groupAsteroids, this.spaceShip.sprite, this.collideObj, null, this);
 	 this.game.physics.overlap(this.groupResources, this.spaceShip.sprite, this.collectResources, null, this);
 	 if(this.ufo != null){
-		 this.game.physics.collide(this.groupAsteroids, this.groupUfo, this.collideObj, null, this);
-		 this.game.physics.collide(this.groupAsteroids, this.shootUfo, this.collideObj, null, this);
-		 this.game.physics.collide(this.spaceShip.sprite, this.shootUfo, this.collideObj, null, this);
-		 this.game.physics.collide(this.spaceShip.sprite, this.groupUfo, this.collideObj, null, this);
-		 this.game.physics.collide(this.spaceShip.bulletsGroup, this.groupUfo, this.collideObj, null, this);
+		 this.game.physics.overlap(this.groupAsteroids, this.groupUfo, this.collideObj, null, this);
+		 this.game.physics.overlap(this.groupAsteroids, this.shootUfo, this.collideObj, null, this);
+		 this.game.physics.overlap(this.spaceShip.sprite, this.shootUfo, this.collideObj, null, this);
+		 this.game.physics.overlap(this.spaceShip.sprite, this.groupUfo, this.collideObj, null, this);
+		 this.game.physics.overlap(this.spaceShip.bulletsGroup, this.groupUfo, this.collideObj, null, this);
 	 }
 };
 
 Game.prototype.collideObj = function(obj1, obj2){
-	if(obj1.name == 'ufo' || obj2.name == 'ufo'){
+	var damage = 100;
+	if(obj2.name == 'shoot' || obj1.name == 'shoot'){
+		var damage = 10;
+		if(obj1.name == 'shoot'){
+			obj1.kill();
+			var emitter = this.game.add.emitter(obj1.x, obj1.y, 15);
+		    emitter.makeParticles('sprites', ['shoot_2-2.png']);
+		    emitter.minParticleSpeed.setTo(-40, -40);
+		    emitter.maxParticleSpeed.setTo(40, 40);
+		    emitter.gravity = 0;
+		    emitter.start(true, 500, null, 15);
+		}else{
+			obj2.kill();
+			var emitter = this.game.add.emitter(obj2.x, obj2.y, 15);
+		    emitter.makeParticles('sprites', ['shoot_2-2.png']);
+		    emitter.minParticleSpeed.setTo(-40, -40);
+		    emitter.maxParticleSpeed.setTo(40, 40);
+		    emitter.gravity = 0;
+		    emitter.start(true, 500, null, 15);
+		}
+	}
+	if(obj2.name == 'laser' || obj1.name == 'laser'){
+		var damage = 1;
+		if(obj1.name == 'laser'){
+			obj1.kill();
+			var emitter = this.game.add.emitter(obj1.x, obj1.y, 3);
+		    emitter.makeParticles('sprites', ['shoot_2-2.png']);
+		    emitter.minParticleSpeed.setTo(-40, -40);
+		    emitter.maxParticleSpeed.setTo(40, 40);
+		    emitter.gravity = 0;
+		    emitter.start(true, 500, null, 3);
+		}else{
+			obj2.kill();
+			var emitter = this.game.add.emitter(obj2.x, obj2.y, 3);
+		    emitter.makeParticles('sprites', ['shoot_2-2.png']);
+		    emitter.minParticleSpeed.setTo(-40, -40);
+		    emitter.maxParticleSpeed.setTo(40, 40);
+		    emitter.gravity = 0;
+		    emitter.start(true, 500, null, 3);
+		}
+	}
+	if(obj1.name == 'asteroid' || obj2.name == 'asteroid'){
+		if(obj1.name == 'asteroid'){
+			var asteroid = obj1;
+			var obj = obj2;
+		}else{
+			var asteroid = obj2;
+			var obj = obj1;
+		}
+	    asteroid.hp -= damage;
+	    if(obj1.name == 'shoot'){
+	    	asteroid.body.velocity.x += obj.body.velocity.x/75;
+	    	asteroid.body.velocity.y += obj.body.velocity.y/75;
+	    }else if(obj.name == 'laser'){
+	    	asteroid.body.velocity.x += obj.body.velocity.x/700;
+	    	asteroid.body.velocity.y += obj.body.velocity.y/700;
+	    }
+	    if(asteroid.hp<=0){
+	    	if (obj1.size == "large") {
+	    		this.punctuate(10);
+	    		this.asteroid.create(asteroid.position.x, asteroid.position.y, "medium", this.velAsteroids);
+	    		this.asteroid.create(asteroid.position.x, asteroid.position.y, "medium", this.velAsteroids);
+	    	}
+	    	if (obj1.size == "medium") {
+	    		this.punctuate(20);
+	    		this.asteroid.create(asteroid.position.x, asteroid.position.y, "small", this.velAsteroids);
+	    		this.asteroid.create(asteroid.position.x, asteroid.position.y, "small", this.velAsteroids);
+	    	}
+	    	if (asteroid.size == "small") {
+	    		this.punctuate(40);
+	    	}
+	    	asteroid.kill();
+	    }
+	    
+	}
+	if(obj1.name == 'ufo' || obj2.name == 'ufo'){		
 		if(obj1.name == 'ufo'){
 			var ufo = obj1;
 		}else{
 			var ufo = obj2;
 		}
-		var emitter = this.game.add.emitter(ufo.x, ufo.y, 7);
-	    emitter.makeParticles('sprites', ['particle_1-15.png']);
-	    emitter.minParticleSpeed.setTo(-40, -40);
-	    emitter.maxParticleSpeed.setTo(40, 40);
-	    emitter.gravity = 0;
-	    emitter.start(true, 3000, null, 5);
-	    ufo.kill();
+		ufo.hp -= damage;
+	    if(ufo.hp <= 0)
+	    {
+	    	var emitter = this.game.add.emitter(ufo.x, ufo.y, 7);
+	    	emitter.makeParticles('sprites', ['particle_1-15.png']);
+	    	emitter.minParticleSpeed.setTo(-40, -40);
+	    	emitter.maxParticleSpeed.setTo(40, 40);
+	    	emitter.gravity = 0;
+	    	emitter.start(true, 3000, null, 5);
+	    	ufo.kill();	    	
+	    }
 	}
-	if(obj1.name == 'asteroid' || obj2.name == 'asteroid'){
-		if(obj1.name == 'asteroid'){
-			var asteroid = obj1;
-		}else{
-			var asteroid = obj2;
-		}
-		var emitter = this.game.add.emitter(asteroid.x, asteroid.y, 15);
-	    emitter.makeParticles('sprites', ['shoot_2-2.png']);
-	    emitter.minParticleSpeed.setTo(-40, -40);
-	    emitter.maxParticleSpeed.setTo(40, 40);
-	    emitter.gravity = 0;
-	    emitter.start(true, 500, null, 15);
-	    if (obj1.size == "large") {
-	    	this.punctuate(10);
-	        this.asteroid.create(asteroid.position.x, asteroid.position.y, "medium", this.velAsteroids);
-	        this.asteroid.create(asteroid.position.x, asteroid.position.y, "medium", this.velAsteroids);
-	    }
-	    if (obj1.size == "medium") {
-	    	this.punctuate(20);
-	        this.asteroid.create(asteroid.position.x, asteroid.position.y, "small", this.velAsteroids);
-	        this.asteroid.create(asteroid.position.x, asteroid.position.y, "small", this.velAsteroids);
-	    }
-	    if (asteroid.size == "small") {
-	        this.punctuate(40);
-	    }
-	    asteroid.kill();
-	}
-	if(obj2.name == 'shoot' || obj1.name == 'shoot'){
-		if(obj1.name == 'shoot'){
-			obj1.kill();
-		}else{
-			obj2.kill();
-		}
-	}else if(obj2.name == 'ship'||obj1.name == 'ship'){
+	else if(obj2.name == 'ship'||obj1.name == 'ship'){
 		if(obj1.name == 'ship'){
 			var ship = obj1;
 		}else{
@@ -237,12 +284,10 @@ Game.prototype.collideObj = function(obj1, obj2){
 	    emitter.maxParticleSpeed.setTo(40, 40);
 	    emitter.gravity = 0;
 	    emitter.start(true, 3000, null, 5);
-	    
 	    this.livesHud.getFirstAlive().kill();
-	    if(this.livesHud.countDead() == 3){
+	    if(this.livesHud.countLiving() <= 0){
 	    	this.gameOver();	
 	    }
-
 	    setTimeout(function (gameClass) {
 	        gameClass.spaceShip.sprite.reset(gameClass.game.world.width / 2, gameClass.game.world.height / 2);
 	    }, 3000, this);
@@ -311,8 +356,8 @@ Game.prototype.punctuate = function (points) {
 
 Game.prototype.gameOver = function () {
     game.score = this.score;
-    game.add.text(this.game.width/2 - 100, this.game.height/2, "Game Over", {
+    game.add.text(this.game.camera.width/2 - 100, this.game.camera.height/2, "Game Over", {
         font: "40px Vector Battle", fill: "#ffffff", align: "center"
     });
-    setTimeout(function () { this.game.state.start('HighScoreInput', HighScoreInput) } , 3000 );
+    setTimeout(function () { game.state.start('highScoreInput', HighScoreInput);} , 3000 );
 };

@@ -10,13 +10,13 @@ Menu = function (game) {
 
 Menu.prototype.preload = function(){
 
-    game.stage.backgroundColor = '#111111';
+    //game.stage.backgroundColor = '#111111';
     game.load.atlas('botoes', 'assets/spritesheets/ButtonsSpriteSheet.png', 'assets/spritesheets/ButtonsSpriteSheet.json');
 		
 };
 
 Menu.prototype.create = function() {
-	this.game.world.setBounds(0, 0, 2400, 1440);
+	this.game.world.setBounds(0, 0, 800, 480);
     var fadeout;
 
     this.btnPlay = game.add.button(game.world.centerX + 15, game.world.centerY - 110, 'botoes',
@@ -44,28 +44,28 @@ Menu.prototype.create = function() {
 Menu.prototype.play = function () {
     this.fadeOut();
     fadeout.onComplete.add(function () {
-        this.game.state.start('game', Game);
+        game.state.start('game', Game);
     });
 };
 
 Menu.prototype.howToPlay = function() {
     this.fadeOut();
     fadeout.onComplete.add(function () {
-        this.game.state.start('HowToPlay', HowToPlay);
+        game.state.start('howToPlay', HowToPlay);
     });
 }
 
 Menu.prototype.highScores = function () {
     this.fadeOut();
     fadeout.onComplete.add(function () {
-        this.game.state.start('HighScore', HighScore);
+        game.state.start('highScore', HighScore);
     });
 }
 
 Menu.prototype.credits = function () {
     this.fadeOut();
     fadeout.onComplete.add(function () {
-        this.game.state.start('Credits', Credits);
+        this.game.state.start('credits', Credits);
     });
 };
 
