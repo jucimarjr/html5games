@@ -13,7 +13,7 @@ var Ship = cc.Sprite.extend({
 		this._super();
 		
 		//Carrega o sprite da nave
-		 var spriteFrameChaceShip = cc.SpriteFrameCache.getInstance();
+		 //var spriteFrameChaceShip = cc.SpriteFrameCache.getInstance();
          cc.SpriteFrameCache.getInstance().addSpriteFrames("res/spritesheets/ship.plist", "res/spritesheets/ship.png");
          var _SpriteShip = cc.SpriteFrameCache.getInstance().getSpriteFrame("ShipWhite2_20-30.png");
          this.initWithSpriteFrame(_SpriteShip);
