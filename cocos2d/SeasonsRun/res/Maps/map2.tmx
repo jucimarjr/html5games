@@ -33,5 +33,21 @@
   <object type="edgeShape" x="4255" y="475">
    <polyline points="-33,2 -31,-187 152,-186"/>
   </object>
+  <object type="rectangleShape" x="829" y="311" width="32" height="32">
+   <properties>
+    <property name="density" value="2"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="sprite" value="box.png"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="1032" y="313" width="32" height="32">
+   <properties>
+    <property name="density" value="2"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="sprite" value="box.png"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

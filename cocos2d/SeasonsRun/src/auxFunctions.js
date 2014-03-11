@@ -4,7 +4,7 @@ function createBodyFromTile(object, beginPos) {
     var physics = { density: object.density, friction: object.friction, restitution: object.restitution };
     var sprite = null;
     if (typeof object.sprite != "undefined") {
-        sprite = cc.Sprite.create(object.sprite);
+        sprite = cc.Sprite.create("res/images/" + object.sprite);
         layerSprite.addChild(sprite);
     }
 

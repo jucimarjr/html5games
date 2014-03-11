@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="140" height="15" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
+ <tileset firstgid="1" name="tiles" tilewidth="32" tileheight="32">
+  <image source="tiles.png" width="667" height="161"/>
+ </tileset>
+ <layer name="Camada de Tiles 1" width="140" height="15">
+  <data encoding="base64" compression="zlib">
+   eJztmOdqwzAURtW9oHtP6N5tWuj+kS4Xut//aXpMEVGFZFk1dkx7PzgkEMcx0vG9N1ZKIpFIJBKJRFKXdEMP9EIf9MMADMIQdOagq/KrlrQrszAH87AAi7AEy7ACjQAnMFP5VUvalX04gEM4gmPV8uAUHh3oz8WX/5cm3MId3MOD+nYigSfVcsJEfPnbCc0o5v7bvUa/JgZFfOlQ+WYimYvKjd4H1xqHZhRdT7J6TsM4rogvUzCdkzrVrdD/gbq5neVDGr0PrjUOzSh5eo52RXtlfidmX3dgNyd7EectO757LcvtmFoaW2OL+JBG74NrjZsqPKPYfcfVj2ynfuNLGcnqtcMwAqMwBuMwAZORvxG611xrEFNLY2tsER9CSV1JPXHVEbue+HpO4qEOvmT12lVYg3XYgE3Ygm3PuXze+e41/b5qX4r4EEp63doXe5419930xfTIPN7+vA6+ZPXaMziHC7iEK7iGG8+5Qs+hYmpsmb6UGe2L/RwlUT/nEntOsWdg+3hNu33J6rXP8AKv8Abv8AGfnnOFnkP56qy5Bl+/c0zT
+  </data>
+ </layer>
+ <objectgroup name="objects" width="140" height="15">
+  <object type="edgeShape" x="66" y="477">
+   <polyline points="0,0 -1,-126 568,-124"/>
+  </object>
+  <object type="edgeShape" x="803" y="437">
+   <polyline points="0,0 -2,-83 83,-83"/>
+  </object>
+  <object type="edgeShape" x="1057" y="405">
+   <polyline points="0,0 0,-83 86,-83"/>
+  </object>
+  <object type="edgeShape" x="1311" y="375">
+   <polyline points="0,0 2,-86 86,-86"/>
+  </object>
+  <object type="edgeShape" x="1536" y="476">
+   <properties>
+    <property name="friction" value="1"/>
+   </properties>
+   <polyline points="0,0 0,-73 74,-136 237,-220 253,-220 265,-238 460,-349 793,-348"/>
+  </object>
+  <object type="edgeShape" x="2658" y="343">
+   <polyline points="0,0 1,-86 374,-85"/>
+  </object>
+  <object type="edgeShape" x="3327" y="472">
+   <properties>
+    <property name="friction" value="0"/>
+   </properties>
+   <polyline points="0,0 54,-43 107,-68 201,-119 235,-120 271,-111 355,-63 445,-10"/>
+  </object>
+  <object type="edgeShape" x="3933" y="477">
+   <properties>
+    <property name="friction" value="1"/>
+   </properties>
+   <polyline points="0,0 167,-91 195,-95 340,-179 382,-191 472,-189"/>
+  </object>
+  <object type="rectangleShape" x="4368" y="251" width="32" height="32">
+   <properties>
+    <property name="density" value="2"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="sprite" value="box.png"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

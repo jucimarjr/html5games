@@ -10,7 +10,10 @@
 		frameRate:60, // 60 frames per second
 		tag:"gameCanvas", // id of the canvas element
 		engineDir:"../Cocos2d-html5/cocos2d/", // path to your cocos2d installation
-		appFiles:["src/game.js","src/player.js","src/auxFunctions.js"] // path to the main game file
+		appFiles: ["src/Game.js", "src/Player.js", "src/AuxFunctions.js", "src/ServerFunctions.js",
+                   "src/SplashGame.js", "src/SplashLudus.js", "src/Menu.js", "src/Credits.js",
+                   "src/HighScores.js"
+		] // path to the main game file
 	};
 	window.addEventListener('DOMContentLoaded', function () {
 		var s = d.createElement("script");

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="140" height="15" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
+ <tileset firstgid="1" name="tiles" tilewidth="32" tileheight="32">
+  <image source="tiles.png" width="667" height="161"/>
+ </tileset>
+ <layer name="Camada de Tiles 1" width="140" height="15">
+  <data encoding="base64" compression="zlib">
+   eJztlVsKgzAQRWO7htp12D00+1+S8WNAwkhuiBqVc+DgzxDyuDOGAAAAAAAAALAPQ/KV+e66I7gyn+SU/K2+3647gh54c8NzDOQF/LkxbvhPxnD/vJR65I6ofd+qNze28rL4hLzYWewc+ZnPuPcj3vEs87lx5fmyRx+V8oJllbx4dT16aBJUMxArarH+3qyuVLt+txrV/Sprk5djtP+M2VpntXm9orpfZW0lc17tDH9pPEY=
+  </data>
+ </layer>
+ <objectgroup name="objects" width="140" height="15">
+  <object type="edgeShape" x="163" y="475">
+   <polyline points="-166,2 -163,-123 443,-122"/>
+  </object>
+  <object type="edgeShape" x="609" y="474">
+   <polyline points="0,0 2,-122 829,-122"/>
+  </object>
+  <object type="edgeShape" x="1474" y="474">
+   <polyline points="-32,-151 11,-152 798,-154"/>
+  </object>
+  <object type="edgeShape" x="2273" y="478">
+   <polyline points="0,-158 0,-221 319,-222"/>
+  </object>
+  <object type="edgeShape" x="2594" y="476">
+   <polyline points="-3,-219 -2,-286 182,-286"/>
+  </object>
+  <object type="edgeShape" x="2945" y="475">
+   <polyline points="-169,-90 0,-88 739,-90"/>
+  </object>
+  <object type="edgeShape" x="3682" y="479">
+   <polyline points="1,-94 -1,-124 539,-126"/>
+  </object>
+  <object type="edgeShape" x="4255" y="475">
+   <polyline points="-32,-123 -31,-187 152,-186"/>
+  </object>
+  <object type="rectangleShape" x="3222" y="343" width="32" height="32">
+   <properties>
+    <property name="density" value="2"/>
+    <property name="friction" value="0"/>
+    <property name="motion" value="dynamic"/>
+    <property name="sprite" value="box.png"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

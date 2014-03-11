@@ -22,9 +22,18 @@ var cocos2dApp = cc.Application.extend({
 		cc.Loader.preload(
 				[{ type: "image", src: "res/Runner/Runner0.png" },
                  { type: "plist", src: "res/Runner/Runner0.plist" },
-                 { type: "image", src: "res/Maps/tiles.png"},
+                 { type: "image", src: "res/Maps/tiles.png" },
+                 { type: "image", src: "res/images/box.png" },
                  { type: "tilemap", src: "res/Maps/map1.tmx" },
                  { type: "tilemap", src: "res/Maps/map2.tmx" },
+                 { type: "tilemap", src: "res/Maps/map3.tmx" },
+                 { type: "tilemap", src: "res/Maps/map4.tmx" },
+                 { type: "tilemap", src: "res/Maps/map5.tmx" },
+                 { type: "tilemap", src: "res/Maps/map6.tmx" },
+                 { type: "tilemap", src: "res/Maps/map7.tmx" },
+                 { type: "tilemap", src: "res/Maps/map8.tmx" },
+                 { type: "tilemap", src: "res/Maps/map9.tmx" },
+                 { type: "tilemap", src: "res/Maps/map10.tmx" },
 				],
 				function () {
 					cc.Director.getInstance().runWithScene(new this.startScene());
@@ -35,4 +44,4 @@ var cocos2dApp = cc.Application.extend({
 	}
 });
 
-var myApp = new cocos2dApp(GameScene);
+var myApp = new cocos2dApp(SplashLudus);
