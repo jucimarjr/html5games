@@ -11,6 +11,14 @@ var Ghost = cc.Sprite.extend({
 	velocityX: 0,
 	velocityY: 0,
 	
+	init: function()
+	{
+		this._super();
+		//this.scheduleUpdate();
+		this.xSpeed = this.velocityX*Math.cos(randomDir);
+		this.ySpeed = this.velocityY*Math.sin(randomDir);
+	},
+	
 	handleKey: function(e)
     {
         if(e === cc.KEY.left)
@@ -31,34 +39,44 @@ var Ghost = cc.Sprite.extend({
     },
 	
     
-	update:function(dt){
-		this.setRotation(this._currentRotation);
-		//this.setPosition(this._currentPositionY);
-		/*if(this.getPosition().x < background.width/2){
-					        
-		}*/
-	    /*
-        if(this.up){
-			this.setPositionY(this.getPositionY()+4);
-		}
-		if(this.down){
-			this.setPositionY(this.getPositionY()-4);
-		}
-		*/
+	update:function(type, position){		
 		
-    	/*if (LG.KEYS[cc.KEY.up])
-    		this.getAnimation("up");
-    	else if (!LG.KEYS[cc.KEY.down])
-    		this.getAnimation("down");
-    	else if (LG.KEYS[cc.KEY.right])    	
-    		this.getAnimation("right");
-    	
-    	else
-    	{*/
-    		/*var position = this.getPosition();
-			position.x += this.xVelocity * dt;
-	        this.setPosition(position);	*/
-    	//}
+		switch (position) {
+			case "left":
+				this.setAnimation(type, position, "16-16", 2, position);        
+		        this.getAnimation(position);				
+				this.setPosition(new cc.Point(this.getPosition().x - this.xVelocity * 0.01, this.getPosition().y));
+				break;
+			
+			case "pinky":
+				this.initWithSpriteFrameName(type + "_right_four_16-16.png");
+				this.velocityX = 0.5;
+				this.velocityY = 0.5;
+	
+				//Coloca o asteroid na posição em que se encontrava o asteroid grande
+				//this.setPosition(new cc.Point(position.x + 20, position.y + 20));
+				break;
+				
+			case "inkey":
+				this.initWithSpriteFrameName(type + "_right_four_16-16.png");
+				this.velocityX = 0.5;
+				this.velocityY = 0.5;
+	
+				//Coloca o asteroid na posição em que se encontrava o asteroid grande
+				//this.setPosition(new cc.Point(position.x + 20, position.y + 20));
+				break;
+			
+			case "clyde":
+				this.initWithSpriteFrameName(type + "_right_four_16-16.png");
+				this.velocityX = 0.5;
+				this.velocityY = 0.5;
+	
+				//Coloca o asteroid na posição em que se encontrava o asteroid grande
+				//this.setPosition(new cc.Point(position.x + 20, position.y + 20));
+				break;
+		}
+
+	
     		
 	},
     
@@ -108,7 +126,7 @@ var Ghost = cc.Sprite.extend({
 				this.velocityY = 0.5;
 				
 				//Coloca o asteroid numa posição aleatória
-				//this.setPosition(new cc.Point(Math.random()*screen.widht, Math.random()*screen.height));
+				//this.setPosition(new cc.Point(Math.random()*background.widht, Math.random()*background.height));
 				break;
 			
 			case "pinky":

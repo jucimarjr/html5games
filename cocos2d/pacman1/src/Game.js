@@ -21,6 +21,9 @@ var gameLayer = cc.Layer.extend({
 	gameOver: null,
 	_pac: null,	
 	_blinky: null,
+	_pinky: null,
+	_inkey: null,
+	_clyde: null,
 	
 	init:function()
 	{
@@ -48,18 +51,39 @@ var gameLayer = cc.Layer.extend({
 		
 		cc.log("chamando game");
 		
-		/*this._pac = new Pac();
-		this._pac.setPosition(new cc.Point(background.width/2, background.height/2));
+		this._pac = new Pac();
+		this._pac.setPosition(new cc.Point(background.width/2, background.height/2 - 100));
 		this.addChild(this._pac);		
 		this._pac.setAnimation("pac", "left", "16-16", 2, "left");        
-	    this._pac.getAnimation("left");*/ 
-		
-	    this._blinky = new Ghost();
+	    this._pac.getAnimation("left"); 
+        
+        this._blinky = new Ghost();
 		this._blinky.setGhost("blinky");
         this.addChild(this._blinky);
-        this._blinky.setPosition(new cc.Point(background.width/2 - 450, background.height - 250));
-        this._blinky.setAnimation("blinky", "right", "16-16", 2, "right");        
-        this._blinky.getAnimation("right");
+        this._blinky.setPosition(new cc.Point(background.width/2, background.height/2));
+        this._blinky.setAnimation("blinky", "up", "16-16", 2, "up");        
+        this._blinky.getAnimation("up");    
+        
+        this._pinky = new Ghost();
+		this._pinky.setGhost("pinky");
+        this.addChild(this._pinky);
+        this._pinky.setPosition(new cc.Point(background.width/2, background.height/2 - 20));
+        this._pinky.setAnimation("pinky", "up", "16-16", 2, "up");        
+        this._pinky.getAnimation("up");
+        
+        this._inkey = new Ghost();
+		this._inkey.setGhost("inkey");
+        this.addChild(this._inkey);
+        this._inkey.setPosition(new cc.Point(background.width/2 -20, background.height/2 - 20));
+        this._inkey.setAnimation("inkey", "up", "16-16", 2, "up");        
+        this._inkey.getAnimation("up");
+        
+        this._clyde = new Ghost();
+		this._clyde.setGhost("clyde");
+        this.addChild(this._clyde);
+        this._clyde.setPosition(new cc.Point(background.width/2 + 20, background.height/2 - 20));
+        this._clyde.setAnimation("clyde", "up", "16-16", 2, "up");        
+        this._clyde.getAnimation("up");
 		
 		this.addLives();
 		this.addScore();
@@ -73,7 +97,20 @@ var gameLayer = cc.Layer.extend({
 	
 	update: function()
 	{
-		//this._pac.setPositionOnScreen("left");		
+		//this._pac.setPositionOnScreen("left");	
+		var i = Math.floor((Math.random()*4)+1);
+		var position = ["right", "left", "up", "down"];  
+		this._blinky.update("blinky", position[i]);
+	
+		/*var j = Math.floor((Math.random()*4)+1);
+		this._pinky.update("pinky", position[j]);
+		
+		var k= Math.floor((Math.random()*4)+1);
+		this._inkey.update("inkey", position[k]);
+
+		var l = Math.floor((Math.random()*4)+1);
+		this._clyde.update("_clyde", position[l]);*/
+		
 		
 	},
 	
