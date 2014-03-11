@@ -1,46 +1,56 @@
-var Asteroid = function(gameClass) {
+var Asteroid = function(gameClass, posX , posY , size , vel) {
     this.game = gameClass.game;
     this.gameClass = gameClass;
-	this.velocity = 30;
-	this.sprite = null;
-	this.size;
-};
-
-Asteroid.prototype.create = function ( posX , posY , size , vel) {
-    var mult;
-    //this.sprite = this.gameClass.groupAsteroids.getFirstDead();
     if (size == "large") {
     	var i = Math.round(1 + Math.random()*2);
-    	this.sprite = this.gameClass.groupAsteroids.create(posX, posY, 'sprites', 'asteroids'+i+'_80-80.png');
-    	this.sprite.hp = 80;
+    	//this.sprite = this.gameClass.groupAsteroids.create();
+    	Phaser.Sprite.call(this, this.game, posX, posY, 'sprites', 'asteroids'+i+'_80-80.png');
+    	i+=3;
+    	this.redSprite = this.game.add.sprite(posX,posY,'asteroids','asteroids'+i+'_80-80.png');
+    	this.hp = 80;
         mult = 1;
     }
     if (size == "medium") {
     	var i = Math.round(1 + Math.random()*2);
-    	this.sprite = this.gameClass.groupAsteroids.create(posX, posY, 'sprites', 'asteroids'+i+'_40-40.png');
-    	this.sprite.hp = 40;
-    	console.log('size: '+this.sprite.bounds);
+    	//this.sprite = this.gameClass.groupAsteroids.create(posX, posY, 'sprites', 'asteroids'+i+'_40-40.png');
+    	Phaser.Sprite.call(this, this.game, posX, posY, 'sprites', 'asteroids'+i+'_40-40.png');
+    	i+=3;
+    	this.redSprite = this.game.add.sprite(posX,posY,'asteroids','asteroids'+i+'_40-40.png');
+    	this.hp = 40;
     	mult = 2;
     }
     if (size == "small") {
     	var i = Math.round(1 + Math.random()*2);
-    	this.sprite = this.gameClass.groupAsteroids.create(posX, posY, 'sprites', 'asteroids'+i+'_20-20.png');
-    	this.sprite.hp = 20;
+    	//this.sprite = this.gameClass.groupAsteroids.create(posX, posY, 'sprites', 'asteroids'+i+'_20-20.png');
+    	Phaser.Sprite.call(this, this.game, posX, posY, 'sprites', 'asteroids'+i+'_20-20.png');
+    	i+=3;
+    	this.redSprite = this.game.add.sprite(posX,posY,'asteroids','asteroids'+i+'_20-20.png');
+    	
+    	this.hp = 20;
     	mult = 4;
     }
-    this.sprite.body.bounce.setTo(1,1);
-    this.move( this.sprite , mult*vel);
-    this.sprite.size = size;
-    this.sprite.anchor.setTo(0.5,0.5);
-    this.sprite.name = 'asteroid';
+    this.redSprite.alpha = 0;
+    this.move(this , this.redSprite, mult*vel);
+    this.size = size;
+    this.anchor.setTo(0.5,0.5);
+    this.redSprite.anchor.setTo(0.5,0.5);
+    this.name = 'asteroid';
+	this.velocity = 30;
 };
+Asteroid.prototype = Object.create(Phaser.Sprite.prototype);
+Asteroid.prototype.constructor = Asteroid;
 
-Asteroid.prototype.move = function (asteroid,mult) {
+Asteroid.prototype.move = function (asteroid,asteroidred,mult) {
 	var direction = Math.random()*360;
     asteroid.body.velocity.x = Math.cos((direction)*0.0174) * 10 * mult;
     asteroid.body.velocity.y = Math.sin((direction)*0.0174) * 10 * mult;
     asteroid.body.gravity.x = 0;
     asteroid.body.gravity.y = 0;
     asteroid.body.angularVelocity = Math.random() * 50;
+    asteroidred.body.velocity.x = asteroid.body.velocity.x;
+    asteroidred.body.velocity.y = asteroid.body.velocity.y;
+    asteroidred.body.gravity.x = 0;
+    asteroidred.body.gravity.y = 0;
+    asteroidred.body.angularVelocity = asteroid.body.angularVelocity;
 
 };
