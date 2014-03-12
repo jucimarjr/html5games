@@ -1,0 +1,482 @@
+<!doctype html> 
+<html lang="en"> 
+    <head> 
+        <meta charset="UTF-8" />
+        <title>Galaga Weverton</title>
+        <script type="text/javascript" src="js/phaser.min.js"></script>
+        <style type="text/css">
+            body {
+                margin: 10px;
+            }
+        </style>
+    </head>
+    <body>
+
+        <script type="text/javascript">
+            var game = new Phaser.Game(1000, 600, Phaser.AUTO, '', {preload: preload, create: create, update: update});
+            var player;
+            var bullets;
+            var bulletTime = 0;
+            var cursors;
+            var fireButton;
+            var explosions;
+            var starfield;
+            var score = 0;
+            var scoreString = '';
+            var scoreText;
+            var lives;
+            var enemyBullet;
+            var firingTimer = 0;
+            var stateText;
+            var livingEnemies = [];
+            var txt_inicio;
+            var logo;
+            var button_inicio;
+            var button_creditos;
+            var button_voltar;
+            var txt_autor1;
+            var txt_autor2;
+            var txt_autor1_2;
+
+            function preload() {
+                game.load.image('bullet', 'assets/bullet.png');
+                game.load.image('enemyBullet', 'assets/enemy-bullet.png');
+                game.load.image('starfield', 'assets/starfield.png');
+                game.load.image('ship', 'assets/player.png');
+                game.load.image('button', 'assets/playgame.png');
+                game.load.image('button2', 'assets/credits.png');
+                game.load.image('logo', 'assets/logogalaga.png');
+                game.load.spritesheet('invader04', 'assets/spritsheet04.png');
+                game.load.spritesheet('invader', 'assets/spritesheet01.png', 30, 30);
+                game.load.spritesheet('invader02', 'assets/spritesgalagavespa2_60x30.png', 40, 40);
+                game.load.spritesheet('invader03', 'assets/spritsheetvespa_03.png', 30, 30);
+                game.load.spritesheet('kaboom', 'assets/spritesheetexplosao.png', 80, 60);
+
+            }
+
+            function create() {
+
+                //  The scrolling starfield background
+                starfield = game.add.tileSprite(game.world.centerX / 2, 0, 512, 512, 'starfield');
+                button_inicio = game.add.button(game.world.centerX - 95, 300, 'button', actionOnClick, this, 2, 1, 0);
+                button_creditos = game.add.button(game.world.centerX - 95, 340, 'button2', actionOnClickCreditos, this, 2, 1, 0);
+                logo = game.add.sprite(350, 70, 'logo');
+
+
+                //  Balas da nossa nave
+                bullets = game.add.group();
+                bullets.createMultiple(30, 'bullet');
+                bullets.setAll('anchor.x', 0.5);
+                bullets.setAll('anchor.y', 1);
+                bullets.setAll('outOfBoundsKill', true);
+
+                // Balas das vespas
+                enemyBullets = game.add.group();
+                enemyBullets.createMultiple(30, 'enemyBullet');
+                enemyBullets.setAll('anchor.x', 0.5);
+                enemyBullets.setAll('anchor.y', 1);
+                enemyBullets.setAll('outOfBoundsKill', true);
+                enemyBullets.visible = false;
+
+                // a Nave
+                player = game.add.sprite(game.world.centerX, game.world.height - 100, 'ship');
+                player.anchor.setTo(0.5, 0.5);
+                player.body.collideWorldBounds = true;
+                player.visible = false;
+
+                //  The baddies!
+
+                vespas1 = game.add.group();
+                vespas1.visible = false;
+                vespas2 = game.add.group();
+                vespas2.visible = false;
+                vespas3 = game.add.group();
+                vespas3.visible = false;
+
+
+
+                //  Pontuação
+                scoreString = '1UP\n\ ';
+                scoreText = game.add.text(10, 10, scoreString + score, {fontSize: '4px', fill: '#F5F5F5'});
+
+                //  Vidas
+                lives = game.add.group();
+                game.add.text(game.world.width - 100, 10, '', {fontSize: '4px', fill: '#FF4500'});
+
+                //  Text
+                stateText = game.add.text(game.world.centerX, game.world.centerY, '', {fontSize: '1px', fill: '#fff'});
+                stateText.anchor.setTo(0.5, 0.5);
+                stateText.visible = false;
+
+                //colocar as vidas na tela parte inferior da tela a esquerdao
+                for (var i = 0; i < 5; i++)
+                {
+                    var ship = lives.create(15 + 35 * i, game.world.height - 15, 'ship');
+                    ship.anchor.setTo(0.5, 0.5);
+                    ship.angle = 0;
+                    ship.alpha = 0.8;
+                }
+
+                //  explosão 
+                explosions = game.add.group();
+                explosions.createMultiple(30, 'kaboom');
+                explosions.forEach(setupInvader, this);//executa cada frame do spritsheet explosão 
+                //  And some controls to play the game with
+                cursors = game.input.keyboard.createCursorKeys();
+                fireButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+
+                //butao e textos
+                txt_autor1 = game.add.text(game.world.centerX - 50, game.world.centerY - 120, "ALUNO", {font: "25px Impact", fill: "#00CC00", align: "center"});
+                txt_autor1.visible = false;
+                txt_autor1_2 = game.add.text(game.world.centerX - 50, game.world.centerY - 80, "Weverton", {font: "25px Arial", fill: "#FFFFFF", align: "center"});
+                txt_autor1_2.visible = false;
+                txt_autor2 = game.add.text(game.world.centerX - 50, game.world.centerY - 40, "PROFESSOR ", {font: "25px Impact", fill: "#00CC00", align: "center"});
+                txt_autor2_2 = game.add.text(game.world.centerX - 50, game.world.centerY, "Jucimar ", {font: "25px Arial", fill: "#FFFFFF", align: "center"});
+                txt_autor2_2.visible = false;
+                txt_autor2.visible = false;
+                button_voltar = game.add.button(game.world.centerX - 50, 440, 'button2', actionOnClickVoltar, this, 2, 1, 0);
+                button_voltar.visible = false;
+            }
+
+
+            function createVespas() {//vespas amarelas e azuis
+
+                createVespas1();
+
+                createVespas2();
+
+                createVespas3();
+
+            }
+
+            function createVespas1() {//vespas amarelas e azuis nivel 1
+
+                for (var y = 4; y <= 5; y++)
+                {
+                    for (var x = 0; x < 8; x++)
+                    {
+
+                        var vespas = vespas1.create(x * 30 + game.world.centerX / 2, y * 30, 'invader');
+                        vespas.anchor.setTo(0.5, 0.5);
+                        vespas.animations.add('fly', [0, 1], 5, true);
+                        vespas.play('fly');
+                    }
+                }
+                vespas1.x = 100;
+                vespas1.y = 50;
+
+                //  All this does is basically start the invaders moving. Notice we're moving the Group they belong to, rather than the invaders directly.
+                var tween = game.add.tween(vespas1).to({x: 200}, 2000, Phaser.Easing.Circular.Out, true, 1000, 100, true);
+                var tween2 = game.add.tween(vespas1).to({y: 200}, 2000, Phaser.Easing.Exponential.Out, true, 1000, 100, true);
+
+                //  When the tween completes it calls descend, before looping again
+                tween.onComplete.add(descend, this);
+            }
+
+
+
+
+            function createVespas2() { //vespas 2 vermelhas
+
+                for (var y = 2; y <= 3; y++)
+                {
+                    for (var x = 0; x < 7; x++)
+                    {
+                        var vespas = vespas2.create(x * 30 + game.world.centerX / 2, y * 30, 'invader02');
+                        vespas.anchor.setTo(0.5, 0.5);
+                        vespas.animations.add('fly2', [0, 1], 3, true);
+                        vespas.play('fly2');
+                    }
+                }
+                vespas2.x = 100;
+                vespas2.y = 50;
+
+                //  All this does is basically start the invaders moving. Notice we're moving the Group they belong to, rather than the invaders directly.
+                var tween = game.add.tween(vespas2).to({x: 220}, 2000, Phaser.Easing.Circular.InOut, true, 2990, 100, true);
+                var tween2 = game.add.tween(vespas2).to({y: 300}, 2000, Phaser.Easing.Exponential.InOut, true, 2600, 100, true);
+
+                //  When the tween completes it calls descend, before looping again
+                tween.onComplete.add(descend, this);
+            }
+
+
+            function createVespas3() { //vespas 3 verde
+
+                for (var y = 1; y <= 1; y++)
+                {
+                    for (var x = 0; x < 3; x++)
+                    {
+                        //   var vespas = vespas3.create(x * 50 + game.world.centerX / 2 + 35, y * 30, 'invader03');
+                        var vespas = vespas3.create(x*30+game.world.centerX / 2, y*10, 'invader03');
+                        vespas.anchor.setTo(0.5, 0.5);
+                        // movimento_vespas(vespas3, x * 50 + game.world.centerX / 2 + 35, y * 30);
+                        vespas.animations.add('fly3', [0, 1], 2, true);
+                        vespas.play('fly3');
+                    }
+                }
+                vespas3.x = 100;
+                vespas3.y = 50;
+                //  All this does is basically start the invaders moving. Notice we're moving the Group they belong to, rather than the invaders directly.
+                var tween = game.add.tween(vespas3).to({x: 200}, 2000, Phaser.Easing.Circular.InOut, true, 9400, 100, true);
+                var tween2 = game.add.tween(vespas3).to({y: 510}, 2000, Phaser.Easing.Circular.InOut, true, 9200, 100, true);
+                //  When the tween completes it calls descend, before looping again
+                tween.onComplete.add(descend, this);
+            }
+
+            function actionOnClick() {
+                createVespas();
+                vespas1.visible = true;
+                vespas2.visible = true;
+                vespas3.visible = true;
+                logo.visible = false;
+                player.visible = true;
+                enemyBullets.visible = true;
+                button_inicio.visible = false;
+                button_creditos.visible = false;
+
+            }
+
+            function actionOnClickCreditos() {
+                logo.visible = false;
+                button_inicio.visible = false;
+                txt_autor1.visible = true;
+                txt_autor1_2.visible = true;
+                txt_autor2.visible = true;
+                txt_autor2_2.visible = true;
+                button_voltar.visible = true;
+                button_creditos.visible = false;
+
+
+            }
+            function actionOnClickVoltar() {
+                button_inicio.visible = true;
+                logo.visible = true;
+                button_creditos.visible = true;
+                button_voltar.visible = false;
+                txt_autor1.visible = false;
+                txt_autor1_2.visible = false;
+                txt_autor2.visible = false;
+                txt_autor2_2.visible = false;
+            }
+
+            function movimento_vespas(vespa, x, y) {
+                while (vespa.body.x != x && vespa.body.y != y)
+                    if (vespa.body.x != x) {
+                        vespa.body.velocity.x += 5;
+                    }
+                if (vespa.body.y != y) {
+                    vespa.body.velocity.y += 5;
+                }
+
+            }
+
+            function setupInvader(invader) {
+
+                invader.animations.add('kaboom');
+            }
+
+            function descend() {
+
+                // vespas3.y += 100;
+                // vespas1.y += 100;
+                // vespas2.y += 100;
+            }
+
+            function update() {
+
+                //  Scroll the background  movimenta background
+                starfield.tilePosition.y += 5;
+
+                // while (control)
+
+                //  Reset the player, then check for movement keys
+                player.body.velocity.setTo(0, 0);
+
+                if (cursors.left.isDown)
+                {
+                    player.body.velocity.x = -300;
+                }
+                else if (cursors.right.isDown)
+                {
+                    player.body.velocity.x = 300;
+                }
+
+                //  Firing?
+                if (fireButton.isDown)
+                {
+                    fireBullet();
+                }
+
+                if (game.time.now > firingTimer)
+                {
+                    enemyFires();
+                }
+
+                //  Run collision
+                
+                game.physics.overlap(bullets, vespas3, collisionHandler, null, this);
+                game.physics.overlap(bullets, vespas1, collisionHandler, null, this);
+                game.physics.overlap(bullets, vespas2, collisionHandler, null, this);
+                            
+                game.physics.overlap(vespas3,player , enemyHitsPlayer, null, this);
+                game.physics.overlap(vespas2,player , enemyHitsPlayer, null, this);
+                game.physics.overlap(vespas1,player , enemyHitsPlayer, null, this);
+                game.physics.overlap(enemyBullets, player, enemyHitsPlayer, null, this);
+                //      game.physics.overlap(enemyBullets, player, enemyHitsPlayer, null, this);
+                //     game.physics.overlap(enemyBullets, player, enemyHitsPlayer, null, this);
+            }
+
+            function collisionHandler(bullet, nave) {
+
+                //  When a bullet hits an alien we kill them both
+                bullet.kill();
+                nave.kill();
+
+                //  Increase the score
+                score += 20;
+                scoreText.content = scoreString + score;
+
+                //  And create an explosion :)
+                var explosion = explosions.getFirstDead();
+                explosion.reset(nave.body.x, nave.body.y);
+                explosion.play('kaboom', 30, false, true);
+
+                if (vespas3.countLiving() == 0 && vespas1.countLiving() == 0 && vespas2.countLiving() == 0)
+                {
+                    score += 1000;
+                    scoreText.content = scoreString + score;
+
+                    enemyBullets.callAll('kill', this);
+                    stateText.content = " You Won, \n Click to restart";
+                    stateText.visible = true;
+
+                    //the "click to restart" handler
+                    game.input.onTap.addOnce(restart, this);
+                }
+
+            }
+
+            function enemyHitsPlayer(player, bullet) {
+
+                bullet.kill();
+                player.body.x = game.world.centerX;
+                player.body.y = game.world.height - 100;
+                live = lives.getFirstAlive();
+
+
+                if (live)
+                {
+                    live.kill();
+                }
+
+                //  And create an explosion :)
+                var explosion = explosions.getFirstDead();
+                explosion.reset(player.body.x, player.body.y);
+                explosion.play('kaboom', 30, false, true);
+
+                // When the player dies
+                if (lives.countLiving() < 1)
+                {
+                    player.kill();
+                    enemyBullets.callAll('kill');
+
+                    stateText.content = " GAME OVER \n Click to restart";
+                    stateText.visible = true;
+
+                    //the "click to restart" handler
+                    game.input.onTap.addOnce(restart, this);
+                }
+
+            }
+
+            function enemyFires() {
+
+                //  Grab the first bullet we can from the pool
+                enemyBullet = enemyBullets.getFirstExists(false);
+
+                livingEnemies.length = 0;
+
+                vespas3.forEachAlive(function(alien) {
+
+                    // put every living enemy in an array
+                    livingEnemies.push(alien);
+                });
+
+                vespas1.forEachAlive(function(alien) {
+
+                    // put every living enemy in an array
+                    livingEnemies.push(alien);
+                });
+
+                vespas2.forEachAlive(function(alien) {
+
+                    // put every living enemy in an array
+                    livingEnemies.push(alien);
+                });
+
+                if (enemyBullet && livingEnemies.length > 0)
+                {
+
+                    var random = game.rnd.integerInRange(0, livingEnemies.length);
+
+                    // randomly select one of them
+                    var shooter = livingEnemies[random];
+                    // And fire the bullet from this enemy
+                    enemyBullet.reset(shooter.body.x, shooter.body.y);
+
+                    game.physics.moveToObject(enemyBullet, player, 120);
+                    firingTimer = game.time.now + 2000;
+                }
+
+            }
+
+            function fireBullet() {
+//funcao atirar 
+                //  To avoid them being allowed to fire too fast we set a time limit
+                if (game.time.now > bulletTime)
+                {
+                    //  Grab the first bullet we can from the pool
+                    bullet = bullets.getFirstExists(false);
+
+                    if (bullet)
+                    {
+                        //  And fire it
+                        bullet.reset(player.x, player.y);//posicáo de saida do tiro
+                        bullet.body.velocity.y = -800; //velocidade do projetil
+                        bulletTime = game.time.now + 200;
+                    }
+                }
+
+            }
+
+//            function resetBullet(bullet) {
+
+            //  Called if the bullet goes out of the screen
+            //            bullet.kill();
+
+            //          }
+
+            function restart() {
+
+                //  A new level starts
+
+                //resets the life count
+                lives.callAll('revive');
+                //  And brings the aliens back from the dead :)
+                vespas3.removeAll();
+                vespas1.removeAll();
+                vespas2.removeAll();
+                createVespas();
+
+                //revives the player
+                player.revive();
+                //hides the text
+                stateText.visible = false;
+
+            }
+
+
+        </script>
+
+    </body>
+</html>
