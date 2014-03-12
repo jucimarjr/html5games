@@ -12,11 +12,14 @@ SpaceShip = function(gameClass) {
     this.lives = 3;
     this.changeShootKey = null;
     this.shootType = 0;
+    this.sound = null;
     this.create();
+    
 };
 
 SpaceShip.prototype.create = function(){
 	this.shootType = 0;
+	this.sound = this.game.add.audio('laserSound', 1);
 	this.sprite = this.game.add.sprite(this.game.world.width/2, this.game.world.height/2, 'sprites', 'ship_14-24.png');
     //this.sprite.events.onOutOfBounds.add(this.gameClass.outOfBounds,this);
 	this.changeShootKey = this.game.input.keyboard.addKey(Phaser.Keyboard.Z);
@@ -114,6 +117,9 @@ SpaceShip.prototype.shoot = function () {
     	this.bullet = this.bulletsGroup.getFirstDead();
     	if(this.bullet != null){
     		this.bullet.loadTexture('laser');
+    		if(!this.sound.isPlaying){
+    			this.sound.play();
+    		}
     		this.bullet.reset(this.sprite.position.x + Math.cos((this.sprite.body.rotation + 270)*0.0174) *15,
     					      this.sprite.position.y + Math.sin((this.sprite.body.rotation + 270)*0.0174) *15);
     		this.game.physics.velocityFromAngle(this.sprite.body.rotation - 90, 600, this.bullet.body.velocity);

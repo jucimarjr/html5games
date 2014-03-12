@@ -50,7 +50,13 @@ function preload()
     game.load.audio('thrust', 'assets/audios/AsteroidsThrust.mp3');
     game.load.audio('shoot', 'assets/audios/AsteroidsShoot.mp3');
     game.load.audio('ufo', 'assets/audios/AsteroidsSaucer.mp3');
+    game.load.audio('laserSound', 'assets/audios/laser.wav');
     setHighScore();
+    var keyFull = this.game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
+	keyFull.onDown.add(function(){
+		game.stage.fullScreenScaleMode = Phaser.StageScaleMode.EXACT_FIT;
+		game.stage.scale.startFullScreen();
+	}, this);
     
 	//splashScene = new Splash(game);
 	//splashScene.preload();

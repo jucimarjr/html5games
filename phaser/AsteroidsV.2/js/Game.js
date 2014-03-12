@@ -375,7 +375,6 @@ Game.prototype.warp = function (object) {
     object.body.velocity.x = velocityX;
     object.body.velocity.y = velocityY;
     object.body.angularVelocity = angularVelocity;
-    
     if(object.name == 'asteroid'){
     	this.warp(object.redSprite);
     }
