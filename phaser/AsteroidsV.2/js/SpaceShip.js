@@ -130,3 +130,7 @@ SpaceShip.prototype.shoot = function () {
 SpaceShip.prototype.destroyShoot = function (shoot) {
 	shoot.kill();
 };
+
+SpaceShip.prototype.reset = function (){
+	this.sprite.reset();
+}

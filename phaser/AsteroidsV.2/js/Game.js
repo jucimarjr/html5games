@@ -9,7 +9,6 @@ var Game = function(game){
 	this.tiled1 = null;
 	this.tiled2 = null;
 	this.livesHud = null;
-	this.loseMSG = null;
 	this.ufo = null;
 	this.groupUfo = null;
 	this.shootUfo = null;
@@ -22,6 +21,7 @@ var Game = function(game){
 	this.addAsteroids = 15000;
 	this.timeAsteroids = 15000;
 	this.mapBox = null;
+	this.spawnText = null;
 };
 
 Game.prototype.create = function () {	
@@ -41,13 +41,6 @@ Game.prototype.create = function () {
 	}
 	this.nextAddUfo = this.game.time.now + this.addUfoTime;	
 	this.mapBox = this.game.add.graphics();
-	this.mapBox.beginFill(0x000000);
-	this.mapBox.lineStyle(1, 0xffffff);
-	this.mapBox.moveTo(this.game.camera.width - 245,5);
-	this.mapBox.lineTo(this.game.camera.width - 5,5);
-	this.mapBox.lineTo(this.game.camera.width - 5,149);
-	this.mapBox.lineTo(this.game.camera.width - 245,149);
-	this.mapBox.lineTo(this.game.camera.width - 245,5);
 	this.groupUfo = this.game.add.group();
 	this.groupAsteroids = this.game.add.group();
     this.spaceShip = new SpaceShip(this);
@@ -66,6 +59,7 @@ Game.prototype.create = function () {
 Game.prototype.collectResources = function(spaceship, resource){
 	resource.kill();
 	this.Hud.content = 'Resources \nto colect: '+this.groupResources.countLiving();
+	this.punctuate(100);
 };
 
 Game.prototype.drawMap = function(){
@@ -242,9 +236,7 @@ Game.prototype.collideObj = function(obj1, obj2){
 		}
 		asteroid.hp -= damage;
 		asteroid.redSprite.alpha = 1.25 - asteroid.hp/hp;
-	    
-	    console.log(asteroid.redSprite.alpha);
-	    if(obj1.name == 'shoot'){
+	    if(obj.name == 'shoot'){
 	    	asteroid.body.velocity.x += obj.body.velocity.x/75;
 	    	asteroid.body.velocity.y += obj.body.velocity.y/75;
 	    	asteroid.redSprite.body.velocity.x += obj.body.velocity.x/75;
@@ -296,7 +288,7 @@ Game.prototype.collideObj = function(obj1, obj2){
 	    	ufo.kill();	    	
 	    }
 	}
-	else if(obj2.name == 'ship'||obj1.name == 'ship'){
+	if(obj2.name == 'ship'||obj1.name == 'ship'){
 		if(obj1.name == 'ship'){
 			var ship = obj1;
 		}else{
@@ -308,16 +300,28 @@ Game.prototype.collideObj = function(obj1, obj2){
 	    emitter.maxParticleSpeed.setTo(40, 40);
 	    emitter.gravity = 0;
 	    emitter.start(true, 3000, null, 5);
-	    //this.livesHud.getFirstAlive().kill();
+	    this.livesHud.getFirstAlive().kill();
 	    if(this.livesHud.countLiving() <= 0){
 	    	this.gameOver();	
 	    }
-	    setTimeout(function (gameClass) {
-	        gameClass.spaceShip.sprite.reset(gameClass.game.world.width / 2, gameClass.game.world.height / 2);
-	    }, 3000, this);
 	    ship.kill();
+	    if(this.livesHud.countLiving() >= 1){
+	    	this.spawnText = this.game.add.text(ship.x - 100, ship.y,'Press R to Respawn',  
+		    		{font: "12px Vector Battle", fill: "#ffffff" , align: "center"});
+	    }
+	    
+	    var key1 = this.game.input.keyboard.addKey(Phaser.Keyboard.R);
+	    key1.onDown.add(this.resetShip, this);
 	}
 };
+
+Game.prototype.resetShip = function(){
+	if(!this.spaceShip.sprite.alive && this.livesHud.countLiving() >= 1)
+	{
+		this.spawnText.destroy();
+		this.spaceShip.sprite.reset(this.game.world.width/2,this.game.world.height/2);
+	}
+}
 
 Game.prototype.addUfo = function(){
 	for(var i = 0;i < 4;i++){
@@ -373,7 +377,6 @@ Game.prototype.warp = function (object) {
     object.body.angularVelocity = angularVelocity;
     
     if(object.name == 'asteroid'){
-    	console.log(object.redSprite);
     	this.warp(object.redSprite);
     }
 
@@ -386,8 +389,8 @@ Game.prototype.punctuate = function (points) {
 
 Game.prototype.gameOver = function () {
     game.score = this.score;
-    game.add.text(this.game.camera.width/2 - 100, this.game.camera.height/2, "Game Over", {
+    this.spawnText = this.game.add.text(this.spaceShip.sprite.x - 150, this.spaceShip.sprite.y , "Game Over", {
         font: "40px Vector Battle", fill: "#ffffff", align: "center"
     });
-    setTimeout(function () { game.state.start('highScoreInput', HighScoreInput);} , 3000 );
+    setTimeout(function () { this.game.world.setBounds(0, 0, 800, 480);game.state.start('highScoreInput', HighScoreInput);} , 3000 );
 };

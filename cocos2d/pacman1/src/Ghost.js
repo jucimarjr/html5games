@@ -97,9 +97,9 @@ var Ghost = cc.Sprite.extend({
          for (var i = 0; i < maxIndex; i++) {
         	
         	 str = spritePrefix + "_" + position + "_" + status[i] + "_" + size + ".png";
-             cc.log(str);
+             //cc.log(str);
              frame = this.spriteFrameCache.getSpriteFrame(str);            
-             cc.log(frame);	
+             //cc.log(frame);	
              animFrames.push(frame);
          }         
 
