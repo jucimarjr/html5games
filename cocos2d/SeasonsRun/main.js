@@ -22,7 +22,10 @@ var cocos2dApp = cc.Application.extend({
 		cc.Loader.preload(
 				[{ type: "image", src: "res/Runner/Runner0.png" },
                  { type: "plist", src: "res/Runner/Runner0.plist" },
-                 { type: "image", src: "res/Maps/tiles.png" },
+                 { type: "image", src: "res/Maps/sun.png" },
+                 { type: "image", src: "res/Maps/background_summer2.png" },
+                 { type: "image", src: "res/Maps/coqueiro.png" },
+                 { type: "image", src: "res/Maps/tiles2.png" },
                  { type: "image", src: "res/images/box.png" },
                  { type: "tilemap", src: "res/Maps/map1.tmx" },
                  { type: "tilemap", src: "res/Maps/map2.tmx" },
@@ -34,6 +37,8 @@ var cocos2dApp = cc.Application.extend({
                  { type: "tilemap", src: "res/Maps/map8.tmx" },
                  { type: "tilemap", src: "res/Maps/map9.tmx" },
                  { type: "tilemap", src: "res/Maps/map10.tmx" },
+                 { type: "tilemap", src: "res/Maps/background_summer.tmx" },
+                 { type: "tilemap", src: "res/Maps/background_summer_clouds.tmx" },
 				],
 				function () {
 					cc.Director.getInstance().runWithScene(new this.startScene());
@@ -44,4 +49,4 @@ var cocos2dApp = cc.Application.extend({
 	}
 });
 
-var myApp = new cocos2dApp(SplashLudus);
+var myApp = new cocos2dApp(Menu);

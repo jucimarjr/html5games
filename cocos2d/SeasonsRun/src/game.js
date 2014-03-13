@@ -27,6 +27,8 @@ var tileMapsInScene = [];
 var PLAYER_GROUP = -1;
 var MENUMAP_TAG = 10;
 var voidNode;
+var voidNodeBackground;
+var voidNodeBackground2;
 var velocity;
 var updateThread = null;
 
@@ -57,25 +59,38 @@ var GameLayer = cc.LayerGradient.extend({
         //Cria o Layer do jogo
         layerSprite = cc.Layer.create(0, 480);
         layerGame = cc.Layer.create(0, 480);
-                
+        layerBackground = cc.Layer.create(0, 480);
+        layerBackground2 = cc.Layer.create(0, 480);
+
         //Tile Maps
         _tilemaps.push("res/Maps/map3.tmx");
-        _tilemaps.push("res/Maps/map1.tmx");
-        _tilemaps.push("res/Maps/map2.tmx");
-        _tilemaps.push("res/Maps/map4.tmx");
-        _tilemaps.push("res/Maps/map5.tmx");
-        _tilemaps.push("res/Maps/map6.tmx");
-        _tilemaps.push("res/Maps/map7.tmx");
-        _tilemaps.push("res/Maps/map8.tmx");
+        //_tilemaps.push("res/Maps/map1.tmx");
+        //_tilemaps.push("res/Maps/map2.tmx");
+        //_tilemaps.push("res/Maps/map4.tmx");
+        //_tilemaps.push("res/Maps/map5.tmx");
+        //_tilemaps.push("res/Maps/map6.tmx");
+        //_tilemaps.push("res/Maps/map7.tmx");
+        //_tilemaps.push("res/Maps/map8.tmx");
         //_tilemaps.push("res/Maps/map9.tmx");
         //_tilemaps.push("res/Maps/map10.tmx");
 
         //Cria o primeiro mapa
+        
         var _tileMap = cc.TMXTiledMap.create(_tilemaps[0]);
         _tileMap.retain();
         _tileMap.setPosition(cc.p(0, 0));
         layerGame.addChild(_tileMap,0,MENUMAP_TAG);
         
+        _tileMap = cc.TMXTiledMap.create("res/Maps/background_summer.tmx");
+        _tileMap.retain();
+        _tileMap.setPosition(cc.p(0, 0));
+        layerBackground.addChild(_tileMap, 0);
+
+        _tileMap = cc.TMXTiledMap.create("res/Maps/background_summer_clouds.tmx");
+        _tileMap.retain();
+        _tileMap.setPosition(cc.p(0, 0));
+        layerBackground2.addChild(_tileMap, 0);
+
         //Configura o Box2D
         world = new b2World(new b2Vec2(0, -20), true);
 
@@ -86,9 +101,15 @@ var GameLayer = cc.LayerGradient.extend({
         
         voidNode = cc.ParallaxNode.create();
         voidNode.addChild(layerGame, -1, cc.p(1.0, 1.0), cc.p(0, 0));
-        this.addChild(voidNode);
-        this.addChild(layerSprite);      
-
+        voidNodeBackground = cc.ParallaxNode.create();
+        voidNodeBackground.addChild(layerBackground, 0, cc.p(0.1, 0.1), cc.p(0, 0));
+        voidNodeBackground2 = cc.ParallaxNode.create();
+        voidNodeBackground2.addChild(layerBackground2, 0, cc.p(0.5, 0.5), cc.p(0, 0));
+        this.addChild(voidNodeBackground, 0);
+        this.addChild(voidNodeBackground2, 0);
+        this.addChild(voidNode,0);
+        this.addChild(layerSprite,0);
+        
         return true;
     },
 
@@ -105,7 +126,7 @@ var GameLayer = cc.LayerGradient.extend({
         //Inicia a conexão com o servidor
         if (localStorage["gameType"] == "multi") {
             try {
-                socket = io.connect("http://192.168.0.22/", { port: 8080, transports: ["websocket"], 'force new connection':true });
+                socket = io.connect("http://192.168.0.10/", { port: 8080, transports: ["websocket"], 'force new connection': true });
                 socket.on("connect", onSocketConnected);
                 socket.on("disconnect", onSocketDisconnect);
                 socket.on("new player", onNewPlayer);
@@ -218,7 +239,9 @@ var GameLayer = cc.LayerGradient.extend({
         if (playerVelocity < 0)
             playerVelocity = 0;
         voidNode.setPosition(cc.p(voidNode.getPosition().x - (velocity + playerVelocity), voidNode.getPosition().y));
-        
+        voidNodeBackground.setPosition(cc.p(voidNodeBackground.getPosition().x - 1.2, voidNodeBackground.getPosition().y));
+        voidNodeBackground2.setPosition(cc.p(voidNodeBackground2.getPosition().x - 0.5, voidNodeBackground2.getPosition().y));
+
         //Atualiza os dados
         localPlayer.distance += (( playerVelocity + velocity ) / 100);
         distanceLabel.setString(localPlayer.distance.toFixed(1)+"m", 40);
