@@ -49,7 +49,7 @@ HighScoreInput.prototype.setLocalStorageScore = function (score, position) {
         }
     }
     
-    setTimeout(function () { game.state.start('HighScore', HighScore) }, 3000);
+    setTimeout(function () { game.state.start('highScore', HighScore) }, 3000);
 
 };
 

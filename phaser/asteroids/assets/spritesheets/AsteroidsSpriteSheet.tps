@@ -36,7 +36,7 @@
         <key>dataFormat</key>
         <string>json-array</string>
         <key>textureFileName</key>
-        <filename>AsteroidsSpriteSheet.png</filename>
+        <filename>../../../AsteroidsV.2/assets/spritesheets/AsteroidsSpriteSheet.png</filename>
         <key>flipPVR</key>
         <false/>
         <key>ditherType</key>

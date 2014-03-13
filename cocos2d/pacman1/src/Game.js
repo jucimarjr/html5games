@@ -33,9 +33,9 @@ var gameLayer = cc.Layer.extend({
 		else if('touches' in sys.capabilities)
 	        this.setTouchEnabled(true);
 		*/
-		/*var map = cc.TMXTiledMap.create(tMap);
+		var map = cc.TMXTiledMap.create(tMap, sMap);
 		map.setPosition(cc.p(background.width/2, background.height/2));
-		this.addChild(map);*/
+		this.addChild(map);
 		
 		
 
