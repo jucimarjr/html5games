@@ -28,36 +28,36 @@ var menuLayer = cc.Layer.extend({
 
         this._pac = new Pac();
         this.addChild(this._pac);
-        this._pac.setPosition(new cc.Point(background.width/2 - 350, background.height - 250));
-        this._pac.setAnimation("pac", "right", "16-16", 2, "right");        
+        this._pac.setPosition(new cc.Point(background.width/2 - 350, background.height - 350));
+        this._pac.setAnimation("pac", "right", SPRITE_SIZE, 2, "right");        
         this._pac.getAnimation("right");        
         
 		this._blinky = new Ghost();
 		this._blinky.setGhost("blinky");
         this.addChild(this._blinky);
-        this._blinky.setPosition(new cc.Point(background.width/2 - 450, background.height - 250));
-        this._blinky.setAnimation("blinky", "right", "16-16", 2, "right");        
+        this._blinky.setPosition(new cc.Point(background.width/2 - 450, background.height - 350));
+        this._blinky.setAnimation("blinky", "right", SPRITE_SIZE, 2, "right");        
         this._blinky.getAnimation("right");        
 
 		this._pinky = new Ghost();
 		this._pinky.setGhost("pinky");
         this.addChild(this._pinky);
-        this._pinky.setPosition(new cc.Point(background.width/2 - 470, background.height - 250));
-        this._pinky.setAnimation("pinky", "right", "16-16", 2, "right");        
+        this._pinky.setPosition(new cc.Point(background.width/2 - 490, background.height - 350));
+        this._pinky.setAnimation("pinky", "right", SPRITE_SIZE, 2, "right");        
         this._pinky.getAnimation("right");
         
         this._inkey = new Ghost();
 		this._inkey.setGhost("inkey");
         this.addChild(this._inkey);
-        this._inkey.setPosition(new cc.Point(background.width/2 - 490, background.height - 250));
-        this._inkey.setAnimation("inkey", "right", "16-16", 2, "right");        
+        this._inkey.setPosition(new cc.Point(background.width/2 - 530, background.height - 350));
+        this._inkey.setAnimation("inkey", "right", SPRITE_SIZE, 2, "right");        
         this._inkey.getAnimation("right");
         
         this._clyde = new Ghost();
 		this._clyde.setGhost("clyde");
         this.addChild(this._clyde);
-        this._clyde.setPosition(new cc.Point(background.width/2 - 510, background.height - 250));
-        this._clyde.setAnimation("clyde", "right", "16-16", 2, "right");        
+        this._clyde.setPosition(new cc.Point(background.width/2 - 570, background.height - 350));
+        this._clyde.setAnimation("clyde", "right", SPRITE_SIZE, 2, "right");        
         this._clyde.getAnimation("right");
         
         
@@ -70,9 +70,9 @@ var menuLayer = cc.Layer.extend({
         var menuItemPlay = new cc.MenuItemFont.create("PLAY GAME","play",this);
         var menuItemHowToPlay = new cc.MenuItemFont.create("HOW TO PLAY","howToPlay",this);
 
-        menuItemCredits.setPosition(new cc.Point(background.width/2-200,background.height/2));
-        menuItemPlay.setPosition(new cc.Point(background.width/2,background.height/2));
-        menuItemHowToPlay.setPosition(new cc.Point(background.width/2+250,background.height/2));
+        menuItemCredits.setPosition(new cc.Point(background.width/2-200,background.height/2 - 100));
+        menuItemPlay.setPosition(new cc.Point(background.width/2,background.height/2 - 100));
+        menuItemHowToPlay.setPosition(new cc.Point(background.width/2+250,background.height/2 - 100));
 
         var menu = cc.Menu.create(menuItemCredits, menuItemPlay, menuItemHowToPlay);
         menu.setPosition(new cc.Point(0,-160));

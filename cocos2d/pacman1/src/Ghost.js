@@ -43,13 +43,13 @@ var Ghost = cc.Sprite.extend({
 		
 		switch (position) {
 			case "left":
-				this.setAnimation(type, position, "16-16", 2, position);        
+				this.setAnimation(type, position, SPRITE_SIZE, 2, position);        
 		        this.getAnimation(position);				
 				this.setPosition(new cc.Point(this.getPosition().x - this.xVelocity * 0.01, this.getPosition().y));
 				break;
 			
 			case "pinky":
-				this.initWithSpriteFrameName(type + "_right_four_16-16.png");
+				this.initWithSpriteFrameName(type + "_right_four_32-32.png");
 				this.velocityX = 0.5;
 				this.velocityY = 0.5;
 	
@@ -121,7 +121,7 @@ var Ghost = cc.Sprite.extend({
 		
 		switch (type) {
 			case "blinky":
-				this.initWithSpriteFrameName("blinky_right_four_16-16.png");
+				this.initWithSpriteFrameName("blinky_right_four_" + SPRITE_SIZE + ".png");
 				this.velocityX = 0.5;
 				this.velocityY = 0.5;
 				
@@ -130,7 +130,7 @@ var Ghost = cc.Sprite.extend({
 				break;
 			
 			case "pinky":
-				this.initWithSpriteFrameName(type + "_right_four_16-16.png");
+				this.initWithSpriteFrameName(type + "_right_four_" + SPRITE_SIZE + ".png");
 				this.velocityX = 0.5;
 				this.velocityY = 0.5;
 
@@ -139,7 +139,7 @@ var Ghost = cc.Sprite.extend({
 				break;
 				
 			case "inkey":
-				this.initWithSpriteFrameName(type + "_right_four_16-16.png");
+				this.initWithSpriteFrameName(type + "_right_four_" + SPRITE_SIZE + ".png");
 				this.velocityX = 0.5;
 				this.velocityY = 0.5;
 
@@ -148,7 +148,7 @@ var Ghost = cc.Sprite.extend({
 				break;
 			
 			case "clyde":
-				this.initWithSpriteFrameName(type + "_right_four_16-16.png");
+				this.initWithSpriteFrameName(type + "_right_four_" + SPRITE_SIZE + ".png");
 				this.velocityX = 0.5;
 				this.velocityY = 0.5;
 
