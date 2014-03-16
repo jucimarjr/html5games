@@ -1,125 +1,88 @@
+var Menu = {};
 
-var asteroids = [];
-var verify = null;
+Menu = function (game) {
+    this.game = game;
+    this.btnPlay = null;
+    this.btnHowToPlay = null;
+    this.btnHighScores = null;
+    this.btnCredits = null;
+};
 
-var MenuLayer = cc.Layer.extend({
-	title: null,
+Menu.prototype.preload = function(){
+	game.load.image('background','assets/screenshots/Menu6_480-600.png');
+	 game.load.atlas('botoes', 'assets/spritesheets/buttonsArray.png', 'assets/spritesheets/buttonsArray.json');
+//	game.load.image('play', 'assets/buttons/btPlay_121-27.png');
+//	game.load.image('playSelected', 'assets/buttons/btPlaySelected_121-27.png');
+//	game.load.image('credits', 'assets/buttons/btCredits_215-27.png');
+//	game.load.image('creditsSelected', 'assets/buttons/btCreditsSelected_215-27.png');
+//	game.load.image('highScore', 'assets/buttons/btHigh_341-27.png');
+//	game.load.image('highScoreSelected', 'assets/buttons/btHighSelected_341-27.png');
+//	game.load.image('howTo', 'assets/buttons/btHowTo_341-27.png');
+//	game.load.image('howToSelected', 'assets/buttons/btHowTo_341-27.png');
+		
+};
+
+Menu.prototype.create = function() {
+	background = game.add.sprite(0, 0, 'background');
+	background.name = 'background';
 	
-    init:function()
-    {
-        this._super();
-       // var tocando = 1;
-        var screen = cc.Director.getInstance().getWinSizeInPixels();
-		
-		var fundo = cc.Sprite.create("res/screenshoots/Menu6_480-600.png");
-        fundo.setPositionX(screen.width/2);
-        fundo.setPositionY(screen.height/2);
-        this.addChild(fundo);
-        
-		
-		//this.title = cc.LabelTTF.create("ASTEROIDS", "SFAtarianSystem", 70);
-		//this.title.setColor( new cc.Color3B(255, 255, 255) );
-		//this.title.setPosition(new cc.Point(screen.width/2, screen.height - 50) );
-        //this.addChild(this.title);        
-		
-		
-//        var animation = cc.Animation.create();
-//        for(var i = 0; i < 2; i++){
-//        	var frameName = "res/nave_"+i+".png";
-//        	animation.addSpriteFrameWithFile(frameName);
-//        }
-//      
-//        animation.setDelayPerUnit(2.8/14);
-//        animation.setRestoreOriginalFrame(true);
-//      
-//        var action_1 = cc.Animate.create(animation);
-//        this.nave.runAction(cc.Sequence.create(action,action.reverse()));
-        
-        btPlay = cc.Sprite.create("res/buttons/btPlay_121-27.png");
-        btPlaySelected = cc.Sprite.create("res/buttons/btPlaySelected_121-27.png");
-        btHighScore = cc.Sprite.create("res/buttons/btHigh_341-27.png");
-        btHighScoreSelected = cc.Sprite.create("res/buttons/btHighSelected_341-27.png");
-        btHowToPlay = cc.Sprite.create("res/buttons/btHowTo_341-27.png");
-        btHowToPLaySelected = cc.Sprite.create("res/buttons/btHowToSelected_341-27.png");
-        btCredits = cc.Sprite.create("res/buttons/btCredits_215-27.png");
-        btCreditsSelected = cc.Sprite.create("res/buttons/btCreditsSelected_215-27.png");
-      
-      
-        /*btSound = cc.Sprite.create("assets/Telas/som.png");
-        btSoundOff = cc.Sprite.create("assets/Telas/som_desligado.png");*/
-              
-        var play = cc.MenuItemSprite.create(btPlay,btPlaySelected,null,'onPlay',this);
-        var highScore = cc.MenuItemSprite.create(btHighScore,btHighScoreSelected,null,'onHighScore',this);
-        highScore.setPosition(0,-60);
-        var howToPlay = cc.MenuItemSprite.create(btHowToPlay,btHowToPLaySelected,null,'onHowToPlay',this);
-        howToPlay.setPosition(0,-120);
-        var credits = cc.MenuItemSprite.create(btCredits,btCreditsSelected,null,'onCredits',this);
-        credits.setPosition(0,-180);
-        /*var item1 = cc.MenuItemToggle.create(
-              cc.MenuItemSprite.create(btSound),
-              cc.MenuItemSprite.create(btSoundOff));
-          item1.setCallback(this.onMenuCallback, this);
-          item1.setPosition(-290,-260)
-        */
-        var menu = cc.Menu.create(play,highScore,howToPlay,credits/*,item1*/);
-        menu.setPosition(240,273);
-      
-        this.addChild(menu);
-        
-		
-        
-        return this;	
-    },
 
-   onPlay: function () {
-     //if (cc.AudioEngine.getInstance().isMusicPlaying())
-          //cc.AudioEngine.getInstance().stopMusic();
-     cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2, new Game()));
-    },
+    var fadeout;
 
-    onCredits: function () {
-     // cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2, new Credits()));
-    },
+    this.btnPlay = game.add.button(game.world.centerX, game.world.centerY - 30, 'botoes',
+    	    function(){ this.play(); }, this);
+    	    this.btnPlay.setFrames("btPlaySelected_121-27.png","btPlay_121-27.png");
+    	    this.btnPlay.anchor.x = 0.5;
+    		    		
+    	    this.btnHowToPlay = game.add.button(game.world.centerX, game.world.centerY + 20, 'botoes',
+    	    function(){ this.howToPlay(); }, this);
+    	    this.btnHowToPlay.setFrames("btHowToSelected_341-27.png","btHowTo_341-27.png");
+    	    this.btnHowToPlay.anchor.x = 0.5;
+    		
+    	    this.btnHighScores = game.add.button(game.world.centerX, game.world.centerY + 70, 'botoes',
+    	    function () { this.highScores(); }, this);
+    	    this.btnHighScores.setFrames("btHighSelected_341-27.png","btHigh_341-27.png");
+    	    this.btnHighScores.anchor.x = 0.5;
 
-    onHowToPlay: function () {
-      //cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2, new HowToPlay()));
-    },
-    onHighScore: function () {
-      //cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2, new HighScores()));
-    },
-    //onMenuCallback:function (sender) {
-//  	if (cc.AudioEngine.getInstance().isMusicPlaying()){
-//  		cc.AudioEngine.getInstance().stopMusic();
-//  	}else{
-//  		cc.AudioEngine.getInstance().playMusic("Som/GhostBusters_.mp3", true);
-//  	}
-          
-  	
-      //cc.log("Callback called");
-  //}
+    	    this.btnCredits = game.add.button(game.world.centerX, game.world.centerY + 120, 'botoes',
+    	    function(){ this.credits(); }, this);
+    	    this.btnCredits.setFrames("btCreditsSelected_215-27.png","btCredits_215-27.png");
+    	    this.btnCredits.anchor.x = 0.5;
+   
+};
 
+Menu.prototype.play = function () {
+    this.fadeOut();
+    fadeout.onComplete.add(function () {
+    	console.log("play");
+        //this.game.state.start('game', Game);
+    });
+};
 
+Menu.prototype.howToPlay = function() {
+    this.fadeOut();
+    fadeout.onComplete.add(function () {
+        //this.game.state.start('HowToPlay', HowToPlay);
+    });
+}
 
-});
+Menu.prototype.highScores = function () {
+    this.fadeOut();
+    fadeout.onComplete.add(function () {
+        //this.game.state.start('HighScore', HighScore);
+    });
+}
 
-var Menu = cc.Scene.extend({
-    onEnter:function(){
-        this._super();
-		/*
-		O codigo abaixo adiciona o jogo por tras do menu
-		Problema: Nao deveria aparecer a nave / vidas / pontos
-		Pensar numa forma de solucinar
-		Mesma ideia para telas de perdeu / ganhou.
-		*/
-		
-		verify = false;
-		
-		//var gameLayer = new GameLayer();
-		//gameLayer.initAsteroids();  	
-    	//this.addChild(gameLayer);
-        
-		var layerMenu = new MenuLayer();
-        layerMenu.init();
-        this.addChild(layerMenu);
-    }
-});
+Menu.prototype.credits = function () {
+    this.fadeOut();
+    fadeout.onComplete.add(function () {
+        //this.game.state.start('Credits', Credits);
+    });
+};
+
+Menu.prototype.fadeOut = function () {
+    fadeout = game.add.tween(this.btnPlay).to({ alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
+    fadeout = game.add.tween(this.btnHowToPlay).to({ alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
+    fadeout = game.add.tween(this.btnHighScores).to({ alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
+    fadeout = game.add.tween(this.btnCredits).to({ alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
+};

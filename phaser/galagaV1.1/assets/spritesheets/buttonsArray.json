@@ -1,0 +1,76 @@
+{"frames": [
+
+{
+	"filename": "btCreditsSelected_215-27.png",
+	"frame": {"x":246,"y":2,"w":212,"h":27},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":212,"h":27},
+	"sourceSize": {"w":212,"h":27}
+},
+{
+	"filename": "btCredits_215-27.png",
+	"frame": {"x":460,"y":2,"w":212,"h":27},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":212,"h":27},
+	"sourceSize": {"w":212,"h":27}
+},
+{
+	"filename": "btHighSelected_341-27.png",
+	"frame": {"x":674,"y":2,"w":336,"h":27},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":336,"h":27},
+	"sourceSize": {"w":336,"h":27}
+},
+{
+	"filename": "btHigh_341-27.png",
+	"frame": {"x":340,"y":31,"w":336,"h":27},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":336,"h":27},
+	"sourceSize": {"w":336,"h":27}
+},
+{
+	"filename": "btHowToSelected_341-27.png",
+	"frame": {"x":678,"y":31,"w":336,"h":27},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":336,"h":27},
+	"sourceSize": {"w":336,"h":27}
+},
+{
+	"filename": "btHowTo_341-27.png",
+	"frame": {"x":2,"y":31,"w":336,"h":27},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":336,"h":27},
+	"sourceSize": {"w":336,"h":27}
+},
+{
+	"filename": "btPlaySelected_121-27.png",
+	"frame": {"x":124,"y":2,"w":120,"h":27},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":120,"h":27},
+	"sourceSize": {"w":120,"h":27}
+},
+{
+	"filename": "btPlay_121-27.png",
+	"frame": {"x":2,"y":2,"w":120,"h":27},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":120,"h":27},
+	"sourceSize": {"w":120,"h":27}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker ",
+	"version": "1.0",
+	"image": "buttonsArray.png",
+	"format": "RGBA8888",
+	"size": {"w":1024,"h":64},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:917f3c6616f9b8056c51177c65d157ce:21a2206586a2a57c188b5a6a712e1160:484670772814b787b1753c3a93bb7740$"
+}
+}
