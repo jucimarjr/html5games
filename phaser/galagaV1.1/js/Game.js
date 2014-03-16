@@ -1,7 +1,7 @@
 var Game = function(game){
     this.game = game;
     //this.scores = 0;
-    //this.spaceShip = null;
+    this.ship = null;
     //this.asteroid = null;
 	//this.groupAsteroids = null;
 	//this.livesHud = null;
@@ -24,7 +24,7 @@ Game.prototype.create = function () {
 	backgroundGame.name = 'backgroundGame';
     //this.ufo = new Ufo(this);
     //this.asteroid = new Asteroid(this);
-    //this.spaceShip = new SpaceShip(this);
+    this.ship = new Ship(this);
     //this.groupAsteroids = this.game.add.group();
     //this.initAsteroids();
     //this.velAsteroids = 1;
