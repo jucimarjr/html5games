@@ -1,0 +1,28 @@
+{"frames": [
+
+{
+	"filename": "ShipExplosion_20-30.png",
+	"frame": {"x":2,"y":2,"w":20,"h":31},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":31},
+	"sourceSize": {"w":20,"h":31}
+},
+{
+	"filename": "ShipWhite2_20-30.png",
+	"frame": {"x":24,"y":2,"w":20,"h":31},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":31},
+	"sourceSize": {"w":20,"h":31}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker ",
+	"version": "1.0",
+	"image": "ship.png",
+	"format": "RGBA8888",
+	"size": {"w":64,"h":64},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:49d423c6929a205db1007b7be200e975:4afd273f9fd92596d6db5b19395eafc0:25d6acd8d4906c9ff490804d476da0a8$"
+}
+}

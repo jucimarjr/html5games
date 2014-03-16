@@ -10,15 +10,7 @@ Menu = function (game) {
 
 Menu.prototype.preload = function(){
 	game.load.image('background','assets/screenshots/Menu6_480-600.png');
-	 game.load.atlas('botoes', 'assets/spritesheets/buttonsArray.png', 'assets/spritesheets/buttonsArray.json');
-//	game.load.image('play', 'assets/buttons/btPlay_121-27.png');
-//	game.load.image('playSelected', 'assets/buttons/btPlaySelected_121-27.png');
-//	game.load.image('credits', 'assets/buttons/btCredits_215-27.png');
-//	game.load.image('creditsSelected', 'assets/buttons/btCreditsSelected_215-27.png');
-//	game.load.image('highScore', 'assets/buttons/btHigh_341-27.png');
-//	game.load.image('highScoreSelected', 'assets/buttons/btHighSelected_341-27.png');
-//	game.load.image('howTo', 'assets/buttons/btHowTo_341-27.png');
-//	game.load.image('howToSelected', 'assets/buttons/btHowTo_341-27.png');
+	game.load.atlas('botoes', 'assets/spritesheets/buttonsArray.png', 'assets/spritesheets/buttonsArray.json');
 		
 };
 
@@ -54,8 +46,9 @@ Menu.prototype.create = function() {
 Menu.prototype.play = function () {
     this.fadeOut();
     fadeout.onComplete.add(function () {
-    	console.log("play");
-        //this.game.state.start('game', Game);
+    	
+        this.game.state.start('game', Game);
+        console.log("play");
     });
 };
 
