@@ -4,6 +4,7 @@ var Game = function(game){
     this.ship = null;
     this.stars = null;
     this.enemy1 = null;
+    //this.backgroundGame;
     //this.asteroid = null;
 	//this.groupAsteroids = null;
 	//this.livesHud = null;
@@ -17,19 +18,16 @@ var Game = function(game){
 };
 
 Game.prototype.preload = function(){
-	game.load.image('backgroundGame','assets/screenshots/Game_480-600.png');
+	game.load.image('backgroundGame','assets/screenshots/tile_480-1200.png');
 	
 };
 
 Game.prototype.create = function () {
-	//game.physics.startSystem(Phaser.Physics.ARCADE);
 	
-	backgroundGame = game.add.sprite(0, 0, 'backgroundGame');
-	backgroundGame.name = 'backgroundGame';
-	//game.world.setBounds(0, 0, 480, 600);
-	
-	//this.ufo = new Ufo(this);
-    //this.asteroid = new Asteroid(this);
+	this.background1 = this.game.add.sprite(0, 0, 'backgroundGame');
+    this.background2 = this.game.add.sprite(0, -600, 'backgroundGame');
+	//this.backgroundGame = game.add.tileSprite(0,0,480,600,'backgroundGame'); //game.add.sprite(0, 0, 'backgroundGame');
+	//this.backgroundGame.name = 'backgroundGame';
 	this.enemy1 = new Enemy(this,'enemy1','en1_1_15-14.png','an_enemy1',2);
     this.ship = new Ship(this);
     
@@ -63,8 +61,8 @@ function starOut(star) {
 
 Game.prototype.update = function () {
 	  
-   
-      this.ship.update();
+	//this.backgroundGame.y +=1;
+    this.ship.update();
 
   if(game.input.keyboard.isDown(Phaser.Keyboard.LEFT)){
 	  this.ship.move("left");
@@ -76,6 +74,10 @@ Game.prototype.update = function () {
 	  console.log("fire");
 	  this.ship.fire();
   }
+  
+  this.moveBackground(this.background1);
+  this.moveBackground(this.background2);
+
 		                  
 };
 
@@ -101,3 +103,11 @@ Game.prototype.gameOver = function () {
 //    setTimeout(function () { this.game.state.start('HighScoreInput', HighScoreInput) } , 3000 );
 };
 
+Game.prototype.moveBackground = function(background){
+	    if (background.y > 600) {
+	      background.y = -600;
+	      background.y += 1;
+	    } else {}
+	      background.y +=1;
+	  
+}
