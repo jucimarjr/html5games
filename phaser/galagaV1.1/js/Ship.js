@@ -3,7 +3,12 @@ Ship = function(gameClass) {
     this.gameClass = gameClass;
     this.sprite = null;
     
-    //this.bullet = null;
+    this.bullets = null;
+    this.bulletTime = 0;
+    this.fireRate = 100;
+
+    this.nextFire = 0;
+
     //this.bulletsGroup = null;
     //this.shootInterval = 10;
     //this.nextFire = 0;
@@ -11,14 +16,31 @@ Ship = function(gameClass) {
     //this.teleportTime = 3000;
     //this.nextTeleport = 0;
     //this.lives = 3;
-    this.create();
+    this.create(this.game);
 };
 
 
-Ship.prototype.create = function(){
+Ship.prototype.create = function(game){
+	
 	this.sprite = this.game.add.sprite(this.game.width / 2-15, 550,'ship','ShipWhite2_20-30.png');
 	this.sprite.anchor.setTo(0.5,0.5);
-	this.setX(this.game.width/2);
+	this.sprite.enableBody = true;
+	
+	
+	
+	this.bullets = game.add.group();
+	this.bullets.enableBody = true;
+	this.bullets.physicsBodyType = Phaser.Physics.ARCADE;
+	
+	this.bullets.createMultiple(50,'bullet');
+	this.bullets.setAll('anchor.x', 0.5);
+    this.bullets.setAll('anchor.y', 1);
+	this.bullets.setAll('outOfBoundsKill', true);
+
+	//this.gameClass.game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
+	
+	
+	
 	//this.sprite.fixedToCamera = true;
 	
 	//fixed = game.add.sprite(480, 600, 'ship');
@@ -64,68 +86,16 @@ Ship.prototype.stop = function(){
 
 Ship.prototype.move = function (direction) {
 
-	if( direction == "left"&& this.sprite.x > 12){
+	if( direction == "left" && this.sprite.x > 12){
 	    this.sprite.x -= 10;
-	    //console.log("move x> "+this.sprite.x);
-	    //this.setX(this.sprite.x);
-	   }
+	}
 	        
-	 else if (direction == "right" && this.sprite.x < this.game.width-12){
-	    //console.log("x"+this.sprite.x);
+	else if (direction == "right" && this.sprite.x < this.game.width-12){
 	    this.sprite.x += 10;
-	    //this.setX(this.sprite.x);
-	  }
-	 else if ( direction == "stop"){
-	    this.sprite.body.velocity.x = 0;
-	  }
-	
-//    if ( direction == "left"){
-//    	
-//    	this.sprite.body.velocity.x = -200;
-//    	console.log("move x> "+this.sprite.x);
-//    	this.setX(this.sprite.x);
-//    }
-//        
-//    if ( direction == "right"){
-//    	console.log("x"+this.sprite.x);
-//    	this.sprite.body.velocity.x = 200;
-//    	this.setX(this.sprite.x);
-//    }
-//    if ( direction == "stop"){
-//    	this.sprite.body.velocity.x = 0;
-//    }
-
+	 }
+	 
 };
 
-Ship.prototype.accelerate = function () {
-
-//    game.add.audio('thrust', 1).play();
-//    
-//    this.sprite.body.acceleration.x = Math.cos((this.sprite.body.rotation + 270)*0.0174) *150;
-//	this.sprite.body.acceleration.y = Math.sin((this.sprite.body.rotation + 270)*0.0174) *150;
-
-};
-
-Ship.prototype.getX = function () {
-	console.log(" x > "+this.sprite.x);
-	this.sprite.x;	
-//    this.sprite.body.acceleration.setTo(0, 0);
-//    this.sprite.animations.stop('thrust');
-//    this.sprite.animations.play('stop');
-};
-
-Ship.prototype.setX = function(x){
-	this.sprite.x = x;
-}
-
-Ship.prototype.teletransport = function () {
-//    if (game.time.now > this.nextTeleport)
-//    {
-//    	this.nextTeleport = game.time.now + this.teleportTime;
-//    	this.sprite.x = Math.random() * game.width;
-//    	this.sprite.y = Math.random() * game.height;
-//    }
-};
  	
 Ship.prototype.shoot = function () {    
     
@@ -147,32 +117,30 @@ Ship.prototype.destroyShoot = function (shoot) {
 };
 
 Ship.prototype.die = function (spaceShip, asteroid) {
-//	var emitter = this.game.add.emitter(this.sprite.x, this.sprite.y, 5);
-//    emitter.makeParticles('sprites', ['particle_1-15.png']);
-//    emitter.minParticleSpeed.setTo(-40, -40);
-//    emitter.maxParticleSpeed.setTo(40, 40);
-//    emitter.gravity = 0;
-//    emitter.start(true, 3000, null, 5);
-//    
-//    this.gameClass.livesHud.getFirstAlive().kill();
-//    if(this.gameClass.livesHud.countDead() == 3){
-//    	this.gameClass.gameOver();	
-//    }
-//
-//    setTimeout(function (gameClass) {
-//        gameClass.spaceShip.sprite.reset(gameClass.game.world.width / 2, gameClass.game.world.height / 2);
-//    }, 3000, this.gameClass);
-//
-//    spaceShip.reset(game.world.width/2, game.world.height/2);
-//    if (asteroid.size == "large") {
-//        this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "medium", this.gameClass.velAsteroids);
-//        this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "medium", this.gameClass.velAsteroids);
-//    }
-//    if (asteroid.size == "medium") {
-//        this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "small", this.gameClass.velAsteroids);
-//        this.gameClass.asteroid.create(asteroid.position.x, asteroid.position.y, "small", this.gameClass.velAsteroids);
-//    }
-//    asteroid.kill();
-//    spaceShip.kill();
-//   
+
 };
+
+Ship.prototype.setSpriteShip = function(sprite){
+	this.sprite = sprite;
+}
+
+Ship.prototype.getSpriteShip = function(){
+	return this.sprite;
+}
+
+Ship.prototype.fire = function(){
+	if (this.game.time.now > this.bulletTime)
+    {
+        //  Grab the first bullet we can from the pool
+        bullet = this.bullets.getFirstExists(false);
+
+        if (bullet)
+        {
+            //  And fire it
+            bullet.reset(this.sprite.x, this.sprite.y);//posicáo de saida do tiro
+            bullet.body.velocity.y = -800; //velocidade do projetil
+            this.bulletTime = game.time.now + 200;
+        }
+    }
+
+}

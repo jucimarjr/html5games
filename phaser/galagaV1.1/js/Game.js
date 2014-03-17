@@ -20,12 +20,15 @@ Game.prototype.preload = function(){
 };
 
 Game.prototype.create = function () {
+	//game.physics.startSystem(Phaser.Physics.ARCADE);
 	backgroundGame = game.add.sprite(0, 0, 'backgroundGame');
 	backgroundGame.name = 'backgroundGame';
 	game.world.setBounds(0, 0, 480, 600);
-    //this.ufo = new Ufo(this);
+	//this.ufo = new Ufo(this);
     //this.asteroid = new Asteroid(this);
     this.ship = new Ship(this);
+   // game.physics.enable(this.ship.getSpriteShip(), Phaser.Physics.ARCADE);
+    //game.physics.enable(this.ship.getSpriteShip(), Phaser.Physics.ARCADE);
     //this.ship.setX(this.game/2-15);
     //game.physics.p2.enable([ship], false);
     //fixed.fixedToCamera = true;
@@ -61,10 +64,12 @@ Game.prototype.update = function () {
   }	  	
   else if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)){
 	  this.ship.move("right");
+  }	  	
+  else if(game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)){
+	  console.log("fire");
+	  this.ship.fire();
   }
-	  	
-  else if((!game.input.keyboard.isDown(Phaser.Keyboard.LEFT)||(!game.input.keyboard.isUp(Phaser.Keyboard.Down))))
-		this.ship.move("stop");  
+		  
 //    
 //    if (game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
 //        this.spaceShip.accelerate();
