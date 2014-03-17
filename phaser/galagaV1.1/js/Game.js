@@ -26,8 +26,6 @@ Game.prototype.create = function () {
 	
 	this.background1 = this.game.add.sprite(0, 0, 'backgroundGame');
     this.background2 = this.game.add.sprite(0, -600, 'backgroundGame');
-	//this.backgroundGame = game.add.tileSprite(0,0,480,600,'backgroundGame'); //game.add.sprite(0, 0, 'backgroundGame');
-	//this.backgroundGame.name = 'backgroundGame';
 	this.enemy1 = new Enemy(this,'enemy1','en1_1_15-14.png','an_enemy1',2);
     this.ship = new Ship(this);
     
@@ -63,6 +61,7 @@ Game.prototype.update = function () {
 	  
 	//this.backgroundGame.y +=1;
     this.ship.update();
+    this.enemy1.update();
 
   if(game.input.keyboard.isDown(Phaser.Keyboard.LEFT)){
 	  this.ship.move("left");
