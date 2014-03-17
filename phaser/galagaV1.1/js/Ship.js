@@ -2,6 +2,7 @@ Ship = function(gameClass) {
 	this.game = gameClass.game;
     this.gameClass = gameClass;
     this.sprite = null;
+    
     //this.bullet = null;
     //this.bulletsGroup = null;
     //this.shootInterval = 10;
@@ -16,7 +17,13 @@ Ship = function(gameClass) {
 
 Ship.prototype.create = function(){
 	this.sprite = this.game.add.sprite(this.game.width / 2-15, 550,'ship','ShipWhite2_20-30.png');
+	this.sprite.anchor.setTo(0.5,0.5);
+	this.setX(this.game.width/2);
+	//this.sprite.fixedToCamera = true;
 	
+	//fixed = game.add.sprite(480, 600, 'ship');
+    //fixed.fixedToCamera = true;
+
 //	this.sprite = this.game.add.sprite(this.game.width / 2, this.game.height / 2, 'sprites', 'ship_14-24.png');
 //    this.sprite.events.onOutOfBounds.add(this.gameClass.outOfBounds,this);
 //	this.sprite.anchor.x = 0.5;
@@ -36,6 +43,9 @@ Ship.prototype.create = function(){
 };
 
 Ship.prototype.update = function () {	
+	
+	 
+
 //    this.game.physics.collide(this.gameClass.groupAsteroids, this.bulletsGroup, this.gameClass.asteroid.die, null, this);
 //    this.game.physics.collide(this.sprite, this.gameClass.groupAsteroids, this.die , null, this);       	
 //    this.game.physics.collide(this.gameClass.ufo.sprite, this.bulletsGroup, this.gameClass.ufo.die, null, this);
@@ -47,12 +57,43 @@ Ship.prototype.animate = function(){
 //	}
 };
 
-Ship.prototype.rotate = function (direction) {
+Ship.prototype.stop = function(){
+	this.sprite.body.velocity.x = 0;
+	
+}
 
-//    if ( direction == "left")
-//        this.sprite.body.rotation -= 5;
-//    if ( direction == "right")
-//        this.sprite.body.rotation += 5;
+Ship.prototype.move = function (direction) {
+
+	if( direction == "left"&& this.sprite.x > 12){
+	    this.sprite.x -= 10;
+	    //console.log("move x> "+this.sprite.x);
+	    //this.setX(this.sprite.x);
+	   }
+	        
+	 else if (direction == "right" && this.sprite.x < this.game.width-12){
+	    //console.log("x"+this.sprite.x);
+	    this.sprite.x += 10;
+	    //this.setX(this.sprite.x);
+	  }
+	 else if ( direction == "stop"){
+	    this.sprite.body.velocity.x = 0;
+	  }
+	
+//    if ( direction == "left"){
+//    	
+//    	this.sprite.body.velocity.x = -200;
+//    	console.log("move x> "+this.sprite.x);
+//    	this.setX(this.sprite.x);
+//    }
+//        
+//    if ( direction == "right"){
+//    	console.log("x"+this.sprite.x);
+//    	this.sprite.body.velocity.x = 200;
+//    	this.setX(this.sprite.x);
+//    }
+//    if ( direction == "stop"){
+//    	this.sprite.body.velocity.x = 0;
+//    }
 
 };
 
@@ -65,11 +106,17 @@ Ship.prototype.accelerate = function () {
 
 };
 
-Ship.prototype.stop = function () {
+Ship.prototype.getX = function () {
+	console.log(" x > "+this.sprite.x);
+	this.sprite.x;	
 //    this.sprite.body.acceleration.setTo(0, 0);
 //    this.sprite.animations.stop('thrust');
 //    this.sprite.animations.play('stop');
 };
+
+Ship.prototype.setX = function(x){
+	this.sprite.x = x;
+}
 
 Ship.prototype.teletransport = function () {
 //    if (game.time.now > this.nextTeleport)

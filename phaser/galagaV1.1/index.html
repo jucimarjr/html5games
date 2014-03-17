@@ -26,9 +26,10 @@
 
 var game = new Phaser.Game(480, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 var score = null;
-
+var cursors;
 var gameScene = null;
 var splashScene = null;
+
 game.state.add('menu', Menu);
 game.state.add('game', Game);
 //game.state.add('HowToPlay', HowToPlay);
