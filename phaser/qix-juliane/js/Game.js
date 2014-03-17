@@ -40,11 +40,11 @@ Game.prototype = {
 	update : function() {
 		qix.update();
 		ball.update();
-		shape.update();
-		
-		if (ball.alive) {
+
+		if (ball.alive)
 			line.update(ball.sprite, ball.direction, ball.positionInitial);
-			collision.update(ball.sprite);
-		}
+
+		shape.update();
+		collision.update(ball.sprite);
 	}
 };

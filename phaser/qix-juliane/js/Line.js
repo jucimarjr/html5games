@@ -20,7 +20,6 @@ Line.prototype = {
 	update : function(spriteBall, direction, positionInitial) {
 		var position = this.setPosition(direction, positionInitial);
 		this.draw(spriteBall, position);
-		//this.color();
 	},
 	
 	
@@ -76,18 +75,11 @@ ball.collided = false;
 	//Desenha a linha
 	draw : function(spriteBall, position) {
 		//Define o estilo da linha (grossura, cor)
-	    graphics.lineStyle(this.thickness, this.color(spriteBall));
+	    graphics.lineStyle(this.thickness, 0x5F9596);
 	    
 		//Define a posição inicial da linha = graphics.moveTo(x, y)
 		graphics.moveTo(position.x, position.y);
 		//Define a posição final da linha = graphics.lineTo(x, y)
 		graphics.lineTo(spriteBall.x + this.fit.x, spriteBall.y + this.fit.y);
-	},
-	
-	color : function(spriteBall) {
-		if (collision.ballInsideShape(spriteBall))
-			return 0x5F9596;
-		
-		return 0x0B968F;
 	}
 };

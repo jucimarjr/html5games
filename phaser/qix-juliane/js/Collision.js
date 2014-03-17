@@ -9,11 +9,14 @@ Collision.prototype = {
 	},
 	
 	update : function(sprite) {
-		this.ballInsideShape(sprite);
+		this.qixWithShape();
+		//this.ballInsideShape(sprite);
 		
-		this.ballWithWall();
-		if (!ball.collided) {
-			this.ballWithShape();
+		if (ball.alive) {
+			this.ballWithWall();
+			
+			if (!ball.collided)
+				this.ballWithShape();
 		}
 	},
 	
@@ -47,17 +50,8 @@ Collision.prototype = {
 		return false;
 	},
 	
-	
-	//Trata da colisão da bolinha com a parede do jogo
-	ballWithWall : function() {
-		if (ball.sprite.x <= 0.5*ball.sprite.width)
-			ball.sprite.x = 0.5*ball.sprite.width;
-		if (ball.sprite.x >= game.world.width - 1.5*ball.sprite.width)
-			ball.sprite.x = game.world.width - 1.5*ball.sprite.width;
-		if (ball.sprite.y <= screenGame.thicknessExtras + 0.5*ball.sprite.height)
-			ball.sprite.y = screenGame.thicknessExtras + 0.5*ball.sprite.height;
-		if (ball.sprite.y >= game.world.height+screenGame.thicknessExtras - 1.5*ball.sprite.height)
-			ball.sprite.y = game.world.height+screenGame.thicknessExtras - 1.5*ball.sprite.height;
+	//Trata da colisão da bolinha com a linha
+	ballWithLine : function() {
 	},
 	
 	//Trata da colisão da bolinha com o corpo
@@ -89,6 +83,27 @@ Collision.prototype = {
 			shape.draw(line.position);
 			//Esvazia o vetor line.position
 			line.position.length = 0;
+		}
+	},
+
+	//Trata da colisão da bolinha com a parede do jogo
+	ballWithWall : function() {
+		if (ball.sprite.x <= 0.5*ball.sprite.width)
+			ball.sprite.x = 0.5*ball.sprite.width;
+		if (ball.sprite.x >= game.world.width - 1.5*ball.sprite.width)
+			ball.sprite.x = game.world.width - 1.5*ball.sprite.width;
+		if (ball.sprite.y <= screenGame.thicknessExtras + 0.5*ball.sprite.height)
+			ball.sprite.y = screenGame.thicknessExtras + 0.5*ball.sprite.height;
+		if (ball.sprite.y >= game.world.height+screenGame.thicknessExtras - 1.5*ball.sprite.height)
+			ball.sprite.y = game.world.height+screenGame.thicknessExtras - 1.5*ball.sprite.height;
+	},
+
+	
+	//Trata da colisão do qix com o corpo
+	qixWithShape : function() {
+		for (var i = 0; i < shape.bodyShape.length; i++) {
+			for (var j = 0; j < shape.bodyShape[i].length; j++)
+				game.physics.collide(qix.sprite, shape.bodyShape[i][j]);
 		}
 	}
 };

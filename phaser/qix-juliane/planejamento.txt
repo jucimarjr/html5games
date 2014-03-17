@@ -13,27 +13,43 @@ x 7. verificar exceções:
 x  7.1 quando a bolinha atingir o limite da tela
 x  7.3 quando a bolinha quiser retornar (o que acontece quando ela está indo pra direita e quer retornar pra esquerda? não pode)
 
-SÁBADO
+DOMINGO
 x 1. desenhar sprite: qix
 x 2. colocar o sprite do qix na tela
 x 3. fazer o movimento do qix: todos os lados, ricocheteamento
 
- 4. preencher o polígono com as linhas desenhadas (dependendo do posicionamento do qix)
- 5. tratar bolinha quando estiver dentro do polígono
+x 5. tratar bolinha quando estiver dentro do polígono
 
- 6. desenhar sprite: inimigo
- 7. colocar o sprite do inimigo na tela
- 8. fazer o movimento do inimigo: todos os lados, ricocheteamento dentro dos retângulos
+SEGUNDA
+ 1. tratar a colisão da linha com:
+  1.1 ela mesma
+  1.2 o polígono
+x  1.3 a parede
 
-DOMINGO
- 1. tratar a colisão do qix com a bolinha/linha/polígono
- 2. tratar a colisão do inimigo com a bolinha/linha/polígono
- 3. tratar a colisão da linha com ela mesma/bordas/polígono
+x 2. tratar a colisão do qix com:
+  2.1 a bolinha
+  2.2 a linha
+x  2.3 o polígono
+  2.4 a parede
 
- 4. fazer um grupo de qix's
- 5. fazer um grupo de inimigos
+ 3. preencher o polígono (dependendo do posicionamento do qix)
 
-SEGUNGA
+TERÇA
+ 1. desenhar sprite: inimigo
+ 2. colocar o sprite do inimigo na tela
+ 3. fazer o movimento do inimigo: todos os lados, ricocheteamento dentro dos retângulos
+
+ 4. tratar a colisão do inimigo com:
+  4.1 a bolinha
+  4.2 a linha
+  4.3 o polígono
+  4.4 a parede
+
+QUARTA
+ 1. fazer um grupo de qix's
+ 2. fazer um grupo de inimigos
+
+QUINTA
  1. colocar os áudios
  2. fazer as fases: aumentar a quantidade de qix, aumentar a quantidade de inimigos e suas respectivas velocidades
  3. desenhar e fazer as telas
@@ -41,6 +57,9 @@ SEGUNGA
  1. trabalhar nos extras do jogo: pontuação, porcentagem, vidas
  2. testar
  3. corrigir possíveis erros
+
+MELHORAR
+ 1. não fazer polígono onde já tem
 
 GAMBIARRAS
  1. Line.js = savePosition (ball.collided = false, linha 71)
