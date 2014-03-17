@@ -62,7 +62,8 @@ function starOut(star) {
 
 
 Game.prototype.update = function () {
-
+	  
+   
       this.ship.update();
 
   if(game.input.keyboard.isDown(Phaser.Keyboard.LEFT)){

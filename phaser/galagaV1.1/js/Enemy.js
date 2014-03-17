@@ -8,6 +8,7 @@ var Enemy = function(gameClass,nome,nomeSprite,nomeAnimacao,quantidadeAnimacao) 
     this.alive = true;
 
     this.enemy = gameClass.game.add.sprite(x, y, nome, nomeSprite);
+	//this.enemy.enableBody = true;
     this.enemy.scale.setTo(4,4);
     
     this.enemy.animations.add(nomeAnimacao);

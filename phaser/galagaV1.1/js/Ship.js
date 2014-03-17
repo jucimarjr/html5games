@@ -22,8 +22,8 @@ Ship.prototype.create = function(game){
 	
 	
 	this.bullets = game.add.group();
-	//this.bullets.enableBody = true;
-	//this.bullets.physicsBodyType = Phaser.Physics.ARCADE;
+	this.bullets.enableBody = true;
+	this.bullets.physicsBodyType = Phaser.Physics.ARCADE;
 	
 	
 	this.bullets.createMultiple(50,'bullet');
@@ -39,8 +39,9 @@ Ship.prototype.update = function () {
 	 
    //console.log("enemy"+this.gameClass.enemy1);
   //if(this.gameClass.enemy1.die())
-   var teste =  this.game.physics.collide(this.gameClass.enemy1, this.bullets, this.gameClass.enemy1.die, null, this);
-   console.log(">>bullet "+this.bullets);
+   //var teste =  
+   this.game.physics.collide(this.gameClass.enemy1.enemy, this.bullets, this.gameClass.enemy1.die, null, this);
+   //console.log(">>bullet "+this.bullets);
 };
 
 Ship.prototype.animate = function(){
