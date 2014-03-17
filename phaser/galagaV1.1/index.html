@@ -12,8 +12,8 @@
     <script type="text/javascript" src="js/Credits.js"></script>-->
     <script type="text/javascript" src="js/Game.js"></script>
     <script type="text/javascript" src="js/Ship.js"></script>
-    <!--<script type="text/javascript" src="js/Asteroid.js"></script>
-    <script type="text/javascript" src="js/Ufo.js"></script>-->
+    <script type="text/javascript" src="js/Enemy.js"></script>
+    <script type="text/javascript" src="js/EnemyGroup.js"></script>
     <style type="text/css">
         body {
             margin: 0;
@@ -40,6 +40,7 @@ game.state.add('game', Game);
 function preload()
 {
 	game.load.atlas('ship', 'assets/spritesheets/ship.png', 'assets/spritesheets/ship.json');
+	game.load.atlas('enemy1', 'assets/spritesheets/enemy1.png', 'assets/spritesheets/enemy1.json');
 	game.load.image('bullet','assets/bullet_4-9.png');
 	game.load.image('star','assets/particle_1-15.png')
     //game.load.audio('thrust', 'assets/audios/AsteroidsThrust.mp3');

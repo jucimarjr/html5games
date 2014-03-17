@@ -3,6 +3,7 @@ var Game = function(game){
     //this.scores = 0;
     this.ship = null;
     this.stars = null;
+    this.enemy1 = null;
     //this.asteroid = null;
 	//this.groupAsteroids = null;
 	//this.livesHud = null;
@@ -28,7 +29,7 @@ Game.prototype.create = function () {
 	//this.ufo = new Ufo(this);
     //this.asteroid = new Asteroid(this);
     this.ship = new Ship(this);
-    
+    this.enemy1 = new Enemy(game,'enemy1','en1_1_15-14.png','an_enemy1',2);
     this.stars = game.add.group();
     this.stars.enableBody = true;
     this.stars.physicsBodyType = Phaser.Physics.ARCADE;
