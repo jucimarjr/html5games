@@ -101,6 +101,7 @@ var Pac = cc.Sprite.extend({
     {
     	var animation = this.animeCache.getAnimation(animationVar);
 		animation.setRestoreOriginalFrame(true);
+				
 		this.runAction(cc.RepeatForever.create(cc.Animate.create(animation)));
     },
     
@@ -123,7 +124,7 @@ var Pac = cc.Sprite.extend({
          }         
 
          var animation = cc.Animation.create(animFrames, 0.1);
-         this.animeCache.addAnimation(animation, animationName);        
+         this.animeCache.addAnimation(animation, animationName);                  
          
     },    
     
@@ -132,6 +133,17 @@ var Pac = cc.Sprite.extend({
     	var position = this.getPosition();
     	position.x++;
         this.setPosition(position);
+    	
+    	/*var move = cc.MoveBy.create(2, cc.p(screen.width - 100, 0));
+    	
+        var action = cc.Sequence.create(
+        		cc.MoveBy.create(2, cc.p(screen.width - 100, 0)),
+	            cc.CallFunc.create(this.removeFromParent, this, true)
+	            //move.reverse(),
+	            //cc.DelayTime.create(0.10)
+	   );
+       
+		this.runAction(action);*/
     },
     
     setPositionOnScreen: function(e)

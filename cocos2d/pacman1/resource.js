@@ -26,7 +26,7 @@ var ssGameList = dirSpriteSheets + "GameSpriteSheet.plist";
 var sPacLife = dirImages + "pac_left_middle_16-16.png";
 var sGameOver = dirImages + "game_over_217-32.png";
 var tMap = dirTiledMap + "background.tmx";
-var sMap = dirImages + "background_empty_227-247.png";
+var sMap = dirTiledMap + "background_empty_227-247.png";
 
 var SPRITE_SIZE = "32-32";
  
@@ -54,8 +54,6 @@ var resource = [
 	{type: "image", src: sGameOver},
 	
 	{type: 'tmx', src: tMap},
-	{type: 'image', src: sMap},
-	
-    
+	{type: 'image', src: sMap}
  
 ];

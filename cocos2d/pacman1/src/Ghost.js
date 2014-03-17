@@ -110,10 +110,19 @@ var Ghost = cc.Sprite.extend({
     
     setDynamicPosition: function(dt)
     {
+    	/*
     	var position = this.getPosition();
     	position.x++;
-		//position.x += this.xVelocity * dt;
         this.setPosition(position);
+        */
+        var move = cc.MoveBy.create(2, cc.p(screen.width - 100, 0));
+    	
+        var action = cc.Sequence.create(
+	            move,
+	            move.reverse(),
+	            cc.DelayTime.create(0.10)
+	        );
+		this.runAction(cc.RepeatForever.create(action));
     },
     
     setGhost:function(type) {
