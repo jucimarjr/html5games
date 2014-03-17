@@ -15,9 +15,12 @@ Screen.prototype = {
 		this.drawBorder();
 	},
 	
+	update : function() {
+	},
+	
+	
 	//Desenha a área de extras
 	drawExtras : function() {
-	  	//Desenha a área de extras
 		graphics = game.add.graphics(0, 0);
 	    graphics.lineStyle(this.thicknessExtras, 0x000000, 1);
 	    graphics.drawRect(0, this.thicknessExtras/2, game.world.width, 0);		
@@ -25,14 +28,10 @@ Screen.prototype = {
 	
 	//Desenha as bordas da tela
 	drawBorder : function() {
-	  	//Desenha as bordas
 		graphics = game.add.graphics(0, 0);
 	    graphics.lineStyle(this.thicknessBGame, 0x5F9596, 1);
 	    graphics.drawRect(this.thicknessBGame/2, this.thicknessBGame/2 + this.thicknessExtras,
 	    				  game.world.width - this.thicknessBGame,
 	    				  game.world.height - this.thicknessExtras - this.thicknessBGame);
-	},
-	
-	update : function() {
 	}
 };

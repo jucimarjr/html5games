@@ -4,7 +4,8 @@ Game = function() {
 	screen = null;
 	ball = null;
 	qix = null;
-	draw = null;
+	line = null;
+	shape = null;
 	
 	coordinates = function() {
 		x : 0;
@@ -17,12 +18,13 @@ Game.prototype = {
 		screenGame = screenClass;
 
 		qix = new Qix();
-		qix.preload();
-		
 		ball = new Ball();
+		line = new Line();
+		shape = new Shape();
+		collision = new Collision();
+		
+		qix.preload();
 		ball.preload();
-
-		draw = new Draw();
 	},
 
 	create : function() {
@@ -31,12 +33,18 @@ Game.prototype = {
 		
 		qix.create();
 		ball.create();
-		draw.create();
+		line.create(ball.sprite);
+		shape.create();
 	},
 	
 	update : function() {
 		qix.update();
 		ball.update();
-		draw.update(ball.direction, ball.positionInitial);
+		shape.update();
+		
+		if (ball.alive) {
+			line.update(ball.sprite, ball.direction, ball.positionInitial);
+			collision.update(ball.sprite);
+		}
 	}
 };

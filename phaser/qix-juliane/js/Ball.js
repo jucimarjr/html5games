@@ -1,19 +1,22 @@
 Ball = function() {
-	this.sprite = null;
+	this.sprite;
 	this.speed = 10;
 
 	this.direction; //LEFT, RIGHT, UP, DOWN
 	this.positionInitial;
+	
+	this.alive = false;
+	this.collided = false;
 };
 
 Ball.prototype = {
 	preload : function() {
-		//Carrega os sprites do jogo
+		//Carrega o sprite da bolinha
 		game.load.image('ball', 'assets/images/ball.png');
 	},
 
 	create : function() {
-		//Adiciona o sprite da bolinha na tela
+		//Adiciona a bolinha na tela
 		this.sprite = game.add.sprite(0, 0, 'ball');
 		
 		//Re-posiciona a bolinha para ficar no centro da tela
@@ -23,13 +26,13 @@ Ball.prototype = {
 	
 	update : function() {
 		this.move();
-		this.collideBallWithWall();
 	},
 	
 	
 	//Move a bolinha
 	move : function() {
 		this.positionInitial = this.sprite.position;
+		this.alive = true;
 		
 		//Move a bolinha na horizontal (esquerda/direita)
 		if ((game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) && (this.direction != "RIGHT")) {
@@ -50,17 +53,6 @@ Ball.prototype = {
 			this.direction = "DOWN";
 			this.sprite.y += this.speed;
 		}
-	},
-	
-	//Trata da colisão da bolinha com a parede do jogo
-	collideBallWithWall : function() {
-		if (this.sprite.x <= 0.5*this.sprite.width)
-			this.sprite.x = 0.5*this.sprite.width;
-		if (this.sprite.x >= game.world.width - 1.5*this.sprite.width)
-			this.sprite.x = game.world.width - 1.5*this.sprite.width;
-		if (this.sprite.y <= screenGame.thicknessExtras + 0.5*this.sprite.height)
-			this.sprite.y = screenGame.thicknessExtras + 0.5*this.sprite.height;
-		if (this.sprite.y >= game.world.height+screenGame.thicknessExtras - 1.5*this.sprite.height)
-			this.sprite.y = game.world.height+screenGame.thicknessExtras - 1.5*this.sprite.height;
+		else this.alive = false;
 	}
 };

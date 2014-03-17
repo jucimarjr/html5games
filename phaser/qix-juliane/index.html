@@ -9,7 +9,9 @@
 		<script type="text/javascript" src="js/Game.js"></script>
 		<script type="text/javascript" src="js/Qix.js"></script>
 		<script type="text/javascript" src="js/Ball.js"></script>
-		<script type="text/javascript" src="js/Draw.js"></script>
+		<script type="text/javascript" src="js/Line.js"></script>
+		<script type="text/javascript" src="js/Shape.js"></script>
+		<script type="text/javascript" src="js/Collision.js"></script>
 		
 		<style type="text/css">
 	        body {
@@ -26,7 +28,7 @@
 
 	<body>
 		<script type="text/javascript">
-			var game = new Phaser.Game(800, 480, Phaser.AUTO, '', {preload: preload, create: create, update: update});
+			var game = new Phaser.Game(800, 480, Phaser.CANVAS, '', {preload: preload, create: create, update: update});
 			var screenClass = null;
 			var gameClass = null;
 						
