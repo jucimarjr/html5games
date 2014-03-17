@@ -1,7 +1,7 @@
 var Game = function(game){
     this.game = game;
     //this.scores = 0;
-    //this.spaceShip = null;
+    this.ship = null;
     //this.asteroid = null;
 	//this.groupAsteroids = null;
 	//this.livesHud = null;
@@ -22,9 +22,14 @@ Game.prototype.preload = function(){
 Game.prototype.create = function () {
 	backgroundGame = game.add.sprite(0, 0, 'backgroundGame');
 	backgroundGame.name = 'backgroundGame';
+	game.world.setBounds(0, 0, 480, 600);
     //this.ufo = new Ufo(this);
     //this.asteroid = new Asteroid(this);
-    //this.spaceShip = new SpaceShip(this);
+    this.ship = new Ship(this);
+    //this.ship.setX(this.game/2-15);
+    //game.physics.p2.enable([ship], false);
+    //fixed.fixedToCamera = true;
+    
     //this.groupAsteroids = this.game.add.group();
     //this.initAsteroids();
     //this.velAsteroids = 1;
@@ -39,19 +44,27 @@ Game.prototype.create = function () {
 	//}
 	
 	//this.nextAddUfo = this.game.time.now + this.addUfoTime;
+    cur = game.input.keyboard.createCursorKeys();
 	
 
 };
 
 Game.prototype.update = function () {
 
-//    this.spaceShip.update();
+      this.ship.update();
 //    this.ufo.update();
-//    
-//    if(game.input.keyboard.isDown(Phaser.Keyboard.LEFT))
-//        this.spaceShip.rotate("left");
-//    else if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT))
-//        this.spaceShip.rotate("right");
+      this.ship.stop();
+      
+     // console.log("game x "+this.game.world.x);
+  if(game.input.keyboard.isDown(Phaser.Keyboard.LEFT)){
+	  this.ship.move("left");
+  }	  	
+  else if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)){
+	  this.ship.move("right");
+  }
+	  	
+  else if((!game.input.keyboard.isDown(Phaser.Keyboard.LEFT)||(!game.input.keyboard.isUp(Phaser.Keyboard.Down))))
+		this.ship.move("stop");  
 //    
 //    if (game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
 //        this.spaceShip.accelerate();
