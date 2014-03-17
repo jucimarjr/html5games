@@ -2,6 +2,7 @@ var Game = function(game){
     this.game = game;
     //this.scores = 0;
     this.ship = null;
+    this.stars = null;
     //this.asteroid = null;
 	//this.groupAsteroids = null;
 	//this.livesHud = null;
@@ -27,30 +28,34 @@ Game.prototype.create = function () {
 	//this.ufo = new Ufo(this);
     //this.asteroid = new Asteroid(this);
     this.ship = new Ship(this);
-   // game.physics.enable(this.ship.getSpriteShip(), Phaser.Physics.ARCADE);
-    //game.physics.enable(this.ship.getSpriteShip(), Phaser.Physics.ARCADE);
-    //this.ship.setX(this.game/2-15);
-    //game.physics.p2.enable([ship], false);
-    //fixed.fixedToCamera = true;
     
-    //this.groupAsteroids = this.game.add.group();
-    //this.initAsteroids();
-    //this.velAsteroids = 1;
-    //this.score = 0;
-    //this.scoreText = game.add.text(game.width - 150, 20 , this.score, {
-    //  font: "25px Vector Battle", fill: "#ffffff" , align: "right"
-    //});
+    this.stars = game.add.group();
+    this.stars.enableBody = true;
+    this.stars.physicsBodyType = Phaser.Physics.ARCADE;
+    for (var y = 0; y < 4; y++)
+    {
+        for (var x = 0; x < 10; x++)
+        {
+            var star = this.stars.create(0 + x * 48, y * 50, 'star');
+            star.name = 'star' + x.toString() + y.toString();
+            star.checkWorldBounds = true;
+            star.events.onOutOfBounds.add(starOut, this);
+            star.body.velocity.y = 100 + Math.random() * 200;
+        }
+    }
 
-	//this.livesHud = this.game.add.group();
-	//for(var i = 0; i<3; i++){
-	//	this.livesHud.create(18 * i + 3, 4, 'sprites', 'ship_14-24.png');
-	//}
-	
-	//this.nextAddUfo = this.game.time.now + this.addUfoTime;
-    cur = game.input.keyboard.createCursorKeys();
+   
 	
 
 };
+
+function starOut(star) {
+    //  Move the alien to the top of the screen again
+    star.reset(star.x, -32);
+    //  And give it a new random velocity
+    star.body.velocity.y = 50 + Math.random() * 200;
+}
+
 
 Game.prototype.update = function () {
 
