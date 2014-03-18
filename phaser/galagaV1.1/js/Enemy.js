@@ -1,5 +1,6 @@
 var Enemy = function(gameClass,nome,nomeSprite,nomeAnimacao,quantidadeAnimacao) {
-    var x = gameClass.game.width/2;
+    this.gameClass = gameClass;
+	var x = gameClass.game.width/2;
     var y = 400;
     this.game = gameClass.game;
     this.health = 3;
@@ -8,7 +9,6 @@ var Enemy = function(gameClass,nome,nomeSprite,nomeAnimacao,quantidadeAnimacao) 
     this.alive = true;
 
     this.enemy = gameClass.game.add.sprite(x, y, nome, nomeSprite);
-	//this.enemy.enableBody = true;
     this.enemy.scale.setTo(2,2);
     
     this.enemy.animations.add(nomeAnimacao);
@@ -29,6 +29,7 @@ var Enemy = function(gameClass,nome,nomeSprite,nomeAnimacao,quantidadeAnimacao) 
 };
 
 Enemy.prototype.update = function(){
+	this.game.physics.collide(this.gameClass.ship.sprite, this.bullets, this.gameClass.ship.die, null, this);
 	if(this.game.time.now > this.bulletTime){
 		this.fire();
 	}

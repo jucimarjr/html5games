@@ -74,6 +74,7 @@ Game.prototype.update = function () {
 	  this.ship.fire();
   }
   
+  
   this.moveBackground(this.background1);
   this.moveBackground(this.background2);
 

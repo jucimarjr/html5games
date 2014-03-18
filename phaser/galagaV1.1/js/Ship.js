@@ -19,12 +19,9 @@ Ship.prototype.create = function(game){
 	this.sprite.anchor.setTo(0.5,0.5);
 	this.sprite.enableBody = true;
 	
-	
-	
 	this.bullets = game.add.group();
 	this.bullets.enableBody = true;
 	this.bullets.physicsBodyType = Phaser.Physics.ARCADE;
-	
 	
 	this.bullets.createMultiple(50,'bullet');
 	this.bullets.setAll('anchor.x', 0.5);
@@ -103,7 +100,7 @@ Ship.prototype.fire = function(){
 
 }
 
-function render(){
-	this.game.debug.spriteBounds(this.bullets);
-	
+Ship.prototype.die = function(bullet,ship){
+	bullet.kill();
+	ship.kill();
 }
