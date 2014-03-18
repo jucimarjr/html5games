@@ -16,6 +16,8 @@ var scoreGame = {
 
 var LG = {KEYS: []};
 
+
+
 var gameLayer = cc.Layer.extend({
 	spriteFrameCache: cc.SpriteFrameCache.getInstance(),
 	gameOver: null,
@@ -28,58 +30,78 @@ var gameLayer = cc.Layer.extend({
 	init:function()
 	{
 		this._super();
-		/*if ('keyboard' in sys.capabilities)
-	    	this.setKeyboardEnabled(true);
-		else if('touches' in sys.capabilities)
-	        this.setTouchEnabled(true);
-		*/
 		
+		if( 'touches' in sys.capabilities )
+            this.setTouchEnabled(true);
+        else if ('mouse' in sys.capabilities )
+            this.setMouseEnabled(true);
 		
 		var map = cc.TMXTiledMap.create(tMap);		
 		this.addChild(map);		
 		
+		
+		
+		
+		this._pac = new Pac();
+        map.addChild(this._pac);
+        this._pac.setPosition(new cc.Point(screen.width/2 - 350, screen.height - 350));
+        //this._pac.scheduleUpdate();
+        /*this._pac.setAnimation("pac", "right", SPRITE_SIZE, 2, "right");        
+        this._pac.getAnimation("right");    
+        this._pac.setDynamicPosition();*/
+		
         
-		
-		
-	    		
-		this.setKeyboardEnabled(true);
-		
 		lifeGame.life = 2;
 		scoreGame.score = 0;
 		screen = cc.Director.getInstance().getWinSizeInPixels();
 		livePositionX = 30;
 		
-		cc.log("chamando game");
 		
+		
+		this._blinky = new Ghost();
+		this._blinky.setGhost("blinky");
+        map.addChild(this._blinky);
+        this._blinky.setPosition(new cc.Point(screen.width/2, screen.height/2));
+        this._blinky.setAnimation("blinky", "up", SPRITE_SIZE, 2, "up");        
+        this._blinky.getAnimation("up");  
+        this._blinky.setDynamicPosition("up");
+
+		this._pinky = new Ghost();
+		this._pinky.setGhost("pinky");
+        map.addChild(this._pinky);
+        this._pinky.setPosition(new cc.Point(screen.width - 30, screen.height/2 - 110));
+        this._pinky.setAnimation("pinky", "left", SPRITE_SIZE, 2, "left");        
+        this._pinky.getAnimation("left");
+        this._pinky.setDynamicPosition("left");
+        
+        this._inkey = new Ghost();
+		this._inkey.setGhost("inkey");
+        map.addChild(this._inkey);
+        this._inkey.setPosition(new cc.Point(screen.width/2 - 50, screen.height/2 - 50));
+        this._inkey.setAnimation("inkey", "down", SPRITE_SIZE, 2, "down");        
+        this._inkey.getAnimation("down");
+        this._inkey.setDynamicPosition("down");
+        
+        this._clyde = new Ghost();
+		this._clyde.setGhost("clyde");
+        map.addChild(this._clyde);
+        this._clyde.setPosition(new cc.Point(screen.width/2 - 400, screen.height - 20));
+        this._clyde.setAnimation("clyde", "right", SPRITE_SIZE, 2, "right");        
+        this._clyde.getAnimation("right");
+        this._clyde.setDynamicPosition();
 			
 		this.addLives();
 		this.addScore();
 		//this.schedule(this.onClick, 3);
-		//this.scheduleUpdate();	
+		this.scheduleUpdate();	
 		
-		this.schedule(this.update);
+		//this.schedule(this.update);
 	
 		return true;
 	},
 	
-	update: function()
-	{
-		//this._pac.setPositionOnScreen("left");	
-		var i = Math.floor((Math.random()*4)+1);
-		var position = ["right", "left", "up", "down"];  
-		
-	
-		/*var j = Math.floor((Math.random()*4)+1);
-		this._pinky.update("pinky", position[j]);
-		
-		var k= Math.floor((Math.random()*4)+1);
-		this._inkey.update("inkey", position[k]);
-
-		var l = Math.floor((Math.random()*4)+1);
-		this._clyde.update("_clyde", position[l]);*/
-		
-		
-	},
+	update:function(dt){
+    },
 	
 	onClick:function (dt) {    	
 		if (lifeGame.life != 0){
@@ -128,17 +150,15 @@ var gameLayer = cc.Layer.extend({
 		scoreGame.score += 10;
 		scoreGame.label.setString(scoreGame.text + " " + scoreGame.score);
 	},	   
-
-    onKeyUp: function (e) {
+	
+	onKeyDown:function (e) {
         LG.KEYS[e] = true;
-    	
     },
-    
-    onKeyDown: function (e) {
-        //LG.KEYS[e] = false;
-       
-        this._pac.setPositionOnScreen(e);        
-    },    
+
+    onKeyUp:function (e) {
+        LG.KEYS[e] = false;
+    }
+
 });
 
 var game = cc.Scene.extend({

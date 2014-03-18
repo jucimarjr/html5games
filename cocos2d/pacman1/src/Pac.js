@@ -6,12 +6,13 @@ var Pac = cc.Sprite.extend({
     up:false,
 	down:false,
 	_currentRotation:0,
+	_currentPosition:0,
 	//_currentPositionX: 0,
 	//_currentPositionY: 0,
 	
 	ctor:function( ){
 		this._super();		
-		
+		this.initWithSpriteFrameName("pac_left_open_32-32.png");
 		//this.initWithSpriteFrameName("pac_open_left_16-16.png");
 		//this.setPosition(new cc.Point(background.width / 2 - 150, background.height / 2 - 70));
 		//this.initWithSpriteFrameName("pac_left_open_16-16.png");
@@ -23,32 +24,22 @@ var Pac = cc.Sprite.extend({
 		this.setAnimation("pac", "top", "16-16", 2, "down");
 		this.setAnimation("pac", "top", "16-16", 2, "right");*/
 		
-		//this.scheduleUpdate();
-	},
-	
-	handleKey: function(e)
-    {
-        if(e === cc.KEY.left)
-        {
-            this._currentRotation--;
-
-        }
-        else if(e === cc.KEY.right)
-            this._currentRotation++;
-        else if (e === cc.KEY.up){
-        	this._currentPositionY++;
-        	//this.getAnimation("up");
-        }
-        	
-
-        if(this._currentRotation < 0) this._currentRotation = 360;
-        if(this._currentRotation > 360) this._currentRotation = 0;
-    },
-	
+		this.scheduleUpdate();
+	},		
     
 	update:function(dt){
-		this.setRotation(this._currentRotation);
+		//this.setPosition(this._currentPosition);
 		
+		var position = this.getPosition();
+				
+		if (LG.KEYS[cc.KEY.right]) {
+			position.x++;
+			this.setPosition(position);    		
+		}
+		
+		
+    	
+        
 		//this.setPosition(this._currentPositionY);
 		/*if(this.getPosition().x < background.width/2){
 					        
@@ -76,7 +67,7 @@ var Pac = cc.Sprite.extend({
 	        this.setPosition(position);	*/
     	//}
 		
-		
+		/*
 		if (LG.KEYS[cc.KEY.right]){
     		this.xSpeed = this.velocityX*Math.sin(Math.PI/180*this.angle);
         	this.ySpeed = this.velocityY*Math.cos(Math.PI/180*this.angle);
@@ -93,7 +84,7 @@ var Pac = cc.Sprite.extend({
     	if (LG.KEYS[cc.KEY.down]){
     		this.setAnimation("pac", "down", "16-16", 2, "down");        
             this.getAnimation("down"); 
-    	}
+    	}*/
     		
 	},
     
@@ -177,5 +168,18 @@ var Pac = cc.Sprite.extend({
 		        			
     	} */   	
         this.setPosition(position);
-    }
+    },
+    
+    handleKey:function(e)
+    {
+        if(e === cc.KEY.left)
+        {
+            this._currentPosition--;
+
+        }
+        else if(e === cc.KEY.right){        	
+            this._currentPosition++;
+        }
+
+    },
 });

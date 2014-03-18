@@ -97,9 +97,7 @@ var Ghost = cc.Sprite.extend({
          for (var i = 0; i < maxIndex; i++) {
         	
         	 str = spritePrefix + "_" + position + "_" + status[i] + "_" + size + ".png";
-             //cc.log(str);
              frame = this.spriteFrameCache.getSpriteFrame(str);            
-             //cc.log(frame);	
              animFrames.push(frame);
          }         
 
@@ -108,20 +106,49 @@ var Ghost = cc.Sprite.extend({
          
     },
     
-    setDynamicPosition: function(dt)
+    setDynamicPosition: function(position)
     {
     	/*
     	var position = this.getPosition();
     	position.x++;
         this.setPosition(position);
         */
-        var move = cc.MoveBy.create(2, cc.p(screen.width - 100, 0));
-    	
-        var action = cc.Sequence.create(
+    	var move = move = cc.MoveBy.create(2, cc.p(screen.width - 100, 0));
+    	var action = cc.Sequence.create(
 	            move,
 	            move.reverse(),
 	            cc.DelayTime.create(0.10)
 	        );
+    	
+    	if (position == "up"){
+    		move = cc.MoveBy.create(2, cc.p(0, screen.height/2 - 30 ));
+	    	var action = cc.Sequence.create(
+	    			move,
+		            move.reverse(),
+		            cc.DelayTime.create(0.10)
+		    );
+    	}
+    	
+    	if (position == "left"){
+    		move = cc.MoveBy.create(2, cc.p(screen.width + 100, 0));
+	    	var action = cc.Sequence.create(
+	    			move.reverse(),
+	    			move,		            
+		            cc.DelayTime.create(0.10)
+		    );
+
+    	}
+    	
+    	if (position == "down"){
+    		move = cc.MoveBy.create(2, cc.p(0, screen.height/2 - 30));
+	    	var action = cc.Sequence.create(
+	    			move.reverse(),
+	    			move,		            
+		            cc.DelayTime.create(0.10)
+		    );
+
+    	}
+    
 		this.runAction(cc.RepeatForever.create(action));
     },
     
@@ -130,7 +157,7 @@ var Ghost = cc.Sprite.extend({
 		
 		switch (type) {
 			case "blinky":
-				this.initWithSpriteFrameName("blinky_right_four_" + SPRITE_SIZE + ".png");
+				this.initWithSpriteFrameName(type + "_right_four_" + SPRITE_SIZE + ".png");
 				this.velocityX = 0.5;
 				this.velocityY = 0.5;
 				
