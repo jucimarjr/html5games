@@ -31,11 +31,6 @@ var gameLayer = cc.Layer.extend({
 	{
 		this._super();
 		
-		if( 'touches' in sys.capabilities )
-            this.setTouchEnabled(true);
-        else if ('mouse' in sys.capabilities )
-            this.setMouseEnabled(true);
-		
 		var map = cc.TMXTiledMap.create(tMap);
 		this.addChild(map);		
 		
@@ -43,20 +38,13 @@ var gameLayer = cc.Layer.extend({
 				
 		this._pac = new Pac();
         map.addChild(this._pac);
-        this._pac.setPosition(new cc.Point(screen.width/2 - 350, screen.height - 350));
-        //this._pac.scheduleUpdate();
-        /*this._pac.setAnimation("pac", "right", SPRITE_SIZE, 2, "right");        
-        this._pac.getAnimation("right");    
-        this._pac.setDynamicPosition();
-		*/
+        this._pac.setPosition(new cc.Point(screen.width/2 - 350, screen.height - 350));        
         
 		lifeGame.life = 2;
 		scoreGame.score = 0;
 		screen = cc.Director.getInstance().getWinSizeInPixels();
 		livePositionX = 30;
-		
-		
-		
+						
 		this._blinky = new Ghost();
 		this._blinky.setGhost("blinky");
         map.addChild(this._blinky);
@@ -92,16 +80,12 @@ var gameLayer = cc.Layer.extend({
 		this.addLives();
 		this.addScore();
 		//this.schedule(this.onClick, 3);
-		this.scheduleUpdate();	
-		
-		//this.schedule(this.update);
+		this.scheduleUpdate();			
 	
 		return true;
 	},
 	
-	update:function(dt){
-		
-    },
+	
 	
 	onClick:function (dt) {    	
 		if (lifeGame.life != 0){
@@ -151,35 +135,9 @@ var gameLayer = cc.Layer.extend({
 		scoreGame.label.setString(scoreGame.text + " " + scoreGame.score);
 	},	   
 	
-	onKeyDown:function (e) {
-		//cc.log(e);
-        LG.KEYS[e] = true;        
-        if (LG.KEYS[cc.KEY.right]){
-			/*
-    		this.xSpeed = this.velocityX*Math.sin(Math.PI/180*this.angle);
-        	this.ySpeed = this.velocityY*Math.cos(Math.PI/180*this.angle);
-        	this.setPosition(new cc.Point(this.getPosition().x + this.xSpeed,this.getPosition().y + this.ySpeed));
-        	*/
-			//cc.log('right;');
-			this._pac.setAnimation("pac", "right", SPRITE_SIZE, 2, "right");        
-            this._pac.getAnimation("right"); 
-            this._pac.setDirection('right');
-    	}
-    	if (LG.KEYS[cc.KEY.left]){
-    		this._pac.setAnimation("pac", "left", SPRITE_SIZE, 2, "left");        
-            this._pac.getAnimation("left"); 
-            this._pac.setDirection('left');
-    	}
-    	if (LG.KEYS[cc.KEY.up]){
-    		this._pac.setAnimation("pac", "up", SPRITE_SIZE, 2, "up");        
-            this._pac.getAnimation("up"); 
-            this._pac.setDirection('up');
-    	}
-    	if (LG.KEYS[cc.KEY.down]){
-    		this._pac.setAnimation("pac", "down", SPRITE_SIZE, 2, "down");        
-            this._pac.getAnimation("down"); 
-            this._pac.setDirection('down');
-    	}
+	onKeyDown:function (e) {		
+        LG.KEYS[e] = true;    
+        this._pac.setPositionOnScreen(e);  
     },
 
     onKeyUp:function (e) {

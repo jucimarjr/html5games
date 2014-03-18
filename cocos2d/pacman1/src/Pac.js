@@ -14,20 +14,9 @@ var Pac = cc.Sprite.extend({
 	
 	ctor:function( ){
 		this._super();		
-		this.initWithSpriteFrameName("pac_left_open_32-32.png");
 		this.setAnimation("pac", "right", SPRITE_SIZE, 2, "right");        
         this.getAnimation("right");    
-        this.setDynamicPosition();
-		//this.initWithSpriteFrameName("pac_open_left_16-16.png");
-		//this.setPosition(new cc.Point(background.width / 2 - 150, background.height / 2 - 70));
-		//this.initWithSpriteFrameName("pac_left_open_16-16.png");
-		//this.setPosition(new cc.Point(background.width/2, background.height/2 - 100));
-		//this._currentPositionX = background.width/2;
-		//this._currentPositionY = background.height/2;
-		
-		/*this.setAnimation("pac", "top", "16-16", 2, "up");
-		this.setAnimation("pac", "top", "16-16", 2, "down");
-		this.setAnimation("pac", "top", "16-16", 2, "right");*/
+        this.setDynamicPosition();		
 		
 		this.scheduleUpdate();
 	},		
@@ -35,7 +24,7 @@ var Pac = cc.Sprite.extend({
 	update:function(dt){
 		//this.setPosition(this._currentPosition);
 		
-		var position = this.getPosition();
+		
 		this.setPosition(this.getPosition().x + this.xVelocity, this.getPosition().y + this.yVelocity);
 		/*if(this.getPosition().x < background.width/2){
 					        
@@ -158,36 +147,27 @@ var Pac = cc.Sprite.extend({
     },
     
     setPositionOnScreen: function(e)
-    {
-    	
-    	var position = this.getPosition();
-    	
+    {    	    	    	
     	if (LG.KEYS[cc.KEY.right]){
-    		this.setAnimation("pac", "right", "16-16", 2, "right");        
+			this.setAnimation("pac", "right", SPRITE_SIZE, 2, "right");        
             this.getAnimation("right"); 
+            this.setDirection('right');
     	}
     	if (LG.KEYS[cc.KEY.left]){
-    		this.setAnimation("pac", "left", "16-16", 2, "left");        
+    		this.setAnimation("pac", "left", SPRITE_SIZE, 2, "left");        
             this.getAnimation("left"); 
+            this.setDirection('left');
     	}
     	if (LG.KEYS[cc.KEY.up]){
-    		this.setAnimation("pac", "up", "16-16", 2, "up");        
+    		this.setAnimation("pac", "up", SPRITE_SIZE, 2, "up");        
             this.getAnimation("up"); 
+            this.setDirection('up');
     	}
     	if (LG.KEYS[cc.KEY.down]){
-    		this.setAnimation("pac", "down", "16-16", 2, "down");        
+    		this.setAnimation("pac", "down", SPRITE_SIZE, 2, "down");        
             this.getAnimation("down"); 
-    	}
-    		
-    	
-    	/*switch (spritePrefix) {
-			case "left":				
-		    	position.x--;
-			case "right":				
-		    	
-		        			
-    	} */   	
-        this.setPosition(position);
+            this.setDirection('down');
+    	}    	
     },
     
     handleKey:function(e)
