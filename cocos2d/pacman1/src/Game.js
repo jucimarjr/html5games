@@ -36,20 +36,19 @@ var gameLayer = cc.Layer.extend({
         else if ('mouse' in sys.capabilities )
             this.setMouseEnabled(true);
 		
-		var map = cc.TMXTiledMap.create(tMap);		
+		var map = cc.TMXTiledMap.create(tMap);
 		this.addChild(map);		
 		
-		
-		
-		
+		this.setKeyboardEnabled(true);
+				
 		this._pac = new Pac();
         map.addChild(this._pac);
         this._pac.setPosition(new cc.Point(screen.width/2 - 350, screen.height - 350));
         //this._pac.scheduleUpdate();
         /*this._pac.setAnimation("pac", "right", SPRITE_SIZE, 2, "right");        
         this._pac.getAnimation("right");    
-        this._pac.setDynamicPosition();*/
-		
+        this._pac.setDynamicPosition();
+		*/
         
 		lifeGame.life = 2;
 		scoreGame.score = 0;
@@ -101,6 +100,7 @@ var gameLayer = cc.Layer.extend({
 	},
 	
 	update:function(dt){
+		
     },
 	
 	onClick:function (dt) {    	
@@ -152,7 +152,34 @@ var gameLayer = cc.Layer.extend({
 	},	   
 	
 	onKeyDown:function (e) {
-        LG.KEYS[e] = true;
+		//cc.log(e);
+        LG.KEYS[e] = true;        
+        if (LG.KEYS[cc.KEY.right]){
+			/*
+    		this.xSpeed = this.velocityX*Math.sin(Math.PI/180*this.angle);
+        	this.ySpeed = this.velocityY*Math.cos(Math.PI/180*this.angle);
+        	this.setPosition(new cc.Point(this.getPosition().x + this.xSpeed,this.getPosition().y + this.ySpeed));
+        	*/
+			//cc.log('right;');
+			this._pac.setAnimation("pac", "right", SPRITE_SIZE, 2, "right");        
+            this._pac.getAnimation("right"); 
+            this._pac.setDirection('right');
+    	}
+    	if (LG.KEYS[cc.KEY.left]){
+    		this._pac.setAnimation("pac", "left", SPRITE_SIZE, 2, "left");        
+            this._pac.getAnimation("left"); 
+            this._pac.setDirection('left');
+    	}
+    	if (LG.KEYS[cc.KEY.up]){
+    		this._pac.setAnimation("pac", "up", SPRITE_SIZE, 2, "up");        
+            this._pac.getAnimation("up"); 
+            this._pac.setDirection('up');
+    	}
+    	if (LG.KEYS[cc.KEY.down]){
+    		this._pac.setAnimation("pac", "down", SPRITE_SIZE, 2, "down");        
+            this._pac.getAnimation("down"); 
+            this._pac.setDirection('down');
+    	}
     },
 
     onKeyUp:function (e) {

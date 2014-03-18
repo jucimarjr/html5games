@@ -8,16 +8,10 @@ var Asteroid = function(gameClass, posX , posY , size , vel) {
     	this.redSprite = this.game.add.sprite(posX,posY,'asteroids','asteroids'+i+'_80-80.png');
     	this.hp = 80;
         mult = 1;
-        //this.body.setCircle(40);
-        /*
-        if(i == 1){
-        	this.body.setPolygon(1, -59, 25, -79  , 39, -69  , 59, -79  , 79, -60  , 57, -49  , 79, -30  , 55, 0  , 29, -12  , 20, -1  , 1, -21  , 11, -40);
-        }else if(i == 2){
-        	this.body.setPolygon(1, -59  , 31, -59  , 20, -79  , 49, -79  , 79, -60  , 79, -51  , 45, -40  , 79, -20  , 60, -1  , 45, -12  , 16, 0  , 1, -31 );
-        }else{
-        	this.body.setPolygon(58, -80  , 78, -51  , 78, -37  , 49, -1  , 29, 0  , 33, -33  , 16, -1  , 0, -31  , 16, -41  , 1, -49  , 30, -80 );
-        }
-        */
+        this.game.physics.enable(this, Phaser.Physics.P2JS);
+        this.game.physics.enable(this.redSprite, Phaser.Physics.P2JS);
+        this.body.clearShapes();
+        this.body.loadPolygon('asteroidsPhisycs', 'asteroids'+i+'_80-80');        
     }
     if (size == "medium") {
     	var i = Math.round(1 + Math.random()*2);
@@ -26,6 +20,9 @@ var Asteroid = function(gameClass, posX , posY , size , vel) {
     	this.redSprite = this.game.add.sprite(posX,posY,'asteroids','asteroids'+i+'_40-40.png');
     	this.hp = 40;
     	mult = 2;
+    	this.game.physics.enable(this, Phaser.Physics.ARCADE);
+        this.game.physics.enable(this.redSprite, Phaser.Physics.ARCADE);
+        
     	/*
     	if(i == 1){
         	this.body.setPolygon(15, -6  , 10, 0  , 0, -10  , 6, -20  , 0, -30  , 12, -40  , 20, -34  , 30, -40  , 40, -30  , 29, -25  , 40, -15  , 27, 0);
@@ -43,7 +40,10 @@ var Asteroid = function(gameClass, posX , posY , size , vel) {
     	this.redSprite = this.game.add.sprite(posX,posY,'asteroids','asteroids'+i+'_20-20.png');
     	this.hp = 20;
     	mult = 4;
-    	/*
+    	this.game.physics.enable(this, Phaser.Physics.ARCADE);
+        this.game.physics.enable(this.redSprite, Phaser.Physics.ARCADE);
+        
+    	
     	if(i == 1){
         	this.body.setPolygon(8, -2  , 5, 0  , 0, -5  , 3, -10  , 0, -15  , 5, -20  , 10, -17  , 15, -20  , 20, -15  , 15, -12  , 20, -7  , 14, 0 );
         }else if(i == 2){
@@ -51,14 +51,14 @@ var Asteroid = function(gameClass, posX , posY , size , vel) {
         }else{
         	this.body.setPolygon(15, -20  , 20, -13  , 20, -9  , 12, 0  , 7, 0  , 8, -8  , 4, 0  , 0, -8  , 3, -10  , 0, -12  , 7, -20);
         }
-        */
+        
     }
     this.redSprite.alpha = 0;
-    this.game.physics.enable(this, Phaser.Physics.ARCADE);
-    this.move(this , this.redSprite, mult*vel);
-    this.size = size;
+
     this.anchor.setTo(0.5,0.5);
     this.redSprite.anchor.setTo(0.5,0.5);
+    this.move(this , this.redSprite, mult*vel);
+    this.size = size;
     this.name = 'asteroid';
 	this.velocity = 30;
 };

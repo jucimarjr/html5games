@@ -4,7 +4,7 @@
 	<meta charset="UTF-8" />
 	<title>Asteroids</title>
 	
-	<script type="text/javascript" src="../phaser-master/build/phaser.js"></script>
+	<script type="text/javascript" src="js/phaser.min.js"></script>
 	
 	<script type="text/javascript" src="js/Splash.js"></script>
 	<script type="text/javascript" src="js/Menu.js"></script>
@@ -55,6 +55,7 @@ function preload()
     game.load.audio('shoot', 'assets/audios/AsteroidsShoot.mp3');
     game.load.audio('ufo', 'assets/audios/AsteroidsSaucer.mp3');
     game.load.audio('laserSound', 'assets/audios/laser.wav');
+    game.load.physics('asteroidsPhisycs', 'assets/images/asteroids.json');
     setHighScore();
     var keyFull = this.game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
 	keyFull.onDown.add(function(){
@@ -99,6 +100,13 @@ function setHighScore()
         localStorage["nameScore5"] = "EEE";
         localStorage["scores"] = "OK";
     }
+}
+
+function render() {
+
+    // Sprite debug info
+    gameScene.render();
+
 }
 
 </script>

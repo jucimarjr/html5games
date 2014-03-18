@@ -25,11 +25,12 @@ var Game = function(game){
 };
 
 Game.prototype.create = function () {	
+	this.game.physics.startSystem(Phaser.Physics.P2JS);
 	this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
 	this.shootUfo = this.game.add.group();
-	//this.game.world.setBounds(0, 0, 3200, 1920);
-	this.game.world.setBounds(0, 0, 800, 480);
+	this.game.world.setBounds(0, 0, 3200, 1920);
+	//this.game.world.setBounds(0, 0, 800, 480);
 	this.tiled1 = this.game.add.tileSprite(0, 0, this.game.world.width, this.game.world.height, 'tiled1');
 	this.tiled2 = this.game.add.tileSprite(-this.game.world.width*5, -this.game.world.height*5, this.game.world.width * 10, this.game.world.height * 10, 'tiled2');
     this.velAsteroids = 5;
@@ -47,8 +48,8 @@ Game.prototype.create = function () {
 	this.groupAsteroids = this.game.add.group();
     this.spaceShip = new SpaceShip(this);
     this.game.camera.follow(this.spaceShip.sprite);	
-    //this.initAsteroids(40);
-    this.addCircleAsteroids();
+    this.initAsteroids(40);
+   // this.addCircleAsteroids();
 	this.groupResources = this.game.add.group();
 	this.addResources();
 	this.fps = this.game.add.text(10, 470, 'FPS: '+this.game.time.fps, {
@@ -312,8 +313,8 @@ Game.prototype.collideObj = function(obj1, obj2){
 	    emitter.maxParticleSpeed.setTo(40, 40);
 	    emitter.gravity = 0;
 	    emitter.start(true, 3000, null, 5);
-	    /*
-	    this.livesHud.getFirstAlive().kill();
+	    
+	    //this.livesHud.getFirstAlive().kill();
 	    if(this.livesHud.countLiving() <= 0){
 	    	this.gameOver();	
 	    }
@@ -333,7 +334,7 @@ Game.prototype.collideObj = function(obj1, obj2){
 	    
 	    var key1 = this.game.input.keyboard.addKey(Phaser.Keyboard.R);
 	    key1.onDown.add(this.resetShip, this);
-	    */
+	    
 	}
 };
 
@@ -449,5 +450,8 @@ Game.prototype.gameOver = function () {
 };
 
 Game.prototype.render = function(){
+	this.groupAsteroids.forEach(function(asteroid){
+		this.game.debug.body(asteroid);
+	})
 	
-}
+};

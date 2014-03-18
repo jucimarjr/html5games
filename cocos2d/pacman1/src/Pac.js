@@ -1,10 +1,12 @@
 var Pac = cc.Sprite.extend({
 	spriteFrameCache: cc.SpriteFrameCache.getInstance(),
 	animeCache: cc.AnimationCache.getInstance(),
-	xVelocity:300,
-    yVelocity:300,
+	xVelocity:2,
+    yVelocity:0,
     up:false,
 	down:false,
+	left:false,
+	right:false,
 	_currentRotation:0,
 	_currentPosition:0,
 	//_currentPositionX: 0,
@@ -13,6 +15,9 @@ var Pac = cc.Sprite.extend({
 	ctor:function( ){
 		this._super();		
 		this.initWithSpriteFrameName("pac_left_open_32-32.png");
+		this.setAnimation("pac", "right", SPRITE_SIZE, 2, "right");        
+        this.getAnimation("right");    
+        this.setDynamicPosition();
 		//this.initWithSpriteFrameName("pac_open_left_16-16.png");
 		//this.setPosition(new cc.Point(background.width / 2 - 150, background.height / 2 - 70));
 		//this.initWithSpriteFrameName("pac_left_open_16-16.png");
@@ -31,16 +36,7 @@ var Pac = cc.Sprite.extend({
 		//this.setPosition(this._currentPosition);
 		
 		var position = this.getPosition();
-				
-		if (LG.KEYS[cc.KEY.right]) {
-			position.x++;
-			this.setPosition(position);    		
-		}
-		
-		
-    	
-        
-		//this.setPosition(this._currentPositionY);
+		this.setPosition(this.getPosition().x + this.xVelocity, this.getPosition().y + this.yVelocity);
 		/*if(this.getPosition().x < background.width/2){
 					        
 		}*/
@@ -66,32 +62,56 @@ var Pac = cc.Sprite.extend({
 			position.x += this.xVelocity * dt;
 	        this.setPosition(position);	*/
     	//}
-		
 		/*
 		if (LG.KEYS[cc.KEY.right]){
+			/*
     		this.xSpeed = this.velocityX*Math.sin(Math.PI/180*this.angle);
         	this.ySpeed = this.velocityY*Math.cos(Math.PI/180*this.angle);
         	this.setPosition(new cc.Point(this.getPosition().x + this.xSpeed,this.getPosition().y + this.ySpeed));
+        	
+			cc.log('right;');
+			this.setAnimation("pac", "right", SPRITE_SIZE, 2, "right");        
+            this.getAnimation("right"); 
     	}
     	if (LG.KEYS[cc.KEY.left]){
-    		this.setAnimation("pac", "left", "16-16", 2, "left");        
+    		this.setAnimation("pac", "left", SPRITE_SIZE, 2, "left");        
             this.getAnimation("left"); 
     	}
     	if (LG.KEYS[cc.KEY.up]){
-    		this.setAnimation("pac", "up", "16-16", 2, "up");        
+    		this.setAnimation("pac", "up", SPRITE_SIZE, 2, "up");        
             this.getAnimation("up"); 
     	}
     	if (LG.KEYS[cc.KEY.down]){
-    		this.setAnimation("pac", "down", "16-16", 2, "down");        
+    		this.setAnimation("pac", "down", SPRITE_SIZE, 2, "down");        
             this.getAnimation("down"); 
-    	}*/
-    		
+    	}
+    	*/
 	},
     
+	setDirection: function(direction){
+		if(direction == 'right'){
+			this.xVelocity = 2;
+			this.yVelocity = 0;
+		}
+		if(direction == 'left'){
+			this.xVelocity = -2;
+			this.yVelocity = 0;
+		}
+		if(direction == 'up'){
+			this.xVelocity = 0;
+			this.yVelocity = 2;
+		}
+		if(direction == 'down'){
+			this.xVelocity = 0;
+			this.yVelocity = -2;
+		}
+	},
+	
     getAnimation: function (animationVar)
     {
     	var animation = this.animeCache.getAnimation(animationVar);
 		animation.setRestoreOriginalFrame(true);
+		this.stopAllActions();
 				
 		this.runAction(cc.RepeatForever.create(cc.Animate.create(animation)));
     },
@@ -108,9 +128,9 @@ var Pac = cc.Sprite.extend({
         		 str = spritePrefix + "_" + status[i] + "_" + size + ".png";
         	 else
         		 str = spritePrefix + "_" + position + "_" + status[i] + "_" + size + ".png";
-             cc.log(str);
+             //cc.log(str);
              frame = this.spriteFrameCache.getSpriteFrame(str);            
-             cc.log(frame);	
+             //cc.log(frame);	
              animFrames.push(frame);
          }         
 
@@ -181,5 +201,5 @@ var Pac = cc.Sprite.extend({
             this._currentPosition++;
         }
 
-    },
+    }
 });

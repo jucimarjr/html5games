@@ -6,7 +6,7 @@ Ufo = function (gameClass) {
     this.nextFire = this.game.time.now + this.fireRate;
     Phaser.Sprite.call(this, this.game, 0, 0, 'sprites', 'ufo_96-61.png');
     this.game.physics.enable(this, Phaser.Physics.ARCADE);
-    this.game.add.audio('ufo', 1).play();
+    //this.game.add.audio('ufo', 1).play();
     this.reset(0, Math.random() * this.game.world.height);
     this.anchor.setTo(0.5,0.5);
     this.scale.setTo(0.5,0.5);
@@ -48,7 +48,7 @@ Ufo.prototype.verifyDistance = function(asteroid){
 }
 
 Ufo.prototype.shoot = function () {
-    this.game.add.audio('shoot', 1, true).play();
+    this.game.add.audio('shoot', 1).play();
     var direction = Math.random() * 360;
     var shoot = this.gameClass.shootUfo.create(this.position.x + Math.cos(direction * 0.0174) * 24,
         	    this.position.y + Math.sin(direction * 0.0174) * 24, 'sprites', 'shoot_2-2.png');
