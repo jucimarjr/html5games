@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="53" height="47" tilewidth="16" tileheight="16">
+ <tileset firstgid="1" name="background_empty_227-247" tilewidth="16" tileheight="16">
+  <image source="background_empty_227-247.png" width="227" height="247"/>
+ </tileset>
+ <tileset firstgid="211" name="map" tilewidth="42" tileheight="42">
+  <image source="../images/background_empty_227-247.png" width="227" height="247"/>
+ </tileset>
+ <layer name="Camada de Tiles 1" width="53" height="47">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3YR0/DMByH4XwElsSSWBJL7C0oo4CQygaJPQ9skDiEfWLdQMwz686X5FcphxD909hJMLabw3Oo7TR+5aitemgYRpcmhiAGNTCjkaOoSQluTRmQSYxnQTbkCNpfLuRBPjFXAIUcTUVQTIyXQCmUCWoqhwqoJOaqoJqjSWVRkxrSqakW6ojxemhgeN9GaIJmaAm4x1ZoI8bboSOEc+qGOCQY1vZZa4P09MMADBJzCRueJuf6EY6mcZgI2DQJUzCdosdPk529yQt1vR9rsJ5ib6b12rQkmzoN+jduzKWpB3oZm8Lq8mIav5vc1g27NI3CmMBzEtEUZ7yPqHMyDTFNS7AMK7CqSdMu7ME+HPxD0yzMEeaJ6xdgkeE+p3AG53Dxx03OrlTnpAqeZ08VUZMaqKYN2CRsEddvw44EHX7PiZo7hhMJOqKmqEkWzqZLuCJcE9fewK0EDV7n9MC41pRg/6znpHqTjueUTk3O8Ud4Isaf4QVeJWjhbXqDd2L8Az7hS4IWlmfPOfctwX6DNqkqalKLTk06nhPP555fYb6Xn3u5fT+pQscmiq5Nd3CvkeR/4j99fxqy7CYAAA==
+  </data>
+ </layer>
+</map>

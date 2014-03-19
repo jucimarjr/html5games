@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="25" height="20" tilewidth="36" tileheight="36">
+ <tileset firstgid="1" name="tilepacman" tilewidth="36" tileheight="36">
+  <image source="tilepacman.png" width="36" height="36"/>
+  <tile id="0">
+   <properties>
+    <property name="collidable" value="true"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="tiles" width="25" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjZGBgYKQDpiUYtWPUjlE7Ru0YtWPUjsFuB60xAFh7AFc=
+  </data>
+ </layer>
+</map>
