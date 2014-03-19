@@ -63,8 +63,8 @@ var gameLayer = cc.Layer.extend({
         map.addChild(this._pac);
         this._pac.setPosition(new cc.Point(screen.width/2 - 110, screen.height/2 - 205));        
         
-		lifeGame.life = 2;
-		scoreGame.score = 0;
+		//lifeGame.life = 2;
+		//scoreGame.score = 0;
 		screen = cc.Director.getInstance().getWinSizeInPixels();
 		livePositionX = 30;
 						
@@ -100,8 +100,11 @@ var gameLayer = cc.Layer.extend({
         this._clyde.getAnimation("up");
         //this._clyde.setDynamicPosition();
 		
-		this.addLives();
-		this.addScore();
+		if (lifeGame.life == 2){
+			this.addLives();
+			this.addScore();
+		}
+		
 		//this.schedule(this.onClick, 3);
 		this.scheduleUpdate();			
 	
@@ -126,7 +129,7 @@ var gameLayer = cc.Layer.extend({
 		lifeGame.label = cc.LabelTTF.create("LIVES", "fontName", 20);
 		lifeGame.label.setPosition( new cc.Point(screen.width/2 + 200, screen.height/2 - 350) );
 		this.addChild( lifeGame.label );	
-		
+		cc.log(lifeGame.life);
 		for(var i = 0; i < lifeGame.life; i++)
 		{									
 			spriteLives[i] = cc.Sprite.create(sPacLife);			
@@ -140,11 +143,14 @@ var gameLayer = cc.Layer.extend({
 	{		
 		lifeGame.life--;
 		this.removeChild( spriteLives[lifeGame.life] );	
-		if (lifeGame.life == 0){		
+		if (lifeGame.life != 0){					
+			this.init();				
+		}	
+		else{
 			this.gameOver = new losing();				        
 	        this.addChild( this.gameOver );		
 			cc.Director.getInstance().replaceScene(cc.TransitionFade.create(10,new highScore()));
-		}		
+		}
 	},
 	
 	addScore:function()
