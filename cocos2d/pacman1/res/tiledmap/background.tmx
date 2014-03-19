@@ -6,12 +6,12 @@
    <terrain name="" tile="-1"/>
   </terraintypes>
  </tileset>
- <layer name="Camada de Tiles 1" width="19" height="21">
+ <layer name="Camada de Tiles" width="19" height="21">
   <data encoding="base64" compression="zlib">
    eJyl1EOwGAYARdH/Y9v6sW3btm3btp0UsW3bbGObZZy0UcOerDKTbWbeWb39DQwICAhGcEIQklCEJgxhCUd4InzzRyEq0YhODGISi9jEIS7xiE8CEpKIIBKThKQkIzkpSEkqUpOGtKQjPRnISCYyk4WsZCM7OchJLnKTh7zkIz8FKEghClOEohSjOCUoSSlKU4aylKM8FahIJSpThapUozo1qEktalOHutSjPg1oSCMa04SmNKM5LWhJK1rThra0oz0d6EgnOtOFrnSjOz3oSS9604e+9KM/AxjIIAYzhKEMYzgjGMkoRjOGsYxjPBOYyCQmM4WpTGM6P/AjP/EzM5jJLGYzh7nMYz4LWMgiFrOEpSxjOStYySpWs4a1rGM9G9jIJjazha1sYzs72MkudrOHvexjPwc4yCEOc4SjHOM4v/ArJzjJKU5zhrOc4zwXuMglLnOFq1zjOje4yS1uc4e73OM+v/E7f/Anf/E3D3jIIx7zhKc84zkv+Id/eckrXvOGt/zHO97zgY984jMBgUYwghOCkIQiNGEISzjCE4GIRCIyUYhKNKITg5jEIjZxiEs84pOAhCQiiMQkISnJSE4KUpKK1KQhLelITwYykonMZCEr2chODnKSi9zkIS/5yE8BClKIwhShKMUoTglKUorSlKEs5ShPBSpSicpUoSrVqE4NalKL2tShLvWoTwMa0ojGNKEpzWhOC1rSita0oS3taE8HOtKJznShK93oTg960ove9KEv/egf+LUT3+tLJ/4H7sCm2A==
   </data>
  </layer>
- <objectgroup name="Camada de Objetos 1" width="19" height="21">
+ <objectgroup name="Camada de Objetos" width="19" height="21">
   <object x="63" y="59" width="60" height="41"/>
   <object x="169" y="61" width="81" height="38"/>
   <object x="361" y="61" width="81" height="38"/>

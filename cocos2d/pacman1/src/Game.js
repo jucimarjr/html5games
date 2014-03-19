@@ -31,11 +31,38 @@ var gameLayer = cc.Layer.extend({
 	{
 		this._super();
 		
+		this.setKeyboardEnabled(true);
+		
 		var map = cc.TMXTiledMap.create(tMap);		  
 		map.setPosition(cc.p(113, 50));
 		this.addChild(map);		
 		
-		this.setKeyboardEnabled(true);
+
+		var group = map.getObjectGroup("Camada de Objetos");
+        var objects = group.getObjects();
+
+        for (var i = 0; i < objects.length; i++) {
+            var dict = objects[i];
+            if (!dict)
+                break;
+
+            var x = dict["x"];
+            var y = dict["y"];
+            var width = dict["width"];
+            var height = dict["height"];
+
+            cc.renderContext.lineWidth = 3;
+            cc.renderContext.strokeStyle = "#ffffff";
+
+            cc.drawingUtil.drawLine(cc.p(x, y), cc.p((x + width), y));
+            cc.drawingUtil.drawLine(cc.p((x + width), y), cc.p((x + width), (y + height)));
+            cc.drawingUtil.drawLine(cc.p((x + width), (y + height)), cc.p(x, (y + height)));
+            cc.drawingUtil.drawLine(cc.p(x, (y + height)), cc.p(x, y));
+
+            cc.renderContext.lineWidth = 1;
+        }
+
+		
 				
 		this._pac = new Pac();
         map.addChild(this._pac);
@@ -66,8 +93,8 @@ var gameLayer = cc.Layer.extend({
 		this._inkey.setGhost("inkey");
         map.addChild(this._inkey);
         this._inkey.setPosition(new cc.Point(screen.width / 2 - 150, screen.height / 2 - 10));
-        this._inkey.setAnimation("inkey", "down", SPRITE_SIZE, 2, "down");        
-        this._inkey.getAnimation("down");
+        this._inkey.setAnimation("inkey", "up", SPRITE_SIZE, 2, "up");        
+        this._inkey.getAnimation("up");
         //this._inkey.setDynamicPosition("down");
         
         this._clyde = new Ghost();

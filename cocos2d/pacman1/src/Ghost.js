@@ -148,7 +148,14 @@ var Ghost = cc.Sprite.extend({
 		    );
 
     	}
-    
+    	
+    	if (position == "jump"){    		
+	    	var action = cc.Sequence.create(
+	    			cc.JumpBy.create(2, cc.p(0, 0), 80, 4),
+	    			cc.DelayTime.create(0.25).clone()		            		            
+		    );
+    	}
+
 		this.runAction(cc.RepeatForever.create(action));
     },
     
