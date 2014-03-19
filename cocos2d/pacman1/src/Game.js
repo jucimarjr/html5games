@@ -31,14 +31,15 @@ var gameLayer = cc.Layer.extend({
 	{
 		this._super();
 		
-		var map = cc.TMXTiledMap.create(tMap);
+		var map = cc.TMXTiledMap.create(tMap);		  
+		map.setPosition(cc.p(113, 50));
 		this.addChild(map);		
 		
 		this.setKeyboardEnabled(true);
 				
 		this._pac = new Pac();
         map.addChild(this._pac);
-        this._pac.setPosition(new cc.Point(screen.width/2 - 350, screen.height - 350));        
+        this._pac.setPosition(new cc.Point(screen.width/2 - 350, screen.height/2 - 220));        
         
 		lifeGame.life = 2;
 		scoreGame.score = 0;
@@ -98,13 +99,13 @@ var gameLayer = cc.Layer.extend({
 	addLives: function()
 	{
 		lifeGame.label = cc.LabelTTF.create("LIVES", "fontName", 20);
-		lifeGame.label.setPosition( new cc.Point(screen.width/2 + 200, screen.height/2 - 330) );
+		lifeGame.label.setPosition( new cc.Point(screen.width/2 + 200, screen.height/2 - 350) );
 		this.addChild( lifeGame.label );	
 		
 		for(var i = 0; i < lifeGame.life; i++)
 		{									
 			spriteLives[i] = cc.Sprite.create(sPacLife);			
-			spriteLives[i].setPosition(screen.width/2 + 200 + lifeGame.positionX, screen.height/2 - 330);
+			spriteLives[i].setPosition(screen.width/2 + 200 + lifeGame.positionX, screen.height/2 - 350);
             this.addChild( spriteLives[i] );
 			lifeGame.positionX += 20;
 		}
@@ -124,7 +125,7 @@ var gameLayer = cc.Layer.extend({
 	addScore:function()
 	{			
 		scoreGame.label = cc.LabelTTF.create(scoreGame.text + " " + scoreGame.score, "fontName", 20);		
-		scoreGame.label.setPosition(new cc.Point(screen.width/2 - 300, screen.height/2 - 330) );
+		scoreGame.label.setPosition(new cc.Point(screen.width/2 - 300, screen.height/2 - 350) );
 		this.addChild( scoreGame.label );	
 
     },	
