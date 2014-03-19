@@ -4,7 +4,7 @@ var losing = cc.Sprite.extend({
 	{
 		this._super();
 		this.initWithFile(sGameOver);
-		this.setPosition(new cc.Point(background.width/2, background.height/2) );
+		this.setPosition(new cc.Point(screen.width/2, screen.height/2) );
 		cc.log("no arquivo losing");
 	}
 	
