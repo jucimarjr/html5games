@@ -1,9 +1,11 @@
 var Game = function(game){
     this.game = game;
     //this.scores = 0;
+    this.stage = 1;
     this.ship = null;
     this.stars = null;
     this.enemy1 = null;
+    this.textStage = null;
     //this.backgroundGame;
     //this.asteroid = null;
 	//this.groupAsteroids = null;
@@ -26,8 +28,12 @@ Game.prototype.create = function () {
 	
 	this.background1 = this.game.add.sprite(0, 0, 'backgroundGame');
     this.background2 = this.game.add.sprite(0, -600, 'backgroundGame');
+    
+    this.initStage();
+    
 	this.enemy1 = new Enemy(this,'enemy1','en1_1_15-14.png','an_enemy1',2);
     this.ship = new Ship(this);
+    
     
     this.stars = game.add.group();
     this.stars.enableBody = true;
@@ -110,4 +116,14 @@ Game.prototype.moveBackground = function(background){
 	    } else {}
 	      background.y +=1;
 	  
-}
+};
+
+Game.prototype.initStage = function(){
+	console.log(">>>>>>>>>>stage");
+	//setTimeout(function() {
+		console.log(">>>>>>>>>>stage");
+		this.scoreText = game.add.text(game.width/2, game.heigth/2 , "Stage"+this.stage, {
+	        font: "40px Arial", fill: "#ffffff" , align: "center"
+	    });
+	//},3000)
+};

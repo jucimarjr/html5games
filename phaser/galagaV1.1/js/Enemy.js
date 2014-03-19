@@ -21,14 +21,16 @@ var Enemy = function(gameClass,nome,nomeSprite,nomeAnimacao,quantidadeAnimacao) 
 	
 	this.bullets.createMultiple(50,'bullet-enemy');
 	this.bullets.setAll('anchor.x', 0.5);
-    this.bullets.setAll('anchor.y', 1);
+    this.bullets.setAll('anchor.y', 0.5);
 	this.bullets.setAll('outOfBoundsKill', true);
 	
-	this.bulletTime = 100;
+	this.bulletTime = 1000;
     
 };
 
 Enemy.prototype.update = function(){
+	
+	var rand = game.rnd.integerInRange(5,20);
 	this.game.physics.collide(this.gameClass.ship.sprite, this.bullets, this.gameClass.ship.die, null, this);
 	if(this.game.time.now > this.bulletTime){
 		this.fire();
@@ -50,7 +52,7 @@ Enemy.prototype.fire = function(){
         if (bullet)
         {
             //  And fire it
-            bullet.reset(this.enemy.x, this.enemy.y);//posicáo de saida do tiro
+            bullet.reset(this.enemy.x+15, this.enemy.y+15);//posicáo de saida do tiro
             bullet.body.velocity.y = +50; //velocidade do projetil
             this.bulletTime = game.time.now + 200;
         }
