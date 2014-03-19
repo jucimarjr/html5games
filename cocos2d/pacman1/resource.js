@@ -25,7 +25,7 @@ var ssGame = dirSpriteSheets + "GameSpriteSheet.png";
 var ssGameList = dirSpriteSheets + "GameSpriteSheet.plist";
 var sPacLife = dirImages + "pac_left_middle_16-16.png";
 var sGameOver = dirImages + "game_over_217-32.png";
-var tMap = dirTiledMap + "background4.tmx";
+var tMap = dirTiledMap + "background.tmx";
 //var sMap = dirTiledMap + "background_empty_227-247.png";
 var sMap = dirTiledMap + "map.png";
 

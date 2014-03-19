@@ -39,7 +39,7 @@ var gameLayer = cc.Layer.extend({
 				
 		this._pac = new Pac();
         map.addChild(this._pac);
-        this._pac.setPosition(new cc.Point(screen.width/2 - 350, screen.height/2 - 220));        
+        this._pac.setPosition(new cc.Point(screen.width/2 - 110, screen.height/2 - 205));        
         
 		lifeGame.life = 2;
 		scoreGame.score = 0;
@@ -49,34 +49,34 @@ var gameLayer = cc.Layer.extend({
 		this._blinky = new Ghost();
 		this._blinky.setGhost("blinky");
         map.addChild(this._blinky);
-        this._blinky.setPosition(new cc.Point(screen.width/2, screen.height/2));
+        this._blinky.setPosition(new cc.Point(screen.width / 2 - 115, screen.height / 2 + 50));
         this._blinky.setAnimation("blinky", "up", SPRITE_SIZE, 2, "up");        
         this._blinky.getAnimation("up");  
-        this._blinky.setDynamicPosition("up");
+        //this._blinky.setDynamicPosition("up");
 
 		this._pinky = new Ghost();
 		this._pinky.setGhost("pinky");
         map.addChild(this._pinky);
-        this._pinky.setPosition(new cc.Point(screen.width - 30, screen.height/2 - 110));
-        this._pinky.setAnimation("pinky", "left", SPRITE_SIZE, 2, "left");        
-        this._pinky.getAnimation("left");
-        this._pinky.setDynamicPosition("left");
+        this._pinky.setPosition(new cc.Point(screen.width / 2 - 118, screen.height / 2 - 10));
+        this._pinky.setAnimation("pinky", "up", SPRITE_SIZE, 2, "up");        
+        this._pinky.getAnimation("up");
+        //this._pinky.setDynamicPosition("left");
         
         this._inkey = new Ghost();
 		this._inkey.setGhost("inkey");
         map.addChild(this._inkey);
-        this._inkey.setPosition(new cc.Point(screen.width/2 - 50, screen.height/2 - 50));
+        this._inkey.setPosition(new cc.Point(screen.width / 2 - 150, screen.height / 2 - 10));
         this._inkey.setAnimation("inkey", "down", SPRITE_SIZE, 2, "down");        
         this._inkey.getAnimation("down");
-        this._inkey.setDynamicPosition("down");
+        //this._inkey.setDynamicPosition("down");
         
         this._clyde = new Ghost();
 		this._clyde.setGhost("clyde");
         map.addChild(this._clyde);
-        this._clyde.setPosition(new cc.Point(screen.width/2 - 400, screen.height - 20));
-        this._clyde.setAnimation("clyde", "right", SPRITE_SIZE, 2, "right");        
-        this._clyde.getAnimation("right");
-        this._clyde.setDynamicPosition();
+        this._clyde.setPosition(new cc.Point(screen.width / 2 - 86, screen.height / 2 - 10));
+        this._clyde.setAnimation("clyde", "up", SPRITE_SIZE, 2, "up");        
+        this._clyde.getAnimation("up");
+        //this._clyde.setDynamicPosition();
 			
 		this.addLives();
 		this.addScore();
