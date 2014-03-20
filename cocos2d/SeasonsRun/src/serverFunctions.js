@@ -11,7 +11,7 @@ function onNewPlayer(data) {
     console.log("New player connected: " + data.id);
     var newPlayer = new Player(data.x, data.y, true);
     newPlayer.id = data.id;
-    layerGame.addChild(newPlayer);
+    layerRemote.addChild(newPlayer);
     remotePlayers.push(newPlayer);
 };
 

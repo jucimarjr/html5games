@@ -27,18 +27,26 @@ var cocos2dApp = cc.Application.extend({
                  { type: "image", src: "res/Maps/coqueiro.png" },
                  { type: "image", src: "res/Maps/tiles2.png" },
                  { type: "image", src: "res/images/box.png" },
+			     { type: "tilemap", src: "res/Maps/map0.tmx" },
                  { type: "tilemap", src: "res/Maps/map1.tmx" },
                  { type: "tilemap", src: "res/Maps/map2.tmx" },
                  { type: "tilemap", src: "res/Maps/map3.tmx" },
                  { type: "tilemap", src: "res/Maps/map4.tmx" },
                  { type: "tilemap", src: "res/Maps/map5.tmx" },
-                 { type: "tilemap", src: "res/Maps/map6.tmx" },
-                 { type: "tilemap", src: "res/Maps/map7.tmx" },
-                 { type: "tilemap", src: "res/Maps/map8.tmx" },
-                 { type: "tilemap", src: "res/Maps/map9.tmx" },
-                 { type: "tilemap", src: "res/Maps/map10.tmx" },
                  { type: "tilemap", src: "res/Maps/background_summer.tmx" },
                  { type: "tilemap", src: "res/Maps/background_summer_clouds.tmx" },
+                 {
+                     fontName: "Zion",
+                     src: [
+                              { src: "res/fonts/Zion.ttf", type: "truetype" }
+                     ]
+                 },
+                 {
+                     fontName: "PipeDream",
+                     src: [
+                              { src: "res/fonts/PipeDream.ttf", type: "truetype" }
+                     ]
+                 },
 				],
 				function () {
 					cc.Director.getInstance().runWithScene(new this.startScene());
@@ -49,4 +57,4 @@ var cocos2dApp = cc.Application.extend({
 	}
 });
 
-var myApp = new cocos2dApp(Menu);
+var myApp = new cocos2dApp(SplashLudus);

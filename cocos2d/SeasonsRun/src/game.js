@@ -14,6 +14,7 @@ var layerGame = null;
 var layerSprite = null;
 var _tilemaps = [];
 var tileMapSize = 4400;
+var runSoundDelay = 8;
 
 var world = null;
 var PTM_RATIO = 30.0;
@@ -59,21 +60,18 @@ var GameLayer = cc.LayerGradient.extend({
         //Cria o Layer do jogo
         layerSprite = cc.Layer.create(0, 480);
         layerGame = cc.Layer.create(0, 480);
+        layerRemote = cc.Layer.create(0, 480);
         layerBackground = cc.Layer.create(0, 480);
         layerBackground2 = cc.Layer.create(0, 480);
 
         //Tile Maps
-        _tilemaps.push("res/Maps/map3.tmx");
-        //_tilemaps.push("res/Maps/map1.tmx");
-        //_tilemaps.push("res/Maps/map2.tmx");
-        //_tilemaps.push("res/Maps/map4.tmx");
-        //_tilemaps.push("res/Maps/map5.tmx");
-        //_tilemaps.push("res/Maps/map6.tmx");
-        //_tilemaps.push("res/Maps/map7.tmx");
-        //_tilemaps.push("res/Maps/map8.tmx");
-        //_tilemaps.push("res/Maps/map9.tmx");
-        //_tilemaps.push("res/Maps/map10.tmx");
-
+        _tilemaps.push("res/Maps/map0.tmx");
+        _tilemaps.push("res/Maps/map1.tmx");
+        _tilemaps.push("res/Maps/map2.tmx");
+	    _tilemaps.push("res/Maps/map3.tmx");
+        _tilemaps.push("res/Maps/map4.tmx");
+        _tilemaps.push("res/Maps/map5.tmx");
+        
         //Cria o primeiro mapa
         
         var _tileMap = cc.TMXTiledMap.create(_tilemaps[0]);
@@ -96,10 +94,11 @@ var GameLayer = cc.LayerGradient.extend({
 
         //Cria o personagem local
         cc.ArmatureDataManager.getInstance().addArmatureFileInfo("res/Runner/Runner0.png", "res/Runner/Runner0.plist", "res/Runner/Runner.ExportJson");
-        localPlayer = new Player(100, 163, false);
+        localPlayer = new Player(-34, 145, false);
         layerSprite.addChild(localPlayer);
         
         voidNode = cc.ParallaxNode.create();
+        voidNode.addChild(layerRemote, 0, cc.p(1.0, 1.0), cc.p(0, 0));
         voidNode.addChild(layerGame, -1, cc.p(1.0, 1.0), cc.p(0, 0));
         voidNodeBackground = cc.ParallaxNode.create();
         voidNodeBackground.addChild(layerBackground, 0, cc.p(0.1, 0.1), cc.p(0, 0));
@@ -108,7 +107,7 @@ var GameLayer = cc.LayerGradient.extend({
         this.addChild(voidNodeBackground, 0);
         this.addChild(voidNodeBackground2, 0);
         this.addChild(voidNode,0);
-        this.addChild(layerSprite,0);
+        this.addChild(layerSprite, 0);
         
         return true;
     },
@@ -120,9 +119,10 @@ var GameLayer = cc.LayerGradient.extend({
         lapTime.setMinutes(0);
         lapTime.setSeconds(0);
         lapTime.setMilliseconds(0);
+	    nextMap = [];
         nextMap.push(0);
         this.setKeyboardEnabled(true);
-        
+                
         //Inicia a conexão com o servidor
         if (localStorage["gameType"] == "multi") {
             try {
@@ -140,14 +140,14 @@ var GameLayer = cc.LayerGradient.extend({
         }
 
         //Coloca a pontuação na tela        
-        timeLabel = cc.LabelTTF.create("00:00:00", "GhoulySolidRegular", 20);
+        timeLabel = cc.LabelTTF.create("00:00:00", "Zion", 20);
         timeLabel.setPosition(new cc.Point(screen.width - 70, screen.height - 80));
         timeLabel.setColor(new cc.Color4B(0, 0, 0, 255));
         layerSprite.addChild(timeLabel);
         
-        distanceLabel = cc.LabelTTF.create("0m", "GhoulySolidRegular", 40);
-        distanceLabel.setPosition(new cc.Point(screen.width - 70, screen.height - 40));
-        distanceLabel.setColor(new cc.Color4B(0, 0, 0, 255));
+        distanceLabel = cc.LabelTTF.create("0m", "PipeDream", 40);
+        distanceLabel.setPosition(new cc.Point(screen.width - 90, screen.height - 40));
+        distanceLabel.setColor(new cc.Color4B(10, 197, 17, 255));
         layerSprite.addChild(distanceLabel);
         
         var listener = new b2Listener;
@@ -156,7 +156,7 @@ var GameLayer = cc.LayerGradient.extend({
 
         setTimeout(function (updateGame) {
 
-            var label = cc.LabelTTF.create("START!", "GhoulySolidRegular", 70);
+            var label = cc.LabelTTF.create("GO!", "PipeDream", 70);
             label.setPosition(new cc.Point(screen.width / 2, screen.height / 2));
             label.setColor(new cc.Color4B(0, 0, 0, 255));
 
@@ -165,6 +165,10 @@ var GameLayer = cc.LayerGradient.extend({
             label.runAction( cc.Sequence.create( cc.FadeOut.create(1.0) , cc.CallFunc.create( function(label){ layerSprite.removeChild(label) } , label ) ) );
 
             layerSprite.addChild(label);
+
+            cc.AudioEngine.getInstance().stopMusic();
+            cc.AudioEngine.getInstance().playMusic("res/audios/summerSong.mp3", true);
+            cc.AudioEngine.getInstance().setMusicVolume(0.3);
 
             updateThread = setInterval(updateGame, 20);
         }, 2000, this.updateGame);
@@ -182,7 +186,7 @@ var GameLayer = cc.LayerGradient.extend({
         
         if (e == cc.KEY.up)
             localPlayer.jump();
-
+        
         if (e == cc.KEY.space)            
             if (localPlayer.onGround && localPlayer.getAnimation().getCurrentMovementID() == "run")
                 accelerate = true;
@@ -200,6 +204,15 @@ var GameLayer = cc.LayerGradient.extend({
 
         world.Step(1 / 40, 3, 5);
 
+        //Roda o som
+        
+        if (localPlayer.onGround && runSoundDelay < 0 && localPlayer.getAnimation().getCurrentMovementID() != "jump") {
+            cc.AudioEngine.getInstance().setEffectsVolume(0.6);
+            cc.AudioEngine.getInstance().playEffect("res/audios/run.wav",false);
+            runSoundDelay = 8;
+        }else
+            runSoundDelay -= 0.5;
+            
         //Manda a posição para os outros jogadores
         if (socket)
             socket.emit("move player", { x: ( voidNode.getPosition().x * -1 ) + localPlayer.getPosition().x , y: localPlayer.getPosition().y });
@@ -239,8 +252,8 @@ var GameLayer = cc.LayerGradient.extend({
         if (playerVelocity < 0)
             playerVelocity = 0;
         voidNode.setPosition(cc.p(voidNode.getPosition().x - (velocity + playerVelocity), voidNode.getPosition().y));
-        voidNodeBackground.setPosition(cc.p(voidNodeBackground.getPosition().x - 1.2, voidNodeBackground.getPosition().y));
-        voidNodeBackground2.setPosition(cc.p(voidNodeBackground2.getPosition().x - 0.5, voidNodeBackground2.getPosition().y));
+        voidNodeBackground.setPosition(cc.p(voidNodeBackground.getPosition().x - 1.5, voidNodeBackground.getPosition().y));
+        voidNodeBackground2.setPosition(cc.p(voidNodeBackground2.getPosition().x - 0.7, voidNodeBackground2.getPosition().y));
 
         //Atualiza os dados
         localPlayer.distance += (( playerVelocity + velocity ) / 100);
@@ -268,7 +281,7 @@ var GameLayer = cc.LayerGradient.extend({
 
             var randomNumber;
             if (nextMap.length == 0) {
-                randomNumber = Math.floor(Math.random() * _tilemaps.length);
+                randomNumber = Math.floor( ( Math.random() * _tilemaps.length ) );
                 if(socket)
                     socket.emit("next map", { index: randomNumber });
             } else {
@@ -300,13 +313,15 @@ var GameLayer = cc.LayerGradient.extend({
             if (b.GetUserData() != null) {
                 var bodySprite = b.GetUserData();
                 if (bodySprite.tag == "Player") {
-                    if (b.GetPosition().x < -30 / PTM_RATIO || b.GetPosition().y < -50 / PTM_RATIO)
-                        endGame();
-                    else {
-                        if (b.GetPosition().x < 150 / PTM_RATIO)
-                            b.SetLinearVelocity(new b2Vec2(2, b.GetLinearVelocity().y));
-                        if (b.GetPosition().x > 150 / PTM_RATIO)
-                            b.SetPosition(cc.p(150 / PTM_RATIO, b.GetPosition().y));
+                    if (!bodySprite.isRemote) {
+                        if (b.GetPosition().x < -35 / PTM_RATIO || b.GetPosition().y < -50 / PTM_RATIO)
+                            endGame();
+                        else {
+                            if (b.GetPosition().x < 150 / PTM_RATIO)
+                                b.SetLinearVelocity(new b2Vec2(2, b.GetLinearVelocity().y));
+                            if (b.GetPosition().x > 150 / PTM_RATIO)
+                                b.SetPosition(cc.p(150 / PTM_RATIO, b.GetPosition().y));
+                        }
                     }
                 } else
                     b.SetPosition(cc.p(b.GetPosition().x - (velocity + playerVelocity)/ PTM_RATIO, b.GetPosition().y));
@@ -325,15 +340,17 @@ var GameLayer = cc.LayerGradient.extend({
 function endGame() {
     clearInterval(updateThread);
 
-    var label = cc.LabelTTF.create("Over!", "GhoulySolidRegular", 40);
+    cc.AudioEngine.getInstance().stopMusic();
+
+    var label = cc.LabelTTF.create("Over!", "PipeDream", 80);
     label.setPosition(new cc.Point(screen.width / 2, screen.height / 2));
-    label.setColor(new cc.Color4B(0, 0, 0, 255));
+    label.setColor(new cc.Color4B(255, 13, 0, 255));
     layerSprite.addChild(label);
 
     if (localPlayer.distance > parseFloat( localStorage["bestScore"] ))
         localStorage["bestScore"] = localPlayer.distance.toFixed(1);
 
-    label = cc.LabelTTF.create(localPlayer.distance.toFixed(1)+"m", "GhoulySolidRegular", 40);
+    label = cc.LabelTTF.create(localPlayer.distance.toFixed(1)+"m", "Zion", 40);
     label.setPosition(new cc.Point(screen.width / 2, screen.height / 2 - 50));
     label.setColor(new cc.Color4B(0, 0, 0, 255));
     layerSprite.addChild(label);

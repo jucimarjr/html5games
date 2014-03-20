@@ -1,43 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="140" height="15" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
  <tileset firstgid="1" name="tiles" tilewidth="32" tileheight="32">
-  <image source="tiles.png" width="667" height="161"/>
+  <image source="tiles2.png" width="667" height="161"/>
  </tileset>
- <layer name="Camada de Tiles 1" width="140" height="15">
-  <data encoding="base64" compression="zlib">
-   eJztmNdPAkEQxseKJbH3mti7IolgebCBD6L4YHtV+f//Bj8CE4Zhdzma54X9kl/C7XF3w+y3M3sQeXl1pnpBH+gHsZBj8fLy6mwNhB2A179So36Ila4dBENgGIyAUTAGxsEEmARTzYfpFXEtgiWwDFbAKlgD62ADbIItsA12QorRqzHJ/a2uCd0OXhz3PAZJkAKnIAHOxNg5uACX4KrVP8irrZoHC2SuCXEqz3fCcGwT+yIpKBw/gix4As8gR0Xf+R4VHR2CIyrWhBMqe8LkFR57KGET+yNFld7h67/AN/gBefI9Kkq6AbfgDtyDNMhQtW/S4hz7yCabX9JU6Tv5vU7rUfq/rnr2AiZ6moynK+B9dB2R8LkMlT3EnglaX7gHsV8Y6Zuo9SjObTPzNkf2vYBeq5K4ojA2A2YDxOuKbTrAfUg9V/uEvVIYk3PNYzbZ/JIS12vf8DPD6FG2+bfll3Nrola+WQfk3gvovHBd12suiF+CeGEX7IH9GnHrta7rCp+TXmmkvvBxVt3H9Pslf9GjbPNvyy/n1kStfLOuqXovoHOt15Os73kq5yvniFXGGzQ2lzgGHZfet+heVK9fGJOPZM3JKGSPcsnVI2rVC9v8tyK/Nr2CN/AOPsAnVdfwvBoznePPQetas9L9weXreusLv0uzN7R3XPCz5HuUywuuHlFvr2infgHJzV95
-  </data>
- </layer>
+ <tileset firstgid="101" name="coqueiros" tilewidth="32" tileheight="32">
+  <image source="coqueiro.png" width="744" height="1052"/>
+ </tileset>
  <objectgroup name="objects" width="140" height="15">
-  <object type="edgeShape" x="77" y="477">
-   <polyline points="0,0 25,-45 219,-156 245,-160 452,-157 541,-157 604,-155 655,-160"/>
+  <object type="edgeShape" x="89" y="478">
+   <polyline points="0,0 5,-110 1079,-109"/>
   </object>
-  <object type="edgeShape" x="927" y="432">
-   <polyline points="0,0 1,-71 12,-79 88,-77"/>
+  <object type="edgeShape" x="1434" y="479">
+   <polyline points="0,0 1,-112 372,-111"/>
   </object>
-  <object type="edgeShape" x="1215" y="405">
-   <polyline points="0,0 8,-83 88,-81"/>
+  <object type="edgeShape" x="1949" y="428">
+   <polyline points="-3,49 0,-121 177,-121"/>
   </object>
-  <object type="edgeShape" x="1535" y="473">
-   <polyline points="0,0 0,-161 61,-207 201,-279 229,-281 460,-283 483,-263"/>
+  <object type="edgeShape" x="2302" y="364">
+   <polyline points="0,115 0,-124 175,-125"/>
   </object>
-  <object type="edgeShape" x="2208" y="475">
+  <object type="edgeShape" x="2652" y="302">
+   <polyline points="2,177 -1,-125 179,-124"/>
+  </object>
+  <object type="edgeShape" x="3067" y="478">
    <properties>
-    <property name="friction" value="1"/>
+    <property name="friction" value="0"/>
    </properties>
-   <polyline points="0,0 0,-272 103,-331 161,-348 208,-340 373,-241 533,-145 701,-44"/>
+   <polyline points="0,0 5,-113 771,-114"/>
   </object>
-  <object type="edgeShape" x="3136" y="475">
-   <polyline points="0,0 -1,-53 311,-56"/>
+  <object type="edgeShape" x="4059" y="476">
+   <polyline points="0,0 1,-106 338,-105"/>
   </object>
-  <object type="edgeShape" x="3615" y="436">
-   <polyline points="0,0 3,-81 215,-77"/>
+  <object type="rectangleShape" x="3103" y="328" width="29" height="27">
+   <properties>
+    <property name="density" value="2"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="sprite" value="box.png"/>
+   </properties>
   </object>
-  <object type="edgeShape" x="4000" y="401">
-   <polyline points="0,0 1,-80 245,-79"/>
+  <object type="rectangleShape" x="3116" y="238" width="29" height="27">
+   <properties>
+    <property name="density" value="2"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="sprite" value="box.png"/>
+   </properties>
   </object>
-  <object type="edgeShape" x="2915" y="448">
-   <polyline points="0,0 217,0"/>
+  <object type="rectangleShape" x="3112" y="284" width="29" height="27">
+   <properties>
+    <property name="density" value="2"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="sprite" value="box.png"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="3121" y="193" width="29" height="27">
+   <properties>
+    <property name="density" value="2"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="sprite" value="box.png"/>
+   </properties>
   </object>
  </objectgroup>
+ <layer name="coqueiros2" width="140" height="15">
+  <data encoding="base64" compression="zlib">
+   eJzt0sdVglEAROF3YK1irEDMVmAGWsCsFRgwVaAYqUBBQCsAsxWYQwUGTBUoQcW7eA244l/MPefbz2KMUUop5xR0GdOPAQxiCMMYwSjGMO4q9UrllCb4wiSmMI0QZjCLOcxjQX9RtkW+sIQwlrGCVaxhHRuI6C/KtskXthBFDNuII4EkdrCrvyhbii+ksYd9HOAQRzjGCU71F2U74wvnuMAlrnCNG9ziDvf6i7I98IVHPOEZGbzgFW94x4f+omyffOELWeSQRwHf+MEvivqLspW5jSlHBTyoRBWqUYNa1LlLvVI5pXq+4EUDGtGEZrSgFW1o11+UrYMvdKIL3ehBL/rggx8B/UUppdQ/+gNXnzra
+  </data>
+ </layer>
+ <layer name="coqueiros" width="140" height="15">
+  <data encoding="base64" compression="zlib">
+   eJzt2VeMFFQUBuDZXcVEpCgoKjZgd+kgvewuXWOjSy+C0nuz0qWDvYF0UMEKUhVFigoCNlCxJCjdArZEpQt8L7xsIgwzZgLJ/ZPvceaenPNns8lEIqdPueRIpDwVqEglKlOFqlRL/u/PXp8UidxAIQpThFTSSKcoxShOCUpSitKUoWzSGYYLOedyiz7cym3czh3UpwENaURjmtA0W3cqu3cVqlKN6mSQSRY1qEktalOHutTjJm4OfTnvcpcOdKAjd3MPnehMF7rSje70yNaX+u7dgIY0ojFNaMqdNKM5LWhJK1rThra0i7IvzbzbnBa0pBWtaUNb2tH+NH8HQ/6/3GfP9/MAD/IQgxnCUIYxnBGMzHaTTu7dmS50pRvd6UFPetGbPvSlH/0ZwEAGRdmXXt7tTR/60o/+DGAgg7g39CUhedSeH+NxnuBJnuJpnuFZnmMyU7LdZLB7D2EowxjOCEbyMKMYzRjGMo7xTGAik6LsyyjvjmYMYxnHeCYwkUk8EvqSkLxozy8xj/m8zCu8ymu8zhssYGEUN5msA1N4nqlMYzozmMksZjOHuVH2Zap3pzGdGcxkFrOZw1xeCH1JSN6155W8xypWs4a1vM8HfMg61kdxkwU6sJA3WcRilsT5f+0i7y5mCUtZxnLe4m1W8E7oS0LyhT1/yVds5Wu+4Vu+i+EG63RjPR+xgY1sirMvG8yxkU18zCd8ymd8zma2hL4kJL/Y8z728yu/8Tt/8GcMN9imG9/zA9vZwc44+7LdHDvYyS52s4e9/MhP/Bz6kpikRCJJJJPCBVxIDi5KOfuv+0s3/uYfDnCQQ3H25YAuHOQQhznCUY7xL8c5EfqSkBTQiSu5iqspyDVcy3Ux9OVid8vJJeQiN3nivGUuc+QmD3m5lMvIR34u54oYZg05+5Sx57LcSDnKU4GKVIrhBoV0ozBFSCWN9Dj7kmqONNIpSjGKU4KSlKJ06Mt5mVO/OVUng0yy4uxLhi5kkkUNalKL2tShLvVCX0JCQkLO6ZwEMC2uuA==
+  </data>
+ </layer>
+ <layer name="Camada de Tiles 1" width="140" height="15">
+  <data encoding="base64" compression="zlib">
+   eJztl1kOwjAMRMN+AvYTlPUEQCn3vxPzE6kfOHYSmhY0Iz0plqrEcZ1p4xxFURRFURRFUVRYIzAGEzAFMzAHiz6TogarJViBNdiALdiBfZ9JUUUV4xkVOIAjOIEzuIBrkUypISjGM27gDh6gBk/QgFeJRKnO1JVntPulDfvlt5XqGR7JMz75yz/3i3TuSsfafULK04+1+VI9o3bhHkjxly5qbq1laG3LO5HOXelYu09IefqxNl/Mf0ZMD8R4kbaXnNhay9DalncinbvSsXafkPL0Y22+1B6ond1ftGe1veTE1lqG1k713qaHWPveS3n6sTZfrr98w4u0XHJibU+WtUO1eQNsU02K
+  </data>
+ </layer>
 </map>

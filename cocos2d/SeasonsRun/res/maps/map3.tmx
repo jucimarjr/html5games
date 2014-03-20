@@ -6,50 +6,36 @@
  <tileset firstgid="101" name="coqueiros" tilewidth="32" tileheight="32">
   <image source="coqueiro.png" width="744" height="1052"/>
  </tileset>
- <layer name="coqueiros2" width="140" height="15">
+ <objectgroup name="objects" width="140" height="15">
+  <object type="edgeShape" x="59" y="479">
+   <polyline points="0,0 1,-111 915,-110"/>
+  </object>
+  <object type="edgeShape" x="1241" y="478">
+   <polyline points="0,0 3,-110 566,-108"/>
+  </object>
+  <object type="edgeShape" x="2075" y="478">
+   <polyline points="0,0 -1,-175 596,-174"/>
+  </object>
+  <object type="edgeShape" x="3004" y="478">
+   <polyline points="0,0 0,-112 565,-110"/>
+  </object>
+  <object type="edgeShape" x="3994" y="478">
+   <polyline points="0,0 1,-112 374,-111"/>
+  </object>
+ </objectgroup>
+ <layer name="Camada de Tiles 3" width="140" height="15">
   <data encoding="base64" compression="zlib">
-   eJzt1jeQD2EYwOH1/3Ni63AZrXj5pBmhkDmulTOtnGnlTCvn08u5l3MrZ1o8pTGM2WJ3h/l+M8/MVt/u7PcWbxT9Pw3PRdEIRjKK0YxhLOMYTyMTmEhTLusvDmXZFPc/lWlMZwYzmcVs5jCXecxnAZOYHOYm1Yr872JKKKWMcipSvofF3reEpSxjOStYySpWs4a1rGM9C1kU5iX1Kv3zKqqpoZY66mlI6T42ec9mtrCVbWxnBzvZxW72sJd9bGBjmJfUi7M3JNVBZx/iMEc4yjGOc4KTnOI0zZxhPwfCvKRa3L0hqc46+xznucBFLnGZK1zlGte5wc0wJ5kUd29IqlvOvs0d7nKP+zzgIY94zBOe8izMSybF3RuS6qWzX/GaN7zlHe/5wEc+8ZkvfOU5L8LcpFrcvSGx8lHUghx5WtKKAlrThra0oz0d+OZ7vod5yay/7Q1J1sn9d6YLRRRTQilllFNBV7rRnY4U5pP9rtCf+93ekFa93Htv+tCXSqqopoZa6qingX70oGeYl0z7dW/Isv5mYQADGfTTXAz2PIShDAvzEgqFQqHQP9UPZex+bQ==
+   eJzt1cVNRVEUheGb98a4VIBLBbi0AA+vAJcKcKkAh1cBLhXgUgEuFeD2D5ifZOdkc0P2Sr7ZSfYdrKwbBJa6SBDUI4YGNKIJzWhBK9oif/2VlrCknS50oBNd6EYPetGHfgxYXyy/GaQLQxjGCEYxhnFMYBJT1hdnJDutue2+bk3zZgazmMM8FrCIJSwjbn1xRrLTmtvu69YKb1axhnVsYBNb2MYOdq0vzkh2WnPbfd3a480+DnCIIxzjBKc4w7n1xRnJTmtuu69bF7y5xBWucYNb3OEeD3i0vjgj2WnNbfd164k3z3jBK97wjg984gvf1hdnJDutue2+biVEgyARSUhGClKRhnRkIDPq55v/cyQ7rbntvm5l0YVs5CAXechHAQpRhGLrizOSndbcdl+3SuhCKcpQjgpUogrVqEGt9cUZyU5rbrv9R8IVyU5rbrv9R8IVyU5rbrv9RyyWcOcHNjDrZQ==
   </data>
  </layer>
- <layer name="coqueiros" width="140" height="15">
+ <layer name="Camada de Tiles 2" width="140" height="15">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer name="Camada de Tiles 1" width="140" height="15">
   <data encoding="base64" compression="zlib">
-   eJztVQlqw0AM3DZtkw+kR9oP5Gw/0MaN//+nyNgCIaSwy4rYCTMwsGMbVuc4JQAAAAAAAAAAAACIwwPxkfhEnI8cCzB9LImvxHfi58ixAOOAPWOWet94Jr4M5DN7yZq4Ie6I31ePFJgC2DPeUu8bH8TVQD6zl/wS/4hHYnv1SGPh7cmt/md1PjqvWq09Y5t639gTDwP5zF5yT/Pi7Um3G1z36JpHa9lHnY/Oq1ZbntEQ/4mngXxujW+nMC+eR2hdsifdbnDdo2serWUfdT46r1qtPaN7f3SYMy+5vSvRlicuxJ2eR2hdsietqHt0zaO15/2NkVettmZAkr/NnZfc3pVoyxO/xJ2eR2h9aU+s3ZDPI2serb0+NsnehZpn3j0ythJ/ye1dibY88UfceSl2qUvy7t6fAV42VZI=
+   eJztk1kOwjAMRMt+AvYTlPUEFCj3vxPzU8lCjuyQyPAxTxopnladpMo0DSGEEEIIIYQQQgghhPwHI2gMTaApNIPmypzy5XoRvHcSzxJaQWtoA22hnTKnfLneB+/9V+R0zNs7y7e6WNp7b04LHaAjdILO0EWZU75cX42s6LPVyNYycjrm7Z3lW10s7b035wZ10B16QE+oV+aUL9cvIyv6bDWytYycjnl7Z/lWF0t7783R7ksnvF55Lj35nve+RJ2tRraWkdMxb+8s3/q3pb3/Jkfek+Fbw2x5Ofcl6mw1sj8z3qlXQGk=
   </data>
  </layer>
- <objectgroup name="objects" width="140" height="15">
-  <object type="edgeShape" x="609" y="474">
-   <polyline points="-609,9 -610,-105 776,-104"/>
-  </object>
-  <object type="edgeShape" x="1474" y="474">
-   <polyline points="-8,7 -5,-137 749,-137"/>
-  </object>
-  <object type="edgeShape" x="2273" y="478">
-   <polyline points="24,1 27,-202 302,-202"/>
-  </object>
-  <object type="edgeShape" x="2594" y="476">
-   <polyline points="53,5 60,-263 138,-263"/>
-  </object>
-  <object type="edgeShape" x="3682" y="479">
-   <polyline points="119,0 122,-108 515,-110"/>
-  </object>
-  <object type="edgeShape" x="4255" y="475">
-   <polyline points="26,5 30,-168 207,-168"/>
-  </object>
-  <object type="rectangleShape" x="3343" y="329" width="32" height="32">
-   <properties>
-    <property name="density" value="2"/>
-    <property name="friction" value="1"/>
-    <property name="motion" value="dynamic"/>
-    <property name="sprite" value="box.png"/>
-   </properties>
-  </object>
-  <object type="edgeShape" x="2876" y="479">
-   <polyline points="0,0 1,-79 785,-79"/>
-  </object>
- </objectgroup>
 </map>
