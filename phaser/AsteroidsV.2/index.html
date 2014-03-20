@@ -4,6 +4,7 @@
 	<meta charset="UTF-8" />
 	<title>Asteroids</title>
 	
+	<!--<script type="text/javascript" src="../phaser-src/build/phaser.js"></script>-->
 	<script type="text/javascript" src="js/phaser.min.js"></script>
 	
 	<script type="text/javascript" src="js/Splash.js"></script>
@@ -26,7 +27,7 @@
 
 <script type="text/javascript">
 
-var game = new Phaser.Game(800, 480, Phaser.AUTO, '', { preload: preload, create: create, update: update, render:render});
+var game = new Phaser.Game(800, 480, Phaser.AUTO, '', { preload: preload, create: create, update: update});
 var score = null;
 
 var gameScene = null;
@@ -47,15 +48,10 @@ function preload()
 	game.load.image('res','assets/images/res.png');
 	game.load.image('laser','assets/images/laser_5-2.png');
 	game.load.image('ship','assets/images/ship2_14-24.png');
-	game.load.image('asteroidcircle1' , 'assets/images/asteroidsCircle1.png');
-	game.load.image('asteroidcircle2' , 'assets/images/asteroidsCircle2.png');
-	game.load.image('asteroidcircle3' , 'assets/images/asteroidsCircle3.png');
-	game.load.image('asteroidcircle4' , 'assets/images/asteroidsCircle4.png');
     game.load.audio('thrust', 'assets/audios/AsteroidsThrust.mp3');
     game.load.audio('shoot', 'assets/audios/AsteroidsShoot.mp3');
     game.load.audio('ufo', 'assets/audios/AsteroidsSaucer.mp3');
     game.load.audio('laserSound', 'assets/audios/laser.wav');
-    game.load.physics('asteroidsPhisycs', 'assets/images/asteroids.json');
     setHighScore();
     var keyFull = this.game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
 	keyFull.onDown.add(function(){
@@ -80,11 +76,6 @@ function update()
 	gameScene.update();
 }
 
-function render() 
-{
-	gameScene.render();
-}
-
 function setHighScore()
 {
     if (typeof localStorage["scores"] == "undefined") {
@@ -100,13 +91,6 @@ function setHighScore()
         localStorage["nameScore5"] = "EEE";
         localStorage["scores"] = "OK";
     }
-}
-
-function render() {
-
-    // Sprite debug info
-    gameScene.render();
-
 }
 
 </script>

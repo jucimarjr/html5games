@@ -21,8 +21,6 @@ SpaceShip.prototype.create = function(){
 	this.shootType = 0;
 	this.sound = this.game.add.audio('laserSound', 1);
 	this.sprite = this.game.add.sprite(this.game.world.width/2, this.game.world.height/2, 'sprites', 'ship_14-24.png');
-	//this.game.physics.enable(this.sprite, Phaser.Physics.P2JS);
-	this.game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
     //this.sprite.events.onOutOfBounds.add(this.gameClass.outOfBounds,this);
 	this.changeShootKey = this.game.input.keyboard.addKey(Phaser.Keyboard.Z);
 	this.changeShootKey.onDown.add(this.changeShoot, this);
@@ -48,24 +46,6 @@ SpaceShip.prototype.create = function(){
 
 SpaceShip.prototype.update = function () {	
    this.gameClass.warp(this.sprite);
-   if (this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT))
-   {
-		this.rotate('left');
-   }
-   else if (this.game.input.keyboard.isDown(Phaser.Keyboard.RIGHT))
-   {
-	   this.rotate('right');
-   }
-   else
-   {
-		//this.sprite.body.setZeroRotation();
-   }
-
-   if (this.game.input.keyboard.isDown(Phaser.Keyboard.UP))
-   {
-	    this.accelerate();
-   }
-   //this.sprite.body.setZeroRotation();
 };
 
 SpaceShip.prototype.changeShoot = function(){
@@ -88,24 +68,20 @@ SpaceShip.prototype.rotate = function (direction) {
         this.sprite.body.rotation -= 5;
     if ( direction == "right")
         this.sprite.body.rotation += 5;
-    
 
 };
 
 SpaceShip.prototype.accelerate = function () {
 
     game.add.audio('thrust', 1).play();
-    this.sprite.body.velocity.x = Math.cos(this.sprite.body.rotation - 90 * 0.0174) * 150;
-    this.sprite.body.velocity.y = Math.sin(this.sprite.body.rotation - 90 * 0.0174) * 150;
     
+    this.sprite.body.acceleration.x = Math.cos((this.sprite.body.rotation + 270)*0.0174) *150;
+	this.sprite.body.acceleration.y = Math.sin((this.sprite.body.rotation + 270)*0.0174) *150;
 
 };
 
 SpaceShip.prototype.stop = function () {
-	/*
-	this.sprite.body.force.x = 0;
-	this.sprite.body.force.y = 0;
-	*/
+    this.sprite.body.acceleration.setTo(0, 0);
     this.sprite.animations.stop('thrust');
     this.sprite.animations.play('stop');
 };
@@ -128,11 +104,10 @@ SpaceShip.prototype.shoot = function () {
     		this.game.add.audio('shoot', 1).play();
     		
     		this.bullet = this.bulletsGroup.getFirstDead();
-    		this.game.physics.enable(this.bullet, Phaser.Physics.ARCADE);
     		this.bullet.loadTexture('sprites', 'shoot_2-2.png');
     		this.bullet.reset(this.sprite.position.x + Math.cos((this.sprite.body.rotation + 270)*0.0174) *24,
         					  this.sprite.position.y + Math.sin((this.sprite.body.rotation + 270)*0.0174) *24);
-    		this.game.physics.arcade.velocityFromAngle(this.sprite.body.rotation - 90, 500, this.bullet.body.velocity);
+    		this.game.physics.velocityFromAngle(this.sprite.body.rotation - 90, 500, this.bullet.body.velocity);
     		this.bullet.events.onOutOfBounds.add(this.destroyShoot, this);
     		this.bullet.name = 'shoot';
     		this.bullet.scale.setTo(1.5,1.5);
@@ -140,7 +115,6 @@ SpaceShip.prototype.shoot = function () {
     	}
     }else if(this.shootType == 1 && !game.input.keyboard.isDown(Phaser.Keyboard.LEFT) && !game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)){
     	this.bullet = this.bulletsGroup.getFirstDead();
-    	this.game.physics.enable(this.bullet, Phaser.Physics.ARCADE);
     	if(this.bullet != null){
     		this.bullet.loadTexture('laser');
     		if(!this.sound.isPlaying){
@@ -148,7 +122,7 @@ SpaceShip.prototype.shoot = function () {
     		}
     		this.bullet.reset(this.sprite.position.x + Math.cos((this.sprite.body.rotation + 270)*0.0174) *15,
     					      this.sprite.position.y + Math.sin((this.sprite.body.rotation + 270)*0.0174) *15);
-    		this.game.physics.arcade.velocityFromAngle(this.sprite.body.rotation - 90, 600, this.bullet.body.velocity);
+    		this.game.physics.velocityFromAngle(this.sprite.body.rotation - 90, 600, this.bullet.body.velocity);
     		this.bullet.body.velocity.x += this.sprite.body.velocity.x;
     		this.bullet.body.velocity.y += this.sprite.body.velocity.y;
     		this.bullet.events.onOutOfBounds.add(this.destroyShoot, this);
