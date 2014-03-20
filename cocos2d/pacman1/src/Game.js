@@ -117,6 +117,7 @@ var gameLayer = cc.Layer.extend({
 	update: function(){		
 		this.verifyCollisionBetweenPacMap();		
 		this.verifyCollisionBetweenPacGhost();
+		//this._blinky.setPositionOnScreen("up");
 	},
 			
 	onClick:function (dt) {    	

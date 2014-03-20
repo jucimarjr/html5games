@@ -1,8 +1,6 @@
 var Ghost = cc.Sprite.extend({
 	spriteFrameCache: cc.SpriteFrameCache.getInstance(),
 	animeCache: cc.AnimationCache.getInstance(),
-	xVelocity:300,
-    yVelocity:300,
     up:false,
 	down:false,
 	_currentRotation:0,
@@ -10,6 +8,8 @@ var Ghost = cc.Sprite.extend({
 	//_currentPositionY: 0,
 	velocityX: 0,
 	velocityY: 0,
+	xVelocity:2,
+    yVelocity:0,
 	
 	init: function()
 	{
@@ -113,7 +113,7 @@ var Ghost = cc.Sprite.extend({
     	position.x++;
         this.setPosition(position);
         */
-    	/*var move = move = cc.MoveBy.create(2, cc.p(screen.width - 100, 0));
+    	var move = move = cc.MoveBy.create(2, cc.p(screen.width - 100, 0));
     	var action = cc.Sequence.create(
 	            move,
 	            move.reverse(),
@@ -157,10 +157,6 @@ var Ghost = cc.Sprite.extend({
     	}
 
 		this.runAction(cc.RepeatForever.create(action));
-		*/
-    	var position = this.getPosition();
-    	position.x++;
-        this.setPosition(position);
     },
     
     setGhost:function(type) {
@@ -204,4 +200,50 @@ var Ghost = cc.Sprite.extend({
 				break;
 		}
 	},
+	
+	/*setPositionOnScreen: function(actualPosition)
+    {    	    	    	
+		var position = ["up", "down", "right", "left"];
+		var i = Math.floor((Math.random()*3)+1);
+		
+    	if (actualPosition == "up"){
+			this.setAnimation("pac", "right", SPRITE_SIZE, 2, "right");        
+            this.getAnimation("right"); 
+            this.setDirection('right');
+    	}
+    	if (LG.KEYS[cc.KEY.left]){
+    		this.setAnimation("pac", "left", SPRITE_SIZE, 2, "left");        
+            this.getAnimation("left"); 
+            this.setDirection('left');
+    	}
+    	if (LG.KEYS[cc.KEY.up]){
+    		this.setAnimation("pac", "up", SPRITE_SIZE, 2, "up");        
+            this.getAnimation("up"); 
+            this.setDirection('up');
+    	}
+    	if (LG.KEYS[cc.KEY.down]){
+    		this.setAnimation("pac", "down", SPRITE_SIZE, 2, "down");        
+            this.getAnimation("down"); 
+            this.setDirection('down');
+    	}    	
+    },
+    
+    setDirection: function(direction){
+		if(direction == 'right'){
+			this.xVelocity = 2;
+			this.yVelocity = 0;
+		}
+		if(direction == 'left'){
+			this.xVelocity = -2;
+			this.yVelocity = 0;
+		}
+		if(direction == 'up'){
+			this.xVelocity = 0;
+			this.yVelocity = 2;
+		}
+		if(direction == 'down'){
+			this.xVelocity = 0;
+			this.yVelocity = -2;
+		}
+	},*/
 });
