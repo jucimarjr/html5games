@@ -21,6 +21,7 @@ SpaceShip.prototype.create = function(){
 	this.shootType = 0;
 	this.sound = this.game.add.audio('laserSound', 1);
 	this.sprite = this.game.add.sprite(this.game.world.width/2, this.game.world.height/2, 'sprites', 'ship_14-24.png');
+	//this.game.physics.enable(this.sprite, Phaser.Physics.P2JS);
 	this.game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
     //this.sprite.events.onOutOfBounds.add(this.gameClass.outOfBounds,this);
 	this.changeShootKey = this.game.input.keyboard.addKey(Phaser.Keyboard.Z);
@@ -47,6 +48,24 @@ SpaceShip.prototype.create = function(){
 
 SpaceShip.prototype.update = function () {	
    this.gameClass.warp(this.sprite);
+   if (this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT))
+   {
+		this.rotate('left');
+   }
+   else if (this.game.input.keyboard.isDown(Phaser.Keyboard.RIGHT))
+   {
+	   this.rotate('right');
+   }
+   else
+   {
+		//this.sprite.body.setZeroRotation();
+   }
+
+   if (this.game.input.keyboard.isDown(Phaser.Keyboard.UP))
+   {
+	    this.accelerate();
+   }
+   //this.sprite.body.setZeroRotation();
 };
 
 SpaceShip.prototype.changeShoot = function(){
@@ -69,20 +88,24 @@ SpaceShip.prototype.rotate = function (direction) {
         this.sprite.body.rotation -= 5;
     if ( direction == "right")
         this.sprite.body.rotation += 5;
+    
 
 };
 
 SpaceShip.prototype.accelerate = function () {
 
     game.add.audio('thrust', 1).play();
+    this.sprite.body.velocity.x = Math.cos(this.sprite.body.rotation - 90 * 0.0174) * 150;
+    this.sprite.body.velocity.y = Math.sin(this.sprite.body.rotation - 90 * 0.0174) * 150;
     
-    this.sprite.body.acceleration.x = Math.cos((this.sprite.body.rotation + 270)*0.0174) *150;
-	this.sprite.body.acceleration.y = Math.sin((this.sprite.body.rotation + 270)*0.0174) *150;
 
 };
 
 SpaceShip.prototype.stop = function () {
-    this.sprite.body.acceleration.setTo(0, 0);
+	/*
+	this.sprite.body.force.x = 0;
+	this.sprite.body.force.y = 0;
+	*/
     this.sprite.animations.stop('thrust');
     this.sprite.animations.play('stop');
 };

@@ -26,7 +26,7 @@ var Game = function(game){
 
 Game.prototype.create = function () {	
 	this.game.physics.startSystem(Phaser.Physics.P2JS);
-	this.game.physics.startSystem(Phaser.Physics.ARCADE);
+	//this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
 	this.shootUfo = this.game.add.group();
 	this.game.world.setBounds(0, 0, 3200, 1920);
@@ -48,10 +48,10 @@ Game.prototype.create = function () {
 	this.groupAsteroids = this.game.add.group();
     this.spaceShip = new SpaceShip(this);
     this.game.camera.follow(this.spaceShip.sprite);	
-    this.initAsteroids(40);
+    //this.initAsteroids(40);
    // this.addCircleAsteroids();
 	this.groupResources = this.game.add.group();
-	this.addResources();
+	//this.addResources();
 	this.fps = this.game.add.text(10, 470, 'FPS: '+this.game.time.fps, {
         font: "12px Vector Battle", fill: "#ffffff" , align: "right"
     });
@@ -129,6 +129,7 @@ Game.prototype.update = function () {
     this.livesHud.y = this.game.camera.y + 10;
     this.tiled2.x -= this.spaceShip.sprite.body.velocity.x/500;
     this.tiled2.y -= this.spaceShip.sprite.body.velocity.y/500;
+    /*
     if(game.input.keyboard.isDown(Phaser.Keyboard.LEFT))
         this.spaceShip.rotate("left");
     else if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT))
@@ -148,12 +149,12 @@ Game.prototype.update = function () {
     if (game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)){
         this.spaceShip.shoot();   
     }
-    
+    */
     if (this.game.time.now > this.nextAddUfo) {
         this.nextAddUfo = this.game.time.now + this.addUfoTime;
-        this.addUfo();
+        //this.addUfo();
     }
-    
+    /*
     if (this.game.time.now > this.timeAsteroids) {
         this.timeAsteroids = this.game.time.now + this.addAsteroids;
         var resource = this.game.add.sprite(Math.random() * this.game.world.width, Math.random() * this.game.world.height, 'res');
@@ -163,8 +164,9 @@ Game.prototype.update = function () {
 		this.groupResources.add(resource);
         this.numAsteroids++;
     }
+    */
     this.drawMap();
-    this.collide();          
+    //this.collide();          
 };
 
 Game.prototype.collide = function(){

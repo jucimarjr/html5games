@@ -8,10 +8,10 @@ var Asteroid = function(gameClass, posX , posY , size , vel) {
     	this.redSprite = this.game.add.sprite(posX,posY,'asteroids','asteroids'+i+'_80-80.png');
     	this.hp = 80;
         mult = 1;
-        this.game.physics.enable(this, Phaser.Physics.P2JS);
-        this.game.physics.enable(this.redSprite, Phaser.Physics.P2JS);
-        this.body.clearShapes();
-        this.body.loadPolygon('asteroidsPhisycs', 'asteroids'+i+'_80-80');        
+        //this.game.physics.enable(this, Phaser.Physics.P2JS);
+        //this.game.physics.enable(this.redSprite, Phaser.Physics.P2JS);
+        //this.body.clearShapes();
+        //this.body.loadPolygon('asteroidsPhisycs', 'asteroids'+i+'_80-80');        
     }
     if (size == "medium") {
     	var i = Math.round(1 + Math.random()*2);

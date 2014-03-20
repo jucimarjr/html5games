@@ -5,7 +5,7 @@ Ufo = function (gameClass) {
     //this.shootUfo = this.game.add.group();    
     this.nextFire = this.game.time.now + this.fireRate;
     Phaser.Sprite.call(this, this.game, 0, 0, 'sprites', 'ufo_96-61.png');
-    this.game.physics.enable(this, Phaser.Physics.ARCADE);
+    this.game.physics.enable(this, Phaser.Physics.P2JS);
     //this.game.add.audio('ufo', 1).play();
     this.reset(0, Math.random() * this.game.world.height);
     this.anchor.setTo(0.5,0.5);
