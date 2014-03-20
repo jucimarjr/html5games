@@ -61,7 +61,10 @@ var gameLayer = cc.Layer.extend({
 				
 		this._pac = new Pac();
         map.addChild(this._pac);
-        this._pac.setPosition(new cc.Point(screen.width/2 - 110, screen.height/2 - 205));        
+        this._pac.setPosition(new cc.Point(screen.width/2 - 110, screen.height/2 - 205)); 
+        //this._pac.setAnimation("pac", "left", SPRITE_SIZE, 2, "left");        
+        //this._pac.getAnimation("left");  
+        //this._pac.setDynamicPosition('left');
         
 		//lifeGame.life = 2;
 		//scoreGame.score = 0;
@@ -187,11 +190,7 @@ var gameLayer = cc.Layer.extend({
             var width = dict["width"];
             var height = dict["height"];
 									
-			var rect1 = cc.rect(x - width / 2, y - height / 2, width, height);
-			
-			var a = this._blinky.getContentSize();
-			var p = this._blinky.getPosition();
-			var rect3 = cc.rect(p.x - a.width / 2, p.y - a.height / 2, a.width, a.height);
+			var rect1 = cc.rect(x - width / 2, y - height / 2, width, height);			
 			
 			var b = this._pac.getContentSize();
 			var q = this._pac.getPosition();
@@ -202,7 +201,7 @@ var gameLayer = cc.Layer.extend({
 					this._pac.xVelocity = 0;
                 }else if(this._pac.yVelocity != 0){
 					this._pac.yVelocity = 0;
-                }
+                }								
 			}				
 
         }
@@ -217,8 +216,10 @@ var gameLayer = cc.Layer.extend({
 		var q = this._pac.getPosition();
 		var rect2 = cc.rect(q.x - b.width / 2, q.y - b.height / 2, b.width, b.height);			
 					
-		if (cc.rectIntersectsRect(rect1, rect2)){				
-			this.removeLives();
+		if (cc.rectIntersectsRect(rect1, rect2)){							
+			//this._pac.setDieAnimation();        
+	        //this._pac.getAnimation("die"); 
+	        this.removeLives();
 		}
 	}
 	/*

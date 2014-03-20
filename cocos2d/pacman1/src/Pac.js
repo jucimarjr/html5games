@@ -171,16 +171,22 @@ var Pac = cc.Sprite.extend({
     	}    	
     },
     
-    handleKey:function(e)
+    setDieAnimation:function()
     {
-        if(e === cc.KEY.left)
-        {
-            this._currentPosition--;
+    	var animFrames = [];
+        var frame;
+        var str = "";                 
+        
+        for (var i = 0; i <= 9; i++) {
+        	if (i == 0)
+        		str = "pac_up_open_32-32.png"; 
+        	else
+        		str = "pac_up_open_" + i + "_32-32.png";
+            frame = this.spriteFrameCache.getSpriteFrame(str);                        
+            animFrames.push(frame);
+        }         
 
-        }
-        else if(e === cc.KEY.right){        	
-            this._currentPosition++;
-        }
-
+        var animation = cc.Animation.create(animFrames, 0.1);
+        this.animeCache.addAnimation(animation, "die");  
     }
 });

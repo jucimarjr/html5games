@@ -113,7 +113,7 @@ var Ghost = cc.Sprite.extend({
     	position.x++;
         this.setPosition(position);
         */
-    	var move = move = cc.MoveBy.create(2, cc.p(screen.width - 100, 0));
+    	/*var move = move = cc.MoveBy.create(2, cc.p(screen.width - 100, 0));
     	var action = cc.Sequence.create(
 	            move,
 	            move.reverse(),
@@ -157,6 +157,10 @@ var Ghost = cc.Sprite.extend({
     	}
 
 		this.runAction(cc.RepeatForever.create(action));
+		*/
+    	var position = this.getPosition();
+    	position.x++;
+        this.setPosition(position);
     },
     
     setGhost:function(type) {
