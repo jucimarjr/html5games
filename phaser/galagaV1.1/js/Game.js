@@ -79,6 +79,11 @@ Game.prototype.update = function () {
 	  console.log("fire");
 	  this.ship.fire();
   }
+  else if(game.input.keyboard.isDown(Phaser.Keyboard.DOWN)){
+	  console.log("fire");
+	  this.enemy1.move(this.ship.sprite.body.x,this.ship.sprite.body.y);
+	  //this.ship.fire();
+  }
   
   
   this.moveBackground(this.background1);
