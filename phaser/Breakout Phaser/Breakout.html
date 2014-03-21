@@ -1,0 +1,98 @@
+<!doctype html> 
+<html lang="en"> 
+<head> 
+	<meta charset="UTF-8" />
+	<title>Phaser - Making your first game, part 1</title>
+	<script type="text/javascript" src="js/phaser.min.js"></script>
+    <style type="text/css">
+        body {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+	<script type="text/javascript">
+	var game = new Phaser.Game(933, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update }); // 933 = 900 + espaçco entre blocos*numero de colunas + espaço entre a borada lateral da canvas. (900 + 3*10 + 3).
+	var color = new Array(); // Array com cada um de seus elements contendo a imagem de um bloco de uma cor.
+		color[0] = 'redBlock';
+		color[1] = 'orangeBlock';
+		color[2] = 'yelowBlock';
+		color[3] = 'greenBlock';
+		color[4] = 'blueBlock';
+		
+	var player, ball, blocks, score, lives, cursors;
+	var playerSpeed = 550;
+	var ballSpeed = 300;
+	
+
+	function preload() {
+		game.load.image('bg','assets/backGround.png');
+		game.load.image('blueBlock','assets/blueBlock.png');
+		game.load.image('greenBlock','assets/greenBlock.png');
+		game.load.image('yelowBlock','assets/yelowBlock.png');
+		game.load.image('orangeBlock','assets/orangeBlock.png');
+		game.load.image('redBlock','assets/redBlock.png');
+		game.load.image('ball','assets/ball.png');
+		game.load.image('player','assets/player.png');
+	}
+
+	function create() {
+		 // cria os sprites p/ usar seus atributos na hora de cria-los.
+		blockSprt = game.add.sprite(0,0,'blueBlock');
+		blockSprt.kill();
+		playerSprt = game.add.sprite(0,0,'player');
+		playerSprt.kill();
+		
+		blocks = game.add.group();
+		// Cria a grade de blocos
+		for(var i = 0; i < 5; i++){ 
+			for (var j = 0; j < 10; j++){
+				var block = blocks.create(j * (blockSprt.width + 3) + 3, i * (blockSprt.height + 3 )+ 80, color[i]);	// Organiza os blocos, botando espaços entre si e entre as bordas da tela
+				block.body.immovable = true;
+			}
+		}
+		player = game.add.sprite(game.world.width/2 ,game.world.height - playerSprt.height, 'player');//depois melhoro  isso tambem
+		player.anchor.setTo(0.5,0.5);
+		player.body.collideWorldBounds = true;
+		player.body.immovable = true
+
+		ball = game.add.sprite(game.world.width/2 , game.world.height - 50,'ball');
+		ball.body.collideWorldBounds = true;
+		ball.anchor.setTo(0.5,0.5);
+		ball.body.velocity.y = -ballSpeed;
+		ball.body.bounce.y = 1;
+		ball.body.bounce.x = 1;
+		// Controles
+		cursors = game.input.keyboard.createCursorKeys();
+	}
+
+	function update() {
+		game.physics.collide(player, ball,manageCollision,null,this);
+		game.physics.collide(ball, blocks,breakBlock, null, this);
+		game.physics.setBoundsToWorld(true,true,true,false);
+				
+	player.body.velocity.x = 0;
+		if( cursors.left.isDown )
+			player.body.velocity.x = -playerSpeed;
+			else if ( cursors.right.isDown )
+				player.body.velocity.x = playerSpeed;
+	}
+
+	function manageCollision (){
+	if(player.body.velocity.x > 0 )
+			ball.body.velocity.x = ballSpeed * Math.random () + ballSpeed/2;
+		else if(player.body.velocity.x < 0 )
+				ball.body.velocity.x = -ballSpeed * Math.random () - ballSpeed/2;
+				else
+				ball.body.velocity.x = Math.random () * ballSpeed*2 - ballSpeed ;
+	}
+	
+	function breakBlock(ball,block){
+		block.kill();
+	}
+
+	
+	</script>
+
+</body>
+</html>

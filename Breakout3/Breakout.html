@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+	<head>
+			<meta charset="UTF-8" />
+			<title> Breakout html </title>
+	</head>
+	<body onload = "start()">
+					<canvas id = "canvas" width = "900" height = "600" style = "border:1px solid #000000" >
+					 	Navegador não compatível com HTML5 Canvas
+					</canvas>
+		<script>
+			var  c,canvas, context, barWidth, barHeight, ballSpeedX, ballSpeedY, ballWidth, ballPosX, ballPosY, playerWidth, playerSpeed, playerHeight, playerPosX, playerPosY, keyRightPressed , keyLeftPressed, i, j, posX, posY, numOfColumns, numOfLines,numOfBlocks, score, lives;
+			var color = new Array();
+					color[0] = "#FF4747"; //vermelho
+					color[1] = "#FF9147"; //laranja
+					color[2] = "#FFFF5E"; //amarelo
+					color[3] = "#7FE67F"; //verde
+					color[4] = "#599CFF"; //azul
+			function start()
+			{
+				c=true;
+				canvas = document.getElementById("canvas");
+				context = canvas.getContext("2d");
+				keyRightPressed = false;
+				keyLeftPressed = false;
+				barWidth = 105;
+				barHeight = 30;
+				numOfLines = 5;
+				playerSpeed = 20;
+				playerHeight = 20;
+				playerWidth = 150;
+				ballWidth = 20;
+				score = 0;
+				lives = 3;
+
+				newLevel();
+
+				document.addEventListener( 'keyup' , KeyUp , false);
+				document.addEventListener( 'keydown' , KeyDown , false);
+				setInterval(update,30); 
+			}
+
+				function KeyDown (e)
+				{
+						if (e.keyCode == 37) //Left.
+								keyLeftPressed = true;
+						else if (e.keyCode == 39) //Right
+								keyRightPressed = true;
+				} 
+
+				function KeyUp (e)
+				{
+						if (e.keyCode == 37) //Left.
+								keyLeftPressed = false;
+						else if (e.keyCode == 39) //Right
+								keyRightPressed = false;
+				}
+
+			function block(blockPosX, blockPosY, broke) //gera blocks.
+			{
+					this.blockPosX = blockPosX;
+					this.blockPosY = blockPosY;
+					this.broke = broke;
+			}
+
+			function hitBlock()
+			{
+				bm[i][j].broke = true;
+				c=false;
+				score += 5;
+				numOfBlocks -= 1;
+				if(numOfBlocks == 0)
+					newLevel();
+			}
+
+			function restartPosition()
+			{
+				playerPosX = (canvas.width - playerWidth) / 2;
+				playerPosY = canvas.height - playerHeight;
+				ballSpeedX = 10;
+				ballSpeedY = -10;
+				ballPosX = (canvas.width - ballWidth) / 2;
+				ballPosY = canvas.height -playerHeight - ballWidth;
+			}
+
+			function newLevel()
+			{
+				restartPosition();	
+				if (barWidth != 60)
+					barWidth -= 15; 
+				numOfColumns = canvas.width / barWidth;
+				numOfBlocks = numOfLines * numOfColumns;
+				bm = new Array(); //matriz de blocks.
+						for(i = 0; i < numOfLines; i++)
+						{
+								bm[i] = new Array();
+										for (j = 0; j < numOfColumns; j++)
+										{
+											posY = i * barHeight;
+											posX = j * barWidth;
+											bm[i][j] =  new block(posX,posY+100,false); //cria os objetos block na matriz. 
+										}
+						}
+				
+			}
+
+			function update()
+			{
+				if(lives!=0)
+				{	
+					//Movimento 
+					//Player
+					if (keyRightPressed != keyLeftPressed)
+					{
+						if (keyRightPressed)
+						{
+								if(playerPosX + playerWidth < canvas.width)
+										playerPosX += playerSpeed;
+						}
+						else
+						{
+								if (playerPosX > 0)
+										playerPosX -= playerSpeed;
+						} 
+					}
+					//Bola
+					//Bola testa colisao com cada bloco
+							c=true;
+						for (i = 0; i < numOfLines; i++)
+						{
+							
+							for(j = 0; j < numOfColumns; j++)
+							{
+								if(c)
+								{
+									if(!bm[i][j].broke)
+									{
+										if((ballPosX+ballWidth >= bm[i][j].blockPosX)&&(ballPosX<=bm[i][j].blockPosX+barWidth))//se tkar em x
+										{
+											if((ballPosY <= bm[i][j].blockPosY+barHeight)&&(ballPosY+ballWidth >= bm[i][j].blockPosY))//em y
+											{	
+
+												if((ballPosY + ballWidth <= bm[i][j].blockPosY) || (ballPosY >= bm[i][j].blockPosY+barHeight))// em cima ou embaixo
+												{
+												if((ballPosX + ballWidth > bm[i][j].blockPosX ) && (ballPosX < bm[i][j].blockPosX + barWidth ))	//]x[
+														{
+															ballSpeedY = ballSpeedY * -1;
+															hitBlock();
+														}
+												}
+												else
+												{
+													if((ballPosY + ballWidth > bm[i][j].blockPosY) && (ballPosY < bm[i][j].blockPosY + barHeight))
+													{
+														ballSpeedX = ballSpeedX * -1;
+														hitBlock();
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}					
+					if ((ballPosX <= playerPosX+playerWidth) && (ballPosX + ballWidth >= playerPosX)) // se tocar no player em X
+					{
+						if ((ballPosY + ballWidth > playerPosY) && (ballPosY + ballWidth < playerPosY+playerHeight)) //-//- em Y
+						{		
+							ballSpeedY = ballSpeedY * -1 ;
+								if (keyRightPressed != keyLeftPressed)
+								{
+									if (keyRightPressed)
+									{
+										ballSpeedX = Math.abs(ballSpeedX);
+									}	
+									else
+									{
+										ballSpeedX = Math.abs(ballSpeedX) * -1;
+									}
+								}
+								else
+								{
+									if(Math.floor(Math.random()*2)==0)
+										ballSpeedX = Math.abs(ballSpeedX);
+									else
+									ballSpeedX = Math.abs(ballSpeedX) * -1;	
+								}	
+						}
+					}
+					if(ballPosY <= 0) //se sair da tela, no topo
+						ballSpeedY = ballSpeedY * -1;
+					if(ballPosY > canvas.height + 300) // se sair da tela em baixo
+					{
+						lives -= 1;
+						if(lives!=0)
+							restartPosition();
+					}
+					if((ballPosX <= 0) || (ballPosX + ballWidth >= canvas.width)) // se sair pelas laterais
+						ballSpeedX = ballSpeedX * -1;
+					ballPosX += ballSpeedX ;
+					ballPosY += ballSpeedY ;			
+					
+					//Desenha na tela
+						context.clearRect(0, 0, canvas.width, canvas.height); //Limpa a tela.
+						//Fundo Preto
+						context.fillStyle = "#000000"; 
+						context.fillRect(0,0,canvas.width,canvas.height);
+						//bola
+						context.fillStyle = "#ffffff";
+						context.fillRect( ballPosX, ballPosY, ballWidth, ballWidth);
+						//Desenha os objetos block
+						context.lineWidth = 5;
+						for(i=0;i<numOfLines;i++) 
+						{
+								context.fillStyle = color[i];
+								for(j=0;j<numOfColumns;j++)
+								{	
+										if(!bm[i][j].broke){
+											context.fillRect( bm[i][j].blockPosX, bm[i][j].blockPosY, barWidth, barHeight);
+											context.strokeRect( bm[i][j].blockPosX, bm[i][j].blockPosY, barWidth, barHeight);
+										}
+								}
+						}
+						//Player
+						context.fillStyle = "#ffffff";
+						context.fillRect(playerPosX,playerPosY,playerWidth,playerHeight);
+						// vidas e pontos
+						context.fillStyle = "#ffffff";
+						context.font = "21pt Helvetica";
+						context.fillText(score ,canvas.width - 200, 25);
+						context.fillText(lives ,5, 25);
+				}
+				else
+				{
+					context.fillStyle = "#000000";
+					context.fillRect(0,0,canvas.width,canvas.height);
+					context.fillStyle = "#ff0000";
+					context.font = "63pt Helvetica";
+					context.fillText("GAME OVER",canvas.width/2 -267.5,canvas.height/2 - 100);
+					context.fillStyle = "#ffffff";
+					context.font = "21pt Helvetica";
+					context.fillText("Your score : " + score ,canvas.width/2 -100,canvas.height/2);
+				}		
+			}
+	    </script>
+	</body>
+</html>
