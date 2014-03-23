@@ -42,7 +42,7 @@
   <object x="18" y="526" width="41" height="22"/>
   <object x="172" y="530" width="15" height="60"/>
   <object x="66" y="591" width="181" height="19"/>
-  <object x="238" y="528" width="137" height="16"/>
+  <object x="236" y="530" width="137" height="16"/>
   <object x="295" y="545" width="21" height="61"/>
   <object x="235" y="401" width="143" height="17"/>
   <object x="295" y="420" width="20" height="62"/>
@@ -68,5 +68,37 @@
   <object x="232" y="274" width="46" height="8"/>
   <object x="335" y="274" width="43" height="8"/>
   <object x="491" y="146" width="57" height="18"/>
+ </objectgroup>
+ <objectgroup name="Camada de Decisao" width="19" height="21">
+  <object x="453" y="27" width="24" height="22"/>
+  <object x="27" y="110" width="24" height="22"/>
+  <object x="134" y="111" width="24" height="22"/>
+  <object x="198" y="111" width="24" height="22"/>
+  <object x="262" y="112" width="24" height="22"/>
+  <object x="135" y="26" width="24" height="22"/>
+  <object x="560" y="113" width="24" height="22"/>
+  <object x="453" y="112" width="24" height="22"/>
+  <object x="389" y="112" width="24" height="22"/>
+  <object x="325" y="112" width="24" height="22"/>
+  <object x="453" y="174" width="24" height="22"/>
+  <object x="453" y="302" width="24" height="22"/>
+  <object x="454" y="431" width="24" height="22"/>
+  <object x="453" y="495" width="24" height="22"/>
+  <object x="517" y="559" width="24" height="22"/>
+  <object x="326" y="624" width="24" height="22"/>
+  <object x="261" y="624" width="24" height="22"/>
+  <object x="70" y="560" width="24" height="22"/>
+  <object x="133" y="497" width="24" height="22"/>
+  <object x="134" y="430" width="24" height="22"/>
+  <object x="134" y="304" width="24" height="22"/>
+  <object x="134" y="177" width="24" height="22"/>
+  <object x="198" y="303" width="24" height="22"/>
+  <object x="196" y="368" width="24" height="22"/>
+  <object x="197" y="432" width="24" height="22"/>
+  <object x="195" y="495" width="24" height="22"/>
+  <object x="390" y="430" width="24" height="22"/>
+  <object x="390" y="495" width="24" height="22"/>
+  <object x="388" y="301" width="24" height="22"/>
+  <object x="388" y="369" width="24" height="22"/>
  </objectgroup>
 </map>

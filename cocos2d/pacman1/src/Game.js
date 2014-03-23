@@ -53,14 +53,11 @@ var gameLayer = cc.Layer.extend({
 		
 
 		var group = map.getObjectGroup("Camada de Objetos");
-        objects = group.getObjects();
-
+        objects = group.getObjects();        
         
-
-		
-				
 		this._pac = new Pac();
-        map.addChild(this._pac);
+        //map.addChild(this._pac);
+		this.addChild(this._pac);
         this._pac.setPosition(new cc.Point(screen.width/2 - 110, screen.height/2 - 205)); 
         //this._pac.setAnimation("pac", "left", SPRITE_SIZE, 2, "left");        
         //this._pac.getAnimation("left");  
@@ -73,35 +70,44 @@ var gameLayer = cc.Layer.extend({
 						
 		this._blinky = new Ghost();
 		this._blinky.setGhost("blinky");
-        map.addChild(this._blinky);
+        //map.addChild(this._blinky);
+		this.addChild(this._blinky);
         this._blinky.setPosition(new cc.Point(screen.width / 2 - 115, screen.height / 2 + 50));
         this._blinky.setAnimation("blinky", "up", SPRITE_SIZE, 2, "up");        
         this._blinky.getAnimation("up");  
+        this._blinky.setPositionOnScreen("blinky");
+        
         //this._blinky.setDynamicPosition("up");
 
 		this._pinky = new Ghost();
 		this._pinky.setGhost("pinky");
-        map.addChild(this._pinky);
+        //map.addChild(this._pinky);
+		this.addChild(this._pinky);
         this._pinky.setPosition(new cc.Point(screen.width / 2 - 118, screen.height / 2 - 10));
         this._pinky.setAnimation("pinky", "up", SPRITE_SIZE, 2, "up");        
         this._pinky.getAnimation("up");
         //this._pinky.setDynamicPosition("left");
+        this._pinky.setPositionOnScreen("pinky");
         
         this._inkey = new Ghost();
 		this._inkey.setGhost("inkey");
-        map.addChild(this._inkey);
+        //map.addChild(this._inkey);
+		this.addChild(this._inkey);
         this._inkey.setPosition(new cc.Point(screen.width / 2 - 150, screen.height / 2 - 10));
         this._inkey.setAnimation("inkey", "up", SPRITE_SIZE, 2, "up");        
         this._inkey.getAnimation("up");
         //this._inkey.setDynamicPosition("down");
+        this._inkey.setPositionOnScreen("inkey");
         
         this._clyde = new Ghost();
 		this._clyde.setGhost("clyde");
-        map.addChild(this._clyde);
+        //map.addChild(this._clyde);
+		this.addChild(this._clyde);
         this._clyde.setPosition(new cc.Point(screen.width / 2 - 86, screen.height / 2 - 10));
         this._clyde.setAnimation("clyde", "up", SPRITE_SIZE, 2, "up");        
         this._clyde.getAnimation("up");
         //this._clyde.setDynamicPosition();
+        this._clyde.setPositionOnScreen("clyde");
 		
 		if (lifeGame.life == 2){
 			this.addLives();
@@ -115,9 +121,9 @@ var gameLayer = cc.Layer.extend({
 	},
 	
 	update: function(){		
-		this.verifyCollisionBetweenPacMap();		
-		this.verifyCollisionBetweenPacGhost();
-		//this._blinky.setPositionOnScreen("up");
+		cc.log("game update");
+		
+		this.verifyCollisionBetweenPacGhost();		
 	},
 			
 	onClick:function (dt) {    	
@@ -171,9 +177,11 @@ var gameLayer = cc.Layer.extend({
 		scoreGame.label.setString(scoreGame.text + " " + scoreGame.score);
 	},	   
 	
-	onKeyDown:function (e) {		
+	onKeyDown:function (e) {	
+		cc.log("pressionou a tecla");
         LG.KEYS[e] = true;    
         this._pac.setPositionOnScreen(e);  
+        this.verifyCollisionBetweenPacMap();        
     },
 
     onKeyUp:function (e) {
@@ -190,14 +198,26 @@ var gameLayer = cc.Layer.extend({
             var y = dict["y"];
             var width = dict["width"];
             var height = dict["height"];
+            
+            
+            cc.renderContext.lineWidth = 3;
+            cc.renderContext.strokeStyle = "#ffffff";
+
+            cc.drawingUtil.drawLine(cc.p(x, y), cc.p(x + width, y));
+            cc.drawingUtil.drawLine(cc.p(x + width, y), cc.p(x + width, y + height));
+            cc.drawingUtil.drawLine(cc.p(x + width, y + height), cc.p(x, y + height));
+            cc.drawingUtil.drawLine(cc.p(x, y + height), cc.p(x, y));
+
+            cc.renderContext.lineWidth = 1;
 									
 			var rect1 = cc.rect(x - width / 2, y - height / 2, width, height);			
 			
 			var b = this._pac.getContentSize();
 			var q = this._pac.getPosition();
 			var rect2 = cc.rect(q.x - b.width / 2, q.y - b.height / 2, b.width, b.height);			
-						
-			if (cc.rectIntersectsRect(rect1, rect2)){				
+									
+			if (cc.rectIntersectsRect(rect1, rect2)){	
+				cc.log("colidiu");
 				if(this._pac.xVelocity != 0){
 					this._pac.xVelocity = 0;
                 }else if(this._pac.yVelocity != 0){
@@ -220,6 +240,7 @@ var gameLayer = cc.Layer.extend({
 		if (cc.rectIntersectsRect(rect1, rect2)){							
 			//this._pac.setDieAnimation();        
 	        //this._pac.getAnimation("die"); 
+			this.removeChild(this._pac);
 	        this.removeLives();
 		}
 	}

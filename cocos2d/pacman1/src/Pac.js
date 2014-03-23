@@ -25,6 +25,7 @@ var Pac = cc.Sprite.extend({
 	update:function(dt){
 		//this.setPosition(this._currentPosition);
 		
+		cc.log("no update");
 		
 		this.setPosition(this.getPosition().x + this.xVelocity, this.getPosition().y + this.yVelocity);
 		/*if(this.getPosition().x < background.width/2){
@@ -79,9 +80,9 @@ var Pac = cc.Sprite.extend({
 	},
     
 	setDirection: function(direction){
-		if(direction == 'right'){
+		if(direction == 'right'){			
 			this.xVelocity = 2;
-			this.yVelocity = 0;
+			this.yVelocity = 0;	
 		}
 		if(direction == 'left'){
 			this.xVelocity = -2;
@@ -151,8 +152,9 @@ var Pac = cc.Sprite.extend({
     {    	    	    	
     	if (LG.KEYS[cc.KEY.right]){
 			this.setAnimation("pac", "right", SPRITE_SIZE, 2, "right");        
-            this.getAnimation("right"); 
+            this.getAnimation("right");
             this.setDirection('right');
+            
     	}
     	if (LG.KEYS[cc.KEY.left]){
     		this.setAnimation("pac", "left", SPRITE_SIZE, 2, "left");        

@@ -11,37 +11,18 @@ var Ghost = cc.Sprite.extend({
 	xVelocity:2,
     yVelocity:0,
 	
-	init: function()
+	ctor: function()
 	{
 		this._super();
-		//this.scheduleUpdate();
-		this.xSpeed = this.velocityX*Math.cos(randomDir);
-		this.ySpeed = this.velocityY*Math.sin(randomDir);
-	},
-	
-	handleKey: function(e)
-    {
-        if(e === cc.KEY.left)
-        {
-            this._currentRotation--;
-
-        }
-        else if(e === cc.KEY.right)
-            this._currentRotation++;
-        else if (e === cc.KEY.up){
-        	this._currentPositionY++;
-        	//this.getAnimation("up");
-        }
-        	
-
-        if(this._currentRotation < 0) this._currentRotation = 360;
-        if(this._currentRotation > 360) this._currentRotation = 0;
-    },
-	
+		this.scheduleUpdate();
+		//this.xSpeed = this.velocityX*Math.cos(randomDir);
+		//this.ySpeed = this.velocityY*Math.sin(randomDir);
+	},	
     
-	update:function(type, position){		
-		
-		switch (position) {
+	update:function(){		
+		cc.log("ghost update");
+		this.setPosition(this.getPosition().x + this.xVelocity, this.getPosition().y + this.yVelocity);
+		/*switch (position) {
 			case "left":
 				this.setAnimation(type, position, SPRITE_SIZE, 2, position);        
 		        this.getAnimation(position);				
@@ -75,7 +56,7 @@ var Ghost = cc.Sprite.extend({
 				//this.setPosition(new cc.Point(position.x + 20, position.y + 20));
 				break;
 		}
-
+*/
 	
     		
 	},
@@ -201,31 +182,31 @@ var Ghost = cc.Sprite.extend({
 		}
 	},
 	
-	/*setPositionOnScreen: function(actualPosition)
+	setPositionOnScreen: function(spritePrefix)
     {    	    	    	
 		var position = ["up", "down", "right", "left"];
 		var i = Math.floor((Math.random()*3)+1);
-		
-    	if (actualPosition == "up"){
-			this.setAnimation("pac", "right", SPRITE_SIZE, 2, "right");        
+		cc.log("posicionamndo ghost na tela");
+    	if (spritePrefix == "blinky"){
+			this.setAnimation(spritePrefix, "right", SPRITE_SIZE, 2, "right");    			
             this.getAnimation("right"); 
             this.setDirection('right');
     	}
-    	if (LG.KEYS[cc.KEY.left]){
-    		this.setAnimation("pac", "left", SPRITE_SIZE, 2, "left");        
-            this.getAnimation("left"); 
-            this.setDirection('left');
-    	}
-    	if (LG.KEYS[cc.KEY.up]){
-    		this.setAnimation("pac", "up", SPRITE_SIZE, 2, "up");        
+    	if (spritePrefix == "pinky"){
+    		this.setAnimation(spritePrefix, "up", SPRITE_SIZE, 2, "up");        
             this.getAnimation("up"); 
             this.setDirection('up');
     	}
-    	if (LG.KEYS[cc.KEY.down]){
-    		this.setAnimation("pac", "down", SPRITE_SIZE, 2, "down");        
-            this.getAnimation("down"); 
-            this.setDirection('down');
-    	}    	
+    	if (spritePrefix == "inkey"){
+    		this.setAnimation(spritePrefix, "up", SPRITE_SIZE, 2, "up");        
+            this.getAnimation("up"); 
+            this.setDirection('up');
+    	}
+    	if (spritePrefix == "clyde"){
+    		this.setAnimation(spritePrefix, "up", SPRITE_SIZE, 2, "up");        
+            this.getAnimation("up"); 
+            this.setDirection('up');
+    	}
     },
     
     setDirection: function(direction){
@@ -245,5 +226,5 @@ var Ghost = cc.Sprite.extend({
 			this.xVelocity = 0;
 			this.yVelocity = -2;
 		}
-	},*/
+	},
 });
