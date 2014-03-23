@@ -21,7 +21,7 @@ Line.prototype = {
 		var position = this.setPosition(direction, positionInitial);
 		this.draw(spriteBall, position);
 	},
-	
+
 	
 	//Configura a posição da linha
 	setPosition : function(direction, positionInitial) {
@@ -65,10 +65,6 @@ Line.prototype = {
 			this.position[total] = new coordinates();
 			this.position[total].x = positionX;
 			this.position[total].y = positionY;
-			
-//Enquanto a linha não mudar de posição, collided = true (GAMBI :p)
-ball.collided = false;
-//console.log("x: " + positionX + " y: " + positionY);
 		}
 	},
 	
@@ -76,6 +72,7 @@ ball.collided = false;
 	draw : function(spriteBall, position) {
 		//Define o estilo da linha (grossura, cor)
 	    graphics.lineStyle(this.thickness, 0x5F9596);
+		//graphics.lineStyle(this.thickness, 0x000000);
 	    
 		//Define a posição inicial da linha = graphics.moveTo(x, y)
 		graphics.moveTo(position.x, position.y);

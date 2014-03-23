@@ -21,7 +21,7 @@ Ball.prototype = {
 		
 		//Re-posiciona a bolinha para ficar no centro da tela
 		this.sprite.reset(game.world.width/2 - 0.5*this.sprite.width,
-						  game.world.height+screenGame.thicknessExtras - 1.5*this.sprite.height);
+						  game.world.height - 1.5*this.sprite.height);
 	},
 	
 	update : function() {
