@@ -4,9 +4,7 @@
         <key>fileFormatVersion</key>
         <int>3</int>
         <key>texturePackerVersion</key>
-        <string>3.3.1</string>
-        <key>fileName</key>
-        <string>C:/Users/anne.oliveira/Documents/GitHub/html5games/cocos2d/pacman1/res/spritesheets/gameMovement_origin.tps</string>
+        <string>3.2.1</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -61,8 +59,6 @@
         <uint>80</uint>
         <key>pngOptimizationLevel</key>
         <uint>0</uint>
-        <key>webpQualityLevel</key>
-        <uint>101</uint>
         <key>textureSubPath</key>
         <string></string>
         <key>textureFormat</key>
