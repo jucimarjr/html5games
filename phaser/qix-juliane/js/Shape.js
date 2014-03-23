@@ -11,7 +11,7 @@ Shape.prototype = {
 	create : function() {
 	},
 	
-	update : function(direction, positionInitial) {
+	update : function() {
 	},
 	
 	
@@ -21,9 +21,8 @@ Shape.prototype = {
 		this.position[total] = new Array();
 		
 		//Guarda o positionLine num índice de this.position
-		for ( var i = 0; i < positionLine.length; i++) {
+		for ( var i = 0; i < positionLine.length; i++)
 			this.position[total].push(positionLine[i]);
-		}
 	},
 		
 	//Desenha um corpo quando as linhas fecharem um ciclo
@@ -32,6 +31,7 @@ Shape.prototype = {
 		graphics.beginFill(0x5F9596);
 		//Define o estilo da linha (grossura, cor)
 		graphics.lineStyle(this.thickness, 0x5F9596, 1);
+		//graphics.lineStyle(this.thickness, 0x000000, 1);
 
 		//Define a posição inicial do corpo = graphics.moveTo(x, y)
 		graphics.moveTo(positionLine[0].x, positionLine[0].y);
@@ -49,7 +49,7 @@ Shape.prototype = {
 		var i = this.position.length - 1;
 		this.bodyShape[i] = new Array();
 
-		var position = new coordinates();;
+		var position = new coordinates();
 		var index = 0;
 		var width;
 		var height;

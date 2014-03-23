@@ -34,7 +34,7 @@ Qix.prototype = {
 		
 		var maximum = new coordinates();
 		maximum.x = game.world.width - screenGame.thicknessBGame - this.sprite.width;
-		maximum.y = game.world.height+screenGame.thicknessExtras - screenGame.thicknessBGame - this.sprite.height;
+		maximum.y = game.world.height - screenGame.thicknessBGame - this.sprite.height;
 
 		//Re-posiciona aleatoriamente o qix
 		this.sprite.reset(Math.floor((Math.random()*(maximum.x - minimum.x + 1)) + minimum.x),
