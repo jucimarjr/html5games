@@ -15,7 +15,7 @@ var Pac = cc.Sprite.extend({
 	
 	ctor:function( ){
 		this._super();		
-		this.initWithSpriteFrameName("pac_left_open_32-32.png");
+		//this.initWithSpriteFrameName("pac_left_open_32-32.png");
 		//this.setAnimation("pac", "left", SPRITE_SIZE, 2, "left");        
         //this.getAnimation("left");    
         //this.setDynamicPosition();		

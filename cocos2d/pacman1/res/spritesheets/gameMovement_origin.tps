@@ -571,6 +571,7 @@
             <filename>../images/pac_up_open_8_32-32.png</filename>
             <filename>../images/pac_up_open_9_32-32.png</filename>
             <filename>../images/pac_up_open_10_32-32.png</filename>
+            <filename>../images/score_6-4.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
