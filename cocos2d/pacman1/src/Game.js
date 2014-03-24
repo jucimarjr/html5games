@@ -37,7 +37,7 @@ var gameLayer = cc.Layer.extend({
 	_pinky: null,
 	_inkey: null,
 	_clyde: null,
-	_score: null,
+	_score: [],
 	map: null,
 	
 	init:function()
@@ -54,7 +54,7 @@ var gameLayer = cc.Layer.extend({
 		this.addChild(map, 0, 1);		
 		
 
-		var group = map.getObjectGroup("Camada de Objetos")
+		var group = map.getObjectGroup("Camada de Objetos");
         objects = group.getObjects();
 						
         var decisionGroup = map.getObjectGroup("Camada de Decisao");
@@ -65,7 +65,7 @@ var gameLayer = cc.Layer.extend({
 		this._pac = new Pac();
         map.addChild(this._pac);
 		//this.addChild(this._pac);
-        this._pac.setPosition(new cc.Point(screen.width/2 - 110, screen.height/2 - 218)); 
+        this._pac.setPosition(new cc.Point(screen.width/2 - 110, screen.height/2 - 210)); 
         this._pac.setAnimation("pac", "left", SPRITE_SIZE, 2, "left");        
         this._pac.getAnimation("left");  
         //LG.KEYS[cc.KEY.left] = true;
@@ -130,13 +130,36 @@ var gameLayer = cc.Layer.extend({
 		return true;
 	},
 	
-	update: function(){		
-		cc.log("game update");
+	update: function(){				
 		this.verifiyCollisionBetweenPacScore();
 		this.verifyCollisionBetweenPacMap();
 		this.verifyCollisionBetweenPacGhost();	
-		this.verifiyGhostDirection();			
+		this.verifiyGhostDirection();								
 	},	
+	
+	draw:function () {              
+         for (var i = 0; i < objects.length; i++) {
+            var dict = objects[i];
+            if (!dict)
+                break;
+
+            var x = dict["x"];
+            var y = dict["y"];
+            var width = dict["width"];
+            var height = dict["height"];
+
+            cc.renderContext.lineWidth = 3;
+            cc.renderContext.strokeStyle = "#ffffff";
+
+            cc.drawingUtil.drawLine(cc.p(x, y), cc.p((x + width), y));
+            cc.drawingUtil.drawLine(cc.p((x + width), y), cc.p((x + width), (y + height)));
+            cc.drawingUtil.drawLine(cc.p((x + width), (y + height)), cc.p(x, (y + height)));
+            cc.drawingUtil.drawLine(cc.p(x, (y + height)), cc.p(x, y));
+
+            cc.renderContext.lineWidth = 1;
+        }
+
+    },
 	
 	addLives: function()
 	{
@@ -181,10 +204,9 @@ var gameLayer = cc.Layer.extend({
 		scoreGame.label.setString(scoreGame.text + " " + scoreGame.score);
 	},	   
 	
-	onKeyDown:function (e) {	
-		cc.log("pressionou a tecla");
+	onKeyDown:function (e) {			
         LG.KEYS[e] = true;    
-        this._pac.setPositionOnScreen(e);         
+        this._pac.setPositionOnScreen(e);   		      
                      
     },
 
@@ -223,7 +245,7 @@ var gameLayer = cc.Layer.extend({
             */
             
             
-            cc.log("verificando colisao");
+            
                         
             cc.renderContext.lineWidth = 3;
             cc.renderContext.strokeStyle = "#ffffff";
@@ -239,8 +261,8 @@ var gameLayer = cc.Layer.extend({
 			
 			var b = this._pac.getContentSize();
 			var q = this._pac.getPosition();
-			var rect2 = cc.rect(q.x, q.y, b.width, b.height);
-
+			//var rect2 = cc.rect(q.x, q.y, b.width, b.height);
+			var rect2 = cc.rect(q.x - b.width/2, q.y - b.height/2, b.width, b.height);
 									
 			if (cc.rectIntersectsRect(rect1, rect2)){	
 				cc.log("colidiu colidiu colidiu colidiu");
@@ -248,7 +270,8 @@ var gameLayer = cc.Layer.extend({
 					this._pac.xVelocity = 0;
                 }else if(this._pac.yVelocity != 0){
 					this._pac.yVelocity = 0;
-                }								
+                }							
+				this._pac.stopAllActions();
 			}			
 
         }
@@ -320,39 +343,29 @@ var gameLayer = cc.Layer.extend({
             
             var point = cc.p(x, y);                                              											
 			
-			this._score = cc.Sprite.create("res/images/score_6-4.png");
-			map.addChild(this._score);	        
-	        this._score.setPosition(point);						
+			this._score[i] = cc.Sprite.create("res/images/score_6-4.png");
+			map.addChild(this._score[i]);	        
+	        this._score[i].setPosition(point);						
         }
 
 	},	
 	
 	verifiyCollisionBetweenPacScore: function(){								
-		for (var i = 0; i < scoreObjects.length; i++) {
-            var dict = scoreObjects[i];
-            if (!dict)
-                break;
-
-            var x = dict["x"];
-            var y = dict["y"];       			
-            var width = dict["width"];
-            var height = dict["height"];
-            
-            var point = cc.p(x, y); 
-             
-            this._score.setPosition(cc.p(x, y));
-            			
-			var a = this._score.getContentSize();
-    		var p = this._score.getPosition();    		
-			//var rect1 = cc.rect(p.x, p.y, a.width, a.height);	
+		for (var i = 0; i < this._score.length; i++) {
+            this._score[i];
+           
+            var x = this._score[i].getPosition().x;
+            var y = this._score[i].getPosition().y;       			
+            var width = this._score[i].getContentSize().width;
+            var height = this._score[i].getContentSize().height;                     
 			var rect1 = cc.rect(x, y, width, height);				
     		
     		var b = this._pac.getContentSize();
     		var q = this._pac.getPosition();    		
-			var rect2 = cc.rect(q.x, q.y, b.width, b.height);
-    					
+			var rect2 = cc.rect(q.x - b.width/2, q.y - b.height/2, b.width, b.height);
     		if (cc.rectIntersectsRect(rect1, rect2)){										
-    			map.removeChild(this._score);
+    			map.removeChild(this._score[i]);
+    			this._score[i].setPosition(-900,-900);
     			this.plusScore();
     		}									        	        			
         }

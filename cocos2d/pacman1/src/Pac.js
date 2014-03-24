@@ -15,7 +15,7 @@ var Pac = cc.Sprite.extend({
 	
 	ctor:function( ){
 		this._super();		
-		//this.initWithSpriteFrameName("pac_left_open_32-32.png");
+		this.initWithSpriteFrameName("pac_left_open_32-32.png");
 		//this.setAnimation("pac", "left", SPRITE_SIZE, 2, "left");        
         //this.getAnimation("left");    
         //this.setDynamicPosition();		
@@ -26,7 +26,7 @@ var Pac = cc.Sprite.extend({
 	update:function(dt){
 		//this.setPosition(this._currentPosition);
 		
-		cc.log("no update");
+	
 		
 		this.setPosition(this.getPosition().x + this.xVelocity, this.getPosition().y + this.yVelocity);
 		/*if(this.getPosition().x < background.width/2){
@@ -82,20 +82,20 @@ var Pac = cc.Sprite.extend({
     
 	setDirection: function(direction){
 		if(direction == 'right'){			
-			this.xVelocity = 2;
+			this.xVelocity = 5;
 			this.yVelocity = 0;	
 		}
 		if(direction == 'left'){
-			this.xVelocity = -2;
+			this.xVelocity = -5;
 			this.yVelocity = 0;
 		}
 		if(direction == 'up'){
 			this.xVelocity = 0;
-			this.yVelocity = 2;
+			this.yVelocity = 5;
 		}
 		if(direction == 'down'){
 			this.xVelocity = 0;
-			this.yVelocity = -2;
+			this.yVelocity = -5;
 		}
 	},
 	

@@ -19,8 +19,7 @@ var Ghost = cc.Sprite.extend({
 		//this.ySpeed = this.velocityY*Math.sin(randomDir);
 	},	
     
-	update:function(){		
-		cc.log("ghost update");
+	update:function(){				
 		this.setPosition(this.getPosition().x + this.xVelocity, this.getPosition().y + this.yVelocity);
 		/*switch (position) {
 			case "left":
