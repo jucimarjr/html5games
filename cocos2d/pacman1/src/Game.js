@@ -76,7 +76,7 @@ var gameLayer = cc.Layer.extend({
 		//scoreGame.score = 0;
 		screen = cc.Director.getInstance().getWinSizeInPixels();
 		livePositionX = 30;
-		/*				
+						
 		this._blinky = new Ghost();
 		this._blinky.setGhost("blinky");
         map.addChild(this._blinky);
@@ -85,10 +85,10 @@ var gameLayer = cc.Layer.extend({
         this._blinky.setAnimation("blinky", "up", SPRITE_SIZE, 2, "up");        
         this._blinky.getAnimation("up");  
         this._blinky.setPositionOnScreen("blinky", "right");
-        */
+        
         //this._blinky.setDynamicPosition("up");
 
-		/*this._pinky = new Ghost();
+		this._pinky = new Ghost();
 		this._pinky.setGhost("pinky");
         map.addChild(this._pinky);
 		//this.addChild(this._pinky);
@@ -96,7 +96,7 @@ var gameLayer = cc.Layer.extend({
         this._pinky.setAnimation("pinky", "up", SPRITE_SIZE, 2, "up");        
         this._pinky.getAnimation("up");
         //this._pinky.setDynamicPosition("left");
-        //this._pinky.setPositionOnScreen("pinky");
+        this._pinky.setPositionOnScreen("pinky", "up");
         
         this._inkey = new Ghost();
 		this._inkey.setGhost("inkey");
@@ -106,7 +106,7 @@ var gameLayer = cc.Layer.extend({
         this._inkey.setAnimation("inkey", "up", SPRITE_SIZE, 2, "up");        
         this._inkey.getAnimation("up");
         //this._inkey.setDynamicPosition("down");
-        //this._inkey.setPositionOnScreen("inkey");
+        this._inkey.setPositionOnScreen("inkey", "up");
         
         this._clyde = new Ghost();
 		this._clyde.setGhost("clyde");
@@ -116,8 +116,8 @@ var gameLayer = cc.Layer.extend({
         this._clyde.setAnimation("clyde", "up", SPRITE_SIZE, 2, "up");        
         this._clyde.getAnimation("up");
         //this._clyde.setDynamicPosition();
-        //this._clyde.setPositionOnScreen("clyde");
-		*/
+        this._clyde.setPositionOnScreen("clyde", "up");
+	
 		if (lifeGame.life == 2){
 			this.addLives();
 			this.addScore();
@@ -134,7 +134,8 @@ var gameLayer = cc.Layer.extend({
 		this.verifiyCollisionBetweenPacScore();
 		this.verifyCollisionBetweenPacMap();
 		this.verifyCollisionBetweenPacGhost();	
-		this.verifiyGhostDirection();								
+		this.verifiyGhostDirection();		
+		this.verifyCollisionBetweenGhostMap();
 	},	
 	
 	draw:function () {              
@@ -228,25 +229,7 @@ var gameLayer = cc.Layer.extend({
             
             point1 = cc.p(x, y);
             point2 = cc.p(width, height);
-                        
-                /*
-            var react = cc.rect(x, y,
-                        width, height);
-                
-            if(cc.rectIntersectsRect(react, this._pac.getBoundingBoxToWorld())){
-            	cc.log("colidiu colidiu colidiu colidiu colidiu colidiu colidiu colidiu");
-            	if(this._pac.xVelocity != 0){
-            		this._pac.xVelocity = 0;
-                }else if(this._pac.yVelocity != 0){
-                	this._pac.yVelocity = 0;
-                }
-            }
-            
-            */
-            
-            
-            
-                        
+          
             cc.renderContext.lineWidth = 3;
             cc.renderContext.strokeStyle = "#ffffff";
 
@@ -278,7 +261,7 @@ var gameLayer = cc.Layer.extend({
 	},
 	
 	verifyCollisionBetweenPacGhost: function(){
-		/*var a = this._blinky.getContentSize();
+		var a = this._blinky.getContentSize();
 		var p = this._blinky.getPosition();
 		var rect1 = cc.rect(p.x - a.width / 2, p.y - a.height / 2, a.width, a.height);
 		
@@ -291,7 +274,7 @@ var gameLayer = cc.Layer.extend({
 	        //this._pac.getAnimation("die"); 
 			this.removeChild(this._pac);
 	        this.removeLives();
-		}*/
+		}
 	},
 	
 	verifiyGhostDirection: function(){
@@ -406,6 +389,73 @@ var gameLayer = cc.Layer.extend({
         return body;
 
     },*/
+    
+    verifyCollisionBetweenGhostMap: function(){
+		for (var i = 0; i < objects.length; i++) {
+            var dict = objects[i];
+            if (!dict)
+                break;
+
+            var x = dict["x"];
+            var y = dict["y"];
+            var width = dict["width"];
+            var height = dict["height"];                      
+									
+			var rect1 = cc.rect(x, y, width, height);			
+			
+			var b = this._blinky.getContentSize();
+			var q = this._blinky.getPosition();
+			//var rect2 = cc.rect(q.x, q.y, b.width, b.height);
+			var rect2 = cc.rect(q.x - b.width/2, q.y - b.height/2, b.width, b.height);
+			
+			
+			var c = this._pinky.getContentSize();
+			var r = this._pinky.getPosition();		
+			var rect3 = cc.rect(r.x - c.width/2, r.y - c.height/2, c.width, c.height);
+			
+			var d = this._inkey.getContentSize();
+			var s = this._inkey.getPosition();		
+			var rect4 = cc.rect(s.x - d.width/2, s.y - d.height/2, d.width, d.height);
+			
+			var e = this._inkey.getContentSize();
+			var t = this._inkey.getPosition();		
+			var rect5 = cc.rect(t.x - e.width/2, t.y - e.height/2, e.width, e.height);
+									
+			if (cc.rectIntersectsRect(rect1, rect2)){	
+				cc.log("colidiu colidiu colidiu colidiu");
+				if(this._blinky.xVelocity != 0){
+					this._blinky.xVelocity = 0;
+                }else if(this._blinky.yVelocity != 0){
+					this._blinky.yVelocity = 0;
+                }											
+			}			
+			
+			if (cc.rectIntersectsRect(rect1, rect3)){					
+				if(this._pinky.xVelocity != 0){
+					this._pinky.xVelocity = 0;
+                }else if(this._pinky.yVelocity != 0){
+					this._pinky.yVelocity = 0;
+                }											
+			}	
+			
+			if (cc.rectIntersectsRect(rect1, rect4)){					
+				if(this._inkey.xVelocity != 0){
+					this._inkey.xVelocity = 0;
+                }else if(this._inkey.yVelocity != 0){
+					this._inkey.yVelocity = 0;
+                }											
+			}	
+			
+			if (cc.rectIntersectsRect(rect1, rect5)){					
+				if(this._clyde.xVelocity != 0){
+					this._clyde.xVelocity = 0;
+                }else if(this._clyde.yVelocity != 0){
+					this._clyde.yVelocity = 0;
+                }											
+			}	
+
+        }
+	},
 
 });
 

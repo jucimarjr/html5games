@@ -183,31 +183,13 @@ var Ghost = cc.Sprite.extend({
 	
 	setPositionOnScreen: function(spritePrefix, position)
     {    	    	    	
-		//var position = ["up", "down", "right", "left"];
 		var i = Math.floor((Math.random()*3)+1);
-		cc.log("posicionamndo ghost na tela");
-    	if (spritePrefix == "blinky"){    		
-    		cc.log("na posicao up do ghost");
-    		this.setAnimation(spritePrefix, position, SPRITE_SIZE, 2, position);    			
-            this.getAnimation(position); 
-            this.setDirection(position);    		
-			
-    	}
-    	if (spritePrefix == "pinky"){
-    		this.setAnimation(spritePrefix, "up", SPRITE_SIZE, 2, "up");        
-            this.getAnimation("up"); 
-            this.setDirection('up');
-    	}
-    	if (spritePrefix == "inkey"){
-    		this.setAnimation(spritePrefix, "up", SPRITE_SIZE, 2, "up");        
-            this.getAnimation("up"); 
-            this.setDirection('up');
-    	}
-    	if (spritePrefix == "clyde"){
-    		this.setAnimation(spritePrefix, "up", SPRITE_SIZE, 2, "up");        
-            this.getAnimation("up"); 
-            this.setDirection('up');
-    	}
+		
+    	 		
+		cc.log("na posicao up do ghost");
+		this.setAnimation(spritePrefix, position, SPRITE_SIZE, 2, position);    			
+        this.getAnimation(position); 
+        this.setDirection(position);    		
     },
     
     setDirection: function(direction){
