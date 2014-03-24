@@ -243,11 +243,11 @@ var gameLayer = cc.Layer.extend({
 
             cc.renderContext.lineWidth = 1;
 									
-			var rect1 = cc.rect(point1.x, point1.y, point2.width, point2.height);			
+			var rect1 = cc.rect(x, y, width, height);			
 			
 			var b = this._pac.getContentSize();
 			var q = this._pac.getPosition();
-			var rect2 = cc.rect(q.x - b.width / 2, q.y - b.height / 2, b.width, b.height);
+			var rect2 = cc.rect(q.x, q.y, b.width, b.height);
 
 									
 			if (cc.rectIntersectsRect(rect1, rect2)){	
