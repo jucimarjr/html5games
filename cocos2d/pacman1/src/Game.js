@@ -339,12 +339,13 @@ var gameLayer = cc.Layer.extend({
             var height = dict["height"];
             
             var point = cc.p(x, y); 
-                                         
-            this._score.setPosition(point);
+             
+            this._score.setPosition(cc.p(x, y));
             			
-			var a = this._pac.getContentSize();
-    		var p = this._pac.getPosition();    		
-			var rect1 = cc.rect(p.x, p.y, a.width, a.height);			
+			var a = this._score.getContentSize();
+    		var p = this._score.getPosition();    		
+			//var rect1 = cc.rect(p.x, p.y, a.width, a.height);	
+			var rect1 = cc.rect(x, y, width, height);				
     		
     		var b = this._pac.getContentSize();
     		var q = this._pac.getPosition();    		
