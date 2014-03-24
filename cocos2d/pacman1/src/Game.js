@@ -40,7 +40,7 @@ var gameLayer = cc.Layer.extend({
 	_score: null,
 	map: null,
 	
-	init:function(e)
+	init:function()
 	{
 		this._super();
 		
@@ -68,8 +68,8 @@ var gameLayer = cc.Layer.extend({
         this._pac.setPosition(new cc.Point(screen.width/2 - 110, screen.height/2 - 218)); 
         this._pac.setAnimation("pac", "left", SPRITE_SIZE, 2, "left");        
         this._pac.getAnimation("left");  
-        LG.KEYS[cc.KEY.left] = true;
-        this._pac.setPositionOnScreen(LG.KEYS[e]);
+        //LG.KEYS[cc.KEY.left] = true;
+        //this._pac.setPositionOnScreen(LG.KEYS[e]);
         //this._pac.setDynamicPosition('left');
         
 		//lifeGame.life = 2;
@@ -132,18 +132,11 @@ var gameLayer = cc.Layer.extend({
 	
 	update: function(){		
 		cc.log("game update");
+		this.verifiyCollisionBetweenPacScore();
 		this.verifyCollisionBetweenPacMap();
 		this.verifyCollisionBetweenPacGhost();	
 		this.verifiyGhostDirection();			
-	},
-			
-	onClick:function (dt) {    	
-		if (lifeGame.life != 0){
-			this.removeLives();		
-			this.plusScore();
-		}
-			
-    },
+	},	
 	
 	addLives: function()
 	{
@@ -191,8 +184,7 @@ var gameLayer = cc.Layer.extend({
 	onKeyDown:function (e) {	
 		cc.log("pressionou a tecla");
         LG.KEYS[e] = true;    
-        this._pac.setPositionOnScreen(e); 
-        this.verifiyCollisionBetweenPacScore();
+        this._pac.setPositionOnScreen(e);         
                      
     },
 
@@ -342,20 +334,21 @@ var gameLayer = cc.Layer.extend({
                 break;
 
             var x = dict["x"];
-            var y = dict["y"];       
+            var y = dict["y"];       			
+            var width = dict["width"];
+            var height = dict["height"];
             
             var point = cc.p(x, y); 
                                          
             this._score.setPosition(point);
-            
-            
-            var a = this._score.getContentSize();
-    		var p = this._score.getPosition();
-    		var rect1 = cc.rect(p.x - a.width / 2, p.y - a.height / 2, a.width, a.height);
+            			
+			var a = this._pac.getContentSize();
+    		var p = this._pac.getPosition();    		
+			var rect1 = cc.rect(p.x, p.y, a.width, a.height);			
     		
     		var b = this._pac.getContentSize();
-    		var q = this._pac.getPosition();
-    		var rect2 = cc.rect(q.x - b.width / 2, q.y - b.height / 2, b.width, b.height);			
+    		var q = this._pac.getPosition();    		
+			var rect2 = cc.rect(q.x, q.y, b.width, b.height);
     					
     		if (cc.rectIntersectsRect(rect1, rect2)){										
     			map.removeChild(this._score);
