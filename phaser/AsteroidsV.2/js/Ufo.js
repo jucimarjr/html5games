@@ -31,7 +31,7 @@ Ufo.prototype.shoot = function () {
     this.game.add.audio('shoot', 1, true).play();
     var direction = Math.random() * 360;
     var shoot = this.gameClass.shootUfo.create(this.position.x + Math.cos(direction * 0.0174) * 24,
-        	    this.position.y + Math.sin(direction * 0.0174) * 24, 'sprites', 'shoot_2-2.png');
+        	    this.position.y + Math.sin(direction * 0.0174) * 24, 'shoots', 'LaserRedBall.png');
     this.game.physics.velocityFromAngle(direction, 500, shoot.body.velocity);
     shoot.events.onOutOfBounds.add(this.destroyShoot, this);
     shoot.name = 'shoot';

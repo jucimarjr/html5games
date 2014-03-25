@@ -7,7 +7,9 @@ var Asteroid = function(gameClass, posX , posY , size , vel) {
     	Phaser.Sprite.call(this, this.game, posX, posY, 'sprites', 'asteroids'+i+'_80-80.png');
     	i+=3;
     	this.redSprite = this.game.add.sprite(posX,posY,'asteroids','asteroids'+i+'_80-80.png');
-    	this.hp = 80;
+    	this.body.setCircle(38);
+    	this.redSprite.body.setCircle(38);
+        this.hp = 80;
         mult = 1;
     }
     if (size == "medium") {
@@ -16,6 +18,8 @@ var Asteroid = function(gameClass, posX , posY , size , vel) {
     	Phaser.Sprite.call(this, this.game, posX, posY, 'sprites', 'asteroids'+i+'_40-40.png');
     	i+=3;
     	this.redSprite = this.game.add.sprite(posX,posY,'asteroids','asteroids'+i+'_40-40.png');
+    	this.body.setCircle(18);
+    	this.redSprite.body.setCircle(18);
     	this.hp = 40;
     	mult = 2;
     }
@@ -25,7 +29,8 @@ var Asteroid = function(gameClass, posX , posY , size , vel) {
     	Phaser.Sprite.call(this, this.game, posX, posY, 'sprites', 'asteroids'+i+'_20-20.png');
     	i+=3;
     	this.redSprite = this.game.add.sprite(posX,posY,'asteroids','asteroids'+i+'_20-20.png');
-    	
+    	this.body.setCircle(9);
+    	this.redSprite.body.setCircle(9);
     	this.hp = 20;
     	mult = 4;
     }
@@ -52,5 +57,4 @@ Asteroid.prototype.move = function (asteroid,asteroidred,mult) {
     asteroidred.body.gravity.x = 0;
     asteroidred.body.gravity.y = 0;
     asteroidred.body.angularVelocity = asteroid.body.angularVelocity;
-
 };

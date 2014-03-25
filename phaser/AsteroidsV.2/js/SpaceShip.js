@@ -20,8 +20,13 @@ SpaceShip = function(gameClass) {
 SpaceShip.prototype.create = function(){
 	this.shootType = 0;
 	this.sound = this.game.add.audio('laserSound', 1);
-	this.sprite = this.game.add.sprite(this.game.world.width/2, this.game.world.height/2, 'sprites', 'ship_14-24.png');
-    //this.sprite.events.onOutOfBounds.add(this.gameClass.outOfBounds,this);
+	
+	
+	this.sprite = this.game.add.sprite(this.game.world.width/2, this.game.world.height/2, 'ships', 'ship0_37x39.png');
+	//this.sprite = this.game.add.sprite(this.game.world.width/2, this.game.world.height/2, 'ships', 'wr wing 0.png');
+	//this.sprite = this.game.add.sprite(this.game.world.width/2, this.game.world.height/2, 'ships', 'wra wing 0.png');
+    
+	//this.sprite.events.onOutOfBounds.add(this.gameClass.outOfBounds,this);
 	this.changeShootKey = this.game.input.keyboard.addKey(Phaser.Keyboard.Z);
 	this.changeShootKey.onDown.add(this.changeShoot, this);
 	this.sprite.name = 'ship';
@@ -32,20 +37,32 @@ SpaceShip.prototype.create = function(){
     this.sprite.body.maxVelocity.x = 1000;
     this.sprite.body.maxVelocity.y = 500;
     this.sprite.body.maxAngularVelocity = 20;
+    this.sprite.body.setPolygon(1, -14  , 18, -38  , 36, -14);
+    this.sprite.body.translate(0,40);
+    this.sprite.smoothed = false;
+    //this.sprite.scale.setTo(1.5,1.5);
     this.shootInterval = 10;
     this.bulletsGroup = this.game.add.group();
-    this.bulletsGroup.createMultiple(50, 'sprites', 'shoot_2-2.png');
+    this.bulletsGroup.createMultiple(50, 'shoots', 'LaserRedBall.png');
     this.bulletsGroup.setAll('anchor.x', 0.5);
     this.bulletsGroup.setAll('anchor.y', 0.5);
     this.bulletsGroup.setAll('outOfBoundsKill', true);
     
-    this.sprite.animations.add('thrust', ['shipFire1_14-24.png', 'shipFire3_14-24.png'], 15, true, false);
-    this.sprite.animations.add('stop', ['ship_14-24.png']);
+    this.sprite.animations.add('thrust', ['ship1_37x39.png', 'ship2_37x39.png', 'ship1_37x39.png','ship3_37x39.png'], 15, true, false);
+    this.sprite.animations.add('stop', ['ship0_37x39.png']);
+    
+    //this.sprite.animations.add('thrust', ['wr wing 1.png', 'wr wing 2.png'], 15, true, false);
+    //this.sprite.animations.add('stop', ['wr wing 0.png']);
+    
+    //this.sprite.animations.add('thrust', ['wra wing 1.png', 'wra wing 2.png'], 15, true, false);
+    //this.sprite.animations.add('stop', ['wra wing 0.png']);
+    
     this.game.camera.follow(this.sprite);
 };
 
 SpaceShip.prototype.update = function () {	
    this.gameClass.warp(this.sprite);
+   console.log(this.sprite.body.polygon);
 };
 
 SpaceShip.prototype.changeShoot = function(){
@@ -104,19 +121,19 @@ SpaceShip.prototype.shoot = function () {
     		this.game.add.audio('shoot', 1).play();
     		
     		this.bullet = this.bulletsGroup.getFirstDead();
-    		this.bullet.loadTexture('sprites', 'shoot_2-2.png');
+    		this.bullet.loadTexture('shoots', 'LaserRedBall.png');
     		this.bullet.reset(this.sprite.position.x + Math.cos((this.sprite.body.rotation + 270)*0.0174) *24,
         					  this.sprite.position.y + Math.sin((this.sprite.body.rotation + 270)*0.0174) *24);
     		this.game.physics.velocityFromAngle(this.sprite.body.rotation - 90, 500, this.bullet.body.velocity);
     		this.bullet.events.onOutOfBounds.add(this.destroyShoot, this);
     		this.bullet.name = 'shoot';
-    		this.bullet.scale.setTo(1.5,1.5);
+    		//this.bullet.scale.setTo(1.5,1.5);
     		this.shootInterval = 10;
     	}
     }else if(this.shootType == 1 && !game.input.keyboard.isDown(Phaser.Keyboard.LEFT) && !game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)){
     	this.bullet = this.bulletsGroup.getFirstDead();
     	if(this.bullet != null){
-    		this.bullet.loadTexture('laser');
+    		this.bullet.loadTexture('shoots', 'LaserGreen.png');
     		if(!this.sound.isPlaying){
     			this.sound.play();
     		}

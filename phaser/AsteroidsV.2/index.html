@@ -27,7 +27,7 @@
 
 <script type="text/javascript">
 
-var game = new Phaser.Game(800, 480, Phaser.AUTO, '', { preload: preload, create: create, update: update});
+var game = new Phaser.Game(800, 480, Phaser.CANVAS, '', { preload: preload, create: create, update: update, render:render});
 var score = null;
 
 var gameScene = null;
@@ -43,11 +43,15 @@ function preload()
 {
 	game.load.atlas('sprites', 'assets/spritesheets/GameSpriteSheet.png', 'assets/spritesheets/GameSpriteSheet.json');
 	game.load.atlas('asteroids', 'assets/spritesheets/AsteroidsSpriteSheet.png', 'assets/spritesheets/AsteroidsSpriteSheet.json');
+	game.load.atlas('shoots', 'assets/spritesheets/spriteSchips.png', 'assets/spritesheets/spriteSchips.json');
+	game.load.atlas('ships', 'assets/spritesheets/SpaceShips.png', 'assets/spritesheets/SpaceShips.json');
+	game.load.image('largeasteroids', 'assets/images/asteroid1_25-60.png');
 	game.load.image('tiled1','assets/images/Tiled1.png');
 	game.load.image('tiled2','assets/images/Tiled2.png');
 	game.load.image('res','assets/images/res.png');
 	game.load.image('laser','assets/images/laser_5-2.png');
 	game.load.image('ship','assets/images/ship2_14-24.png');
+	game.load.image('shipalt','assets/images/nave1.png');
     game.load.audio('thrust', 'assets/audios/AsteroidsThrust.mp3');
     game.load.audio('shoot', 'assets/audios/AsteroidsShoot.mp3');
     game.load.audio('ufo', 'assets/audios/AsteroidsSaucer.mp3');
@@ -56,12 +60,14 @@ function preload()
     var keyFull = this.game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
 	keyFull.onDown.add(function(){
 		game.stage.fullScreenScaleMode = Phaser.StageScaleMode.EXACT_FIT;
+		
 		game.stage.scale.startFullScreen();
 	}, this);
     
 	//splashScene = new Splash(game);
 	//splashScene.preload();
-	
+	game.antialias = false;
+	game.stage.smoothed = false;
 	gameScene = new Game(game);
 }
 
@@ -91,6 +97,10 @@ function setHighScore()
         localStorage["nameScore5"] = "EEE";
         localStorage["scores"] = "OK";
     }
+}
+
+function render(){
+	//gameScene.render();
 }
 
 </script>
