@@ -17,6 +17,10 @@ Splash.prototype.create = function() {
 	setTimeout(function() {
 		var fadeout = game.add.tween(fundo).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true, 0, 0, true);
 		fadeout.onComplete.add(function() {
+			var music;
+			music = game.add.audio('Splash_Sound',1,false);
+
+		    music.play('',0,1,true);
 			fundo.x = game.width/2;
 			fundo.y = game.height/2;
 			fundo = game.add.sprite(0, 0, 'splashGame');
@@ -31,6 +35,7 @@ Splash.prototype.create = function() {
 				var fadeout = game.add.tween(fundo).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true, 0, 0, true);
 				fadeout.onComplete.add(function(){
 					console.log("menu");
+					music.pause();
 					game.state.start('menu', Menu);
 				});
 			}, 2500);

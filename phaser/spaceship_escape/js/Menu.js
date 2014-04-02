@@ -22,6 +22,12 @@ Menu.prototype.create = function() {
 	
 
     var fadeout;
+    
+    var music;
+    
+    music = game.add.audio('Menu_Sound',1,true);
+
+    music.play('',0,1,true);
 
 //    this.btnPlay = game.add.button(game.world.centerX, game.world.centerY - 30, 'botoes',
 //    	    function(){ this.play(); }, this);
