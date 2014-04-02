@@ -1,0 +1,43 @@
+<!doctype html>
+
+<html lang="pt-br"> 
+	<head> 
+		<meta charset="UTF-8" />
+		<title>Oohman</title>
+		<script type="text/javascript" src="js/phaser.min.js"></script>
+		<script type="text/javascript" src="js/Splash.js"></script>		
+		
+		<style type="text/css">
+	        body {
+	        	border:1px solid #000000;
+	        	
+				position:absolute;
+				top:50%;
+				left:50%;
+				margin-top:-240px;
+				margin-left:-400px;
+	        }
+	    </style>
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			var game = new Phaser.Game(600, 800, Phaser.CANVAS, '', {preload: preload, create: create, update: update});
+			function preload() {								
+				//preload do Splash
+				splash = new Splash(game);
+				splash.preload();
+			}
+
+			function create() {				
+				//chamada do Splash
+				splash.create();
+			}
+
+			function update() {
+				
+			}
+		</script>
+	</body>
+
+</html>
