@@ -1,16 +1,16 @@
-Splash = function (game) {
-    this.game = game;
-    this.groupSplashImage = 'assets/screenshots/splashTeam_600-800.png';
-    //this.gameSplashImage = 'assets/spritesheets/splashGame_600-800.png';
+var HighScores = {};
+
+HighScores = function (game) {
+    this.highScoresImage = 'assets/screenshots/highScores_600-800.png';
+    //this.creditsImage = 'assets/screenshots/credits_600-800.png';   
 };
 
-Splash.prototype.preload = function() {
-    game.load.image('splashTeam', this.groupSplashImage);
-	//game.load.atlas('splashGame', this.gameSplashImage);
+HighScores.prototype.preload = function(){
+    game.load.image('highScores', this.highScoresImage);
 };
 
-Splash.prototype.create = function() {
-	var fundo = game.add.sprite(0, 0, 'splashTeam');
+HighScores.prototype.create = function() {	
+	var fundo = game.add.sprite(0, 0, 'highScores');
 	fundo.alpha = 0;
 	
 	var fadein = game.add.tween(fundo).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0, 0, true);
@@ -20,12 +20,12 @@ Splash.prototype.create = function() {
 			fundo.anchor.setTo(0.5,0.5);
 			fundo.x = game.width/2;
 			fundo.y = game.height/2;
-			//fundo.loadTexture('splashGame');			
+			fundo.loadTexture('credits');			
 			var fadein = game.add.tween(fundo).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0, 0, true);
 			setTimeout(function() {
 				var fadeout = game.add.tween(fundo).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true, 0, 0, true);
 				fadeout.onComplete.add(function(){
-					game.state.start('menu', Menu);
+					game.state.start('highScores', highScores);
 				});
 			}, 2500);
 		});
