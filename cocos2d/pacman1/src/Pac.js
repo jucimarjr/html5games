@@ -11,12 +11,13 @@ var Pac = cc.Sprite.extend({
 	_currentPosition:0,
 	//_currentPositionX: 0,
 	//_currentPositionY: 0,
+	_lastKey: null,
 	
 	ctor:function( ){
 		this._super();		
 		this.initWithSpriteFrameName("pac_left_open_32-32.png");
-		//this.setAnimation("pac", "right", SPRITE_SIZE, 2, "right");        
-        //this.getAnimation("right");    
+		//this.setAnimation("pac", "left", SPRITE_SIZE, 2, "left");        
+        //this.getAnimation("left");    
         //this.setDynamicPosition();		
 		
 		this.scheduleUpdate();
@@ -25,6 +26,7 @@ var Pac = cc.Sprite.extend({
 	update:function(dt){
 		//this.setPosition(this._currentPosition);
 		
+	
 		
 		this.setPosition(this.getPosition().x + this.xVelocity, this.getPosition().y + this.yVelocity);
 		/*if(this.getPosition().x < background.width/2){
@@ -79,21 +81,21 @@ var Pac = cc.Sprite.extend({
 	},
     
 	setDirection: function(direction){
-		if(direction == 'right'){
-			this.xVelocity = 2;
-			this.yVelocity = 0;
+		if(direction == 'right'){			
+			this.xVelocity = 5;
+			this.yVelocity = 0;	
 		}
 		if(direction == 'left'){
-			this.xVelocity = -2;
+			this.xVelocity = -5;
 			this.yVelocity = 0;
 		}
 		if(direction == 'up'){
 			this.xVelocity = 0;
-			this.yVelocity = 2;
+			this.yVelocity = 5;
 		}
 		if(direction == 'down'){
 			this.xVelocity = 0;
-			this.yVelocity = -2;
+			this.yVelocity = -5;
 		}
 	},
 	
@@ -149,38 +151,49 @@ var Pac = cc.Sprite.extend({
     
     setPositionOnScreen: function(e)
     {    	    	    	
-    	if (LG.KEYS[cc.KEY.right]){
+    	if (LG.KEYS[cc.KEY.right] && this._lastKey != "right"){
+    		this._lastKey = "right";
 			this.setAnimation("pac", "right", SPRITE_SIZE, 2, "right");        
-            this.getAnimation("right"); 
+            this.getAnimation("right");
             this.setDirection('right');
+            
     	}
-    	if (LG.KEYS[cc.KEY.left]){
+    	if (LG.KEYS[cc.KEY.left] && this._lastKey != "left"){
+    		this._lastKey = "left";
     		this.setAnimation("pac", "left", SPRITE_SIZE, 2, "left");        
             this.getAnimation("left"); 
             this.setDirection('left');
     	}
-    	if (LG.KEYS[cc.KEY.up]){
+    	if (LG.KEYS[cc.KEY.up] && this._lastKey != "up"){
+    		this._lastKey = "up";
     		this.setAnimation("pac", "up", SPRITE_SIZE, 2, "up");        
             this.getAnimation("up"); 
             this.setDirection('up');
     	}
-    	if (LG.KEYS[cc.KEY.down]){
+    	if (LG.KEYS[cc.KEY.down] && this._lastKey != "down"){
+    		this._lastKey = "down";
     		this.setAnimation("pac", "down", SPRITE_SIZE, 2, "down");        
             this.getAnimation("down"); 
             this.setDirection('down');
     	}    	
     },
     
-    handleKey:function(e)
+    setDieAnimation:function()
     {
-        if(e === cc.KEY.left)
-        {
-            this._currentPosition--;
+    	var animFrames = [];
+        var frame;
+        var str = "";                 
+        
+        for (var i = 0; i <= 9; i++) {
+        	if (i == 0)
+        		str = "pac_up_open_32-32.png"; 
+        	else
+        		str = "pac_up_open_" + i + "_32-32.png";
+            frame = this.spriteFrameCache.getSpriteFrame(str);                        
+            animFrames.push(frame);
+        }         
 
-        }
-        else if(e === cc.KEY.right){        	
-            this._currentPosition++;
-        }
-
+        var animation = cc.Animation.create(animFrames, 0.1);
+        this.animeCache.addAnimation(animation, "die");  
     }
 });

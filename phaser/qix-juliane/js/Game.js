@@ -28,9 +28,6 @@ Game.prototype = {
 	},
 
 	create : function() {
-		game.world.bounds.y = screenGame.thicknessExtras;
-		game.world.bounds.height -= screenGame.thicknessExtras;
-		
 		qix.create();
 		ball.create();
 		line.create(ball.sprite);
@@ -41,10 +38,9 @@ Game.prototype = {
 		qix.update();
 		ball.update();
 
-		if (ball.alive)
+		if ((ball.alive) && (!ball.collided))
 			line.update(ball.sprite, ball.direction, ball.positionInitial);
-
-		shape.update();
+		
 		collision.update(ball.sprite);
 	}
 };

@@ -37,7 +37,7 @@ Ship.prototype.update = function () {
    //console.log("enemy"+this.gameClass.enemy1);
   //if(this.gameClass.enemy1.die())
    //var teste =  
-   this.game.physics.collide(this.gameClass.enemy1.enemy, this.bullets, this.gameClass.enemy1.die, null, this);
+  // this.game.physics.collide(this.gameClass.enemy1.enemy, this.bullets, this.gameClass.enemy1.die, null, this);
    //console.log(">>bullet "+this.bullets);
 };
 

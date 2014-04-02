@@ -1,8 +1,6 @@
 var Ghost = cc.Sprite.extend({
 	spriteFrameCache: cc.SpriteFrameCache.getInstance(),
 	animeCache: cc.AnimationCache.getInstance(),
-	xVelocity:300,
-    yVelocity:300,
     up:false,
 	down:false,
 	_currentRotation:0,
@@ -10,38 +8,20 @@ var Ghost = cc.Sprite.extend({
 	//_currentPositionY: 0,
 	velocityX: 0,
 	velocityY: 0,
+	xVelocity:2,
+    yVelocity:0,
 	
-	init: function()
+	ctor: function()
 	{
 		this._super();
-		//this.scheduleUpdate();
-		this.xSpeed = this.velocityX*Math.cos(randomDir);
-		this.ySpeed = this.velocityY*Math.sin(randomDir);
-	},
-	
-	handleKey: function(e)
-    {
-        if(e === cc.KEY.left)
-        {
-            this._currentRotation--;
-
-        }
-        else if(e === cc.KEY.right)
-            this._currentRotation++;
-        else if (e === cc.KEY.up){
-        	this._currentPositionY++;
-        	//this.getAnimation("up");
-        }
-        	
-
-        if(this._currentRotation < 0) this._currentRotation = 360;
-        if(this._currentRotation > 360) this._currentRotation = 0;
-    },
-	
+		this.scheduleUpdate();
+		//this.xSpeed = this.velocityX*Math.cos(randomDir);
+		//this.ySpeed = this.velocityY*Math.sin(randomDir);
+	},	
     
-	update:function(type, position){		
-		
-		switch (position) {
+	update:function(){				
+		this.setPosition(this.getPosition().x + this.xVelocity, this.getPosition().y + this.yVelocity);
+		/*switch (position) {
 			case "left":
 				this.setAnimation(type, position, SPRITE_SIZE, 2, position);        
 		        this.getAnimation(position);				
@@ -75,7 +55,7 @@ var Ghost = cc.Sprite.extend({
 				//this.setPosition(new cc.Point(position.x + 20, position.y + 20));
 				break;
 		}
-
+*/
 	
     		
 	},
@@ -198,6 +178,36 @@ var Ghost = cc.Sprite.extend({
 				//Coloca o asteroid na posição em que se encontrava o asteroid grande
 				//this.setPosition(new cc.Point(position.x + 20, position.y + 20));
 				break;
+		}
+	},
+	
+	setPositionOnScreen: function(spritePrefix, position)
+    {    	    	    	
+		var i = Math.floor((Math.random()*3)+1);
+		
+    	 		
+		cc.log("na posicao up do ghost");
+		this.setAnimation(spritePrefix, position, SPRITE_SIZE, 2, position);    			
+        this.getAnimation(position); 
+        this.setDirection(position);    		
+    },
+    
+    setDirection: function(direction){
+		if(direction == 'right'){
+			this.xVelocity = 2;
+			this.yVelocity = 0;
+		}
+		if(direction == 'left'){
+			this.xVelocity = -2;
+			this.yVelocity = 0;
+		}
+		if(direction == 'up'){
+			this.xVelocity = 0;
+			this.yVelocity = 2;
+		}
+		if(direction == 'down'){
+			this.xVelocity = 0;
+			this.yVelocity = -2;
 		}
 	},
 });

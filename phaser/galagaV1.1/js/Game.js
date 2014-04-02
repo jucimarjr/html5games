@@ -1,22 +1,12 @@
 var Game = function(game){
     this.game = game;
-    //this.scores = 0;
     this.stage = 1;
     this.ship = null;
     this.stars = null;
-    this.enemy1 = null;
+    //this.enemy1 = null;
+    this.enemyGroup1 = null;
     this.textStage = null;
-    //this.backgroundGame;
-    //this.asteroid = null;
-	//this.groupAsteroids = null;
-	//this.livesHud = null;
-	//this.loseMSG = null;
-	//this.ufo = null;
-	//this.score = null;
-	//this.scoreText = null;
-	//this.nextAddUfo = 0;
-	//this.addUfoTime = 10000;
-	//this.velAsteroids = null;
+    
 };
 
 Game.prototype.preload = function(){
@@ -30,8 +20,8 @@ Game.prototype.create = function () {
     this.background2 = this.game.add.sprite(0, -600, 'backgroundGame');
     
     this.initStage();
+	//this.enemy1 = new Enemy(this,'enemy1','en1_1_15-14.png','an_enemy1',2);
     
-	this.enemy1 = new Enemy(this,'enemy1','en1_1_15-14.png','an_enemy1',2);
     this.ship = new Ship(this);
     
     
@@ -50,8 +40,8 @@ Game.prototype.create = function () {
         }
     }
 
-   
-	
+   this.enemyGroup1 = new EnemyGroup(this, 'en1_1_15-14.png','an_enemy1',2);
+   this.create(this.game);
 
 };
 
@@ -59,7 +49,7 @@ function starOut(star) {
     
     star.reset(star.x, -32);
     //  And give it a new random velocity
-    star.body.velocity.y = 50 + Math.random() * 200;
+    star.body.velocity.y = 100 + Math.random() * 200;
 }
 
 
@@ -67,8 +57,8 @@ Game.prototype.update = function () {
 	  
 	//this.backgroundGame.y +=1;
     this.ship.update();
-    this.enemy1.update();
-
+    //this.enemy1.update();
+    this.enemyGroup1.update();
   if(game.input.keyboard.isDown(Phaser.Keyboard.LEFT)){
 	  this.ship.move("left");
   }	  	
@@ -79,6 +69,10 @@ Game.prototype.update = function () {
 	  console.log("fire");
 	  this.ship.fire();
   }
+  else if(game.input.keyboard.isDown(Phaser.Keyboard.DOWN)){
+	  console.log("fire");
+	  //this.enemy1.move(this.ship.sprite.body.x,this.ship.sprite.body.y);
+  }
   
   
   this.moveBackground(this.background1);
@@ -87,14 +81,6 @@ Game.prototype.update = function () {
 		                  
 };
 
-Game.prototype.initAsteroids = function(){
-
-};
-
-Game.prototype.outOfBounds = function (object) {
-
-
-};
 
 Game.prototype.punctuate = function (points) {
 //    this.score += points;

@@ -506,6 +506,72 @@
             <filename>../images/inkey_right_three_32-32.png</filename>
             <filename>../images/inkey_up_four_32-32.png</filename>
             <filename>../images/inkey_up_three_32-32.png</filename>
+            <filename>../images/pac_up_open_2_32-32.png</filename>
+            <filename>../images/pac_up_open_3_32-32.png</filename>
+            <filename>../images/pac_up_open_4_32-32.png</filename>
+            <filename>../images/pac_up_open_5_32-32.png</filename>
+            <filename>../images/pac_up_open_6_32-32.png</filename>
+            <filename>../images/pac_up_open_7_32-32.png</filename>
+            <filename>../images/pac_up_open_8_32-32.png</filename>
+            <filename>../images/pac_up_open_9_32-32.png</filename>
+            <filename>../images/pac_up_open_10_32-32.png</filename>
+            <filename>../images/pac_up_open_3_32-32.png</filename>
+            <filename>../images/pac_up_open_4_32-32.png</filename>
+            <filename>../images/pac_up_open_5_32-32.png</filename>
+            <filename>../images/pac_up_open_6_32-32.png</filename>
+            <filename>../images/pac_up_open_7_32-32.png</filename>
+            <filename>../images/pac_up_open_8_32-32.png</filename>
+            <filename>../images/pac_up_open_9_32-32.png</filename>
+            <filename>../images/pac_up_open_10_32-32.png</filename>
+            <filename>../images/pac_up_open_3_32-32.png</filename>
+            <filename>../images/pac_up_open_4_32-32.png</filename>
+            <filename>../images/pac_up_open_5_32-32.png</filename>
+            <filename>../images/pac_up_open_6_32-32.png</filename>
+            <filename>../images/pac_up_open_7_32-32.png</filename>
+            <filename>../images/pac_up_open_8_32-32.png</filename>
+            <filename>../images/pac_up_open_9_32-32.png</filename>
+            <filename>../images/pac_up_open_10_32-32.png</filename>
+            <filename>../images/pac_up_open_3_32-32.png</filename>
+            <filename>../images/pac_up_open_4_32-32.png</filename>
+            <filename>../images/pac_up_open_5_32-32.png</filename>
+            <filename>../images/pac_up_open_6_32-32.png</filename>
+            <filename>../images/pac_up_open_7_32-32.png</filename>
+            <filename>../images/pac_up_open_8_32-32.png</filename>
+            <filename>../images/pac_up_open_9_32-32.png</filename>
+            <filename>../images/pac_up_open_10_32-32.png</filename>
+            <filename>../images/pac_up_open_3_32-32.png</filename>
+            <filename>../images/pac_up_open_4_32-32.png</filename>
+            <filename>../images/pac_up_open_5_32-32.png</filename>
+            <filename>../images/pac_up_open_6_32-32.png</filename>
+            <filename>../images/pac_up_open_7_32-32.png</filename>
+            <filename>../images/pac_up_open_8_32-32.png</filename>
+            <filename>../images/pac_up_open_9_32-32.png</filename>
+            <filename>../images/pac_up_open_10_32-32.png</filename>
+            <filename>../images/pac_up_open_3_32-32.png</filename>
+            <filename>../images/pac_up_open_4_32-32.png</filename>
+            <filename>../images/pac_up_open_5_32-32.png</filename>
+            <filename>../images/pac_up_open_6_32-32.png</filename>
+            <filename>../images/pac_up_open_7_32-32.png</filename>
+            <filename>../images/pac_up_open_8_32-32.png</filename>
+            <filename>../images/pac_up_open_9_32-32.png</filename>
+            <filename>../images/pac_up_open_10_32-32.png</filename>
+            <filename>../images/pac_up_open_3_32-32.png</filename>
+            <filename>../images/pac_up_open_4_32-32.png</filename>
+            <filename>../images/pac_up_open_5_32-32.png</filename>
+            <filename>../images/pac_up_open_6_32-32.png</filename>
+            <filename>../images/pac_up_open_7_32-32.png</filename>
+            <filename>../images/pac_up_open_8_32-32.png</filename>
+            <filename>../images/pac_up_open_9_32-32.png</filename>
+            <filename>../images/pac_up_open_10_32-32.png</filename>
+            <filename>../images/pac_up_open_3_32-32.png</filename>
+            <filename>../images/pac_up_open_4_32-32.png</filename>
+            <filename>../images/pac_up_open_5_32-32.png</filename>
+            <filename>../images/pac_up_open_6_32-32.png</filename>
+            <filename>../images/pac_up_open_7_32-32.png</filename>
+            <filename>../images/pac_up_open_8_32-32.png</filename>
+            <filename>../images/pac_up_open_9_32-32.png</filename>
+            <filename>../images/pac_up_open_10_32-32.png</filename>
+            <filename>../images/score_6-4.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

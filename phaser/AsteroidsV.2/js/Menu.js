@@ -6,12 +6,14 @@ Menu = function (game) {
     this.btnHowToPlay = null;
     this.btnHighScores = null;
     this.btnCredits = null;
+    this.msg = null;
 };
 
 Menu.prototype.preload = function(){
 
     //game.stage.backgroundColor = '#111111';
     game.load.atlas('botoes', 'assets/spritesheets/ButtonsSpriteSheet.png', 'assets/spritesheets/ButtonsSpriteSheet.json');
+    game.load.image('msg', 'assets/tests/collectresources.png');
 		
 };
 
@@ -44,7 +46,16 @@ Menu.prototype.create = function() {
 Menu.prototype.play = function () {
     this.fadeOut();
     fadeout.onComplete.add(function () {
-        game.state.start('game', Game);
+    	var msg = this.game.add.sprite(0,0,'msg');
+    	msg.alpha = 0;
+    	var fadein = game.add.tween(msg).to({ alpha: 1 }, 1000, Phaser.Easing.Linear.None, true, 0, 0, true);
+    	fadein.onComplete.add(function () {
+    		var fade = game.add.tween(msg).to({ alpha: 0 }, 1000, Phaser.Easing.Linear.None, true, 0, 0, true);
+        	fade.onComplete.add(function () {
+        		game.state.start('game', Game);
+            });
+        });
+    	
     });
 };
 
@@ -53,14 +64,14 @@ Menu.prototype.howToPlay = function() {
     fadeout.onComplete.add(function () {
         game.state.start('howToPlay', HowToPlay);
     });
-}
+};
 
 Menu.prototype.highScores = function () {
     this.fadeOut();
     fadeout.onComplete.add(function () {
         game.state.start('highScore', HighScore);
     });
-}
+};
 
 Menu.prototype.credits = function () {
     this.fadeOut();
