@@ -24,13 +24,13 @@ HighScores.prototype.create = function() {
 			fundo.loadTexture('lose');			
 			
 			var fadein = game.add.tween(fundo).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0, 0, true);
-			/*setTimeout(function() {
+			setTimeout(function() {
 				var fadeout = game.add.tween(fundo).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true, 0, 0, true);
 				fadeout.onComplete.add(function(){
-					game.state.start('highScores', highScores);
+					game.state.start('win', Win);
 				});
 			}, 2500);
-			*/
+			
 		});
 	}, 3000);
 };
