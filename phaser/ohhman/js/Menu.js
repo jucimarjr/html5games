@@ -7,6 +7,7 @@ Menu = function (game) {
 
 Menu.prototype.preload = function(){
     game.load.image('menu', this.menuImage);
+    game.load.image('credits', this.creditsImage);
 };
 
 Menu.prototype.create = function() {	
