@@ -1,7 +1,7 @@
 Ufo = function (gameClass) {
     this.game = gameClass.game;
     this.gameClass = gameClass;
-    this.fireRate = 500;
+    this.fireRate = 750;
     //this.shootUfo = this.game.add.group();    
     this.nextFire = this.game.time.now + this.fireRate;
     Phaser.Sprite.call(this, this.game, 0, 0, 'sprites', 'ufo_96-61.png');
@@ -13,7 +13,6 @@ Ufo = function (gameClass) {
     this.name = 'ufo';
     this.gameClass.groupUfo.add(this);
     this.hp = 50;
-    this.fireRate = 500;
     this.nextFire = this.game.time.now + this.fireRate;
 };
 

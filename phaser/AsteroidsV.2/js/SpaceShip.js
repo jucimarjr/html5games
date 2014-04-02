@@ -21,8 +21,8 @@ SpaceShip.prototype.create = function(){
 	this.shootType = 0;
 	this.sound = this.game.add.audio('laserSound', 1);
 	
-	
-	this.sprite = this.game.add.sprite(this.game.world.width/2, this.game.world.height/2, 'ships', 'ship0_37x39.png');
+	this.sprite = this.game.add.sprite(this.game.world.width/2, this.game.world.height/2, 'ship');
+	//this.sprite = this.game.add.sprite(this.game.world.width/2, this.game.world.height/2, 'ships', 'ship0_37x39.png');
 	//this.sprite = this.game.add.sprite(this.game.world.width/2, this.game.world.height/2, 'ships', 'wr wing 0.png');
 	//this.sprite = this.game.add.sprite(this.game.world.width/2, this.game.world.height/2, 'ships', 'wra wing 0.png');
     
@@ -48,8 +48,8 @@ SpaceShip.prototype.create = function(){
     this.bulletsGroup.setAll('anchor.y', 0.5);
     this.bulletsGroup.setAll('outOfBoundsKill', true);
     
-    this.sprite.animations.add('thrust', ['ship1_37x39.png', 'ship2_37x39.png', 'ship1_37x39.png','ship3_37x39.png'], 15, true, false);
-    this.sprite.animations.add('stop', ['ship0_37x39.png']);
+    //this.sprite.animations.add('thrust', ['ship1_37x39.png', 'ship2_37x39.png', 'ship1_37x39.png','ship3_37x39.png'], 15, true, false);
+    //this.sprite.animations.add('stop', ['ship0_37x39.png']);
     
     //this.sprite.animations.add('thrust', ['wr wing 1.png', 'wr wing 2.png'], 15, true, false);
     //this.sprite.animations.add('stop', ['wr wing 0.png']);
@@ -62,7 +62,6 @@ SpaceShip.prototype.create = function(){
 
 SpaceShip.prototype.update = function () {	
    this.gameClass.warp(this.sprite);
-   console.log(this.sprite.body.polygon);
 };
 
 SpaceShip.prototype.changeShoot = function(){
@@ -74,9 +73,10 @@ SpaceShip.prototype.changeShoot = function(){
 };
 
 SpaceShip.prototype.animate = function(){
+	/*
 	if(!this.sprite.animations.getAnimation('thrust').isPlaying){
 		this.sprite.animations.play('thrust');
-	}
+	}*/
 };
 
 SpaceShip.prototype.rotate = function (direction) {
@@ -92,15 +92,15 @@ SpaceShip.prototype.accelerate = function () {
 
     game.add.audio('thrust', 1).play();
     
-    this.sprite.body.acceleration.x = Math.cos((this.sprite.body.rotation + 270)*0.0174) *150;
-	this.sprite.body.acceleration.y = Math.sin((this.sprite.body.rotation + 270)*0.0174) *150;
+    this.sprite.body.acceleration.x = Math.cos((this.sprite.body.rotation + 270)*0.0174) *300;
+	this.sprite.body.acceleration.y = Math.sin((this.sprite.body.rotation + 270)*0.0174) *300;
 
 };
 
 SpaceShip.prototype.stop = function () {
     this.sprite.body.acceleration.setTo(0, 0);
-    this.sprite.animations.stop('thrust');
-    this.sprite.animations.play('stop');
+    //this.sprite.animations.stop('thrust');
+    //this.sprite.animations.play('stop');
 };
 
 SpaceShip.prototype.teletransport = function () {

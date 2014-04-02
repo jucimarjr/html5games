@@ -8,6 +8,8 @@
 	<script type="text/javascript" src="js/phaser.min.js"></script>
 	
 	<script type="text/javascript" src="js/Splash.js"></script>
+	<script type="text/javascript" src="js/Win.js"></script>
+	<script type="text/javascript" src="js/lose.js"></script>
 	<script type="text/javascript" src="js/Menu.js"></script>
 	<script type="text/javascript" src="js/HowToPlay.js"></script>
     <script type="text/javascript" src="js/HighScores.js"></script>
@@ -21,6 +23,10 @@
         body {
             margin: 0;
         }
+        @font-face {
+ 	   		font-family: 'Vector Battle';
+    		src: url('assets/fonts/VectorB.ttf');
+		}	
     </style>
 </head>
 <body>
@@ -36,6 +42,8 @@ game.state.add('menu', Menu);
 game.state.add('game', Game);
 game.state.add('howToPlay', HowToPlay);
 game.state.add('highScore', HighScore);
+game.state.add('Win', Win);
+game.state.add('lose', Lose);
 game.state.add('highScoreInput', HighScoreInput);
 game.state.add('credits', Credits);
 
@@ -50,7 +58,7 @@ function preload()
 	game.load.image('tiled2','assets/images/Tiled2.png');
 	game.load.image('res','assets/images/res.png');
 	game.load.image('laser','assets/images/laser_5-2.png');
-	game.load.image('ship','assets/images/ship2_14-24.png');
+	game.load.image('ship','assets/tests/nave-verde.png');
 	game.load.image('shipalt','assets/images/nave1.png');
     game.load.audio('thrust', 'assets/audios/AsteroidsThrust.mp3');
     game.load.audio('shoot', 'assets/audios/AsteroidsShoot.mp3');
@@ -59,27 +67,24 @@ function preload()
     setHighScore();
     var keyFull = this.game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
 	keyFull.onDown.add(function(){
-		game.stage.fullScreenScaleMode = Phaser.StageScaleMode.EXACT_FIT;
-		
+		game.stage.fullScreenScaleMode = Phaser.StageScaleMode.EXACT_FIT;		
 		game.stage.scale.startFullScreen();
 	}, this);
     
-	//splashScene = new Splash(game);
-	//splashScene.preload();
-	game.antialias = false;
-	game.stage.smoothed = false;
-	gameScene = new Game(game);
+	splashScene = new Splash(game);
+	splashScene.preload();
+	//gameScene = new Game(game);
 }
 
 function create()
 {
-	//splashScene.create();
-	gameScene.create()
+	splashScene.create();
+	//gameScene.create()
 }
 
 function update() 
 {
-	gameScene.update();
+	//gameScene.update();
 }
 
 function setHighScore()

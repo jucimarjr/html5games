@@ -15,7 +15,7 @@ var Game = function(game){
 	this.score = 0;
 	this.scoreText = null;
 	this.nextAddUfo = 0;
-	this.addUfoTime = 10000;
+	this.addUfoTime = 15000;
 	this.velAsteroids = null;
 	this.numAsteroids = 5;
 	this.addAsteroids = 15000;
@@ -25,8 +25,6 @@ var Game = function(game){
 };
 
 Game.prototype.create = function () {
-	this.game.antialias = false;
-	this.game.stage.smoothed = false;
 	this.shootUfo = this.game.add.group();
 	this.game.world.setBounds(0, 0, 3200, 1920);
 	//this.game.world.setBounds(0, 0, 800, 480);
@@ -39,7 +37,7 @@ Game.prototype.create = function () {
     });
     this.livesHud = this.game.add.group();
 	for(var i = 0; i<3; i++){
-		this.livesHud.create(18 * i + 3, 4, 'sprites', 'ship_14-24.png');
+		this.livesHud.create(18 * i + 3, 4, 'ship');
 	}
 	this.nextAddUfo = this.game.time.now + this.addUfoTime;	
 	this.mapBox = this.game.add.graphics();
@@ -47,16 +45,16 @@ Game.prototype.create = function () {
 	this.groupAsteroids = this.game.add.group();
     this.spaceShip = new SpaceShip(this);
     this.game.camera.follow(this.spaceShip.sprite);	
-    this.initAsteroids(40);
+    this.initAsteroids(30);
     //this.addCircleAsteroids();
     //this.addTunelAsteroids();
 	this.groupResources = this.game.add.group();
 	this.addResources();
 	this.fps = this.game.add.text(10, 470, 'FPS: '+this.game.time.fps, {
-        font: "12px Vector Battle", fill: "#ffffff" , align: "right"
+        font: "12px 'Vector Battle'", fill: "#ffffff" , align: "right"
     });
 	this.Hud = this.game.add.text(50, 50, 'Resources \nto colect: '+this.groupResources.countLiving()+'\nShoot Type: ', {
-        font: "12px Vector Battle", fill: "#ffffff" , align: "left"
+        font: "12px 'Vector Battle'", fill: "#ffffff" , align: "right"
     });	
 };
 
@@ -64,42 +62,47 @@ Game.prototype.collectResources = function(spaceship, resource){
 	resource.kill();
 	this.Hud.content = 'Resources \nto colect: '+this.groupResources.countLiving();
 	this.punctuate(100);
+	if(this.groupResources.countLiving() <=0){
+		setTimeout(function () { this.game.world.setBounds(0, 0, 800, 480);game.state.start('Win', Win);} , 3000 );
+	}
 };
 
 Game.prototype.drawMap = function(){
-	var pxship = Math.round(this.spaceShip.sprite.x/14);
-	var pyship = Math.round(this.spaceShip.sprite.y/14);
-	var ptx = (this.game.camera.width - 245) + pxship;
-	var pty = pyship + 5;
+	var pxship = Math.round(this.spaceShip.sprite.x/16);
+	var pyship = Math.round(this.spaceShip.sprite.y/16);
+	var ptx = (this.game.camera.width - 260) + pxship;
+	var pty = pyship + 0;
 	this.mapBox.clear();
 	this.mapBox.beginFill(0x000000);
 	this.mapBox.lineStyle(1, 0xffffff);
-	this.mapBox.moveTo(this.game.camera.width - 245,5);
-	this.mapBox.lineTo(this.game.camera.width - 5,5);
-	this.mapBox.lineTo(this.game.camera.width - 5,149);
-	this.mapBox.lineTo(this.game.camera.width - 245,149);
-	this.mapBox.lineTo(this.game.camera.width - 245,5);
+	var w = this.game.camera.width;
+	var h = this.game.camera.height;
+	this.mapBox.moveTo(w - (w/4+60),0);
+	this.mapBox.lineTo(w - 60,0);
+	this.mapBox.lineTo(w - 60,h/4+0);
+	this.mapBox.lineTo(w - (w/4+60),h/4+0);
+	this.mapBox.lineTo(w - (w/4+60),0);
 	this.drawPoint(ptx, pty, 0x00ff00);
 	this.groupAsteroids.forEachAlive(function(asteroid){
-		var pxship = Math.round(asteroid.x/14);
-		var pyship = Math.round(asteroid.y/14);
-		var ptx = (this.game.camera.width - 245) + pxship;
-		var pty = pyship + 5;
+		var pxship = Math.round(asteroid.x/16);
+		var pyship = Math.round(asteroid.y/16);
+		var ptx = (this.game.camera.width - 260) + pxship;
+		var pty = pyship + 0;
 		this.drawPoint(ptx, pty, 0xffffff);
 	}, this);
 	this.groupResources.forEachAlive(function(resource){
-		var pxship = Math.round(resource.x/14);
-		var pyship = Math.round(resource.y/14);
-		var ptx = (this.game.camera.width - 245) + pxship;
-		var pty = pyship + 5;
+		var pxship = Math.round(resource.x/16);
+		var pyship = Math.round(resource.y/16);
+		var ptx = (this.game.camera.width - 260) + pxship;
+		var pty = pyship + 0;
 		this.drawPoint(ptx, pty, 0xff00ff);
 	}, this);
 	
 	this.groupUfo.forEachAlive(function(ufo){
-		var pxship = Math.round(ufo.x/14);
-		var pyship = Math.round(ufo.y/14);
-		var ptx = (this.game.camera.width - 245) + pxship;
-		var pty = pyship + 5;
+		var pxship = Math.round(ufo.x/16);
+		var pyship = Math.round(ufo.y/16);
+		var ptx = (this.game.camera.width - 260) + pxship;
+		var pty = pyship + 0;
 		this.drawPoint(ptx, pty, 0xff0000);
 	}, this);
 };
@@ -157,11 +160,12 @@ Game.prototype.update = function () {
     
     if (this.game.time.now > this.timeAsteroids) {
         this.timeAsteroids = this.game.time.now + this.addAsteroids;
-        var resource = this.game.add.sprite(Math.random() * this.game.world.width, Math.random() * this.game.world.height, 'res');
+        /*var resource = this.game.add.sprite(Math.random() * this.game.world.width, Math.random() * this.game.world.height, 'res');
         resource.anchor.setTo(0.5,0.5);
 		resource.body.angularVelocity = 5;
 		this.game.add.tween(resource).to( { alpha: 0.5}, 200, Phaser.Easing.Linear.InOut, true, 0, 1000, true);
-		this.groupResources.add(resource);
+		this.groupResources.add(resource);*/
+        this.initAsteroids(1);
         this.numAsteroids++;
     }
     this.drawMap();
@@ -404,6 +408,7 @@ Game.prototype.addTunelAsteroids = function(){
 };
 
 Game.prototype.render = function(){
+	/*
 	this.groupAsteroids.forEach(function(asteroid){
 		game.debug.renderPhysicsBody(asteroid.body);
 	});
@@ -415,12 +420,13 @@ Game.prototype.render = function(){
 	});
   /*this.spaceShip.bulletsGroup.forEach(function(bullet){
 		game.debug.renderPhysicsBody(bullet.body);
-	});*/
+	});
 	game.debug.renderPhysicsBody(this.spaceShip.sprite.body);
+	*/
 };
 
 Game.prototype.addResources = function(){
-	for(var i = 0;i < 5;i++){
+	for(var i = 0;i < 10;i++){
 		var resource = this.game.add.sprite(Math.random() * this.game.world.width, Math.random() * this.game.world.height, 'res');
 		resource.anchor.setTo(0.5,0.5);
 		resource.body.angularVelocity = 5;
@@ -462,5 +468,5 @@ Game.prototype.gameOver = function () {
     this.spawnText = this.game.add.text(this.spaceShip.sprite.x - 150, this.spaceShip.sprite.y , "Game Over", {
         font: "40px Vector Battle", fill: "#ffffff", align: "center"
     });
-    setTimeout(function () { this.game.world.setBounds(0, 0, 800, 480);game.state.start('highScoreInput', HighScoreInput);} , 3000 );
+    setTimeout(function () { this.game.world.setBounds(0, 0, 800, 480);game.state.start('lose', Lose);} , 3000 );
 };
