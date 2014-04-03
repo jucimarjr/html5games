@@ -1,7 +1,7 @@
 var Win = {};
 
 Win = function (game) {
-    this.menuImage = 'assets/screenshots/win_600-800.png';       
+    this.menuImage = 'assets/screenshots/win_800-600.png';       
 };
 
 Win.prototype.preload = function(){

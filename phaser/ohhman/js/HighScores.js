@@ -1,8 +1,8 @@
 var HighScores = {};
 
 HighScores = function (game) {
-    this.highScoresImage = 'assets/screenshots/highScores_600-800.png';
-    this.loseImage = 'assets/screenshots/lose_600-800.png';   
+    this.highScoresImage = 'assets/screenshots/highScores_800-600.png';
+    this.loseImage = 'assets/screenshots/lose_800-600.png';   
 };
 
 HighScores.prototype.preload = function(){

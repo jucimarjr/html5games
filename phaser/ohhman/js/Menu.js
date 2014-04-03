@@ -1,8 +1,8 @@
 var Menu = {};
 
 Menu = function (game) {
-    this.menuImage = 'assets/screenshots/menu_600-800.png';
-    this.creditsImage = 'assets/screenshots/credits_600-800.png';   
+    this.menuImage = 'assets/screenshots/menu_800-600.png';
+    this.creditsImage = 'assets/screenshots/credits_800-600.png';   
 };
 
 Menu.prototype.preload = function(){
