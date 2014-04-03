@@ -6,6 +6,7 @@
 	<script type="text/javascript" src="js/phaser.min.js"></script>
 	<script type="text/javascript" src="js/Splash.js"></script>
 	<script type="text/javascript" src="js/Menu.js"></script>
+	<script type="text/javascript" src="js/FilePaths.js"></script>
 	<!--<script type="text/javascript" src="js/HowToPlay.js"></script>
     <script type="text/javascript" src="js/HighScores.js"></script>
     <script type="text/javascript" src="js/HighScoresInput.js"></script>
@@ -39,9 +40,14 @@ game.state.add('menu', Menu);
 
 function preload()
 {
-	game.load.atlas('Menu', 'assets/spritesheets/Menu.png', 'assets/spritesheets/Menu.json');
-	game.load.audio('Menu_Sound','assets/audio/TheForestAwakes.ogg');
-	game.load.audio('Splash_Sound','assets/audio/Menu8-Bit.ogg');
+	game.load.atlas('Menu', spriteSheetsImageMenu, spriteSheetsJsonMenu);
+	game.load.image('btPlay', btPlay);
+	game.load.image('btPlaySelected',btPlaySelected);
+	var btPlay = 'assets/buttons/btPlay_147-33.png';
+	var btPlaySelected = 'assets/buttons/btPlaySelected_147-33.png';
+	//game.load.image('btPlaySelected', btPlaySelected);
+	game.load.audio('Menu_Sound',audioSplashMenu);
+	game.load.audio('Splash_Sound',audioSplashGame);
 	//game.load.atlas('enemy1', 'assets/spritesheets/enemy1.png', 'assets/spritesheets/enemy1.json');
 	//game.load.image('bullet','assets/bullet_4-9.png');
 	//game.load.image('star','assets/particle_1-15.png');
