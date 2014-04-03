@@ -1,0 +1,76 @@
+{"frames": [
+
+{
+	"filename": "btnCreditsSelected_291-75.png",
+	"frame": {"x":2,"y":2,"w":291,"h":75},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":291,"h":75},
+	"sourceSize": {"w":291,"h":75}
+},
+{
+	"filename": "btnCredits_291-75.png",
+	"frame": {"x":295,"y":2,"w":291,"h":75},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":291,"h":75},
+	"sourceSize": {"w":291,"h":75}
+},
+{
+	"filename": "btnHighScoresSelected_291-75.png",
+	"frame": {"x":2,"y":79,"w":291,"h":75},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":291,"h":75},
+	"sourceSize": {"w":291,"h":75}
+},
+{
+	"filename": "btnHighScores_291-75.png",
+	"frame": {"x":295,"y":79,"w":291,"h":75},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":291,"h":75},
+	"sourceSize": {"w":291,"h":75}
+},
+{
+	"filename": "btnHowToPlaySelected_291-75.png",
+	"frame": {"x":2,"y":156,"w":291,"h":75},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":291,"h":75},
+	"sourceSize": {"w":291,"h":75}
+},
+{
+	"filename": "btnHowToPlay_291-75.png",
+	"frame": {"x":295,"y":156,"w":291,"h":75},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":291,"h":75},
+	"sourceSize": {"w":291,"h":75}
+},
+{
+	"filename": "btnPlaySelected_291-75.png",
+	"frame": {"x":2,"y":233,"w":291,"h":75},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":291,"h":75},
+	"sourceSize": {"w":291,"h":75}
+},
+{
+	"filename": "btnPlay_291-75.png",
+	"frame": {"x":295,"y":233,"w":291,"h":75},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":291,"h":75},
+	"sourceSize": {"w":291,"h":75}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker ",
+	"version": "1.0",
+	"image": "buttons_291-75-8.png",
+	"format": "RGBA8888",
+	"size": {"w":588,"h":310},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:dec77b295f4970d9809caa1044d63feb:ae6837629bc0d72d878b2f2b807b4a81:5215eaf2ddc5c5ed98cd10c5d47248fe$"
+}
+}
