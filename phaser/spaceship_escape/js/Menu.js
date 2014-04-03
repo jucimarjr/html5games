@@ -10,7 +10,7 @@ Menu = function (game) {
 
 Menu.prototype.preload = function(){
 	//game.load.atlas('background','assets/screenshots/Menu6_480-600.png');
-	//game.load.atlas('botoes', 'assets/spritesheets/buttonsArray.png', 'assets/spritesheets/buttonsArray.json');
+	game.load.atlas('buttons', spriteSheetsImageButtons, spriteSheetsJsonButtons);
 		
 };
 
@@ -28,22 +28,22 @@ Menu.prototype.create = function() {
     music = game.add.audio('Menu_Sound',1,true);
     music.play('',0,1,true);
 
-    this.btnPlay = game.add.button(game.world.centerX, game.world.centerY - 30, 'botoes',
+    this.btnPlay = game.add.button(game.world.centerX, game.world.centerY-100, 'buttons',
     	    function(){ this.play(); }, this);
-    	    this.btnPlay.setFrames('assets/buttons/btPlaySelected_147-33.png','assets/buttons/btPlay_147-33.png');
+    	    this.btnPlay.setFrames(btPlaySelected,btPlay);
     	    this.btnPlay.anchor.x = 0.5;
     		    		
-    this.btnHowToPlay = game.add.button(game.world.centerX, game.world.centerY + 20, 'botoes',
+    this.btnHowToPlay = game.add.button(game.world.centerX, game.world.centerY-40, 'buttons',
     	    function(){ this.howToPlay(); }, this);
     	    this.btnHowToPlay.setFrames(btHowToPlaySelected,btHowToPlay);
     	    this.btnHowToPlay.anchor.x = 0.5;
     		
-    this.btnHighScores = game.add.button(game.world.centerX, game.world.centerY + 70, 'botoes',
+    this.btnHighScores = game.add.button(game.world.centerX, game.world.centerY + 20, 'buttons',
     	    function () { this.highScores(); }, this);
-    	    this.btnHighScores.setFrames(btScoreSelected,btScoreSelected);
+    	    this.btnHighScores.setFrames(btScoreSelected,btScore);
     	    this.btnHighScores.anchor.x = 0.5;
 
-    this.btnCredits = game.add.button(game.world.centerX, game.world.centerY + 120, 'botoes',
+    this.btnCredits = game.add.button(game.world.centerX, game.world.centerY + 80, 'buttons',
     	    function(){ this.credits(); }, this);
     	    this.btnCredits.setFrames(btCreditsSelected,btCredits);
     	    this.btnCredits.anchor.x = 0.5;

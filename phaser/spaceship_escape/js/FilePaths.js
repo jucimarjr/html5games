@@ -1,12 +1,12 @@
 //Sprites Buttons
-var btPlay = 'assets/buttons/btPlay_147-33.png';
-var btPlaySelected = 'assets/buttons/btPlaySelected_147-33.png';
-var btHowToPlay = 'assets/buttons/btHowToPlay_262-33.png';
-var btHowToPlaySelected = 'assets/buttons/btHowToPlaySelected_262-33.png';
-var btScore = 'assets/buttons/btScore_185-33.png';
-var btScoreSelected = 'assets/buttons/btScoreSelected_147-33.png';
-var btCredits = 'assets/buttons/btCredits_262-33.png';
-var btCreditsSelected = 'assets/buttons/btCreditsSelected_262-33.png ';
+var btPlay = 'btPlay_147-33.png';
+var btPlaySelected = 'btPlaySelected_147-33.png';
+var btHowToPlay = 'btHowToPlay_413-33.png';
+var btHowToPlaySelected = 'btHowToPlaySelected_413-33.png';
+var btScore = 'btScore_185-33.png';
+var btScoreSelected = 'btScoreSelected_185-33.png';
+var btCredits = 'btCredits_262-33.png';
+var btCreditsSelected = 'btCreditsSelected_262-33.png';
 
 //SpritesSheets (png)
 var spriteSheetsImageMenu = "assets/spritesheets/Menu.png";
