@@ -10,7 +10,7 @@ HighScore.prototype.preload = function () {
 
 HighScore.prototype.create = function () {
     var bg = game.add.sprite(0, 0, this.screenName);
-
+    bg.anchor.setTo(0.5,0.5);
     game.add.text(this.game.width / 2 - 150, 100, localStorage["nameScore1"], {
         font: "40px Vector Battle", fill: "#ffffff", align: "center"
     });

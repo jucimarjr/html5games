@@ -48,6 +48,9 @@ Menu.prototype.play = function () {
     fadeout.onComplete.add(function () {
     	var msg = this.game.add.sprite(0,0,'msg');
     	msg.alpha = 0;
+    	msg.anchor.setTo(0.5,0.5);
+    	msg.x = game.width/2;
+    	msg.y = game.height/2;
     	var fadein = game.add.tween(msg).to({ alpha: 1 }, 1000, Phaser.Easing.Linear.None, true, 0, 0, true);
     	fadein.onComplete.add(function () {
     		var fade = game.add.tween(msg).to({ alpha: 0 }, 1000, Phaser.Easing.Linear.None, true, 0, 0, true);
