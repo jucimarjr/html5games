@@ -1,36 +1,25 @@
 var HighScores = {};
 
 HighScores = function (game) {
-    this.highScoresImage = 'assets/screenshots/highScores_600-800.png';
-    this.loseImage = 'assets/screenshots/lose_600-800.png';   
+	this.game = game;
 };
 
-HighScores.prototype.preload = function(){
-    game.load.image('highScores', this.highScoresImage);
-    game.load.image('lose', this.loseImage);
-};
+HighScores.prototype = {
+	preload:function() {
+		//preload da tela de High Scores
+//		game.load.image('ssHighScores', 'assets/screenshots/highScores_800-600.png');
+		game.load.image('ssHighScores', 'assets/screenshots/highScores_800-600_example.png');
+	},
 
-HighScores.prototype.create = function() {	
-	var fundo = game.add.sprite(0, 0, 'highScores');
-	fundo.alpha = 0;
-	
-	var fadein = game.add.tween(fundo).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0, 0, true);
-	setTimeout(function() {
-		var fadeout = game.add.tween(fundo).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true, 0, 0, true);
-		fadeout.onComplete.add(function() {
-			fundo.anchor.setTo(0.5,0.5);
-			fundo.x = game.width/2;
-			fundo.y = game.height/2;
-			fundo.loadTexture('lose');			
-			
-			var fadein = game.add.tween(fundo).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0, 0, true);
-			setTimeout(function() {
-				var fadeout = game.add.tween(fundo).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true, 0, 0, true);
-				fadeout.onComplete.add(function(){
-					game.state.start('win', Win);
-				});
-			}, 2500);
-			
+	create:function() {
+		var bg = game.add.sprite(0, 0, 'ssHighScores');
+		
+		game.input.onDown.add(function() {
+			var fadeout = game.add.tween(bg).to( { alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
+			fadeout.onComplete.add(function() {
+				//chamada do Menu
+				game.state.start('menu', Menu);
+			});
 		});
-	}, 3000);
+	}
 };

@@ -1,7 +1,7 @@
 Splash = function (game) {
     this.game = game;
-    this.groupSplashImage = 'assets/screenshots/splashTeam_600-800.png';
-    this.gameSplashImage = 'assets/screenshots/splashGame_600-800.png';
+    this.groupSplashImage = 'assets/screenshots/splashTeam_800-600.png';
+    this.gameSplashImage = 'assets/screenshots/splashGame_800-600.png';
 };
 
 Splash.prototype.preload = function() {

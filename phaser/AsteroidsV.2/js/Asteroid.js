@@ -4,9 +4,8 @@ var Asteroid = function(gameClass, posX , posY , size , vel) {
     if (size == "large") {
     	var i = Math.round(1 + Math.random()*2);
     	//this.sprite = this.gameClass.groupAsteroids.create();
-    	Phaser.Sprite.call(this, this.game, posX, posY, 'sprites', 'asteroids'+i+'_80-80.png');
-    	i+=3;
-    	this.redSprite = this.game.add.sprite(posX,posY,'asteroids','asteroids'+i+'_80-80.png');
+    	Phaser.Sprite.call(this, this.game, posX, posY, 'sprites', 'asteroid'+i+'-yellow-79-79.png');
+    	this.redSprite = this.game.add.sprite(posX,posY,'sprites','asteroid'+i+'-red-79-79.png');
     	this.body.setCircle(38);
     	this.redSprite.body.setCircle(38);
         this.hp = 80;
@@ -15,9 +14,8 @@ var Asteroid = function(gameClass, posX , posY , size , vel) {
     if (size == "medium") {
     	var i = Math.round(1 + Math.random()*2);
     	//this.sprite = this.gameClass.groupAsteroids.create(posX, posY, 'sprites', 'asteroids'+i+'_40-40.png');
-    	Phaser.Sprite.call(this, this.game, posX, posY, 'sprites', 'asteroids'+i+'_40-40.png');
-    	i+=3;
-    	this.redSprite = this.game.add.sprite(posX,posY,'asteroids','asteroids'+i+'_40-40.png');
+    	Phaser.Sprite.call(this, this.game, posX, posY, 'sprites', 'asteroid'+i+'-yellow-41-41.png');
+    	this.redSprite = this.game.add.sprite(posX,posY,'sprites','asteroid'+i+'-red-41-41.png');
     	this.body.setCircle(18);
     	this.redSprite.body.setCircle(18);
     	this.hp = 40;
@@ -26,9 +24,8 @@ var Asteroid = function(gameClass, posX , posY , size , vel) {
     if (size == "small") {
     	var i = Math.round(1 + Math.random()*2);
     	//this.sprite = this.gameClass.groupAsteroids.create(posX, posY, 'sprites', 'asteroids'+i+'_20-20.png');
-    	Phaser.Sprite.call(this, this.game, posX, posY, 'sprites', 'asteroids'+i+'_20-20.png');
-    	i+=3;
-    	this.redSprite = this.game.add.sprite(posX,posY,'asteroids','asteroids'+i+'_20-20.png');
+    	Phaser.Sprite.call(this, this.game, posX, posY, 'sprites', 'asteroid'+i+'-yellow-22-22.png');
+    	this.redSprite = this.game.add.sprite(posX,posY,'sprites','asteroid'+i+'-red-22-22.png');
     	this.body.setCircle(9);
     	this.redSprite.body.setCircle(9);
     	this.hp = 20;
