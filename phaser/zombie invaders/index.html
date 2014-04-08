@@ -4,6 +4,7 @@
 	<meta charset="UTF-8" />
 	<title>Zombie Invaders</title>
 	<script type="text/javascript" src="js/phaser.min.js"></script>
+	<script type="text/javascript" src="js/FilePaths.js"></script>
 	<style type="text/css">
         body {
             margin: 0;
@@ -16,23 +17,49 @@
 
 var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 var cursors;
+var spriteMuro;
+var spriteZombie;
+var numeroDePessoas;
+var numeroDeZumbis;
+var grupoZumbis;
 
 function preload()
 {
 	
-	game.load.image('muro', btPlay);
-	game.load.image('btPlaySelected',btPlaySelected);
+	game.load.image('muro', imageMuro);
+	game.load.image('rua',imageRua);
+	game.load.image('zombie',imageZombie);
 	
 }
 
 function create()
 {
+	game.physics.startSystem(Phaser.Physics.ARCADE);
+	
+	cursors = game.input.keyboard.createCursorKeys();
+	
+	spriteMuro = game.add.sprite(0, 0, 'muro');
+	
+	//spriteZombie = game.add.sprite(500,400,'zombie');
+	
+	game.physics.enable([spriteMuro], Phaser.Physics.ARCADE);
+	
+	grupoZumbis = game.add.group();
+
+	createZumbis();
 	
 }
 
 function update() 
 {
 	
+}
+
+function createZumbis(){
+	for(var i = 0; i < 5; i++){
+		//  Create a new sprite at a random world location
+		grupoZumbis.create(10+(i*40), 300+(i*10), 'zombie');	    
+	}
 }
 
 function setHighScore()
