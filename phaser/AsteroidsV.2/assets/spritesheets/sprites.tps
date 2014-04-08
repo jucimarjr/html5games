@@ -36,7 +36,7 @@
         <key>dpi</key>
         <uint>72</uint>
         <key>dataFormat</key>
-        <string>json</string>
+        <string>json-array</string>
         <key>textureFileName</key>
         <filename>../../../../../../../Users/UEA/Documents/sprites/sprites.png</filename>
         <key>flipPVR</key>
@@ -311,6 +311,14 @@
             <filename>../../../../../../../Users/UEA/Documents/sprites/ufo3-60-55.png</filename>
             <filename>../../../../../../../Users/UEA/Documents/sprites/ufo4-40-84.png</filename>
             <filename>../../../../../../../Users/UEA/Documents/sprites/ufo5-60-54.png</filename>
+            <filename>../../../../../../../Users/UEA/Documents/sprites/shoot-blue-5-5.png</filename>
+            <filename>../../../../../../../Users/UEA/Documents/sprites/shoot-green-5-5.png</filename>
+            <filename>../../../../../../../Users/UEA/Documents/sprites/shoot-orange-5-5.png</filename>
+            <filename>../../../../../../../Users/UEA/Documents/sprites/shoot-purple-5-5.png</filename>
+            <filename>../../../../../../../Users/UEA/Documents/sprites/shoot-red-5-5.png</filename>
+            <filename>../../../../../../../Users/UEA/Documents/sprites/shoot-white-5-5.png</filename>
+            <filename>../../../../../../../Users/UEA/Documents/sprites/shoot-yellow-5-5.png</filename>
+            <filename>../../../../../../../Users/UEA/Documents/sprites/particle-asteroid-2-2.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

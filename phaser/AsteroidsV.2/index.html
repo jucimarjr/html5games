@@ -76,20 +76,20 @@ function preload()
 		game.stage.scale.startFullScreen();
 	}, this);
     
-	splashScene = new Splash(game);
-	splashScene.preload();
-	//gameScene = new Game(game);
+	//splashScene = new Splash(game);
+	//splashScene.preload();
+	gameScene = new Game(game);
 }
 
 function create()
 {
-	splashScene.create();
-	//gameScene.create()
+	//splashScene.create();
+	gameScene.create()
 }
 
 function update() 
 {
-	//gameScene.update();
+	gameScene.update();
 }
 
 function setHighScore()
