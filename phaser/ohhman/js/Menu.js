@@ -66,8 +66,8 @@ Menu.prototype.highScores = function () {
 Menu.prototype.howToPlay = function() {
     this.fadeOut();
     fadeout.onComplete.add(function () {
-    //    this.game.state.start('howToPlay', HowToPlay);
-        this.game.state.start('menu', Menu);
+    	this.game.state.start('howToPlay', HowToPlay);
+        //this.game.state.start('menu', Menu);
     });
 };
 
