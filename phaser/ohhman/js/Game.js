@@ -11,10 +11,18 @@ Game.prototype.preload = function(){
 };
 
 Game.prototype.create = function(){
+	this.loadMap();
+	this.loadOhhman();
+};
+
+Game.prototype.loadMap = function () {
 	var map = game.add.tilemap('background');	
 	map.addTilesetImage('map', 'tile');	
-	layer = map.createLayer('Camada de Tiles');
-	
-	console.log(map)
+	layer = map.createLayer('Camada de Tiles');		
 	layer.resizeWorld();
+};
+
+Game.prototype.loadOhhman = function () {
+	ohhman = new Ohhman();
+	ohhman.create();
 };
