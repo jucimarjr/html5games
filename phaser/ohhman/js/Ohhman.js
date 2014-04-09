@@ -11,5 +11,5 @@ Ohhman.prototype.preload = function () {
 };
 
 Ohhman.prototype.create = function () {
-	this.ohhman = game.add.sprite(0, 0, 'ohhman');
+	game.add.sprite(0, 0, 'ohhman');
 };
