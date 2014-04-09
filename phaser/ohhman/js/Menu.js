@@ -51,8 +51,8 @@ Menu.prototype.create = function() {
 Menu.prototype.play = function () {
     this.fadeOut();
     fadeout.onComplete.add(function () {
-    //    this.game.state.start('game', Game);
-    	this.game.state.start('win', Win);
+    	this.game.state.start('game', Game);
+    	//this.game.state.start('win', Win);
     });
 };
 

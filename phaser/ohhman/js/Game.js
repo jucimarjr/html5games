@@ -12,7 +12,9 @@ Game.prototype.preload = function(){
 
 Game.prototype.create = function(){
 	var map = game.add.tilemap('background');	
-	map.addTilesetImage('map', 'tile');
-	layer = map.createLayer('map1');
+	map.addTilesetImage('map', 'tile');	
+	layer = map.createLayer('Camada de Tiles');
+	
+	console.log(map)
 	layer.resizeWorld();
 };
