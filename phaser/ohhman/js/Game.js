@@ -15,6 +15,10 @@ Game.prototype.create = function(){
 	ohhman.create();
 };
 
+Game.prototype.update = function () {
+	ohhman.update();
+};
+
 Game.prototype.loadMap = function () {
 	var map = game.add.tilemap('map1');	
 	map.addTilesetImage('tile1', 'tile1');	
