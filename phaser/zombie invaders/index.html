@@ -5,6 +5,7 @@
 	<title>Zombie Invaders</title>
 	<script type="text/javascript" src="js/phaser.min.js"></script>
 	<script type="text/javascript" src="js/FilePaths.js"></script>
+	<script type="text/javascript" src="js/Zombie.js"></script>
 	<style type="text/css">
         body {
             margin: 0;
@@ -22,6 +23,7 @@ var spriteZombie;
 var numeroDePessoas;
 var numeroDeZumbis;
 var grupoZumbis;
+//var zombie;
 
 function preload()
 {
@@ -40,32 +42,57 @@ function create()
 	
 	spriteMuro = game.add.sprite(0, 0, 'muro');
 	
-	//spriteZombie = game.add.sprite(500,400,'zombie');
+	game.physics.arcade.enable(spriteMuro);
 	
-	game.physics.enable([spriteMuro], Phaser.Physics.ARCADE);
+	spriteMuro.body.immovable = true;
 	
 	grupoZumbis = game.add.group();
-
-	createZumbis();
+	
+	initZombies(grupoZumbis);
+	
+	//spriteZombie = game.add.sprite(500,400,'zombie');
+	
+	//game.physics.enable([spriteMuro], Phaser.Physics.ARCADE);
+	
+	//grupoZumbis = game.add.group();
+	
+	//zombie = new Zombie(this);
 	
 }
 
 function update() 
 {
-	
+	//zombie.move();
+	//moveZombies(grupoZumbis);
 }
 
-function createZumbis(){
-	for(var i = 0; i < 5; i++){
-		//  Create a new sprite at a random world location
-		grupoZumbis.create(10+(i*40), 300+(i*10), 'zombie');	    
-	}
-}
+
 
 function setHighScore()
 {
    
 }
+
+function outOfBounds(object) {
+
+};
+
+function initZombies(grupoZumbis){
+	grupoZumbis = game.add.group();
+
+    for (var i = 0; i < 5; i++)
+    {
+        //  Create a star inside of the 'stars' group
+       	var zumbi = game.add.sprite(i*100+1, 300, 'zombie');
+       	game.physics.enable(zumbi);
+        zumbi.inputEnabled=true;
+        console.log(zumbi);
+        zumbi.body.velocity.x  = 10;
+        grupoZumbis.add(zumbi);
+        
+    }
+}
+
 
 </script>
 
