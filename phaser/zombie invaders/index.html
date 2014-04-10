@@ -62,6 +62,7 @@ function create()
 
 function update() 
 {
+	
 	//zombie.move();
 	//moveZombies(grupoZumbis);
 }
@@ -88,6 +89,9 @@ function initZombies(grupoZumbis){
         zumbi.inputEnabled=true;
         console.log(zumbi);
         zumbi.body.velocity.x  = 10;
+        zumbi.events.onInputDown.add(elimine = function(fantasma){
+			fantasma.destroy();
+		},null);
         grupoZumbis.add(zumbi);
         
     }
