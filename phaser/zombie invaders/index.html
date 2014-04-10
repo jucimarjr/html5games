@@ -23,6 +23,7 @@ var spriteZombie;
 var numeroDePessoas;
 var numeroDeZumbis;
 var grupoZumbis;
+var grupoPessoas;
 //var zombie;
 
 function preload()
@@ -31,6 +32,7 @@ function preload()
 	game.load.image('muro', imageMuro);
 	game.load.image('rua',imageRua);
 	game.load.image('zombie',imageZombie);
+	game.load.image('pessoa',imagePessoa);
 	
 }
 
@@ -49,6 +51,11 @@ function create()
 	grupoZumbis = game.add.group();
 	
 	initZombies(grupoZumbis);
+	
+	grupoPessoas = game.add.group();
+	
+	initPessoas(grupoPessoas);
+	
 	
 	//spriteZombie = game.add.sprite(500,400,'zombie');
 	
@@ -84,7 +91,7 @@ function initZombies(grupoZumbis){
     for (var i = 0; i < 5; i++)
     {
         //  Create a star inside of the 'stars' group
-       	var zumbi = game.add.sprite(i*100+1, 300, 'zombie');
+       	var zumbi = game.add.sprite(i*80+1, 300, 'zombie');
        	game.physics.enable(zumbi);
         zumbi.inputEnabled=true;
         console.log(zumbi);
@@ -93,6 +100,21 @@ function initZombies(grupoZumbis){
 			fantasma.destroy();
 		},null);
         grupoZumbis.add(zumbi);
+        
+    }
+}
+
+function initPessoas(grupoPessoas){
+	
+	for (var i = 0; i < 3; i++)
+    {
+        //  Create a star inside of the 'stars' group
+       	var pessoa = game.add.sprite(800-i*80, 300, 'pessoa');
+       	game.physics.enable(pessoa);
+        pessoa.inputEnabled=true;
+        //console.log();
+        pessoa.body.velocity.x  = -10;
+        grupoPessoas.add(pessoa);
         
     }
 }
