@@ -25,6 +25,7 @@ var numeroDePessoas;
 var numeroDeZumbis;
 var grupoZumbis;
 var grupoPessoas;
+var timer;
 //var zombie;
 
 function preload()
@@ -56,14 +57,17 @@ function create()
 	grupoZumbis = game.add.group();
 	grupoZumbis.enableBody = true;
 	grupoZumbis.physicsBodyType = Phaser.Physics.ARCADE;
-	initZombies(grupoZumbis);
+	//initZombies(grupoZumbis);
 	
 	//Grupo de pessoas
 	grupoPessoas = game.add.group();
 	grupoPessoas.enableBody = true;
 	grupoPessoas.physicsBodyType = Phaser.Physics.ARCADE;
 	game.physics.enable(grupoPessoas);
-	initPessoas(grupoPessoas);
+	game.time.events.repeat(Phaser.Timer.SECOND * 5, 3, initPessoas, this);
+	
+	timer = game.time.create(false);
+
 	
 }
 
@@ -120,26 +124,27 @@ function initZombies(grupoZumbis){
     }
 }
 
-function initPessoas(grupoPessoas){
+function initPessoas(){
 	
-	for (var i = 0; i < 3; i++)
-    {
-       	var pessoa = grupoPessoas.create(game.world.randomX, Math.random()*333+267, 'pessoa');
+	//for (var i = 0; i < 3; i++)
+    //{
+       	var pessoa = grupoPessoas.create(1000, Math.random(), 'pessoa');
        	game.physics.enable(pessoa,Phaser.Physics.ARCADE);
-        //pessoa.body.velocity.x  = -10;
-        pessoa.body.velocity.y  = -50
+        pessoa.body.velocity.x  = -Math.random()*10;
+        pessoa.body.velocity.y  = -Math.random()*10;
         pessoa.body.collideWorldBounds = true;
         pessoa.body.bounce.set(1);
-    }
+    //}
 }
 
 
+
 function render() {
-
+	console.log("render");
     //game.debug.bodyInfo(sprite2, 32, 32);
-	game.debug.bodyInfo(spriteMuro, 32, 32);
+	game.debug.spriteInfo(spriteMuro, 800, 267);
 
-    game.debug.body(spriteMuro);
+    //game.debug.body(spriteMuro);
     //game.debug.body(sprite2);
 
 }
