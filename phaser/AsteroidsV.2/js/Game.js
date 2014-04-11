@@ -24,6 +24,7 @@ var Game = function(game){
 };
 
 Game.prototype.create = function () {
+	//this.btn = this.game.add.sprite(0,0,'btnright');
 	this.shootUfo = this.game.add.group();
 	this.game.world.setBounds(0, 0, 3200, 1920);
 	//this.game.world.setBounds(0, 0, 800, 480);
@@ -122,6 +123,8 @@ Game.prototype.update = function () {
 	this.fps.content = 'FPS: '+this.game.time.fps;
 	this.fps.x = this.game.camera.x + 10;
 	this.fps.y = this.game.camera.y + 400;
+	//this.btn.x = this.game.camera.x + 50;
+	//this.btn.y = this.game.camera.y + 500;
     this.spaceShip.update();
     this.groupAsteroids.forEachAlive(this.warp,this);
     //this.groupAsteroids.forEachAlive(this.rotateBody,this);
@@ -402,7 +405,7 @@ Game.prototype.addTunelAsteroids = function(){
 	this.groupAsteroids.add(asteroid1);
 	this.groupAsteroids.add(asteroid2);
 };
-
+/*
 Game.prototype.render = function(){
 	this.groupAsteroids.forEach(function(asteroid){
 		game.debug.renderPhysicsBody(asteroid.body);
@@ -418,7 +421,7 @@ Game.prototype.render = function(){
 	});
 	game.debug.renderPhysicsBody(this.spaceShip.sprite.body);
 };
-
+*/
 Game.prototype.addResources = function(){
 	for(var i = 0;i < 10;i++){
 		var resource = this.game.add.sprite(Math.random() * this.game.world.width, Math.random() * this.game.world.height, 'sprites', 'collect-gray-9-9.png');

@@ -52,7 +52,6 @@ Menu.prototype.play = function () {
     this.fadeOut();
     fadeout.onComplete.add(function () {
     	this.game.state.start('game', Game);
-    	//this.game.state.start('win', Win);
     });
 };
 
@@ -67,7 +66,6 @@ Menu.prototype.howToPlay = function() {
     this.fadeOut();
     fadeout.onComplete.add(function () {
     	this.game.state.start('howToPlay', HowToPlay);
-        //this.game.state.start('menu', Menu);
     });
 };
 

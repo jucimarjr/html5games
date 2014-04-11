@@ -1,7 +1,6 @@
 var HowToPlay = {};
 
-HowToPlay = function (game) {
-	this.game = game;
+HowToPlay = function () {
 };
 
 HowToPlay.prototype = {

@@ -21,17 +21,18 @@ x 3. fazer o movimento do qix: todos os lados, ricocheteamento
 x 5. tratar bolinha quando estiver dentro do polígono
 
 DOMINGO/SEGUNDA
-x 0. fazer as bordas serem polígonos
+x 1. fazer as bordas serem polígonos
+ 2. fazer o corpo do polígono (setSize())
 
- 1. tratar a colisão da linha com:
-  1.1 ela mesma
-  1.2 o polígono
-x  1.3 a parede
+ 3. tratar a colisão da linha com:
+  3.1 ela mesma
+  3.2 o polígono
+x  3.3 a parede
 
-x 2. tratar a colisão do qix com:
-  2.1 a bolinha
-  2.2 a linha
-~  2.3 o polígono
+x 4. tratar a colisão do qix com:
+  4.1 a bolinha
+  4.2 a linha
+~  4.3 o polígono
 
  3. preencher o polígono (dependendo do posicionamento do qix)
 
