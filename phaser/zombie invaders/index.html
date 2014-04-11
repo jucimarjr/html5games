@@ -43,8 +43,10 @@ function create()
 	
 	cursors = game.input.keyboard.createCursorKeys();
 	
+	
 	spriteMuro = game.add.sprite(0, 0, 'muro');
 	game.physics.arcade.enable(spriteMuro);
+	spriteMuro.body.setSize(0, 0, -100, 20);
 	spriteMuro.body.immovable = true;
 	
 	spriteRua = game.add.sprite(0,260,'rua');
@@ -60,6 +62,7 @@ function create()
 	grupoPessoas = game.add.group();
 	grupoPessoas.enableBody = true;
 	grupoPessoas.physicsBodyType = Phaser.Physics.ARCADE;
+	game.physics.enable(grupoPessoas);
 	initPessoas(grupoPessoas);
 	
 }
@@ -67,6 +70,8 @@ function create()
 function update() 
 {
 	game.physics.arcade.overlap(grupoZumbis, grupoPessoas, collisionHandler, null, this);
+	
+	
     //game.physics.arcade.overlap(enemyBullets, player, enemyHitsPlayer, null, this);
 	//zombie.move();
 	//moveZombies(grupoZumbis);
@@ -81,6 +86,12 @@ function collisionHandler(zumbi,pessoa) {
     zumbi.events.onInputDown.add(elimine = function(zumbi){
 		zumbi.destroy();
 	},null);
+
+}
+
+function collisionWall(spriteMuro,pessoa) {
+	console.log("colisão");
+	pessoa.body.velocity.y = pessoa.body.velocity.y * (-1);
 
 }
 
@@ -99,10 +110,10 @@ function initZombies(grupoZumbis){
 	
     for (var i = 0; i < 5; i++)
     {
-       	var zumbi = grupoZumbis.create(i*80+1, 300, 'zombie');
+       	var zumbi = grupoZumbis.create(i*110+1, 300, 'zombie');
        	game.physics.enable(zumbi,Phaser.Physics.ARCADE);
         zumbi.inputEnabled=true;
-        zumbi.body.velocity.x  = 20;
+        zumbi.body.velocity.x  = 0;
         zumbi.events.onInputDown.add(elimine = function(zumbi){
 			zumbi.destroy();
 		},null);
@@ -113,10 +124,24 @@ function initPessoas(grupoPessoas){
 	
 	for (var i = 0; i < 3; i++)
     {
-       	var pessoa = grupoPessoas.create(800-i*80, 300, 'pessoa');
+       	var pessoa = grupoPessoas.create(game.world.randomX, Math.random()*333+267, 'pessoa');
        	game.physics.enable(pessoa,Phaser.Physics.ARCADE);
-        pessoa.body.velocity.x  = -20;
+        //pessoa.body.velocity.x  = -10;
+        pessoa.body.velocity.y  = -50
+        pessoa.body.collideWorldBounds = true;
+        pessoa.body.bounce.set(1);
     }
+}
+
+
+function render() {
+
+    //game.debug.bodyInfo(sprite2, 32, 32);
+	game.debug.bodyInfo(spriteMuro, 32, 32);
+
+    game.debug.body(spriteMuro);
+    //game.debug.body(sprite2);
+
 }
 
 
