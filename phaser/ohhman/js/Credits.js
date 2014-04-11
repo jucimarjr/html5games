@@ -1,7 +1,6 @@
 var Credits = {};
 
-Credits = function (game) {
-	this.game = game;
+Credits = function () {
 };
 
 Credits.prototype = {

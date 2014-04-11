@@ -1,7 +1,6 @@
 var HighScores = {};
 
-HighScores = function (game) {
-	this.game = game;
+HighScores = function () {
 };
 
 HighScores.prototype = {

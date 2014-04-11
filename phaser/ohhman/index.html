@@ -13,7 +13,7 @@
 		<script type="text/javascript" src="js/Lose.js"></script>
 		<script type="text/javascript" src="js/HowToPlay.js"></script>
 		<script type="text/javascript" src="js/Game.js"></script>
-		<script type="text/javascript" src="js/Ohhman.js"></script>
+		<script type="text/javascript" src="js/OhhMan.js"></script>
 		
 		<style type="text/css">
 	        body {
@@ -31,18 +31,11 @@
 	<body>
 		<script type="text/javascript">
 			var game = new Phaser.Game(800, 600, Phaser.AUTO, '', {preload: preload, create: create, update: update});
-
-			game.state.add('menu', Menu);
-			game.state.add('highScores', HighScores);
-			game.state.add('credits', Credits);
-			game.state.add('win', Win);
-			game.state.add('lose', Lose);
-			game.state.add('howToPlay', HowToPlay);
-			game.state.add('game', Game);
-						
+			var splash = null;
+									
 			function preload() {								
 				//preload do Splash
-				splash = new Splash(game);
+				splash = new Splash();
 				splash.preload();
 			}
 
@@ -52,8 +45,16 @@
 			}
 
 			function update() {
-				
 			}
+
+
+			game.state.add('menu', Menu);
+			game.state.add('highScores', HighScores);
+			game.state.add('credits', Credits);
+			game.state.add('howToPlay', HowToPlay);
+			game.state.add('game', Game);
+			game.state.add('win', Win);
+			game.state.add('lose', Lose);
 		</script>
 	</body>
 

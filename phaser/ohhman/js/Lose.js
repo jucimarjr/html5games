@@ -1,7 +1,6 @@
 var Lose = {};
 
-Lose = function (game) {
-	this.game = game;
+Lose = function () {
 };
 
 Lose.prototype = {

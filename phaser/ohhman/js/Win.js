@@ -1,7 +1,6 @@
 var Win = {};
 
-Win = function (game) {
-	this.game = game;
+Win = function () {
 };
 
 Win.prototype = {

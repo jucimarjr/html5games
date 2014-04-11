@@ -1,44 +1,46 @@
-var Ohhman = function () {
-	this.ohhman = null;
-	this.inititalPosition = null;
-	this.direction; //LEFT, RIGHT, UP, DOWN
+Ohhman = function () {
+	this.sprite = null;
 	this.speed = 10;
+	
+	this.direction; //LEFT, RIGHT, UP, DOWN
 };
 
-Ohhman = function (game) {
-	this.game = game;
-};
+Ohhman.prototype = {
+	preload : function() {
+		//Carrega o sprite do OhhMan
+		game.load.image('ohhMan', 'assets/images/ohhMan_36-36.png');
+	},
 
-Ohhman.prototype.preload = function () {
-	game.load.image('ohhman', 'assets/images/pacMan_36-36.png');
-};
-
-Ohhman.prototype.create = function () {
-	this.ohhman = game.add.sprite(0, 0, 'ohhman');	
-};
-
-Ohhman.prototype.update = function () {
-	this.move();
-};
-
-Ohhman.prototype.move = function () {
-	this.inititalPosition = this.ohhman.position;
+	create : function() {
+		//Adiciona o OhhMan na tela
+		this.sprite = game.add.sprite(0, 0, 'ohhMan');
+	},
+	
+	update : function() {
+		this.move();
+	},
+	
+	
+	//Move o OhhMan
+	move : function() {
+		//Move o OhhMan na horizontal (esquerda/direita)
+		if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
+			this.direction = "LEFT";
+			this.sprite.x -= this.speed;
+		}
+		else if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
+			this.direction = "RIGHT";
+			this.sprite.x += this.speed;
+		}
 		
-	if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
-		this.direction = "LEFT";
-		this.ohhman.x -= this.speed;
+		//Move o OhhMan na vertical (cima/baixo)
+		else if (game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
+			this.direction = "UP";
+			this.sprite.y -= this.speed;
+		}
+		else if (game.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
+			this.direction = "DOWN";
+			this.sprite.y += this.speed;
+		}
 	}
-	else if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
-		this.direction = "RIGHT";
-		this.ohhman.x += this.speed;
-	}
-	else if (game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
-		this.direction = "UP";
-		this.ohhman.y -= this.speed;
-	}
-	else if (game.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
-		this.direction = "DOWN";
-		this.ohhman.y += this.speed;
-	}	
-
 };

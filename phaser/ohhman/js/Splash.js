@@ -1,5 +1,4 @@
-Splash = function (game) {
-    this.game = game;
+Splash = function () {
     this.groupSplashImage = 'assets/screenshots/splashTeam_800-600.png';
     this.gameSplashImage = 'assets/screenshots/splashGame_800-600.png';
 };
