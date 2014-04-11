@@ -319,6 +319,25 @@
             <filename>../../../../../../../Users/UEA/Documents/sprites/shoot-white-5-5.png</filename>
             <filename>../../../../../../../Users/UEA/Documents/sprites/shoot-yellow-5-5.png</filename>
             <filename>../../../../../../../Users/UEA/Documents/sprites/particle-asteroid-2-2.png</filename>
+            <filename>../../../../../../../Users/UEA/Documents/sprites/bulletaTypes/btn-bullets1.png</filename>
+            <filename>../../../../../../../Users/UEA/Documents/sprites/bulletaTypes/btn-bullets2.png</filename>
+            <filename>../../../../../../../Users/UEA/Documents/sprites/bulletaTypes/btn-bullets3.png</filename>
+            <filename>../../../../../../../Users/UEA/Documents/sprites/bulletaTypes/btn-impact1.png</filename>
+            <filename>../../../../../../../Users/UEA/Documents/sprites/bulletaTypes/btn-impact2.png</filename>
+            <filename>../../../../../../../Users/UEA/Documents/sprites/bulletaTypes/btn-impact3.png</filename>
+            <filename>../../../../../../../Users/UEA/Documents/sprites/bulletaTypes/btn-laser1.png</filename>
+            <filename>../../../../../../../Users/UEA/Documents/sprites/bulletaTypes/btn-nave1.png</filename>
+            <filename>../../../../../../../Users/UEA/Documents/sprites/bulletaTypes/btn-nave2.png</filename>
+            <filename>../../../../../../../Users/UEA/Documents/sprites/bulletaTypes/btn-nave3.png</filename>
+            <filename>../../../../../../../Users/UEA/Documents/sprites/bulletaTypes/btn-nave4.png</filename>
+            <filename>../../../../../../../Users/UEA/Documents/sprites/bulletaTypes/btn-nave5.png</filename>
+            <filename>../../../../../../../Users/UEA/Documents/sprites/bulletaTypes/btn-nave6.png</filename>
+            <filename>../../../../../../../Users/UEA/Documents/sprites/bulletaTypes/btn-nave7.png</filename>
+            <filename>../../../../../../../Users/UEA/Documents/sprites/bulletaTypes/btn-nave8.png</filename>
+            <filename>../../../../../../../Users/UEA/Documents/sprites/bulletaTypes/btn-rodando.png</filename>
+            <filename>../../../../../../../Users/UEA/Documents/sprites/bulletaTypes/btn-shoot1.png</filename>
+            <filename>../../../../../../../Users/UEA/Documents/sprites/bulletaTypes/btn-shoot2.png</filename>
+            <filename>../../../../../../../Users/UEA/Documents/sprites/bulletaTypes/btn-shoot3.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

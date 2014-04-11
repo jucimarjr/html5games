@@ -10,6 +10,7 @@ var GameLayer = cc.Layer.extend({
 	sprite:null,
 	diff:cc.p(0,0),
 	actions:null,
+	tatics:null,
     init:function()
     {
         this._super();
@@ -42,6 +43,10 @@ var GameLayer = cc.Layer.extend({
 	onTouchesEnded:function(touch, event){
 		var getPoint = touch[0].getLocation();
 		getPoint = cc.pAdd(cc.pNeg(this.getPosition()), getPoint);
+		if(this.sprite.movable){
+			this.sprite.move(getPoint);
+			this.sprite.movable = false;
+		}
 		var rect = cc.rect(this.sprite.getPosition().x - 24, this.sprite.getPosition().y - 56,48,113);
 		if(cc.rectContainsPoint(rect, getPoint)){
 			if(this.actions == null){
@@ -50,8 +55,8 @@ var GameLayer = cc.Layer.extend({
 				var spriteTatics = cc.Sprite.create("assets/tiles/btnTatics.png");
 				var spriteItens = cc.Sprite.create("assets/tiles/btnItens.png");
 				var btnAttack = cc.MenuItemSprite.create(spriteAttack,null,null, 'Attack',this);
-				var btnMove = cc.MenuItemSprite.create(spriteMove, null,null, 'Move', this);
-				var btnTatics = cc.MenuItemSprite.create(spriteTatics,null,null, 'Tatics',this);
+				var btnMove = cc.MenuItemSprite.create(spriteMove, null,null, 'moveSprite', this);
+				var btnTatics = cc.MenuItemSprite.create(spriteTatics,null,null, 'openTatics',this);
 				var btnItens = cc.MenuItemSprite.create(spriteItens, null,null, 'Itens', this);
 				btnAttack.setPosition(0,20);
 				btnMove.setPosition(60,0);
@@ -65,6 +70,29 @@ var GameLayer = cc.Layer.extend({
 			}
 		}else{
 			this.actions.setPosition(-90000, -90000);
+			if(this.tatics !==null){
+				this.tatics.setPosition(-90000,-90000);
+			}
+		}
+	},
+	moveSprite:function(){
+		this.sprite.movable = true;
+	},
+	openTatics:function(){
+		if(	this.tatics == null){
+			var spriteCrouch = cc.Sprite.create("assets/tiles/btnCrouch.png");
+			var spriteProne = cc.Sprite.create("assets/tiles/btnProne.png");
+			var spriteCover = cc.Sprite.create("assets/tiles/btnCover.png");
+			var btnCrouch = cc.MenuItemSprite.create(spriteCrouch,null,null, this.sprite.crouch,null);
+			var btnProne = cc.MenuItemSprite.create(spriteProne, null,null, this.sprite.prone, null);
+			var btnCover = cc.MenuItemSprite.create(spriteCover,null,null, this.sprite.cover,null);
+			btnProne.setPosition(0,20);
+			btnCover.setPosition(0,40);
+			this.tatics = cc.Menu.create(btnCrouch, btnProne, btnCover);
+			this.tatics.setPosition(this.sprite.getPosition().x + 140, this.sprite.getPosition().y + 140);
+			this.addChild(this.tatics);
+		}else{
+			this.tatics.setPosition(this.sprite.getPosition().x + 140, this.sprite.getPosition().y + 140);
 		}
 	},
 	onMouseDragged:function (event) {

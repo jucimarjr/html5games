@@ -9,6 +9,7 @@
 	<script type="text/javascript" src="js/Win.js"></script>
 	<script type="text/javascript" src="js/lose.js"></script>
 	<script type="text/javascript" src="js/Menu.js"></script>
+	<script type="text/javascript" src="js/select.js"></script>
 	<script type="text/javascript" src="js/HowToPlay.js"></script>
     <script type="text/javascript" src="js/HighScores.js"></script>
     <script type="text/javascript" src="js/HighScoresInput.js"></script>
@@ -51,6 +52,7 @@ game.state.add('Win', Win);
 game.state.add('lose', Lose);
 game.state.add('highScoreInput', HighScoreInput);
 game.state.add('credits', Credits);
+game.state.add('Select', Select);
 
 function preload()
 {
@@ -65,6 +67,7 @@ function preload()
 	game.load.image('laser','assets/images/laser_5-2.png');
 	game.load.image('ship','assets/tests/nave-azul.png');
 	game.load.image('shipalt','assets/images/nave1.png');
+	game.load.image('btnright','assets/images/btn-left.png');
     game.load.audio('thrust', 'assets/audios/AsteroidsThrust.mp3');
     game.load.audio('shoot', 'assets/audios/AsteroidsShoot.mp3');
     game.load.audio('ufo', 'assets/audios/AsteroidsSaucer.mp3');
@@ -76,20 +79,20 @@ function preload()
 		game.stage.scale.startFullScreen();
 	}, this);
     
-	//splashScene = new Splash(game);
-	//splashScene.preload();
-	gameScene = new Game(game);
+	splashScene = new Splash(game);
+	splashScene.preload();
+	//gameScene = new Game(game);
 }
 
 function create()
 {
-	//splashScene.create();
-	gameScene.create()
+	splashScene.create();
+	//gameScene.create()
 }
 
 function update() 
 {
-	gameScene.update();
+	//gameScene.update();
 }
 
 function setHighScore()
@@ -113,7 +116,7 @@ function render(){
 	//gameScene.render();
 }
 </script>
-<p>
+<p>testetestetestetestetestetestetestetestetesteteste</p>
 </body>
 
 </html>
