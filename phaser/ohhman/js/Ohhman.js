@@ -22,12 +22,12 @@ Ohhman.prototype = {
 	},
 	
 	update : function() {
-		this.move();
+		this.moveByKeyboard();
 	},
 	
 	
 	//Move o ohhMan
-	move : function() {
+	moveByKeyboard : function() {
 		//Move o ohhMan na horizontal (esquerda/direita)
 		if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
 			this.direction = "LEFT";
