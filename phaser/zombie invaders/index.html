@@ -38,40 +38,48 @@ function preload()
 
 function create()
 {
-	game.physics.startSystem(Phaser.Physics.ARCADE);
+	//game.physics.startSystem(Phaser.Physics.ARCADE);
 	
 	cursors = game.input.keyboard.createCursorKeys();
 	
 	spriteMuro = game.add.sprite(0, 0, 'muro');
 	
-	game.physics.arcade.enable(spriteMuro);
 	
+	game.physics.arcade.enable(spriteMuro);
 	spriteMuro.body.immovable = true;
 	
+	//Grupo de zumbis	
 	grupoZumbis = game.add.group();
-	
+	grupoZumbis.enableBody = true;
+	grupoZumbis.physicsBodyType = Phaser.Physics.ARCADE;
 	initZombies(grupoZumbis);
 	
+	//Grupo de pessoas
 	grupoPessoas = game.add.group();
-	
+	grupoPessoas.enableBody = true;
+	grupoPessoas.physicsBodyType = Phaser.Physics.ARCADE;
 	initPessoas(grupoPessoas);
-	
-	
-	//spriteZombie = game.add.sprite(500,400,'zombie');
-	
-	//game.physics.enable([spriteMuro], Phaser.Physics.ARCADE);
-	
-	//grupoZumbis = game.add.group();
-	
-	//zombie = new Zombie(this);
 	
 }
 
 function update() 
 {
-	
+	game.physics.arcade.overlap(grupoZumbis, grupoPessoas, collisionHandler, null, this);
+    //game.physics.arcade.overlap(enemyBullets, player, enemyHitsPlayer, null, this);
 	//zombie.move();
 	//moveZombies(grupoZumbis);
+}
+
+function collisionHandler(zumbi,pessoa) {
+	console.log("colisão");
+	pessoa.kill();
+	var zumbi = grupoZumbis.create(pessoa.x, pessoa.y, 'zombie');
+	zumbi.inputEnabled=true;
+    zumbi.body.velocity.x  = 20;
+    zumbi.events.onInputDown.add(elimine = function(zumbi){
+		zumbi.destroy();
+	},null);
+
 }
 
 
@@ -86,21 +94,16 @@ function outOfBounds(object) {
 };
 
 function initZombies(grupoZumbis){
-	grupoZumbis = game.add.group();
-
+	
     for (var i = 0; i < 5; i++)
     {
-        //  Create a star inside of the 'stars' group
-       	var zumbi = game.add.sprite(i*80+1, 300, 'zombie');
-       	game.physics.enable(zumbi);
+       	var zumbi = grupoZumbis.create(i*80+1, 300, 'zombie');
+       	game.physics.enable(zumbi,Phaser.Physics.ARCADE);
         zumbi.inputEnabled=true;
-        console.log(zumbi);
-        zumbi.body.velocity.x  = 10;
-        zumbi.events.onInputDown.add(elimine = function(fantasma){
-			fantasma.destroy();
+        zumbi.body.velocity.x  = 20;
+        zumbi.events.onInputDown.add(elimine = function(zumbi){
+			zumbi.destroy();
 		},null);
-        grupoZumbis.add(zumbi);
-        
     }
 }
 
@@ -108,14 +111,9 @@ function initPessoas(grupoPessoas){
 	
 	for (var i = 0; i < 3; i++)
     {
-        //  Create a star inside of the 'stars' group
-       	var pessoa = game.add.sprite(800-i*80, 300, 'pessoa');
-       	game.physics.enable(pessoa);
-        pessoa.inputEnabled=true;
-        //console.log();
-        pessoa.body.velocity.x  = -10;
-        grupoPessoas.add(pessoa);
-        
+       	var pessoa = grupoPessoas.create(800-i*80, 300, 'pessoa');
+       	game.physics.enable(pessoa,Phaser.Physics.ARCADE);
+        pessoa.body.velocity.x  = -20;
     }
 }
 
