@@ -17,12 +17,12 @@ Blinky.prototype = {
 	},
 	
 	update : function() {
-		this.move();
+		this.moveRandomly();
 	},
 	
 	
 	//Move o blinky
-	move : function() {
+	moveRandomly : function() {
 		//Move o blinky para testar (mudar quando tiver definido o movimento dele)
 		this.sprite.x += this.speed;
 	}
