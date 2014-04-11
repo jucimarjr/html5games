@@ -19,6 +19,7 @@
 var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 var cursors;
 var spriteMuro;
+var spriteRua;
 var spriteZombie;
 var numeroDePessoas;
 var numeroDeZumbis;
@@ -43,11 +44,12 @@ function create()
 	cursors = game.input.keyboard.createCursorKeys();
 	
 	spriteMuro = game.add.sprite(0, 0, 'muro');
-	
-	
 	game.physics.arcade.enable(spriteMuro);
 	spriteMuro.body.immovable = true;
 	
+	spriteRua = game.add.sprite(0,260,'rua');
+	game.physics.arcade.enable(spriteRua);
+	spriteMuro.body.immovable = true;
 	//Grupo de zumbis	
 	grupoZumbis = game.add.group();
 	grupoZumbis.enableBody = true;
