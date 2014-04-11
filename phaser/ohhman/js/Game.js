@@ -9,15 +9,19 @@ Game.prototype = {
 		game.load.image('tile1', 'assets/tilemaps/tiles/tile1.png');
 
 		this.loadOhhman();
+		this.loadGhosts();
 	},
 
 	create : function() {
 		this.loadMap();
+		
 		ohhMan.create();
+		blinky.create();
 	},
 	
 	update : function() {
 		ohhMan.update();
+		blinky.update();
 	},
 
 
@@ -31,5 +35,10 @@ Game.prototype = {
 	loadOhhman : function() {
 		ohhMan = new Ohhman();
 		ohhMan.preload();
+	},
+	
+	loadGhosts : function() {
+		blinky = new Blinky();
+		blinky.preload();
 	}
 };

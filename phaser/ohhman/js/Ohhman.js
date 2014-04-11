@@ -1,5 +1,6 @@
 Ohhman = function () {
 	this.sprite = null;
+	this.spriteb;
 	this.speed = 10;
 	
 	this.direction; //LEFT, RIGHT, UP, DOWN
@@ -7,13 +8,17 @@ Ohhman = function () {
 
 Ohhman.prototype = {
 	preload : function() {
-		//Carrega o sprite do OhhMan
+		//Carrega o sprite do ohhMan
 		game.load.image('ohhMan', 'assets/images/ohhMan_36-36.png');
 	},
 
 	create : function() {
-		//Adiciona o OhhMan na tela
+		//Adiciona o ohhMan na tela
 		this.sprite = game.add.sprite(0, 0, 'ohhMan');
+		game.physics.enable(this.sprite);
+
+		//Impede que o ohhMan saia dos limites da tela
+		this.sprite.body.collideWorldBounds = true;
 	},
 	
 	update : function() {
@@ -21,9 +26,9 @@ Ohhman.prototype = {
 	},
 	
 	
-	//Move o OhhMan
+	//Move o ohhMan
 	move : function() {
-		//Move o OhhMan na horizontal (esquerda/direita)
+		//Move o ohhMan na horizontal (esquerda/direita)
 		if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
 			this.direction = "LEFT";
 			this.sprite.x -= this.speed;
@@ -33,7 +38,7 @@ Ohhman.prototype = {
 			this.sprite.x += this.speed;
 		}
 		
-		//Move o OhhMan na vertical (cima/baixo)
+		//Move o ohhMan na vertical (cima/baixo)
 		else if (game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
 			this.direction = "UP";
 			this.sprite.y -= this.speed;

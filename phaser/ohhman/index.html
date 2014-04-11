@@ -14,6 +14,7 @@
 		<script type="text/javascript" src="js/HowToPlay.js"></script>
 		<script type="text/javascript" src="js/Game.js"></script>
 		<script type="text/javascript" src="js/OhhMan.js"></script>
+		<script type="text/javascript" src="js/Blinky.js"></script>
 		
 		<style type="text/css">
 	        body {
@@ -35,7 +36,8 @@
 									
 			function preload() {								
 				//preload do Splash
-				splash = new Splash();
+				//splash = new Splash();
+				splash = new Game();
 				splash.preload();
 			}
 
@@ -45,6 +47,7 @@
 			}
 
 			function update() {
+				splash.update();
 			}
 
 
