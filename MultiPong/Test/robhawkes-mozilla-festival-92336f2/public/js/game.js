@@ -4,7 +4,9 @@
 var canvas,			// Canvas DOM element
 	ctx,			// Canvas rendering context
 	keys,			// Keyboard input
-	localPlayer;	// Local player
+	localPlayer,	// Local player
+	remotePlayers,
+	socket;
 
 
 /**************************************************
@@ -31,8 +33,13 @@ function init() {
 	// Initialise the local player
 	localPlayer = new Player(startX, startY);
 
+	socket = io.connect("http://localhost", {port: 8000, transports: ["websocket"]});
+
+	remotePlayers = [];
+
 	// Start listening for events
 	setEventHandlers();
+
 };
 
 
@@ -46,7 +53,15 @@ var setEventHandlers = function() {
 
 	// Window resize
 	window.addEventListener("resize", onResize, false);
+
+	socket.on("connect", onSocketConnected);
+	socket.on("disconnect", onSocketDisconnect);
+	socket.on("new player", onNewPlayer);
+	socket.on("move player", onMovePlayer);
+	socket.on("remove player", onRemovePlayer);
 };
+
+
 
 // Keyboard key down
 function onKeydown(e) {
@@ -69,6 +84,44 @@ function onResize(e) {
 	canvas.height = window.innerHeight;
 };
 
+function onSocketConnected() {
+    console.log("Connected to socket server");
+    socket.emit("new player", {x: localPlayer.getX(), y: localPlayer.getY()});
+};
+
+function onSocketDisconnect() {
+    console.log("Disconnected from socket server");
+};
+
+function onNewPlayer(data) {
+    console.log("New player connected: "+data.id);
+    var newPlayer = new Player(data.x, data.y);
+	newPlayer.id = data.id;
+	remotePlayers.push(newPlayer);
+};
+
+function onMovePlayer(data) {
+	var movePlayer = playerById(data.id);
+
+	if (!movePlayer) {
+ 	   console.log("Player not found: "+data.id);
+   		return;
+	};
+
+	movePlayer.setX(data.x);
+	movePlayer.setY(data.y);
+};
+
+function onRemovePlayer(data) {
+	var removePlayer = playerById(data.id);
+
+	if (!removePlayer) {
+    	console.log("Player not found: "+data.id);
+    	return;
+	};
+
+	remotePlayers.splice(remotePlayers.indexOf(removePlayer), 1);
+};
 
 /**************************************************
 ** GAME ANIMATION LOOP
@@ -86,7 +139,11 @@ function animate() {
 ** GAME UPDATE
 **************************************************/
 function update() {
-	localPlayer.update(keys);
+	
+	if (localPlayer.update(keys)) {
+    	socket.emit("move player", {x: localPlayer.getX(), y: localPlayer.getY()});
+	};
+
 };
 
 
@@ -99,4 +156,19 @@ function draw() {
 
 	// Draw the local player
 	localPlayer.draw(ctx);
+
+	var i;
+	for (i = 0; i < remotePlayers.length; i++) {
+    	remotePlayers[i].draw(ctx);
+	};
+};
+
+function playerById(id) {
+    var i;
+    for (i = 0; i < remotePlayers.length; i++) {
+        if (remotePlayers[i].id == id)
+            return remotePlayers[i];
+    };
+
+    return false;
 };
