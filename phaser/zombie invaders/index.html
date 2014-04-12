@@ -5,7 +5,10 @@
 	<title>Zombie Invaders</title>
 	<script type="text/javascript" src="js/phaser.min.js"></script>
 	<script type="text/javascript" src="js/FilePaths.js"></script>
+	<script type="text/javascript" src="js/Splash.js"></script>
+	<script type="text/javascript" src="js/Menu.js"></script>
 	<script type="text/javascript" src="js/Zombie.js"></script>
+	<script type="text/javascript" src="js/Person.js"></script>
 	<style type="text/css">
         body {
             margin: 0;
@@ -17,137 +20,51 @@
 <script type="text/javascript">
 
 var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+var score = null;
 var cursors;
-var spriteMuro;
-var spriteRua;
-var spriteZombie;
-var numeroDePessoas;
-var numeroDeZumbis;
-var grupoZumbis;
-var grupoPessoas;
-var timer;
-//var zombie;
+var gameScene = null;
+var splashScene = null;
+
+game.state.add('menu', Menu);
+//game.state.add('game', Game);
+//game.state.add('HowToPlay', HowToPlay);
+//game.state.add('HighScore', HighScore);
+//game.state.add('HighScoreInput', HighScoreInput);
+//game.state.add('Credits', Credits);
 
 function preload()
 {
-	
-	game.load.image('muro', imageMuro);
-	game.load.image('rua',imageRua);
-	game.load.image('zombie',imageZombie);
-	game.load.image('pessoa',imagePessoa);
-	
+	splashScene = new Splash(game);
+	splashScene.preload();
 }
 
 function create()
 {
-	//game.physics.startSystem(Phaser.Physics.ARCADE);
-	
-	cursors = game.input.keyboard.createCursorKeys();
-	
-	
-	spriteMuro = game.add.sprite(0, 0, 'muro');
-	game.physics.arcade.enable(spriteMuro);
-	spriteMuro.body.setSize(0, 0, -100, 20);
-	spriteMuro.body.immovable = true;
-	
-	spriteRua = game.add.sprite(0,260,'rua');
-	game.physics.arcade.enable(spriteRua);
-	spriteMuro.body.immovable = true;
-	//Grupo de zumbis	
-	grupoZumbis = game.add.group();
-	grupoZumbis.enableBody = true;
-	grupoZumbis.physicsBodyType = Phaser.Physics.ARCADE;
-	//initZombies(grupoZumbis);
-	
-	//Grupo de pessoas
-	grupoPessoas = game.add.group();
-	grupoPessoas.enableBody = true;
-	grupoPessoas.physicsBodyType = Phaser.Physics.ARCADE;
-	game.physics.enable(grupoPessoas);
-	game.time.events.repeat(Phaser.Timer.SECOND * 5, 3, initPessoas, this);
-	
-	timer = game.time.create(false);
-
-	
+	splashScene.create();
 }
 
 function update() 
 {
-	game.physics.arcade.overlap(grupoZumbis, grupoPessoas, collisionHandler, null, this);
 	
-	
-    //game.physics.arcade.overlap(enemyBullets, player, enemyHitsPlayer, null, this);
-	//zombie.move();
-	//moveZombies(grupoZumbis);
 }
-
-function collisionHandler(zumbi,pessoa) {
-	console.log("colisão");
-	pessoa.kill();
-	var zumbi = grupoZumbis.create(pessoa.x, pessoa.y, 'zombie');
-	zumbi.inputEnabled=true;
-    zumbi.body.velocity.x  = 20;
-    zumbi.events.onInputDown.add(elimine = function(zumbi){
-		zumbi.destroy();
-	},null);
-
-}
-
-function collisionWall(spriteMuro,pessoa) {
-	console.log("colisão");
-	pessoa.body.velocity.y = pessoa.body.velocity.y * (-1);
-
-}
-
-
 
 function setHighScore()
 {
-   
+    /*if (typeof localStorage["scores"] == "undefined") {
+        localStorage["score1"] = 500;
+        localStorage["score2"] = 400;
+        localStorage["score3"] = 300;
+        localStorage["score4"] = 200;
+        localStorage["score5"] = 100;
+        localStorage["nameScore1"] = "AAA";
+        localStorage["nameScore2"] = "BBB";
+        localStorage["nameScore3"] = "CCC";
+        localStorage["nameScore4"] = "DDD";
+        localStorage["nameScore5"] = "EEE";
+        localStorage["scores"] = "OK";
+    }*/
 }
 
-function outOfBounds(object) {
-
-};
-
-function initZombies(grupoZumbis){
-	
-    for (var i = 0; i < 5; i++)
-    {
-       	var zumbi = grupoZumbis.create(i*110+1, 300, 'zombie');
-       	game.physics.enable(zumbi,Phaser.Physics.ARCADE);
-        zumbi.inputEnabled=true;
-        zumbi.body.velocity.x  = 0;
-        zumbi.events.onInputDown.add(elimine = function(zumbi){
-			zumbi.destroy();
-		},null);
-    }
-}
-
-function initPessoas(){
-	
-	//for (var i = 0; i < 3; i++)
-    //{
-       	var pessoa = grupoPessoas.create(1000, Math.random(), 'pessoa');
-       	game.physics.enable(pessoa,Phaser.Physics.ARCADE);
-        pessoa.body.velocity.x  = -Math.random()*10;
-        pessoa.body.velocity.y  = -Math.random()*10;
-        pessoa.body.collideWorldBounds = true;
-        pessoa.body.bounce.set(1);
-    //}
-}
-
-
-
-function render() {
-	console.log("render");
-    //game.debug.bodyInfo(sprite2, 32, 32);
-	game.debug.spriteInfo(spriteMuro, 800, 267);
-
-    //game.debug.body(spriteMuro);
-    //game.debug.body(sprite2);
-
-}
 
 
 </script>
