@@ -1,8 +1,8 @@
 Blinky = function () {
 	this.sprite = null;
-	this.speed = 10;
+	this.speed = 200;
 	
-	this.direction; //LEFT, RIGHT, UP, DOWN
+	this.direction = "LEFT"; //LEFT, RIGHT, UP, DOWN
 };
 
 Blinky.prototype = {
@@ -13,7 +13,7 @@ Blinky.prototype = {
 
 	create : function() {
 		//Adiciona o blinky na tela
-		this.sprite = game.add.sprite(game.world.width/2, game.world.height/2 - 125, 'blinky');
+		this.sprite = game.add.sprite(game.world.width/2, game.world.height/2 - 126, 'blinky');
 		game.physics.enable(this.sprite);
 
 		//Impede que o blinky saia dos limites da tela
@@ -25,15 +25,56 @@ Blinky.prototype = {
 		this.verifyMapCollision();
 	},
 	
-	
 	//Move o blinky
 	moveRandomly : function() {
-		//Move o blinky para testar (mudar quando tiver definido o movimento dele)
-		this.sprite.x -= this.speed;
+		//Move o blinky na horizontal (esquerda/direita)
+		if (this.direction ==  "LEFT") {
+			this.direction = "LEFT";
+			this.sprite.body.velocity.x = -this.speed;
+			this.sprite.body.velocity.y = 0;
+		}
+		
+		else if (this.direction == "RIGHT") {
+			this.direction = "RIGHT";
+			this.sprite.body.velocity.x = this.speed;			
+			this.sprite.body.velocity.y = 0;
+		}
+		
+		//Move o blinky na vertical (cima/baixo)
+		else if (this.direction == "UP") {
+			this.direction = "UP";
+			this.sprite.body.velocity.x = 0;
+			this.sprite.body.velocity.y = -this.speed;
+		}
+		else if (this.direction == "DOWN") {
+			this.direction = "DOWN";
+			this.sprite.body.velocity.x = 0;
+			this.sprite.body.velocity.y = this.speed;
+		}
+	
 	},
 	
-	//Verifica a colisão do ohhMan com o mapa
-	verifyMapCollision : function() {
-		game.physics.arcade.collide(this.sprite, map1.layer);
+	//Verifica a colisão do blinkt com o mapa
+	verifyMapCollision : function() {		
+		game.physics.arcade.overlap(this.sprite, map1.layer, this.setNewDirection, null, this);
+	},
+	
+	setNewDirection : function() {
+		var number = Math.round(1 + Math.random()*4);
+		
+		switch(number){
+			case 1:
+				this.direction = "LEFT";
+				break;
+			case 2:
+				this.direction = "RIGHT";
+				break;
+			case 3:
+				this.direction = "UP";
+				break;
+			case 4:
+				this.direction = "DOWN";
+				break;
+		}		
 	}
 };
