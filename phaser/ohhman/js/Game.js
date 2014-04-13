@@ -1,12 +1,10 @@
-var Game = {};
-
 Game = function () {
 };
 
 Game.prototype = {
 	preload : function() {
-		game.load.tilemap('map1', 'assets/tilemaps/maps/map1.json', null, Phaser.Tilemap.TILED_JSON);
-		game.load.image('tile1', 'assets/tilemaps/tiles/tile1.png');
+		game.load.tilemap('map1', fp_map1, null, Phaser.Tilemap.TILED_JSON);
+		game.load.image('tile1', fp_tile1);
 
 		this.loadOhhman();
 		this.loadGhosts();

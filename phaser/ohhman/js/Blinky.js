@@ -8,7 +8,7 @@ Blinky = function () {
 Blinky.prototype = {
 	preload : function() {
 		//Carrega o sprite do fantasminha blinky
-		game.load.image('blinky', 'assets/images/blinky_36-36.png');
+		game.load.image('blinky', fp_blinky);
 	},
 
 	create : function() {

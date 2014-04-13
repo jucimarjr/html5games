@@ -1,7 +1,6 @@
 Ohhman = function () {
 	this.sprite = null;
-	this.spriteb;
-	this.speed = 10;
+	this.speed = 9;
 	
 	this.direction; //LEFT, RIGHT, UP, DOWN
 };
@@ -9,7 +8,7 @@ Ohhman = function () {
 Ohhman.prototype = {
 	preload : function() {
 		//Carrega o sprite do ohhMan
-		game.load.image('ohhMan', 'assets/images/ohhMan_36-36.png');
+		game.load.image('ohhMan', fp_ohhMan);
 	},
 
 	create : function() {
