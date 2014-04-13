@@ -2,6 +2,9 @@ Game = function () {
 	var map = null;
 	var ohhMan = null;
 	var blinky = null;
+	var clyde = null;
+	var inkey = null;
+	var pinky = null;
 };
 
 Game.prototype = {
@@ -15,11 +18,17 @@ Game.prototype = {
 		map1.create();
 		ohhMan.create();
 		blinky.create();
+		clyde.create();
+		inkey.create();
+		pinky.create();
 	},
 	
 	update : function() {
 		ohhMan.update();
 		blinky.update();
+		clyde.update();
+		inkey.update();
+		pinky.update();
 	},
 
 	
@@ -36,5 +45,14 @@ Game.prototype = {
 	loadGhosts : function() {
 		blinky = new Blinky();
 		blinky.preload();
+		
+		clyde = new Clyde();
+		clyde.preload();
+		
+		inkey = new Inkey();
+		inkey.preload();
+		
+		pinky = new Pinky();
+		pinky.preload();
 	}
 };

@@ -1,22 +1,22 @@
-Blinky = function () {
+Clyde = function () {
 	this.sprite = null;
 	this.speed = 200;
 	
-	this.direction = "LEFT"; //LEFT, RIGHT, UP, DOWN
+	this.direction = "UP"; //LEFT, RIGHT, UP, DOWN
 };
 
-Blinky.prototype = {
+Clyde.prototype = {
 	preload : function() {
-		//Carrega o sprite do fantasminha blinky
-		game.load.image('blinky', fp_blinky);
+		//Carrega o sprite do fantasminha clyde
+		game.load.image('clyde', fp_clyde);
 	},
 
 	create : function() {
-		//Adiciona o blinky na tela
-		this.sprite = game.add.sprite(game.world.width/2, game.world.height/2 - 126, 'blinky');
+		//Adiciona o clyde na tela
+		this.sprite = game.add.sprite(game.world.width/2 - 18, game.world.height/2 - 20, 'clyde');
 		game.physics.enable(this.sprite);
 
-		//Impede que o blinky saia dos limites da tela
+		//Impede que o clyde saia dos limites da tela
 		this.sprite.body.collideWorldBounds = true;
 	},
 	
@@ -25,9 +25,9 @@ Blinky.prototype = {
 		this.verifyMapCollision();
 	},
 	
-	//Move o blinky
+	//Move o clyde
 	moveRandomly : function() {
-		//Move o blinky na horizontal (esquerda/direita)
+		//Move o clyde na horizontal (esquerda/direita)
 		if (this.direction ==  "LEFT") {			
 			this.sprite.body.velocity.x = -this.speed;
 			this.sprite.body.velocity.y = 0;
@@ -38,19 +38,19 @@ Blinky.prototype = {
 			this.sprite.body.velocity.y = 0;
 		}
 		
-		//Move o blinky na vertical (cima/baixo)
+		//Move o clyde na vertical (cima/baixo)
 		else if (this.direction == "UP") {			
 			this.sprite.body.velocity.x = 0;
 			this.sprite.body.velocity.y = -this.speed;
 		}
-		else if (this.direction == "DOWN") {			
+		else if (this.direction == "DOWN") {
 			this.sprite.body.velocity.x = 0;
 			this.sprite.body.velocity.y = this.speed;
 		}
 	
 	},
 	
-	//Verifica a colisão do blinky com o mapa
+	//Verifica a colisão do clyde com o mapa
 	verifyMapCollision : function() {		
 		game.physics.arcade.overlap(this.sprite, map1.layer, this.setNewDirection, null, this);
 	},
@@ -69,7 +69,10 @@ Blinky.prototype = {
 				this.direction = "UP";
 				break;
 			case 4:
-				this.direction = "DOWN";
+				if (this.direction == "UP")
+					this.setNewDirection();
+				else
+					this.direction = "DOWN";
 				break;
 		}		
 	}

@@ -1,22 +1,22 @@
-Blinky = function () {
+Pinky = function () {
 	this.sprite = null;
 	this.speed = 200;
 	
-	this.direction = "LEFT"; //LEFT, RIGHT, UP, DOWN
+	this.direction = "DOWN"; //LEFT, RIGHT, UP, DOWN
 };
 
-Blinky.prototype = {
+Pinky.prototype = {
 	preload : function() {
-		//Carrega o sprite do fantasminha blinky
-		game.load.image('blinky', fp_blinky);
+		//Carrega o sprite do fantasminha pinky
+		game.load.image('pinky', fp_pinky);
 	},
 
 	create : function() {
-		//Adiciona o blinky na tela
-		this.sprite = game.add.sprite(game.world.width/2, game.world.height/2 - 126, 'blinky');
+		//Adiciona o pinky na tela
+		this.sprite = game.add.sprite(37, game.height/2 + 61, 'pinky');
 		game.physics.enable(this.sprite);
 
-		//Impede que o blinky saia dos limites da tela
+		//Impede que o pinky saia dos limites da tela
 		this.sprite.body.collideWorldBounds = true;
 	},
 	
@@ -25,9 +25,9 @@ Blinky.prototype = {
 		this.verifyMapCollision();
 	},
 	
-	//Move o blinky
+	//Move o pinky
 	moveRandomly : function() {
-		//Move o blinky na horizontal (esquerda/direita)
+		//Move o pinky na horizontal (esquerda/direita)
 		if (this.direction ==  "LEFT") {			
 			this.sprite.body.velocity.x = -this.speed;
 			this.sprite.body.velocity.y = 0;
@@ -38,7 +38,7 @@ Blinky.prototype = {
 			this.sprite.body.velocity.y = 0;
 		}
 		
-		//Move o blinky na vertical (cima/baixo)
+		//Move o pinky na vertical (cima/baixo)
 		else if (this.direction == "UP") {			
 			this.sprite.body.velocity.x = 0;
 			this.sprite.body.velocity.y = -this.speed;
@@ -50,7 +50,7 @@ Blinky.prototype = {
 	
 	},
 	
-	//Verifica a colisão do blinky com o mapa
+	//Verifica a colisão do pinky com o mapa
 	verifyMapCollision : function() {		
 		game.physics.arcade.overlap(this.sprite, map1.layer, this.setNewDirection, null, this);
 	},

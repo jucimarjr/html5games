@@ -36,3 +36,6 @@ var fp_bgLose = 'assets/screenshots/lose_800-600.png';
 	//Personagens
 	var fp_ohhMan = 'assets/images/ohhMan_36-36.png';
 	var fp_blinky = 'assets/images/blinky_36-36.png';
+	var fp_clyde = 'assets/images/clyde_36-36.png';
+	var fp_inkey = 'assets/images/inkey_36-36.png';
+	var fp_pinky = 'assets/images/pinky_36-36.png';
