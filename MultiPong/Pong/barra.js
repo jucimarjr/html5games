@@ -1,13 +1,16 @@
 var Barra = cc.Sprite.extend({
+	id: null,	
 	up:false,
 	down:false,
 	ver:true,
+	
 	ctor:function(pos){
 		this._super();
 		this.initWithFile("img/barra.png");
 		this.setPosition(pos, 240);
 		this.scheduleUpdate();
 	},
+	
 	update:function(dt){			
 		if(this.up){
 			this.setPositionY(this.getPositionY()+4);
@@ -22,6 +25,7 @@ var Barra = cc.Sprite.extend({
 			this.setPositionY((15));
 		}
 	},
+	
 	collideRect:function(p){
 		var a = this.getContentSize();
 		return cc.rect(p.x - a.width/2, p.y - a.height/2, a.width, a.height);

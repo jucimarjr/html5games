@@ -8,7 +8,7 @@
         showFPS:false,
         frameRate:60,
         tag:"game",
-        engineDir:"../cocos2d/",
+        engineDir:"../../cocos2d/",
         appFiles:['game.js', 'menu.js', 'main.js', 'barra.js', 
 				  'ball.js', 'credits.js', 'controls.js', 'win.js', 'lose.js']
     };

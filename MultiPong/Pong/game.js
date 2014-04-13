@@ -7,6 +7,8 @@ gameLayer = cc.Layer.extend({
 	verSkew:false,
 	randX:0,
 	randY:0,
+	socket:null,
+	remotePlayers: null,	
 	init:function(skew)
     {
         this._super();
@@ -22,23 +24,30 @@ gameLayer = cc.Layer.extend({
         this.addChild(this.score);
         this.bola = new Bola();
         this.addChild(this.bola);
+		  /*        
         this.barraEsq = new Barra(10);
         this.addChild(this.barraEsq);
         this.barraDir = new Barra(790);
         this.addChild(this.barraDir);
+        */
         this.verSkew = skew;
         this.randX = 10 + Math.random()*20;
         this.randY = 10 + Math.random()*20;
-        /*
-        this.schedule(function(){
-        	var pw = new Powerup();
-        	this.addChild(pw);
-        },8, cc.REPEAT_FOREVER, 0);
-        */
         this.scheduleUpdate();
+        
+        this.socket = io.connect("http://localhost", {port: 8000, transports: ["websocket"]});
+        
+		  this.remotePlayers = [];        
+        
+        this.socket.on("connect", this.onSocketConnected());
+		  this.socket.on("disconnect", this.onSocketDisconnect());
+		  this.socket.on("new player", this.onNewPlayer());
+   	  this.socket.on("move player", this.onMovePlayer());
+		  this.socket.on("remove player", this.onRemovePlayer());
+ 			       
         return this;
     },
-	dir:0,
+	 dir:0,
     skewX:0,
     skewY:0,
     update:function(dt){
@@ -102,6 +111,7 @@ gameLayer = cc.Layer.extend({
 			}
 		
 	},
+	
 	onKeyDown:function(key) {//Verifica a tecla presionada
         //Player
 		if(key == cc.KEY.up){
@@ -117,6 +127,7 @@ gameLayer = cc.Layer.extend({
         }
 		
 	},
+	
 	onKeyUp:function(key) {//verifica a tecla solta
     	//Player
 		if(key == cc.KEY.up){
@@ -131,13 +142,58 @@ gameLayer = cc.Layer.extend({
         	this.barraEsq.down = false;
         }
 	},
+	
 	collide:function (a, b) {
         var pos1 = a.getPosition();
         var pos2 = b.getPosition();
         var aRect = a.collideRect(pos1);
         var bRect = b.collideRect(pos2);
         return cc.rectIntersectsRect(aRect, bRect);
-    }	
+    },
+    
+    onSocketConnected:function() {
+	   console.log("Connected to socket server");
+	   switch(this.remotePlayers.length) {
+	   	case 0:
+	   		this.socket.emit("new player", {pos: 10});
+	   		break;	
+	   	case 1:
+	   		this.socket.emit("new player", {pos: 790});
+	   		break;
+		}	   	
+	   
+	 },
+
+	 onSocketDisconnect:function() {
+    	console.log("Disconnected from socket server");
+	 },
+
+	 onNewPlayer:function(data) {
+    	console.log("New player connected: "+data.id);
+    	
+		switch(this.remotePlayers.length) {
+	   	case 0:
+	   		this.barraEsq = new Barra(data.pos);
+        		this.addChild(this.barraEsq);
+        		this.barraEsq.id = data.id;
+				this.remotePlayers.push(barraEsq);	   		
+	   		break;	
+	   	case 1:
+	   		this.barraDir = new Barra(data.pos);
+        		this.addChild(this.barraDir);
+        		this.barraDir.id = data.id;
+        		this.remotePlayers.push(barraDir);
+	   		break;
+		}    	
+	 },
+
+	 onMovePlayer:function(data) {
+		
+	 },
+
+	 onRemovePlayer:function(data) {
+
+	 }	
 });
 
 game = cc.Scene.extend({
