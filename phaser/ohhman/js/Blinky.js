@@ -14,6 +14,10 @@ Blinky.prototype = {
 	create : function() {
 		//Adiciona o blinky na tela
 		this.sprite = game.add.sprite(game.world.width/2, game.world.height/2, 'blinky');
+		game.physics.enable(this.sprite);
+
+		//Impede que o blinky saia dos limites da tela
+		this.sprite.body.collideWorldBounds = true;
 	},
 	
 	update : function() {
@@ -24,6 +28,6 @@ Blinky.prototype = {
 	//Move o blinky
 	moveRandomly : function() {
 		//Move o blinky para testar (mudar quando tiver definido o movimento dele)
-		this.sprite.x += this.speed;
+		this.sprite.x -= this.speed;
 	}
 };

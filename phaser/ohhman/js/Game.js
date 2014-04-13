@@ -1,18 +1,18 @@
 Game = function () {
+	var map = null;
+	var ohhMan = null;
+	var blinky = null;
 };
 
 Game.prototype = {
 	preload : function() {
-		game.load.tilemap('map1', fp_map1, null, Phaser.Tilemap.TILED_JSON);
-		game.load.image('tile1', fp_tile1);
-
+		this.loadMap();
 		this.loadOhhman();
 		this.loadGhosts();
 	},
 
 	create : function() {
-		this.loadMap();
-		
+		map1.create();
 		ohhMan.create();
 		blinky.create();
 	},
@@ -22,12 +22,10 @@ Game.prototype = {
 		blinky.update();
 	},
 
-
+	
 	loadMap : function() {
-		var map = game.add.tilemap('map1');	
-		map.addTilesetImage('tile1', 'tile1');	
-		layer = map.createLayer('Camada de Tiles');		
-		layer.resizeWorld();
+		map1 = new Map1();
+		map1.preload();
 	},
 
 	loadOhhman : function() {

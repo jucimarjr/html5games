@@ -51,28 +51,28 @@ Menu.prototype = {
 	goPlay : function(){
 	    this.fadeOut();
 	    fadeout.onComplete.add(function () {
-	    	this.game.state.start('sceneGame');
+	    	game.state.start('sceneGame');
 	    });
 	},
 
 	goHighScores : function(){
 	    this.fadeOut();
 	    fadeout.onComplete.add(function () {
-	        this.game.state.start('sceneHighScores');
+	       game.state.start('sceneHighScores');
 	    });
 	},
 
 	goHowToPlay : function(){
 	    this.fadeOut();
 	    fadeout.onComplete.add(function () {
-	    	this.game.state.start('sceneHowToPlay');
+	    	game.state.start('sceneHowToPlay');
 	    });
 	},
 
 	goCredits : function (){
 	    this.fadeOut();
 	    fadeout.onComplete.add(function () {
-	        this.game.state.start('sceneCredits');
+	        game.state.start('sceneCredits');
 	    });
 	},
 
