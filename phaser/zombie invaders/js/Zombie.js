@@ -34,5 +34,6 @@ Zombie.prototype.update = function (){
 function killZombie(){
 	this.spriteZombie.destroy();
     this.classGame.amountZombies -= 1;
+    this.classGame.punctuate(1);
     console.log("amount zombie ="+this.classGame.amountZombie);
 };
