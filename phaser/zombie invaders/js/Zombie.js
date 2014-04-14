@@ -1,13 +1,14 @@
-var Zombie = function (index, game, person) {
+var Zombie = function (index, game, person, classGame) {
 	
     var x = game.world.randomX;
     var y = game.rnd.integerInRange(0, 100);
-    //console.log("y =",y);
+    
 
     this.game = game;
-    //this.health = 3;
     this.spritePerson = person;
     this.alive = true;
+    
+    this.classGame = classGame;
 
     this.spriteZombie = this.game.add.sprite(x, y,'zombie');
 
@@ -20,10 +21,18 @@ var Zombie = function (index, game, person) {
     
     this.spriteZombie.inputEnabled=true;
     this.spriteZombie.body.velocity.x  = 0;
-    this.spriteZombie.events.onInputDown.add(elimine = function(spriteZombie){
-    	spriteZombie.destroy();
-	},null);
+    this.spriteZombie.events.onInputDown.add(killZombie,this);
     
     this.spriteZombie.body.velocity.x  = Math.random()*10;
     this.spriteZombie.body.velocity.y  = Math.random()*10;
+};
+
+Zombie.prototype.update = function (){
+	
+};
+
+function killZombie(){
+	this.spriteZombie.destroy();
+    this.classGame.amountZombies -= 1;
+    console.log("amount zombie ="+this.classGame.amountZombie);
 };
