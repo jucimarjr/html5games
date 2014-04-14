@@ -1,20 +1,21 @@
-Zombie = function (index, game, zombie) {
+var Person = function (index, game) {
 	
     var x = game.world.randomX;
-    var y = game.world.randomY;
+    var y = game.rnd.integerInRange(800, 900);
 
     this.game = game;
-    //this.health = 3;
-    this.zombie = zombie;
     this.alive = true;
 
-    this.person = game.add.sprite(x, y,imagePessoa);
+    this.spritePerson = this.game.add.sprite(x, y,'person');
 
-    this.person.name = index.toString();
-    game.physics.enable(this.person, Phaser.Physics.ARCADE);
+    this.spritePerson.name = index.toString();
+    this.game.physics.enable(this.spritePerson, Phaser.Physics.ARCADE);
 
-    this.person.body.immovable = false;
-    this.person.body.collideWorldBounds = true;
-    this.person.body.bounce.setTo(1, 1);
+    this.spritePerson.body.immovable = false;
+    this.spritePerson.body.collideWorldBounds = true;
+    this.spritePerson.body.bounce.setTo(1, 1);
+    
+    this.spritePerson.body.velocity.x  = -Math.random()*10;
+    this.spritePerson.body.velocity.y  = -Math.random()*10;
 
 };
