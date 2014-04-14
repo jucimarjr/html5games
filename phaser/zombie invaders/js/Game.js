@@ -63,8 +63,9 @@ Game.prototype.initZombies = function(person){
 	console.log("initZombie");
 	this.idZombie += 1;
 	for(var i = 0; i < 2 ; i++){
-		var zombie = new Zombie(this.idZombie,this.game, person);
+		var zombie = new Zombie(this.idZombie,this.game, person, this);
 		this.groupPeople.add(zombie.spriteZombie);
+		//this.amountZombies += 1;
 	}
 };
 
