@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" width="50" height="50" tilewidth="60" tileheight="35">
+ <tileset firstgid="1" name="tiles" tilewidth="60" tileheight="35">
+  <image source="tiles.png" width="128" height="128"/>
+ </tileset>
+ <layer name="Camada de Tiles 1" width="50" height="50">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC7WW247DIAxECeH/v3m7UitZ0+MbpA+ou0kADx4fM8cY12vcrzHff///rve438P+v8z3ds5txjTr3GaPC9bTPXR83s3iuExM08yluHY0ULyV9x0tt1nT5sTqeFoDaVny3eed/Z7it8+tt0jLk37ydGjMnq/JS5mWUw0V/3vfqR88LUu0aM1f43ca7P73+I5Z4+3Ui8YcafAYQF4iLXpW+oyeR1wlHV78O+t7DPXi9faJuEq+II2RjozbXl2s8a1F16L6Ja6qfzM/ddfP9NzOmt7zLouiuuisrzVNnn5Cy5D8dnzf0RLpsDEvM4+ee7FRTFXfV9bX/kc1qD2kyj/v267vu8y1PqZeUGE5rae/Xd9ne2rcmguKbVcLebTDiGpOqDaiO1VHC/XBal3Ze0dVx5LvvHuL1kqFQTuMmrBXJx/dfSsM6jKKekm1RnTt6r5VBnUYpTo6OdHzq+7bqdsOo0hH1P9PeVKZs7Omxqm5+LUWYlCXUV6MVEd2DeXiDhvn+D4zYneFV5kO6k+kI2Ov9nz1g87v8srTQjo8T1kOac/zdGTzu7zKdKi39MzoPHf6GOWjw6vIXzZu71ym7OXpyHxB98SuloxJXo3QWjPZP+pjqrnLK9Jy4pFdX+hd6alYdj2y4wvymPrjV7FEHtn1xRzf8Z3EQnVrY9rhkfWv5bJ6KeJo1690rjq6PLKenfA807Hr18gjO/n18kE58Ti641eKr3vvVh5p7kiH3Ye8RTn17hmqQc/rpOcq75fMyXKiOdU4yaPE31Me2d9dHVlOvEHxUl6UEwueV3jX6XNVLScaaJ8K77p9LtNyquGCfSq86/Rc8hnVhF2X3hFfMx9XGFHtc17d2HMkDctZT+vB01HhXZWDXQ5c8j6qg4qOjHdVDp7wgPoa1SX1HT0Xj2VRX6twguKyc+ju9fmluiAdl8yj+o/6WoUTUd3SIB3Ei1MdVL+du4QXv86LWKg66H6r7Ij62Y6Wqg6tf9Jh/enlw9ZQpCPjRFeLjVV1ZPcs5Yq+i7RE+qqD1tAzj86F7r36+wdeHwNeECcAAA==
+  </data>
+ </layer>
+</map>

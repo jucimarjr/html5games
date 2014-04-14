@@ -4,13 +4,12 @@
 	<meta charset="UTF-8" />
 	<title>Asteroids</title>
 	
-	<!--<script type="text/javascript" src="../phaser-src/build/phaser.js"></script>-->
-	<script type="text/javascript" src="js/phaser.min.js"></script>
-	
+	<script type="text/javascript" src="js/phaser.min.js"></script>	
 	<script type="text/javascript" src="js/Splash.js"></script>
 	<script type="text/javascript" src="js/Win.js"></script>
 	<script type="text/javascript" src="js/lose.js"></script>
 	<script type="text/javascript" src="js/Menu.js"></script>
+	<script type="text/javascript" src="js/select.js"></script>
 	<script type="text/javascript" src="js/HowToPlay.js"></script>
     <script type="text/javascript" src="js/HighScores.js"></script>
     <script type="text/javascript" src="js/HighScoresInput.js"></script>
@@ -27,13 +26,20 @@
  	   		font-family: 'Vector Battle';
     		src: url('assets/fonts/VectorB.ttf');
 		}	
+		canvas {
+    		padding-left: 0;
+    		padding-right: 0;
+    		margin-left: auto;
+    		margin-right: auto;
+    		display: block;
+		}
     </style>
 </head>
 <body>
-
+<div id="phaser-example"></div>
 <script type="text/javascript">
 
-var game = new Phaser.Game(800, 480, Phaser.CANVAS, '', { preload: preload, create: create, update: update, render:render});
+var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update, render:render});//
 var score = null;
 
 var gameScene = null;
@@ -46,10 +52,11 @@ game.state.add('Win', Win);
 game.state.add('lose', Lose);
 game.state.add('highScoreInput', HighScoreInput);
 game.state.add('credits', Credits);
+game.state.add('Select', Select);
 
 function preload()
 {
-	game.load.atlas('sprites', 'assets/spritesheets/GameSpriteSheet.png', 'assets/spritesheets/GameSpriteSheet.json');
+	game.load.atlas('sprites', 'assets/spritesheets/sprites.png', 'assets/spritesheets/sprites.json');
 	game.load.atlas('asteroids', 'assets/spritesheets/AsteroidsSpriteSheet.png', 'assets/spritesheets/AsteroidsSpriteSheet.json');
 	game.load.atlas('shoots', 'assets/spritesheets/spriteSchips.png', 'assets/spritesheets/spriteSchips.json');
 	game.load.atlas('ships', 'assets/spritesheets/SpaceShips.png', 'assets/spritesheets/SpaceShips.json');
@@ -58,8 +65,9 @@ function preload()
 	game.load.image('tiled2','assets/images/Tiled2.png');
 	game.load.image('res','assets/images/res.png');
 	game.load.image('laser','assets/images/laser_5-2.png');
-	game.load.image('ship','assets/tests/nave-verde.png');
+	game.load.image('ship','assets/tests/nave-azul.png');
 	game.load.image('shipalt','assets/images/nave1.png');
+	game.load.image('btnright','assets/images/btn-left.png');
     game.load.audio('thrust', 'assets/audios/AsteroidsThrust.mp3');
     game.load.audio('shoot', 'assets/audios/AsteroidsShoot.mp3');
     game.load.audio('ufo', 'assets/audios/AsteroidsSaucer.mp3');
@@ -107,8 +115,17 @@ function setHighScore()
 function render(){
 	//gameScene.render();
 }
-
 </script>
+<div>
+<center>
+<h3>Desenvolvedores:</h3>
+<a href = 'https://www.facebook.com/matheus.palhetabarbosa'>Matheus Palheta</a><br>
+<a href = 'https://www.facebook.com/people/Luiz-Gama/1167844510'>Luiz Gama</a><br>
+<a href = 'https://www.facebook.com/luan.moraes.xs'>Luan de Moraes</a><br>
+<h3>Orientador:</h3>
+<a href = 'https://www.facebook.com/jucimar.jr'>Jucimar Jr.</a>
+</center>
 
+</div>
 </body>
 </html>

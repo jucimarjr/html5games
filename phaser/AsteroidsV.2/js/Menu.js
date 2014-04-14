@@ -46,16 +46,7 @@ Menu.prototype.create = function() {
 Menu.prototype.play = function () {
     this.fadeOut();
     fadeout.onComplete.add(function () {
-    	var msg = this.game.add.sprite(0,0,'msg');
-    	msg.alpha = 0;
-    	var fadein = game.add.tween(msg).to({ alpha: 1 }, 1000, Phaser.Easing.Linear.None, true, 0, 0, true);
-    	fadein.onComplete.add(function () {
-    		var fade = game.add.tween(msg).to({ alpha: 0 }, 1000, Phaser.Easing.Linear.None, true, 0, 0, true);
-        	fade.onComplete.add(function () {
-        		game.state.start('game', Game);
-            });
-        });
-    	
+        game.state.start('Select', Select);
     });
 };
 

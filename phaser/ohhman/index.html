@@ -3,21 +3,34 @@
 <html lang="pt-br"> 
 	<head> 
 		<meta charset="UTF-8" />
-		<title>Oohman</title>
+		<title>OhhMan!</title>
 		<script type="text/javascript" src="js/phaser.min.js"></script>
-		<script type="text/javascript" src="js/Splash.js"></script>		
-		<script type="text/javascript" src="js/Menu.js"></script>
-		<script type="text/javascript" src="js/HighScores.js"></script>
-		<script type="text/javascript" src="js/Win.js"></script>
+		<script type="text/javascript" src="js/config/FilePath.js"></script>
+		
+		<script type="text/javascript" src="js/screen/Splash.js"></script>		
+		<script type="text/javascript" src="js/screen/Menu.js"></script>
+		<script type="text/javascript" src="js/screen/HighScores.js"></script>
+		<script type="text/javascript" src="js/screen/HowToPlay.js"></script>
+		<script type="text/javascript" src="js/screen/Credits.js"></script>
+		<script type="text/javascript" src="js/screen/Win.js"></script>
+		<script type="text/javascript" src="js/screen/Lose.js"></script>
+		
+		<script type="text/javascript" src="js/Game.js"></script>
+		<script type="text/javascript" src="js/Map1.js"></script>
+		<script type="text/javascript" src="js/OhhMan.js"></script>
+		<script type="text/javascript" src="js/Blinky.js"></script>
+		<script type="text/javascript" src="js/Clyde.js"></script>
+		<script type="text/javascript" src="js/Inkey.js"></script>
+		<script type="text/javascript" src="js/Pinky.js"></script>
 		
 		<style type="text/css">
 	        body {
-	        	border:1px solid #000000;
+	        	border:1px dashed #000000;
 	        	
 				position:absolute;
 				top:50%;
 				left:50%;
-				margin-top:-240px;
+				margin-top:-300px;
 				margin-left:-400px;
 	        }
 	    </style>
@@ -25,26 +38,32 @@
 
 	<body>
 		<script type="text/javascript">
-			var game = new Phaser.Game(600, 800, Phaser.CANVAS, '', {preload: preload, create: create, update: update});
-
-			game.state.add('menu', Menu);
-			game.state.add('highScores', HighScores);
-			game.state.add('win', Win);
-			
+			var game = new Phaser.Game(800, 600, Phaser.AUTO, '', {preload: preload, create: create, update: update});
+			var splash = null;
+									
 			function preload() {								
-				//preload do Splash
-				splash = new Splash(game);
+				//Preload do Splash
+				splash = new Splash();
+				//splash = new Game();
 				splash.preload();
 			}
 
 			function create() {				
-				//chamada do Splash
+				//Chamada do Splash
 				splash.create();
 			}
 
 			function update() {
-				
+				//splash.update();
 			}
+
+			game.state.add('sceneMenu', Menu);
+			game.state.add('sceneHighScores', HighScores);
+			game.state.add('sceneCredits', Credits);
+			game.state.add('sceneHowToPlay', HowToPlay);
+			game.state.add('sceneGame', Game);
+			game.state.add('sceneWin', Win);
+			game.state.add('sceneLose', Lose);
 		</script>
 	</body>
 
