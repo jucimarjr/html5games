@@ -20,9 +20,9 @@ Clyde.prototype = {
 		this.sprite.body.collideWorldBounds = true;
 	},
 	
-	update : function() {
+	update : function(layer) {
 		this.moveRandomly();
-		this.verifyMapCollision();
+		this.verifyMapCollision(layer);
 	},
 	
 	//Move o clyde
@@ -32,29 +32,28 @@ Clyde.prototype = {
 			this.sprite.body.velocity.x = -this.speed;
 			this.sprite.body.velocity.y = 0;
 		}
-		
-		else if (this.direction == "RIGHT") {			
+		if (this.direction == "RIGHT") {			
 			this.sprite.body.velocity.x = this.speed;			
 			this.sprite.body.velocity.y = 0;
 		}
 		
 		//Move o clyde na vertical (cima/baixo)
-		else if (this.direction == "UP") {			
+		if (this.direction == "UP") {			
 			this.sprite.body.velocity.x = 0;
 			this.sprite.body.velocity.y = -this.speed;
 		}
-		else if (this.direction == "DOWN") {
+		if (this.direction == "DOWN") {
 			this.sprite.body.velocity.x = 0;
 			this.sprite.body.velocity.y = this.speed;
 		}
-	
 	},
 	
-	//Verifica a colisÃ£o do clyde com o mapa
-	verifyMapCollision : function() {		
-		game.physics.arcade.overlap(this.sprite, map1.layer, this.setNewDirection, null, this);
+	//Verifica a colisão do clyde com o mapa
+	verifyMapCollision : function(layer) {		
+		game.physics.arcade.overlap(this.sprite, layer, this.setNewDirection, null, this);
 	},
 	
+	//Seta uma direção aleatória para o clyde
 	setNewDirection : function() {
 		var number = Math.round(1 + Math.random()*4);
 		

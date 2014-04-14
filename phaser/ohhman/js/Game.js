@@ -24,11 +24,13 @@ Game.prototype = {
 	},
 	
 	update : function() {
-		ohhMan.update();
-		blinky.update();
-		clyde.update();
-		inkey.update();
-		pinky.update();
+		var layer = map1.layer;
+		
+		ohhMan.update(layer);
+		blinky.update(layer);
+		clyde.update(layer);
+		inkey.update(layer);
+		pinky.update(layer);
 	},
 
 	

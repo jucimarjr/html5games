@@ -20,9 +20,10 @@ Ohhman.prototype = {
 		this.sprite.body.collideWorldBounds = true;
 	},
 	
-	update : function() {
+	update : function(layer) {
 		this.moveByKeyboard();
-		this.verifyMapCollision();
+		this.verifyMapCollision(layer);
+		this.verifyGhostCollision();
 	},
 	
 	
@@ -34,19 +35,19 @@ Ohhman.prototype = {
 			this.sprite.body.velocity.x = -this.speed;
 			this.sprite.body.velocity.y = 0;
 		}
-		else if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
+		if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
 			this.direction = "RIGHT";
 			this.sprite.body.velocity.x = this.speed;
 			this.sprite.body.velocity.y = 0;
 		}
 		
 		//Move o ohhMan na vertical (cima/baixo)
-		else if (game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
+		if (game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
 			this.direction = "UP";
 			this.sprite.body.velocity.x = 0;
 			this.sprite.body.velocity.y = -this.speed;
 		}
-		else if (game.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
+		if (game.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
 			this.direction = "DOWN";
 			this.sprite.body.velocity.x = 0;
 			this.sprite.body.velocity.y = this.speed;
@@ -54,7 +55,26 @@ Ohhman.prototype = {
 	},
 	
 	//Verifica a colisão do ohhMan com o mapa
-	verifyMapCollision : function() {
-		game.physics.arcade.collide(this.sprite, map1.layer);
+	verifyMapCollision : function(layer) {
+		game.physics.arcade.collide(this.sprite, layer);
+	},
+	
+	//Verifica a colisão do ohhMan com os fantasminhas
+	verifyGhostCollision : function() {
+		if (this.checkOverlap(this.sprite, blinky.sprite) ||
+			this.checkOverlap(this.sprite, clyde.sprite) ||
+			this.checkOverlap(this.sprite, inkey.sprite) ||
+			this.checkOverlap(this.sprite, pinky.sprite))
+			
+			game.state.start('sceneLose');
+	},
+	
+	//Verifica se 2 sprites se sobreporam, ou seja, se eles colidiram
+	//VER DEPOIS: VERIFICAR QUAL O MELHOR ARQUIVO PRA ESTE MÉDOTO FICAR
+	checkOverlap : function(spriteA, spriteB) {
+	    var boundsA = spriteA.getBounds();
+	    var boundsB = spriteB.getBounds();
+
+	    return Phaser.Rectangle.intersects(boundsA, boundsB);
 	}
 };
