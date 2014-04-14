@@ -14,9 +14,10 @@ var imageRua = 'assets/rua.png';
 var imageZombie = 'assets/Zombie.png';
 var imagePessoa = 'assets/Pessoa.png';
 
-//Splashs
+//Telas
 var splashGroupImage = 'assets/screenshots/SplashTeam_800-600.png';
 var SplashGameImage = 'assets/screenshots/SplashGame_800-600.png';
+var screenMenu = 'assets/screenshots/Menu_800-600.png';
 
 //Spritesheets Botões do menu
 var spriteSheetsImageButtons = "assets/spritesheets/buttons.png";

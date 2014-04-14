@@ -9,9 +9,8 @@ Menu = function (game) {
 };
 
 Menu.prototype.preload = function(){
-	game.load.image('menu', SplashGameImage);
-	game.load.atlas('buttons', spriteSheetsImageButtons, spriteSheetsJsonButtons);
-		
+	game.load.image('menu', screenMenu);
+	game.load.atlas('buttons', spriteSheetsImageButtons, spriteSheetsJsonButtons);	
 };
 
 Menu.prototype.create = function() {
