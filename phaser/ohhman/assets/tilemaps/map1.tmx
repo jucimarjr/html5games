@@ -3,9 +3,12 @@
  <tileset firstgid="1" name="tile1" tilewidth="36" tileheight="36">
   <image source="tiles/tile1.png" width="36" height="36"/>
  </tileset>
+ <tileset firstgid="2" name="ball" tilewidth="6" tileheight="6">
+  <image source="tiles/ball.png" width="6" height="6"/>
+ </tileset>
  <layer name="Camada de Tiles" width="23" height="17">
   <data encoding="base64" compression="zlib">
-   eJy1k0sKwCAMRMf7X9pNFyU4nwQdCFjye41mAVif4Xee2Cn/hVi/k4/FMNaUmcW5/Alfra3mnnJ0pOZbe7o4d1/pXNX/deux2up9uJ1B4JtwJ2K8ic/xqF1J+iZzTNhuyO2W++6+k9tKWDpW8zcdrgCx
+   eJy1U9EKACEIs/7/o+/lHkI23aQEIVvqTF0RsX6N4zxR5P9CWD6EsTeMq8qZvev8p/zYPapb4eFI9b8dNvVBHCobYV081nNlPpSdYZjKe4uq1NbtR+ba1XriTl43truXjqB9qfqXbXdObos6b6pm/w9gjgDL
   </data>
  </layer>
 </map>
