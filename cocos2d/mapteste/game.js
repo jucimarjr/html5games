@@ -41,7 +41,8 @@ var GameLayer = cc.Layer.extend({
 		
 	},
 	onTouchesEnded:function(touch, event){
-		var getPoint = touch[0].getLocation();
+		var i = 0;
+		var getPoint = touch[i].getLocation();
 		getPoint = cc.pAdd(cc.pNeg(this.getPosition()), getPoint);
 		if(this.sprite.movable){
 			this.sprite.move(getPoint);

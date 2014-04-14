@@ -26,7 +26,9 @@ var sprite = cc.Sprite.extend({
 	},
 	move:function(point){
 		var p = cc.pAdd(point, cc.p(0,56));
-		var moveToP = cc.MoveTo.create(1, p);
+		cc.log(cc.pDistance(this.getPosition(), p));
+		var moveToP = cc.MoveTo.create((cc.pDistance(this.getPosition(), p)/200), p);
 		this.runAction(moveToP);
+		
 	}
 });

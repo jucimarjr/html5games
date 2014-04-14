@@ -338,6 +338,13 @@
             <filename>../../../../../../../Users/UEA/Documents/sprites/bulletaTypes/btn-shoot1.png</filename>
             <filename>../../../../../../../Users/UEA/Documents/sprites/bulletaTypes/btn-shoot2.png</filename>
             <filename>../../../../../../../Users/UEA/Documents/sprites/bulletaTypes/btn-shoot3.png</filename>
+            <filename>../../../../../../../Users/UEA/Documents/sprites/bulletaTypes/btn-v.png</filename>
+            <filename>../../../../../../../Users/UEA/Documents/sprites/bulletaTypes/btn-blue.png</filename>
+            <filename>../../../../../../../Users/UEA/Documents/sprites/bulletaTypes/btn-green.png</filename>
+            <filename>../../../../../../../Users/UEA/Documents/sprites/bulletaTypes/btn-orange.png</filename>
+            <filename>../../../../../../../Users/UEA/Documents/sprites/bulletaTypes/btn-purple.png</filename>
+            <filename>../../../../../../../Users/UEA/Documents/sprites/bulletaTypes/btn-red.png</filename>
+            <filename>../../../../../../../Users/UEA/Documents/sprites/bulletaTypes/btn-white.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
