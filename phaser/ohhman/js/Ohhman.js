@@ -3,6 +3,8 @@ Ohhman = function () {
 	this.speed = 200;
 	
 	this.direction; //LEFT, RIGHT, UP, DOWN
+	
+	this.map = null;	
 };
 
 Ohhman.prototype = {
@@ -20,17 +22,21 @@ Ohhman.prototype = {
 		this.sprite.body.collideWorldBounds = true;
 	},
 	
-	update : function(layer, layer2, decisionPoint, map1) {
-		this.moveByKeyboard(decisionPoint);
-		this.verifyMapCollision(layer);
+	update : function(map1) {
+		this.map = map1;
+		
+		game.debug.text('Tile X: ' + this.map.layer.getTileX(this.sprite.x), 32, 48, 'rgb(0,0,0)');
+
+		
+		this.moveByKeyboard();
+		this.verifyMapCollision();
 		this.verifyGhostCollision();
-		this.verifyBallCollision(layer2);
-		this.removeBall(map1);
+		this.verifyBallCollision();		
 	},
 	
 	
 	//Move o ohhMan
-	moveByKeyboard : function(decisionPoint) {
+	moveByKeyboard : function() {
 		//Move o ohhMan na horizontal (esquerda/direita)
 		if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
 			this.direction = "LEFT";
@@ -57,8 +63,8 @@ Ohhman.prototype = {
 	},
 	
 	//Verifica a colisão do ohhMan com o mapa
-	verifyMapCollision : function(layer) {
-		game.physics.arcade.collide(this.sprite, layer);
+	verifyMapCollision : function() {
+		game.physics.arcade.collide(this.sprite, this.map.layer);
 	},
 	
 	//Verifica a colisão do ohhMan com os fantasminhas
@@ -80,11 +86,11 @@ Ohhman.prototype = {
 	    return Phaser.Rectangle.intersects(boundsA, boundsB);
 	},
 	
-	verifyBallCollision : function(layer2) {			
-		game.physics.arcade.overlap(this.sprite, layer2, this.removeBall, null, this);
+	verifyBallCollision : function() {			
+		game.physics.arcade.overlap(this.sprite, this.map.layer2, this.removeBall, null, this);
 	},
 	
-	removeBall : function(map1) {
-		 //map1.replace(2, 0);
+	removeBall : function() {		 		 
+		 //this.map.removeTile(1, 1, 'Ball Layer');
 	}
 };

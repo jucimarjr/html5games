@@ -30,10 +30,10 @@ Map1.prototype = {
 		
 		this.decisionPoint = game.add.group();
 		this.decisionPoint.enableBody = true;		
-		this.map.createFromObjects('Decision Layer', 34, '', 0, true, false, this.decisionPoint);
+		this.map.createFromObjects('Decision Layer', 34, '', 0, true, false, this.decisionPoint);			
 		
 	},
 	
-	update : function() {
+	update : function() {		
 	}
 };
