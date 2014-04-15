@@ -25,8 +25,10 @@ Game.prototype = {
 	
 	update : function() {
 		var layer = map1.layer;
+		var layer2 = map1.layer2;
+		var decisionPoint = map1.decisionPoint;
 		
-		ohhMan.update(layer);
+		ohhMan.update(layer, layer2, decisionPoint, map1);
 		blinky.update(layer);
 		clyde.update(layer);
 		inkey.update(layer);

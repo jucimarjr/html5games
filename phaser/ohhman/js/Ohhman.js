@@ -20,15 +20,17 @@ Ohhman.prototype = {
 		this.sprite.body.collideWorldBounds = true;
 	},
 	
-	update : function(layer) {
-		this.moveByKeyboard();
+	update : function(layer, layer2, decisionPoint, map1) {
+		this.moveByKeyboard(decisionPoint);
 		this.verifyMapCollision(layer);
 		this.verifyGhostCollision();
+		this.verifyBallCollision(layer2);
+		this.removeBall(map1);
 	},
 	
 	
 	//Move o ohhMan
-	moveByKeyboard : function() {
+	moveByKeyboard : function(decisionPoint) {
 		//Move o ohhMan na horizontal (esquerda/direita)
 		if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
 			this.direction = "LEFT";
@@ -76,5 +78,13 @@ Ohhman.prototype = {
 	    var boundsB = spriteB.getBounds();
 
 	    return Phaser.Rectangle.intersects(boundsA, boundsB);
+	},
+	
+	verifyBallCollision : function(layer2) {			
+		game.physics.arcade.overlap(this.sprite, layer2, this.removeBall, null, this);
+	},
+	
+	removeBall : function(map1) {
+		 //map1.replace(2, 0);
 	}
 };
