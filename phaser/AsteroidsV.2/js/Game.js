@@ -24,7 +24,26 @@ var Game = function(game){
 };
 
 Game.prototype.create = function () {
-	//this.btn = this.game.add.sprite(0,0,'btnright');
+	//
+	//if(this.game.device.touch){}
+	this.btns = this.game.add.group(0, 0); 
+	this.right = this.game.add.sprite(100,520,'sprites','btn-right.png');
+	this.thrust = this.game.add.sprite(625,520,'sprites','btn-thrust.png');
+	this.shoot = this.game.add.sprite(715,520,'sprites','btn-shoot.png');
+	this.left = this.game.add.sprite(10,520,'sprites','btn-left.png');
+	this.right.input.start(0,false);
+	//console.log(this.right.input);
+	this.left.input.start(0,false);
+	//console.log(this.left.input.pointerDown());
+	//console.log(this.game.input.activePointer)
+	this.thrust.input.start(0,false);
+	//console.log(this.shoot.input);
+	this.shoot.input.start(0,false);
+	//this.right.inputEnabled = true;
+	this.btns.add(this.right);
+	this.btns.add(this.left);
+	this.btns.add(this.thrust);
+	this.btns.add(this.shoot);
 	this.shootUfo = this.game.add.group();
 	this.game.world.setBounds(0, 0, 3200, 1920);
 	//this.game.world.setBounds(0, 0, 800, 480);
@@ -47,27 +66,27 @@ Game.prototype.create = function () {
 };
 
 Game.prototype.update = function () {
-	//this.btn.x = this.game.camera.x + 50;
-	//this.btn.y = this.game.camera.y + 500;
+	//this.btns.x = this.game.camera.x;
+	//this.btns.y = this.game.camera.y + 500;
     this.spaceShip.update();
     this.groupAsteroids.forEachAlive(this.warp,this);
     //this.groupAsteroids.forEachAlive(this.rotateBody,this);
     this.groupUfo.callAll('update', null);
     this.tiled2.x -= this.spaceShip.sprite.body.velocity.x/500;
     this.tiled2.y -= this.spaceShip.sprite.body.velocity.y/500;
-    if(game.input.keyboard.isDown(Phaser.Keyboard.LEFT))
+    if(game.input.keyboard.isDown(Phaser.Keyboard.LEFT)||this.left.input.pointerOver())
         this.spaceShip.rotate("left");
-    else if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT))
+    else if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)|| this.right.input.pointerOver())
         this.spaceShip.rotate("right");
     
-    if (game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
+    if (game.input.keyboard.isDown(Phaser.Keyboard.UP)||this.thrust.input.pointerOver()) {
         this.spaceShip.accelerate();
         this.spaceShip.animate();
     } else{
         this.spaceShip.stop();
     }
         	    
-    if (game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)){
+    if (game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)||this.shoot.input.pointerOver()){
         this.spaceShip.shoot();   
     }
     
