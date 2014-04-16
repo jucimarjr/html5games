@@ -28,16 +28,12 @@ Mapa.prototype.create = function() {
     this.layer = this.map.createLayer('Camada de Tiles 1');
     this.layer.resizeWorld();
     this.map.setCollision(108);
-    // tileset = game.add.tileset('tiles');
-    // layer = game.add.tilemapLayer(0, 0, 900, 1000, tileset, map, 0);
     this.player = game.add.sprite(0, 0, 'nave');
-    // Set the amount of bounce on the physics body of the 'player' sprite
     game.physics.enable(this.player);
     this.player.body.bounce.y = 0.1;
     this.player.body.linearDamping = 1;
     this.player.body.collideWorldBounds = true;
-    // Tell the game's camera to follow the 'player' sprite
-    game.camera.follow(this.player);
+     game.camera.follow(this.player);
     cursors = game.input.keyboard.createCursorKeys();
 
 };
