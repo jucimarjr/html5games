@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="140" height="15" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
+ <tileset firstgid="1" name="tiles" tilewidth="32" tileheight="32">
+  <image source="tiles2.png" width="667" height="161"/>
+ </tileset>
+ <layer name="Camada de Tiles 1" width="140" height="15">
+  <data encoding="base64" compression="zlib">
+   eJztkl0OgkAMBjf+n0CUIygqJ0Dk/ofyI9m+kLIPRJPNMpNM0r5OGwIAAAAAAAAAAAAAAJTORm6jO7mXhwz30eOfGpSK3TbV1Wavt/cXZ1lFL/Iq6wz3+gf9Suc02e22qa42e729v7jJe7SRD/nMcB99Laq4Xuy2qa42e729v+jkO9rLjxwy3IfF1dZDO9nttn2Y72qz19v7iy9zECLb
+  </data>
+ </layer>
+ <layer name="Camada de Tiles 2" width="140" height="15">
+  <data encoding="base64" compression="zlib">
+   eJztlWsKxCAMhHOxUtu9/53WHyu42arxFZJlBkLVjAnKhyWyryPGHeOMEWJc2ff+jPm85d+dt9pbkkvrL/Ip8AJeegRewEuPwAt46VHiJdD3+Vq81Py781Z7S3JpzTMvgZ7PeVbmkj0WPDM1d/QAL7Y9MzXBy6/Aiy4vyeNVq3n5h7FGD6+q8ZKPpXeB9wXvS+suuM+SZ6SmRg+v4ryUzm6RBfCirxW8lPZb8MzU3NnDq1b8j/K8Nc9ITY0eXsV5KZ1dchc8LHhGamr0eNIbI/RmJw==
+  </data>
+ </layer>
+ <objectgroup name="objects" width="140" height="15">
+  <object type="edgeShape" x="3" y="366">
+   <polyline points="0,0 4482,0"/>
+  </object>
+ </objectgroup>
+</map>

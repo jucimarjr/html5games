@@ -9,6 +9,7 @@ Ufo = function (gameClass) {
     this.reset(0, Math.random() * this.game.world.height);
     this.anchor.setTo(0.5,0.5);
     this.body.velocity.x = Math.cos(45 * 0.0174) * 150;
+    this.body.angularVelocity = 200;
     this.name = 'ufo';
     this.gameClass.groupUfo.add(this);
     this.hp = 50;

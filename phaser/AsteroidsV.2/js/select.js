@@ -29,6 +29,10 @@ Select.prototype.create = function() {
     this.txt3 = this.game.add.text(20, 285 , "Select Your Shoot Type: "+shoot, {
         font: "28px Vector Battle", fill: "#ffffff" , align: "right"
     });
+    
+    this.btnGroup.add(this.txt1);
+    this.btnGroup.add(this.txt2);
+    this.btnGroup.add(this.txt3);
 	
 	var h = 65;
 	

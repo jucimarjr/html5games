@@ -11,18 +11,22 @@ var GameLayer = cc.Layer.extend({
 	diff:cc.p(0,0),
 	actions:null,
 	tatics:null,
+	map:null,
+	layer:null,
+	tilespoint:[],
     init:function()
     {
         this._super();
 		this.setMouseEnabled(true);
 		this.setTouchEnabled(true);
-        var map = cc.TMXTiledMap.create("assets/tiles/map.tmx");
+        this.map = cc.TMXTiledMap.create("assets/tiles/map.tmx");
 		//var map = cc.TMXTiledMap.create("assets/tiles/iso-test.tmx");
-        this.addChild(map, 0);
+        this.addChild(this.map, 0);
 		
-		var layer = map.getLayer("Camada de Tiles 1");
+		this.layer = this.map.getLayer("Camada de Tiles 1");
 		this.sprite = new sprite();//cc.Sprite.create("assets/tiles/sprite1.png")
-		var tile0 = layer.getTileAt(cc.p(0,0));
+		var tile0 = this.layer.getTileAt(cc.p(0,0));
+		this.sprite.setAnchorPoint(cc.p(0.5,0.5));
 		var x = tile0.getPosition().x + 30;
 		var y = tile0.getPosition().y + 72;
 		this.sprite.setPosition(cc.p(x,y));
@@ -30,6 +34,30 @@ var GameLayer = cc.Layer.extend({
 		cc.registerTargetedDelegate(0, true, this.sprite);
 		this.setTag(1);
 		this.centrarPersonagem(this.sprite);
+		//for(var i = 0;i < 50;i++){
+			//cc.log(this.layer.getTiles());
+		//}
+		//cc.log(this.sprite.getPosition());
+		//cc.log(this.map.getTileSize());
+		var mapWidth = this.map.getMapSize().width;
+		var mapHeight = this.map.getMapSize().height;
+		var tileWidth = this.map.getTileSize().width;
+		var tileHeight = this.map.getTileSize().height;	
+		var i, j;
+		for (i = 0; i < mapWidth; i++){
+			for (j = 0; j < mapHeight; j++){
+				var tileCoord = new cc.Point(i, j);
+				var gid = this.layer.getTileGIDAt(tileCoord);
+				//cc.log(gid);
+				if(gid) {
+					var tileXPositon = i * tileWidth;
+					var tileYPosition = (mapHeight * tileHeight) - ((j+1) * tileHeight);
+					var react = cc.p(tileXPositon, tileYPosition);
+					this.tilespoint.push(react);
+				}
+			}
+		}
+		cc.log(this.tilespoint);
 		return this;
     },
 	centrarPersonagem:function(pers){
@@ -45,6 +73,14 @@ var GameLayer = cc.Layer.extend({
 		var getPoint = touch[i].getLocation();
 		getPoint = cc.pAdd(cc.pNeg(this.getPosition()), getPoint);
 		if(this.sprite.movable){
+			var prox = this.tilespoint[0];
+			//cc.log(prox);
+			for(var i=1;i<this.tilespoint.length;i++){
+				var dist = cc.pDistanceSQ(prox, this.tilespoint[i])
+				if(dist < prox){
+					prox = dist;
+				}
+			}
 			this.sprite.move(getPoint);
 			this.sprite.movable = false;
 		}

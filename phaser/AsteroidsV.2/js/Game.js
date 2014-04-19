@@ -24,7 +24,26 @@ var Game = function(game){
 };
 
 Game.prototype.create = function () {
-	//this.btn = this.game.add.sprite(0,0,'btnright');
+	//
+	//if(this.game.device.touch){}
+	this.btns = this.game.add.group(0, 0); 
+	this.right = this.game.add.sprite(100,520,'sprites','btn-right.png');
+	this.thrust = this.game.add.sprite(625,520,'sprites','btn-thrust.png');
+	this.shoot = this.game.add.sprite(715,520,'sprites','btn-shoot.png');
+	this.left = this.game.add.sprite(10,520,'sprites','btn-left.png');
+	this.right.input.start(0,false);
+	//console.log(this.right.input);
+	this.left.input.start(0,false);
+	//console.log(this.left.input.pointerDown());
+	//console.log(this.game.input.activePointer)
+	this.thrust.input.start(0,false);
+	//console.log(this.shoot.input);
+	this.shoot.input.start(0,false);
+	//this.right.inputEnabled = true;
+	this.btns.add(this.right);
+	this.btns.add(this.left);
+	this.btns.add(this.thrust);
+	this.btns.add(this.shoot);
 	this.shootUfo = this.game.add.group();
 	this.game.world.setBounds(0, 0, 3200, 1920);
 	//this.game.world.setBounds(0, 0, 800, 480);
@@ -32,15 +51,8 @@ Game.prototype.create = function () {
 	this.tiled2 = this.game.add.tileSprite(-this.game.world.width*5, -this.game.world.height*5, this.game.world.width * 10, this.game.world.height * 10, 'tiled2');
     this.velAsteroids = 5;
     this.score = 0;
-    this.scoreText = this.game.add.text(this.game.width/2, 20 , this.score, {
-        font: "25px Vector Battle", fill: "#ffffff" , align: "right"
-    });
-    this.livesHud = this.game.add.group();
-	for(var i = 0; i<3; i++){
-		this.livesHud.create(18 * i + 3, 4, 'ship');
-	}
 	this.nextAddUfo = this.game.time.now + this.addUfoTime;	
-	this.mapBox = this.game.add.graphics();
+	this.mapBox = this.game.add.graphics(0,0);
 	this.groupUfo = this.game.add.group();
 	this.groupAsteroids = this.game.add.group();
     this.spaceShip = new SpaceShip(this,this.game.world.width/2, this.game.world.height/2);
@@ -50,110 +62,31 @@ Game.prototype.create = function () {
     //this.addTunelAsteroids();
 	this.groupResources = this.game.add.group();
 	this.addResources();
-	this.fps = this.game.add.text(10, 470, 'FPS: '+this.game.time.fps, {
-        font: "12px 'Vector Battle'", fill: "#ffffff" , align: "right"
-    });
-	this.Hud = this.game.add.text(50, 50, 'Resources \nto colect: '+this.groupResources.countLiving()+'\nShoot Type: ', {
-        font: "12px 'Vector Battle'", fill: "#ffffff" , align: "right"
-    });		
-};
-
-Game.prototype.collectResources = function(spaceship, resource){
-	resource.kill();
-	this.Hud.content = 'Resources \nto colect: '+this.groupResources.countLiving();
-	this.punctuate(500);
-	if(this.groupResources.countLiving() <=0){
-		setTimeout(function () { this.game.world.setBounds(0, 0, 800, 480);game.state.start('Win', Win);} , 3000 );
-	}
-};
-
-Game.prototype.drawMap = function(){
-	var dvx = this.game.world.width/this.game.canvas.width;
-	var dvy = this.game.world.height/this.game.canvas.height;
-	var pxship = Math.round(this.spaceShip.sprite.x/16);
-	var pyship = Math.round(this.spaceShip.sprite.y/13);
-	var ptx = (this.game.camera.width - 260) + pxship;
-	var pty = pyship + 0;
-	this.mapBox.clear();
-	this.mapBox.beginFill(0x000000);
-	this.mapBox.lineStyle(1, 0xffffff);
-	var w = this.game.camera.width;
-	var h = this.game.camera.height;
-	this.mapBox.moveTo(w - (w/4+60),0);
-	this.mapBox.lineTo(w - 60,0);
-	this.mapBox.lineTo(w - 60,h/4+0);
-	this.mapBox.lineTo(w - (w/4+60),h/4+0);
-	this.mapBox.lineTo(w - (w/4+60),0);
-	this.drawPoint(ptx, pty, 0x00ff00);
-	this.groupAsteroids.forEachAlive(function(asteroid){
-		var pxship = Math.round(asteroid.x/16);
-		var pyship = Math.round(asteroid.y/13);
-		var ptx = (this.game.camera.width - 260) + pxship;
-		var pty = pyship + 0;
-		this.drawPoint(ptx, pty, 0xffffff);
-	}, this);
-	this.groupResources.forEachAlive(function(resource){
-		var pxship = Math.round(resource.x/16);
-		var pyship = Math.round(resource.y/13);
-		var ptx = (this.game.camera.width - 260) + pxship;
-		var pty = pyship + 0;
-		this.drawPoint(ptx, pty, 0xff00ff);
-	}, this);
-	
-	this.groupUfo.forEachAlive(function(ufo){
-		var pxship = Math.round(ufo.x/16);
-		var pyship = Math.round(ufo.y/13);
-		var ptx = (this.game.camera.width - 260) + pxship;
-		var pty = pyship + 0;
-		this.drawPoint(ptx, pty, 0xff0000);
-	}, this);
-};
-
-Game.prototype.drawPoint = function(px, py, color){
-	this.mapBox.moveTo(px,py);
-	this.mapBox.lineStyle(2, color);
-	this.mapBox.lineTo(px + 1,py);
-	this.mapBox.lineTo(px + 1,py + 2);
-	this.mapBox.lineTo(px,py + 2);
-	this.mapBox.lineTo(px,py);
+	this.addHud();
 };
 
 Game.prototype.update = function () {
-	this.Hud.content = 'Resources \nto colect: '+this.groupResources.countLiving()+'\nShoot Type: '+this.spaceShip.shootType;
-	this.fps.content = 'FPS: '+this.game.time.fps;
-	this.fps.x = this.game.camera.x + 10;
-	this.fps.y = this.game.camera.y + 400;
-	//this.btn.x = this.game.camera.x + 50;
-	//this.btn.y = this.game.camera.y + 500;
+	//this.btns.x = this.game.camera.x;
+	//this.btns.y = this.game.camera.y + 500;
     this.spaceShip.update();
     this.groupAsteroids.forEachAlive(this.warp,this);
     //this.groupAsteroids.forEachAlive(this.rotateBody,this);
     this.groupUfo.callAll('update', null);
-    this.scoreText.x = this.game.camera.x + 400;
-    this.scoreText.y = this.game.camera.y + 10;
-    this.Hud.x = this.game.camera.x + 10;
-    this.Hud.y = this.game.camera.y + 50;    
-    this.livesHud.x = this.game.camera.x + 10;
-    this.livesHud.y = this.game.camera.y + 10;
     this.tiled2.x -= this.spaceShip.sprite.body.velocity.x/500;
     this.tiled2.y -= this.spaceShip.sprite.body.velocity.y/500;
-    if(game.input.keyboard.isDown(Phaser.Keyboard.LEFT))
+    if(game.input.keyboard.isDown(Phaser.Keyboard.LEFT)||this.left.input.pointerOver())
         this.spaceShip.rotate("left");
-    else if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT))
+    else if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)|| this.right.input.pointerOver())
         this.spaceShip.rotate("right");
     
-    if (game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
+    if (game.input.keyboard.isDown(Phaser.Keyboard.UP)||this.thrust.input.pointerOver()) {
         this.spaceShip.accelerate();
         this.spaceShip.animate();
     } else{
         this.spaceShip.stop();
     }
-    
-    if (game.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
-        //this.spaceShip.teletransport();
-    }
         	    
-    if (game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)){
+    if (game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)||this.shoot.input.pointerOver()){
         this.spaceShip.shoot();   
     }
     
@@ -169,6 +102,78 @@ Game.prototype.update = function () {
     }
     this.drawMap();
     this.collide();
+    this.updateHud();
+};
+
+Game.prototype.drawMap = function(){
+	//console.log("drawMap");
+	//var dvx = this.game.world.width/this.game.canvas.width;
+	//var dvy = this.game.world.height/this.game.canvas.height;
+	var pxship = Math.round(this.spaceShip.sprite.x/16);
+	var pyship = Math.round(this.spaceShip.sprite.y/13);
+	var ptx = (this.game.camera.width - 210) + pxship;
+	var pty = pyship + 10;
+	this.mapBox.clear();
+	this.mapBox.beginFill(0x000000);
+	this.mapBox.lineStyle(1, 0xffffff);
+	var w = this.game.camera.width;
+	var h = this.game.camera.height;
+	var x = this.game.camera.x;
+	var y = this.game.camera.y;
+	
+	this.mapBox.moveTo(x + (w - (w/4+10)),y + 10);
+	this.mapBox.lineTo(x + (w - 10),y + 10);
+	this.mapBox.lineTo(x + (w - 10),h/4+y+10);
+	this.mapBox.lineTo(x + (w - (w/4+10)),h/4+y+10);
+	this.mapBox.lineTo(x + (w - (w/4+10)),y + 10);
+	
+	this.drawPoint(x + ptx, y + pty, 0x00ff00);
+	this.groupAsteroids.forEachAlive(function(asteroid){
+		var psx = Math.round(asteroid.x/16);
+		var psy = Math.round(asteroid.y/13);
+		var ptx = this.game.camera.x + (this.game.camera.width - 210) + psx;
+		var pty = this.game.camera.y + psy + 10;
+		this.drawPoint(ptx, pty, 0xffffff);
+	}, this);
+	this.groupResources.forEachAlive(function(resource){
+		if(resource.currentFrame.name == 'collect-gray-9-9.png'){
+			var pxship = Math.round(resource.x/16);
+			var pyship = Math.round(resource.y/13);
+			var ptx = this.game.camera.x + (this.game.camera.width - 210) + pxship;
+			var pty = this.game.camera.y + pyship + 10;
+			this.drawPoint(ptx, pty, 0xff00ff);
+		}
+	}, this);
+	
+	this.groupUfo.forEachAlive(function(ufo){
+		var pxship = Math.round(ufo.x/16);
+		var pyship = Math.round(ufo.y/13);
+		var ptx = this.game.camera.x + (this.game.camera.width - 210) + pxship;
+		var pty = this.game.camera.y + pyship + 10;
+		this.drawPoint(ptx, pty, 0xff0000);
+	}, this);
+};
+
+Game.prototype.drawPoint = function(px, py, color){
+	this.mapBox.moveTo(px,py);
+	this.mapBox.lineStyle(2, color);
+	this.mapBox.lineTo(px + 1,py);
+	this.mapBox.lineTo(px + 1,py + 2);
+	this.mapBox.lineTo(px,py + 2);
+	this.mapBox.lineTo(px,py);
+};
+
+Game.prototype.updateHud = function(){
+	this.Hud.content = 'Resources \nto colect: '+this.groupResources.countLiving()+'\nShoot Type: '+this.spaceShip.shootType;
+	this.fps.content = 'FPS: '+this.game.time.fps;
+	this.fps.x = this.game.camera.x + 10;
+	this.fps.y = this.game.camera.y + 400;
+	this.scoreText.x = this.game.camera.x + 400;
+    this.scoreText.y = this.game.camera.y + 10;
+    this.Hud.x = this.game.camera.x + 10;
+    this.Hud.y = this.game.camera.y + 50;    
+    this.livesHud.x = this.game.camera.x + 10;
+    this.livesHud.y = this.game.camera.y + 10;
 };
 
 Game.prototype.collide = function(){
@@ -190,40 +195,20 @@ Game.prototype.collideObj = function(obj1, obj2){
 		var damage = 10;
 		if(obj1.name == 'shoot'){
 			obj1.kill();
-			var emitter = this.game.add.emitter(obj1.x, obj1.y, 15);
-		    emitter.makeParticles('sprites', ['particle-asteroid-2-2.png']);
-		    emitter.minParticleSpeed.setTo(-40, -40);
-		    emitter.maxParticleSpeed.setTo(40, 40);
-		    emitter.gravity = 0;
-		    emitter.start(true, 500, null, 15);
+			this.emmiterParticle(obj1, 'particle-asteroid-2-2.png', 15);
 		}else{
 			obj2.kill();
-			var emitter = this.game.add.emitter(obj2.x, obj2.y, 15);
-		    emitter.makeParticles('sprites', ['particle-asteroid-2-2.png']);
-		    emitter.minParticleSpeed.setTo(-40, -40);
-		    emitter.maxParticleSpeed.setTo(40, 40);
-		    emitter.gravity = 0;
-		    emitter.start(true, 500, null, 15);
+			this.emmiterParticle(obj2, 'particle-asteroid-2-2.png', 15);
 		}
 	}
 	if(obj2.name == 'laser' || obj1.name == 'laser'){
 		var damage = 1;
 		if(obj1.name == 'laser'){
 			obj1.kill();
-			var emitter = this.game.add.emitter(obj1.x, obj1.y, 3);
-		    emitter.makeParticles('sprites', ['particle-asteroid-2-2.png']);
-		    emitter.minParticleSpeed.setTo(-40, -40);
-		    emitter.maxParticleSpeed.setTo(40, 40);
-		    emitter.gravity = 0;
-		    emitter.start(true, 500, null, 3);
+			this.emmiterParticle(obj1, 'particle-asteroid-2-2.png', 3);
 		}else{
 			obj2.kill();
-			var emitter = this.game.add.emitter(obj2.x, obj2.y, 3);
-		    emitter.makeParticles('sprites', ['particle-asteroid-2-2.png']);
-		    emitter.minParticleSpeed.setTo(-40, -40);
-		    emitter.maxParticleSpeed.setTo(40, 40);
-		    emitter.gravity = 0;
-		    emitter.start(true, 500, null, 3);
+			this.emmiterParticle(obj2, 'particle-asteroid-2-2.png', 3);
 		}
 	}
 	if(obj1.name == 'asteroid' || obj2.name == 'asteroid'){
@@ -274,8 +259,17 @@ Game.prototype.collideObj = function(obj1, obj2){
 	    	if (asteroid.size == "small") {
 	    		this.punctuate(40);
 	    	}
+	    	
+	    	var resource = this.game.add.sprite(asteroid.x, asteroid.y, 'sprites', 'collect-yellow-9-9.png');
+			resource.anchor.setTo(0.5,0.5);
+			resource.body.angularVelocity = 5;
+			resource.scale.setTo(1.5,1.5);
+			this.game.add.tween(resource).to( { alpha: 0.5}, 200, Phaser.Easing.Linear.InOut, true, 0, 1000, true);
+			this.groupResources.add(resource);
+			
 	    	asteroid.kill();
 	    	asteroid.redSprite.kill();
+	    	
 	    }
 	    
 	}
@@ -288,12 +282,15 @@ Game.prototype.collideObj = function(obj1, obj2){
 		ufo.hp -= damage;
 	    if(ufo.hp <= 0)
 	    {
-	    	var emitter = this.game.add.emitter(ufo.x, ufo.y, 7);
-	    	emitter.makeParticles('sprites', ['shoot-green-18-3.png']);
-	    	emitter.minParticleSpeed.setTo(-40, -40);
-	    	emitter.maxParticleSpeed.setTo(40, 40);
-	    	emitter.gravity = 0;
-	    	emitter.start(true, 3000, null, 5);
+			this.emmiterParticle(ufo, 'shoot-green-18-3.png', 8);
+			
+			var resource = this.game.add.sprite(ufo.x, ufo.y, 'sprites', 'collect-green-9-9.png');
+			resource.anchor.setTo(0.5,0.5);
+			resource.body.angularVelocity = 5;
+			resource.scale.setTo(1.5,1.5);
+			this.game.add.tween(resource).to( { alpha: 0.5}, 200, Phaser.Easing.Linear.InOut, true, 0, 1000, true);
+			this.groupResources.add(resource);
+			
 	    	ufo.kill();	    	
 	    }
 	}
@@ -303,12 +300,7 @@ Game.prototype.collideObj = function(obj1, obj2){
 		}else{
 			var ship = obj2;
 		}
-		var emitter = this.game.add.emitter(ship.x, ship.y, 5);
-	    emitter.makeParticles('sprites', ['shoot-blue-18-3.png']);
-	    emitter.minParticleSpeed.setTo(-40, -40);
-	    emitter.maxParticleSpeed.setTo(40, 40);
-	    emitter.gravity = 0;
-	    emitter.start(true, 3000, null, 5);
+		this.emmiterParticle(ship, 'shoot-green-18-3.png', 3);
 	    
 	    this.livesHud.getFirstAlive().kill();
 	    if(this.livesHud.countLiving() <= 0){
@@ -334,6 +326,15 @@ Game.prototype.collideObj = function(obj1, obj2){
 	}
 };
 
+Game.prototype.emmiterParticle = function(obj, type, num){
+	var emitter = this.game.add.emitter(obj.x, obj.y, num);
+    emitter.makeParticles('sprites', [type]);
+    emitter.minParticleSpeed.setTo(-40, -40);
+    emitter.maxParticleSpeed.setTo(40, 40);
+    emitter.gravity = 0;
+    emitter.start(true, 500, null, num);
+};
+
 Game.prototype.resetShip = function(){
 	if(!this.spaceShip.sprite.alive && this.livesHud.countLiving() >= 1)
 	{
@@ -342,6 +343,22 @@ Game.prototype.resetShip = function(){
 		this.spaceShip.sprite.exists = true;
 		this.spaceShip.sprite.reset(this.game.world.width/2,this.game.world.height/2);
 	}
+};
+
+Game.prototype.addHud = function(){
+	this.scoreText = this.game.add.text(this.game.width/2, 20 , this.score, {
+        font: "25px Vector Battle", fill: "#ffffff" , align: "right"
+    });
+    this.livesHud = this.game.add.group();
+	for(var i = 0; i<3; i++){
+		this.livesHud.create(25 * i + 3, 4, 'sprites', this.spaceShip.sprite.currentFrame.name);
+	}
+	this.fps = this.game.add.text(10, 470, 'FPS: '+this.game.time.fps, {
+        font: "12px 'Vector Battle'", fill: "#ffffff" , align: "right"
+    });
+	this.Hud = this.game.add.text(50, 50, 'Resources \nto colect: '+this.groupResources.countLiving()+'\nShoot Type: ', {
+        font: "12px 'Vector Battle'", fill: "#ffffff" , align: "right"
+    });	
 };
 
 Game.prototype.addUfo = function(){
@@ -405,23 +422,7 @@ Game.prototype.addTunelAsteroids = function(){
 	this.groupAsteroids.add(asteroid1);
 	this.groupAsteroids.add(asteroid2);
 };
-/*
-Game.prototype.render = function(){
-	this.groupAsteroids.forEach(function(asteroid){
-		game.debug.renderPhysicsBody(asteroid.body);
-	});
-	this.groupUfo.forEach(function(ufo){
-		game.debug.renderPhysicsBody(ufo.body);
-	});
-	this.groupResources.forEach(function(res){
-		game.debug.renderPhysicsBody(res.body);
-	});
-    this.spaceShip.bulletsGroup.forEach(function(bullet){
-		game.debug.renderPhysicsBody(bullet.body);
-	});
-	game.debug.renderPhysicsBody(this.spaceShip.sprite.body);
-};
-*/
+
 Game.prototype.addResources = function(){
 	for(var i = 0;i < 10;i++){
 		var resource = this.game.add.sprite(Math.random() * this.game.world.width, Math.random() * this.game.world.height, 'sprites', 'collect-gray-9-9.png');
@@ -430,6 +431,15 @@ Game.prototype.addResources = function(){
 		resource.scale.setTo(1.5,1.5);
 		this.game.add.tween(resource).to( { alpha: 0.5}, 200, Phaser.Easing.Linear.InOut, true, 0, 1000, true);
 		this.groupResources.add(resource);
+	}
+};
+
+Game.prototype.collectResources = function(spaceship, resource){
+	resource.kill();
+	this.Hud.content = 'Resources \nto colect: '+this.groupResources.countLiving();
+	this.punctuate(50);
+	if(this.groupResources.countLiving() <=0){
+		setTimeout(function () { this.game.world.setBounds(0, 0, 800, 480);game.state.start('Win', Win);} , 3000 );
 	}
 };
 
@@ -459,6 +469,24 @@ Game.prototype.punctuate = function (points) {
     this.score += points;
     this.scoreText.setText( this.score );
 };
+
+/*
+Game.prototype.render = function(){
+	this.groupAsteroids.forEach(function(asteroid){
+		game.debug.renderPhysicsBody(asteroid.body);
+	});
+	this.groupUfo.forEach(function(ufo){
+		game.debug.renderPhysicsBody(ufo.body);
+	});
+	this.groupResources.forEach(function(res){
+		game.debug.renderPhysicsBody(res.body);
+	});
+    this.spaceShip.bulletsGroup.forEach(function(bullet){
+		game.debug.renderPhysicsBody(bullet.body);
+	});
+	game.debug.renderPhysicsBody(this.spaceShip.sprite.body);
+};
+*/
 
 Game.prototype.gameOver = function () {
     game.score = this.score;

@@ -1,5 +1,5 @@
 Game = function () {
-	var map = null;
+	map1 = null;
 	var ohhMan = null;
 	var blinky = null;
 	var clyde = null;
@@ -24,13 +24,13 @@ Game.prototype = {
 	},
 	
 	update : function() {
-		var layer = map1.layer;
+		var layer = map1.layer;		
 		
-		ohhMan.update(layer);
+		ohhMan.update(map1);
 		blinky.update(layer);
 		clyde.update(layer);
 		inkey.update(layer);
-		pinky.update(layer);
+		pinky.update(layer);		
 	},
 
 	

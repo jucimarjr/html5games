@@ -3,6 +3,8 @@ Ohhman = function () {
 	this.speed = 200;
 	
 	this.direction; //LEFT, RIGHT, UP, DOWN
+	
+	this.map = null;	
 };
 
 Ohhman.prototype = {
@@ -20,10 +22,16 @@ Ohhman.prototype = {
 		this.sprite.body.collideWorldBounds = true;
 	},
 	
-	update : function(layer) {
+	update : function(map1) {
+		this.map = map1;
+		
+		game.debug.text('Tile X: ' + this.map.layer.getTileX(this.sprite.x), 32, 48, 'rgb(0,0,0)');
+
+		
 		this.moveByKeyboard();
-		this.verifyMapCollision(layer);
+		this.verifyMapCollision();
 		this.verifyGhostCollision();
+		this.verifyBallCollision();		
 	},
 	
 	
@@ -55,8 +63,8 @@ Ohhman.prototype = {
 	},
 	
 	//Verifica a colisão do ohhMan com o mapa
-	verifyMapCollision : function(layer) {
-		game.physics.arcade.collide(this.sprite, layer);
+	verifyMapCollision : function() {
+		game.physics.arcade.collide(this.sprite, this.map.layer);
 	},
 	
 	//Verifica a colisão do ohhMan com os fantasminhas
@@ -76,5 +84,13 @@ Ohhman.prototype = {
 	    var boundsB = spriteB.getBounds();
 
 	    return Phaser.Rectangle.intersects(boundsA, boundsB);
+	},
+	
+	verifyBallCollision : function() {			
+		game.physics.arcade.overlap(this.sprite, this.map.layer2, this.removeBall, null, this);
+	},
+	
+	removeBall : function() {		 		 
+		 //this.map.removeTile(1, 1, 'Ball Layer');
 	}
 };

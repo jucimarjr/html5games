@@ -18,9 +18,9 @@ SpaceShip = function(gameClass, x, y) {
 };
 
 SpaceShip.prototype.create = function(x,y){
-	this.velang = 1;
-	this.aceler = 4;
-	this.velmax = 3;
+	this.velang = 5;
+	this.aceler = 5;
+	this.velmax = 5;
 	this.resist = 5;
 	this.shootInt = 5;
 	this.bulletvel = 5;
@@ -67,7 +67,7 @@ SpaceShip.prototype.create = function(x,y){
     this.sprite.body.maxVelocity.y = this.velmax*200;
     this.sprite.smoothed = false;
     this.bulletsGroup = this.game.add.group();
-    this.bulletsGroup.createMultiple(50, 'shoots', 'LaserRedBall.png');
+    this.bulletsGroup.createMultiple(50, 'sprites', 'shoot-blue-5-5.png');
     this.bulletsGroup.setAll('anchor.x', 0.5);
     this.bulletsGroup.setAll('anchor.y', 0.5);
     this.bulletsGroup.setAll('outOfBoundsKill', true);
@@ -98,9 +98,9 @@ SpaceShip.prototype.animate = function(){
 SpaceShip.prototype.rotate = function (direction) {
 
     if ( direction == "left")
-        this.sprite.body.rotation -= 30*(this.velang/10);
+        this.sprite.body.rotation -= 2.5;
     if ( direction == "right")
-        this.sprite.body.rotation += 30*(this.velang/10);
+        this.sprite.body.rotation += 2.5;
 
 };
 
@@ -108,8 +108,8 @@ SpaceShip.prototype.accelerate = function () {
 
     game.add.audio('thrust', 1).play();
     
-    this.sprite.body.acceleration.x = Math.cos((this.sprite.body.rotation + 270)*0.0174) *(100+(50*this.aceler));
-	this.sprite.body.acceleration.y = Math.sin((this.sprite.body.rotation + 270)*0.0174) *(100+(50*this.aceler));
+    this.sprite.body.acceleration.x = Math.cos((this.sprite.body.rotation + 270)*0.0174) *150;
+	this.sprite.body.acceleration.y = Math.sin((this.sprite.body.rotation + 270)*0.0174) *150;
 
 };
 
@@ -117,15 +117,6 @@ SpaceShip.prototype.stop = function () {
     this.sprite.body.acceleration.setTo(0, 0);
     this.sprite.animations.stop('thrust');
     this.sprite.animations.play('stop');
-};
-
-SpaceShip.prototype.teletransport = function () {
-    if (game.time.now > this.nextTeleport)
-    {
-    	this.nextTeleport = game.time.now + this.teleportTime;
-    	this.sprite.x = Math.random() * game.width;
-    	this.sprite.y = Math.random() * game.height;
-    }
 };
  	
 SpaceShip.prototype.shoot = function () {    
