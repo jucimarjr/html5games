@@ -12,6 +12,8 @@ var btCreditsSelected = 'btCreditsSelected_262-33.png';
 var imageMuro = 'assets/muro.png';
 var imageRua = 'assets/rua.png';
 var imageZombie = 'assets/Zombie.png';
+var zombieWidth = 100;
+var zombieHeigth = 267;
 var imagePessoa = 'assets/Pessoa.png';
 
 //Telas

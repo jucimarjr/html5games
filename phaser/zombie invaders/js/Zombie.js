@@ -21,6 +21,9 @@ var Zombie = function (index, game, person, classGame) {
     
     this.spriteZombie.inputEnabled=true;
     this.spriteZombie.body.velocity.x  = 0;
+    
+    //this.spriteZombie.body.setSize(100,267, 0, 0);
+    
     this.spriteZombie.events.onInputDown.add(killZombie,this);
     
     this.spriteZombie.body.velocity.x  = Math.random()*10;
@@ -37,3 +40,15 @@ function killZombie(){
     this.classGame.punctuate(1);
     console.log("amount zombie ="+this.classGame.amountZombie);
 };
+
+Zombie.prototype.killPerson = function(person){
+	person.kill();
+};
+
+//Debug
+/*Zombie.prototype.render = function(){
+
+    this.game.debug.body(this.spriteZombie);
+    
+
+};*/
