@@ -1,5 +1,5 @@
 Game = function () {
-	map1 = null;
+	var map = null;
 	var ohhMan = null;
 	var blinky = null;
 	var clyde = null;
@@ -15,7 +15,7 @@ Game.prototype = {
 	},
 
 	create : function() {
-		map1.create();
+		map.create();
 		ohhMan.create();
 		blinky.create();
 		clyde.create();
@@ -24,9 +24,9 @@ Game.prototype = {
 	},
 	
 	update : function() {
-		var layer = map1.layer;		
+		var layer = map.layer;		
 		
-		ohhMan.update(map1);
+		ohhMan.update();
 		blinky.update(layer);
 		clyde.update(layer);
 		inkey.update(layer);
@@ -35,8 +35,8 @@ Game.prototype = {
 
 	
 	loadMap : function() {
-		map1 = new Map1();
-		map1.preload();
+		map = new Map1();
+		map.preload();
 	},
 
 	loadOhhman : function() {

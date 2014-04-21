@@ -3,8 +3,6 @@ Ohhman = function () {
 	this.speed = 200;
 	
 	this.direction; //LEFT, RIGHT, UP, DOWN
-	
-	this.map = null;	
 };
 
 Ohhman.prototype = {
@@ -15,19 +13,14 @@ Ohhman.prototype = {
 
 	create : function() {
 		//Adiciona o ohhMan na tela
-		this.sprite = game.add.sprite(game.world.width/2 - 15, game.height/2 + 63, 'ohhMan');
+		this.sprite = game.add.sprite(game.world.width/2 - 18, game.height/2 + 60, 'ohhMan');
 		game.physics.enable(this.sprite);
 
 		//Impede que o ohhMan saia dos limites da tela
 		this.sprite.body.collideWorldBounds = true;
 	},
 	
-	update : function(map1) {
-		this.map = map1;
-		
-		game.debug.text('Tile X: ' + this.map.layer.getTileX(this.sprite.x), 32, 48, 'rgb(0,0,0)');
-
-		
+	update : function() {				
 		this.moveByKeyboard();
 		this.verifyMapCollision();
 		this.verifyGhostCollision();
@@ -64,7 +57,7 @@ Ohhman.prototype = {
 	
 	//Verifica a colisão do ohhMan com o mapa
 	verifyMapCollision : function() {
-		game.physics.arcade.collide(this.sprite, this.map.layer);
+		game.physics.arcade.collide(this.sprite, map.layer);
 	},
 	
 	//Verifica a colisão do ohhMan com os fantasminhas
@@ -87,10 +80,12 @@ Ohhman.prototype = {
 	},
 	
 	verifyBallCollision : function() {			
-		game.physics.arcade.overlap(this.sprite, this.map.layer2, this.removeBall, null, this);
+		this.sprite.body.setSize(6, 6);		
+		game.physics.arcade.overlap(this.sprite, map.layer2, this.removeBall, null, this);				
+		this.sprite.body.setSize(36, 36);
 	},
 	
 	removeBall : function() {		 		 
-		 //this.map.removeTile(1, 1, 'Ball Layer');
+		 map.ball.destroy();
 	}
 };
