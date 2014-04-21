@@ -35,6 +35,7 @@ Game.prototype.create = function () {
 	this.groupZombies.physicsBodyType = Phaser.Physics.ARCADE;
 	
 	//Fonte
+	this.stage = 0;
 	var style = { font: "25px Arial", fill: "#ffffff", align: "right" };
 	this.scoreText = game.add.text(100, 20 , this.score,style);
 	this.scoreText.setText( "Score: "+0 );
@@ -53,6 +54,7 @@ Game.prototype.update = function () {
 		console.log("criando pessoas");
 		this.amountPeople += 2;
 		this.amountZombies += (this.amountPeople * 2);
+		this.stage += 1;
 		this.Stage();
 		round = new Round(this.stage,this.amountZombies,this.amountPeople);
 		this.game.time.events.repeat(Phaser.Timer.SECOND * 2, this.amountPeople, this.initPeople, this);
@@ -66,8 +68,8 @@ Game.prototype.punctuate = function (points) {
 };
 
 Game.prototype.Stage = function () {
-	this.stage += 1;
-    this.roundText.setText( "Round: "+this.stage );
+	console.log("stage ",this.stage);
+    this.roundText.setText( "Round: "+this.stage);
 };
 
 Game.prototype.gameOver = function () {
