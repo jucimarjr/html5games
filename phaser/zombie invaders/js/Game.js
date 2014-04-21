@@ -103,5 +103,9 @@ Game.prototype.initZombies = function(person){
 	}
 };
 
+Game.prototype.createZombie = function(person){
+	
+}
+
 
 

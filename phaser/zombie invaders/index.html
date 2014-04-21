@@ -37,6 +37,7 @@ game.state.add('game', Game);
 function preload()
 {
 
+	game.load.atlas('zombieDown', spriteSheetsImageZombieDown, spriteSheetsJsonZombieDown);
 	game.load.image('person', imagePessoa);
 	game.load.image('zombie', imageZombie);
 	game.load.image('muro', imageMuro);

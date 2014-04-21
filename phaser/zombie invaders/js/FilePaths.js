@@ -27,4 +27,7 @@ var screenMenu = 'assets/screenshots/Menu_800-600.png';
 //Spritesheets Botões do menu
 var spriteSheetsImageButtons = "assets/spritesheets/buttons.png";
 var spriteSheetsJsonButtons = "assets/spritesheets/buttons.json";
+//Spritesheets Do Zumbi
+var spriteSheetsImageZombieDown = "assets/spritesheets/ZombieDown.png";
+var spriteSheetsJsonZombieDown = "assets/spritesheets/ZombieDown.json";
 

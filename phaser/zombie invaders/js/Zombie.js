@@ -10,7 +10,10 @@ var Zombie = function (index, game, person, classGame) {
     
     this.classGame = classGame;
 
-    this.spriteZombie = this.game.add.sprite(x, y,'zombie');
+    this.spriteZombie = this.game.add.sprite(x, y,'zombieDown');
+    
+    this.spriteZombie.animations.add('down');
+    this.spriteZombie.play('down',7,true);
 
     this.spriteZombie.name = index.toString();
     this.game.physics.enable(this.spriteZombie, Phaser.Physics.ARCADE);
@@ -33,6 +36,10 @@ var Zombie = function (index, game, person, classGame) {
 };
 
 Zombie.prototype.update = function (){
+	
+};
+
+Zombie.prototype.preload = function(){
 	
 };
 
