@@ -15,6 +15,8 @@ var Zombie = function (index, game, person, classGame) {
     this.spriteZombie.name = index.toString();
     this.game.physics.enable(this.spriteZombie, Phaser.Physics.ARCADE);
 
+    this.spriteZombie.body.enable = true;
+    
     this.spriteZombie.body.immovable = false;
     this.spriteZombie.body.collideWorldBounds = true;
     this.spriteZombie.body.bounce.setTo(1, 1);
@@ -39,10 +41,6 @@ function killZombie(){
     this.classGame.amountZombies -= 1;
     this.classGame.punctuate(1);
     console.log("amount zombie ="+this.classGame.amountZombie);
-};
-
-Zombie.prototype.killPerson = function(person){
-	person.kill();
 };
 
 //Debug

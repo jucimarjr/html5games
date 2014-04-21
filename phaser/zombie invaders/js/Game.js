@@ -44,7 +44,7 @@ Game.prototype.create = function () {
 };
 
 Game.prototype.update = function () {
-	console.log("quantidade zumbis: ",this.amountZombies);
+	//console.log("quantidade zumbis: ",this.amountZombies);
 	
 	//Colisão
 	this.game.physics.arcade.collide(this.groupZombies, this.groupPeople, this.collisionHandler, null, this);
@@ -78,7 +78,7 @@ Game.prototype.gameOver = function () {
 
 Game.prototype.collisionHandler = function(zombie,person){
 	console.log("colidiu");
-	zombie.killPerson(person);
+	person.kill();
 };
 
 Game.prototype.initStage = function(){
@@ -99,7 +99,7 @@ Game.prototype.initZombies = function(person){
 	this.idZombie += 1;
 	for(var i = 0; i < 2 ; i++){
 		var zombie = new Zombie(this.idZombie,this.game, person, this);
-		this.groupPeople.add(zombie.spriteZombie);
+		this.groupZombies.add(zombie.spriteZombie);
 	}
 };
 

@@ -10,6 +10,8 @@ var Person = function (index, game) {
 
     this.spritePerson.name = index.toString();
     this.game.physics.enable(this.spritePerson, Phaser.Physics.ARCADE);
+    
+    this.spritePerson.body.enable = true;
 
     this.spritePerson.body.collideWorldBounds = true;
     this.spritePerson.body.bounce.setTo(1, 1);
