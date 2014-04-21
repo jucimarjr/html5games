@@ -12,6 +12,8 @@ var Person = function (index, game) {
     this.game.physics.enable(this.spritePerson, Phaser.Physics.ARCADE);
     
     this.spritePerson.body.enable = true;
+    
+    this.spritePerson.body.setSize(personWidth,10,0,personHeigth-10);
 
     this.spritePerson.body.collideWorldBounds = true;
     this.spritePerson.body.bounce.setTo(1, 1);

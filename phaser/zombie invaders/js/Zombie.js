@@ -24,7 +24,7 @@ var Zombie = function (index, game, person, classGame) {
     this.spriteZombie.inputEnabled=true;
     this.spriteZombie.body.velocity.x  = 0;
     
-    //this.spriteZombie.body.setSize(100,267, 0, 0);
+    this.spriteZombie.body.setSize(100,10, 0, zombieHeigth-10);
     
     this.spriteZombie.events.onInputDown.add(killZombie,this);
     
