@@ -11,9 +11,14 @@ var btCreditsSelected = 'btCreditsSelected_262-33.png';
 //Sprites Cenários
 var imageMuro = 'assets/muro.png';
 var imageRua = 'assets/rua.png';
+//Zumbi
 var imageZombie = 'assets/Zombie.png';
+var zombieWidth = 100;
+var zombieHeigth = 267;
+//Pessoa
 var imagePessoa = 'assets/Pessoa.png';
-
+var personWidth = 100;
+var personHeigth = 267;
 //Telas
 var splashGroupImage = 'assets/screenshots/SplashTeam_800-600.png';
 var SplashGameImage = 'assets/screenshots/SplashGame_800-600.png';

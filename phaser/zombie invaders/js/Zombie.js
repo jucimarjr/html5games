@@ -15,12 +15,17 @@ var Zombie = function (index, game, person, classGame) {
     this.spriteZombie.name = index.toString();
     this.game.physics.enable(this.spriteZombie, Phaser.Physics.ARCADE);
 
+    this.spriteZombie.body.enable = true;
+    
     this.spriteZombie.body.immovable = false;
     this.spriteZombie.body.collideWorldBounds = true;
     this.spriteZombie.body.bounce.setTo(1, 1);
     
     this.spriteZombie.inputEnabled=true;
     this.spriteZombie.body.velocity.x  = 0;
+    
+    this.spriteZombie.body.setSize(100,10, 0, zombieHeigth-10);
+    
     this.spriteZombie.events.onInputDown.add(killZombie,this);
     
     this.spriteZombie.body.velocity.x  = Math.random()*10;
@@ -37,3 +42,11 @@ function killZombie(){
     this.classGame.punctuate(1);
     console.log("amount zombie ="+this.classGame.amountZombie);
 };
+
+//Debug
+/*Zombie.prototype.render = function(){
+
+    this.game.debug.body(this.spriteZombie);
+    
+
+};*/
