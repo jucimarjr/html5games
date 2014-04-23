@@ -22,6 +22,7 @@ Ohhman.prototype = {
 		//Impede que o ohhMan saia dos limites da tela
 		this.sprite.body.collideWorldBounds = true;
 		
+		//Insere pontuação na tela
 		var style = { font: "25px Arial", fill: "#ffffff", align: "right" };
 		this.scoreText = game.add.text(game.width/2, 20 , "" + this.score, style);	
 	},
@@ -85,17 +86,20 @@ Ohhman.prototype = {
 	    return Phaser.Rectangle.intersects(boundsA, boundsB);
 	},
 	
+	//Verifica a colisão do ohhMan com as bolinhas amarelas
 	verifyBallCollision : function() {			
 		this.sprite.body.setSize(6, 6);		
 		game.physics.arcade.overlap(this.sprite, map.balls, this.removeBall, null, this);				
 		this.sprite.body.setSize(36, 36);
 	},
 	
+	//Remove a bolinha amarela após colisão com o Ohhman
 	removeBall : function(player, ball) {		 		 		 
 		 ball.kill();		 		 
 		 this.punctuate();
 	},
 	
+	//Soma dez pontos a cada bolinha removida
 	punctuate : function () {
 		this.score += 10;
 	    this.scoreText.setText( "" + this.score );
