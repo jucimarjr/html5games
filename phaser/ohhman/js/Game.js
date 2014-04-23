@@ -20,7 +20,7 @@ Game.prototype = {
 		blinky.create();
 		clyde.create();
 		inkey.create();
-		pinky.create();
+		pinky.create();				
 	},
 	
 	update : function() {
@@ -56,5 +56,5 @@ Game.prototype = {
 		
 		pinky = new Pinky();
 		pinky.preload();
-	}
+	}	
 };

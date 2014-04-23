@@ -3,6 +3,9 @@ Ohhman = function () {
 	this.speed = 200;
 	
 	this.direction; //LEFT, RIGHT, UP, DOWN
+	
+	this.score = 0;
+	this.scoreText = null;
 };
 
 Ohhman.prototype = {
@@ -18,6 +21,9 @@ Ohhman.prototype = {
 
 		//Impede que o ohhMan saia dos limites da tela
 		this.sprite.body.collideWorldBounds = true;
+		
+		var style = { font: "25px Arial", fill: "#ffffff", align: "right" };
+		this.scoreText = game.add.text(game.width/2, 20 , "" + this.score, style);	
 	},
 	
 	update : function() {				
@@ -87,5 +93,11 @@ Ohhman.prototype = {
 	
 	removeBall : function(player, ball) {		 		 		 
 		 ball.kill();		 		 
+		 this.punctuate();
+	},
+	
+	punctuate : function () {
+		this.score += 10;
+	    this.scoreText.setText( "" + this.score );
 	}
 };
