@@ -19,8 +19,8 @@ Game.prototype.preload = function(){
 Game.prototype.create = function () {
 	console.log("criando game");
 	
-	this.spriteMuro = this.game.add.sprite(0, 0,'muro');
-	this.spriteRua = this.game.add.sprite(0, 260,'rua');
+	this.spriteCenario = this.game.add.sprite(0, 0,'cenario');
+	
 	
 	//grupo de pessoas
     this.amountPeople = 0;
@@ -105,7 +105,7 @@ Game.prototype.initZombies = function(person){
 
 Game.prototype.createZombie = function(person){
 	
-}
+};
 
 
 

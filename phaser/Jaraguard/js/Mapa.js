@@ -4,10 +4,13 @@ Mapa = function() {
 
     this.map;
     this.layer;
+    this.layer2;
     this.player;
+    this.tileset;
+    this.tileset2;
 };
 
-var tileset;
+
 var facing = "left";
 var cursors;
 var hozMove = 600;
@@ -16,8 +19,9 @@ var cursors;
 Mapa.prototype.preload = function() {
 
     game.load.image('tiles', 'assets/tileset_fase_1.png', 22, 32);
+    game.load.image('tiles2', 'assets/tileset_fase_1 - Copia.png', 22, 32);
     game.load.image('nave', 'assets/phaser-ship.png');
-    game.load.tilemap('map', 'assets/mapa_fase_01.json', null, Phaser.Tilemap.TILED_JSON);
+    game.load.tilemap('map', 'assets/TilesetFase1.json', null, Phaser.Tilemap.TILED_JSON);
 };
 
 Mapa.prototype.create = function() {
@@ -26,10 +30,13 @@ Mapa.prototype.create = function() {
     game.world.setBounds(0, 0, 1400, 1400);
 
     this.map = game.add.tilemap('map');
-    this.tileset = this.map.addTilesetImage('camada_fase01', 'tiles');
-    this.layer = this.map.createLayer('Camada de Tiles 1');
+    this.tileset = this.map.addTilesetImage('TilesetFase1-1', 'tiles');
+    this.tileset2 = this.map.addTilesetImage('TilesetFase1-2', 'tiles2');
+  this.layer = this.map.createLayer('Camada de Tiles 1');
+    this.layer2 = this.map.createLayer('Camada de Colisao');
     this.layer.resizeWorld();
-    this.map.setCollision(108);
+  //  this.map.setCollision(302);
+    this.map.setCollision([302,301,159,290,278,156,12,11,35,181],true,'Camada de Colisao');
     this.player = game.add.sprite(0, game.world.height/2, 'nave');
 
 
@@ -48,7 +55,7 @@ Mapa.prototype.update = function() {
     game.angle += 1;
     this.player.body.velocity.x = 0;
     this.player.body.velocity.y = 0;
-    game.physics.arcade.collide(this.player, this.layer, this.testeColisao, null, this);
+    game.physics.arcade.collide(this.player, this.layer2, this.testeColisao, null, this);
     game.camera.x += 1;
     if (cursors.left.isDown)
     {
