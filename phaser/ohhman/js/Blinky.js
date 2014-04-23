@@ -20,9 +20,10 @@ Blinky.prototype = {
 		this.sprite.body.collideWorldBounds = true;
 	},
 	
-	update : function(layer) {
+	update : function() {
 		this.moveRandomly();
-		this.verifyMapCollision(layer);
+		this.verifyMapCollision();
+		this.verifyDecisionCollision();
 	},
 	
 	//Move o blinky
@@ -49,8 +50,14 @@ Blinky.prototype = {
 	},
 	
 	//Verifica a colisão do blinky com o mapa
-	verifyMapCollision : function(layer) {		
-		game.physics.arcade.overlap(this.sprite, layer, this.setNewDirection, null, this);
+	verifyMapCollision : function() {		
+		game.physics.arcade.collide(this.sprite, map.layer);
+	},
+	
+	//Verifica a colisão do blinky com o ponto de decisao
+	verifyDecisionCollision : function() {		
+		console.log("colidiu com o ponto de decisao");
+		game.physics.arcade.overlap(this.sprite, map.decision, this.setNewDirection, null, this);
 	},
 	
 	//Seta uma direção aleatória para o blinky

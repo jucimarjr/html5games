@@ -18,19 +18,19 @@ Game.prototype = {
 		map.create();
 		ohhMan.create();
 		blinky.create();
-		clyde.create();
+		/*clyde.create();
 		inkey.create();
-		pinky.create();				
+		pinky.create();			*/	
 	},
 	
 	update : function() {
 		var layer = map.layer;		
 		
 		ohhMan.update();
-		blinky.update(layer);
-		clyde.update(layer);
+		blinky.update();
+		/*clyde.update(layer);
 		inkey.update(layer);
-		pinky.update(layer);		
+		pinky.update(layer);		*/
 	},
 
 	
