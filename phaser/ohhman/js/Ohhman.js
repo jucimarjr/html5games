@@ -81,11 +81,11 @@ Ohhman.prototype = {
 	
 	verifyBallCollision : function() {			
 		this.sprite.body.setSize(6, 6);		
-		game.physics.arcade.overlap(this.sprite, map.layer2, this.removeBall, null, this);				
+		game.physics.arcade.overlap(this.sprite, map.balls, this.removeBall, null, this);				
 		this.sprite.body.setSize(36, 36);
 	},
 	
-	removeBall : function() {		 		 
-		 map.ball.destroy();
+	removeBall : function(player, ball) {		 		 		 
+		 ball.kill();		 		 
 	}
 };

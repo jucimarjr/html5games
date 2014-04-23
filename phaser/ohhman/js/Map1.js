@@ -2,9 +2,7 @@ Map1 = function () {
 	this.map = null;
 	this.tileset = null;
 	this.layer = null;
-	this.layer2 = null;
-	this.decisionPoint = null;
-	this.ball = null;
+	this.balls = null;
 };
 
 Map1.prototype = {
@@ -18,20 +16,15 @@ Map1.prototype = {
 		
 		this.tileset = this.map.addTilesetImage('allTiles', 'fp_allTiles');	
 		
-		this.ball = game.add.group();
-		this.ball.enableBody = true;
-		
-		this.layer = this.map.createLayer(fp_wallLayer);		
-		this.layer2 = this.map.createLayer(fp_ballLayer, game.width, game.height, this.ball);	
-		
+		this.layer = this.map.createLayer(fp_wallLayer);				
 		this.layer.resizeWorld();		
 
-		this.map.setCollision(1, true, fp_wallLayer);
-		this.map.setCollision(2, true, fp_ballLayer);
+		this.map.setCollision(1, true, fp_wallLayer);		
 		
-		this.decisionPoint = game.add.group();
-		this.decisionPoint.enableBody = true;		
-		this.map.createFromObjects('Decision Layer', 34, '', 0, true, false, this.decisionPoint);			
+		this.balls = game.add.group();
+		this.balls.enableBody = true;
+		
+		this.map.createFromObjects(fp_ballLayer, 2, 'allTiles', 0, true, false, this.balls);			
 		
 	},
 	

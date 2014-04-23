@@ -14,7 +14,7 @@ Game.prototype = {
 		this.loadGhosts();
 	},
 
-	create : function() {
+	create : function() {			
 		map.create();
 		ohhMan.create();
 		blinky.create();
