@@ -18,9 +18,9 @@ Game.prototype = {
 		map.create();
 		ohhMan.create();
 		blinky.create();
-		/*clyde.create();
+		clyde.create();
 		inkey.create();
-		pinky.create();			*/	
+		pinky.create();			
 	},
 	
 	update : function() {
@@ -28,9 +28,9 @@ Game.prototype = {
 		
 		ohhMan.update();
 		blinky.update();
-		/*clyde.update(layer);
+		clyde.update(layer);
 		inkey.update(layer);
-		pinky.update(layer);		*/
+		pinky.update(layer);		
 	},
 
 	

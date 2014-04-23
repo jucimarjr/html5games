@@ -30,7 +30,7 @@ Ohhman.prototype = {
 	update : function() {				
 		this.moveByKeyboard();
 		this.verifyMapCollision();
-		//this.verifyGhostCollision();
+		this.verifyGhostCollision();
 		this.verifyBallCollision();		
 	},
 	
