@@ -34,6 +34,7 @@ var fp_bgLose = 'assets/screenshots/lose_800-600.png';
 	
 	//Tiles
 	var fp_allTiles = 'assets/tilemaps/tiles/allTiles.png';	
+	var fp_balls = 'assets/tilemaps/tiles/ball.png';	
 	
 	//Personagens
 	var fp_ohhMan = 'assets/images/ohhMan_36-36.png';
