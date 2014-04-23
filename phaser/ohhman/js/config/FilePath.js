@@ -33,7 +33,7 @@ var fp_bgLose = 'assets/screenshots/lose_800-600.png';
 	var fp_btnCreditsSelected = 'btnCreditsSelected_291-75.png';
 	
 	//Tiles
-	var fp_allTiles = 'assets/tilemaps/tiles/allTiles.png';	
+	var fp_walls = 'assets/tilemaps/tiles/wall.png';	
 	var fp_balls = 'assets/tilemaps/tiles/ball.png';	
 	
 	//Personagens

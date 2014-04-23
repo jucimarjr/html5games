@@ -8,14 +8,14 @@ Map1 = function () {
 Map1.prototype = {
 	preload : function() {
 		game.load.tilemap('map1', fp_map1, null, Phaser.Tilemap.TILED_JSON);		
-		game.load.image('fp_allTiles', fp_allTiles);		
+		game.load.image('fp_walls', fp_walls);		
 		game.load.image('fp_balls', fp_balls);
 	},
 
 	create : function() {
 		this.map = game.add.tilemap('map1');	
 		
-		this.tileset = this.map.addTilesetImage('allTiles', 'fp_allTiles');	
+		this.tileset = this.map.addTilesetImage('wall', 'fp_walls');	
 		
 		this.layer = this.map.createLayer(fp_wallLayer);				
 		this.layer.resizeWorld();		
@@ -25,7 +25,7 @@ Map1.prototype = {
 		this.balls = game.add.group();
 		this.balls.enableBody = true;
 		
-		this.map.createFromObjects(fp_ballLayer, 4, 'fp_balls', 0, true, false, this.balls);			
+		this.map.createFromObjects(fp_ballLayer, 2, 'fp_balls', 0, true, false, this.balls);			
 		
 	},
 	
