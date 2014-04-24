@@ -14,20 +14,20 @@ Game.prototype = {
 		this.loadGhosts();
 	},
 
-	create : function() {
+	create : function() {			
 		map.create();
 		ohhMan.create();
 		blinky.create();
 		clyde.create();
 		inkey.create();
-		pinky.create();
+		pinky.create();			
 	},
 	
 	update : function() {
 		var layer = map.layer;		
 		
 		ohhMan.update();
-		blinky.update(layer);
+		blinky.update();
 		clyde.update(layer);
 		inkey.update(layer);
 		pinky.update(layer);		
@@ -56,5 +56,5 @@ Game.prototype = {
 		
 		pinky = new Pinky();
 		pinky.preload();
-	}
+	}	
 };
