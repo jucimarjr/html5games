@@ -31,7 +31,7 @@ var personWidth = 100;
 var personHeigth = 267;
 //Telas
 var splashGroupImage = 'assets/screenshots/SplashTeam_800-600.png';
-var SplashGameImage = 'assets/screenshots/MenuZombie.png';
+var SplashGameImage = 'assets/screenshots/SplashGame_800-600.png';
 var screenMenu = 'assets/screenshots/MenuZombie.png';
 
 //Spritesheets Botões do menu
