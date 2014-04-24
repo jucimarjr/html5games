@@ -42,4 +42,6 @@ var spriteSheetsJsonButtons2 = "assets/spritesheets/buttons2.json";
 //Spritesheets Do Zumbi
 var spriteSheetsImageZombieDown = "assets/spritesheets/ZombieDown.png";
 var spriteSheetsJsonZombieDown = "assets/spritesheets/ZombieDown.json";
+//Spritesheets Do Zumbi
+var spriteSheetsImagePersonDown = "assets/spritesheets/personDown.png";
 
