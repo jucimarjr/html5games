@@ -38,11 +38,10 @@ function preload()
 {
 	game.load.spritesheet('personDown', spriteSheetsImagePersonDown, 100, 161, 6);
 	game.load.atlas('zombieDown', spriteSheetsImageZombieDown, spriteSheetsJsonZombieDown);
-	game.load.image('person', imagePessoa);
-	game.load.image('zombie', imageZombie);
-	game.load.image('muro', imageMuro);
-	game.load.image('rua', imageRua);
 	game.load.image('cenario', imageCenario);
+	game.load.audio('audioZombieDead',audioZombieDead);
+	game.load.audio('audioBackGroundGame',audioBackGroundGame);
+	
 	splashScene = new Splash(game);
 	splashScene.preload();
 }

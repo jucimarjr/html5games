@@ -31,6 +31,8 @@ var Zombie = function (index, game, person, classGame) {
     
     this.spriteZombie.events.onInputDown.add(killZombie,this);
     
+    this.sound = game.add.audio('audioZombieDead');
+    
     this.spriteZombie.body.velocity.x  = Math.random()*10;
     this.spriteZombie.body.velocity.y  = Math.random()*10;
 };
@@ -44,6 +46,7 @@ Zombie.prototype.preload = function(){
 };
 
 function killZombie(){
+	this.sound.play();
 	this.spriteZombie.destroy();
     this.classGame.amountZombies -= 1;
     this.classGame.punctuate(1);

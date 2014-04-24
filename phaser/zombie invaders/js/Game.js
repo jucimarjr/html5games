@@ -18,7 +18,8 @@ Game.prototype.preload = function(){
 
 Game.prototype.create = function () {
 	console.log("criando game");
-	
+	this.soundGame = this.game.add.audio('audioBackGroundGame');
+	this.soundGame.play();
 	this.spriteCenario = this.game.add.sprite(0, 0,'cenario');
 	
 	
@@ -27,6 +28,8 @@ Game.prototype.create = function () {
 	this.groupPeople = this.game.add.group();
 	this.groupPeople.enableBody = true;
 	this.groupPeople.physicsBodyType = Phaser.Physics.ARCADE;
+	
+	
 	
 	 //grupo de zumbis
 	this.amountZombies  = 0;
