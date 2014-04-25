@@ -8,6 +8,7 @@ Mapa = function() {
     this.player;
     this.tileset;
     this.tileset2;
+    this.balls = null;
 };
 
 
@@ -22,6 +23,7 @@ Mapa.prototype.preload = function() {
     game.load.image('tiles2', 'assets/tileset_fase_1 - Retrovertido.png', 22, 32);
     game.load.image('nave', 'assets/phaser-ship.png');
     game.load.tilemap('map', 'assets/mapa_fase_01.json', null, Phaser.Tilemap.TILED_JSON);
+    game.load.image('invader', 'assets/invader.png');
 };
 
 Mapa.prototype.create = function() {
@@ -29,18 +31,28 @@ Mapa.prototype.create = function() {
     //  game.stage.backgroundColor = '#FFB90F';
     game.world.setBounds(0, 0, 2400, 2400);
     this.map = game.add.tilemap('map');
+
     this.tileset = this.map.addTilesetImage('tileset_fase_1', 'tiles');
     this.tileset2 = this.map.addTilesetImage('tileset_fase_1 - Retrovertido', 'tiles2');
+
     this.layer = this.map.createLayer('Camada de Tiles 1');
     this.layer2 = this.map.createLayer('Camada de Colisao');
-    this.layer.resizeWorld();
-    //  this.map.setCollision(302);
-   this.map.setCollision([12,360,1237,1131,1228,1108,118,46,21,110,46,1203,141,22,110],true,'Camada de Colisao');
-    this.player = game.add.sprite(0, game.world.height-100, 'nave');
 
+    this.layer.resizeWorld();
+
+    game.physics.startSystem(Phaser.Physics.ARCADE);
+
+    this.map.setCollision([12, 360, 1237, 1131, 1228, 1108, 118, 46, 21, 110, 46, 1203, 141, 22, 110], true, 'Camada de Colisao');
+    this.balls = game.add.group();
+    this.balls.enableBody = true;
+    this.map.createFromObjects('Camada de Objetos 1', 1249, 'invader', 0, true, false, this.balls);
+    this.player = game.add.sprite(0, game.world.height - 100, 'nave');
+
+    // map.createFromObjects('Camada de Objetos 1', 34, 'coin', 0, true, false, coins);
 
     game.physics.enable(this.player);
-    this.player.body.bounce.y = 0.1;
+    this.player.anchor.set(0.5);
+    this.player.body.bounce.y = 1;
     this.player.body.linearDamping = 1;
     this.player.body.collideWorldBounds = true;
     game.camera.follow(this.player);
@@ -55,6 +67,7 @@ Mapa.prototype.update = function() {
     this.player.body.velocity.x = 0;
     this.player.body.velocity.y = 0;
     game.physics.arcade.collide(this.player, this.layer2, this.testeColisao, null, this);
+    game.physics.arcade.overlap(this.player, this.balls, this.collectCoin, null, this);
     //  game.camera.x += 1;
     if (cursors.left.isDown)
     {
@@ -81,5 +94,10 @@ Mapa.prototype.update = function() {
 };
 Mapa.prototype.testeColisao = function() {
     console.log("pos colisao");
+};
+Mapa.prototype.collectCoin = function(player, balls) {
+
+    balls.kill();
+
 };
 
