@@ -38,7 +38,7 @@ var Zombie = function (index, game, person, classGame) {
 };
 
 Zombie.prototype.update = function (){
-	
+	//this.classGame
 };
 
 Zombie.prototype.preload = function(){

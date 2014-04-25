@@ -1,11 +1,11 @@
-var btPlay = 'Play.png';
-var btPlaySelecionado = 'PlaySelecionado.png';
-var btHowToPlay = 'HowToPlay.png';
-var btHowToPlaySelelecionado = 'HowToPlaySelecionado.png';
-var btScore = 'Score.png';
-var btScoreSelecionado = 'ScoreSelecionado.png';
-//var Credits = 'btCredits_262-33.png';
-//var CreditsSelected = 'btCreditsSelected_262-33.png';
+var btPlay = 'bt_play.png';
+var btPlaySelecionado = 'bt_play_ativo.png';
+var btHowToPlay = 'bt_howtoplay.png';
+var btHowToPlaySelelecionado = 'bt_howtoplay_ativo.png';
+var btScore = 'bt_score.png';
+var btScoreSelecionado = 'bt_score_ativo.png';
+var btCredits = 'bt_credits.png';
+var btCreditsSelected = 'bt_credits_ativo.png';
 
 //Sprites Cenários
 var imageCenario = 'assets/cenario.png';
@@ -27,8 +27,6 @@ var screenMenu = 'assets/screenshots/MenuZombie.png';
 //Spritesheets Botões do menu
 var spriteSheetsImageButtons = "assets/spritesheets/buttons.png";
 var spriteSheetsJsonButtons = "assets/spritesheets/buttons.json";
-var spriteSheetsImageButtons2 = "assets/spritesheets/buttons2.png";
-var spriteSheetsJsonButtons2 = "assets/spritesheets/buttons2.json";
 //Spritesheets Do Zumbi
 var spriteSheetsImageZombieDown = "assets/spritesheets/ZombieDown.png";
 var spriteSheetsJsonZombieDown = "assets/spritesheets/ZombieDown.json";

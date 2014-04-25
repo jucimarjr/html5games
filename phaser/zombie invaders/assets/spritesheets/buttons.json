@@ -1,76 +1,76 @@
 {"frames": [
 
 {
-	"filename": "btCreditsSelected_262-33.png",
-	"frame": {"x":2,"y":2,"w":261,"h":33},
+	"filename": "bt_credits.png",
+	"frame": {"x":2,"y":2,"w":150,"h":57},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":261,"h":33},
-	"sourceSize": {"w":261,"h":33}
+	"spriteSourceSize": {"x":0,"y":0,"w":150,"h":57},
+	"sourceSize": {"w":150,"h":57}
 },
 {
-	"filename": "btCredits_262-33.png",
-	"frame": {"x":2,"y":37,"w":261,"h":33},
+	"filename": "bt_credits_ativo.png",
+	"frame": {"x":2,"y":61,"w":150,"h":57},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":261,"h":33},
-	"sourceSize": {"w":261,"h":33}
+	"spriteSourceSize": {"x":0,"y":0,"w":150,"h":57},
+	"sourceSize": {"w":150,"h":57}
 },
 {
-	"filename": "btHowToPlaySelected_413-33.png",
-	"frame": {"x":2,"y":72,"w":413,"h":33},
+	"filename": "bt_howtoplay.png",
+	"frame": {"x":2,"y":120,"w":150,"h":57},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":413,"h":33},
-	"sourceSize": {"w":413,"h":33}
+	"spriteSourceSize": {"x":0,"y":0,"w":150,"h":57},
+	"sourceSize": {"w":150,"h":57}
 },
 {
-	"filename": "btHowToPlay_413-33.png",
-	"frame": {"x":2,"y":107,"w":413,"h":33},
+	"filename": "bt_howtoplay_ativo.png",
+	"frame": {"x":2,"y":179,"w":150,"h":57},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":413,"h":33},
-	"sourceSize": {"w":413,"h":33}
+	"spriteSourceSize": {"x":0,"y":0,"w":150,"h":57},
+	"sourceSize": {"w":150,"h":57}
 },
 {
-	"filename": "btPlaySelected_147-33.png",
-	"frame": {"x":2,"y":142,"w":147,"h":33},
+	"filename": "bt_play.png",
+	"frame": {"x":2,"y":238,"w":150,"h":57},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":147,"h":33},
-	"sourceSize": {"w":147,"h":33}
+	"spriteSourceSize": {"x":0,"y":0,"w":150,"h":57},
+	"sourceSize": {"w":150,"h":57}
 },
 {
-	"filename": "btPlay_147-33.png",
-	"frame": {"x":151,"y":142,"w":147,"h":33},
+	"filename": "bt_play_ativo.png",
+	"frame": {"x":2,"y":297,"w":150,"h":57},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":147,"h":33},
-	"sourceSize": {"w":147,"h":33}
+	"spriteSourceSize": {"x":0,"y":0,"w":150,"h":57},
+	"sourceSize": {"w":150,"h":57}
 },
 {
-	"filename": "btScoreSelected_185-33.png",
-	"frame": {"x":300,"y":142,"w":185,"h":33},
+	"filename": "bt_score.png",
+	"frame": {"x":2,"y":356,"w":150,"h":57},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":185,"h":33},
-	"sourceSize": {"w":185,"h":33}
+	"spriteSourceSize": {"x":0,"y":0,"w":150,"h":57},
+	"sourceSize": {"w":150,"h":57}
 },
 {
-	"filename": "btScore_185-33.png",
-	"frame": {"x":2,"y":177,"w":185,"h":33},
+	"filename": "bt_score_ativo.png",
+	"frame": {"x":2,"y":415,"w":150,"h":57},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":185,"h":33},
-	"sourceSize": {"w":185,"h":33}
+	"spriteSourceSize": {"x":0,"y":0,"w":150,"h":57},
+	"sourceSize": {"w":150,"h":57}
 }],
 "meta": {
 	"app": "http://www.codeandweb.com/texturepacker ",
 	"version": "1.0",
 	"image": "buttons.png",
 	"format": "RGBA8888",
-	"size": {"w":512,"h":256},
+	"size": {"w":256,"h":512},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:78d5b20e0c659f4002e0526474f4f8b5:7c8ac575d00d12e006a363b846ba7516:b34c8670b11bb20cb1751a70d3683e22$"
+	"smartupdate": "$TexturePacker:SmartUpdate:017596999ed380a67a1b38bd35b7d1e7:5803f72d5e36789d2746d91ad45471bd:b34c8670b11bb20cb1751a70d3683e22$"
 }
 }
