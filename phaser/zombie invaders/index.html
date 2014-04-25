@@ -12,13 +12,26 @@
 	<script type="text/javascript" src="js/Round.js"></script>
 	<script type="text/javascript" src="js/Game.js"></script>
 	<style type="text/css">
-        body {
-            margin: 0;
-        }
-    </style>
+	        body {
+	        	border:1px dashed #000000;
+				position:absolute;
+				top:50%;
+				left:50%;
+				margin-top: -400px;
+				margin-left:-400px;
+	        }
+			
+			#footer {
+				position:absolute;
+				bottom:-200px;
+				width:100%;
+				height:200px;
+				overflow:scroll;
+			}
+	    </style>
 </head>
-<body>
 
+<body>
 <script type="text/javascript">
 
 var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
@@ -78,4 +91,18 @@ function setHighScore()
 </script>
 
 </body>
+
+    <div id="footer">
+	<!--	<span style="position:relative; top:600px"> -->
+		<center>
+			<h3> Desenvolvedores </h3>
+				<a href = "https://www.facebook.com/camdsf?fret=ts"> Carlos Alberto </a> </br>
+				<a href = "https://www.facebook.com"> Anne Oliveira </a>  </br>
+			<h3> Designer </h3>
+				<a href = "https://www.facebook.com/johnmaycon.silva?fref=ts"> John Maycon </a> </br>
+			<h3> Orientador </h3>
+				<a href = "https://www.facebook.com/jucimar.jr?fret=ts"> Prof. Jucimar Jr. </a> </br></br>
+		</center>
+	<!--	</span> -->
+	</div>
 </html>
