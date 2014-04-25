@@ -1,7 +1,4 @@
 var HighScoresLayer = cc.Layer.extend({
-
-	title: null,
-
     init: function()
     {
         this._super();
@@ -10,23 +7,16 @@ var HighScoresLayer = cc.Layer.extend({
             this.setTouchEnabled(true);
         else if ('mouse' in sys.capabilities)
             this.setMouseEnabled(true);
-		
-		this.title = cc.LabelTTF.create("HIGH SCORES", "SFAtarianSystem", 70);
-		this.title.setColor( new cc.Color3B(255, 255, 255) );
-		this.title.setPosition(new cc.Point(screen.width/2, screen.height - 50) );
-        this.addChild(this.title);    
-		
-		//this.showHighScore();
-		
+
+        var background = cc.Director.getInstance().getWinSizeInPixels();      
+        var fundo =  cc.Sprite.create("res/screenshots/highScores_800-480.png");
+        fundo.setPositionX(background.width/2);
+        fundo.setPositionY(background.height/2);
+        this.addChild(fundo);
+        
         return this;
 
     },
-	showHighScore: function () {
-		this.localStorage = cc.LabelTTF.create(localStorage["nameScore1"], "SFAtarianSystem", 70);
-		this.localStorage.setColor( new cc.Color3B(255, 255, 255) );
-		this.localStorage.setPosition(new cc.Point(screen.width / 2 - 150, 100 ) );
-        this.addChild(this.localStorage);        
-	},
     onMouseUp: function (event) {
         this.backMenu();
     },
