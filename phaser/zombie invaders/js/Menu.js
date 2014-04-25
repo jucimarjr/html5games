@@ -11,7 +11,7 @@ Menu = function (game) {
 Menu.prototype.preload = function(){
 	game.load.image('menu', screenMenu);
 	//game.load.atlas('buttons', spriteSheetsImageButtons, spriteSheetsJsonButtons);
-	game.load.atlas('buttons', spriteSheetsImageButtons2, spriteSheetsJsonButtons2);
+	game.load.atlas('buttons', spriteSheetsImageButtons, spriteSheetsJsonButtons);
 };
 
 Menu.prototype.create = function() {
@@ -21,25 +21,25 @@ Menu.prototype.create = function() {
 
     var fadeout;
     
-    this.btnPlay = game.add.button(game.world.centerX,game.world.centerY+50, 'buttons',
+    this.btnPlay = game.add.button(410,397, 'buttons',
     	    function(){ this.play(); }, this);
     	    this.btnPlay.setFrames(btPlaySelecionado,btPlay);
     	    this.btnPlay.anchor.x = 0.5;
     		    		
-//    this.btnHowToPlay = game.add.button(game.world.centerX, game.world.centerY-40, 'buttons',
-//    	    function(){ this.howToPlay(); }, this);
-//    	    this.btnHowToPlay.setFrames(btHowToPlaySelelecionado,btHowToPlay);
-//    	    this.btnHowToPlay.anchor.x = 0.5;
-//    		
-//    this.btnHighScores = game.add.button(game.world.centerX, game.world.centerY + 20, 'buttons',
-//    	    function () { this.highScores(); }, this);
-//    	    this.btnHighScores.setFrames(btScoreSelected,btScore);
-//    	    this.btnHighScores.anchor.x = 0.5;
+    this.btnHowToPlay = game.add.button(324, 467, 'buttons',
+    	    function(){ this.howToPlay(); }, this);
+    	    this.btnHowToPlay.setFrames(btHowToPlaySelelecionado,btHowToPlay);
+    	    this.btnHowToPlay.anchor.x = 0.5;
+    		
+    this.btnHighScores = game.add.button(489, 467, 'buttons',
+    	    function () { this.highScores(); }, this);
+    	    this.btnHighScores.setFrames(btScoreSelecionado,btScore);
+    	    this.btnHighScores.anchor.x = 0.5;
 
-//    this.btnCredits = game.add.button(game.world.centerX, game.world.centerY + 80, 'buttons',
-//    	    function(){ this.credits(); }, this);
-//    	    this.btnCredits.setFrames(btCreditsSelec,btCredits);
-//    	    this.btnCredits.anchor.x = 0.5;
+    this.btnCredits = game.add.button(410, 535, 'buttons',
+    	    function(){ this.credits(); }, this);
+    	    this.btnCredits.setFrames(btCreditsSelected,btCredits);
+    	    this.btnCredits.anchor.x = 0.5;
    
 };
 

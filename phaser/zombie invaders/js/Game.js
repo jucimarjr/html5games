@@ -62,6 +62,7 @@ Game.prototype.update = function () {
 		round = new Round(this.stage,this.amountZombies,this.amountPeople);
 		this.game.time.events.repeat(Phaser.Timer.SECOND * 2, this.amountPeople, this.initPeople, this);
 	}
+	//this.game.physics.arcade.moveToObject(bullet, this.player, 500);
 };
 
 
