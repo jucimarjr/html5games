@@ -1,6 +1,20 @@
-<!DOCTYPE HTML>
-<html>
+
+<!-- Jogo: Asteroids -->
+<!-- Desenvolvido por: Anne Oliveira, Carlos Filho, Juliane Silva -->
+<!-- Orientado por: Prof. Jucimar Jr. -->
+<!-- Baseado em: Asteroids original -->
+
+<!doctype html>
+<html xmlns:og="http://opengraphprotocol.org/schema/">
 	<head>
+		<!-- Configuração do resumo, imagem de divulgação do grupo de jogos para o Facebook -->
+		<meta charset="UTF-8"/>
+		<meta property="og:title" content="asteroids" />
+		<meta property="og:type" content="website" />
+		<meta property="og:description" content="Destrua os asteroides antes que eles atinjam você, nessa nova versão do clássico da atari e arcade." />
+		<meta property="og:url" content="http://computacao.uea.edu.br/ludus/games/asteroids/" />
+		<meta property="og:image" content="http://computacao.uea.edu.br/ludus/games/asteroids/res/divulgation_200-200.png" />
+	
 		<title>Asteroids</title>
 		<script src="cocos2d.js"></script>
 		
@@ -15,6 +29,12 @@
 				margin-top:-240px;
 				margin-left:-400px;
 			}
+			
+			#footer {
+				position:absolute;
+				bottom:-300px;
+				width:100%;
+			}
        </style>
 	</head>
 	
@@ -23,5 +43,19 @@
 			Your browser does not support the canvas tag
 		</canvas>
 	</body>
+	
+	<!-- Rodapé do grupo de jogos -->
+	<div id="footer">
+		<center>
+			<h3> Desenvolvedores </h3>
+				<a href = "https://www.facebook.com"> Anne Oliveira </a> </br>
+				<a href = "https://www.facebook.com/camdsf?fret=ts"> Carlos Filho </a> </br>
+				<a href = "https://www.facebook.com/jl.sansil?fret=ts"> Juliane Silva </a> </br>
+			</br>
+			<h3> Orientador </h3>
+				<a href = "https://www.facebook.com/jucimar.jr?fret=ts"> Prof. Jucimar Jr. </a> </br>
+			</br>
+		</center>
+	</div>
 
 </html>
