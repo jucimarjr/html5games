@@ -38,7 +38,7 @@
         <key>dataFormat</key>
         <string>json-array</string>
         <key>textureFileName</key>
-        <filename>../../../../../../../Users/UEA/Documents/sprites/sprites.png</filename>
+        <filename>sprites.png</filename>
         <key>flipPVR</key>
         <false/>
         <key>ditherType</key>
@@ -90,7 +90,7 @@
             <key>algorithm</key>
             <enum type="AlgorithmSettings::AlgorithmId">Basic</enum>
             <key>freeSizeMode</key>
-            <enum type="AlgorithmSettings::AlgorithmFreeSizeMode">Best</enum>
+            <enum type="AlgorithmSettings::AlgorithmFreeSizeMode">Good</enum>
             <key>sizeConstraints</key>
             <enum type="AlgorithmSettings::SizeConstraints">POT</enum>
             <key>forceSquared</key>
@@ -131,7 +131,7 @@
             <key>data</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>../../../../../../../Users/UEA/Documents/sprites/sprites.json</filename>
+                <filename>sprites.json</filename>
             </struct>
         </map>
         <key>multiPack</key>
@@ -345,6 +345,10 @@
             <filename>../../../../../../../Users/UEA/Documents/sprites/bulletaTypes/btn-purple.png</filename>
             <filename>../../../../../../../Users/UEA/Documents/sprites/bulletaTypes/btn-red.png</filename>
             <filename>../../../../../../../Users/UEA/Documents/sprites/bulletaTypes/btn-white.png</filename>
+            <filename>../../../../../../../Users/UEA/Documents/sprites/btn-left.png</filename>
+            <filename>../../../../../../../Users/UEA/Documents/sprites/btn-right.png</filename>
+            <filename>../../../../../../../Users/UEA/Documents/sprites/btn-shoot.png</filename>
+            <filename>../../../../../../../Users/UEA/Documents/sprites/btn-thrust.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

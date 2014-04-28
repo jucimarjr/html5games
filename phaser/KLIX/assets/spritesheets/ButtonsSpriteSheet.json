@@ -1,0 +1,76 @@
+{"frames": [
+
+{
+	"filename": "btnCreditsSelected_256-34.png",
+	"frame": {"x":316,"y":2,"w":256,"h":34},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":256,"h":34},
+	"sourceSize": {"w":256,"h":34}
+},
+{
+	"filename": "btnCredits_256-34.png",
+	"frame": {"x":574,"y":2,"w":256,"h":34},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":256,"h":34},
+	"sourceSize": {"w":256,"h":34}
+},
+{
+	"filename": "btnHowToPlaySelected_381-34.png",
+	"frame": {"x":385,"y":74,"w":381,"h":34},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":381,"h":34},
+	"sourceSize": {"w":381,"h":34}
+},
+{
+	"filename": "btnHowToPlay_381-34.png",
+	"frame": {"x":2,"y":74,"w":381,"h":34},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":381,"h":34},
+	"sourceSize": {"w":381,"h":34}
+},
+{
+	"filename": "btnPlaySelected_155-34.png",
+	"frame": {"x":2,"y":2,"w":155,"h":34},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":155,"h":34},
+	"sourceSize": {"w":155,"h":34}
+},
+{
+	"filename": "btnPlay_155-34.png",
+	"frame": {"x":159,"y":2,"w":155,"h":34},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":155,"h":34},
+	"sourceSize": {"w":155,"h":34}
+},
+{
+	"filename": "btnScoreSelected_365-34.png",
+	"frame": {"x":369,"y":38,"w":365,"h":34},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":365,"h":34},
+	"sourceSize": {"w":365,"h":34}
+},
+{
+	"filename": "btnScore_356-34.png",
+	"frame": {"x":2,"y":38,"w":365,"h":34},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":365,"h":34},
+	"sourceSize": {"w":365,"h":34}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker ",
+	"version": "1.0",
+	"image": "ButtonsSpriteSheet.png",
+	"format": "RGBA8888",
+	"size": {"w":832,"h":110},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:72e6a38d8598588335380a9110875d01:0cc746b1a75d56b8ded282e90ea6b7c3:8a7200f3d398031b36450e827ec6c796$"
+}
+}
