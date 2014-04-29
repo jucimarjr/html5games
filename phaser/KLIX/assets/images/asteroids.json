@@ -1,0 +1,202 @@
+	{ 
+		
+		"asteroids4_80-80": [
+			
+				{
+					"density": 2, "friction": 0, "bounce": 0, 
+					"filter": { "categoryBits": 1, "maskBits": 65535 },
+					"shape": [   57, 31  ,  39, 11  ,  59, 1  ,  79, 20  ]
+				}  ,
+				{
+					"density": 2, "friction": 0, "bounce": 0, 
+					"filter": { "categoryBits": 1, "maskBits": 65535 },
+					"shape": [   55, 80  ,  29, 68  ,  57, 31  ,  79, 50  ]
+				}  ,
+				{
+					"density": 2, "friction": 0, "bounce": 0, 
+					"filter": { "categoryBits": 1, "maskBits": 65535 },
+					"shape": [   11, 40  ,  39, 11  ,  29, 68  ,  20, 79  ,  1, 59  ]
+				}  ,
+				{
+					"density": 2, "friction": 0, "bounce": 0, 
+					"filter": { "categoryBits": 1, "maskBits": 65535 },
+					"shape": [   25, 1  ,  39, 11  ,  11, 40  ,  1, 21  ]
+				}  ,
+				{
+					"density": 2, "friction": 0, "bounce": 0, 
+					"filter": { "categoryBits": 1, "maskBits": 65535 },
+					"shape": [   29, 68  ,  39, 11  ,  57, 31  ]
+				}  
+		]
+		
+		, 
+		"asteroids5_80-80": [
+			
+				{
+					"density": 2, "friction": 0, "bounce": 0, 
+					"filter": { "categoryBits": 1, "maskBits": 65535 },
+					"shape": [   49, 1  ,  79, 20  ,  79, 29  ,  45, 40  ,  31, 21  ,  20, 1  ]
+				}  ,
+				{
+					"density": 2, "friction": 0, "bounce": 0, 
+					"filter": { "categoryBits": 1, "maskBits": 65535 },
+					"shape": [   31, 21  ,  45, 40  ,  45, 68  ,  16, 80  ,  1, 49  ,  1, 21  ]
+				}  ,
+				{
+					"density": 2, "friction": 0, "bounce": 0, 
+					"filter": { "categoryBits": 1, "maskBits": 65535 },
+					"shape": [   60, 79  ,  45, 68  ,  45, 40  ,  79, 60  ]
+				}  
+		]
+		
+		, 
+		"asteroids4_20-20": [
+			
+				{
+					"density": 2, "friction": 0, "bounce": 0, 
+					"filter": { "categoryBits": 1, "maskBits": 65535 },
+					"shape": [   15, 8  ,  3, 10  ,  10, 3  ,  15, 0  ,  20, 5  ]
+				}  ,
+				{
+					"density": 2, "friction": 0, "bounce": 0, 
+					"filter": { "categoryBits": 1, "maskBits": 65535 },
+					"shape": [   14, 20  ,  8, 18  ,  3, 10  ,  15, 8  ,  20, 13  ]
+				}  ,
+				{
+					"density": 2, "friction": 0, "bounce": 0, 
+					"filter": { "categoryBits": 1, "maskBits": 65535 },
+					"shape": [   3, 10  ,  8, 18  ,  5, 20  ,  0, 15  ]
+				}  ,
+				{
+					"density": 2, "friction": 0, "bounce": 0, 
+					"filter": { "categoryBits": 1, "maskBits": 65535 },
+					"shape": [   5, 0  ,  10, 3  ,  3, 10  ,  0, 5  ]
+				}  
+		]
+		
+		, 
+		"asteroids4_40-40": [
+			
+				{
+					"density": 2, "friction": 0, "bounce": 0, 
+					"filter": { "categoryBits": 1, "maskBits": 65535 },
+					"shape": [   29, 15  ,  6, 20  ,  20, 6  ,  30, 0  ,  40, 10  ]
+				}  ,
+				{
+					"density": 2, "friction": 0, "bounce": 0, 
+					"filter": { "categoryBits": 1, "maskBits": 65535 },
+					"shape": [   27, 40  ,  15, 34  ,  6, 20  ,  29, 15  ,  40, 25  ]
+				}  ,
+				{
+					"density": 2, "friction": 0, "bounce": 0, 
+					"filter": { "categoryBits": 1, "maskBits": 65535 },
+					"shape": [   6, 20  ,  15, 34  ,  10, 40  ,  0, 30  ]
+				}  ,
+				{
+					"density": 2, "friction": 0, "bounce": 0, 
+					"filter": { "categoryBits": 1, "maskBits": 65535 },
+					"shape": [   12, 0  ,  20, 6  ,  6, 20  ,  0, 10  ]
+				}  
+		]
+		
+		, 
+		"asteroids5_20-20": [
+			
+				{
+					"density": 2, "friction": 0, "bounce": 0, 
+					"filter": { "categoryBits": 1, "maskBits": 65535 },
+					"shape": [   14, 20  ,  10, 18  ,  12, 10  ,  19, 15  ]
+				}  ,
+				{
+					"density": 2, "friction": 0, "bounce": 0, 
+					"filter": { "categoryBits": 1, "maskBits": 65535 },
+					"shape": [   7, 5  ,  12, 10  ,  10, 18  ,  4, 20  ,  0, 14  ,  0, 5  ]
+				}  ,
+				{
+					"density": 2, "friction": 0, "bounce": 0, 
+					"filter": { "categoryBits": 1, "maskBits": 65535 },
+					"shape": [   14, 0  ,  19, 5  ,  19, 8  ,  12, 10  ,  7, 5  ,  5, 0  ]
+				}  
+		]
+		
+		, 
+		"asteroids5_40-40": [
+			
+				{
+					"density": 2, "friction": 0, "bounce": 0, 
+					"filter": { "categoryBits": 1, "maskBits": 65535 },
+					"shape": [   29, 40  ,  21, 35  ,  22, 20  ,  40, 30  ]
+				}  ,
+				{
+					"density": 2, "friction": 0, "bounce": 0, 
+					"filter": { "categoryBits": 1, "maskBits": 65535 },
+					"shape": [   14, 10  ,  22, 20  ,  21, 35  ,  7, 40  ,  0, 26  ,  0, 10  ]
+				}  ,
+				{
+					"density": 2, "friction": 0, "bounce": 0, 
+					"filter": { "categoryBits": 1, "maskBits": 65535 },
+					"shape": [   26, 0  ,  40, 9  ,  40, 15  ,  22, 20  ,  14, 10  ,  10, 0  ]
+				}  
+		]
+		
+		, 
+		"asteroids6_20-20": [
+			
+				{
+					"density": 2, "friction": 0, "bounce": 0, 
+					"filter": { "categoryBits": 1, "maskBits": 65535 },
+					"shape": [   0, 12  ,  3, 10  ,  8, 12  ,  4, 20  ]
+				}  ,
+				{
+					"density": 2, "friction": 0, "bounce": 0, 
+					"filter": { "categoryBits": 1, "maskBits": 65535 },
+					"shape": [   8, 12  ,  20, 7  ,  20, 11  ,  12, 20  ,  7, 20  ]
+				}  ,
+				{
+					"density": 2, "friction": 0, "bounce": 0, 
+					"filter": { "categoryBits": 1, "maskBits": 65535 },
+					"shape": [   20, 7  ,  8, 12  ,  3, 10  ,  0, 8  ,  7, 0  ,  15, 0  ]
+				}  
+		]
+		
+		, 
+		"asteroids6_40-40": [
+			
+				{
+					"density": 2, "friction": 0, "bounce": 0, 
+					"filter": { "categoryBits": 1, "maskBits": 65535 },
+					"shape": [   1, 24  ,  8, 20  ,  16, 24  ,  8, 39  ]
+				}  ,
+				{
+					"density": 2, "friction": 0, "bounce": 0, 
+					"filter": { "categoryBits": 1, "maskBits": 65535 },
+					"shape": [   16, 24  ,  39, 13  ,  39, 22  ,  24, 40  ,  15, 40  ]
+				}  ,
+				{
+					"density": 2, "friction": 0, "bounce": 0, 
+					"filter": { "categoryBits": 1, "maskBits": 65535 },
+					"shape": [   39, 13  ,  16, 24  ,  8, 20  ,  1, 15  ,  15, 0  ,  30, 0  ]
+				}  
+		]
+		
+		, 
+		"asteroids6_80-80": [
+			
+				{
+					"density": 2, "friction": 0, "bounce": 0, 
+					"filter": { "categoryBits": 1, "maskBits": 65535 },
+					"shape": [   0, 49  ,  16, 39  ,  33, 47  ,  16, 79  ]
+				}  ,
+				{
+					"density": 2, "friction": 0, "bounce": 0, 
+					"filter": { "categoryBits": 1, "maskBits": 65535 },
+					"shape": [   33, 47  ,  78, 29  ,  78, 43  ,  49, 79  ,  29, 80  ]
+				}  ,
+				{
+					"density": 2, "friction": 0, "bounce": 0, 
+					"filter": { "categoryBits": 1, "maskBits": 65535 },
+					"shape": [   78, 29  ,  33, 47  ,  16, 39  ,  1, 31  ,  30, 0  ,  58, 0  ]
+				}  
+		]
+		
+	}

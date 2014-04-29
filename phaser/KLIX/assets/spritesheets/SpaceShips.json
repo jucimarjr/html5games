@@ -1,0 +1,44 @@
+{"frames": [
+
+{
+	"filename": "ship0_37x39.png",
+	"frame": {"x":2,"y":2,"w":37,"h":39},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":37,"h":39},
+	"sourceSize": {"w":37,"h":39}
+},
+{
+	"filename": "ship1_37x39.png",
+	"frame": {"x":41,"y":2,"w":37,"h":39},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":37,"h":39},
+	"sourceSize": {"w":37,"h":39}
+},
+{
+	"filename": "ship2_37x39.png",
+	"frame": {"x":80,"y":2,"w":37,"h":39},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":37,"h":39},
+	"sourceSize": {"w":37,"h":39}
+},
+{
+	"filename": "ship3_37x39.png",
+	"frame": {"x":2,"y":43,"w":37,"h":39},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":37,"h":39},
+	"sourceSize": {"w":37,"h":39}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker ",
+	"version": "1.0",
+	"image": "SpaceShips.png",
+	"format": "RGBA8888",
+	"size": {"w":128,"h":128},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:cf73bfb0621d0d68d1335494019e32b2:04b6659b56de0c53139d78798a930e17:56e7c86246009fc19f48ff0192786359$"
+}
+}
