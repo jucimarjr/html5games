@@ -11,7 +11,7 @@
 	<script type="text/javascript" src="js/Person.js"></script>
 	<script type="text/javascript" src="js/Round.js"></script>
 	<script type="text/javascript" src="js/Game.js"></script>
-	<style type="text/css">
+	<!--<style type="text/css">
 	        body {
 	        	border:1px dashed #000000;
 				position:absolute;
@@ -28,7 +28,7 @@
 				height:200px;
 				overflow:scroll;
 			}
-	    </style>
+	    </style>-->
 </head>
 
 <body>
@@ -49,8 +49,15 @@ game.state.add('game', Game);
 
 function preload()
 {
+	//SpriteSheets Pessoas
 	game.load.spritesheet('personDown', spriteSheetsImagePersonDown, 100, 161, 6);
+	
+	//SpriteSheets Zumbis
 	game.load.atlas('zombieDown', spriteSheetsImageZombieDown, spriteSheetsJsonZombieDown);
+	game.load.spritesheet('zombieUp',spriteSheetsImageZombieUp,100,168,4);
+	game.load.spritesheet('zombieLeft',spriteSheetsImageZombieLeft,100,168,3);
+	game.load.spritesheet('zombieRigth',spriteSheetsImageZombieRigth,100,168,3);
+	
 	game.load.image('cenario', imageCenario);
 	game.load.audio('audioZombieDead',audioZombieDead);
 	game.load.audio('audioBackGroundGame',audioBackGroundGame);
@@ -92,8 +99,8 @@ function setHighScore()
 
 </body>
 
-    <div id="footer">
-	<!--	<span style="position:relative; top:600px"> -->
+  <!--<div id="footer">
+	<!--	<span style="position:relative; top:600px">
 		<center>
 			<h3> Desenvolvedores </h3>
 				<a href = "https://www.facebook.com/camdsf?fret=ts"> Carlos Alberto </a> </br>
@@ -103,6 +110,6 @@ function setHighScore()
 			<h3> Orientador </h3>
 				<a href = "https://www.facebook.com/jucimar.jr?fret=ts"> Prof. Jucimar Jr. </a> </br></br>
 		</center>
-	<!--	</span> -->
-	</div>
+	<!--	</span> 
+	</div>-->
 </html>

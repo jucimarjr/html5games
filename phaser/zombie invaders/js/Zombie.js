@@ -1,19 +1,20 @@
 var Zombie = function (index, game, person, classGame) {
 	
     var x = game.world.randomX;
-    var y = game.rnd.integerInRange(0, 100);
+    var y = game.rnd.integerInRange(162,400);
     
-
+    this.animation = 'zDown';
     this.game = game;
     this.spritePerson = person;
     this.alive = true;
     
     this.classGame = classGame;
 
-    this.spriteZombie = this.game.add.sprite(x, y,'zombieDown');
+    this.spriteSheetZombie = createSprite(this.game.rnd.integerInRange(1, 4));
+    this.spriteZombie = this.game.add.sprite(x, y,this.spriteSheetZombie);
     
-    this.spriteZombie.animations.add('down');
-    this.spriteZombie.play('down',7,true);
+    this.spriteZombie.animations.add(this.animation);
+    this.spriteZombie.play(this.animation,7,true);
 
     this.spriteZombie.name = index.toString();
     this.game.physics.enable(this.spriteZombie, Phaser.Physics.ARCADE);
@@ -51,6 +52,27 @@ function killZombie(){
     this.classGame.amountZombies -= 1;
     this.classGame.punctuate(1);
     console.log("amount zombie ="+this.classGame.amountZombie);
+};
+
+function createSprite(rand){
+	switch (rand) {
+	case 1:
+		this.animation = 'zUp';
+		return 'zombieUp';
+		break;
+	case 2:
+		this.animation = 'zLeft';
+		return 'zombieLeft';
+		break;
+	case 3:
+		this.animation = 'zRigth';
+		return 'zombieRigth';
+		break;
+	default:
+		this.animation = 'zDown';
+		return 'zombieDown';
+		break;
+	}
 };
 
 //Debug
