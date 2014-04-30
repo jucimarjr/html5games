@@ -316,30 +316,37 @@ Game.prototype.collideObj = function(obj1, obj2){
 	    emitter.minParticleSpeed.setTo(-40, -40);
 	    emitter.maxParticleSpeed.setTo(40, 40);
 	    emitter.gravity = 0;
-	    emitter.start(true, 3000, null, 5);
-	    
-	    this.livesHud.getFirstAlive().kill();
-	    if(this.livesHud.countLiving() <= 0){
-	    	this.gameOver();	
-	    }
-	    
+	    emitter.start(true, 2000, null, 5);
 	    ship.alpha = 0;
-	    ship.x = game.world.width/2;
-	    ship.y = game.world.height/2; 
 	    ship.body.velocity.x = 0;
 	    ship.body.velocity.y = 0;
 	    ship.exists = false;
 	    ship.alive = false;
 	    
-	    if(this.livesHud.countLiving() >= 1){
-	    	this.spawnText = this.game.add.text(ship.x - 100, ship.y - 20,'Press R to Respawn Here',  
-		    		{font: "12px Vector Battle", fill: "#ffffff" , align: "center"});
-	    }
+	    //setTimeout(this.wait, 3200, ship);
+	    game.time.events.add(2200, this.wait, this);
 	    
 	    var key1 = this.game.input.keyboard.addKey(Phaser.Keyboard.R);
 	    key1.onDown.add(this.resetShip, this);
 	    
 	}
+};
+
+Game.prototype.wait = function(ship){
+	this.livesHud.getFirstAlive().kill();
+    if(this.livesHud.countLiving() <= 0){
+    	this.gameOver();	
+    }
+    
+    
+    this.spaceShip.sprite.x = game.world.width/2;
+    this.spaceShip.sprite.y = game.world.height/2; 
+	if(this.livesHud.countLiving() >= 1){
+		this.spawnText = this.game.add.text(this.spaceShip.sprite.x - 100, this.spaceShip.sprite.y - 20,'Press R to Respawn Here',  
+										   {font: "12px Vector Battle", fill: "#ffffff" , align: "center"});
+	}
+	var key1 = this.game.input.keyboard.addKey(Phaser.Keyboard.R);
+    key1.onDown.add(this.resetShip, this);
 };
 
 Game.prototype.resetShip = function(){

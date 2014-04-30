@@ -126,6 +126,14 @@ Menu.prototype.play = function () {
     			});
     		}
     	});
+    	game.input.onDown.add(function() {
+    		if(game.state.current == 'menu'){
+    			var fade = game.add.tween(msg).to({ alpha: 0 }, 1000, Phaser.Easing.Linear.None, true, 0, 0, true);
+    			fade.onComplete.add(function () {
+    				game.state.start('game');
+    			});
+    		}
+        });
     });
 };
 
