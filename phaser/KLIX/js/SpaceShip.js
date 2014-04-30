@@ -45,7 +45,7 @@ SpaceShip.prototype.create = function(x,y){
     this.sprite.smoothed = false;
     //this.sprite.scale.setTo(1.5,1.5);
     this.bulletsGroup = this.game.add.group();
-    this.bulletsGroup.createMultiple(50, 'shoots', 'LaserRedBall.png');
+    this.bulletsGroup.createMultiple(50, 'sprites', 'shoot-red-5-5.png');
     this.bulletsGroup.setAll('anchor.x', 0.5);
     this.bulletsGroup.setAll('anchor.y', 0.5);
     this.bulletsGroup.setAll('outOfBoundsKill', true);
@@ -121,6 +121,8 @@ SpaceShip.prototype.shoot = function () {
     			this.bullet.reset(this.sprite.position.x + Math.cos((this.sprite.body.rotation + 270)*0.0174) *24,
         					  this.sprite.position.y + Math.sin((this.sprite.body.rotation + 270)*0.0174) *24);
     			this.game.physics.velocityFromAngle(this.sprite.body.rotation - 90, (9+this.bulletvel)*50, this.bullet.body.velocity);
+    			this.bullet.body.velocity.x += this.sprite.body.velocity.x;
+    			this.bullet.body.velocity.y += this.sprite.body.velocity.y;
     			this.bullet.events.onOutOfBounds.add(this.destroyShoot, this);
     			this.bullet.name = 'shoot';
 
@@ -159,6 +161,8 @@ SpaceShip.prototype.shoot = function () {
     			this.game.physics.velocityFromAngle(this.sprite.angle - 90, (5+this.bulletvel)*50, this.bullet.body.velocity);
     			this.bullet.events.onOutOfBounds.add(this.destroyShoot, this);
     			this.bullet.name = 'shoot';
+    			this.bullet.body.velocity.x += this.sprite.body.velocity.x;
+    			this.bullet.body.velocity.y += this.sprite.body.velocity.y;
     			this.bullet.scale.setTo(1,1);
     			this.bullet.anchor.setTo(0,1);
     			this.bullet.angle = this.sprite.angle + 70;
@@ -170,6 +174,8 @@ SpaceShip.prototype.shoot = function () {
     			this.game.physics.velocityFromAngle(this.sprite.angle - 90, (5+this.bulletvel)*50, bullet2.body.velocity);
     			bullet2.events.onOutOfBounds.add(this.destroyShoot, this);
     			bullet2.name = 'shoot';
+    			bullet2.body.velocity.x += this.sprite.body.velocity.x;
+    			bullet2.body.velocity.y += this.sprite.body.velocity.y;
     			bullet2.scale.setTo(1,1);
     			bullet2.anchor.setTo(0,1);
     			bullet2.angle = this.sprite.angle + 110;
@@ -189,6 +195,8 @@ SpaceShip.prototype.shoot = function () {
     			this.game.physics.velocityFromAngle(this.sprite.angle - 90, (1+this.bulletvel)*50, this.bullet.body.velocity);
     			this.bullet.events.onOutOfBounds.add(this.destroyShoot, this);
     			this.bullet.name = 'shoot';
+    			this.bullet.body.velocity.x += this.sprite.body.velocity.x;
+    			this.bullet.body.velocity.y += this.sprite.body.velocity.y;
     			this.bullet.anchor.setTo(0.5,0.5);
     			this.bullet.scale.setTo(1,1);
     			this.bullet.body.angularVelocity = 400;
@@ -201,7 +209,8 @@ SpaceShip.prototype.shoot = function () {
     			this.game.physics.velocityFromAngle(this.sprite.angle - 90, (1+this.bulletvel)*50, bullet2.body.velocity);
     			bullet2.events.onOutOfBounds.add(this.destroyShoot, this);
     			bullet2.name = 'shoot';
-    			bullet2.anchor.setTo(0.5,0.5);
+    			bullet2.body.velocity.x += this.sprite.body.velocity.x;
+    			bullet2.body.velocity.y += this.sprite.body.velocity.y;bullet2.anchor.setTo(0.5,0.5);
     			bullet2.scale.setTo(1,1);
     			bullet2.angle = this.sprite.angle;
     			bullet2.body.angularVelocity = 400;

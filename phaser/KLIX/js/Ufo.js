@@ -1,4 +1,4 @@
-Ufo = function (gameClass) {
+Ufo = function (gameClass, direction) {
     this.game = gameClass.game;
     this.gameClass = gameClass;
     this.fireRate = 750;
@@ -6,13 +6,24 @@ Ufo = function (gameClass) {
     this.nextFire = this.game.time.now + this.fireRate;
     Phaser.Sprite.call(this, this.game, 0, 0, 'sprites', 'ufo1-60-59.png');
     this.game.add.audio('ufo', 1).play();
-    this.reset(0, Math.random() * this.game.world.height);
     this.anchor.setTo(0.5,0.5);
-    this.body.velocity.x = Math.cos(45 * 0.0174) * 150;
+    switch (direction){
+    case 0:
+    	this.reset(10, 10+(Math.random() * this.game.world.height-10));break;
+    case 180:
+    	this.reset(this.game.world.width - 10, 10 + (Math.random() * this.game.world.height-10));break;
+    case 90:
+    	this.reset(10+(Math.random() * this.game.world.width-10), 10);break;
+    case 270:
+    	this.reset(10+(Math.random() * this.game.world.width-10), this.game.world.height-10);break;
+    }
+    this.game.physics.velocityFromAngle(direction, 150,this.body.velocity);
+    this.body.angularVelocity = 200;
     this.name = 'ufo';
     this.gameClass.groupUfo.add(this);
     this.hp = 50;
     this.nextFire = this.game.time.now + this.fireRate;
+    //this.outOfBoundsKill = true;
 };
 
 Ufo.prototype = Object.create(Phaser.Sprite.prototype);
@@ -23,6 +34,7 @@ Ufo.prototype.update = function () {
         this.nextFire = this.game.time.now + this.fireRate;
         this.shoot();
     }
+    this.gameClass.warp(this);
 };
 
 Ufo.prototype.shoot = function () {
