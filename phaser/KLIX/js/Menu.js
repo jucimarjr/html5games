@@ -25,10 +25,10 @@ Menu.prototype.create = function() {
     
     this.title = game.add.sprite(0, -230, 'title');
     
-    
+    this.button = 1;
     this.btnPlay = game.add.button(game.world.centerX + 15, game.world.centerY - 90, 'botoes',
     function(){ this.play(); }, this);
-    this.btnPlay.setFrames("btnplay2.png", 'btnplay1.png');
+    this.btnPlay.setFrames("btnplay1.png", 'btnplay2.png');
     this.btnPlay.anchor.x = 0.5;
 	    		
     this.btnHowToPlay = game.add.button(game.world.centerX + 15, game.world.centerY - 30, 'botoes',
@@ -63,6 +63,7 @@ Menu.prototype.create = function() {
 };
 
 Menu.prototype.setButton = function(key){
+	if(game.state.current == 'menu'){
 	if(key == 'up'){
 		this.button--;
 		if(this.button<1){
@@ -100,7 +101,7 @@ Menu.prototype.setButton = function(key){
 		this.btnHighScores.setFrames("btnscores2.png", "btnscores1.png");
 		this.btnCredits.setFrames('btncredits1.png', "btncredits2.png");
 	break;
-	}
+	}}
 };
 
 Menu.prototype.play = function () {
@@ -111,14 +112,28 @@ Menu.prototype.play = function () {
     	msg.anchor.setTo(0.5,0.5);
     	msg.x = game.width/2;
     	msg.y = game.height/2;
+    	this.btnPlay = null;
+        this.btnHowToPlay = null;
+        this.btnHighScores = null;
+        this.btnCredits = null;
     	var fadein = game.add.tween(msg).to({ alpha: 1 }, 1000, Phaser.Easing.Linear.None, true, 0, 0, true);
-    	fadein.onComplete.add(function () {
-    		var fade = game.add.tween(msg).to({ alpha: 0 }, 1000, Phaser.Easing.Linear.None, true, 0, 0, true);
-        	fade.onComplete.add(function () {
-        		game.state.start('game');
-            });
+    	var keySelect = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+    	keySelect.onDown.add(function () {
+    		if(game.state.current == 'menu'){
+    			var fade = game.add.tween(msg).to({ alpha: 0 }, 1000, Phaser.Easing.Linear.None, true, 0, 0, true);
+    			fade.onComplete.add(function () {
+    				game.state.start('game');
+    			});
+    		}
+    	});
+    	game.input.onDown.add(function() {
+    		if(game.state.current == 'menu'){
+    			var fade = game.add.tween(msg).to({ alpha: 0 }, 1000, Phaser.Easing.Linear.None, true, 0, 0, true);
+    			fade.onComplete.add(function () {
+    				game.state.start('game');
+    			});
+    		}
         });
-    	
     });
 };
 

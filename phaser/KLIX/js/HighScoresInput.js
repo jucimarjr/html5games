@@ -45,7 +45,7 @@ HighScoreInput.prototype.setLocalStorageScore = function (score, position) {
                 alert("Maximum 5 letters!");
                 name = prompt("Enter your name:","");
             }
-            localStorage["nameScore" + position] = name;
+            localStorage["nameScore" + position] = name.trim();
         }
     }
     

@@ -55,16 +55,16 @@ game.state.add('credits', Credits);
 function preload()
 {
 	game.load.atlas('sprites', 'assets/spritesheets/sprites.png', 'assets/spritesheets/sprites.json');
-	game.load.atlas('asteroids', 'assets/spritesheets/AsteroidsSpriteSheet.png', 'assets/spritesheets/AsteroidsSpriteSheet.json');
-	game.load.atlas('shoots', 'assets/spritesheets/spriteSchips.png', 'assets/spritesheets/spriteSchips.json');
-	game.load.atlas('ships', 'assets/spritesheets/SpaceShips.png', 'assets/spritesheets/SpaceShips.json');
-	game.load.image('largeasteroids', 'assets/images/asteroid1_25-60.png');
+	//game.load.atlas('asteroids', 'assets/spritesheets/AsteroidsSpriteSheet.png', 'assets/spritesheets/AsteroidsSpriteSheet.json');
+	//game.load.atlas('shoots', 'assets/spritesheets/spriteSchips.png', 'assets/spritesheets/spriteSchips.json');
+	//game.load.atlas('ships', 'assets/spritesheets/SpaceShips.png', 'assets/spritesheets/SpaceShips.json');
+	//game.load.image('largeasteroids', 'assets/images/asteroid1_25-60.png');
 	game.load.image('tiled1','assets/images/Tiled1.png');
 	game.load.image('tiled2','assets/images/Tiled2.png');
-	game.load.image('res','assets/images/res.png');
-	game.load.image('laser','assets/images/laser_5-2.png');
-	game.load.image('ship','assets/tests/nave-azul.png');
-	game.load.image('shipalt','assets/images/nave1.png');
+	//game.load.image('res','assets/images/res.png');
+	//game.load.image('laser','assets/images/laser_5-2.png');
+	//game.load.image('ship','assets/tests/nave-azul.png');
+	//game.load.image('shipalt','assets/images/nave1.png');
     game.load.audio('thrust', 'assets/audios/AsteroidsThrust.mp3');
     game.load.audio('shoot', 'assets/audios/AsteroidsShoot.mp3');
     game.load.audio('ufo', 'assets/audios/AsteroidsSaucer.mp3');
@@ -72,8 +72,12 @@ function preload()
     setHighScore();
     var keyFull = this.game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
 	keyFull.onDown.add(function(){
-		game.stage.fullScreenScaleMode = Phaser.StageScaleMode.EXACT_FIT;		
-		game.stage.scale.startFullScreen();
+		if(!game.stage.scale.isFullScreen){
+			game.stage.fullScreenScaleMode = Phaser.StageScaleMode.EXACT_FIT;		
+			game.stage.scale.startFullScreen();
+		}else{
+			game.stage.scale.stopFullScreen();
+		}
 	}, this);
     
 	splashScene = new Splash(game);
@@ -95,16 +99,16 @@ function update()
 function setHighScore()
 {
     if (typeof localStorage["scores"] == "undefined") {
-        localStorage["score1"] = 500;
-        localStorage["score2"] = 400;
-        localStorage["score3"] = 300;
-        localStorage["score4"] = 200;
-        localStorage["score5"] = 100;
-        localStorage["nameScore1"] = "AAA";
-        localStorage["nameScore2"] = "BBB";
-        localStorage["nameScore3"] = "CCC";
-        localStorage["nameScore4"] = "DDD";
-        localStorage["nameScore5"] = "EEE";
+        localStorage["score1"] = 0;
+        localStorage["score2"] = 0;
+        localStorage["score3"] = 0;
+        localStorage["score4"] = 0;
+        localStorage["score5"] = 0;
+        localStorage["nameScore1"] = "";
+        localStorage["nameScore2"] = "";
+        localStorage["nameScore3"] = "";
+        localStorage["nameScore4"] = "";
+        localStorage["nameScore5"] = "";
         localStorage["scores"] = "OK";
     }
 }

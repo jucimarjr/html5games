@@ -9,13 +9,13 @@ Ufo = function (gameClass, direction) {
     this.anchor.setTo(0.5,0.5);
     switch (direction){
     case 0:
-    	this.reset(0, Math.random() * this.game.world.height);break;
+    	this.reset(10, 10+(Math.random() * this.game.world.height-10));break;
     case 180:
-    	this.reset(this.game.world.width, Math.random() * this.game.world.height);break;
+    	this.reset(this.game.world.width - 10, 10 + (Math.random() * this.game.world.height-10));break;
     case 90:
-    	this.reset(Math.random() * this.game.world.width, 0);break;
+    	this.reset(10+(Math.random() * this.game.world.width-10), 10);break;
     case 270:
-    	this.reset(Math.random() * this.game.world.width, this.game.world.height);break;
+    	this.reset(10+(Math.random() * this.game.world.width-10), this.game.world.height-10);break;
     }
     this.game.physics.velocityFromAngle(direction, 150,this.body.velocity);
     this.body.angularVelocity = 200;
@@ -23,7 +23,7 @@ Ufo = function (gameClass, direction) {
     this.gameClass.groupUfo.add(this);
     this.hp = 50;
     this.nextFire = this.game.time.now + this.fireRate;
-    this.outOfBoundsKill = true;
+    //this.outOfBoundsKill = true;
 };
 
 Ufo.prototype = Object.create(Phaser.Sprite.prototype);
