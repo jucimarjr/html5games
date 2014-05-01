@@ -19,7 +19,7 @@ Game.prototype.preload = function(){
 Game.prototype.create = function () {
 	console.log("criando game");
 	this.soundGame = this.game.add.audio('audioBackGroundGame');
-	this.soundGame.play();
+	//this.soundGame.play();
 	this.spriteCenario = this.game.add.sprite(0, 0,'cenario');
 	
 	
@@ -110,6 +110,3 @@ Game.prototype.initZombies = function(person){
 Game.prototype.createZombie = function(person){
 	
 };
-
-
-

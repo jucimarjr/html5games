@@ -32,7 +32,7 @@ var Zombie = function (index, game, person, classGame) {
     
     this.spriteZombie.events.onInputDown.add(killZombie,this);
     
-    this.sound = game.add.audio('audioZombieDead');
+    //this.sound = game.add.audio('audioZombieDead');
     
     this.spriteZombie.body.velocity.x  = Math.random()*10;
     this.spriteZombie.body.velocity.y  = Math.random()*10;
@@ -40,6 +40,10 @@ var Zombie = function (index, game, person, classGame) {
 
 Zombie.prototype.update = function (){
 	//this.classGame
+	if(!this.alive&&!this.spriteZombie.animation.isPlaying){
+		console.log("destroy");
+		this.spriteZombie.destroy();
+	}
 };
 
 Zombie.prototype.preload = function(){
@@ -47,11 +51,19 @@ Zombie.prototype.preload = function(){
 };
 
 function killZombie(){
-	this.sound.play();
-	this.spriteZombie.destroy();
+	//this.sound.play();
+	//this.spriteZombie.destroy();
+	this.spriteZombie.body.velocity.x  = 0;
+    this.spriteZombie.body.velocity.y  = 0;
+	this.alive = false;
+	this.spriteZombie.loadTexture('zombieDead');
+	this.spriteZombie.animations.add('zDead');
+	//this.spriteZombie.destroy();
+    this.spriteZombie.play('zDead',7,false,true);
     this.classGame.amountZombies -= 1;
     this.classGame.punctuate(1);
-    console.log("amount zombie ="+this.classGame.amountZombie);
+    
+    //console.log("amount zombie ="+this.classGame.amountZombie);
 };
 
 function createSprite(rand){

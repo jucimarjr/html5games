@@ -33,6 +33,7 @@ var spriteSheetsJsonZombieDown = "assets/spritesheets/ZombieDown.json";
 var spriteSheetsImageZombieLeft = "assets/spritesheets/zombieLeft.png";
 var spriteSheetsImageZombieRigth = "assets/spritesheets/zombieRigth.png";
 var spriteSheetsImageZombieUp = "assets/spritesheets/zombieUp.png";
+var spriteSheetsImageZombieDead = "assets/spritesheets/zombieDead.png";
 //Spritesheets Do Zumbi
 var spriteSheetsImagePersonDown = "assets/spritesheets/personDown.png";
 
