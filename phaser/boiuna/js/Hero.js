@@ -1,0 +1,1 @@
+var State.Game.Hero = funciton (game)
