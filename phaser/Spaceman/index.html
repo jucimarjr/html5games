@@ -1,0 +1,99 @@
+<!doctype html> 
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://opengraphprotocol.org/schema/">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta property="og:title" content="Spaceman" />
+		<meta property="og:type" content="website" />
+		<meta property="og:description" content="Voe sobre a superfície de um cometa e teste suas habilidades como astronalta intergalático desviando de seu rastro destrutivo." />
+		<meta property="og:url" content="http://computacao.uea.edu.br/ludus/games/spaceman/" />
+		<meta property="og:image" content="http://computacao.uea.edu.br/ludus/games/spaceman/spaceman.png">
+		<meta property="og:image:type" content="image/png">
+		<meta property="og:image:width" content="200">
+		<meta property="og:image:height" content="200">
+
+	<meta charset="UTF-8" />
+	<title>Spaceman</title>
+	<script type="text/javascript" src="js/phaser.min.js"></script>
+	<script type="text/javascript" src="js/human.js"></script>
+	<script type="text/javascript" src="js/Game.js"></script>
+	<script type="text/javascript" src="js/Credits.js"></script>
+	<script type="text/javascript" src="js/Menu.js"></script>
+	<script type="text/javascript" src="js/Splash.js"></script>
+    <style type="text/css">
+        body {
+        	background-color:#ffffff;
+            margin: 16px;
+        }
+        @font-face {
+    		font-family: '3d font';
+    		src: url('assets/fonts/3D-Thirteen-Pixel-Fonts.ttf');
+		}
+		@font-face{
+			font-family: 'karmatic arcade';
+			src: url('assets/fonts/ka1.ttf');
+		}
+		#game{
+			font-family:'3d font';
+			font-size: 122px;
+			color: #00ff00;
+		}
+		h3 {
+			color:#000000;
+		}	
+		canvas {
+    		padding-left: 0;
+    		padding-right: 0;
+    		margin-left: auto;
+    		margin-right: auto;
+		}
+    </style>
+</head>
+<body>
+	<div id="game">
+		
+	</div>
+<script type="text/javascript">
+	var game = new Phaser.Game(960, 600, Phaser.CANVAS, 'game', { preload: preload, create: create, update: update, render: render });
+//game.state.add('splash', Splash, false);
+game.state.add('game', Game, false);
+//game.state.add('menu', Menu, false);
+//game.state.add('credits', Credits, false);
+
+function preload()
+{
+	
+	
+}
+
+function create()
+{
+
+	game.state.start('game');
+	
+}
+
+function update()
+{
+	
+	
+}
+
+function render () 
+{
+
+}
+
+</script>
+<div>
+<center>
+<h3>Desenvolvedores:</h3>
+<a href = 'https://www.facebook.com/people/Luiz-Gama/1167844510'>Luiz Gama</a><br>
+<a href = 'https://www.facebook.com/artuurfernandes'>Artur Fernandes</a><br>
+
+<h3>Orientador:</h3>
+<a href = 'https://www.facebook.com/jucimar.jr'>Jucimar Jr.</a>
+</center>
+
+</div>
+</body>
+</html>
