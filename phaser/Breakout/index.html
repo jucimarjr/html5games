@@ -1,0 +1,114 @@
+<!doctype html> 
+<html lang="en" xmlns:og="http://opengraphprotocol.org/schema/"> 
+<head> 
+	<meta charset="UTF-8" />
+	<meta property="og:title" content="Breakout" />
+	<meta property="og:type" content="website" />
+	<meta property="og:description" content="Destrua os blocos coloridos e teste seus reflexos nesta vers�o do classico Breakout de 1976 do Atari." />
+	<meta property="og:url" content="http://computacao.uea.edu.br/ludus/games/breakout/" />
+        <meta property="og:image" content="http://computacao.uea.edu.br/ludus/games/breakout/160x160.png"/>
+
+	<title>Breakout!!!</title>
+
+	<script type="text/javascript" src="js/phaser.min.js"></script>
+	<script type="text/javascript" src="js/Splash.js"></script>
+	<script type="text/javascript" src="js/Game.js"></script>
+	<script type="text/javascript" src="js/Menu.js"></script>
+	<script type="text/javascript" src="js/Credits.js"></script>
+
+    <style type="text/css">
+        body {
+        	background-color:#ffffff;
+            margin: 16px;
+        }
+        @font-face {
+ 	   		font-family: 'karmatic arcade';
+    		src: url('assets/fonts/ka1.ttf');
+		}
+		@font-face{
+			font-family: 'Back to 1982';
+    		src: url('assets/fonts/BACKTO1982.TTF');
+		}
+		#game{
+			font-family:'Back to 1982';
+			font-size: 72px;
+		}
+		div{
+			font-family:'karmatic arcade';
+			font-size: 16px;
+		}
+		h3 {
+			color:#000000;
+		}	
+		canvas {
+    		padding-left: 0;
+    		padding-right: 0;
+    		margin-left: auto;
+    		margin-right: auto;
+    		display: block;
+		}
+    </style>
+</head>
+<body>
+	<div id="game">
+		<center>
+		BREAKOUT !
+	</center>
+	</div>
+
+	<script type="text/javascript">
+	var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game', { preload: preload, create: create, update: update });		
+	var splashScene = null;	
+	game.state.add('game', Game, false);
+	game.state.add('menu', Menu, false);
+	game.state.add('credits', Credits, false);
+
+	function preload() {
+		game.load.audio('ballFall','assets/sfx/ballFall.wav');
+		game.load.audio('Explosion1','assets/sfx/Explosion1.wav');
+		game.load.audio('Explosion2','assets/sfx/Explosion2.wav');
+		game.load.audio('gameOver','assets/sfx/gameOver.wav');
+		game.load.audio('hit1','assets/sfx/hit1.wav');
+		game.load.audio('hit2','assets/sfx/hit2.wav');
+		game.load.audio('hitPlayer','assets/sfx/hitPlayer.wav');
+		game.load.image('bg','assets/Sprites/backGround.png');
+		game.load.image('blueBlock','assets/Sprites/blueBlock.png');
+		game.load.image('greenBlock','assets/Sprites/greenBlock.png');
+		game.load.image('yelowBlock','assets/Sprites/yelowBlock.png');
+		game.load.image('orangeBlock','assets/Sprites/orangeBlock.png');
+		game.load.image('redBlock','assets/Sprites/redBlock.png');
+		game.load.image('ball','assets/Sprites/ball.png');
+		game.load.image('player','assets/Sprites/player.png');
+		game.load.image('gameOver','assets/Sprites/gameOver.png');
+
+	
+		splashScene = new Splash();
+		splashScene.preload();
+		
+	}
+
+	function create() {
+
+		splashScene.create();
+	}
+
+	function update() {
+		
+	}
+
+	
+	
+	
+	</script>
+<div>
+<center>
+<h3>Desenvolvedor:</h3>
+<a href = 'https://www.facebook.com/people/Luiz-Gama/1167844510'>Luiz Gama</a><br>
+<h3>Orientador:</h3>
+<a href = 'https://www.facebook.com/jucimar.jr'>Jucimar Jr.</a>
+</center>
+
+</div>
+
+</body>
+</html>
