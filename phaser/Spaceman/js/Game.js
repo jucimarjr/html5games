@@ -1,7 +1,7 @@
 var Game = function()
 {
 this.sprite;// mudar depois pra uma classe Player.
-this.gravity = 800;
+this.gravity = 1000;
 this.upSpeed = 100;
 this.frontGround;
 this.frontGround2;
