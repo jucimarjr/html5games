@@ -84,7 +84,10 @@ Config.defeatScreen = {
 
 //Level
 Config.level = {
-	dir:'assets/images/GameBackground_1920-600.png',
+	dir:{
+		background:'assets/images/GameBackground_1920-600.png',
+		map:'assets/images/map.json'
+	},
 	x:0,
 	y:0,
 	worldBounds:{
@@ -166,4 +169,7 @@ Config.smallDragon = {
 }; 
 //FabioLahis
 //JacksonAntonio
+
+Config.level
+
 //JacksonAntonio
