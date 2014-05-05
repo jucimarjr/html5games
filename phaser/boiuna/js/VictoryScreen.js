@@ -1,10 +1,10 @@
 State.VictoryScreen = function(game){}
 State.VictoryScreen.prototype = {
 	preload:function(){
-		game.load.image('victory-screen', Config.dirVictoryScreen);
+		game.load.image('victory-screen', Config.victoryScreen.dir);
 	},
 	create:function(){
-		var background = game.add.sprite(Config.xVictoryScreen, Config.yVictoryScreen, 'victory-screen');
+		var background = game.add.sprite(Config.victoryScreen.x, Config.victoryScreen.y , 'victory-screen');
 		background.inputEnabled = true;
 		background.events.onInputDown.add(onClick, this);
 	},

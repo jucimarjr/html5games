@@ -20,7 +20,7 @@ Map1.prototype = {
 		this.tileset = this.map.addTilesetImage('wall', 'fp_walls');	
 		
 		this.layer = this.map.createLayer(fp_wallLayer);				
-		this.layer.resizeWorld();		
+		this.layer.resizeWorld();				
 
 		this.map.setCollision(1, true, fp_wallLayer);		
 		
