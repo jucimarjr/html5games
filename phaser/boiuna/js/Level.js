@@ -4,11 +4,11 @@ var Level = function(game){
 };
 Level.prototype = {
 	preload:function(){
-		this.game.load.image('game-background', Config.dirGameBackground);
+		this.game.load.image('game-background', Config.level.dir);
 	},
 	create:function(){
 		this.game.physics.startSystem(Phaser.Physics.ARCADE);
-		this.game.world.setBounds(Config.xBeginWorldBounds, Config.yBeginWorldBounds, Config.xEndWorldBounds, Config.yEndWorldBounds);
-		this.sprite = game.add.sprite(Config.xGameBackground, Config.yGameBackground, 'game-background');		
+		this.game.world.setBounds(Config.level.worldBounds.xi, Config.level.worldBounds.yi, Config.level.worldBounds.xf, Config.level.worldBounds.yf);
+		this.sprite = game.add.sprite(Config.level.x, Config.level.y, 'game-background');		
 	}
 };
