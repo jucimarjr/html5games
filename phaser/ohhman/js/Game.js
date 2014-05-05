@@ -32,7 +32,10 @@ Game.prototype = {
 		inkey.update(layer);
 		pinky.update(layer);		
 	},
-
+	
+	render : function() {
+		blinky.render();
+	},
 	
 	loadMap : function() {
 		map = new Map1();
