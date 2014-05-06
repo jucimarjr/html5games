@@ -30,22 +30,24 @@ Blinky.prototype = {
 	moveRandomly : function() {
 		//Move o blinky na horizontal (esquerda/direita)
 		if (this.direction == "LEFT") {			
-			this.sprite.body.setSize(30, 36, 35, 0);
+			this.sprite.body.setSize(36, 36, 35, 0);				
 			this.sprite.body.velocity.x = -this.speed;
 			this.sprite.body.velocity.y = 0;						
 		}
 		if (this.direction == "RIGHT") {			
+			this.sprite.body.setSize(36, 36, -35, 0);
 			this.sprite.body.velocity.x = this.speed;			
 			this.sprite.body.velocity.y = 0;
 		}
 		
 		//Move o blinky na vertical (cima/baixo)
 		if (this.direction == "UP") {			
+			this.sprite.body.setSize(30, 30, -1, 35);	
 			this.sprite.body.velocity.x = 0;
 			this.sprite.body.velocity.y = -this.speed;
 		}
 		if (this.direction == "DOWN") {				
-		    this.sprite.body.setSize(36, 30, -1, -35);
+		    this.sprite.body.setSize(30, 30, -1, -30);			
 			this.sprite.body.velocity.x = 0;
 			this.sprite.body.velocity.y = this.speed;			
 		}
@@ -63,18 +65,16 @@ Blinky.prototype = {
 	
 	//Seta uma direção aleatória para o blinky
 	setNewDirection : function() {
-		console.log("colidiu com o ponto de decisao");
-		this.sprite.body.velocity.x = 0;
-		this.sprite.body.velocity.y = 0;
+		console.log("colidiu com o ponto de decisao");		
 		this.direction = 'DOWN';
-		/*console.log("colidiu com o ponto de decisao");
 		
-		if (this.direction == 'LEFT')
+		
+		/*if (this.direction == 'LEFT')
 			this.direction = 'DOWN';
 		else if (this.direction == 'DOWN')
 			this.direction = 'RIGHT';
+		*/
 			
-			*/
 		/*var numberDirection = Math.round(1 + Math.random()*4);
 		this.sprite.body.setSize(36, 36);
 		switch(numberDirection){
