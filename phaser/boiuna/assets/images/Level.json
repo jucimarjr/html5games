@@ -13,6 +13,31 @@
         }, 
         {
          "height":20,
+         "name":"LayerHero",
+         "objects":[
+                {
+                 "gid":12,
+                 "height":0,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":10,
+                 "y":276
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "width":64,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "height":20,
          "name":"LayerPricess",
          "objects":[
                 {
@@ -158,101 +183,6 @@
          "width":64,
          "x":0,
          "y":0
-        }, 
-        {
-         "height":20,
-         "name":"LayerBoiuna",
-         "objects":[
-                {
-                 "gid":8,
-                 "height":0,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":189,
-                 "y":96
-                }, 
-                {
-                 "gid":9,
-                 "height":0,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":278,
-                 "y":96
-                }, 
-                {
-                 "gid":10,
-                 "height":0,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":365,
-                 "y":97
-                }, 
-                {
-                 "gid":9,
-                 "height":0,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":454,
-                 "y":97
-                }, 
-                {
-                 "gid":10,
-                 "height":0,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":543,
-                 "y":99
-                }, 
-                {
-                 "gid":11,
-                 "height":0,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":632,
-                 "y":99
-                }],
-         "opacity":1,
-         "type":"objectgroup",
-         "visible":true,
-         "width":64,
-         "x":0,
-         "y":0
         }],
  "orientation":"orthogonal",
  "properties":
@@ -324,6 +254,21 @@
          "tileheight":90,
          "tilewidth":90,
          "transparentcolor":"#ffffff"
+        }, 
+        {
+         "firstgid":12,
+         "image":"..\/spritesheets\/Hero_180-60.png",
+         "imageheight":60,
+         "imagewidth":180,
+         "margin":0,
+         "name":"Hero",
+         "properties":
+            {
+
+            },
+         "spacing":0,
+         "tileheight":60,
+         "tilewidth":30
         }],
  "tilewidth":30,
  "version":1,

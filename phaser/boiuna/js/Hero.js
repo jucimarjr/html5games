@@ -13,8 +13,11 @@ Hero.prototype = {
 	},
 	create: function () {
 		"use strict";
-        this.sprite = this.game.add.sprite(Config.hero.xi, Config.hero.yi, 'hero');
-		this.game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
+        var characthers = this.game.add.group();
+        characthers.enableBody = true;
+        this.platforms.map.createFromObjects('LayerHero', 12, 'hero', 0, true, false, characthers);
+        this.sprite = characthers.getTop();
+        this.game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
 		this.sprite.body.collideWorldBounds = true;
 		this.sprite.body.gravity.y = Config.hero.gravity;
 		this.sprite.animations.add('walk', [1, 2], Config.global.animationVelocity, true);

@@ -1,11 +1,12 @@
 /*global State, Config, Phaser, Level, Platforms, Hero, SmallDragon*/
 State.Game = function (game) {
     "use strict";
+    this.game = game;
 	this.level = new Level(game);
     this.platforms = new Platforms(game);
 	this.hero = new Hero(game, this.platforms);
 	this.smallDragon = new SmallDragon(game, this.hero);
-    this.game = game;
+    
 };
 State.Game.prototype = {
 	preload: function () {
@@ -18,8 +19,8 @@ State.Game.prototype = {
 	create: function () {
         "use strict";
 		this.level.create();
-		this.hero.create();
         this.platforms.create();
+		this.hero.create();
 		this.smallDragon.create();
 	},
 	update: function () {
