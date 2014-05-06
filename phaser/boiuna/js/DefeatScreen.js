@@ -1,19 +1,26 @@
-State.DefeatScreen = function(game){}
+/*global State, Config, Phaser*/
+State.DefeatScreen = function (game) {
+    "use strict";
+};
 State.DefeatScreen.prototype = {
-	preload:function(){
-		game.load.image('defeat-screen', Config.defeatScreen.dir);
+	preload: function () {
+        "use strict";
+		this.game.load.image('defeat-screen', Config.defeatScreen.dir);
 	},
-	create:function(){
-		var background = game.add.sprite(Config.defeatScreen.x, Config.defeatScreen.y, 'defeat-screen');
+	create: function () {
+        "use strict";
+		var background = this.game.add.sprite(Config.defeatScreen.x, Config.defeatScreen.y, 'defeat-screen');
 		background.inputEnabled = true;
-		background.events.onInputDown.add(onClick, this);
+		background.events.onInputDown.add(this.onClick, this);
 	},
-	update: function(){
-		if (game.input.keyboard.isDown(Phaser.Keyboard.ENTER)){
-			game.state.start('Menu');
+	update: function () {
+        "use strict";
+		if (this.game.input.keyboard.isDown(Phaser.Keyboard.ENTER)) {
+			this.game.state.start('Menu');
 		}
-	}
-}
-function onClick(){
-	game.state.start('Menu');
-}
+	},
+    onClick: function () {
+        "use strict";
+        this.game.state.start('Menu');
+    }
+};

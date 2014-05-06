@@ -1,16 +1,22 @@
-State = {};
-State.LudusSplash = function (game){};
+/*global Config, Phaser*/
+var State = {
+    LudusSplash: function (game) {
+        "use strict";
+    }
+};
 State.LudusSplash.prototype = {
-	preload: function(){
-		game.load.image('ludus-splash',Config.ludusSplash.dir);
+	preload: function () {
+		"use strict";
+        this.game.load.image('ludus-splash', Config.ludusSplash.dir);
 	},
-	create: function(){
-		var sprite = game.add.sprite(Config.ludusSplash.x,Config.ludusSplash.y,'ludus-splash');
-		setTimeout(function() {
-			game.add.tween(sprite).to({alpha : 0}, Config.ludusSplash.millis, Phaser.Easing.Linear.None).start();
+	create: function () {
+		"use strict";
+        var sprite = this.game.add.sprite(Config.ludusSplash.x, Config.ludusSplash.y, 'ludus-splash');
+		setTimeout(function () {
+			this.game.add.tween(sprite).to({alpha : 0}, Config.ludusSplash.millis, Phaser.Easing.Linear.None).start();
 		}, Config.ludusSplash.millis);
-		setTimeout(function() {
-			game.state.start('GameSplash');
+		setTimeout(function () {
+			this.game.state.start('GameSplash');
 		}, Config.ludusSplash.nextState);
 	}
 };

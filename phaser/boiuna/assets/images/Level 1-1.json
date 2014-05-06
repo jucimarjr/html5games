@@ -263,7 +263,7 @@
  "tilesets":[
         {
          "firstgid":1,
-         "image":"Terrain.png",
+         "image":"Terrain_150-30.png",
          "imageheight":30,
          "imagewidth":150,
          "margin":0,
@@ -279,7 +279,7 @@
         }, 
         {
          "firstgid":6,
-         "image":"Grass.png",
+         "image":"Grass_30-30.png",
          "imageheight":30,
          "imagewidth":30,
          "margin":0,

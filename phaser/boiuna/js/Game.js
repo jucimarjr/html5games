@@ -1,25 +1,40 @@
-var hero = null;
-var level = null;
-var smallDragon = null;
-State.Game = function(game){
-	level = new Level(game);
-	hero = new Hero(game);
-	smallDragon = new SmallDragon(game,hero);
+/*global State, Config, Phaser, Level, Platforms, Hero, SmallDragon*/
+State.Game = function (game) {
+    "use strict";
+	this.level = new Level(game);
+    this.platforms = new Platforms(game);
+	this.hero = new Hero(game, this.platforms);
+	this.smallDragon = new SmallDragon(game, this.hero);
+    this.game = game;
 };
 State.Game.prototype = {
-	preload: function(){
-		level.preload();
-		hero.preload();
-		smallDragon.preload();
+	preload: function () {
+        "use strict";
+		this.level.preload();
+        this.platforms.preload();
+        this.hero.preload();
+		this.smallDragon.preload();
 	},
-	create: function(){
-		level.create();
-		hero.create();
-		smallDragon.create();
+	create: function () {
+        "use strict";
+		this.level.create();
+		this.hero.create();
+        this.platforms.create();
+		this.smallDragon.create();
 	},
-	update:function(){
-		hero.update();
-		smallDragon.update();
+	update: function () {
+        "use strict";
+		this.hero.update();
+		this.smallDragon.update();
 	}
 };
-	
+/*
+class State.Game{
+    public int level;
+    public int platforms;
+    public int hero;
+    public int smallDragon;
+    
+    
+    
+}*/
