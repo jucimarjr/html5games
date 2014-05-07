@@ -21,6 +21,9 @@ var Game = function(game){
 	this.timeAsteroids = 15000;
 	this.mapBox = null;
 	this.spawnText = null;
+	this.nexttick = 1000;
+	this.ticktime = 1000;
+	this.tickcount = 0;
 };
 
 Game.prototype.create = function () {
@@ -52,18 +55,30 @@ Game.prototype.create = function () {
 	this.fps = this.game.add.text(10, 470, 'FPS: '+this.game.time.fps, {
         font: "12px 'Vector Battle'", fill: "#ffffff" , align: "right"
     });
-	this.Hud = this.game.add.text(50, 50, 'Resources \nto colect: '+this.groupResources.countLiving()+'\nShoot Type: ', {
-        font: "12px 'Vector Battle'", fill: "#ffffff" , align: "right"
+	this.Hud = this.game.add.text(50, 50, 'TIME: '+this.time/10, {
+        font: "24px 'Vector Battle'", fill: "#ffffff" , align: "right"
     });		
+	this.time = 1800;
+	this.timer = game.time.events.loop(100, this.updateCounter, this);
+	//console.log(this.timer.timer.stop())
+	
+	this.tick1 = game.add.audio('tick1');
+	this.tick2 = game.add.audio('tick2');	
+	this.siren = game.add.audio('siren', 0.5);
+};
+
+Game.prototype.updateCounter = function(){
+	this.time--;
+	this.Hud.content = 'TIME: '+parseInt(this.time/10);
+	if(this.time <= 0){
+		this.gameOver();
+	}
 };
 
 Game.prototype.collectResources = function(spaceship, resource){
+	this.time += 300;
 	resource.kill();
-	this.Hud.content = 'Resources \nto colect: '+this.groupResources.countLiving();
 	this.punctuate(50);
-	if(this.groupResources.countLiving() <=0){
-		setTimeout(function () { this.game.world.setBounds(0, 0, 800, 480);game.state.start('Win', Win);} , 3000 );
-	}
 };
 
 Game.prototype.drawMap = function(){
@@ -119,7 +134,6 @@ Game.prototype.drawPoint = function(px, py, color){
 };
 
 Game.prototype.update = function () {
-	this.Hud.content = 'Resources \nto colect: '+this.groupResources.countLiving()+'\nShoot Type: '+this.spaceShip.shootType;
 	this.fps.content = 'FPS: '+this.game.time.fps;
 	this.fps.x = this.game.camera.x + 10;
 	this.fps.y = this.game.camera.y + 400;
@@ -166,6 +180,51 @@ Game.prototype.update = function () {
         this.addResources(1);
         this.numAsteroids++;
     }
+    if(this.game.time.now > this.nexttick){
+    	this.tickcount++;
+    	this.nexttick = this.game.time.now + this.ticktime;
+    	if(this.tickcount%2)
+    		this.tick1.play();
+    	else
+    		this.tick2.play();
+    	console.log('tick');
+    	if(this.time < 300){
+    		if(!this.siren.isPlaying)
+    			this.siren.play();
+    	}
+    	if(this.time < 500){
+    		this.ticktime = 100;
+    	}else if(this.time < 600){
+    		this.ticktime = 200;
+    	}else if(this.time < 700){
+    		this.ticktime = 300;
+    	}else if(this.time < 800){
+    		this.ticktime = 400;
+    	}else if(this.time < 900){
+    		this.ticktime = 500;
+    	}else if(this.time < 1000){
+    		this.ticktime = 550;
+    	}else if(this.time < 1100){
+    		this.ticktime = 600;
+    	}else if(this.time < 1200){
+    		this.ticktime = 650;
+    	}else if(this.time < 1300){
+    		this.ticktime = 700;
+    	}else if(this.time < 1400){
+    		this.ticktime = 750;
+    	}else if(this.time < 1500){
+    		this.ticktime = 800;
+    	}else if(this.time < 1600){
+    		this.ticktime = 850;
+    	}else if(this.time < 1700){
+    		this.ticktime = 900;
+    	}else if(this.time < 1800){
+    		this.ticktime = 950;
+    	}else{
+    		this.ticktime = 1000;
+    	}
+    	
+    }
     this.drawMap();
     this.collide();
 };
@@ -186,7 +245,7 @@ Game.prototype.collide = function(){
 Game.prototype.collideObj = function(obj1, obj2){
 	var damage = 100;
 	if(obj2.name == 'shoot' || obj1.name == 'shoot'){
-		var damage = 10;
+		damage = 10;
 		if(obj1.name == 'shoot'){
 			obj1.kill();
 			var emitter = this.game.add.emitter(obj1.x, obj1.y, 15);
@@ -489,6 +548,8 @@ Game.prototype.punctuate = function (points) {
 };
 
 Game.prototype.gameOver = function () {
+	this.siren.stop();
+	this.timer.timer.stop();
     game.score = this.score;
     setTimeout(function () { this.game.world.setBounds(0, 0, 800, 480);game.state.start('lose', Lose);} , 3000 );
 };

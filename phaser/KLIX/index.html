@@ -2,7 +2,7 @@
 <html lang="en"> 
 <head> 
 	<meta charset="UTF-8" />
-	<title>Asteroids</title>
+	<title>Klix</title>
 	
 	<script type="text/javascript" src="js/phaser.min.js"></script>	
 	<script type="text/javascript" src="js/Splash.js"></script>
@@ -68,7 +68,9 @@ function preload()
     game.load.audio('thrust', 'assets/audios/AsteroidsThrust.mp3');
     game.load.audio('shoot', 'assets/audios/AsteroidsShoot.mp3');
     game.load.audio('ufo', 'assets/audios/AsteroidsSaucer.mp3');
-    game.load.audio('laserSound', 'assets/audios/laser.wav');
+    game.load.audio('tick1', 'assets/audios/tick1.wav');
+    game.load.audio('tick2', 'assets/audios/tick2.wav');
+    game.load.audio('siren', 'assets/audios/siren.wav');
     setHighScore();
     var keyFull = this.game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
 	keyFull.onDown.add(function(){
