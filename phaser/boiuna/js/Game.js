@@ -8,7 +8,7 @@ State.Game = function (game) {
     this.platforms = new Platforms(game, this.tilemap);
 	this.hero = new Hero(game, this.tilemap, this.platforms);
     this.grass = new Grass(game, this.tilemap);
-	this.smallDragon = new SmallDragon(game, this.hero);
+	this.smallDragon = new SmallDragon(game, this.tilemap, this.hero);
 };
 State.Game.prototype = {
 	preload: function () {
