@@ -24,7 +24,7 @@ Ohhman.prototype = {
 		
 		//Insere pontuação na tela
 		var style = { font: "25px Arial", fill: "#ffffff", align: "right" };
-		this.scoreText = game.add.text(game.width/2, 20 , "" + this.score, style);	
+		this.scoreText = game.add.text(game.width/2, 10 , "" + this.score, style);	
 	},
 	
 	update : function() {				
