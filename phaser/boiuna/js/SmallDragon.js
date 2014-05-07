@@ -1,4 +1,5 @@
 /*global Config, Phaser*/
+
 var SmallDragon = function (game, hero) {
 	"use strict";
     this.game = game;

@@ -1,7 +1,9 @@
 /*global Config, Phaser*/
+
 var State = {
     LudusSplash: function (game) {
         "use strict";
+        this.game = game;
     }
 };
 State.LudusSplash.prototype = {

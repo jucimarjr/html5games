@@ -1,4 +1,5 @@
-/*global State, Config, Phaser*/
+/*global Config, Phaser*/
+
 var Level = function (game) {
 	"use strict";
     this.game = game;

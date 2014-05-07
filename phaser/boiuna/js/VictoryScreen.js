@@ -1,6 +1,8 @@
 /*global State, Config, Phaser*/
+
 State.VictoryScreen = function (game) {
     "use strict";
+    this.game = game;
 };
 State.VictoryScreen.prototype = {
 	preload: function () {

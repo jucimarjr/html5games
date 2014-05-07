@@ -1,6 +1,8 @@
 /*global State, Config, Phaser*/
+
 State.GameSplash = function (game) {
     "use strict";
+    this.game = game;
 };
 State.GameSplash.prototype = {
 	preload: function () {

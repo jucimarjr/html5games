@@ -1,22 +1,20 @@
-/*global State, Config, Phaser*/
-var Platforms = function (game) {
+/*global Config*/
+
+var Platforms = function (game, tilemap) {
     "use strict";
     this.game = game;
+    this.tilemap = tilemap;
+    this.mainLayer = null;
 };
 Platforms.prototype = {
     preload: function () {
         "use strict";
-        this.game.load.tilemap('Level', 'assets/images/Level.json', null, Phaser.Tilemap.TILED_JSON);
-		this.game.load.image('Terrain', 'assets/images/Terrain_150-30.png');
-		this.game.load.image('Grass', 'assets/images/Grass_30-30.png');
-    },
+        this.game.load.image('terrain', Config.platforms.dir);
+	},
     create: function () {
         "use strict";
-        this.map = this.game.add.tilemap('Level');
-		this.map.addTilesetImage('Grass');
-		this.map.addTilesetImage('Terrain');
-		this.mainLayer = this.map.createLayer('LayerMain');
-		this.map.createLayer('LayerUpper');
-        this.map.setCollisionByExclusion([0], 'LayerMain');
+        this.tilemap.map.addTilesetImage(Config.platforms.tileset, 'terrain');
+		this.mainLayer = this.tilemap.map.createLayer(Config.platforms.layer);
+		this.tilemap.map.setCollisionByExclusion([0], Config.platforms.layer);
     }
 };

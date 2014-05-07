@@ -86,10 +86,7 @@ Config.defeatScreen = {
 
 //Level
 Config.level = {
-	dir: {
-		background: 'assets/images/GameBackground_1920-600.png',
-		map: 'assets/images/map.json'
-	},
+	dir: 'assets/images/GameBackground_1920-600.png',
 	x: 0,
 	y: 0,
 	worldBounds: {
@@ -100,11 +97,28 @@ Config.level = {
 	}
 };
 
+//Tilemap
+Config.tilemap = {
+    dir: 'assets/images/Tilemap.json'
+};
+
+//Platform
+Config.platforms = {
+    dir: 'assets/images/Terrain_150-30.png',
+    layer: 'LayerMain',
+    tileset: 'Terrain'
+};
+
+//Grass
+Config.grass = {
+    dir: 'assets/images/Grass_30-30.png',
+    layer: 'LayerUpper',
+    tileset: 'Grass'
+};
+
 //Hero
 Config.hero = {
 	dir: 'assets/spritesheets/Hero_180-60.png',
-	xi: 0,
-	yi: 540,
 	velocity: {
 		initial: {
 			x: 0,

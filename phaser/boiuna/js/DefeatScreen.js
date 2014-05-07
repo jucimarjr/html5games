@@ -1,6 +1,8 @@
 /*global State, Config, Phaser*/
+
 State.DefeatScreen = function (game) {
     "use strict";
+    this.game = game;
 };
 State.DefeatScreen.prototype = {
 	preload: function () {

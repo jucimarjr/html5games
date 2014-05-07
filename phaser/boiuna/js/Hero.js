@@ -1,9 +1,11 @@
-/*global State, Config, Phaser, Console*/
-var Hero = function (game, platforms) {
+/*global Config, Phaser, Console*/
+
+var Hero = function (game, tilemap, platforms) {
 	"use strict";
     this.game = game;
 	this.sprite = null;
 	this.jumpControl = 0;
+    this.tilemap = tilemap;
     this.platforms = platforms;
 };
 Hero.prototype = {
@@ -13,10 +15,10 @@ Hero.prototype = {
 	},
 	create: function () {
 		"use strict";
-        var characthers = this.game.add.group();
-        characthers.enableBody = true;
-        this.platforms.map.createFromObjects('LayerHero', 12, 'hero', 0, true, false, characthers);
-        this.sprite = characthers.getTop();
+        var group = this.game.add.group();
+        group.enableBody = true;
+        this.tilemap.map.createFromObjects('LayerHero', 12, 'hero', 0, true, false, group);
+        this.sprite = group.getTop();
         this.game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
 		this.sprite.body.collideWorldBounds = true;
 		this.sprite.body.gravity.y = Config.hero.gravity;

@@ -1,6 +1,8 @@
-/*global State, Config, Phaser*/
+/*global State, Config*/
+
 State.Menu = function (game) {
     "use strict";
+    this.game = game;
 };
 State.Menu.prototype = {
 	preload: function () {

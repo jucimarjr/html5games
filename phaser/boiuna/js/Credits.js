@@ -1,6 +1,8 @@
 /*global State, Config, Phaser*/
+
 State.Credits = function (game) {
     "use strict";
+    this.game = game;
 };
 State.Credits.prototype = {
 	preload: function () {
