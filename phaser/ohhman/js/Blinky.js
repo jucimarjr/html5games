@@ -3,6 +3,8 @@ Blinky = function () {
 	this.speed = 20;
 	
 	this.direction = "LEFT"; //LEFT, RIGHT, UP, DOWN
+	
+	this.changeDirection = false;
 };
 
 Blinky.prototype = {
@@ -23,38 +25,38 @@ Blinky.prototype = {
 	update : function() {
 		this.moveRandomly();
 		this.verifyMapCollision();
-		this.verifyDecisionCollision();				
+		this.verifyDecisionCollision();						
 	},
 	
 	//Move o blinky
 	moveRandomly : function() {
 		//Move o blinky na horizontal (esquerda/direita)
 		if (this.direction == "LEFT") {			
-			this.sprite.body.setSize(36, 36, 35, 0);				
+			//this.sprite.body.setSize(36, 36, 35, 0);				
 			this.sprite.body.velocity.x = -this.speed;
-			this.sprite.body.velocity.y = 0;						
+			this.sprite.body.velocity.y = 0;			
 		}
 		if (this.direction == "RIGHT") {			
-			this.sprite.body.setSize(36, 36, -35, 0);
+			//this.sprite.body.setSize(36, 36, -35, 0);
 			this.sprite.body.velocity.x = this.speed;			
 			this.sprite.body.velocity.y = 0;
 		}
 		
 		//Move o blinky na vertical (cima/baixo)
 		if (this.direction == "UP") {			
-			this.sprite.body.setSize(30, 30, -1, 35);	
+			//this.sprite.body.setSize(30, 30, -1, 35);	
 			this.sprite.body.velocity.x = 0;
 			this.sprite.body.velocity.y = -this.speed;
 		}
 		if (this.direction == "DOWN") {				
-		    this.sprite.body.setSize(30, 30, -1, -30);			
+		    //this.sprite.body.setSize(30, 30, -1, -30);			
 			this.sprite.body.velocity.x = 0;
 			this.sprite.body.velocity.y = this.speed;			
 		}
 	},
 	
 	//Verifica a colisão do blinky com o mapa
-	verifyMapCollision : function() {		
+	verifyMapCollision : function() {					
 		game.physics.arcade.collide(this.sprite, map.layer);
 	},
 	
@@ -64,16 +66,29 @@ Blinky.prototype = {
 	},
 	
 	//Seta uma direção aleatória para o blinky
-	setNewDirection : function() {
-		console.log("colidiu com o ponto de decisao");		
-		this.direction = 'DOWN';
+	setNewDirection : function(player, decision) {				
+		console.log("colidiu com o ponto de decisao");				
 		
-		
-		/*if (this.direction == 'LEFT')
-			this.direction = 'DOWN';
+		if(this.changeDirection){
+			if (this.direction == 'LEFT')
+				this.direction = 'DOWN';			
 		else if (this.direction == 'DOWN')
-			this.direction = 'RIGHT';
-		*/
+				this.direction = 'RIGHT';
+			this.sprite.body.setSize(10, 10);
+			this.sprite.body.offset.setTo(0,0);
+			this.changeDirection = false;
+		}else {
+			if(this.direction ==  'LEFT'){
+				this.sprite.body.setSize(10, 10, 36, 0);
+			}
+			if(this.direction ==  'DOWN'){
+				this.sprite.body.setSize(36, 36, 0, -36);
+			}
+			this.changeDirection = true;
+		}
+		
+	
+
 			
 		/*var numberDirection = Math.round(1 + Math.random()*4);
 		this.sprite.body.setSize(36, 36);
@@ -92,7 +107,7 @@ Blinky.prototype = {
 				break;
 		}		*/
 		
-	},
+	},	
 	
 	//Remove a bolinha amarela após colisão com o Ohhman
 	removeBall : function(player, ball) {		 
