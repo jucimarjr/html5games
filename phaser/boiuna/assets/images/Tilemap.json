@@ -13,6 +13,31 @@
         }, 
         {
          "height":20,
+         "name":"LayerSmallDragon",
+         "objects":[
+                {
+                 "gid":18,
+                 "height":0,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":1504,
+                 "y":322
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "width":64,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "height":20,
          "name":"LayerHero",
          "objects":[
                 {
@@ -269,6 +294,22 @@
          "spacing":0,
          "tileheight":60,
          "tilewidth":30
+        }, 
+        {
+         "firstgid":18,
+         "image":"..\/spritesheets\/SmallDragon_90-60.png",
+         "imageheight":60,
+         "imagewidth":90,
+         "margin":0,
+         "name":"SmallDragon",
+         "properties":
+            {
+
+            },
+         "spacing":0,
+         "tileheight":60,
+         "tilewidth":30,
+         "transparentcolor":"#ffffff"
         }],
  "tilewidth":30,
  "version":1,
