@@ -180,4 +180,13 @@ Config.smallDragon = {
 };
 //FabioLahis
 //JacksonAntonio
+
+Config.dragon = {
+	dir :'assets/spritesheets/Boiuna_360-270.png',
+	frame: {
+		width: 90,
+		height: 90
+	}
+
+};
 //JacksonAntonio

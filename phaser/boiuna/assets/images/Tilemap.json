@@ -13,6 +13,31 @@
         }, 
         {
          "height":20,
+         "name":"LayerDragon",
+         "objects":[
+                {
+                 "gid":21,
+                 "height":0,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":248,
+                 "y":217
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "width":64,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "height":20,
          "name":"LayerSmallDragon",
          "objects":[
                 {
@@ -252,7 +277,7 @@
          "firstgid":7,
          "image":"..\/spritesheets\/Princess.png",
          "imageheight":60,
-         "imagewidth":30,
+         "imagewidth":150,
          "margin":0,
          "name":"Princess",
          "properties":
@@ -262,22 +287,6 @@
          "spacing":0,
          "tileheight":60,
          "tilewidth":30,
-         "transparentcolor":"#ffffff"
-        }, 
-        {
-         "firstgid":8,
-         "image":"Boiuna.png",
-         "imageheight":90,
-         "imagewidth":360,
-         "margin":0,
-         "name":"Boiuna",
-         "properties":
-            {
-
-            },
-         "spacing":0,
-         "tileheight":90,
-         "tilewidth":90,
          "transparentcolor":"#ffffff"
         }, 
         {
@@ -309,6 +318,22 @@
          "spacing":0,
          "tileheight":60,
          "tilewidth":30,
+         "transparentcolor":"#ffffff"
+        }, 
+        {
+         "firstgid":21,
+         "image":"..\/spritesheets\/Boiuna_360-270.png",
+         "imageheight":270,
+         "imagewidth":360,
+         "margin":0,
+         "name":"Dragon",
+         "properties":
+            {
+
+            },
+         "spacing":0,
+         "tileheight":90,
+         "tilewidth":90,
          "transparentcolor":"#ffffff"
         }],
  "tilewidth":30,
