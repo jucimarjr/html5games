@@ -18,6 +18,8 @@ var buttonSpaceBar;
 var canhao;
 var canhaoTime = 0;
 var buttonEnter;
+var inimigoTipo2;
+
 
 var cursors;
 var hozMove = 300;
@@ -34,6 +36,7 @@ var tiroInimigo;
 var explosoes;
 var animacaoPlayer;
 var espaco;
+var tiro;
 Mapa.prototype.preload = function() {
 
     game.load.image('tiles', 'assets/tileset_fase_1.png', 22, 32);
@@ -48,6 +51,7 @@ Mapa.prototype.preload = function() {
     game.load.image('playerVidas', 'assets/playerVida.png');
     game.load.spritesheet('explosao', 'assets/explosao.png', 128, 128);
     game.load.spritesheet('animacaoPlayer', 'assets/Player45x33.png', 45, 33);
+    game.load.spritesheet('sheetInimigoTipo2', 'assets/sheetInimigoTipo2_57X75.png', 50, 50);
 };
 
 Mapa.prototype.create = function() {
@@ -55,6 +59,7 @@ Mapa.prototype.create = function() {
     //  game.physics.startSystem(Phaser.Physics.NINJA);
     espaco = game.add.image(0, 0, 'espaco');
     espaco.fixedToCamera = true;
+
     game.physics.startSystem(Phaser.Physics.ARCADE);
     //  game.stage.backgroundColor = '#FFB90F';
     game.world.setBounds(0, 0, 2400, 2400);
@@ -67,11 +72,23 @@ Mapa.prototype.create = function() {
     this.layer.resizeWorld();
     this.map.setCollision([12, 21, 22, 46, 110, 118, 141, 360, 1108, 1131, 1237, 1228, 1203], true, 'Camada de Colisao');
 
-    //inimigo
+    //inimigo tipo 1
     this.inimigoTipo1 = game.add.group();
     this.inimigoTipo1.enableBody = true;
     this.inimigoTipo1.physicsBodyType = Phaser.Physics.ARCADE;
-    this.map.createFromObjects('Camada de Objetos 1', 1249, 'inimigoTipo1', 0, true, false, this.inimigoTipo1);
+    this.map.createFromObjects('Camada de Objetos 1', 1249, 'inimigoTipo1', 0, true, true, this.inimigoTipo1);
+    var tween = game.add.tween(this.inimigoTipo1).to({x: 200}, 2000, Phaser.Easing.Circular.Out, true, 1000, 100, true);
+    var tween2 = game.add.tween(this.inimigoTipo1).to({y: 200}, 2000, Phaser.Easing.Exponential.Out, true, 1000, 100, true);
+
+    //inimigo tipo 2
+    inimigoTipo2 = game.add.group();
+    inimigoTipo2.enableBody = true;
+    // inimigoTipo2.physicsBodyType = Phaser.Physics.ARCADE;
+    this.map.createFromObjects('Camada de Objetos 1', 1250, 'sheetInimigoTipo2', 0, true, true, inimigoTipo2);
+//  Add animations to all of the coin sprites
+    inimigoTipo2.callAll('animations.add', 'animations', 'spin', [0, 1, 2, 3], 10, true);
+    inimigoTipo2.callAll('animations.play', 'animations', 'spin');
+    var tween = game.add.tween(inimigoTipo2).to({x: 100}, 1000, Phaser.Easing.Linear.Out, true, 10, 100, true);
 
     //jogador = nave
     this.player = game.add.sprite(30, game.world.height - 300, 'nave');
@@ -117,9 +134,9 @@ Mapa.prototype.create = function() {
     explosoes.forEach(this.inicializarAnimacaoExplosao, this);
 
     // inicializar animacaoPlayer
-    animacaoPlayer = game.add.group();
-    animacaoPlayer.createMultiple(100, 'animacaoPlayer');
-    animacaoPlayer.forEach(this.inicializarAnimacaoPlayer, this);
+//    animacaoPlayer = game.add.group();
+//    animacaoPlayer.createMultiple(100, 'animacaoPlayer');
+//    animacaoPlayer.forEach(this.inicializarAnimacaoPlayer, this);
 
 
     //  Vidas
@@ -129,7 +146,8 @@ Mapa.prototype.create = function() {
     playerVidas.angle = 0;
     playerVidas.alpha = 1;
 
-
+//teste time
+    // game.time.events.repeat(Phaser.Timer.SECOND * 5, 3, this.criar(), this)
 
 
 
@@ -145,12 +163,16 @@ Mapa.prototype.update = function() {
     this.poscionaPontuacao();
     //inicializa velocidade
     this.player.body.velocity.setTo(0, 0);
-    //colisoes
+    this.controlaTiros();
 
+    //colisoes
     game.physics.arcade.overlap(this.tirosPlayer, this.inimigoTipo1, this.colisaoBytirosPlayerByinimigoTipo1, null, this);
     // game.physics.ninja.collide(this.player, this.layerColisao);
     game.physics.arcade.collide(this.player, this.layerColisao, this.testeColisao, null, this);
     game.physics.arcade.overlap(this.player, this.inimigoTipo1, this.colisaoByNaveByInimigo, null, this);
+    game.physics.arcade.overlap(this.tirosPlayer, inimigoTipo2, this.colisaoBytirosPlayerByinimigoTipo2, null, this);
+    game.physics.arcade.overlap(this.player, inimigoTipo2, this.colisaoByNaveByInimigo, null, this);
+
     //  game.camera.x += 1;
     if (cursors.left.isDown)
     {
@@ -177,16 +199,27 @@ Mapa.prototype.update = function() {
     if (buttonSpaceBar.isDown && !buttonEnter.isDown)
     {
         this.tiroNormal();
+
     } else if (buttonSpaceBar.isDown && buttonEnter.isDown) {
         this.tiroCanhao();
+
     }
 
 };
+Mapa.prototype.criar = function() {
+    var pessoa = this.inimigoTipo1.create(30, game.world.height - 300, 'inimigoTipo1');
+    game.physics.enable(pessoa, Phaser.Physics.ARCADE);
+    pessoa.body.velocity.x = -Math.random() * 10;
+    pessoa.body.velocity.y = -Math.random() * 10;
+    pessoa.body.collideWorldBounds = true;
+    pessoa.body.bounce.set(1);
+};
+
 Mapa.prototype.poscionaPontuacao = function() {
     //posicao do score seguindo a camera
     scoreText.x = game.camera.x + 120;
     scoreText.y = game.camera.y + 6;
-    //posiciona imagem da nave 
+    //  posiciona imagem da nave 
     playerVidas.x = game.camera.x + 250;
     playerVidas.y = game.camera.y + 10;
     //posicao das vidas alinhado  ao score 
@@ -209,13 +242,13 @@ Mapa.prototype.colisaoByNaveByInimigo = function(player, inimigo) {
     var explosion2 = explosoes.getFirstExists(false);
     explosion2.reset(player.body.x, player.body.y);
     explosion2.play('explosao', 30, false, true);
-    
+
     //decrementa uma vida
     this.controleVidas();
- 
+
     if (lives < 1)
     {
-   player.kill();
+        player.kill();
 //    //    enemyBullets.callAll('kill');
 //
 //        stateText.text = " GAME OVER \n Click to restart";
@@ -227,9 +260,18 @@ Mapa.prototype.colisaoByNaveByInimigo = function(player, inimigo) {
 
 
 };
+
+Mapa.prototype.controlaTiros = function() {
+    if (tiro) {
+        if (tiro.x - this.player.x > 790) {
+            tiro.kill();
+        }
+    }
+};
+
 Mapa.prototype.tiroCanhao = function() {
 //funcao atirar 
-    if (game.time.now > canhaoTime)
+    if (game.time.now > canhaoTime && lives > 0)
         canhoes = canhao.getFirstExists(false);
     if (canhoes) {
 
@@ -241,26 +283,29 @@ Mapa.prototype.tiroCanhao = function() {
 
 Mapa.prototype.tiroNormal = function() {
 
-    if (game.time.now > tiroTime)
+    if (game.time.now > tiroTime && lives > 0)
     {
 
         //  Grab the first bullet we can from the pool
         tiro = this.tirosPlayer.getFirstExists(false);
 
         // cria  Animacao Player
-        var animacaoplay = animacaoPlayer.getFirstExists(false);
+//        var animacaoplay = animacaoPlayer.getFirstExists(false);
 
 
         if (tiro)
-        {
-            animacaoplay.reset(this.player.body.x + 25, this.player.body.y + 15);
-            animacaoplay.play('animacaoPlayer', 125, false, true);
+        {  //executar animacao
+//            animacaoplay.reset(this.player.body.x + 25, this.player.body.y + 15);
+//            animacaoplay.play('animacaoPlayer', 125, false, true);
             //  And fire it
             tiro.reset(this.player.x + 12, this.player.y + 8);
             tiro.body.velocity.x = +400;
             tiroTime = game.time.now + 200;
+
+
         }
     }
+
 
 };
 
@@ -270,6 +315,17 @@ Mapa.prototype.colisaoBytirosPlayerByinimigoTipo1 = function(tiro, inimigoTipo1)
     // cria as explosao :)
     var explosion = explosoes.getFirstExists(false);
     explosion.reset(inimigoTipo1.body.x, inimigoTipo1.body.y);
+    explosion.play('explosao', 30, false, true);
+    //pontuacao
+    this.pontuacao(20);
+};
+
+Mapa.prototype.colisaoBytirosPlayerByinimigoTipo2 = function(tiro, inimigoTipo2) {
+    tiro.kill();
+    inimigoTipo2.kill();
+    // cria as explosao :)
+    var explosion = explosoes.getFirstExists(false);
+    explosion.reset(inimigoTipo2.body.x, inimigoTipo2.body.y);
     explosion.play('explosao', 30, false, true);
     //pontuacao
     this.pontuacao(20);
@@ -296,6 +352,6 @@ Mapa.prototype.pontuacao = function(pontuacao) {
 
 Mapa.prototype.controleVidas = function() {
     lives -= 1;
-    liveText.text =' x '+lives;
+    liveText.text = ' x ' + lives;
 };
 
