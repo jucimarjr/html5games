@@ -1,4 +1,4 @@
-/*global Config, Phaser, Console*/
+/*global Config, Phaser*/
 
 var Hero = function (game, tilemap, platforms) {
 	"use strict";
@@ -21,6 +21,7 @@ Hero.prototype = {
         this.tilemap.map.createFromObjects(Config.hero.layer, Config.hero.gid, 'hero-normal', Config.hero.frame.normal.stopped, true, false, group);
         this.sprite = group.getTop();
         this.sprite.alive = true;
+        this.sprite.health = Config.hero.health.initial;
         this.game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
 		this.sprite.body.collideWorldBounds = true;
 		this.sprite.body.gravity.y = Config.hero.gravity;
@@ -28,6 +29,9 @@ Hero.prototype = {
 	},
 	update: function () {
 		"use strict";
+        if (!this.sprite.alive) {
+            this.game.state.start('DefeatScreen');
+        }
         this.game.physics.arcade.collide(this.sprite, this.platforms.mainLayer);
         this.game.camera.follow(this.sprite);
 		var cursors = this.game.input.keyboard.createCursorKeys();

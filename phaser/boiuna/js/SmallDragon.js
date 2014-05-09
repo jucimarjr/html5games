@@ -1,11 +1,11 @@
 /*global Config, Phaser*/
 
-var SmallDragon = function (game, tilemap, hero) {
+var SmallDragon = function (game, hero) {
 	"use strict";
     this.game = game;
-	this.sprite = null;
 	this.hero = hero;
-	this.tilemap = tilemap;
+	this.group = null;
+    this.bornTime = 0;
 };
 SmallDragon.prototype = {
 	preload: function () {
@@ -14,31 +14,52 @@ SmallDragon.prototype = {
 	},
 	create: function () {
 		"use strict";
-		var group = this.game.add.group();
-        group.enableBody = true;
-        this.tilemap.map.createFromObjects(Config.smallDragon.layer, Config.smallDragon.gid, 'small-dragon', 0, true, false, group);
-        this.sprite = group.getTop();
-		this.game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
-		this.sprite.animations.add('move', [0, 1], Config.global.animationVelocity, true);
-		this.sprite.animations.play('move');
+	    this.group = this.game.add.group();
+        this.group.createMultiple(Config.smallDragon.number, 'small-dragon');
+        this.group.enableBody = true;
+        this.game.physics.enable(this.group, Phaser.Physics.ARCADE);
+        this.bornTime = this.game.time.now + Config.smallDragon.intervalBorning.actual;
 	},
 	update: function () {
 		"use strict";
-        this.game.physics.arcade.collide(this.sprite, this.hero.sprite, this.collision, null, this);
-		this.game.physics.arcade.moveToObject(this.sprite, this.hero.sprite, Config.smallDragon.velocity);
-		if (this.sprite.x > this.hero.sprite.x) {
-			this.sprite.scale = Config.smallDragon.scale.right;
-		} else {
-			this.sprite.scale = Config.smallDragon.scale.left;
+        this.game.physics.arcade.collide(this.hero.sprite, this.group, this.collision, null, this);
+        this.group.forEachAlive(this.move, this);
+        if (this.game.time.now > this.bornTime) {
+            if (Config.smallDragon.intervalBorning.actual > Config.smallDragon.intervalBorning.min) {
+                Config.smallDragon.intervalBorning.actual = Config.smallDragon.intervalBorning.actual - Config.smallDragon.intervalBorning.decrement;
+            }
+			this.bornTime = this.game.time.now + Config.smallDragon.intervalBorning.actual;
+			this.born();
 		}
 	},
-    collision: function () {
+    collision: function (spriteHero, spriteSmallDragon) {
         "use strict";
         if (this.hero.sprite.key === 'hero-attack') {
-            this.sprite.kill();
+            spriteSmallDragon.kill();
         } else {
-            this.hero.sprite.kill();
+            this.hero.sprite.damage(Config.smallDragon.damage);
         }
-    }
+    },
+    born: function () {
+        "use strict";
+        var sprite = this.group.getFirstExists(false);
+	    if (sprite !== null) {
+		    sprite.reset(Config.smallDragon.xi, Config.smallDragon.yi);
+            sprite.animations.add('move', [Config.smallDragon.frame.normal.move.one, Config.smallDragon.frame.normal.move.two],
+                Config.global.animationVelocity, true);
+		    sprite.animations.play('move');
+        }
+    },
+    move: function (sprite) {
+	    "use strict";
+        this.game.physics.arcade.moveToObject(sprite, this.hero.sprite, Config.smallDragon.velocity);
+        if (sprite.x > this.hero.sprite.x) {
+			sprite.anchor = Config.smallDragon.anchor.right;
+		    sprite.scale = Config.smallDragon.scale.right;
+		} else {
+			sprite.anchor = Config.smallDragon.anchor.left;
+		    sprite.scale = Config.smallDragon.scale.left;
+		}
+	}
 };
 

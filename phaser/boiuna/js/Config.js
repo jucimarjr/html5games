@@ -124,6 +124,9 @@ Config.hero = {
     },
     layer: 'LayerHero',
     gid: 12,
+    health: {
+        initial: 100
+    },
 	velocity: {
 		initial: {
 			x: 0,
@@ -183,6 +186,24 @@ Config.smallDragon = {
 	layer: 'LayerSmallDragon',
     gid: 18,
     velocity: 150,
+    xi: 1920,
+    yi: 0,
+    damage: Config.hero.health.initial / 600,
+    intervalBorning: {
+        actual: 10000,
+        min: 5000,
+        decrement: 1000
+    },
+	anchor: {
+		left: {
+			x: 0,
+			y: 0
+		},
+        right: {
+			x: 0.5,
+			y: 0
+		}
+	},
 	scale: {
 		right: {
 			x: -1,
@@ -195,8 +216,25 @@ Config.smallDragon = {
 	},
 	frame: {
 		width: 30,
-		height: 60
-	}
+		height: 60,
+        normal: {
+            move: {
+                one: 0,
+                two: 1
+            }
+        }
+	},
+    number: 10
+};
+
+//Life
+
+Config.life = {
+    dir: 'assets/images/Life_20-20.png',
+    x: 0,
+    y: 0,
+    distanceBetween: 20,
+    number: 4
 };
 //FabioLahis
 //JacksonAntonio
