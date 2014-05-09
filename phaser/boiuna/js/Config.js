@@ -118,7 +118,12 @@ Config.grass = {
 
 //Hero
 Config.hero = {
-	dir: 'assets/spritesheets/Hero_180-60.png',
+	dir: {
+        normal: 'assets/spritesheets/Hero_180-60.png',
+        attack: 'assets/spritesheets/HeroAttack_120-60.png'
+    },
+    layer: 'LayerHero',
+    gid: 12,
 	velocity: {
 		initial: {
 			x: 0,
@@ -152,17 +157,32 @@ Config.hero = {
 		}
 	},
 	frame: {
-		width: 30,
-		height: 60
-	}
+        normal: {
+            width: 30,
+            height: 60,
+            stopped: 0,
+            jumping: 3,
+            falling: 4,
+            run: {
+                one: 1,
+                two: 2
+            }
+        },
+        attack: {
+            width: 60,
+            height: 60,
+            one: 0,
+            two: 1
+        }
+    }
 };
 
 //SmallDragon
 Config.smallDragon = {
 	dir: 'assets/spritesheets/SmallDragon_90-60.png',
-	xi: 1920,
-	yi: 0,
-	velocity: 150,
+	layer: 'LayerSmallDragon',
+    gid: 18,
+    velocity: 150,
 	scale: {
 		right: {
 			x: -1,
@@ -180,13 +200,4 @@ Config.smallDragon = {
 };
 //FabioLahis
 //JacksonAntonio
-
-Config.dragon = {
-	dir :'assets/spritesheets/Boiuna_360-270.png',
-	frame: {
-		width: 90,
-		height: 90
-	}
-
-};
 //JacksonAntonio
