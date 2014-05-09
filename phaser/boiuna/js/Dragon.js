@@ -25,7 +25,7 @@ Dragon.prototype = {
 		this.head.animations.add('move', [0, 1, 2, 3], Config.global.animationVelocity, true);
 		this.head.animations.play('move');
 		for(var i=0;i<3;i++){
-			this.grow();
+			setTimeout(this.grow(), 10);
 		}
 	},
 	update: function () {
@@ -39,7 +39,7 @@ Dragon.prototype = {
 		"use strict";
 		this.body.create(this.head.x, this.head.y, 'dragon');
 		this.head.x += 90;
-		this.body.callAll('animations.add', 'animations', 'fly', [8, 9, 10, 11], Config.global.animationVelocity, true);
+		this.body.callAll('animations.add', 'animations', 'fly', [4, 5, 6, 7], Config.global.animationVelocity, true);
     	this.body.callAll('animations.play', 'animations', 'fly');
 
 	}
