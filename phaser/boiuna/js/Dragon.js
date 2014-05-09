@@ -4,7 +4,7 @@ var Dragon = function (game, tilemap, hero) {
 	"use strict";
     this.game = game;
 	this.head = null;
-	this.group = null;
+	this.body = null;
 	this.hero = hero;
 	this.tilemap = tilemap;
 };
@@ -16,7 +16,8 @@ Dragon.prototype = {
 	create: function () {
 		"use strict";
 		this.body = this.game.add.group();
-		var group = this.game.add.group();
+        this.body.enableBody = true;
+        var group = this.game.add.group();
         group.enableBody = true;
         this.tilemap.map.createFromObjects('LayerDragon', 21, 'dragon', 0, true, false, group);
         this.head = group.getTop();
@@ -24,14 +25,18 @@ Dragon.prototype = {
 		this.head.body.allowGravity = false;
 		this.head.animations.add('move', [0, 1, 2, 3], Config.global.animationVelocity, true);
 		this.head.animations.play('move');
-		for(var i=0;i<3;i++){
-			setTimeout(this.grow(), 10);
+		for(var i=0;i<5;i++){
+			this.grow()
 		}
+		// MOVIMENTO... ANOMALIA COM MAIS DE 10
+		this.game.physics.arcade.moveToXY(this.head, Config.global.screen.width*2+50, this.head.y, 100);
+		for (var index = 0; index < this.body.length; index++) {
+		this.game.physics.arcade.moveToXY(this.body.getAt(index), Config.global.screen.width+50, this.head.y, 100);
+		};
+		//
 	},
 	update: function () {
 		"use strict";
-		this.game.physics.arcade.moveToXY(this.head, Config.global.screen.width*2+50, this.head.y, 100);
-		//this.game.physics.arcade.moveToXY(this.body, Config.global.screen.width+50, this.head.y, 100);
 
 	},
 
