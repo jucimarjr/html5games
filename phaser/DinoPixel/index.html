@@ -12,7 +12,7 @@
 		<meta property="og:image:height" content="200">
 
 	<meta charset="UTF-8" />
-	<title>DinoPixel!!! (Em Desenvolvimento)</title>
+	<title>DinoPixel!!! (Em Desenvilvimento)</title>
 	<script type="text/javascript" src="js/phaser.min.js"></script>
 	<script type="text/javascript" src="js/human.js"></script>
 	<script type="text/javascript" src="js/Game.js"></script>
@@ -60,7 +60,7 @@
 	</div>
 <script type="text/javascript">
 var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'game', { preload: preload, create: create, update: update, render: render });
-var splashScene = null;	
+game.state.add('splash', Splash, false);
 game.state.add('game', Game, false);
 game.state.add('menu', Menu, false);
 game.state.add('credits', Credits, false);
@@ -75,20 +75,23 @@ function preload()
 	game.load.image('man','assets/sprites/man.png');
 	game.load.image('medic','assets/sprites/medic.png');
 	game.load.image('muscleMan','assets/sprites/muscleMan.png');
+	game.load.image('back1','assets/sprites/back1.png');
+	game.load.image('cloud','assets/sprites/cloud.png');
 	game.load.audio('track','assets/musics/jogo.wav');
 	game.load.image('backGround','assets/sprites/backGround.png');
-	game.load.tilemap('stage1', 'assets/tileMaps/stage.json', null, Phaser.Tilemap.TILED_JSON);
-	game.load.image('stage-1', 'assets/tileMaps/stageCity.png');
-	game.load.image('fatDonald', 'assets/tileMaps/fatDonald.png');
+	game.load.tilemap('stage', 'assets/tileMaps/stage.json', null, Phaser.Tilemap.TILED_JSON);
+	game.load.image('cityThings', 'assets/tileMaps/cityThings.png');
+	game.load.image('urbanBuildings1', 'assets/tileMaps/urbanBuildings1.png');
+	game.load.image('urbanBuildings2', 'assets/tileMaps/urbanBuildings2.png');
     game.load.spritesheet('dino','assets/spriteSheets/dp.png', 36, 32,10);
 	
-	splashScene = new Splash();
-	splashScene.preload();
 }
 
 function create()
 {
-	splashScene.create();
+
+	game.state.start('splash');
+	
 }
 
 function update()

@@ -5,6 +5,8 @@ var gravity = 400;
 var cursors;
 var layer, layer2, layer3, layer4, layer5, layer6;
 var bg;
+var cloud;
+var back1;
 var track;
 var humans;
 var guy;
@@ -23,11 +25,16 @@ Game.prototype.create = function()
 	
 	game.physics.startSystem(Phaser.Game.ARCADE);
 	game.physics.arcade.gravity.y = gravity;
+
 	bg = game.add.tileSprite(0,0,800,600,'backGround');
 	bg.fixedToCamera = true;
-	map = game.add.tilemap('stage1');
-	map.addTilesetImage('stageCity','stage-1');
-	map.addTilesetImage('fatDonald','fatDonald');
+	back1 = game.add.sprite(100, 800, 'back1');
+	cloud = game.add.sprite(0, 1000, 'cloud');
+
+	map = game.add.tilemap('stage');
+	map.addTilesetImage('cityThings','cityThings');
+	map.addTilesetImage('urbanBuildings1','urbanBuildings1');
+	map.addTilesetImage('urbanBuildings2','urbanBuildings2');
 	layerBg = map.createLayer('bg');
 	layer = map.createLayer('Camada de Tiles 1');
 	layer2 = map.createLayer('Camada de Tiles 2');
@@ -35,9 +42,7 @@ Game.prototype.create = function()
 	layer4 = map.createLayer('Camada de Tiles 4');
 	layer5 = map.createLayer('Camada de Tiles 5');
 	layer6 = map.createLayer('Camada de Tiles 6');
-	map.setCollision([33,34,35,36,37,38],true,'Camada de Tiles 6');
-	map.setCollision([5,6],true, 'Camada de Tiles 1');
-	
+	map.setCollision([162,163,15,16,19,20,21,22,23,24,25,26,2152,2153,2154,2155,2156,2083,2084,2085,2086,2089,2090],true,'Camada de Tiles 6'); // id dos tiles que colidem (plataformas).
 	//layer.debug = true;
 	//layer6.debug = true;
 	layer.resizeWorld();
@@ -45,23 +50,9 @@ Game.prototype.create = function()
 	game.stage.backgroundColor = '#000010';
 	
 	humans = game.add.group();
-	var guy = humans.create(544, 950, 'regularGuy');
-	var guy = humans.create(608, 950, 'regularGirl');
-	var guy = humans.create(620, 950, 'regularGuy');
-	var guy = humans.create(864, 950, 'man');
-	var guy = humans.create(896, 950, 'regularGirl');
-	var guy = humans.create(1088, 950, 'man');
-	var guy = humans.create(1216, 950, 'regularGirl');
-	var guy = humans.create(1280, 950, 'muscleMan');
-	var guy = humans.create(1344, 832, 'muscleMan');
-	var guy = humans.create(1408, 832, 'regularGirl');
-	var guy = humans.create(1472, 832, 'muscleMan');
-	var guy = humans.create(1536, 832, 'regularGirl');
-	var guy = humans.create(1440, 950, 'muscleMan');
-	var guy = humans.create(1539, 950, 'muscleMan');
-	game.physics.enable(humans);
 	
-	player = game.add.sprite(50,930,'dino');
+	player = game.add.sprite(50,1500,'dino');
+	
 	game.physics.enable(player);
 	player.smoothed = false;
 	player.anchor.setTo(0.4 ,0.5);
@@ -115,11 +106,11 @@ Game.prototype.update = function()
 	if (jumpButton.isDown && player.body.onFloor())
 	{
 		soundJump.play();
-		player.body.velocity.y = -320;
+		player.body.velocity.y = -400;
 	}
 }
 Game.prototype.smashHuman = function (player, sprite)
 {
 	soundSmash.play();
-	sprite.kill();
+	sprite.destroy();
 }
