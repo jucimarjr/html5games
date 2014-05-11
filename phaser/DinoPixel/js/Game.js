@@ -5,6 +5,7 @@ var gravity = 400;
 var cursors;
 var layer, layer2, layer3, layer4, layer5, layer6;
 var bg;
+var layerBack1, layerBack2;
 var cloud;
 var back1;
 var track;
@@ -28,13 +29,16 @@ Game.prototype.create = function()
 
 	bg = game.add.tileSprite(0,0,800,600,'backGround');
 	bg.fixedToCamera = true;
-	back1 = game.add.sprite(100, 800, 'back1');
-	cloud = game.add.sprite(0, 1000, 'cloud');
+	//cloud = game.add.sprite(0, 1000, 'cloud');
 
 	map = game.add.tilemap('stage');
 	map.addTilesetImage('cityThings','cityThings');
 	map.addTilesetImage('urbanBuildings1','urbanBuildings1');
 	map.addTilesetImage('urbanBuildings2','urbanBuildings2');
+	map.addTilesetImage('back2','back2');
+	map.addTilesetImage('back1','back1');
+	layerBack2 = map.createLayer('back2');
+	layerBack1 = map.createLayer('back1');
 	layerBg = map.createLayer('bg');
 	layer = map.createLayer('Camada de Tiles 1');
 	layer2 = map.createLayer('Camada de Tiles 2');
@@ -43,6 +47,8 @@ Game.prototype.create = function()
 	layer5 = map.createLayer('Camada de Tiles 5');
 	layer6 = map.createLayer('Camada de Tiles 6');
 	map.setCollision([162,163,15,16,19,20,21,22,23,24,25,26,2152,2153,2154,2155,2156,2083,2084,2085,2086,2089,2090],true,'Camada de Tiles 6'); // id dos tiles que colidem (plataformas).
+	layerBack1.scrollFactorX = 0.35;
+	layerBack2.scrollFactorX = 0.2;
 	//layer.debug = true;
 	//layer6.debug = true;
 	layer.resizeWorld();
