@@ -15,13 +15,13 @@ SmallDragon.prototype = {
 	},
 	create: function () {
 		"use strict";
-        var i;
-        this.emitters = [];
-        for (i = 0; i < Config.smallDragon.number; i = i + 1) {
-            this.emitters.push(this.game.add.emitter(0, 0, 200));
-            this.emitters[i].makeParticles('fire');
-            this.emitters[i].gravity = 150;
-        }
+        this.groupFire = this.game.add.group();
+        this.groupFire.createMultiple(100, 'fire');
+        this.groupFire.enableBody = true;
+        this.game.physics.enable(this.groupFire, Phaser.Physics.ARCADE);
+        this.groupFire.setAll('exists', false);
+        this.groupFire.setAll('visible', false);
+        this.groupFire.setAll('alive', false);
 	    this.group = this.game.add.group();
         this.group.createMultiple(Config.smallDragon.number, 'small-dragon');
         this.group.enableBody = true;
@@ -41,10 +41,6 @@ SmallDragon.prototype = {
 			this.bornTime = this.game.time.now + Config.smallDragon.intervalBorning.actual;
 			this.born();
 		}
-        for (i = 0; i < Config.smallDragon.number; i = i + 1) {
-            this.emitters[i].x = this.group.getAt(i).x;
-            this.emitters[i].y = this.group.getAt(i).y;
-        }
 	},
     collision: function (spriteHero, spriteSmallDragon) {
         "use strict";
@@ -64,23 +60,27 @@ SmallDragon.prototype = {
 		    sprite.animations.play('move');
         }
     },
-    move: function (sprite) {
+    move: function (spriteSmallDragon) {
 	    "use strict";
-        this.game.physics.arcade.moveToObject(sprite, this.hero.sprite, Config.smallDragon.velocity);
-        if (sprite.x > this.hero.sprite.x) {
-			sprite.anchor = Config.smallDragon.anchor.right;
-		    sprite.scale = Config.smallDragon.scale.right;
+        this.game.physics.arcade.moveToObject(spriteSmallDragon, this.hero.sprite, Config.smallDragon.velocity);
+        if (spriteSmallDragon.x > this.hero.sprite.x) {
+			spriteSmallDragon.anchor = Config.smallDragon.anchor.right;
+		    spriteSmallDragon.scale = Config.smallDragon.scale.right;
 		} else {
-			sprite.anchor = Config.smallDragon.anchor.left;
-		    sprite.scale = Config.smallDragon.scale.left;
+			spriteSmallDragon.anchor = Config.smallDragon.anchor.left;
+		    spriteSmallDragon.scale = Config.smallDragon.scale.left;
 		}
 	},
     shoot: function (spriteSmallDragon) {
-        if (Math.abs(spriteSmallDragon.x - this.hero.sprite.x) < 200 && Math.abs(spriteSmallDragon.y - this.hero.sprite.y) < 200){
-            this.emitters[this.group.getIndex(spriteSmallDragon)].start(true, 2000, 100, 3);
+        "use strict";
+        if (Math.abs(spriteSmallDragon.x - this.hero.sprite.x) < 200 && Math.abs(spriteSmallDragon.y - this.hero.sprite.y) < 200) {
+            var fire = this.groupFire.getFirstExists(false);
+            if (fire !== null) {
+                fire.reset(spriteSmallDragon.x, spriteSmallDragon.y + 30);
+                fire.lifespan = 1000;
+                this.game.physics.arcade.moveToObject(fire, this.hero.sprite, Config.smallDragon.velocity + 100);
+            }
         }
-        
-        
     }
 };
 

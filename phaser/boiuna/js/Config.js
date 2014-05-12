@@ -182,10 +182,10 @@ Config.hero = {
 
 //SmallDragon
 Config.smallDragon = {
-	dir:{
+	dir: {
         body: 'assets/spritesheets/SmallDragon_90-60.png',
         fire: 'assets/images/Fire_10-10.png'
-    },   
+    },
 	layer: 'LayerSmallDragon',
     gid: 18,
     velocity: 150,
