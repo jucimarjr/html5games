@@ -19,7 +19,9 @@ Blinky.prototype = {
 		game.physics.enable(this.sprite);
 
 		//Impede que o blinky saia dos limites da tela
-		this.sprite.body.collideWorldBounds = true;						
+		this.sprite.body.collideWorldBounds = true;			
+
+		this.sprite.body.setSize(34, 34, 1, 1);
 	},
 	
 	update : function() {
@@ -68,24 +70,21 @@ Blinky.prototype = {
 	//Seta uma direção aleatória para o blinky
 	setNewDirection : function(player, decision) {				
 		console.log("colidiu com o ponto de decisao");				
-		
-		if(this.changeDirection){
-			if (this.direction == 'LEFT')
-				this.direction = 'DOWN';			
-		else if (this.direction == 'DOWN')
-				this.direction = 'RIGHT';
-			this.sprite.body.setSize(10, 10);
-			this.sprite.body.offset.setTo(0,0);
-			this.changeDirection = false;
-		}else {
-			if(this.direction ==  'LEFT'){
-				this.sprite.body.setSize(10, 10, 36, 0);
-			}
-			if(this.direction ==  'DOWN'){
-				this.sprite.body.setSize(36, 36, 0, -36);
-			}
-			this.changeDirection = true;
+		console.log(decision.body.checkCollision);
+		if (this.direction == 'LEFT'){
+			this.sprite.x -= 6;
+			this.direction = 'DOWN';			
 		}
+		else if (this.direction == 'DOWN'){
+			this.sprite.y += 6;
+			this.direction = 'LEFT';
+		}
+		/*else if (this.direction == 'RIGHT')
+			this.direction = 'DOWN';
+		*/
+			//this.sprite.body.setSize(10, 10);
+			//this.sprite.body.offset.setTo(0,0);
+			
 		
 	
 
