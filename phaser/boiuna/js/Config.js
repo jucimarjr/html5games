@@ -186,9 +186,7 @@ Config.smallDragon = {
         body: 'assets/spritesheets/SmallDragon_90-60.png',
         fire: 'assets/images/Fire_10-10.png'
     },
-	layer: 'LayerSmallDragon',
-    gid: 18,
-    velocity: 150,
+	velocity: 150,
     xi: 500,
     yi: 0,
     damage: Config.hero.health.initial / 600,
