@@ -165,9 +165,9 @@ Config.smallDragon = {
 	velocity: 150,
 	scale: {
 		right: {
-			x: -1,
 			y: 1
 		},
+			x: -1,
 		left: {
 			x: 1,
 			y: 1
@@ -186,6 +186,14 @@ Config.dragon = {
 	frame: {
 		width: 90,
 		height: 90
+	}
+
+};
+Config.princess = {
+	dir :'assets/spritesheets/Princess_150-60.png',
+	frame: {
+		width: 30,
+		height: 60
 	}
 
 };

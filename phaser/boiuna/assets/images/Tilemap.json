@@ -13,31 +13,6 @@
         }, 
         {
          "height":20,
-         "name":"LayerDragon",
-         "objects":[
-                {
-                 "gid":21,
-                 "height":0,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":248,
-                 "y":217
-                }],
-         "opacity":1,
-         "type":"objectgroup",
-         "visible":true,
-         "width":64,
-         "x":0,
-         "y":0
-        }, 
-        {
-         "height":20,
          "name":"LayerSmallDragon",
          "objects":[
                 {
@@ -88,7 +63,7 @@
         }, 
         {
          "height":20,
-         "name":"LayerPricess",
+         "name":"LayerPrincess",
          "objects":[
                 {
                  "gid":7,
@@ -233,6 +208,31 @@
          "width":64,
          "x":0,
          "y":0
+        }, 
+        {
+         "height":20,
+         "name":"LayerDragon",
+         "objects":[
+                {
+                 "gid":21,
+                 "height":0,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":0,
+                 "y":90
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "width":64,
+         "x":0,
+         "y":0
         }],
  "orientation":"orthogonal",
  "properties":
@@ -275,7 +275,7 @@
         }, 
         {
          "firstgid":7,
-         "image":"..\/spritesheets\/Princess.png",
+         "image":"..\/spritesheets\/Princess_150-60.png",
          "imageheight":60,
          "imagewidth":150,
          "margin":0,
@@ -323,7 +323,7 @@
         {
          "firstgid":21,
          "image":"..\/spritesheets\/Boiuna_360-270.png",
-         "imageheight":270,
+         "imageheight":180,
          "imagewidth":360,
          "margin":0,
          "name":"Dragon",

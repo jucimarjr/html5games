@@ -10,6 +10,7 @@ State.Game = function (game) {
     this.grass = new Grass(game, this.tilemap);
 	this.smallDragon = new SmallDragon(game, this.tilemap, this.hero);
 	this.dragon = new Dragon(game, this.tilemap, this.hero);
+	this.princess = new Princess(game, this.tilemap);
 };
 State.Game.prototype = {
 	preload: function () {
@@ -21,6 +22,7 @@ State.Game.prototype = {
         this.grass.preload();
 		this.smallDragon.preload();
 		this.dragon.preload();
+		this.princess.preload();
 	},
 	create: function () {
         "use strict";
@@ -31,11 +33,13 @@ State.Game.prototype = {
         this.grass.create();
 		this.smallDragon.create();
 		this.dragon.create();
+		this.princess.create();
 	},
 	update: function () {
         "use strict";
 		this.hero.update();
 		this.smallDragon.update();
 		this.dragon.update();
+		this.princess.update();
 	}
 };
