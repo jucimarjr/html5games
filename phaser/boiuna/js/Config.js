@@ -187,7 +187,7 @@ Config.smallDragon = {
         fire: 'assets/images/Fire_10-10.png'
     },
 	velocity: 150,
-    xi: 500,
+    xi: 1920,
     yi: 0,
     damage: Config.hero.health.initial / 600,
     intervalBorning: {
@@ -207,9 +207,9 @@ Config.smallDragon = {
 	},
 	scale: {
 		right: {
-			y: 1
-		},
 			x: -1,
+			y: 1
+		},    
 		left: {
 			x: 1,
 			y: 1

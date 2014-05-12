@@ -76,7 +76,10 @@ SmallDragon.prototype = {
         if (Math.abs(spriteSmallDragon.x - this.hero.sprite.x) < 200 && Math.abs(spriteSmallDragon.y - this.hero.sprite.y) < 200) {
             var fire = this.groupFire.getFirstExists(false);
             if (fire !== null) {
-                fire.reset(spriteSmallDragon.x, spriteSmallDragon.y + 30);
+                if(spriteSmallDragon.scale === Config.smallDragon.scale.left)
+                    fire.reset(spriteSmallDragon.x + 15, spriteSmallDragon.y + 30);
+                else
+                    fire.reset(spriteSmallDragon.x, spriteSmallDragon.y + 30);
                 fire.lifespan = 1000;
                 this.game.physics.arcade.moveToObject(fire, this.hero.sprite, Config.smallDragon.velocity + 100);
             }
