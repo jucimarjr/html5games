@@ -9,8 +9,9 @@ HighScore.prototype.preload = function () {
 };
 
 HighScore.prototype.create = function () {
-    var bg = game.add.sprite(120, 10, this.screenName);
-    //bg.anchor.setTo(0.5,0.5);
+    //var bg = game.add.sprite(120, 10, this.screenName);
+    var bg = game.add.sprite(this.game.width / 2, 25, 'botoes', "btnScore_356-34.png");
+    bg.anchor.setTo(0.5,0.5);
     game.add.text(this.game.width / 2 - 150, 100, localStorage["nameScore1"], {
         font: "40px Vector Battle", fill: "#ffffff", align: "center"
     });

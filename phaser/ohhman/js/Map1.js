@@ -11,7 +11,7 @@ Map1.prototype = {
 		game.load.tilemap('map1', fp_map1, null, Phaser.Tilemap.TILED_JSON);		
 		game.load.image('fp_walls', fp_walls);		
 		game.load.image('fp_balls', fp_balls);
-		game.load.image('fp_decision', fp_decision);
+		game.load.image('fp_decision', fp_decision);		
 	},
 
 	create : function() {
@@ -32,7 +32,20 @@ Map1.prototype = {
 		this.decision = game.add.group();
 		this.decision.enableBody = true;
 		
-		this.map.createFromObjects(fp_decicionLayer, 3, 'fp_decision', 0, true, false, this.decision);					
+		this.map.createFromObjects(fp_decicionLayer, 3, 'fp_decision', 0, true, false, this.decision);
+
+		this.decision.setAll('body.immovable', true);
+		console.log(this.decision);
+		this.decision.forEach(function(tile){
+			if(tile.body.checkCollision.up == "false")
+				tile.body.checkCollision.up = false;
+			if(tile.body.checkCollision.down == "false")
+				tile.body.checkCollision.down = false;
+			if(tile.body.checkCollision.left == "false")
+				tile.body.checkCollision.left = false;
+			if(tile.body.checkCollision.right == "false")
+				tile.body.checkCollision.right = false;
+		}, this);
 	},
 	
 	update : function() {		

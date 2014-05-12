@@ -1,26 +1,16 @@
-var Rock = function(posX,posY,speed)
+var Rock = function(game,posX,posY)
 {
-	this.speed = speed;
-	this.posX = posX;
-	this.posY = posY;
-	this.sprite;
-}
- 
- Rock.prototype.preload = function()
- {
-	game.load.spritesheet('rock','assets/spritesheets/rocks.png',58,58,4);
- }
- 
-Rock.prototype.create = function()
-{
-	this.sprite = game.add.sprite(this.posX, this.posY, 'rock');
-	game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
-	this.sprite.body.velocity.x = this.speed;
-	this.sprite.body.allowGravity = false;
-	this.sprite.outOfBoundsKill = true;
-}
+	Phaser.Sprite.call(this, game, posX, posY, 'rock');
+	game.physics.enable(this, Phaser.Physics.ARCADE);
+	this.outOfBoundsKill = true;
+	this.anchor.setTo(0.5,0.5);
+	this.frame = game.rnd.integerInRange(0,4);
+	this.body.setSize(46,46,4,4);
+	this.body.allowGravity = false;
+	this.body.angularVelocity = game.rnd.integerInRange(100,250);
+	this.body.velocity.x= -400;
+	game.add.existing(this);
+};
 
-Rock.prototype.render = function()
-{
-	game.debug.body(this.sprite);
-}
+Rock.prototype = Object.create(Phaser.Sprite.prototype);
+Rock.prototype.constructor = Rock;

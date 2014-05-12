@@ -1,19 +1,16 @@
-HowToPlay = function (game) {
+Credits = function (game) {
     this.game = game;
-    this.screenName = 'HowToPlayScreen';
-    this.image = 'assets/screenshots/howtoplay.png';
+    this.screenName = 'creditScreen';
+    this.image = 'assets/screens/credits.png';
 };
 
-HowToPlay.prototype.preload = function(){
+Credits.prototype.preload = function(){
     game.load.image(this.screenName, this.image);
 };
 
-HowToPlay.prototype.create = function() {
+Credits.prototype.create = function() {
     var bg = game.add.sprite(0, 0, this.screenName);
-    //var bg = game.add.sprite(0, 0, 'botoes', "btnHowToPlaySelected_381-34.png");
-	bg.anchor.setTo(0.5,0.5);
-	bg.x = game.width/2;
-	bg.y = game.height/2;
+		
     game.input.onDown.add(function() {
         var fadeout = game.add.tween(bg).to( { alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
         fadeout.onComplete.add(function() {

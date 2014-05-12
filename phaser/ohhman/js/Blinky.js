@@ -2,7 +2,7 @@ Blinky = function () {
 	this.sprite = null;
 	this.speed = 20;
 	
-	this.direction = "LEFT"; //LEFT, RIGHT, UP, DOWN
+	this.direction = "RIGHT"; //LEFT, RIGHT, UP, DOWN
 	
 	this.changeDirection = false;
 };
@@ -19,7 +19,9 @@ Blinky.prototype = {
 		game.physics.enable(this.sprite);
 
 		//Impede que o blinky saia dos limites da tela
-		this.sprite.body.collideWorldBounds = true;						
+		this.sprite.body.collideWorldBounds = true;			
+
+		this.sprite.body.setSize(34, 34, 1, 1);
 	},
 	
 	update : function() {
@@ -62,50 +64,57 @@ Blinky.prototype = {
 	
 	//Verifica a colisão do blinky com o ponto de decisao
 	verifyDecisionCollision : function() {				
-		game.physics.arcade.overlap(this.sprite, map.decision, this.setNewDirection, null, this);					
+		game.physics.arcade.collide(this.sprite, map.decision, this.setNewDirection, null, this);					
 	},
 	
 	//Seta uma direção aleatória para o blinky
 	setNewDirection : function(player, decision) {				
 		console.log("colidiu com o ponto de decisao");				
-		
-		if(this.changeDirection){
-			if (this.direction == 'LEFT')
-				this.direction = 'DOWN';			
-		else if (this.direction == 'DOWN')
-				this.direction = 'RIGHT';
-			this.sprite.body.setSize(10, 10);
-			this.sprite.body.offset.setTo(0,0);
-			this.changeDirection = false;
-		}else {
-			if(this.direction ==  'LEFT'){
-				this.sprite.body.setSize(10, 10, 36, 0);
-			}
-			if(this.direction ==  'DOWN'){
-				this.sprite.body.setSize(36, 36, 0, -36);
-			}
-			this.changeDirection = true;
+		console.log(decision.body.checkCollision);
+		/*if (this.direction == 'RIGHT'){
+			this.sprite.x += 6;
+			this.direction = 'UP';			
 		}
+		else if (this.direction == 'UP'){
+			this.sprite.y -= 6;
+			this.direction = 'LEFT';
+		}
+		else if (this.direction == 'LEFT'){
+			this.sprite.X -= 6;
+			this.direction = 'RIGHT';
+		}
+		*/
+		/*else if (this.direction == 'RIGHT')
+			this.direction = 'DOWN';
+		*/
+			//this.sprite.body.setSize(10, 10);
+			//this.sprite.body.offset.setTo(0,0);
+			
 		
 	
 
 			
-		/*var numberDirection = Math.round(1 + Math.random()*4);
+		var numberDirection = Math.round(1 + Math.random()*4);
+		console.log(numberDirection);
 		this.sprite.body.setSize(36, 36);
 		switch(numberDirection){
 			case 1:				
 				this.direction = "LEFT";
+				this.sprite.x -= 6;
 				break;
 			case 2:				
-				this.direction = "RIGHT";
+				this.direction = "RIGHT";				
+				this.sprite.x += 6;
 				break;
 			case 3:				
 				this.direction = "UP";
+				this.sprite.y -= 6;
 				break;
 			case 4:
 				this.direction = "DOWN";
+				this.sprite.y += 6;
 				break;
-		}		*/
+		}		
 		
 	},	
 	
