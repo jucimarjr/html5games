@@ -62,7 +62,7 @@ Blinky.prototype = {
 	
 	//Verifica a colisão do blinky com o ponto de decisao
 	verifyDecisionCollision : function() {				
-		game.physics.arcade.overlap(this.sprite, map.decision, this.setNewDirection, null, this);					
+		game.physics.arcade.collide(this.sprite, map.decision, this.setNewDirection, null, this);					
 	},
 	
 	//Seta uma direção aleatória para o blinky

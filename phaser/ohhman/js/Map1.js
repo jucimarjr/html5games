@@ -33,6 +33,10 @@ Map1.prototype = {
 		this.decision.enableBody = true;
 		
 		this.map.createFromObjects(fp_decicionLayer, 3, 'fp_decision', 0, true, false, this.decision);					
+		this.decision.setAll('body.immovable', true);
+		this.decision.forEach(function(tile){
+			console.log(tile.body.checkCollision);
+		}
 	},
 	
 	update : function() {		

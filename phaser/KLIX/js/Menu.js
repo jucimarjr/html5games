@@ -13,7 +13,7 @@ Menu = function (game) {
 Menu.prototype.preload = function(){
 
     //game.stage.backgroundColor = '#111111';
-    game.load.atlas('botoes', 'assets/screenshots/screens.png', 'assets/screenshots/screens.json');
+    game.load.atlas('botoes', 'assets/screenshots/ButtonsSpriteSheet.png', 'assets/screenshots/ButtonsSpriteSheet.json');
     game.load.image('msg', 'assets/screenshots/collectresources.png');
     game.load.image('title', 'assets/screenshots/Klix1.png');
 		
@@ -28,22 +28,22 @@ Menu.prototype.create = function() {
     this.button = 1;
     this.btnPlay = game.add.button(game.world.centerX + 15, game.world.centerY - 90, 'botoes',
     function(){ this.play(); }, this);
-    this.btnPlay.setFrames("btnplay1.png", 'btnplay2.png');
+    this.btnPlay.setFrames('btnPlaySelected_155-34.png', "btnPlay_155-34.png");
     this.btnPlay.anchor.x = 0.5;
 	    		
     this.btnHowToPlay = game.add.button(game.world.centerX + 15, game.world.centerY - 30, 'botoes',
     function(){ this.howToPlay(); }, this);
-    this.btnHowToPlay.setFrames("btnhowto2.png", "btnhowto1.png");
+    this.btnHowToPlay.setFrames("btnHowToPlay_381-34.png", "btnHowToPlaySelected_381-34.png");
     this.btnHowToPlay.anchor.x = 0.5;
 	
     this.btnHighScores = game.add.button(game.world.centerX + 15, game.world.centerY + 30, 'botoes',
     function () { this.highScores(); }, this);
-    this.btnHighScores.setFrames("btnscores2.png", "btnscores1.png");
+    this.btnHighScores.setFrames("btnScore_356-34.png", "btnScoreSelected_365-34.png");
     this.btnHighScores.anchor.x = 0.5;
 
     this.btnCredits = game.add.button(game.world.centerX + 15, game.world.centerY + 90, 'botoes',
     function(){ this.credits(); }, this);
-    this.btnCredits.setFrames('btncredits2.png', "btncredits1.png");
+    this.btnCredits.setFrames('btnCredits_256-34.png', "btnCreditsSelected_256-34.png");
     this.btnCredits.anchor.x = 0.5;
     
     var keyUp = this.game.input.keyboard.addKey(Phaser.Keyboard.UP);
@@ -78,44 +78,48 @@ Menu.prototype.setButton = function(key){
 	console.log(this.button);
 	switch(this.button){
 	case 1:
-		this.btnPlay.setFrames("btnplay1.png", 'btnplay2.png');
-		this.btnHowToPlay.setFrames("btnhowto2.png", "btnhowto1.png");
-		this.btnHighScores.setFrames("btnscores2.png", "btnscores1.png");
-		this.btnCredits.setFrames('btncredits2.png', "btncredits1.png");
+		this.btnPlay.setFrames('btnPlaySelected_155-34.png', "btnPlay_155-34.png");
+		this.btnHowToPlay.setFrames("btnHowToPlay_381-34.png", "btnHowToPlaySelected_381-34.png");
+		this.btnHighScores.setFrames("btnScore_356-34.png", "btnScoreSelected_365-34.png");
+		this.btnCredits.setFrames('btnCredits_256-34.png', "btnCreditsSelected_256-34.png");
 	break;
 	case 2:
-		this.btnPlay.setFrames("btnplay2.png", 'btnplay1.png');
-		this.btnHowToPlay.setFrames("btnhowto1.png", "btnhowto2.png");
-		this.btnHighScores.setFrames("btnscores2.png", "btnscores1.png");
-		this.btnCredits.setFrames('btncredits2.png', "btncredits1.png");
+		this.btnPlay.setFrames("btnPlay_155-34.png", 'btnPlaySelected_155-34.png');
+		this.btnHowToPlay.setFrames("btnHowToPlaySelected_381-34.png", "btnHowToPlay_381-34.png");
+		this.btnHighScores.setFrames("btnScore_356-34.png", "btnScoreSelected_365-34.png");
+		this.btnCredits.setFrames('btnCredits_256-34.png', "btnCreditsSelected_256-34.png");
 	break;
 	case 3:
-		this.btnPlay.setFrames("btnplay2.png", 'btnplay1.png');
-		this.btnHowToPlay.setFrames("btnhowto2.png", "btnhowto1.png");
-		this.btnHighScores.setFrames("btnscores1.png", "btnscores2.png");
-		this.btnCredits.setFrames('btncredits2.png', "btncredits1.png");
+		this.btnPlay.setFrames("btnPlay_155-34.png", 'btnPlaySelected_155-34.png');
+		this.btnHowToPlay.setFrames("btnHowToPlay_381-34.png", "btnHowToPlaySelected_381-34.png");
+		this.btnHighScores.setFrames("btnScoreSelected_365-34.png", "btnScore_356-34.png");
+		this.btnCredits.setFrames('btnCredits_256-34.png', "btnCreditsSelected_256-34.png");
 	break;
 	case 4:
-		this.btnPlay.setFrames("btnplay2.png", 'btnplay1.png');
-		this.btnHowToPlay.setFrames("btnhowto2.png", "btnhowto1.png");
-		this.btnHighScores.setFrames("btnscores2.png", "btnscores1.png");
-		this.btnCredits.setFrames('btncredits1.png', "btncredits2.png");
+		this.btnPlay.setFrames("btnPlay_155-34.png", 'btnPlaySelected_155-34.png');
+		this.btnHowToPlay.setFrames("btnHowToPlay_381-34.png", "btnHowToPlaySelected_381-34.png");
+		this.btnHighScores.setFrames("btnScore_356-34.png", "btnScoreSelected_365-34.png");
+		this.btnCredits.setFrames("btnCreditsSelected_256-34.png", 'btnCredits_256-34.png');
 	break;
 	}}
 };
 
+Menu.prototype.removeButtons = function(){
+	this.btnPlay.x = 1500;
+    this.btnHowToPlay.x = 1500;
+    this.btnHighScores.x = 1500;
+    this.btnCredits.x = 1500;
+}
+
 Menu.prototype.play = function () {
     this.fadeOut();
+    console.log(this.btnPlay);
     fadeout.onComplete.add(function () {
     	var msg = this.game.add.sprite(0,0,'msg');
     	msg.alpha = 0;
     	msg.anchor.setTo(0.5,0.5);
     	msg.x = game.width/2;
     	msg.y = game.height/2;
-    	this.btnPlay = null;
-        this.btnHowToPlay = null;
-        this.btnHighScores = null;
-        this.btnCredits = null;
     	var fadein = game.add.tween(msg).to({ alpha: 1 }, 1000, Phaser.Easing.Linear.None, true, 0, 0, true);
     	var keySelect = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
     	keySelect.onDown.add(function () {
@@ -159,9 +163,14 @@ Menu.prototype.credits = function () {
 };
 
 Menu.prototype.fadeOut = function () {
-	fadeout = game.add.tween(this.title).to({ alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
-    fadeout = game.add.tween(this.btnPlay).to({ alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
-    fadeout = game.add.tween(this.btnHowToPlay).to({ alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
-    fadeout = game.add.tween(this.btnHighScores).to({ alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
-    fadeout = game.add.tween(this.btnCredits).to({ alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
+	fadeout = game.add.tween(this.title).to({ alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true)
+										.to({ x: 1500 }, 1, Phaser.Easing.Linear.None, true, 0, 0, true);
+    fadeout = game.add.tween(this.btnPlay).to({ alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true)
+    									  .to({ x: 1500 }, 1, Phaser.Easing.Linear.None, true, 0, 0, true);
+    fadeout = game.add.tween(this.btnHowToPlay).to({ alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true)
+    										   .to({ x: 1500 }, 1, Phaser.Easing.Linear.None, true, 0, 0, true);
+    fadeout = game.add.tween(this.btnHighScores).to({ alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true)
+    											.to({ x: 1500 }, 1, Phaser.Easing.Linear.None, true, 0, 0, true);
+    fadeout = game.add.tween(this.btnCredits).to({ alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true)
+    										 .to({ x: 1500 }, 1, Phaser.Easing.Linear.None, true, 0, 0, true);
 };

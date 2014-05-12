@@ -14,16 +14,18 @@ var Game = function(game){
 	this.score = 0;
 	this.scoreText = null;
 	this.nextAddUfo = 0;
-	this.addUfoTime = 15000;
+	this.addUfoTime = 20000;
 	this.velAsteroids = null;
 	this.numAsteroids = 5;
 	this.addAsteroids = 15000;
 	this.timeAsteroids = 15000;
 	this.mapBox = null;
 	this.spawnText = null;
+	this.time = 180;
 	this.nexttick = 1000;
 	this.ticktime = 1000;
 	this.tickcount = 0;
+	this.timer = 0;
 };
 
 Game.prototype.create = function () {
@@ -47,7 +49,7 @@ Game.prototype.create = function () {
 	this.groupAsteroids = this.game.add.group();
     this.spaceShip = new SpaceShip(this,this.game.world.width/2, this.game.world.height/2);
 	this.game.camera.follow(this.spaceShip.sprite);
-    this.initAsteroids(30);
+    this.initAsteroids(20);
     //this.addCircleAsteroids();
     //this.addTunelAsteroids();
 	this.groupResources = this.game.add.group();
@@ -58,25 +60,32 @@ Game.prototype.create = function () {
 	this.Hud = this.game.add.text(50, 50, 'TIME: '+this.time/10, {
         font: "24px 'Vector Battle'", fill: "#ffffff" , align: "right"
     });		
-	this.time = 1800;
-	this.timer = game.time.events.loop(100, this.updateCounter, this);
-	//console.log(this.timer.timer.stop())
-	
-	this.tick1 = game.add.audio('tick1');
-	this.tick2 = game.add.audio('tick2');	
-	this.siren = game.add.audio('siren', 0.5);
+	this.alert = this.game.add.sprite(0,0,'alert');
+	//console.log(this.alert)
+	this.alert.alpha = 0;
+	this.alert.fixedToCamera = true;
+	this.time = 180;
+	this.tick1 = this.game.add.audio('tick1');
+	this.tick2 = this.game.add.audio('tick2');	
+	this.siren = this.game.add.audio('siren', 0.5);
+	this.bang1 =  this.game.add.audio('bang1');
+	this.bang2 =  this.game.add.audio('bang2');
 };
 
 Game.prototype.updateCounter = function(){
-	this.time--;
-	this.Hud.content = 'TIME: '+parseInt(this.time/10);
-	if(this.time <= 0){
-		this.gameOver();
+	if(this.spaceShip.sprite.alive){
+		this.time--;
+		//console.log(this.time);
+		if(this.time <= 0){
+			this.gameOver();
+			this.time = 0;
+		}
+		this.Hud.content = 'TIME: '+this.time
 	}
 };
 
 Game.prototype.collectResources = function(spaceship, resource){
-	this.time += 300;
+	this.time += 15;
 	resource.kill();
 	this.punctuate(50);
 };
@@ -137,6 +146,8 @@ Game.prototype.update = function () {
 	this.fps.content = 'FPS: '+this.game.time.fps;
 	this.fps.x = this.game.camera.x + 10;
 	this.fps.y = this.game.camera.y + 400;
+	this.alert.x = this.game.camera.x;
+	this.alert.y = this.game.camera.y;
     this.spaceShip.update();
     this.groupAsteroids.forEachAlive(this.warp,this);
     //this.groupAsteroids.forEachAlive(this.rotateBody,this);
@@ -149,23 +160,23 @@ Game.prototype.update = function () {
     this.livesHud.y = this.game.camera.y + 10;
     this.tiled2.x -= this.spaceShip.sprite.body.velocity.x/500;
     this.tiled2.y -= this.spaceShip.sprite.body.velocity.y/500;
-    if(game.input.keyboard.isDown(Phaser.Keyboard.LEFT))
+    if(this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT))
         this.spaceShip.rotate("left");
     else if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT))
         this.spaceShip.rotate("right");
     
-    if (game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
+    if (this.game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
         this.spaceShip.accelerate();
         this.spaceShip.animate();
     } else{
         this.spaceShip.stop();
     }
     
-    if (game.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
+    if (this.game.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
         //this.spaceShip.teletransport();
     }
         	    
-    if (game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)){
+    if (this.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)){
         this.spaceShip.shoot();   
     }
     
@@ -180,6 +191,11 @@ Game.prototype.update = function () {
         this.addResources(1);
         this.numAsteroids++;
     }
+    if(this.time < 30 && this.time > 0){
+    	if(!this.siren.isPlaying){
+			this.siren.play('',0,1);
+		}
+    }
     if(this.game.time.now > this.nexttick){
     	this.tickcount++;
     	this.nexttick = this.game.time.now + this.ticktime;
@@ -187,43 +203,11 @@ Game.prototype.update = function () {
     		this.tick1.play();
     	else
     		this.tick2.play();
-    	console.log('tick');
-    	if(this.time < 300){
-    		if(!this.siren.isPlaying)
-    			this.siren.play();
-    	}
-    	if(this.time < 500){
-    		this.ticktime = 100;
-    	}else if(this.time < 600){
-    		this.ticktime = 200;
-    	}else if(this.time < 700){
-    		this.ticktime = 300;
-    	}else if(this.time < 800){
-    		this.ticktime = 400;
-    	}else if(this.time < 900){
-    		this.ticktime = 500;
-    	}else if(this.time < 1000){
-    		this.ticktime = 550;
-    	}else if(this.time < 1100){
-    		this.ticktime = 600;
-    	}else if(this.time < 1200){
-    		this.ticktime = 650;
-    	}else if(this.time < 1300){
-    		this.ticktime = 700;
-    	}else if(this.time < 1400){
-    		this.ticktime = 750;
-    	}else if(this.time < 1500){
-    		this.ticktime = 800;
-    	}else if(this.time < 1600){
-    		this.ticktime = 850;
-    	}else if(this.time < 1700){
-    		this.ticktime = 900;
-    	}else if(this.time < 1800){
-    		this.ticktime = 950;
-    	}else{
-    		this.ticktime = 1000;
-    	}
     	
+    	this.updateCounter();
+    	if(this.time < 30){
+			this.alert.alpha = (30 - this.time)/50;
+    	}
     }
     this.drawMap();
     this.collide();
@@ -318,7 +302,8 @@ Game.prototype.collideObj = function(obj1, obj2){
 	    	if (asteroid.size == "large") {
 	    		if(obj1.name == 'shoot'|| obj2.name == 'shoot'){
 	    			this.punctuate(10);
-	    	}
+	    			this.bang1.play();
+	    		}
 	    		var ast1 = new Asteroid(this, asteroid.x, asteroid.y, 'medium', this.velAsteroids);
 	        	this.groupAsteroids.add(ast1);
 	        	var ast2 = new Asteroid(this, asteroid.x, asteroid.y, 'medium', this.velAsteroids);
@@ -327,7 +312,8 @@ Game.prototype.collideObj = function(obj1, obj2){
 	    	if (asteroid.size == "medium") {
 	    		if(obj1.name == 'shoot'|| obj2.name == 'shoot'){
 	    			this.punctuate(20);
-	    	}
+	    			this.bang1.play();
+	    		}
 	    		var ast1 = new Asteroid(this, asteroid.x, asteroid.y, 'small', this.velAsteroids);
 	        	this.groupAsteroids.add(ast1);
 	        	var ast2 = new Asteroid(this, asteroid.x, asteroid.y, 'small', this.velAsteroids);
@@ -336,6 +322,7 @@ Game.prototype.collideObj = function(obj1, obj2){
 	    	if (asteroid.size == "small") {
 	    		if(obj1.name == 'shoot'|| obj2.name == 'shoot'){
 	    			this.punctuate(40);
+	    			this.bang1.play();
 	    		}
 	    	}
 	    	asteroid.kill();
@@ -370,6 +357,7 @@ Game.prototype.collideObj = function(obj1, obj2){
 		}else{
 			var ship = obj2;
 		}
+		this.bang2.play();
 		var emitter = this.game.add.emitter(ship.x, ship.y, 5);
 	    emitter.makeParticles('sprites', ['shoot-blue-18-3.png']);
 	    emitter.minParticleSpeed.setTo(-40, -40);
@@ -381,7 +369,7 @@ Game.prototype.collideObj = function(obj1, obj2){
 	    ship.body.velocity.y = 0;
 	    ship.exists = false;
 	    ship.alive = false;
-	    
+	    //this.timer.timer.pause();
 	    //setTimeout(this.wait, 3200, ship);
 	    game.time.events.add(2200, this.wait, this);
 	    
@@ -398,8 +386,8 @@ Game.prototype.wait = function(ship){
     }
     
     
-    this.spaceShip.sprite.x = game.world.width/2;
-    this.spaceShip.sprite.y = game.world.height/2; 
+    this.spaceShip.sprite.x = this.game.world.width/2;
+    this.spaceShip.sprite.y = this.game.world.height/2; 
 	if(this.livesHud.countLiving() >= 1){
 		this.spawnText = this.game.add.text(this.spaceShip.sprite.x - 100, this.spaceShip.sprite.y - 20,'Press R to Respawn Here',  
 										   {font: "12px Vector Battle", fill: "#ffffff" , align: "center"});
@@ -412,6 +400,7 @@ Game.prototype.resetShip = function(){
 	if(!this.spaceShip.sprite.alive && this.livesHud.countLiving() >= 1)
 	{
 		this.spawnText.destroy();
+		//this.timer.timer.resume();
 		this.spaceShip.sprite.alpha = 1;
 		this.spaceShip.sprite.exists = true;
 		this.spaceShip.sprite.reset(this.game.world.width/2,this.game.world.height/2);
@@ -548,8 +537,9 @@ Game.prototype.punctuate = function (points) {
 };
 
 Game.prototype.gameOver = function () {
+	this.siren.pause();
 	this.siren.stop();
-	this.timer.timer.stop();
+	//this.timer.timer.pause();
     game.score = this.score;
-    setTimeout(function () { this.game.world.setBounds(0, 0, 800, 480);game.state.start('lose', Lose);} , 3000 );
+    setTimeout(function () { this.game.world.setBounds(0, 0, 800, 480);game.state.start('lose', Lose);} , 500 );
 };
