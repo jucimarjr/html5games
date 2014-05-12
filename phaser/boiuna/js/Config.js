@@ -118,7 +118,15 @@ Config.grass = {
 
 //Hero
 Config.hero = {
-	dir: 'assets/spritesheets/Hero_180-60.png',
+	dir: {
+        normal: 'assets/spritesheets/Hero_180-60.png',
+        attack: 'assets/spritesheets/HeroAttack_120-60.png'
+    },
+    layer: 'LayerHero',
+    gid: 12,
+    health: {
+        initial: 100
+    },
 	velocity: {
 		initial: {
 			x: 0,
@@ -152,17 +160,51 @@ Config.hero = {
 		}
 	},
 	frame: {
-		width: 30,
-		height: 60
-	}
+        normal: {
+            width: 30,
+            height: 60,
+            stopped: 0,
+            jumping: 3,
+            falling: 4,
+            run: {
+                one: 1,
+                two: 2
+            }
+        },
+        attack: {
+            width: 60,
+            height: 60,
+            one: 0,
+            two: 1
+        }
+    }
 };
 
 //SmallDragon
 Config.smallDragon = {
-	dir: 'assets/spritesheets/SmallDragon_90-60.png',
-	xi: 1920,
-	yi: 0,
+	dir: {
+        body: 'assets/spritesheets/SmallDragon_90-60.png',
+        fire: 'assets/images/Fire_10-10.png'
+    },
 	velocity: 150,
+    xi: 500,
+    yi: 0,
+    damage: Config.hero.health.initial / 600,
+    intervalBorning: {
+        actual: 10000,
+        min: 5000,
+        decrement: 1000
+    },
+	anchor: {
+		left: {
+			x: 0,
+			y: 0
+		},
+        right: {
+			x: 0.5,
+			y: 0
+		}
+	},
 	scale: {
 		right: {
 			y: 1
@@ -175,11 +217,26 @@ Config.smallDragon = {
 	},
 	frame: {
 		width: 30,
-		height: 60
-	}
+		height: 60,
+        normal: {
+            move: {
+                one: 0,
+                two: 1
+            }
+        }
+	},
+    number: 10
 };
-//FabioLahis
-//JacksonAntonio
+
+//Life
+
+Config.life = {
+    dir: 'assets/images/Life_20-20.png',
+    x: 0,
+    y: 0,
+    distanceBetween: 20,
+    number: 4
+};
 
 Config.dragon = {
 	dir :'assets/spritesheets/Boiuna_360-270.png',
@@ -189,6 +246,7 @@ Config.dragon = {
 	}
 
 };
+
 Config.princess = {
 	dir :'assets/spritesheets/Princess_150-60.png',
 	frame: {
@@ -197,4 +255,6 @@ Config.princess = {
 	}
 
 };
+//FabioLahis
+//JacksonAntonio
 //JacksonAntonio
