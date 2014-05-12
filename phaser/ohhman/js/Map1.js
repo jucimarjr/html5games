@@ -32,7 +32,6 @@ Map1.prototype = {
 		this.decision = game.add.group();
 		this.decision.enableBody = true;
 		
-<<<<<<< HEAD
 		this.map.createFromObjects(fp_decicionLayer, 3, 'fp_decision', 0, true, false, this.decision);
 
 		this.decision.setAll('body.immovable', true);
@@ -47,13 +46,6 @@ Map1.prototype = {
 			if(tile.body.checkCollision.right == "false")
 				tile.body.checkCollision.right = false;
 		}, this);
-=======
-		this.map.createFromObjects(fp_decicionLayer, 3, 'fp_decision', 0, true, false, this.decision);					
-		this.decision.setAll('body.immovable', true);
-		this.decision.forEach(function(tile){
-			console.log(tile.body.checkCollision);
-		}
->>>>>>> 9fe88fe2ab2b523952fb186af97efc00cd50340d
 	},
 	
 	update : function() {		

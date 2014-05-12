@@ -2,7 +2,7 @@ Blinky = function () {
 	this.sprite = null;
 	this.speed = 20;
 	
-	this.direction = "LEFT"; //LEFT, RIGHT, UP, DOWN
+	this.direction = "RIGHT"; //LEFT, RIGHT, UP, DOWN
 	
 	this.changeDirection = false;
 };
@@ -71,14 +71,19 @@ Blinky.prototype = {
 	setNewDirection : function(player, decision) {				
 		console.log("colidiu com o ponto de decisao");				
 		console.log(decision.body.checkCollision);
-		if (this.direction == 'LEFT'){
-			this.sprite.x -= 6;
-			this.direction = 'DOWN';			
+		/*if (this.direction == 'RIGHT'){
+			this.sprite.x += 6;
+			this.direction = 'UP';			
 		}
-		else if (this.direction == 'DOWN'){
-			this.sprite.y += 6;
+		else if (this.direction == 'UP'){
+			this.sprite.y -= 6;
 			this.direction = 'LEFT';
 		}
+		else if (this.direction == 'LEFT'){
+			this.sprite.X -= 6;
+			this.direction = 'RIGHT';
+		}
+		*/
 		/*else if (this.direction == 'RIGHT')
 			this.direction = 'DOWN';
 		*/
@@ -89,22 +94,27 @@ Blinky.prototype = {
 	
 
 			
-		/*var numberDirection = Math.round(1 + Math.random()*4);
+		var numberDirection = Math.round(1 + Math.random()*4);
+		console.log(numberDirection);
 		this.sprite.body.setSize(36, 36);
 		switch(numberDirection){
 			case 1:				
 				this.direction = "LEFT";
+				this.sprite.x -= 6;
 				break;
 			case 2:				
-				this.direction = "RIGHT";
+				this.direction = "RIGHT";				
+				this.sprite.x += 6;
 				break;
 			case 3:				
 				this.direction = "UP";
+				this.sprite.y -= 6;
 				break;
 			case 4:
 				this.direction = "DOWN";
+				this.sprite.y += 6;
 				break;
-		}		*/
+		}		
 		
 	},	
 	
