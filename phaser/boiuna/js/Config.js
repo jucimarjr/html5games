@@ -1,6 +1,3 @@
-//FabioLahis
-
-
 //Global
 var Config = {
     global: {
@@ -182,12 +179,9 @@ Config.hero = {
 
 //SmallDragon
 Config.smallDragon = {
-	dir: {
-        body: 'assets/spritesheets/SmallDragon_90-60.png',
-        fire: 'assets/images/Fire_10-10.png'
-    },
+	dir: 'assets/spritesheets/SmallDragon_90-60.png',
 	velocity: 150,
-    xi: 500,
+    xi: 1920,
     yi: 0,
     damage: Config.hero.health.initial / 600,
     intervalBorning: {
@@ -207,9 +201,9 @@ Config.smallDragon = {
 	},
 	scale: {
 		right: {
+			x: -1,
 			y: 1
 		},
-			x: -1,
 		left: {
 			x: 1,
 			y: 1
@@ -228,8 +222,20 @@ Config.smallDragon = {
     number: 10
 };
 
-//Life
+//Fire
+Config.fire = {
+    dir: 'assets/images/Fire_10-10.png',
+    number: 100,
+    range: 200,
+    adjust: {
+        x: 15,
+        y: 30
+    },
+    velocity: Config.smallDragon.velocity + 100,
+    lifespan: 1000
+};
 
+//Life
 Config.life = {
     dir: 'assets/images/Life_20-20.png',
     x: 0,
@@ -238,23 +244,33 @@ Config.life = {
     number: 4
 };
 
+//Dragon
 Config.dragon = {
-	dir :'assets/spritesheets/Boiuna_360-270.png',
+	dir: 'assets/spritesheets/Boiuna_360-270.png',
+    layer: 'LayerDragon',
+    gid: 21,
+    xf: Config.global.screen.width * 2 + 50,
 	frame: {
 		width: 90,
-		height: 90
-	}
-
+		height: 90,
+        move: {
+            one: 0,
+            two: 1,
+            three: 2,
+            four: 3
+        }
+	},
+    timeGrow: 1000 / Config.global.animationVelocity,
+    number: {
+        pieces: 5
+    }
 };
 
+//Princess
 Config.princess = {
-	dir :'assets/spritesheets/Princess_150-60.png',
+	dir: 'assets/spritesheets/Princess_150-60.png',
 	frame: {
 		width: 30,
 		height: 60
 	}
-
 };
-//FabioLahis
-//JacksonAntonio
-//JacksonAntonio
