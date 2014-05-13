@@ -1,6 +1,6 @@
 Blinky = function () {
 	this.sprite = null;
-	this.speed = 20;
+	this.speed = 200;
 	
 	this.direction = "LEFT"; //LEFT, RIGHT, UP, DOWN
 	
@@ -57,16 +57,37 @@ Blinky.prototype = {
 	
 	//Verifica a colisão do blinky com o mapa
 	verifyMapCollision : function() {					
-		game.physics.arcade.collide(this.sprite, map.layer);
+		console.log("colidiu com mapa");
+		game.physics.arcade.overlap(this.sprite, map.layer, this.setNewDirection, null, this);
 	},
 	
 	//Verifica a colisão do blinky com o ponto de decisao
 	verifyDecisionCollision : function() {				
-		game.physics.arcade.collide(this.sprite, map.decision, this.setNewDirection, null, this);					
+		game.physics.arcade.collide(this.sprite, map.decision, this.correctPosition, null, this);					
 	},
 	
 	//Seta uma direção aleatória para o blinky
-	setNewDirection : function(player, decision) {				
+	setNewDirection : function() {	
+		var numberDirection = Math.round(1 + Math.random()*3);
+		console.log(numberDirection);		
+		switch(numberDirection){
+			case 1:				
+				this.direction = "LEFT";				
+				break;
+			case 2:				
+				this.direction = "RIGHT";								
+				break;
+			case 3:				
+				this.direction = "UP";				
+				break;
+			case 4:
+				this.direction = "DOWN";				
+				break;
+		}				
+	},	
+	
+	//Seta uma direção aleatória para o blinky
+	correctPosition : function(player, decision) {				
 		console.log("colidiu com o ponto de decisao");				
 		console.log(decision.body.checkCollision);
 		/*if (this.direction == 'RIGHT'){
@@ -100,26 +121,9 @@ Blinky.prototype = {
 		
 		if (decision.body.checkCollision.up)
 			this.sprite.y -= 6;
-
-			
-		var numberDirection = Math.round(1 + Math.random()*3);
-		console.log(numberDirection);		
-		switch(numberDirection){
-			case 1:				
-				this.direction = "LEFT";				
-				break;
-			case 2:				
-				this.direction = "RIGHT";								
-				break;
-			case 3:				
-				this.direction = "UP";				
-				break;
-			case 4:
-				this.direction = "DOWN";				
-				break;
-		}		
 		
-	},	
+		this.setNewDirection();
+	},		
 	
 	//Remove a bolinha amarela após colisão com o Ohhman
 	removeBall : function(player, ball) {		 
