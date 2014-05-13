@@ -11,14 +11,27 @@
 	<script type="text/javascript" src="js/Person.js"></script>
 	<script type="text/javascript" src="js/Round.js"></script>
 	<script type="text/javascript" src="js/Game.js"></script>
-	<style type="text/css">
-        body {
-            margin: 0;
-        }
-    </style>
+	<!--<style type="text/css">
+	        body {
+	        	border:1px dashed #000000;
+				position:absolute;
+				top:50%;
+				left:50%;
+				margin-top: -400px;
+				margin-left:-400px;
+	        }
+			
+			#footer {
+				position:absolute;
+				bottom:-200px;
+				width:100%;
+				height:200px;
+				overflow:scroll;
+			}
+	    </style>-->
 </head>
-<body>
 
+<body>
 <script type="text/javascript">
 
 var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
@@ -36,11 +49,20 @@ game.state.add('game', Game);
 
 function preload()
 {
-
-	game.load.image('person', imagePessoa);
-	game.load.image('zombie', imageZombie);
-	game.load.image('muro', imageMuro);
-	game.load.image('rua', imageRua);
+	//SpriteSheets Pessoas
+	game.load.spritesheet('personDown', spriteSheetsImagePersonDown, 100, 161, 6);
+	
+	//SpriteSheets Zumbis
+	game.load.atlas('zombieDown', spriteSheetsImageZombieDown, spriteSheetsJsonZombieDown);
+	game.load.spritesheet('zombieUp',spriteSheetsImageZombieUp,100,168,4);
+	game.load.spritesheet('zombieLeft',spriteSheetsImageZombieLeft,100,168,3);
+	game.load.spritesheet('zombieRigth',spriteSheetsImageZombieRigth,100,168,3);
+	game.load.spritesheet('zombieDead',spriteSheetsImageZombieDead,100,136,10);
+	
+	game.load.image('cenario', imageCenario);
+	game.load.audio('audioZombieDead',audioZombieDead);
+	game.load.audio('audioBackGroundGame',audioBackGroundGame);
+	
 	splashScene = new Splash(game);
 	splashScene.preload();
 }
@@ -77,4 +99,18 @@ function setHighScore()
 </script>
 
 </body>
+
+  <!--<div id="footer">
+	<!--	<span style="position:relative; top:600px">
+		<center>
+			<h3> Desenvolvedores </h3>
+				<a href = "https://www.facebook.com/camdsf?fret=ts"> Carlos Alberto </a> </br>
+				<a href = "https://www.facebook.com"> Anne Oliveira </a>  </br>
+			<h3> Designer </h3>
+				<a href = "https://www.facebook.com/johnmaycon.silva?fref=ts"> John Maycon </a> </br>
+			<h3> Orientador </h3>
+				<a href = "https://www.facebook.com/jucimar.jr?fret=ts"> Prof. Jucimar Jr. </a> </br></br>
+		</center>
+	<!--	</span> 
+	</div>-->
 </html>

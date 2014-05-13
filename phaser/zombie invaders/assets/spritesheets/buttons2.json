@@ -1,0 +1,60 @@
+{"frames": [
+
+{
+	"filename": "HowToPlay.png",
+	"frame": {"x":2,"y":2,"w":153,"h":58},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":153,"h":58},
+	"sourceSize": {"w":153,"h":58}
+},
+{
+	"filename": "HowToPlaySelecionado.png",
+	"frame": {"x":157,"y":2,"w":155,"h":59},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":155,"h":59},
+	"sourceSize": {"w":155,"h":59}
+},
+{
+	"filename": "Play.png",
+	"frame": {"x":314,"y":2,"w":152,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":152,"h":60},
+	"sourceSize": {"w":152,"h":60}
+},
+{
+	"filename": "PlaySelecionado.png",
+	"frame": {"x":2,"y":64,"w":152,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":152,"h":60},
+	"sourceSize": {"w":152,"h":60}
+},
+{
+	"filename": "Score.png",
+	"frame": {"x":156,"y":64,"w":154,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":154,"h":60},
+	"sourceSize": {"w":154,"h":60}
+},
+{
+	"filename": "ScoreSelecionado.png",
+	"frame": {"x":312,"y":64,"w":155,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":155,"h":60},
+	"sourceSize": {"w":155,"h":60}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker ",
+	"version": "1.0",
+	"image": "buttons2.png",
+	"format": "RGBA8888",
+	"size": {"w":512,"h":128},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:6751b8ef4c81a8a85c02daeedb6cab36:7573c44f98820084cde7a3b3896dd859:0357c204d7146473103d8ad73404ed3e$"
+}
+}

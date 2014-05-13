@@ -17,6 +17,9 @@ var fp_bgLose = 'assets/screenshots/lose_800-600.png';
 
 	//Mapas
 	var fp_map1 = 'assets/tilemaps/maps/map1.json';
+	var fp_wallLayer = 'Wall';
+	var fp_ballLayer = 'Ball';
+	var fp_decicionLayer = 'Decision';
 
 
 //Sprites
@@ -31,8 +34,9 @@ var fp_bgLose = 'assets/screenshots/lose_800-600.png';
 	var fp_btnCreditsSelected = 'btnCreditsSelected_291-75.png';
 	
 	//Tiles
-	var fp_tile1 = 'assets/tilemaps/tiles/tile1.png';
-	var fp_tlBall = 'assets/tilemaps/tiles/ball.png';
+	var fp_walls = 'assets/tilemaps/tiles/wall.png';	
+	var fp_balls = 'assets/tilemaps/tiles/ball.png';	
+	var fp_decision = 'assets/tilemaps/tiles/decision.png';		
 	
 	//Personagens
 	var fp_ohhMan = 'assets/images/ohhMan_36-36.png';

@@ -1,9 +1,22 @@
-<!doctype html>
 
-<html lang="pt-br"> 
-	<head> 
-		<meta charset="UTF-8" />
+<!-- Jogo: OhhMan -->
+<!-- Desenvolvido por: Anne Oliveira, Juliane Silva -->
+<!-- Orientado por: Prof. Jucimar Jr. -->
+<!-- Baseado em: PacMan -->
+
+<!doctype html>
+<html xmlns:og="http://opengraphprotocol.org/schema/">
+	<head>
+		<!-- Configuração do resumo, imagem de divulgação do grupo de jogos para o Facebook -->
+		<meta charset="UTF-8"/>
+		<meta property="og:title" content="ohhman" />
+		<meta property="og:type" content="website" />
+		<meta property="og:description" content="Coma quantas bolinhas puder! \o/ Mas cuidado com as suas vidas, os fantasminhas não terão pena delas se pegar você, muahaha. :O ;)" />
+		<meta property="og:url" content="http://computacao.uea.edu.br/ludus/games/ohhman/" />
+		<meta property="og:image" content="http://computacao.uea.edu.br/ludus/games/ohhman/assets/divulgation_200-200.png" />
+		
 		<title>OhhMan!</title>
+		
 		<script type="text/javascript" src="js/phaser.min.js"></script>
 		<script type="text/javascript" src="js/config/FilePath.js"></script>
 		
@@ -33,18 +46,25 @@
 				margin-top:-300px;
 				margin-left:-400px;
 	        }
+			
+			#footer {
+				position:absolute;
+				bottom:-250px;
+				width:100%;
+			}
 	    </style>
 	</head>
 
 	<body>
 		<script type="text/javascript">
-			var game = new Phaser.Game(800, 600, Phaser.AUTO, '', {preload: preload, create: create, update: update});
+			//var game = new Phaser.Game(800, 600, Phaser.AUTO, '', {preload: preload, create: create, update: update});
+			var game = new Phaser.Game(800, 600, Phaser.CANVAS, '', { preload: preload, create: create, update: update, render: render });
 			var splash = null;
 									
 			function preload() {								
 				//Preload do Splash
-				splash = new Splash();
-				//splash = new Game();
+				//splash = new Splash();
+				splash = new Menu();
 				splash.preload();
 			}
 
@@ -55,6 +75,9 @@
 
 			function update() {
 				//splash.update();
+			}
+			
+			function render() {
 			}
 
 			game.state.add('sceneMenu', Menu);
@@ -67,4 +90,16 @@
 		</script>
 	</body>
 
+	<!-- Rodapé do grupo de jogos -->
+	<div id="footer">
+		<center>
+			<h3> Desenvolvedores </h3>
+				<a href = "https://www.facebook.com"> Anne Oliveira </a>  </br>
+				<a href = "https://www.facebook.com/jl.sansil?fret=ts"> Juliane Silva </a> </br>
+			<h3> Orientador </h3>
+				<a href = "https://www.facebook.com/jucimar.jr?fret=ts"> Prof. Jucimar Jr. </a> </br>
+			</br>
+		</center>
+	</div>
+	
 </html>

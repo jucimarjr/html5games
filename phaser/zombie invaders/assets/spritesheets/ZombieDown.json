@@ -1,0 +1,60 @@
+{"frames": [
+
+{
+	"filename": "ZombieDown-1_100-270.png",
+	"frame": {"x":2,"y":2,"w":100,"h":270},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":270},
+	"sourceSize": {"w":100,"h":270}
+},
+{
+	"filename": "ZombieDown-2_100-270.png",
+	"frame": {"x":104,"y":2,"w":100,"h":270},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":270},
+	"sourceSize": {"w":100,"h":270}
+},
+{
+	"filename": "ZombieDown-3_100-270.png",
+	"frame": {"x":2,"y":274,"w":100,"h":270},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":270},
+	"sourceSize": {"w":100,"h":270}
+},
+{
+	"filename": "ZombieDown-4_100-270.png",
+	"frame": {"x":104,"y":274,"w":100,"h":270},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":270},
+	"sourceSize": {"w":100,"h":270}
+},
+{
+	"filename": "ZombieDown-5_100-270.png",
+	"frame": {"x":2,"y":546,"w":100,"h":270},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":270},
+	"sourceSize": {"w":100,"h":270}
+},
+{
+	"filename": "ZombieDown-6_100-270.png",
+	"frame": {"x":104,"y":546,"w":100,"h":270},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":270},
+	"sourceSize": {"w":100,"h":270}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker ",
+	"version": "1.0",
+	"image": "ZombieDown.png",
+	"format": "RGBA8888",
+	"size": {"w":256,"h":1024},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:320333c6e5044a8a02c712aff4647beb:9f288a9fb5f851a33fe62a6e7956914a:26724f9a0e6a3c51f7a25914c7242989$"
+}
+}

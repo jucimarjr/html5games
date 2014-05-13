@@ -1,0 +1,28 @@
+{"frames": [
+
+{
+	"filename": "title1_532-111.png",
+	"frame": {"x":2,"y":2,"w":523,"h":111},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":523,"h":111},
+	"sourceSize": {"w":523,"h":111}
+},
+{
+	"filename": "title2_532-111.png",
+	"frame": {"x":2,"y":115,"w":523,"h":111},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":523,"h":111},
+	"sourceSize": {"w":523,"h":111}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker ",
+	"version": "1.0",
+	"image": "TitlesSpriteSheet.png",
+	"format": "RGBA8888",
+	"size": {"w":1024,"h":256},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:af0dbf7100fbf6ac98b24201d9f0f991:58958db985f345237ba75efa5c1bfbbb:9e2d123cb1e517c8c16fc1309d28c56a$"
+}
+}

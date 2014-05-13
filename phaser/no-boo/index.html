@@ -1,10 +1,29 @@
-<!doctype html> 
 
-<html lang="pt-br"> 
+<!-- Jogo: No-BOO -->
+<!-- Desenvolvido por: Anne Oliveira, Juliane Silva, Matheus Palheta -->
+<!-- Orientado por: Prof. Jucimar Jr. -->
+
+<!doctype html>
+<html lang="pt-br">
 	<head> 
-		<meta charset="UTF-8" />
+		<!-- Configuração do resumo, imagem de divulgação do grupo de jogos para o Facebook -->
+		<meta charset="UTF-8"/>
+		<meta property="og:title" content="noboo" />
+		<meta property="og:type" content="website" />
+		<meta property="og:description" content="Atinja os fantasminhas e evite o pac-man, mas fique de olho no cronômetro porque você não vai querer morrer. ;)" />
+		<meta property="og:url" content="http://computacao.uea.edu.br/ludus/games/noboo/" />
+		<meta property="og:image" content="http://computacao.uea.edu.br/ludus/games/noboo/assets/divulgation_200-200.png" />
+		
 		<title>No-BOO</title>
+		
 		<script type="text/javascript" src="js/phaser.min.js"></script>
+		<script type="text/javascript" src="js/splash.js"></script>
+		<script type="text/javascript" src="js/menu.js"></script>
+		<script type="text/javascript" src="js/jogo.js"></script>
+		<script type="text/javascript" src="js/ganhou.js"></script>
+		<script type="text/javascript" src="js/perdeu.js"></script>
+		<script type="text/javascript" src="js/instrucoes.js"></script>
+		<script type="text/javascript" src="js/creditos.js"></script>
 		
 		<style type="text/css">
 	        body {
@@ -12,321 +31,65 @@
 				top:50%;
 				left:50%;
 				margin-top:-240px;
-				margin-left:-300px;
+				margin-left:-250px;
 	        }
+			
+			#footer {
+				position:absolute;
+				bottom:-300px;
+				width:100%;
+			}
 	    </style>
 	</head>
 
 	<body>
 		<script type="text/javascript">
-			var game = new Phaser.Game(600, 480, Phaser.AUTO);
-			var grupoFantasmaCinza;
-			var grupoFantasmaLaranja;
-			var grupoFantasmaLilas;
-			var grupoFantasmaVerde;
-			var grupoFantasmaVermelho;
-			var grupoPacMan;
-			var pontos;
-			var txt_pontos;
-			var vidas;
-			var coracao1, coracao2, coracao3;
-			var tamanhoCoracao = 35;
-			var txt_cronometro;
-			var direcao;
-			function configurarMovimento(objeto) {
-				objeto.anchor.x = 0.5;
-				objeto.anchor.y = 0.5;				
-				direcao = game.rnd.integerInRange(0, 360);
-				objeto.body.velocity.x = Math.cos(direcao*0.0174)*50;
-				objeto.body.velocity.y = Math.sin(direcao*0.0174)*50;
-				objeto.body.collideWorldBounds = true;
-				objeto.body.bounce.setTo(1, 1);
-			}
-			var fantasma;
-			var aleatorio;
-			function createFantasma(corFantasma, grupoFantasma) {
-				for(var i=0;i<3;i++){
-					fantasma = game.add.sprite(game.rnd.integerInRange(0, 640), game.rnd.integerInRange(0, 480), 'textures');
-					fantasma.inputEnabled=true;
-					fantasma.input.start();					
-					//Cria um fantasminha (pra uma dessas direï¿½ï¿½es) com a seu respectiva troca de perninhas
-					aleatorio = game.rnd.integerInRange(1, 4);
-					switch (aleatorio) {
-					case 1:
-						fantasma.animations.add('baixo', Phaser.Animation.generateFrameNames(corFantasma + '_baixo', 3, 4, '.png'));
-						fantasma.animations.play('baixo', 8, true);
-						break;
-					case 2:
-						fantasma.animations.add('cima', Phaser.Animation.generateFrameNames(corFantasma + '_cima', 3, 4, '.png'));
-						fantasma.animations.play('cima', 8, true);
-						break;
-					case 3:
-						fantasma.animations.add('direita', Phaser.Animation.generateFrameNames(corFantasma + '_direita', 3, 4, '.png'));
-						fantasma.animations.play('direita', 8, true);
-						break;
-					case 4:
-						fantasma.animations.add('esquerda', Phaser.Animation.generateFrameNames(corFantasma + '_esquerda', 3, 4, '.png'));
-						fantasma.animations.play('esquerda', 8, true);
-						break;
-					}					
-					configurarMovimento(fantasma);
-					fantasma.events.onInputDown.add(elimine = function(fantasma){
-						fantasma.destroy();
-						var somFantasma = game.add.audio('clickFantasma'+game.rnd.integerInRange(1, 9));
-						somFantasma.play();
-						var explosao = game.add.sprite(fantasma.x, fantasma.y, 'textures')
-						explosao.anchor.x = 0.5;
-						explosao.anchor.y = 0.5;
-						explosao.animations.add('explode', Phaser.Animation.generateFrameNames('explosao', 1, 10, '.png'), 8, false);
-						explosao.animations.play('explode', 30, false, true);
-						pontuar();
-					},null);
-					grupoFantasma.add(fantasma);
-				}
-			}
-			var textures_pacman;
-			function createPacMan() {
-				for(var i=0;i<9;i++){
-					textures_pacman = game.add.sprite(game.rnd.integerInRange(0, 620), game.rnd.integerInRange(0, 460), 'textures_pacman')
-					textures_pacman.inputEnabled=true;
-					//Abrir e fechar boca
-					textures_pacman.animations.add('mover', [2,3]);
-					textures_pacman.animations.play('mover', 8, true);
-					configurarMovimento(textures_pacman);
-					textures_pacman.events.onInputDown.add(elimine = function(pac){
-						var somPacMan = game.add.audio('clickPacMan', 0.2);
-						somPacMan.play();
-						pac.animations.add('fail', [0,3,1,2,0,3,1,2,0,3,1,2]);
-						pac.animations.play('fail', 15, false);
-						setTimeout(function(){
-							pac.animations.add('mover', [2,3]);
-							pac.play('mover', 8, true);}, 1000);
-						perderVida();
-					},null);
-					grupoPacMan.add(textures_pacman);
-				}
-			}
-			function pontuar () {
-				//Acrescenta 1 ponto a cada fantasminha atinjido
-				pontos += 1;
-			    txt_pontos.content = 'Pontos: ' + pontos;
-			    if (pontos == 15) {
-				    //Ir pra tela de venceu
-			    }
-			}
-			function perderVida () {
-				//Diminui 1 vida a cada pac-man atingido
-				switch (vidas) {
-					case 3:
-						coracao3.destroy();
-						coracao3 = game.add.sprite(game.world.width/2 + tamanhoCoracao, 15, 'coracao_vazio');
-						break;
-					case 2:
-						coracao2.destroy();
-						coracao2 = game.add.sprite(game.world.width/2, 15, 'coracao_vazio');
-						break;
-					case 1:
-						coracao1.destroy();
-						coracao1 = game.add.sprite(game.world.width/2 - tamanhoCoracao, 15, 'coracao_vazio');
-						//Ir pra tela de perdeu
-						break;
-					default:
-						var fadeout = game.add.tween(Jogo.world).to( { alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
-						fadeout.onComplete.add(function(){
-							game.state.start('Perdeu', true, true)
-						})
-				}
-				vidas -= 1;
-			}
+			var game = new Phaser.Game(600, 480, Phaser.AUTO, '', {preload: preload, create: create, update: update});
+			var musica;
 			
-			var Jogo = {
-					preload:function() {
-						//preload dos sprites
-						game.load.atlas('textures', 'assets/textures_all.png', 'assets/textures_all.json'); 
-						game.load.spritesheet('textures_pacman', 'assets/textures_pacman.png', 33, 32);
-						game.load.image('coracao_cheio', 'assets/coracao_cheio.png');
-						game.load.image('coracao_vazio', 'assets/coracao_vazio.png');
-						//preload dos audios				
-						game.load.audio('MusicaFundo', 'audio/GhostBusters.mp3');
-						game.load.audio('clickFantasma1', 'audio/Plop1.wav');
-						game.load.audio('clickFantasma2', 'audio/Plop2.wav');
-						game.load.audio('clickFantasma3', 'audio/Plop3.wav');
-						game.load.audio('clickFantasma4', 'audio/Plop4.wav');
-						game.load.audio('clickFantasma5', 'audio/Plop5.wav');
-						game.load.audio('clickFantasma6', 'audio/Plop6.wav');
-						game.load.audio('clickFantasma7', 'audio/Plop7.wav');
-						game.load.audio('clickFantasma8', 'audio/Plop8.wav');
-						game.load.audio('clickFantasma9', 'audio/Plop9.wav');
-						game.load.audio('clickPacMan', 'audio/Fail.wav');
-					},
-					create:function() {
-						//grupo de fantasminhas separados por cor
-						grupoFantasmaCinza = game.add.group();
-						grupoFantasmaLaranja = game.add.group();
-						grupoFantasmaLilas = game.add.group();
-						grupoFantasmaVerde = game.add.group();
-						grupoFantasmaVermelho = game.add.group();
-						grupoPacMan = game.add.group();
+			function preload() {
+				//preload do audio
+				game.load.audio('musica_fundo', ['audio/GhostBusters.mp3', 'audio/GhostBusters.ogg']);
+				
+				//preload do Splash
+				splash = new Splash(game);
+				splash.preload();
+			}
 
-						createFantasma('cinza', grupoFantasmaCinza);
-						createFantasma('laranja', grupoFantasmaLaranja);
-						createFantasma('lilas', grupoFantasmaLilas);
-						createFantasma('verde', grupoFantasmaVerde);
-						createFantasma('vermelho', grupoFantasmaVermelho);
-						createPacMan();
+			function create() {
+				musica = game.add.audio('musica_fundo', 1, true);
+				musica.override = true;
+				musica.play('', 0, 1, true);
+				
+				//chamada do Splash
+				splash.create();
+			}
 
-						txt_pontos = game.add.text(15, 15, 'Pontos: 0', {font: '35px Grinched', fill: '#fff' });
-						coracao1 = game.add.sprite(game.world.width/2 - tamanhoCoracao, 15, 'coracao_cheio');
-						coracao2 = game.add.sprite(game.world.width/2, 15, 'coracao_cheio');
-						coracao3 = game.add.sprite(game.world.width/2 + tamanhoCoracao, 15, 'coracao_cheio');
-						txt_cronometro = game.add.text(game.world.width - 95, 15, '00:00', {font: '35px Grinched', fill: '#fff' });
-					},
-					update:function() {
-						
-					}
+			function update() {
+				
 			}
-			var Splash = {
-					preload:function(){
-						game.load.image('ludus', 'assets/telas/0. splash_grupo.png')
-						game.load.image('splash', 'assets/telas/1. splash_jogo.png')
-						game.load.audio('MusicaFundo', 'audio/GhostBusters.mp3');
-					},
-					create:function(){
-						var somFundo = game.add.audio('MusicaFundo')
-						//somFundo.play();
-						var bg = game.add.sprite(0,0,'ludus');
-						bg.alpha = 0;
-						var fadein = game.add.tween(bg).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0, 0, true);
-						setTimeout(function(){
-							var fadeout = game.add.tween(bg).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true, 0, 0, true);
-							fadeout.onComplete.add(function(){
-								bg.loadTexture('splash')
-								var fadein = game.add.tween(bg).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0, 0, true);
-								setTimeout(function(){
-									var fadeout = game.add.tween(bg).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true, 0, 0, true);
-									fadeout.onComplete.add(function(){
-										game.state.start('Menu', true, true)
-									})
-								}, 6000);
-							})
-						}, 2500);
-					}
-			}
-			var Menu = {
-					preload:function(){
-						game.load.image('backGround', 'assets/telas/1. splash_jogo.png')
-						game.load.image('instrucoes', 'assets/telas/3. instrucoes.png')
-						game.load.spritesheet('button', 'assets/telas/botoes/botoes.png', 189, 52); 
-					},
-					create:function(){
-						pontos = 0;
-						vidas = 3;
-						var bg = game.add.sprite(0,0,'backGround')
-						var btStart = game.add.button(game.world.centerX + 10, game.world.centerY - 55, 'button', function(){
-							fadeOutJogo();
-						}, null, 0, 3)
-						btStart.anchor.x = 0.5;
-						var btCreditos = game.add.button(game.world.centerX + 10, game.world.centerY, 'button', function(){
-							fadeOutCreditos();
-						}, null, 1, 4)
-						btCreditos.anchor.x = 0.5;
-						var btComoJogar = game.add.button(game.world.centerX + 10, game.world.centerY + 55, 'button', function(){
-							fadeOutComoJogar();
-						}, null, 2, 5)
-						btComoJogar.anchor.x = 0.5;
-						function fadeOutJogo(){
-							var fadeout = game.add.tween(bg).to( { alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
-							var fadeout = game.add.tween(btStart).to( { alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
-							var fadeout = game.add.tween(btCreditos).to( { alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
-							var fadeout = game.add.tween(btComoJogar).to( { alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
-							fadeout.onComplete.add(function(){
-								game.state.start('Jogo', true, true)				
-							})
-						}
-						function fadeOutCreditos(){
-							var fadeout = game.add.tween(bg).to( { alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
-							var fadeout = game.add.tween(btStart).to( { alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
-							var fadeout = game.add.tween(btCreditos).to( { alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
-							var fadeout = game.add.tween(btComoJogar).to( { alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
-							fadeout.onComplete.add(function(){
-								game.state.start('Creditos', true, true)
-							})
-								
-						}
-						function fadeOutComoJogar(){
-							var fadeout = game.add.tween(bg).to( { alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
-							var fadeout = game.add.tween(btStart).to( { alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
-							var fadeout = game.add.tween(btCreditos).to( { alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
-							var fadeout = game.add.tween(btComoJogar).to( { alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
 
-							fadeout.onComplete.add(function(){
-								game.state.start('ComoJogar', true, true)
-							})
-								
-						}
-					}
-			}
-			var Creditos = {
-					preload:function(){
-						game.load.image('creditos', 'assets/telas/4. creditos.png')
-					},
-					create:function(){
-						var bg = game.add.sprite(0,0,'creditos')
-						game.input.onDown.add(function(){
-							var fadeout = game.add.tween(bg).to( { alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
-							fadeout.onComplete.add(function(){
-								game.state.start('Menu', true, true)
-							})
-						})
-					}
-			}
-			var Perdeu = {
-					preload:function(){
-						game.load.image('perdeu','assets/telas/6. perdeu.png')
-						game.load.audio('som', 'audio/Ending.wav')
-					},
-					create:function(){
-						var bg = game.add.sprite(0,0,'perdeu');
-						
-						var fadein = game.add.tween(Perdeu.world).to( { alpha: 1 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
-						fadein.onComplete.add(function(){
-							var somEnd = game.add.audio('som')
-							somEnd.play()
-						})
-						setTimeout(function(){
-							var fadeout = game.add.tween(bg).to( { alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
-							fadeout.onComplete.add(function(){
-								game.state.start('Menu', true, true)
-							})
-						},3000)
-					}
-			}
-			var ComoJogar = {
-					preload:function(){
-						game.load.image('instrucoes', 'assets/telas/3. instrucoes.png')
-					},
-					create:function(){
-						var bg = game.add.sprite(0,0,'instrucoes')
-						game.input.onDown.add(function(){
-							var fadeout = game.add.tween(bg).to( { alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
-							fadeout.onComplete.add(function(){
-								game.state.start('Menu', true, true)
-							})
-						})
-					}
-			}
-			game.state.add('Splash', Splash, true);
-			game.state.add('Jogo', Jogo);
-			game.state.add('Menu', Menu);
-			game.state.add('Creditos', Creditos);
-			game.state.add('ComoJogar', ComoJogar);
-			game.state.add('Perdeu', Perdeu);
-			
-			
-
-
-			
+			game.state.add('menu', Menu);
+			game.state.add('jogo', Jogo);
+			game.state.add('ganhou', Ganhou);
+			game.state.add('perdeu', Perdeu);
+			game.state.add('instrucoes', Instrucoes);
+			game.state.add('creditos', Creditos);
 		</script>
 	</body>
 
+	<!-- Rodapé do grupo de jogos -->
+	<div id="footer">
+		<center>
+			<h3> Desenvolvedores </h3>
+				<a href = "https://www.facebook.com"> Anne Oliveira </a> </br>
+				<a href = "https://www.facebook.com/jl.sansil?fret=ts"> Juliane Silva </a> </br>
+				<a href = "https://www.facebook.com/matheus.palhetabarbosa?fret=ts"> Matheus Palheta </a> </br>
+			</br>
+			<h3> Orientador </h3>
+				<a href = "https://www.facebook.com/jucimar.jr?fret=ts"> Prof. Jucimar Jr. </a> </br>
+			</br>
+		</center>
+	</div>
+	
 </html>

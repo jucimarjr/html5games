@@ -3,6 +3,8 @@ var Select = {};
 ship = 1;
 shoot = 1;
 color = 'blue';
+damage = 5;
+impulse = 1;
 
 Select = function (game) {
     this.game = game;
@@ -29,6 +31,10 @@ Select.prototype.create = function() {
     this.txt3 = this.game.add.text(20, 285 , "Select Your Shoot Type: "+shoot, {
         font: "28px Vector Battle", fill: "#ffffff" , align: "right"
     });
+    
+    this.btnGroup.add(this.txt1);
+    this.btnGroup.add(this.txt2);
+    this.btnGroup.add(this.txt3);
 	
 	var h = 65;
 	
@@ -225,6 +231,52 @@ Select.prototype.selectNave = function(i){
 
 Select.prototype.selectBullet = function(i){
 	shoot = i;
+	switch (i){
+	case 1:
+		damage = 5;
+		impulse=1;
+	break;
+	case 2:
+		damage = 3;
+		impulse=2;
+	break;
+	case 3:
+		damage = 2;
+		impulse=1;
+	break;
+	case 4:
+		damage = 0.2;
+		impulse=0.2;
+	break;
+	case 5:
+		damage = 0.2;
+		impulse=0.2;
+	break;
+	case 6:
+		damage = 0.2;
+		impulse=0.2;
+	break;
+	case 7:
+		damage = 0.5;
+		impulse=0.1;
+	break;
+	case 8:
+		damage = 2;
+		impulse=2;
+	break;
+	case 9:
+		damage = 4;
+		impulse=2;
+	break;
+	case 10:
+		damage = 2;
+		impulse=1;
+	break;
+	case 11:
+		damage = 1;
+		impulse=2;
+	break;
+	}
 	this.txt3.content = "Selected Shoot: "+shoot;
 };
 

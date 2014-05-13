@@ -14,29 +14,32 @@ Game.prototype = {
 		this.loadGhosts();
 	},
 
-	create : function() {
-		map1.create();
+	create : function() {			
+		map.create();
 		ohhMan.create();
 		blinky.create();
 		clyde.create();
 		inkey.create();
-		pinky.create();
+		pinky.create();			
 	},
 	
 	update : function() {
-		var layer = map1.layer;
+		var layer = map.layer;		
 		
-		ohhMan.update(layer);
-		blinky.update(layer);
+		ohhMan.update();
+		blinky.update();
 		clyde.update(layer);
 		inkey.update(layer);
-		pinky.update(layer);
+		pinky.update(layer);		
 	},
-
+	
+	render : function() {
+		blinky.render();
+	},
 	
 	loadMap : function() {
-		map1 = new Map1();
-		map1.preload();
+		map = new Map1();
+		map.preload();
 	},
 
 	loadOhhman : function() {
@@ -56,5 +59,5 @@ Game.prototype = {
 		
 		pinky = new Pinky();
 		pinky.preload();
-	}
+	}	
 };
