@@ -17,10 +17,10 @@
    <polyline points="-3,49 0,-121 177,-121"/>
   </object>
   <object type="edgeShape" x="2302" y="364">
-   <polyline points="0,115 0,-124 175,-125"/>
+   <polyline points="-355,113 -356,-60 49,-60"/>
   </object>
   <object type="edgeShape" x="2652" y="302">
-   <polyline points="2,177 -1,-125 179,-124"/>
+   <polyline points="-130,174 -129,-63 277,-63"/>
   </object>
   <object type="edgeShape" x="3067" y="478">
    <properties>
@@ -76,7 +76,7 @@
  </layer>
  <layer name="Camada de Tiles 1" width="140" height="15">
   <data encoding="base64" compression="zlib">
-   eJztl1kOwjAMRMN+AvYTlPUEQCn3vxPzE6kfOHYSmhY0Iz0plqrEcZ1p4xxFURRFURRFUVRYIzAGEzAFMzAHiz6TogarJViBNdiALdiBfZ9JUUUV4xkVOIAjOIEzuIBrkUypISjGM27gDh6gBk/QgFeJRKnO1JVntPulDfvlt5XqGR7JMz75yz/3i3TuSsfafULK04+1+VI9o3bhHkjxly5qbq1laG3LO5HOXelYu09IefqxNl/Mf0ZMD8R4kbaXnNhay9DalncinbvSsXafkPL0Y22+1B6ond1ftGe1veTE1lqG1k713qaHWPveS3n6sTZfrr98w4u0XHJibU+WtUO1eQNsU02K
+   eJztlUcOAyEMRSf9BOknSD9B+v3vlL8gkhVhsBQDs/hPeqIswHgG03WEEEIIIYQQQgghdRjAIRzBMZzAaWjlnOzPmkRK+sAcLuASruAabkIr52R/2yRS8g9edWEH9/AAj/AEz6GVc7J/KXQmUg6vunCFN3iHD/iEr9DKOdl/lzhQI7R7V3uce+O1OGN1IbaeV12Q/4vV3/+lRM6tuUztbfkm2r2rPc698VqcsboQW8+rLnisUyLn1lym9rZ8E+3e1R7n3ngtzlhdiK3nURe81imRc2suU3tbvol2X2qPc2+8Fue3n1uvT/WlRM5TZ7funcrhBwanUVk=
   </data>
  </layer>
 </map>

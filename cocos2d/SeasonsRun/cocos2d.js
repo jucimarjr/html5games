@@ -1,26 +1,62 @@
+/****************************************************************************
+ Copyright (c) 2010-2012 cocos2d-x.org
+ Copyright (c) 2008-2010 Ricardo Quesada
+ Copyright (c) 2011      Zynga Inc.
+
+ http://www.cocos2d-x.org
+
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE.
+ ****************************************************************************/
 (function () {
-	var d = document;
-	var c = {
-		menuType:"canvas",
-        	COCOS2D_DEBUG:2, // full debug mode
-		box2d:true, // no physics in this game
-		chipmunk: false, // no chipmunk engine
-		loadExtension: true,
-		showFPS:false, // let's show the FPS meter
-		frameRate:60, // 60 frames per second
-		tag:"gameCanvas", // id of the canvas element
-		engineDir:"../Cocos2d-html5/cocos2d/", // path to your cocos2d installation
-		appFiles: ["src/Game.js", "src/Player.js", "src/AuxFunctions.js", "src/ServerFunctions.js",
+    var d = document;
+    var c = {
+        COCOS2D_DEBUG:2, //0 to turn debug off, 1 for basic debug, and 2 for full debug
+        box2d:true,
+        chipmunk:false,
+        showFPS:true,
+        loadExtension:true,
+        frameRate:60,
+        renderMode:0,       //Choose of RenderMode: 0(default), 1(Canvas only), 2(WebGL only)
+        tag:'gameCanvas', //the dom element to run cocos2d on
+        engineDir: '../Cocos2d-html5/cocos2d/',
+        //SingleEngineFile:'seasonsRun.js',
+        appFiles: ["src/Game.js", "src/Player.js", "src/AuxFunctions.js", "src/ServerFunctions.js",
                    "src/SplashGame.js", "src/SplashLudus.js", "src/Menu.js", "src/Credits.js",
-                   "src/HighScores.js"
-		] // path to the main game file
-	};
-	window.addEventListener('DOMContentLoaded', function () {
-		var s = d.createElement("script");
-		s.src = c.engineDir + "platform/jsloader.js";
-		d.body.appendChild(s);
-		s.c = c;
-		s.id = "cocos2d-html5";
-		document.ccConfig = c;
-	});
+                   "src/HighScores.js", "src/resource.js"],
+    };
+
+    window.addEventListener('DOMContentLoaded', function () {
+        var s = d.createElement("script");
+        if (c.SingleEngineFile && !c.engineDir) {
+            s.src = c.SingleEngineFile;
+        }
+        else if (c.engineDir && !c.SingleEngineFile) {
+            s.src = c.engineDir + 'platform/jsloader.js';
+        }
+        else {
+            alert('You must specify either the single engine file OR the engine directory in "cocos2d.js"');
+        }
+        d.body.appendChild(s);
+        s.c = c;
+        s.id = "cocos2d-html5";
+        document.ccConfig = c;
+    });
+
 })();

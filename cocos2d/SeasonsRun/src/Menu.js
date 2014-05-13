@@ -1,4 +1,5 @@
 var MenuLayer = cc.Layer.extend({
+
     title: null,
     menu: null,
     move: null,
@@ -37,11 +38,11 @@ var MenuLayer = cc.Layer.extend({
         this.addChild(this.title);        
         
         btSP = cc.Sprite.create("res/images/buttons/btnPlay_155-34.png");
-        btMP = cc.Sprite.create("res/images/buttons/BtnPlayMulti_155-34.png");
-        btCredits = cc.Sprite.create("res/images/buttons/BtnCredits_256-34.png");
+        btMP = cc.Sprite.create("res/images/buttons/btnPlayMulti_155-34.png");
+        btCredits = cc.Sprite.create("res/images/buttons/btnCredits_256-34.png");
         btSPSelected = cc.Sprite.create("res/images/buttons/btnPlaySelected_155-34.png");
-        btMPSelected = cc.Sprite.create("res/images/buttons/BtnPlayMultiSelected_155-34.png");
-        btCreditsSelected = cc.Sprite.create("res/images/buttons/BtnCreditsSelected_256-34.png");
+        btMPSelected = cc.Sprite.create("res/images/buttons/btnPlayMultiSelected_155-34.png");
+        btCreditsSelected = cc.Sprite.create("res/images/buttons/btnCreditsSelected_256-34.png");
 
         var sPlay = cc.MenuItemSprite.create(btSP, btSPSelected, null, 'onSPlay', this);
         var mPlay = cc.MenuItemSprite.create(btMP, btMPSelected, null, 'onMPlay', this);

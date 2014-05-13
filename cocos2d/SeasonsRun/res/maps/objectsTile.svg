@@ -1,0 +1,1299 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="500"
+   height="500"
+   id="svg7346"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="New document 1">
+  <defs
+     id="defs7348">
+    <filter
+       id="filter13024"
+       inkscape:menu-tooltip="Partly opaque water color effect with bleed"
+       inkscape:menu="Textures"
+       inkscape:label="Gouache"
+       color-interpolation-filters="sRGB">
+      <feGaussianBlur
+         id="feGaussianBlur13026"
+         stdDeviation="3"
+         result="result5"
+         in="SourceGraphic" />
+      <feTurbulence
+         id="feTurbulence13028"
+         result="result1"
+         baseFrequency="0.02"
+         type="fractalNoise"
+         seed="0"
+         numOctaves="3" />
+      <feDisplacementMap
+         id="feDisplacementMap13030"
+         in2="result1"
+         result="result3"
+         in="SourceGraphic"
+         xChannelSelector="R"
+         yChannelSelector="G"
+         scale="30" />
+      <feComposite
+         id="feComposite13032"
+         in2="result1"
+         result="result4"
+         in="result3"
+         operator="out" />
+      <feComposite
+         k4="0"
+         id="feComposite13034"
+         in2="result4"
+         result="result6"
+         operator="arithmetic"
+         k2="1"
+         k1="0.3"
+         k3="0.3" />
+      <feComposite
+         id="feComposite13036"
+         in2="result5"
+         in="result6"
+         operator="over" />
+    </filter>
+    <filter
+       id="filter13038"
+       inkscape:menu-tooltip="Partly opaque water color effect with bleed"
+       inkscape:menu="Textures"
+       inkscape:label="Gouache"
+       color-interpolation-filters="sRGB">
+      <feGaussianBlur
+         id="feGaussianBlur13040"
+         stdDeviation="3"
+         result="result5"
+         in="SourceGraphic" />
+      <feTurbulence
+         id="feTurbulence13042"
+         result="result1"
+         baseFrequency="0.02"
+         type="fractalNoise"
+         seed="0"
+         numOctaves="3" />
+      <feDisplacementMap
+         id="feDisplacementMap13044"
+         in2="result1"
+         result="result3"
+         in="SourceGraphic"
+         xChannelSelector="R"
+         yChannelSelector="G"
+         scale="30" />
+      <feComposite
+         id="feComposite13046"
+         in2="result1"
+         result="result4"
+         in="result3"
+         operator="out" />
+      <feComposite
+         k4="0"
+         id="feComposite13048"
+         in2="result4"
+         result="result6"
+         operator="arithmetic"
+         k2="1"
+         k1="0.3"
+         k3="0.3" />
+      <feComposite
+         id="feComposite13050"
+         in2="result5"
+         in="result6"
+         operator="over" />
+    </filter>
+    <filter
+       id="filter13052"
+       inkscape:menu-tooltip="Partly opaque water color effect with bleed"
+       inkscape:menu="Textures"
+       inkscape:label="Gouache"
+       color-interpolation-filters="sRGB">
+      <feGaussianBlur
+         id="feGaussianBlur13054"
+         stdDeviation="3"
+         result="result5"
+         in="SourceGraphic" />
+      <feTurbulence
+         id="feTurbulence13056"
+         result="result1"
+         baseFrequency="0.02"
+         type="fractalNoise"
+         seed="0"
+         numOctaves="3" />
+      <feDisplacementMap
+         id="feDisplacementMap13058"
+         in2="result1"
+         result="result3"
+         in="SourceGraphic"
+         xChannelSelector="R"
+         yChannelSelector="G"
+         scale="30" />
+      <feComposite
+         id="feComposite13060"
+         in2="result1"
+         result="result4"
+         in="result3"
+         operator="out" />
+      <feComposite
+         k4="0"
+         id="feComposite13062"
+         in2="result4"
+         result="result6"
+         operator="arithmetic"
+         k2="1"
+         k1="0.3"
+         k3="0.3" />
+      <feComposite
+         id="feComposite13064"
+         in2="result5"
+         in="result6"
+         operator="over" />
+    </filter>
+    <filter
+       id="filter13066"
+       inkscape:menu-tooltip="Partly opaque water color effect with bleed"
+       inkscape:menu="Textures"
+       inkscape:label="Gouache"
+       color-interpolation-filters="sRGB">
+      <feGaussianBlur
+         id="feGaussianBlur13068"
+         stdDeviation="3"
+         result="result5"
+         in="SourceGraphic" />
+      <feTurbulence
+         id="feTurbulence13070"
+         result="result1"
+         baseFrequency="0.02"
+         type="fractalNoise"
+         seed="0"
+         numOctaves="3" />
+      <feDisplacementMap
+         id="feDisplacementMap13072"
+         in2="result1"
+         result="result3"
+         in="SourceGraphic"
+         xChannelSelector="R"
+         yChannelSelector="G"
+         scale="30" />
+      <feComposite
+         id="feComposite13074"
+         in2="result1"
+         result="result4"
+         in="result3"
+         operator="out" />
+      <feComposite
+         k4="0"
+         id="feComposite13076"
+         in2="result4"
+         result="result6"
+         operator="arithmetic"
+         k2="1"
+         k1="0.3"
+         k3="0.3" />
+      <feComposite
+         id="feComposite13078"
+         in2="result5"
+         in="result6"
+         operator="over" />
+    </filter>
+    <filter
+       id="filter13052-25-9-8-1"
+       inkscape:menu-tooltip="Partly opaque water color effect with bleed"
+       inkscape:menu="Textures"
+       inkscape:label="Gouache"
+       color-interpolation-filters="sRGB">
+      <feGaussianBlur
+         id="feGaussianBlur13054-8-2-9-2"
+         stdDeviation="3"
+         result="result5"
+         in="SourceGraphic" />
+      <feTurbulence
+         id="feTurbulence13056-6-8-2-4"
+         result="result1"
+         baseFrequency="0.02"
+         type="fractalNoise"
+         seed="0"
+         numOctaves="3" />
+      <feDisplacementMap
+         id="feDisplacementMap13058-2-2-7-2"
+         in2="result1"
+         result="result3"
+         in="SourceGraphic"
+         xChannelSelector="R"
+         yChannelSelector="G"
+         scale="30" />
+      <feComposite
+         id="feComposite13060-6-0-9-5"
+         in2="result1"
+         result="result4"
+         in="result3"
+         operator="out" />
+      <feComposite
+         k4="0"
+         id="feComposite13062-5-5-5-8"
+         in2="result4"
+         result="result6"
+         operator="arithmetic"
+         k2="1"
+         k1="0.3"
+         k3="0.3" />
+      <feComposite
+         id="feComposite13064-3-5-4-6"
+         in2="result5"
+         in="result6"
+         operator="over" />
+    </filter>
+    <filter
+       id="filter13052-25-9-2-2"
+       inkscape:menu-tooltip="Partly opaque water color effect with bleed"
+       inkscape:menu="Textures"
+       inkscape:label="Gouache"
+       color-interpolation-filters="sRGB">
+      <feGaussianBlur
+         id="feGaussianBlur13054-8-2-21-6"
+         stdDeviation="3"
+         result="result5"
+         in="SourceGraphic" />
+      <feTurbulence
+         id="feTurbulence13056-6-8-6-5"
+         result="result1"
+         baseFrequency="0.02"
+         type="fractalNoise"
+         seed="0"
+         numOctaves="3" />
+      <feDisplacementMap
+         id="feDisplacementMap13058-2-2-8-3"
+         in2="result1"
+         result="result3"
+         in="SourceGraphic"
+         xChannelSelector="R"
+         yChannelSelector="G"
+         scale="30" />
+      <feComposite
+         id="feComposite13060-6-0-5-9"
+         in2="result1"
+         result="result4"
+         in="result3"
+         operator="out" />
+      <feComposite
+         k4="0"
+         id="feComposite13062-5-5-7-2"
+         in2="result4"
+         result="result6"
+         operator="arithmetic"
+         k2="1"
+         k1="0.3"
+         k3="0.3" />
+      <feComposite
+         id="feComposite13064-3-5-6-4"
+         in2="result5"
+         in="result6"
+         operator="over" />
+    </filter>
+    <filter
+       id="filter13052-25-9-5-6"
+       inkscape:menu-tooltip="Partly opaque water color effect with bleed"
+       inkscape:menu="Textures"
+       inkscape:label="Gouache"
+       color-interpolation-filters="sRGB">
+      <feGaussianBlur
+         id="feGaussianBlur13054-8-2-2-1"
+         stdDeviation="3"
+         result="result5"
+         in="SourceGraphic" />
+      <feTurbulence
+         id="feTurbulence13056-6-8-7-8"
+         result="result1"
+         baseFrequency="0.02"
+         type="fractalNoise"
+         seed="0"
+         numOctaves="3" />
+      <feDisplacementMap
+         id="feDisplacementMap13058-2-2-6-2"
+         in2="result1"
+         result="result3"
+         in="SourceGraphic"
+         xChannelSelector="R"
+         yChannelSelector="G"
+         scale="30" />
+      <feComposite
+         id="feComposite13060-6-0-1-1"
+         in2="result1"
+         result="result4"
+         in="result3"
+         operator="out" />
+      <feComposite
+         k4="0"
+         id="feComposite13062-5-5-4-1"
+         in2="result4"
+         result="result6"
+         operator="arithmetic"
+         k2="1"
+         k1="0.3"
+         k3="0.3" />
+      <feComposite
+         id="feComposite13064-3-5-2-9"
+         in2="result5"
+         in="result6"
+         operator="over" />
+    </filter>
+    <filter
+       id="filter13052-25-9-7"
+       inkscape:menu-tooltip="Partly opaque water color effect with bleed"
+       inkscape:menu="Textures"
+       inkscape:label="Gouache"
+       color-interpolation-filters="sRGB">
+      <feGaussianBlur
+         id="feGaussianBlur13054-8-2-6"
+         stdDeviation="3"
+         result="result5"
+         in="SourceGraphic" />
+      <feTurbulence
+         id="feTurbulence13056-6-8-29"
+         result="result1"
+         baseFrequency="0.02"
+         type="fractalNoise"
+         seed="0"
+         numOctaves="3" />
+      <feDisplacementMap
+         id="feDisplacementMap13058-2-2-5"
+         in2="result1"
+         result="result3"
+         in="SourceGraphic"
+         xChannelSelector="R"
+         yChannelSelector="G"
+         scale="30" />
+      <feComposite
+         id="feComposite13060-6-0-2"
+         in2="result1"
+         result="result4"
+         in="result3"
+         operator="out" />
+      <feComposite
+         k4="0"
+         id="feComposite13062-5-5-0"
+         in2="result4"
+         result="result6"
+         operator="arithmetic"
+         k2="1"
+         k1="0.3"
+         k3="0.3" />
+      <feComposite
+         id="feComposite13064-3-5-0"
+         in2="result5"
+         in="result6"
+         operator="over" />
+    </filter>
+    <filter
+       id="filter13052-25-9-8-1-1"
+       inkscape:menu-tooltip="Partly opaque water color effect with bleed"
+       inkscape:menu="Textures"
+       inkscape:label="Gouache"
+       color-interpolation-filters="sRGB">
+      <feGaussianBlur
+         id="feGaussianBlur13054-8-2-9-2-7"
+         stdDeviation="3"
+         result="result5"
+         in="SourceGraphic" />
+      <feTurbulence
+         id="feTurbulence13056-6-8-2-4-4"
+         result="result1"
+         baseFrequency="0.02"
+         type="fractalNoise"
+         seed="0"
+         numOctaves="3" />
+      <feDisplacementMap
+         id="feDisplacementMap13058-2-2-7-2-0"
+         in2="result1"
+         result="result3"
+         in="SourceGraphic"
+         xChannelSelector="R"
+         yChannelSelector="G"
+         scale="30" />
+      <feComposite
+         id="feComposite13060-6-0-9-5-9"
+         in2="result1"
+         result="result4"
+         in="result3"
+         operator="out" />
+      <feComposite
+         k4="0"
+         id="feComposite13062-5-5-5-8-4"
+         in2="result4"
+         result="result6"
+         operator="arithmetic"
+         k2="1"
+         k1="0.3"
+         k3="0.3" />
+      <feComposite
+         id="feComposite13064-3-5-4-6-8"
+         in2="result5"
+         in="result6"
+         operator="over" />
+    </filter>
+    <filter
+       id="filter13052-25-9-2-2-8"
+       inkscape:menu-tooltip="Partly opaque water color effect with bleed"
+       inkscape:menu="Textures"
+       inkscape:label="Gouache"
+       color-interpolation-filters="sRGB">
+      <feGaussianBlur
+         id="feGaussianBlur13054-8-2-21-6-2"
+         stdDeviation="3"
+         result="result5"
+         in="SourceGraphic" />
+      <feTurbulence
+         id="feTurbulence13056-6-8-6-5-4"
+         result="result1"
+         baseFrequency="0.02"
+         type="fractalNoise"
+         seed="0"
+         numOctaves="3" />
+      <feDisplacementMap
+         id="feDisplacementMap13058-2-2-8-3-5"
+         in2="result1"
+         result="result3"
+         in="SourceGraphic"
+         xChannelSelector="R"
+         yChannelSelector="G"
+         scale="30" />
+      <feComposite
+         id="feComposite13060-6-0-5-9-5"
+         in2="result1"
+         result="result4"
+         in="result3"
+         operator="out" />
+      <feComposite
+         k4="0"
+         id="feComposite13062-5-5-7-2-1"
+         in2="result4"
+         result="result6"
+         operator="arithmetic"
+         k2="1"
+         k1="0.3"
+         k3="0.3" />
+      <feComposite
+         id="feComposite13064-3-5-6-4-7"
+         in2="result5"
+         in="result6"
+         operator="over" />
+    </filter>
+    <filter
+       id="filter13052-25-9-5-6-1"
+       inkscape:menu-tooltip="Partly opaque water color effect with bleed"
+       inkscape:menu="Textures"
+       inkscape:label="Gouache"
+       color-interpolation-filters="sRGB">
+      <feGaussianBlur
+         id="feGaussianBlur13054-8-2-2-1-1"
+         stdDeviation="3"
+         result="result5"
+         in="SourceGraphic" />
+      <feTurbulence
+         id="feTurbulence13056-6-8-7-8-5"
+         result="result1"
+         baseFrequency="0.02"
+         type="fractalNoise"
+         seed="0"
+         numOctaves="3" />
+      <feDisplacementMap
+         id="feDisplacementMap13058-2-2-6-2-2"
+         in2="result1"
+         result="result3"
+         in="SourceGraphic"
+         xChannelSelector="R"
+         yChannelSelector="G"
+         scale="30" />
+      <feComposite
+         id="feComposite13060-6-0-1-1-7"
+         in2="result1"
+         result="result4"
+         in="result3"
+         operator="out" />
+      <feComposite
+         k4="0"
+         id="feComposite13062-5-5-4-1-6"
+         in2="result4"
+         result="result6"
+         operator="arithmetic"
+         k2="1"
+         k1="0.3"
+         k3="0.3" />
+      <feComposite
+         id="feComposite13064-3-5-2-9-1"
+         in2="result5"
+         in="result6"
+         operator="over" />
+    </filter>
+    <filter
+       id="filter13052-25-9-7-4"
+       inkscape:menu-tooltip="Partly opaque water color effect with bleed"
+       inkscape:menu="Textures"
+       inkscape:label="Gouache"
+       color-interpolation-filters="sRGB">
+      <feGaussianBlur
+         id="feGaussianBlur13054-8-2-6-2"
+         stdDeviation="3"
+         result="result5"
+         in="SourceGraphic" />
+      <feTurbulence
+         id="feTurbulence13056-6-8-29-3"
+         result="result1"
+         baseFrequency="0.02"
+         type="fractalNoise"
+         seed="0"
+         numOctaves="3" />
+      <feDisplacementMap
+         id="feDisplacementMap13058-2-2-5-2"
+         in2="result1"
+         result="result3"
+         in="SourceGraphic"
+         xChannelSelector="R"
+         yChannelSelector="G"
+         scale="30" />
+      <feComposite
+         id="feComposite13060-6-0-2-2"
+         in2="result1"
+         result="result4"
+         in="result3"
+         operator="out" />
+      <feComposite
+         k4="0"
+         id="feComposite13062-5-5-0-1"
+         in2="result4"
+         result="result6"
+         operator="arithmetic"
+         k2="1"
+         k1="0.3"
+         k3="0.3" />
+      <feComposite
+         id="feComposite13064-3-5-0-6"
+         in2="result5"
+         in="result6"
+         operator="over" />
+    </filter>
+    <filter
+       id="filter13547"
+       inkscape:menu-tooltip="Partly opaque water color effect with bleed"
+       inkscape:menu="Textures"
+       inkscape:label="Gouache"
+       color-interpolation-filters="sRGB">
+      <feGaussianBlur
+         id="feGaussianBlur13549"
+         stdDeviation="3"
+         result="result5"
+         in="SourceGraphic" />
+      <feTurbulence
+         id="feTurbulence13551"
+         result="result1"
+         baseFrequency="0.02"
+         type="fractalNoise"
+         seed="0"
+         numOctaves="3" />
+      <feDisplacementMap
+         id="feDisplacementMap13553"
+         in2="result1"
+         result="result3"
+         in="SourceGraphic"
+         xChannelSelector="R"
+         yChannelSelector="G"
+         scale="30" />
+      <feComposite
+         id="feComposite13555"
+         in2="result1"
+         result="result4"
+         in="result3"
+         operator="out" />
+      <feComposite
+         k4="0"
+         id="feComposite13557"
+         in2="result4"
+         result="result6"
+         operator="arithmetic"
+         k2="1"
+         k1="0.3"
+         k3="0.3" />
+      <feComposite
+         id="feComposite13559"
+         in2="result5"
+         in="result6"
+         operator="over" />
+    </filter>
+    <filter
+       id="filter13561"
+       inkscape:menu-tooltip="Partly opaque water color effect with bleed"
+       inkscape:menu="Textures"
+       inkscape:label="Gouache"
+       color-interpolation-filters="sRGB">
+      <feGaussianBlur
+         id="feGaussianBlur13563"
+         stdDeviation="3"
+         result="result5"
+         in="SourceGraphic" />
+      <feTurbulence
+         id="feTurbulence13565"
+         result="result1"
+         baseFrequency="0.02"
+         type="fractalNoise"
+         seed="0"
+         numOctaves="3" />
+      <feDisplacementMap
+         id="feDisplacementMap13567"
+         in2="result1"
+         result="result3"
+         in="SourceGraphic"
+         xChannelSelector="R"
+         yChannelSelector="G"
+         scale="30" />
+      <feComposite
+         id="feComposite13569"
+         in2="result1"
+         result="result4"
+         in="result3"
+         operator="out" />
+      <feComposite
+         k4="0"
+         id="feComposite13571"
+         in2="result4"
+         result="result6"
+         operator="arithmetic"
+         k2="1"
+         k1="0.3"
+         k3="0.3" />
+      <feComposite
+         id="feComposite13573"
+         in2="result5"
+         in="result6"
+         operator="over" />
+    </filter>
+    <filter
+       id="filter13575"
+       inkscape:menu-tooltip="Partly opaque water color effect with bleed"
+       inkscape:menu="Textures"
+       inkscape:label="Gouache"
+       color-interpolation-filters="sRGB">
+      <feGaussianBlur
+         id="feGaussianBlur13577"
+         stdDeviation="3"
+         result="result5"
+         in="SourceGraphic" />
+      <feTurbulence
+         id="feTurbulence13579"
+         result="result1"
+         baseFrequency="0.02"
+         type="fractalNoise"
+         seed="0"
+         numOctaves="3" />
+      <feDisplacementMap
+         id="feDisplacementMap13581"
+         in2="result1"
+         result="result3"
+         in="SourceGraphic"
+         xChannelSelector="R"
+         yChannelSelector="G"
+         scale="30" />
+      <feComposite
+         id="feComposite13583"
+         in2="result1"
+         result="result4"
+         in="result3"
+         operator="out" />
+      <feComposite
+         k4="0"
+         id="feComposite13585"
+         in2="result4"
+         result="result6"
+         operator="arithmetic"
+         k2="1"
+         k1="0.3"
+         k3="0.3" />
+      <feComposite
+         id="feComposite13587"
+         in2="result5"
+         in="result6"
+         operator="over" />
+    </filter>
+    <filter
+       id="filter13589"
+       inkscape:menu-tooltip="Partly opaque water color effect with bleed"
+       inkscape:menu="Textures"
+       inkscape:label="Gouache"
+       color-interpolation-filters="sRGB">
+      <feGaussianBlur
+         id="feGaussianBlur13591"
+         stdDeviation="3"
+         result="result5"
+         in="SourceGraphic" />
+      <feTurbulence
+         id="feTurbulence13593"
+         result="result1"
+         baseFrequency="0.02"
+         type="fractalNoise"
+         seed="0"
+         numOctaves="3" />
+      <feDisplacementMap
+         id="feDisplacementMap13595"
+         in2="result1"
+         result="result3"
+         in="SourceGraphic"
+         xChannelSelector="R"
+         yChannelSelector="G"
+         scale="30" />
+      <feComposite
+         id="feComposite13597"
+         in2="result1"
+         result="result4"
+         in="result3"
+         operator="out" />
+      <feComposite
+         k4="0"
+         id="feComposite13599"
+         in2="result4"
+         result="result6"
+         operator="arithmetic"
+         k2="1"
+         k1="0.3"
+         k3="0.3" />
+      <feComposite
+         id="feComposite13601"
+         in2="result5"
+         in="result6"
+         operator="over" />
+    </filter>
+    <filter
+       id="filter13603"
+       inkscape:menu-tooltip="Partly opaque water color effect with bleed"
+       inkscape:menu="Textures"
+       inkscape:label="Gouache"
+       color-interpolation-filters="sRGB">
+      <feGaussianBlur
+         id="feGaussianBlur13605"
+         stdDeviation="3"
+         result="result5"
+         in="SourceGraphic" />
+      <feTurbulence
+         id="feTurbulence13607"
+         result="result1"
+         baseFrequency="0.02"
+         type="fractalNoise"
+         seed="0"
+         numOctaves="3" />
+      <feDisplacementMap
+         id="feDisplacementMap13609"
+         in2="result1"
+         result="result3"
+         in="SourceGraphic"
+         xChannelSelector="R"
+         yChannelSelector="G"
+         scale="30" />
+      <feComposite
+         id="feComposite13611"
+         in2="result1"
+         result="result4"
+         in="result3"
+         operator="out" />
+      <feComposite
+         k4="0"
+         id="feComposite13613"
+         in2="result4"
+         result="result6"
+         operator="arithmetic"
+         k2="1"
+         k1="0.3"
+         k3="0.3" />
+      <feComposite
+         id="feComposite13615"
+         in2="result5"
+         in="result6"
+         operator="over" />
+    </filter>
+    <filter
+       id="filter13617"
+       inkscape:menu-tooltip="Partly opaque water color effect with bleed"
+       inkscape:menu="Textures"
+       inkscape:label="Gouache"
+       color-interpolation-filters="sRGB">
+      <feGaussianBlur
+         id="feGaussianBlur13619"
+         stdDeviation="3"
+         result="result5"
+         in="SourceGraphic" />
+      <feTurbulence
+         id="feTurbulence13621"
+         result="result1"
+         baseFrequency="0.02"
+         type="fractalNoise"
+         seed="0"
+         numOctaves="3" />
+      <feDisplacementMap
+         id="feDisplacementMap13623"
+         in2="result1"
+         result="result3"
+         in="SourceGraphic"
+         xChannelSelector="R"
+         yChannelSelector="G"
+         scale="30" />
+      <feComposite
+         id="feComposite13625"
+         in2="result1"
+         result="result4"
+         in="result3"
+         operator="out" />
+      <feComposite
+         k4="0"
+         id="feComposite13627"
+         in2="result4"
+         result="result6"
+         operator="arithmetic"
+         k2="1"
+         k1="0.3"
+         k3="0.3" />
+      <feComposite
+         id="feComposite13629"
+         in2="result5"
+         in="result6"
+         operator="over" />
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.0402204"
+     inkscape:cx="273.42192"
+     inkscape:cy="315.03004"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7351">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-552.36218)">
+    <path
+       style="opacity:0.89380535;fill:#9e4810;fill-opacity:1;fill-rule:nonzero;stroke:#693a0e;stroke-width:1.02573538;stroke-miterlimit:4;stroke-opacity:1"
+       d="m 31.467023,565.44063 56.85781,2.90577 c 3.41271,0.17441 108.421337,-1.52521 108.421337,-1.52521 l -0.34551,30.48406 -42.74323,-4.4846 c -3.97577,-0.41714 -17.86726,4.2912 -18.46416,4.28633 l -38.088697,-1.38411 -19.07183,-0.3149 -20.44398,2.08333 -41.2406,-1.35291 c -0.59672,-0.0196 -1.02956,-0.61819 -1.07746,-1.38056 l -1.51189,-24.06227 c -0.0479,-0.76237 17.70821,-5.25493 17.70821,-5.25493 z"
+       id="rect13081-5"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="csccsscccsssc"
+       inkscape:export-filename="C:\xampp\htdocs\games\SeasonsRun\res\images\woodMedium.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#d06118;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.03002942;stroke-miterlimit:4;stroke-opacity:1"
+       d="m 33.193373,563.71954 57.34253,2.90539 c 3.44181,0.17438 109.345667,-1.52501 109.345667,-1.52501 l -0.34845,30.47997 -43.10763,-4.484 c -4.00966,-0.41708 -18.01958,4.29063 -18.62157,4.28576 l -38.413427,-1.38392 -19.23441,-0.31486 -20.61828,2.08305 -41.59218,-1.35273 c -0.60181,-0.0196 -1.03835,-0.61811 -1.08666,-1.38038 l -1.52477,-24.05904 c -0.0483,-0.76227 17.85918,-5.25423 17.85918,-5.25423 z"
+       id="rect13081"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="csccsscccsssc"
+       inkscape:export-filename="C:\xampp\htdocs\games\SeasonsRun\res\images\woodMedium.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#f3741f;fill-opacity:1;fill-rule:nonzero;stroke:none;filter:url(#filter13066)"
+       d="m 103.02994,10.043841 34.06205,-0.7821564 c 14.89323,-0.3419885 47.64163,9.7695664 47.49685,4.4782544 L 185.371,42.32694 c 0,0 -4.80162,2.676513 -13.25462,2.83321 -2.58788,0.04797 -3.7902,-3.218317 -14.68832,-3.047894 l -80.778522,1.263202 -54.181689,0.301111 c -0.747683,0.0042 -1.34847,-0.601685 -1.34963,-1.349629 l -0.04705,-30.33752 c -0.0012,-0.747944 77.457095,-1.842208 81.958771,-1.945579 z"
+       id="rect12225"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ssscsscssss"
+       transform="matrix(1.0640053,0,0,0.7241309,-3.7842339,560.63622)"
+       inkscape:export-filename="C:\xampp\htdocs\games\SeasonsRun\res\images\woodMedium.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#aa4400;fill-opacity:1;stroke:#bd631e;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter13052)"
+       d="m 21.118219,27.251279 c 3.977196,-0.751024 7.794113,-2.253462 11.732345,-3.128625 0.708913,-0.157536 4.35379,0.226098 4.692937,0 0.613574,-0.409049 0.950739,-1.155263 1.564313,-1.564312 0.216931,-0.144621 0.521437,0 0.782156,0 0.260719,0 0.521438,0 0.782156,0 1.042875,0 2.08575,0 3.128625,0 3.650063,0 7.300125,0 10.950188,0 2.08575,0 4.1715,0 6.25725,0 0.35225,0 2.108432,-0.119019 2.346469,0 0.329786,0.164893 0.45237,0.617263 0.782156,0.782156 0.233194,0.116597 0.5978,-0.184356 0.782156,0 0.184356,0.184356 -0.233194,0.665559 0,0.782156 0.466388,0.233194 1.058444,-0.126467 1.564313,0 0.565578,0.141395 1.011244,0.5978 1.564312,0.782156 0.537993,0.179331 1.884981,-0.230743 2.346469,0 0.329786,0.164894 0.45237,0.617264 0.782157,0.782157 0.41473,0.207365 3.378679,-0.177367 3.910781,0 0.349791,0.116597 0.45237,0.617263 0.782156,0.782156 0.398333,0.199167 1.165979,-0.199167 1.564313,0 0.329786,0.164893 0.45237,0.617263 0.782156,0.782156 0.491603,0.245802 2.637022,-0.245801 3.128625,0 0.233194,0.116597 -0.184356,0.597801 0,0.782157 0.184356,0.184356 0.548962,-0.116597 0.782156,0 0.329786,0.164893 0.45237,0.617263 0.782156,0.782156 0.233194,0.116597 0.521438,0 0.782157,0 0.260718,0 0.521437,0 0.782156,0 1.564313,0 3.128625,0 4.692938,0 5.475093,0 10.950185,0 16.425285,0 3.12862,0 6.25725,0 9.38587,0 0.32903,0 4.46027,0.116336 4.69294,0 0.32979,-0.164893 0.43237,-0.665559 0.78215,-0.782156 0.49468,-0.164893 1.04288,0 1.56431,0 0.78216,0 1.56431,0 2.34647,0 0.26072,0 0.54896,0.116597 0.78216,0 1.93302,-0.966513 -0.26999,-0.782157 1.56431,-0.782157 0.26646,0 2.70532,0.141103 3.12862,0 0.55307,-0.184356 1.01125,-0.5978 1.56432,-0.782156 0.69411,-0.23137 3.39861,0.256084 3.91078,0 0.32978,-0.164893 0.45237,-0.617263 0.78215,-0.782156 0.17531,-0.08765 2.94277,0 3.12863,0 1.82503,0 3.65006,0 5.47509,0 0.78216,0 1.56432,0 2.34647,0 0.26072,0 0.5978,0.184356 0.78216,0 0.41223,-0.412233 0.36992,-1.15208 0.78215,-1.564313 0.18436,-0.184356 0.52144,0 0.78216,0 0.26072,0 0.52144,0 0.78216,0 1.56431,0 3.12862,0 4.69293,0 0.26072,0 0.5978,0.184356 0.78216,0 0.18436,-0.184356 -0.18436,-0.5978 0,-0.782156 0.18436,-0.184356 0.52144,0 0.78216,0 0.26072,0 0.52143,0 0.78215,0 0.78768,0 4.26039,0.144182 4.69294,0 0.34979,-0.116597 0.43237,-0.665559 0.78216,-0.782156 0.74202,-0.24734 1.56431,0 2.34647,0 1.82503,0 3.65006,0 5.47509,0 0.23181,0 3.90015,0 1.56431,0"
+       id="path12995"
+       inkscape:connector-curvature="0"
+       transform="matrix(1.0598196,0,0,0.7241309,-0.63956689,559.85406)"
+       inkscape:export-filename="C:\xampp\htdocs\games\SeasonsRun\res\images\woodMedium.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;stroke:#693a0e;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter13038)"
+       d="m 19.162828,37.448365 c 3.977195,-0.751024 7.794113,-2.253462 11.732345,-3.128625 0.708913,-0.157536 4.35379,0.226098 4.692937,0 0.613574,-0.409049 0.950739,-1.155263 1.564313,-1.564312 0.216931,-0.144621 0.521437,0 0.782156,0 0.260719,0 0.521438,0 0.782156,0 1.042875,0 2.08575,0 3.128625,0 3.650063,0 7.300125,0 10.950188,0 2.08575,0 4.1715,0 6.25725,0 0.35225,0 2.108432,-0.119019 2.346469,0 0.329786,0.164893 0.45237,0.617263 0.782156,0.782156 0.233194,0.116597 0.5978,-0.184356 0.782156,0 0.184356,0.184356 -0.233194,0.665559 0,0.782156 0.466388,0.233194 1.058444,-0.126467 1.564313,0 0.565577,0.141395 1.011243,0.5978 1.564311,0.782156 0.537993,0.179331 1.884981,-0.230743 2.346469,0 0.329786,0.164894 0.45237,0.617264 0.782157,0.782157 0.41473,0.207365 3.378679,-0.177367 3.910781,0 0.349791,0.116597 0.45237,0.617263 0.782156,0.782156 0.398333,0.199167 1.165979,-0.199167 1.564313,0 0.329786,0.164893 0.45237,0.617263 0.782156,0.782156 0.491603,0.245802 2.637022,-0.245801 3.128625,0 0.233194,0.116597 -0.184356,0.597801 0,0.782157 0.184356,0.184356 0.548962,-0.116597 0.782156,0 0.329786,0.164893 0.45237,0.617263 0.782156,0.782156 0.233194,0.116597 0.521438,0 0.782157,0 0.260718,0 0.521437,0 0.782156,0 1.564313,0 3.128626,0 4.692939,0 5.475093,0 10.950187,0 16.425286,0 3.12862,0 6.25725,0 9.38587,0 0.32902,0 4.46027,0.116336 4.69294,0 0.32978,-0.164893 0.43236,-0.665559 0.78215,-0.782156 0.49467,-0.164893 1.04287,0 1.56431,0 0.78216,0 1.56431,0 2.34647,0 0.26072,0 0.54896,0.116597 0.78216,0 1.93302,-0.966513 -0.26999,-0.782157 1.56431,-0.782157 0.26646,0 2.70532,0.141103 3.12862,0 0.55307,-0.184356 1.01125,-0.5978 1.56432,-0.782156 0.69411,-0.23137 3.39861,0.256084 3.91078,0 0.32978,-0.164893 0.45237,-0.617263 0.78215,-0.782156 0.17531,-0.08765 2.94277,0 3.12863,0 1.82503,0 3.65006,0 5.47509,0 0.78216,0 1.56432,0 2.34647,0 0.26072,0 0.5978,0.184356 0.78216,0 0.41223,-0.412233 0.36992,-1.15208 0.78215,-1.564313 0.18436,-0.184356 0.52144,0 0.78216,0 0.26072,0 0.52144,0 0.78216,0 1.56431,0 3.12862,0 4.69293,0 0.26072,0 0.5978,0.184356 0.78216,0 0.18436,-0.184356 -0.18436,-0.5978 0,-0.782156 0.18436,-0.184356 0.52144,0 0.78216,0 0.26072,0 0.52143,0 0.78215,0 0.78768,0 4.26039,0.144182 4.69294,0 0.34979,-0.116597 0.43237,-0.665559 0.78216,-0.782156 0.74202,-0.24734 1.56431,0 2.34647,0 1.82503,0 3.65006,0 5.47509,0 0.23181,0 3.90015,0 1.56431,0"
+       id="path12995-1"
+       inkscape:connector-curvature="0"
+       transform="matrix(1.0598196,0,0,0.7241309,-0.63956689,559.85406)"
+       inkscape:export-filename="C:\xampp\htdocs\games\SeasonsRun\res\images\woodMedium.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;stroke:#753900;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter13024)"
+       d="m 21.118219,17.083248 c 2.142453,0.90901 4.061818,0.782156 6.25725,0.782156 0.260719,0 0.521438,0 0.782156,0 0.260719,0 0.548963,-0.116597 0.782157,0 0.329786,0.164893 0.45237,0.617263 0.782156,0.782156 0.233194,0.116597 0.521438,0 0.782157,0 0.260718,0 0.521437,0 0.782156,0 0.652428,0 3.744046,-0.111156 3.910781,0 0.613574,0.40905 0.950739,1.155264 1.564313,1.564313 0.116539,0.07769 2.089608,0 2.346469,0 1.825031,0 3.650062,0 5.475093,0 0.189694,0 2.321315,-0.02515 2.346469,0 0.184356,0.184356 -0.184356,0.5978 0,0.782156 0.184356,0.184356 0.521438,0 0.782156,0 0.260719,0 0.521438,0 0.782157,0 3.128625,0 6.25725,0 9.385875,0 7.039406,0 14.078813,0 21.118219,0 2.08575,0 4.1715,0 6.25725,0 0.782156,0 1.646887,0.349791 2.346469,0 0.233194,-0.116597 -0.184356,-0.5978 0,-0.782156 0.184356,-0.184356 0.534817,0.08245 0.782156,0 0.553068,-0.184356 1.07924,-0.458774 1.564313,-0.782156 0.306787,-0.204525 0.45237,-0.617264 0.782156,-0.782157 0.233194,-0.116597 0.521437,0 0.782156,0 0.521438,-0.260718 1.07924,-0.458774 1.564313,-0.782156 0.306787,-0.204524 0.45237,-0.617263 0.782156,-0.782156 0.230858,-0.115429 4.66931,0 5.475094,0 4.171504,0 8.343004,0 12.514504,0 1.04287,0 2.08575,0 3.12862,0 0.26072,0 0.5978,-0.184356 0.78216,0 0.41223,0.412232 0.36992,1.15208 0.78215,1.564312 0.0759,0.07592 3.61272,0 3.91078,0 3.38934,0 6.77869,0 10.16803,0 0.18969,0 2.32131,-0.02515 2.34647,0 0.41223,0.412233 0.36992,1.15208 0.78215,1.564313 0.0966,0.09661 2.63815,0 3.12863,0 7.82156,0 15.64312,0 23.46469,0 2.60718,0 5.21437,0 7.82156,0 0.23181,0 3.90015,0 1.56431,0"
+       id="path13022"
+       inkscape:connector-curvature="0"
+       transform="matrix(1.0598196,0,0,0.7241309,-0.63956689,559.85406)"
+       inkscape:export-filename="C:\xampp\htdocs\games\SeasonsRun\res\images\woodMedium.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="opacity:0.89380535;fill:#9e4810;fill-opacity:1;fill-rule:nonzero;stroke:#693a0e;stroke-width:1.09240937;stroke-miterlimit:4;stroke-opacity:1"
+       d="m 25.652379,834.01823 0.8763,-64.6654 c 0.0526,-3.88134 -5.37819,-123.14417 -5.37819,-123.14417 l 30.42317,-0.32072 -2.95341,48.66645 c -0.27472,4.52672 4.91646,20.19899 4.93283,20.87725 l -0.0259,43.3058 0.36426,21.67529 2.80553,23.1781 0.11732,46.88601 c 0.002,0.67842 -0.5801,1.18417 -1.33892,1.25644 l -23.95075,2.28069 c -0.75883,0.0723 -5.87221,-19.99574 -5.87221,-19.99574 z"
+       id="rect13081-5-19-2-3"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="csccsscccsssc"
+       inkscape:export-filename="C:\xampp\htdocs\games\SeasonsRun\res\images\woodMediumVertical.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#e16716;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.09698260000000000;stroke-miterlimit:4;stroke-opacity:1"
+       d="m 23.874009,832.09717 0.85868,-65.21611 c 0.0516,-3.91439 -5.41087,-124.19433 -5.41087,-124.19433 l 30.41922,-0.31728 -2.93986,49.08045 c -0.27346,4.56522 4.92129,20.37205 4.93786,21.05609 l -0.0142,43.67472 0.37007,21.86001 2.81147,23.37613 0.12999,47.28544 c 0.002,0.6842 -0.5797,1.19416 -1.33841,1.26688 l -23.94707,2.29525 c -0.7587,0.0728 -5.87688,-20.16725 -5.87688,-20.16725 z"
+       id="rect13081-7-7-9"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="csccsscccsssc"
+       inkscape:export-filename="C:\xampp\htdocs\games\SeasonsRun\res\images\woodMediumVertical.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#aa4400;fill-opacity:1;stroke:#bd631e;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter13052-25-9-7)"
+       d="m 21.118219,27.251279 c 3.977196,-0.751024 7.794113,-2.253462 11.732345,-3.128625 0.708913,-0.157536 4.35379,0.226098 4.692937,0 0.613574,-0.409049 0.950739,-1.155263 1.564313,-1.564312 0.216931,-0.144621 0.521437,0 0.782156,0 0.260719,0 0.521438,0 0.782156,0 1.042875,0 2.08575,0 3.128625,0 3.650063,0 7.300125,0 10.950188,0 2.08575,0 4.1715,0 6.25725,0 0.35225,0 2.108432,-0.119019 2.346469,0 0.329786,0.164893 0.45237,0.617263 0.782156,0.782156 0.233194,0.116597 0.5978,-0.184356 0.782156,0 0.184356,0.184356 -0.233194,0.665559 0,0.782156 0.466388,0.233194 1.058444,-0.126467 1.564313,0 0.565578,0.141395 1.011244,0.5978 1.564312,0.782156 0.537993,0.179331 1.884981,-0.230743 2.346469,0 0.329786,0.164894 0.45237,0.617264 0.782157,0.782157 0.41473,0.207365 3.378679,-0.177367 3.910781,0 0.349791,0.116597 0.45237,0.617263 0.782156,0.782156 0.398333,0.199167 1.165979,-0.199167 1.564313,0 0.329786,0.164893 0.45237,0.617263 0.782156,0.782156 0.491603,0.245802 2.637022,-0.245801 3.128625,0 0.233194,0.116597 -0.184356,0.597801 0,0.782157 0.184356,0.184356 0.548962,-0.116597 0.782156,0 0.329786,0.164893 0.45237,0.617263 0.782156,0.782156 0.233194,0.116597 0.521438,0 0.782157,0 0.260718,0 0.521437,0 0.782156,0 1.564313,0 3.128625,0 4.692938,0 5.475093,0 10.950185,0 16.425285,0 3.12862,0 6.25725,0 9.38587,0 0.32903,0 4.46027,0.116336 4.69294,0 0.32979,-0.164893 0.43237,-0.665559 0.78215,-0.782156 0.49468,-0.164893 1.04288,0 1.56431,0 0.78216,0 1.56431,0 2.34647,0 0.26072,0 0.54896,0.116597 0.78216,0 1.93302,-0.966513 -0.26999,-0.782157 1.56431,-0.782157 0.26646,0 2.70532,0.141103 3.12862,0 0.55307,-0.184356 1.01125,-0.5978 1.56432,-0.782156 0.69411,-0.23137 3.39861,0.256084 3.91078,0 0.32978,-0.164893 0.45237,-0.617263 0.78215,-0.782156 0.17531,-0.08765 2.94277,0 3.12863,0 1.82503,0 3.65006,0 5.47509,0 0.78216,0 1.56432,0 2.34647,0 0.26072,0 0.5978,0.184356 0.78216,0 0.41223,-0.412233 0.36992,-1.15208 0.78215,-1.564313 0.18436,-0.184356 0.52144,0 0.78216,0 0.26072,0 0.52144,0 0.78216,0 1.56431,0 3.12862,0 4.69293,0 0.26072,0 0.5978,0.184356 0.78216,0 0.18436,-0.184356 -0.18436,-0.5978 0,-0.782156 0.18436,-0.184356 0.52144,0 0.78216,0 0.26072,0 0.52143,0 0.78215,0 0.78768,0 4.26039,0.144182 4.69294,0 0.34979,-0.116597 0.43237,-0.665559 0.78216,-0.782156 0.74202,-0.24734 1.56431,0 2.34647,0 1.82503,0 3.65006,0 5.47509,0 0.23181,0 3.90015,0 1.56431,0"
+       id="path12995-2-6-18"
+       inkscape:connector-curvature="0"
+       transform="matrix(-0.03769878,-1.2040844,0.72239297,-0.01694296,21.221279,864.02591)"
+       inkscape:export-filename="C:\xampp\htdocs\games\SeasonsRun\res\images\woodMediumVertical.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#aa4400;fill-opacity:1;stroke:#bd631e;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter13052-25-9-5-6)"
+       d="m 21.118219,27.251279 c 3.977196,-0.751024 7.794113,-2.253462 11.732345,-3.128625 0.708913,-0.157536 4.35379,0.226098 4.692937,0 0.613574,-0.409049 0.950739,-1.155263 1.564313,-1.564312 0.216931,-0.144621 0.521437,0 0.782156,0 0.260719,0 0.521438,0 0.782156,0 1.042875,0 2.08575,0 3.128625,0 3.650063,0 7.300125,0 10.950188,0 2.08575,0 4.1715,0 6.25725,0 0.35225,0 2.108432,-0.119019 2.346469,0 0.329786,0.164893 0.45237,0.617263 0.782156,0.782156 0.233194,0.116597 0.5978,-0.184356 0.782156,0 0.184356,0.184356 -0.233194,0.665559 0,0.782156 0.466388,0.233194 1.058444,-0.126467 1.564313,0 0.565578,0.141395 1.011244,0.5978 1.564312,0.782156 0.537993,0.179331 1.884981,-0.230743 2.346469,0 0.329786,0.164894 0.45237,0.617264 0.782157,0.782157 0.41473,0.207365 3.378679,-0.177367 3.910781,0 0.349791,0.116597 0.45237,0.617263 0.782156,0.782156 0.398333,0.199167 1.165979,-0.199167 1.564313,0 0.329786,0.164893 0.45237,0.617263 0.782156,0.782156 0.491603,0.245802 2.637022,-0.245801 3.128625,0 0.233194,0.116597 -0.184356,0.597801 0,0.782157 0.184356,0.184356 0.548962,-0.116597 0.782156,0 0.329786,0.164893 0.45237,0.617263 0.782156,0.782156 0.233194,0.116597 0.521438,0 0.782157,0 0.260718,0 0.521437,0 0.782156,0 1.564313,0 3.128625,0 4.692938,0 5.475093,0 10.950185,0 16.425285,0 3.12862,0 6.25725,0 9.38587,0 0.32903,0 4.46027,0.116336 4.69294,0 0.32979,-0.164893 0.43237,-0.665559 0.78215,-0.782156 0.49468,-0.164893 1.04288,0 1.56431,0 0.78216,0 1.56431,0 2.34647,0 0.26072,0 0.54896,0.116597 0.78216,0 1.93302,-0.966513 -0.26999,-0.782157 1.56431,-0.782157 0.26646,0 2.70532,0.141103 3.12862,0 0.55307,-0.184356 1.01125,-0.5978 1.56432,-0.782156 0.69411,-0.23137 3.39861,0.256084 3.91078,0 0.32978,-0.164893 0.45237,-0.617263 0.78215,-0.782156 0.17531,-0.08765 2.94277,0 3.12863,0 1.82503,0 3.65006,0 5.47509,0 0.78216,0 1.56432,0 2.34647,0 0.26072,0 0.5978,0.184356 0.78216,0 0.41223,-0.412233 0.36992,-1.15208 0.78215,-1.564313 0.18436,-0.184356 0.52144,0 0.78216,0 0.26072,0 0.52144,0 0.78216,0 1.56431,0 3.12862,0 4.69293,0 0.26072,0 0.5978,0.184356 0.78216,0 0.18436,-0.184356 -0.18436,-0.5978 0,-0.782156 0.18436,-0.184356 0.52144,0 0.78216,0 0.26072,0 0.52143,0 0.78215,0 0.78768,0 4.26039,0.144182 4.69294,0 0.34979,-0.116597 0.43237,-0.665559 0.78216,-0.782156 0.74202,-0.24734 1.56431,0 2.34647,0 1.82503,0 3.65006,0 5.47509,0 0.23181,0 3.90015,0 1.56431,0"
+       id="path12995-2-6-3-1"
+       inkscape:connector-curvature="0"
+       transform="matrix(-0.03769878,-1.2040844,0.72239297,-0.01694296,31.742849,854.2928)"
+       inkscape:export-filename="C:\xampp\htdocs\games\SeasonsRun\res\images\woodMediumVertical.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#aa4400;fill-opacity:1;stroke:#bd631e;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter13052-25-9-2-2)"
+       d="m 21.118219,27.251279 c 3.977196,-0.751024 7.794113,-2.253462 11.732345,-3.128625 0.708913,-0.157536 4.35379,0.226098 4.692937,0 0.613574,-0.409049 0.950739,-1.155263 1.564313,-1.564312 0.216931,-0.144621 0.521437,0 0.782156,0 0.260719,0 0.521438,0 0.782156,0 1.042875,0 2.08575,0 3.128625,0 3.650063,0 7.300125,0 10.950188,0 2.08575,0 4.1715,0 6.25725,0 0.35225,0 2.108432,-0.119019 2.346469,0 0.329786,0.164893 0.45237,0.617263 0.782156,0.782156 0.233194,0.116597 0.5978,-0.184356 0.782156,0 0.184356,0.184356 -0.233194,0.665559 0,0.782156 0.466388,0.233194 1.058444,-0.126467 1.564313,0 0.565578,0.141395 1.011244,0.5978 1.564312,0.782156 0.537993,0.179331 1.884981,-0.230743 2.346469,0 0.329786,0.164894 0.45237,0.617264 0.782157,0.782157 0.41473,0.207365 3.378679,-0.177367 3.910781,0 0.349791,0.116597 0.45237,0.617263 0.782156,0.782156 0.398333,0.199167 1.165979,-0.199167 1.564313,0 0.329786,0.164893 0.45237,0.617263 0.782156,0.782156 0.491603,0.245802 2.637022,-0.245801 3.128625,0 0.233194,0.116597 -0.184356,0.597801 0,0.782157 0.184356,0.184356 0.548962,-0.116597 0.782156,0 0.329786,0.164893 0.45237,0.617263 0.782156,0.782156 0.233194,0.116597 0.521438,0 0.782157,0 0.260718,0 0.521437,0 0.782156,0 1.564313,0 3.128625,0 4.692938,0 5.475093,0 10.950185,0 16.425285,0 3.12862,0 6.25725,0 9.38587,0 0.32903,0 4.46027,0.116336 4.69294,0 0.32979,-0.164893 0.43237,-0.665559 0.78215,-0.782156 0.49468,-0.164893 1.04288,0 1.56431,0 0.78216,0 1.56431,0 2.34647,0 0.26072,0 0.54896,0.116597 0.78216,0 1.93302,-0.966513 -0.26999,-0.782157 1.56431,-0.782157 0.26646,0 2.70532,0.141103 3.12862,0 0.55307,-0.184356 1.01125,-0.5978 1.56432,-0.782156 0.69411,-0.23137 3.39861,0.256084 3.91078,0 0.32978,-0.164893 0.45237,-0.617263 0.78215,-0.782156 0.17531,-0.08765 2.94277,0 3.12863,0 1.82503,0 3.65006,0 5.47509,0 0.78216,0 1.56432,0 2.34647,0 0.26072,0 0.5978,0.184356 0.78216,0 0.41223,-0.412233 0.36992,-1.15208 0.78215,-1.564313 0.18436,-0.184356 0.52144,0 0.78216,0 0.26072,0 0.52144,0 0.78216,0 1.56431,0 3.12862,0 4.69293,0 0.26072,0 0.5978,0.184356 0.78216,0 0.18436,-0.184356 -0.18436,-0.5978 0,-0.782156 0.18436,-0.184356 0.52144,0 0.78216,0 0.26072,0 0.52143,0 0.78215,0 0.78768,0 4.26039,0.144182 4.69294,0 0.34979,-0.116597 0.43237,-0.665559 0.78216,-0.782156 0.74202,-0.24734 1.56431,0 2.34647,0 1.82503,0 3.65006,0 5.47509,0 0.23181,0 3.90015,0 1.56431,0"
+       id="path12995-2-6-1-9"
+       inkscape:connector-curvature="0"
+       transform="matrix(-0.03755816,-1.313754,0.71969851,-0.01848614,15.135889,871.11243)"
+       inkscape:export-filename="C:\xampp\htdocs\games\SeasonsRun\res\images\woodMediumVertical.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#aa4400;fill-opacity:1;stroke:#bd631e;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter13052-25-9-8-1)"
+       d="m 21.118219,27.251279 c 3.977196,-0.751024 7.794113,-2.253462 11.732345,-3.128625 0.708913,-0.157536 4.35379,0.226098 4.692937,0 0.613574,-0.409049 0.950739,-1.155263 1.564313,-1.564312 0.216931,-0.144621 0.521437,0 0.782156,0 0.260719,0 0.521438,0 0.782156,0 1.042875,0 2.08575,0 3.128625,0 3.650063,0 7.300125,0 10.950188,0 2.08575,0 4.1715,0 6.25725,0 0.35225,0 2.108432,-0.119019 2.346469,0 0.329786,0.164893 0.45237,0.617263 0.782156,0.782156 0.233194,0.116597 0.5978,-0.184356 0.782156,0 0.184356,0.184356 -0.233194,0.665559 0,0.782156 0.466388,0.233194 1.058444,-0.126467 1.564313,0 0.565578,0.141395 1.011244,0.5978 1.564312,0.782156 0.537993,0.179331 1.884981,-0.230743 2.346469,0 0.329786,0.164894 0.45237,0.617264 0.782157,0.782157 0.41473,0.207365 3.378679,-0.177367 3.910781,0 0.349791,0.116597 0.45237,0.617263 0.782156,0.782156 0.398333,0.199167 1.165979,-0.199167 1.564313,0 0.329786,0.164893 0.45237,0.617263 0.782156,0.782156 0.491603,0.245802 2.637022,-0.245801 3.128625,0 0.233194,0.116597 -0.184356,0.597801 0,0.782157 0.184356,0.184356 0.548962,-0.116597 0.782156,0 0.329786,0.164893 0.45237,0.617263 0.782156,0.782156 0.233194,0.116597 0.521438,0 0.782157,0 0.260718,0 0.521437,0 0.782156,0 1.564313,0 3.128625,0 4.692938,0 5.475093,0 10.950185,0 16.425285,0 3.12862,0 6.25725,0 9.38587,0 0.32903,0 4.46027,0.116336 4.69294,0 0.32979,-0.164893 0.43237,-0.665559 0.78215,-0.782156 0.49468,-0.164893 1.04288,0 1.56431,0 0.78216,0 1.56431,0 2.34647,0 0.26072,0 0.54896,0.116597 0.78216,0 1.93302,-0.966513 -0.26999,-0.782157 1.56431,-0.782157 0.26646,0 2.70532,0.141103 3.12862,0 0.55307,-0.184356 1.01125,-0.5978 1.56432,-0.782156 0.69411,-0.23137 3.39861,0.256084 3.91078,0 0.32978,-0.164893 0.45237,-0.617263 0.78215,-0.782156 0.17531,-0.08765 2.94277,0 3.12863,0 1.82503,0 3.65006,0 5.47509,0 0.78216,0 1.56432,0 2.34647,0 0.26072,0 0.5978,0.184356 0.78216,0 0.41223,-0.412233 0.36992,-1.15208 0.78215,-1.564313 0.18436,-0.184356 0.52144,0 0.78216,0 0.26072,0 0.52144,0 0.78216,0 1.56431,0 3.12862,0 4.69293,0 0.26072,0 0.5978,0.184356 0.78216,0 0.18436,-0.184356 -0.18436,-0.5978 0,-0.782156 0.18436,-0.184356 0.52144,0 0.78216,0 0.26072,0 0.52143,0 0.78215,0 0.78768,0 4.26039,0.144182 4.69294,0 0.34979,-0.116597 0.43237,-0.665559 0.78216,-0.782156 0.74202,-0.24734 1.56431,0 2.34647,0 1.82503,0 3.65006,0 5.47509,0 0.23181,0 3.90015,0 1.56431,0"
+       id="path12995-2-6-31-5"
+       inkscape:connector-curvature="0"
+       transform="matrix(-0.03769878,-1.2040844,0.72239297,-0.01694296,26.189349,864.19283)"
+       inkscape:export-filename="C:\xampp\htdocs\games\SeasonsRun\res\images\woodMediumVertical.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="opacity:0.89380535;fill:#9e4810;fill-opacity:1;fill-rule:nonzero;stroke:#693a0e;stroke-width:1.09240937;stroke-miterlimit:4;stroke-opacity:1"
+       d="m 418.96653,706.38192 -49.12242,-42.06388 c -2.94841,-2.52475 -98.05579,-74.68917 -98.05579,-74.68917 l 19.22665,-23.57982 35.5007,33.41924 c 3.3021,3.10851 18.66606,9.15145 19.19765,9.57301 l 33.25587,27.73879 16.88657,13.59391 19.6038,12.68016 36.09826,29.92035 c 0.52252,0.4327 0.53851,1.20366 0.10833,1.83293 l -13.57795,19.8615 c -0.43016,0.62929 -19.12165,-8.28704 -19.12165,-8.28704 z"
+       id="rect13081-5-19-2-3-8"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="csccsscccsssc"
+       inkscape:export-filename="C:\xampp\htdocs\games\SeasonsRun\res\images\woodMediumVertical.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#e86d1c;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.09698260000000000;stroke-miterlimit:4;stroke-opacity:1"
+       d="m 416.35227,706.51864 -49.55682,-42.40283 c -2.97445,-2.54514 -98.88356,-75.33624 -98.88356,-75.33624 l 19.22676,-23.57459 35.82746,33.67383 c 3.33249,3.13218 18.80211,9.25851 19.33828,9.68361 l 33.5468,27.96594 17.03221,13.70768 19.75975,12.80235 36.41326,30.16628 c 0.52696,0.4364 0.54644,1.20974 0.11668,1.83922 l -13.56441,19.86799 c -0.42969,0.62951 -19.25641,-8.39324 -19.25641,-8.39324 z"
+       id="rect13081-7-7-9-5"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="csccsscccsssc"
+       inkscape:export-filename="C:\xampp\htdocs\games\SeasonsRun\res\images\woodMediumVertical.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#aa4400;fill-opacity:1;stroke:#bd631e;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter13052-25-9-7-4)"
+       d="m 21.118219,27.251279 c 3.977196,-0.751024 7.794113,-2.253462 11.732345,-3.128625 0.708913,-0.157536 4.35379,0.226098 4.692937,0 0.613574,-0.409049 0.950739,-1.155263 1.564313,-1.564312 0.216931,-0.144621 0.521437,0 0.782156,0 0.260719,0 0.521438,0 0.782156,0 1.042875,0 2.08575,0 3.128625,0 3.650063,0 7.300125,0 10.950188,0 2.08575,0 4.1715,0 6.25725,0 0.35225,0 2.108432,-0.119019 2.346469,0 0.329786,0.164893 0.45237,0.617263 0.782156,0.782156 0.233194,0.116597 0.5978,-0.184356 0.782156,0 0.184356,0.184356 -0.233194,0.665559 0,0.782156 0.466388,0.233194 1.058444,-0.126467 1.564313,0 0.565578,0.141395 1.011244,0.5978 1.564312,0.782156 0.537993,0.179331 1.884981,-0.230743 2.346469,0 0.329786,0.164894 0.45237,0.617264 0.782157,0.782157 0.41473,0.207365 3.378679,-0.177367 3.910781,0 0.349791,0.116597 0.45237,0.617263 0.782156,0.782156 0.398333,0.199167 1.165979,-0.199167 1.564313,0 0.329786,0.164893 0.45237,0.617263 0.782156,0.782156 0.491603,0.245802 2.637022,-0.245801 3.128625,0 0.233194,0.116597 -0.184356,0.597801 0,0.782157 0.184356,0.184356 0.548962,-0.116597 0.782156,0 0.329786,0.164893 0.45237,0.617263 0.782156,0.782156 0.233194,0.116597 0.521438,0 0.782157,0 0.260718,0 0.521437,0 0.782156,0 1.564313,0 3.128625,0 4.692938,0 5.475093,0 10.950185,0 16.425285,0 3.12862,0 6.25725,0 9.38587,0 0.32903,0 4.46027,0.116336 4.69294,0 0.32979,-0.164893 0.43237,-0.665559 0.78215,-0.782156 0.49468,-0.164893 1.04288,0 1.56431,0 0.78216,0 1.56431,0 2.34647,0 0.26072,0 0.54896,0.116597 0.78216,0 1.93302,-0.966513 -0.26999,-0.782157 1.56431,-0.782157 0.26646,0 2.70532,0.141103 3.12862,0 0.55307,-0.184356 1.01125,-0.5978 1.56432,-0.782156 0.69411,-0.23137 3.39861,0.256084 3.91078,0 0.32978,-0.164893 0.45237,-0.617263 0.78215,-0.782156 0.17531,-0.08765 2.94277,0 3.12863,0 1.82503,0 3.65006,0 5.47509,0 0.78216,0 1.56432,0 2.34647,0 0.26072,0 0.5978,0.184356 0.78216,0 0.41223,-0.412233 0.36992,-1.15208 0.78215,-1.564313 0.18436,-0.184356 0.52144,0 0.78216,0 0.26072,0 0.52144,0 0.78216,0 1.56431,0 3.12862,0 4.69293,0 0.26072,0 0.5978,0.184356 0.78216,0 0.18436,-0.184356 -0.18436,-0.5978 0,-0.782156 0.18436,-0.184356 0.52144,0 0.78216,0 0.26072,0 0.52143,0 0.78215,0 0.78768,0 4.26039,0.144182 4.69294,0 0.34979,-0.116597 0.43237,-0.665559 0.78216,-0.782156 0.74202,-0.24734 1.56431,0 2.34647,0 1.82503,0 3.65006,0 5.47509,0 0.23181,0 3.90015,0 1.56431,0"
+       id="path12995-2-6-18-7"
+       inkscape:connector-curvature="0"
+       transform="matrix(-0.94924459,-0.74173792,0.44936703,-0.56586919,439.18562,728.99351)"
+       inkscape:export-filename="C:\xampp\htdocs\games\SeasonsRun\res\images\woodMediumVertical.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#c5550b;fill-opacity:1;stroke:#bd631e;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter13052-25-9-5-6-1)"
+       d="m 21.118219,27.251279 c 3.977196,-0.751024 7.794113,-2.253462 11.732345,-3.128625 0.708913,-0.157536 4.35379,0.226098 4.692937,0 0.613574,-0.409049 0.950739,-1.155263 1.564313,-1.564312 0.216931,-0.144621 0.521437,0 0.782156,0 0.260719,0 0.521438,0 0.782156,0 1.042875,0 2.08575,0 3.128625,0 3.650063,0 7.300125,0 10.950188,0 2.08575,0 4.1715,0 6.25725,0 0.35225,0 2.108432,-0.119019 2.346469,0 0.329786,0.164893 0.45237,0.617263 0.782156,0.782156 0.233194,0.116597 0.5978,-0.184356 0.782156,0 0.184356,0.184356 -0.233194,0.665559 0,0.782156 0.466388,0.233194 1.058444,-0.126467 1.564313,0 0.565578,0.141395 1.011244,0.5978 1.564312,0.782156 0.537993,0.179331 1.884981,-0.230743 2.346469,0 0.329786,0.164894 0.45237,0.617264 0.782157,0.782157 0.41473,0.207365 3.378679,-0.177367 3.910781,0 0.349791,0.116597 0.45237,0.617263 0.782156,0.782156 0.398333,0.199167 1.165979,-0.199167 1.564313,0 0.329786,0.164893 0.45237,0.617263 0.782156,0.782156 0.491603,0.245802 2.637022,-0.245801 3.128625,0 0.233194,0.116597 -0.184356,0.597801 0,0.782157 0.184356,0.184356 0.548962,-0.116597 0.782156,0 0.329786,0.164893 0.45237,0.617263 0.782156,0.782156 0.233194,0.116597 0.521438,0 0.782157,0 0.260718,0 0.521437,0 0.782156,0 1.564313,0 3.128625,0 4.692938,0 5.475093,0 10.950185,0 16.425285,0 3.12862,0 6.25725,0 9.38587,0 0.32903,0 4.46027,0.116336 4.69294,0 0.32979,-0.164893 0.43237,-0.665559 0.78215,-0.782156 0.49468,-0.164893 1.04288,0 1.56431,0 0.78216,0 1.56431,0 2.34647,0 0.26072,0 0.54896,0.116597 0.78216,0 1.93302,-0.966513 -0.26999,-0.782157 1.56431,-0.782157 0.26646,0 2.70532,0.141103 3.12862,0 0.55307,-0.184356 1.01125,-0.5978 1.56432,-0.782156 0.69411,-0.23137 3.39861,0.256084 3.91078,0 0.32978,-0.164893 0.45237,-0.617263 0.78215,-0.782156 0.17531,-0.08765 2.94277,0 3.12863,0 1.82503,0 3.65006,0 5.47509,0 0.78216,0 1.56432,0 2.34647,0 0.26072,0 0.5978,0.184356 0.78216,0 0.41223,-0.412233 0.36992,-1.15208 0.78215,-1.564313 0.18436,-0.184356 0.52144,0 0.78216,0 0.26072,0 0.52144,0 0.78216,0 1.56431,0 3.12862,0 4.69293,0 0.26072,0 0.5978,0.184356 0.78216,0 0.18436,-0.184356 -0.18436,-0.5978 0,-0.782156 0.18436,-0.184356 0.52144,0 0.78216,0 0.26072,0 0.52143,0 0.78215,0 0.78768,0 4.26039,0.144182 4.69294,0 0.34979,-0.116597 0.43237,-0.665559 0.78216,-0.782156 0.74202,-0.24734 1.56431,0 2.34647,0 1.82503,0 3.65006,0 5.47509,0 0.23181,0 3.90015,0 1.56431,0"
+       id="path12995-2-6-3-1-6"
+       inkscape:connector-curvature="0"
+       transform="matrix(-0.94924459,-0.74173792,0.44936703,-0.56586919,438.44211,714.67974)"
+       inkscape:export-filename="C:\xampp\htdocs\games\SeasonsRun\res\images\woodMediumVertical.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#d76b23;fill-opacity:1;stroke:#bd631e;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter13052-25-9-2-2-8)"
+       d="m 21.118219,27.251279 c 3.977196,-0.751024 7.794113,-2.253462 11.732345,-3.128625 0.708913,-0.157536 4.35379,0.226098 4.692937,0 0.613574,-0.409049 0.950739,-1.155263 1.564313,-1.564312 0.216931,-0.144621 0.521437,0 0.782156,0 0.260719,0 0.521438,0 0.782156,0 1.042875,0 2.08575,0 3.128625,0 3.650063,0 7.300125,0 10.950188,0 2.08575,0 4.1715,0 6.25725,0 0.35225,0 2.108432,-0.119019 2.346469,0 0.329786,0.164893 0.45237,0.617263 0.782156,0.782156 0.233194,0.116597 0.5978,-0.184356 0.782156,0 0.184356,0.184356 -0.233194,0.665559 0,0.782156 0.466388,0.233194 1.058444,-0.126467 1.564313,0 0.565578,0.141395 1.011244,0.5978 1.564312,0.782156 0.537993,0.179331 1.884981,-0.230743 2.346469,0 0.329786,0.164894 0.45237,0.617264 0.782157,0.782157 0.41473,0.207365 3.378679,-0.177367 3.910781,0 0.349791,0.116597 0.45237,0.617263 0.782156,0.782156 0.398333,0.199167 1.165979,-0.199167 1.564313,0 0.329786,0.164893 0.45237,0.617263 0.782156,0.782156 0.491603,0.245802 2.637022,-0.245801 3.128625,0 0.233194,0.116597 -0.184356,0.597801 0,0.782157 0.184356,0.184356 0.548962,-0.116597 0.782156,0 0.329786,0.164893 0.45237,0.617263 0.782156,0.782156 0.233194,0.116597 0.521438,0 0.782157,0 0.260718,0 0.521437,0 0.782156,0 1.564313,0 3.128625,0 4.692938,0 5.475093,0 10.950185,0 16.425285,0 3.12862,0 6.25725,0 9.38587,0 0.32903,0 4.46027,0.116336 4.69294,0 0.32979,-0.164893 0.43237,-0.665559 0.78215,-0.782156 0.49468,-0.164893 1.04288,0 1.56431,0 0.78216,0 1.56431,0 2.34647,0 0.26072,0 0.54896,0.116597 0.78216,0 1.93302,-0.966513 -0.26999,-0.782157 1.56431,-0.782157 0.26646,0 2.70532,0.141103 3.12862,0 0.55307,-0.184356 1.01125,-0.5978 1.56432,-0.782156 0.69411,-0.23137 3.39861,0.256084 3.91078,0 0.32978,-0.164893 0.45237,-0.617263 0.78215,-0.782156 0.17531,-0.08765 2.94277,0 3.12863,0 1.82503,0 3.65006,0 5.47509,0 0.78216,0 1.56432,0 2.34647,0 0.26072,0 0.5978,0.184356 0.78216,0 0.41223,-0.412233 0.36992,-1.15208 0.78215,-1.564313 0.18436,-0.184356 0.52144,0 0.78216,0 0.26072,0 0.52144,0 0.78216,0 1.56431,0 3.12862,0 4.69293,0 0.26072,0 0.5978,0.184356 0.78216,0 0.18436,-0.184356 -0.18436,-0.5978 0,-0.782156 0.18436,-0.184356 0.52144,0 0.78216,0 0.26072,0 0.52143,0 0.78215,0 0.78768,0 4.26039,0.144182 4.69294,0 0.34979,-0.116597 0.43237,-0.665559 0.78216,-0.782156 0.74202,-0.24734 1.56431,0 2.34647,0 1.82503,0 3.65006,0 5.47509,0 0.23181,0 3.90015,0 1.56431,0"
+       id="path12995-2-6-1-9-1"
+       inkscape:connector-curvature="0"
+       transform="matrix(-1.0334152,-0.81204256,0.44645673,-0.56478675,440.73519,738.20489)"
+       inkscape:export-filename="C:\xampp\htdocs\games\SeasonsRun\res\images\woodMediumVertical.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#aa4400;fill-opacity:1;stroke:#bd631e;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter13052-25-9-8-1-1)"
+       d="m 21.118219,27.251279 c 3.977196,-0.751024 7.794113,-2.253462 11.732345,-3.128625 0.708913,-0.157536 4.35379,0.226098 4.692937,0 0.613574,-0.409049 0.950739,-1.155263 1.564313,-1.564312 0.216931,-0.144621 0.521437,0 0.782156,0 0.260719,0 0.521438,0 0.782156,0 1.042875,0 2.08575,0 3.128625,0 3.650063,0 7.300125,0 10.950188,0 2.08575,0 4.1715,0 6.25725,0 0.35225,0 2.108432,-0.119019 2.346469,0 0.329786,0.164893 0.45237,0.617263 0.782156,0.782156 0.233194,0.116597 0.5978,-0.184356 0.782156,0 0.184356,0.184356 -0.233194,0.665559 0,0.782156 0.466388,0.233194 1.058444,-0.126467 1.564313,0 0.565578,0.141395 1.011244,0.5978 1.564312,0.782156 0.537993,0.179331 1.884981,-0.230743 2.346469,0 0.329786,0.164894 0.45237,0.617264 0.782157,0.782157 0.41473,0.207365 3.378679,-0.177367 3.910781,0 0.349791,0.116597 0.45237,0.617263 0.782156,0.782156 0.398333,0.199167 1.165979,-0.199167 1.564313,0 0.329786,0.164893 0.45237,0.617263 0.782156,0.782156 0.491603,0.245802 2.637022,-0.245801 3.128625,0 0.233194,0.116597 -0.184356,0.597801 0,0.782157 0.184356,0.184356 0.548962,-0.116597 0.782156,0 0.329786,0.164893 0.45237,0.617263 0.782156,0.782156 0.233194,0.116597 0.521438,0 0.782157,0 0.260718,0 0.521437,0 0.782156,0 1.564313,0 3.128625,0 4.692938,0 5.475093,0 10.950185,0 16.425285,0 3.12862,0 6.25725,0 9.38587,0 0.32903,0 4.46027,0.116336 4.69294,0 0.32979,-0.164893 0.43237,-0.665559 0.78215,-0.782156 0.49468,-0.164893 1.04288,0 1.56431,0 0.78216,0 1.56431,0 2.34647,0 0.26072,0 0.54896,0.116597 0.78216,0 1.93302,-0.966513 -0.26999,-0.782157 1.56431,-0.782157 0.26646,0 2.70532,0.141103 3.12862,0 0.55307,-0.184356 1.01125,-0.5978 1.56432,-0.782156 0.69411,-0.23137 3.39861,0.256084 3.91078,0 0.32978,-0.164893 0.45237,-0.617263 0.78215,-0.782156 0.17531,-0.08765 2.94277,0 3.12863,0 1.82503,0 3.65006,0 5.47509,0 0.78216,0 1.56432,0 2.34647,0 0.26072,0 0.5978,0.184356 0.78216,0 0.41223,-0.412233 0.36992,-1.15208 0.78215,-1.564313 0.18436,-0.184356 0.52144,0 0.78216,0 0.26072,0 0.52144,0 0.78216,0 1.56431,0 3.12862,0 4.69293,0 0.26072,0 0.5978,0.184356 0.78216,0 0.18436,-0.184356 -0.18436,-0.5978 0,-0.782156 0.18436,-0.184356 0.52144,0 0.78216,0 0.26072,0 0.52143,0 0.78215,0 0.78768,0 4.26039,0.144182 4.69294,0 0.34979,-0.116597 0.43237,-0.665559 0.78216,-0.782156 0.74202,-0.24734 1.56431,0 2.34647,0 1.82503,0 3.65006,0 5.47509,0 0.23181,0 3.90015,0 1.56431,0"
+       id="path12995-2-6-31-5-8"
+       inkscape:connector-curvature="0"
+       transform="matrix(-0.94924459,-0.74173792,0.44936703,-0.56586919,442.49379,725.28332)"
+       inkscape:export-filename="C:\xampp\htdocs\games\SeasonsRun\res\images\woodMediumVertical.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#cb5d15;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path13331"
+       sodipodi:cx="341.02014"
+       sodipodi:cy="37.419312"
+       sodipodi:rx="25.029001"
+       sodipodi:ry="21.900375"
+       d="m 365.88198,34.892401 a 25.029001,21.900375 0 1 1 -0.54599,-2.663732"
+       sodipodi:start="6.1675457"
+       sodipodi:end="12.327082"
+       sodipodi:open="true"
+       inkscape:export-filename="C:\xampp\htdocs\games\SeasonsRun\res\images\woodCircle.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       transform="matrix(0.78542961,0,0,0.80078566,-138.69171,633.37358)" />
+    <path
+       transform="matrix(0.5915273,0,0,0.7195446,-73.043714,636.61075)"
+       sodipodi:type="arc"
+       style="opacity:0.92477878;fill:#c95406;fill-opacity:1;fill-rule:nonzero;stroke:#ad6524;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;filter:url(#filter13617)"
+       id="path13331-5"
+       sodipodi:cx="341.02014"
+       sodipodi:cy="37.419312"
+       sodipodi:rx="25.029001"
+       sodipodi:ry="21.900375"
+       d="m 365.88198,34.892401 a 25.029001,21.900375 0 1 1 -0.54599,-2.663732"
+       sodipodi:start="6.1675457"
+       sodipodi:end="12.327082"
+       sodipodi:open="true"
+       inkscape:export-filename="C:\xampp\htdocs\games\SeasonsRun\res\images\woodCircle.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;stroke:#854d0c;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter13603)"
+       d="m 420.88475,24.392205 c 0,5.512151 0.52143,0.616329 -0.55307,2.76534 -0.0824,0.164893 0.13036,0.422708 0,0.553068 -0.13036,0.130359 -0.42271,-0.13036 -0.55307,0 -0.13036,0.130359 0.13036,0.422708 0,0.553068 -0.13036,0.130359 -0.42271,-0.13036 -0.55307,0 -0.26072,0.260718 0.16489,0.77635 0,1.106136 -0.1166,0.233194 -0.43647,0.319874 -0.55307,0.553068 -0.0841,0.168317 0,1.410125 0,1.659204 0,1.106136 0,2.212272 0,3.318408 0,0.218634 -0.1181,2.529133 0,2.76534 0.1166,0.233194 0.43647,0.319874 0.55307,0.553068 0.0824,0.164893 -0.0824,0.388175 0,0.553068 0.1166,0.233194 0.43647,0.319874 0.55307,0.553068 0.0824,0.164893 -0.0824,0.388175 0,0.553068 0.30822,0.616435 0.79792,0.4897 1.10614,1.106136 0.0824,0.164893 -0.0824,0.388175 0,0.553068 0.23319,0.466387 0.94124,0.611457 1.10613,1.106136 0.1166,0.34979 -0.1166,0.756345 0,1.106136 0.21177,0.6353 1.32041,0.76734 1.65921,1.106136 0.13036,0.130359 -0.0824,0.388175 0,0.553068 0.11659,0.233194 0.43647,0.319874 0.55306,0.553068 0.0824,0.164893 0,0.368712 0,0.553068 0,0.368712 0,0.737424 0,1.106136 0,0.553068 0,1.106136 0,1.659204 0,0.184356 0.13036,0.422708 0,0.553068 -0.13036,0.130359 -0.38817,-0.08245 -0.55306,0 -0.14685,0.07342 -1.58579,1.512358 -1.65921,1.659204 -0.0824,0.164893 0.13036,0.422708 0,0.553068 -0.13036,0.130359 -0.42271,-0.13036 -0.55307,0 -0.26071,0.260718 0.1649,0.776349 0,1.106136 -0.11659,0.233193 -0.43647,0.319874 -0.55306,0.553068 -0.0842,0.168317 0,1.410125 0,1.659204 0,1.106136 0,2.212272 0,3.318408 0,0.184356 0,0.368712 0,0.553068 0,0.184355 -0.13036,0.422708 0,0.553067 0.13036,0.13036 0.38817,-0.08245 0.55306,0 0.2332,0.116597 0.36872,0.368712 0.55307,0.553068 0.18436,0.184356 0.36871,0.368712 0.55307,0.553068"
+       id="path13537"
+       inkscape:connector-curvature="0"
+       transform="matrix(0.5915273,0,0,0.7195446,-127.81036,631.65811)"
+       inkscape:export-filename="C:\xampp\htdocs\games\SeasonsRun\res\images\woodCircle.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;stroke:#b16320;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter13589)"
+       d="m 434.71145,65.319236 c -1.83486,0 -1.99413,0.329787 -3.31841,-0.553068 -0.21693,-0.14462 -0.43647,-0.319874 -0.55307,-0.553068 -0.0824,-0.164893 0.13036,-0.422708 0,-0.553068 -0.13036,-0.130359 -0.42271,0.13036 -0.55307,0 -0.13036,-0.130359 0.0824,-0.388175 0,-0.553068 -0.1166,-0.233193 -0.43647,-0.319874 -0.55307,-0.553068 -0.0824,-0.164893 0.0824,-0.388174 0,-0.553068 -1.83429,-1.834295 0.26072,0.521438 -0.55306,-1.106136 -0.1166,-0.233193 -0.48984,-0.300133 -0.55307,-0.553068 -0.13414,-0.536554 0.17489,-1.134517 0,-1.659203 -0.0583,-0.174896 -0.42271,0.130359 -0.55307,0 -0.13036,-0.13036 0,-0.368712 0,-0.553068 0,-1.290492 0,-2.580984 0,-3.871476 0,-0.184356 -0.13036,-0.422709 0,-0.553068 0.13036,-0.13036 0.36871,0 0.55307,0 0.18435,-0.368712 0.26157,-0.814644 0.55307,-1.106136 0.13036,-0.13036 0.4227,0.130359 0.55306,0 0.13036,-0.13036 -0.0824,-0.388175 0,-0.553068 0.1166,-0.233194 0.43647,-0.319875 0.55307,-0.553068 0.0824,-0.164893 -0.0824,-0.388175 0,-0.553068 0.3081,-0.616204 0.79804,-0.489933 1.10614,-1.106136 0.16489,-0.329786 -0.1649,-0.77635 0,-1.106136 0.11659,-0.233194 0.43647,-0.319875 0.55307,-0.553068 0.16489,-0.329786 -0.20453,-0.79935 0,-1.106136 0.28924,-0.433863 0.87294,-0.639749 1.10613,-1.106136 0.16489,-0.329786 0,-0.737424 0,-1.106136 0,-1.106136 0,-2.212272 0,-3.318408 0,-1.84356 0,-3.68712 0,-5.53068 0,-0.452797 0.11945,-2.406998 0,-2.76534 -1.33537,-4.006102 0.15945,0.871971 -1.10613,-1.659204 -0.1649,-0.329786 0.16489,-0.77635 0,-1.106136 -0.1166,-0.233194 -0.43648,-0.319874 -0.55307,-0.553068 -0.0824,-0.164893 0.0824,-0.388175 0,-0.553068 -0.1166,-0.233194 -0.47062,-0.305729 -0.55307,-0.553068 -0.1166,-0.349791 0.0894,-0.748433 0,-1.106136 -0.1,-0.399925 -0.42271,-0.715058 -0.55307,-1.106136 -0.10734,-0.32204 0,-2.937859 0,-3.318408"
+       id="path13539"
+       inkscape:connector-curvature="0"
+       transform="matrix(0.5915273,0,0,0.7195446,-127.81036,631.65811)"
+       inkscape:export-filename="C:\xampp\htdocs\games\SeasonsRun\res\images\woodCircle.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;stroke:#924809;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter13575)"
+       d="m 441.34826,26.604477 c 3.20469,6.409386 -0.1357,-1.095863 1.10614,3.871476 0.0632,0.252934 0.47062,0.305728 0.55307,0.553068 0.11659,0.349791 -0.1166,0.756345 0,1.106136 0.16489,0.494679 0.87294,0.639748 1.10613,1.106136 0.16489,0.329786 -0.26072,0.845417 0,1.106136 0.13036,0.130359 0.47062,-0.164893 0.55307,0 0.16489,0.329786 -0.1166,0.756345 0,1.106136 0.16489,0.494679 0.87294,0.639748 1.10614,1.106136 0.0824,0.164893 -0.13036,0.422708 0,0.553068 0.13036,0.130359 0.38817,-0.08245 0.55306,0 0.2332,0.116597 0.36872,0.368712 0.55307,0.553068 0.18436,0.184356 0.43647,0.319874 0.55307,0.553068 0.16489,0.329786 -0.26072,0.845417 0,1.106136 0.29149,0.291492 0.87747,0.210069 1.10614,0.553068 0.20452,0.306787 0,0.737424 0,1.106136 0,1.106136 0,2.212272 0,3.318408 0,0.368712 0,0.737424 0,1.106136 0,0.184356 0.0824,0.388175 0,0.553068 -0.1166,0.233194 -0.47063,0.305728 -0.55307,0.553068 -0.1749,0.524686 0,1.106136 0,1.659204 0,1.290492 0,2.580984 0,3.871476 0,0.203106 -0.0223,2.190015 0,2.212272 0.13036,0.130359 0.42271,-0.13036 0.55307,0 0.13036,0.130359 -0.13036,0.422708 0,0.553068 0.13036,0.130359 0.4227,-0.13036 0.55306,0 0.26072,0.260718 -0.26071,0.845417 0,1.106136 0.13036,0.130359 0.42271,-0.13036 0.55307,0 0.13036,0.130359 -0.13036,0.422708 0,0.553068 0.13036,0.130359 0.38818,-0.08245 0.55307,0 0.84342,0.421708 0.55307,1.453395 0.55307,2.212272"
+       id="path13541"
+       inkscape:connector-curvature="0"
+       transform="matrix(0.5915273,0,0,0.7195446,-127.81036,631.65811)"
+       inkscape:export-filename="C:\xampp\htdocs\games\SeasonsRun\res\images\woodCircle.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:#803300;stroke:#814913;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter13561)"
+       d="m 414.801,35.453565 c 0.84954,1.893428 -1.17846,1.803856 -1.65921,2.76534 -0.38144,0.762878 0.6698,0.494704 -0.55306,1.106136 -0.1649,0.08245 -0.42271,-0.13036 -0.55307,0 -0.13036,0.130359 0,0.368712 0,0.553068 0,0.184356 0,0.368712 0,0.553068 0,1.106136 0,2.212272 0,3.318408 0,0.363425 -0.10402,1.347163 0,1.659204 0.18435,0.368712 0.36871,0.737424 0.55307,1.106136 0.18435,0 0.4227,-0.13036 0.55306,0 0.13036,0.130359 -0.0583,0.378172 0,0.553068 1.33537,4.006101 -0.15945,-0.871972 1.10614,1.659204 0.0824,0.164893 -0.0583,0.378172 0,0.553068 1.33537,4.006101 -0.15945,-0.871972 1.10614,1.659204 0.0824,0.164893 -0.0583,0.378172 0,0.553068 0.13036,0.391078 0.45308,0.706211 0.55306,1.106136 0.12345,0.493769 0,2.125148 0,2.76534 0,0.184356 0,0.368712 0,0.553068 0,0.184356 -0.0824,0.388174 0,0.553068 0.68343,1.366854 0.55307,-0.190907 0.55307,1.106136"
+       id="path13543"
+       inkscape:connector-curvature="0"
+       transform="matrix(0.5915273,0,0,0.7195446,-127.81036,631.65811)"
+       inkscape:export-filename="C:\xampp\htdocs\games\SeasonsRun\res\images\woodCircle.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;stroke:#824711;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter13547)"
+       d="m 454.06883,32.688225 c 0,2.212272 0,4.424544 0,6.636816 0,0.249078 0.0842,1.490886 0,1.659204 -0.1166,0.233194 -0.43648,0.319874 -0.55307,0.553068 -0.082,0.164032 0,2.783463 0,3.318408 0,0.368712 0,0.737424 0,1.106136 0,0.184356 -0.0824,0.388175 0,0.553068 0.68343,1.366854 0.55307,-0.190907 0.55307,1.106136 0,0.346822 0.0683,2.143954 0,2.212272 -0.13036,0.130359 -0.42271,-0.13036 -0.55307,0 -0.13036,0.130359 0.13036,0.422708 0,0.553068 -0.13036,0.130359 -0.42271,-0.13036 -0.55307,0 -0.11307,0.113067 0.10964,1.439917 0,1.659204 -0.1166,0.233193 -0.43647,0.319874 -0.55307,0.553068 -0.16489,0.329786 0.16489,0.776349 0,1.106136 -0.1166,0.233193 -0.43647,0.319874 -0.55307,0.553068 -0.0824,0.164893 0.18436,0.553068 0,0.553068 -0.18435,0 0,-0.368712 0,-0.553068"
+       id="path13545"
+       inkscape:connector-curvature="0"
+       transform="matrix(0.5915273,0,0,0.7195446,-127.81036,631.65811)"
+       inkscape:export-filename="C:\xampp\htdocs\games\SeasonsRun\res\images\woodCircle.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#342929;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="path7823-9"
+       sodipodi:cx="31.269251"
+       sodipodi:cy="29.6017"
+       sodipodi:rx="6.117897"
+       sodipodi:ry="5.4381309"
+       d="M 37.346288,28.974237 A 6.117897,5.4381309 0 1 1 37.21283,28.3128"
+       transform="translate(-0.67976551,552.3621)"
+       sodipodi:start="6.1675457"
+       sodipodi:end="12.327082"
+       sodipodi:open="true" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="path7823"
+       sodipodi:cx="31.269251"
+       sodipodi:cy="29.6017"
+       sodipodi:rx="6.117897"
+       sodipodi:ry="5.4381309"
+       d="M 37.346288,28.974237 A 6.117897,5.4381309 0 1 1 37.21283,28.3128"
+       transform="translate(0,551.00265)"
+       sodipodi:start="6.1675457"
+       sodipodi:end="12.327082"
+       sodipodi:open="true" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#342929;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="path7823-9-7"
+       sodipodi:cx="31.269251"
+       sodipodi:cy="29.6017"
+       sodipodi:rx="6.117897"
+       sodipodi:ry="5.4381309"
+       d="M 37.346288,28.974237 A 6.117897,5.4381309 0 1 1 37.21283,28.3128"
+       transform="translate(156.68614,551.68229)"
+       sodipodi:start="6.1675457"
+       sodipodi:end="12.327082"
+       sodipodi:open="true" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="path7823-95"
+       sodipodi:cx="31.269251"
+       sodipodi:cy="29.6017"
+       sodipodi:rx="6.117897"
+       sodipodi:ry="5.4381309"
+       d="M 37.346288,28.974237 A 6.117897,5.4381309 0 1 1 37.21283,28.3128"
+       transform="translate(157.36591,550.32284)"
+       sodipodi:start="6.1675457"
+       sodipodi:end="12.327082"
+       sodipodi:open="true" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#342929;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="path7823-9-4"
+       sodipodi:cx="31.269251"
+       sodipodi:cy="29.6017"
+       sodipodi:rx="6.117897"
+       sodipodi:ry="5.4381309"
+       d="M 37.346288,28.974237 A 6.117897,5.4381309 0 1 1 37.21283,28.3128"
+       transform="translate(2.3791832,626.45659)"
+       sodipodi:start="6.1675457"
+       sodipodi:end="12.327082"
+       sodipodi:open="true" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="path7823-3"
+       sodipodi:cx="31.269251"
+       sodipodi:cy="29.6017"
+       sodipodi:rx="6.117897"
+       sodipodi:ry="5.4381309"
+       d="M 37.346288,28.974237 A 6.117897,5.4381309 0 1 1 37.21283,28.3128"
+       transform="translate(3.0589482,625.09714)"
+       sodipodi:start="6.1675457"
+       sodipodi:end="12.327082"
+       sodipodi:open="true" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#342929;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="path7823-9-1"
+       sodipodi:cx="31.269251"
+       sodipodi:cy="29.6017"
+       sodipodi:rx="6.117897"
+       sodipodi:ry="5.4381309"
+       d="M 37.346288,28.974237 A 6.117897,5.4381309 0 1 1 37.21283,28.3128"
+       transform="translate(10.536379,808.63397)"
+       sodipodi:start="6.1675457"
+       sodipodi:end="12.327082"
+       sodipodi:open="true" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="path7823-2"
+       sodipodi:cx="31.269251"
+       sodipodi:cy="29.6017"
+       sodipodi:rx="6.117897"
+       sodipodi:ry="5.4381309"
+       d="M 37.346288,28.974237 A 6.117897,5.4381309 0 1 1 37.21283,28.3128"
+       transform="translate(11.216144,807.27452)"
+       sodipodi:start="6.1675457"
+       sodipodi:end="12.327082"
+       sodipodi:open="true" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#342929;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="path7823-9-3"
+       sodipodi:cx="31.269251"
+       sodipodi:cy="29.6017"
+       sodipodi:rx="6.117897"
+       sodipodi:ry="5.4381309"
+       d="M 37.346288,28.974237 A 6.117897,5.4381309 0 1 1 37.21283,28.3128"
+       transform="translate(254.57249,556.44066)"
+       sodipodi:start="6.1675457"
+       sodipodi:end="12.327082"
+       sodipodi:open="true" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="path7823-34"
+       sodipodi:cx="31.269251"
+       sodipodi:cy="29.6017"
+       sodipodi:rx="6.117897"
+       sodipodi:ry="5.4381309"
+       d="M 37.346288,28.974237 A 6.117897,5.4381309 0 1 1 37.21283,28.3128"
+       transform="translate(255.25226,555.08121)"
+       sodipodi:start="6.1675457"
+       sodipodi:end="12.327082"
+       sodipodi:open="true" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#342929;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="path7823-9-11"
+       sodipodi:cx="31.269251"
+       sodipodi:cy="29.6017"
+       sodipodi:rx="6.117897"
+       sodipodi:ry="5.4381309"
+       d="M 37.346288,28.974237 A 6.117897,5.4381309 0 1 1 37.21283,28.3128"
+       transform="translate(401.40202,668.6021)"
+       sodipodi:start="6.1675457"
+       sodipodi:end="12.327082"
+       sodipodi:open="true" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="path7823-38"
+       sodipodi:cx="31.269251"
+       sodipodi:cy="29.6017"
+       sodipodi:rx="6.117897"
+       sodipodi:ry="5.4381309"
+       d="M 37.346288,28.974237 A 6.117897,5.4381309 0 1 1 37.21283,28.3128"
+       transform="translate(402.08178,667.24265)"
+       sodipodi:start="6.1675457"
+       sodipodi:end="12.327082"
+       sodipodi:open="true" />
+  </g>
+</svg>

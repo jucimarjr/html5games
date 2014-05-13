@@ -1,7 +1,8 @@
-var SplashGameLayer = cc.Layer.extend({
+var SplashGameLayer = cc.LayerColor.extend({
     init:function()
     {
         this._super();
+        this.setColor(new cc.Color4B(255, 255, 255, 255));
         var background = cc.Director.getInstance().getWinSizeInPixels();
                
         var fundo =  cc.Sprite.create("res/screenshots/splashGame_800-480.png");

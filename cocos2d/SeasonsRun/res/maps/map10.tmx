@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="140" height="15" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="map0" tilewidth="32" tileheight="32">
+  <image source="map0.png" width="4400" height="800"/>
+ </tileset>
+ <tileset firstgid="3426" name="coqueiros" tilewidth="32" tileheight="32">
+  <image source="coqueiro.png" width="744" height="1052"/>
+ </tileset>
+ <layer name="coqueiros" width="140" height="15">
+  <data encoding="base64" compression="zlib">
+   eJzt1VkyX0EUx/H7LLgXKwgxxAoQgi0YYsgKzGIFMcSwAvOwApkMKyAxroDEuIIgpgffKh6uB+7pdmiq+lf1qfvSdarP/3T/Owiu8zkMgm70oBd9+IJ+DGAQQ+H12ia+zWhBK9rQjg504hO6btYO8x3BKMYwjglMYgrTmLlZe1dM9vYcUsVeqlGDWnxAHerRgEZ8DPX6WmLNMn7hN1awijWsYyPUmUM8JvVM+pzl+xXf8B0/8BNzmMcCFhP2adurdG7SSOtJ75PWDLdYs40/+Isd7GIP+zgIdeYQj0k9kz4lZ38zYZ+2vZr8D0oirSe9T1oz/MeaIxzjBP9xijOc4yLUmUM8JvVM+pSc/cOEfdr2qv2OSetJ75PWDFOiIHiFVKQhHSEiZCAz0plDPCb1TPqUnP3LhH3a9urqzZbeJ60ZvuY8ZCMHb5CLPOSjAG8jnTnEY1LPpE/J2c+K9PYWj6s3W3qftGZYxO9XjBK8QynK8B7lqIh05hCPST2TPiVnvzBhn7a9unqzpfdJe4b3RWMOtvVM+pSc/cqEfdr26urNlt4n7RneF4052NZ7yj4f0qurN1t6n7Rn+FzzUvp09WY/9X3y0YmrN/ul3Cef23H5Zvv4+Pj4+Pg8Xq4ANzYblw==
+  </data>
+ </layer>
+ <layer name="Camada de Tiles 1" width="140" height="15">
+  <data encoding="base64" compression="zlib">
+   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
+  </data>
+ </layer>
+ <objectgroup name="objects" width="140" height="15">
+  <object type="edgeShape" x="111" y="295">
+   <polyline points="0,0 65,-41 165,-41 191,-19 278,-25 550,-82 595,-83 613,-72 658,-75 769,-105 862,-140 889,-140 903,-106"/>
+  </object>
+  <object type="edgeShape" x="1331" y="477">
+   <polyline points="0,0 3,-183 66,-225 157,-223 196,-196 214,-165 219,-157 268,-150 373,-171 415,-172 447,-152 536,-139 669,-144 718,-160 750,-160 807,-118 859,-56 896,6"/>
+  </object>
+  <object type="edgeShape" x="2420" y="477">
+   <polyline points="0,0 -2,-26 40,-104 90,-144 124,-155 155,-137 200,-91 237,-79 298,-94 340,-128 395,-198 409,-203 497,-204 605,-199 656,-192 690,-198 760,-225 783,-221 806,-182"/>
+  </object>
+  <object type="edgeShape" x="3333" y="480">
+   <polyline points="0,0 0,-25 29,-90 93,-173 168,-243 257,-295 356,-349 490,-352 623,-353 676,-348 714,-342 731,-346 807,-338 835,-302 851,-247"/>
+  </object>
+ </objectgroup>
+</map>
