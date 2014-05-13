@@ -116,7 +116,7 @@ Config.grass = {
 //Hero
 Config.hero = {
 	dir: {
-        normal: 'assets/spritesheets/Hero_180-60.png',
+        normal: 'assets/spritesheets/HeroNormal_180-60.png',
         attack: 'assets/spritesheets/HeroAttack_120-60.png'
     },
     layer: 'LayerHero',
@@ -139,11 +139,11 @@ Config.hero = {
 	anchor: {
 		right: {
 			x: 0,
-			y: 0
+			y: 0.5
 		},
 		left: {
 			x: 0.5,
-			y: 0
+			y: 0.5
 		}
 	},
 	scale: {
@@ -212,27 +212,30 @@ Config.smallDragon = {
 	frame: {
 		width: 30,
 		height: 60,
-        normal: {
-            move: {
-                one: 0,
-                two: 1
-            }
-        }
+        move: [0, 1]
 	},
     number: 10
 };
 
 //Fire
 Config.fire = {
-    dir: 'assets/images/Fire_10-10.png',
+    dir: 'assets/spritesheets/Fire_20-10.png',
     number: 100,
-    range: 200,
+    animationVelocity: 42,
+    frame: {
+        hight: 10,
+        width: 10,
+        move: [0, 1]
+    },
+    range: 500,
+    damage: Config.hero.health.initial / 6000,
+    intervalShooting: 100,
     adjust: {
         x: 15,
         y: 30
     },
     velocity: Config.smallDragon.velocity + 100,
-    lifespan: 1000
+    lifespan: 3000
 };
 
 //Life

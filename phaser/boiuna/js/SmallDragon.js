@@ -1,11 +1,12 @@
 /*global Config, Phaser*/
 
-var SmallDragon = function (game, hero) {
+var SmallDragon = function (game, hero, platforms) {
 	"use strict";
     this.game = game;
 	this.hero = hero;
 	this.group = null;
     this.bornTime = 0;
+    this.platforms = platforms;
 };
 SmallDragon.prototype = {
 	preload: function () {
@@ -24,6 +25,7 @@ SmallDragon.prototype = {
 		"use strict";
         var i;
         this.game.physics.arcade.collide(this.hero.sprite, this.group, this.collision, null, this);
+        this.game.physics.arcade.collide(this.group, this.platforms.mainLayer);
         this.group.forEachAlive(this.move, this);
         if (this.game.time.now > this.bornTime) {
             if (Config.smallDragon.intervalBorning.actual > Config.smallDragon.intervalBorning.min) {
@@ -46,8 +48,7 @@ SmallDragon.prototype = {
         var sprite = this.group.getFirstExists(false);
 	    if (sprite !== null) {
 		    sprite.reset(Config.smallDragon.xi, Config.smallDragon.yi);
-            sprite.animations.add('move', [Config.smallDragon.frame.normal.move.one, Config.smallDragon.frame.normal.move.two],
-                Config.global.animationVelocity, true);
+            sprite.animations.add('move', Config.smallDragon.frame.move, Config.global.animationVelocity, true);
 		    sprite.animations.play('move');
         }
     },

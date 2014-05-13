@@ -13,7 +13,7 @@ Hero.prototype = {
 		"use strict";
         this.game.load.spritesheet('hero-normal', Config.hero.dir.normal, Config.hero.frame.normal.width, Config.hero.frame.normal.height);
         this.game.load.spritesheet('hero-attack', Config.hero.dir.attack, Config.hero.frame.attack.width, Config.hero.frame.attack.height);
-	},
+  	},
 	create: function () {
 		"use strict";
         var group = this.game.add.group();
