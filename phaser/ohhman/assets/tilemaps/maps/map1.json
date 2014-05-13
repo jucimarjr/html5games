@@ -2872,7 +2872,7 @@
                  "visible":true,
                  "width":0,
                  "x":521,
-                 "y":187
+                 "y":186
                 }, 
                 {
                  "gid":3,
@@ -2887,7 +2887,7 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":505,
+                 "x":504,
                  "y":201
                 }, 
                 {
@@ -2983,7 +2983,7 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":361,
+                 "x":360,
                  "y":201
                 }, 
                 {
@@ -3033,6 +3033,70 @@
                  "width":0,
                  "x":376,
                  "y":144
+                }, 
+                {
+                 "gid":3,
+                 "height":0,
+                 "name":"",
+                 "properties":
+                    {
+                     "body.checkCollision.left":"false",
+                     "body.checkCollision.right":"false",
+                     "body.checkCollision.up":"false"
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":304,
+                 "y":114
+                }, 
+                {
+                 "gid":3,
+                 "height":0,
+                 "name":"",
+                 "properties":
+                    {
+                     "body.checkCollision.down":"false",
+                     "body.checkCollision.left":"false",
+                     "body.checkCollision.right":"false"
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":305,
+                 "y":144
+                }, 
+                {
+                 "gid":3,
+                 "height":0,
+                 "name":"",
+                 "properties":
+                    {
+                     "body.checkCollision.down":"false",
+                     "body.checkCollision.left":"false",
+                     "body.checkCollision.right":"false"
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":144,
+                 "y":129
+                }, 
+                {
+                 "gid":3,
+                 "height":0,
+                 "name":"",
+                 "properties":
+                    {
+                     "body.checkCollision.down":"false",
+                     "body.checkCollision.right":"false",
+                     "body.checkCollision.up":"false"
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":174,
+                 "y":129
                 }],
          "opacity":1,
          "type":"objectgroup",

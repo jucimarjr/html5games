@@ -2,7 +2,7 @@ Blinky = function () {
 	this.sprite = null;
 	this.speed = 20;
 	
-	this.direction = "RIGHT"; //LEFT, RIGHT, UP, DOWN
+	this.direction = "LEFT"; //LEFT, RIGHT, UP, DOWN
 	
 	this.changeDirection = false;
 };
@@ -19,9 +19,7 @@ Blinky.prototype = {
 		game.physics.enable(this.sprite);
 
 		//Impede que o blinky saia dos limites da tela
-		this.sprite.body.collideWorldBounds = true;			
-
-		this.sprite.body.setSize(34, 34, 1, 1);
+		this.sprite.body.collideWorldBounds = true;					
 	},
 	
 	update : function() {
@@ -80,7 +78,7 @@ Blinky.prototype = {
 			this.direction = 'LEFT';
 		}
 		else if (this.direction == 'LEFT'){
-			this.sprite.X -= 6;
+			this.sprite.x -= 6;
 			this.direction = 'RIGHT';
 		}
 		*/
@@ -91,28 +89,33 @@ Blinky.prototype = {
 			//this.sprite.body.offset.setTo(0,0);
 			
 		
-	
+		if (decision.body.checkCollision.left)
+			this.sprite.x += 6;
+		
+		if (decision.body.checkCollision.right)
+			this.sprite.x -= 6;
+			
+		if (decision.body.checkCollision.down)
+			this.sprite.y += 6;
+		
+		if (decision.body.checkCollision.up)
+			this.sprite.y -= 6;
 
 			
-		var numberDirection = Math.round(1 + Math.random()*4);
-		console.log(numberDirection);
-		this.sprite.body.setSize(36, 36);
+		var numberDirection = Math.round(1 + Math.random()*3);
+		console.log(numberDirection);		
 		switch(numberDirection){
 			case 1:				
-				this.direction = "LEFT";
-				this.sprite.x -= 6;
+				this.direction = "LEFT";				
 				break;
 			case 2:				
-				this.direction = "RIGHT";				
-				this.sprite.x += 6;
+				this.direction = "RIGHT";								
 				break;
 			case 3:				
-				this.direction = "UP";
-				this.sprite.y -= 6;
+				this.direction = "UP";				
 				break;
 			case 4:
-				this.direction = "DOWN";
-				this.sprite.y += 6;
+				this.direction = "DOWN";				
 				break;
 		}		
 		
