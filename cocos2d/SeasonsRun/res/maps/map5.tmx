@@ -61,14 +61,6 @@
     <property name="sprite" value="box.png"/>
    </properties>
   </object>
-  <object type="rectangleShape" x="1955" y="330" width="29" height="27">
-   <properties>
-    <property name="density" value="5"/>
-    <property name="friction" value="1"/>
-    <property name="motion" value="dynamic"/>
-    <property name="sprite" value="box.png"/>
-   </properties>
-  </object>
   <object type="rectangleShape" x="2013" y="330" width="29" height="27">
    <properties>
     <property name="density" value="5"/>
