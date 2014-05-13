@@ -29,57 +29,12 @@ Hero.prototype = {
 	},
 	update: function () {
 		"use strict";
-        if (!this.sprite.alive) {
+        if (this.sprite.alive === false) {
             this.game.state.start('DefeatScreen');
         }
         this.game.physics.arcade.collide(this.sprite, this.platforms.mainLayer);
         this.game.camera.follow(this.sprite);
 		var cursors = this.game.input.keyboard.createCursorKeys();
 		this.sprite.body.velocity.setTo(Config.hero.velocity.initial.x, Config.hero.velocity.initial.y);
-		if (cursors.right.isDown) {
-			this.sprite.anchor = Config.hero.anchor.right;
-			this.sprite.body.velocity.x = Config.hero.velocity.run;
-			if (this.sprite.body.onFloor() && this.sprite.key === 'hero-normal') {
-                this.sprite.animations.play('run');
-			}
-			this.sprite.scale = Config.hero.scale.right;
-		} else if (cursors.left.isDown) {
-			this.sprite.anchor = Config.hero.anchor.left;
-			this.sprite.body.velocity.x = -Config.hero.velocity.run;
-			if (this.sprite.body.onFloor() && this.sprite.key === 'hero-normal') {
-				this.sprite.animations.play('run');
-			}
-			this.sprite.scale = Config.hero.scale.left;
-        } else if (this.sprite.body.onFloor()) {
-			this.sprite.body.velocity.x = 0;
-            if (this.sprite.key === 'hero-normal') {
-			    this.sprite.animations.stop();
-			    this.sprite.frame = Config.hero.frame.normal.stopped;
-            }
-		}
-		if (cursors.up.isDown && this.sprite.body.onFloor()) {
-			this.sprite.body.velocity.y = Config.hero.velocity.jump;
-			this.jumpControl = this.jumpControl + 1;
-            if (this.sprite.key === 'hero-normal') {
-			    this.sprite.animations.stop();
-                this.sprite.frame = Config.hero.frame.normal.jumping;
-            }
-		} else if (cursors.up.isDown && this.jumpControl < Config.hero.jump.max && this.jumpControl !== 0) {
-			this.sprite.body.velocity.y = Config.hero.velocity.jump;
-			this.jumpControl = this.jumpControl + 1;
-        } else if (!this.sprite.body.onFloor()) {
-			this.jumpControl = 0;
-            if (this.sprite.key === 'hero-normal') {
-			    this.sprite.frame = Config.hero.frame.normal.falling;
-            }
-		}
-        if (this.game.input.keyboard.isDown(Phaser.Keyboard.SHIFT) && this.sprite.alive && this.sprite.key !== 'hero-attack') {
-            this.sprite.loadTexture('hero-attack');
-            this.sprite.animations.add('attack', [Config.hero.frame.attack.one, Config.hero.frame.attack.two], Config.global.animationVelocity, true);
-        } else if (this.game.input.keyboard.isDown(Phaser.Keyboard.SHIFT) && this.sprite.alive && this.sprite.key === 'hero-attack') {
-            this.sprite.animations.play('attack');
-        } else if (this.sprite.alive && this.sprite.key !== 'hero-normal') {
-            this.sprite.loadTexture('hero-normal');
-        }
-	}
+    }
 };

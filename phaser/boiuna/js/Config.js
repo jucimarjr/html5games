@@ -171,8 +171,7 @@ Config.hero = {
         attack: {
             width: 60,
             height: 60,
-            one: 0,
-            two: 1
+            hit: [0, 1]
         }
     }
 };

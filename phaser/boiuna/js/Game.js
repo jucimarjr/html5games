@@ -7,6 +7,7 @@ State.Game = function (game) {
     this.tilemap = new Tilemap(game);
     this.platforms = new Platforms(game, this.tilemap);
 	this.hero = new Hero(game, this.tilemap, this.platforms);
+    this.controlHero = new ControlHero(game, this.hero);
     this.life = new Life(game, this.hero);
     this.grass = new Grass(game, this.tilemap);
 	this.smallDragon = new SmallDragon(game, this.hero, this.platforms);
@@ -21,6 +22,7 @@ State.Game.prototype = {
         this.tilemap.preload();
         this.platforms.preload();
         this.hero.preload();
+        this.controlHero.preload();
         this.life.preload();
         this.grass.preload();
         this.fire.preload();
@@ -34,6 +36,7 @@ State.Game.prototype = {
         this.tilemap.create();
         this.platforms.create();
 		this.hero.create();
+        this.controlHero.create();
         this.life.create();
         this.grass.create();
 		this.fire.create();
@@ -44,6 +47,7 @@ State.Game.prototype = {
 	update: function () {
         "use strict";
 		this.hero.update();
+        this.controlHero.update();
         this.life.update();
         this.fire.update();
 		this.smallDragon.update();
