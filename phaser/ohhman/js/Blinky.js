@@ -57,7 +57,7 @@ Blinky.prototype = {
 	
 	//Verifica a colisão do blinky com o mapa
 	verifyMapCollision : function() {					
-		console.log("colidiu com mapa");
+		//console.log("colidiu com mapa");
 		game.physics.arcade.overlap(this.sprite, map.layer, this.setNewDirection, null, this);
 	},
 	
@@ -88,8 +88,8 @@ Blinky.prototype = {
 	
 	//Seta uma direção aleatória para o blinky
 	correctPosition : function(player, decision) {				
-		console.log("colidiu com o ponto de decisao");				
-		console.log(decision.body.checkCollision);
+		//console.log("colidiu com o ponto de decisao");				
+		//console.log(decision.body.checkCollision);
 		/*if (this.direction == 'RIGHT'){
 			this.sprite.x += 6;
 			this.direction = 'UP';			

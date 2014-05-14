@@ -32,6 +32,7 @@ Ohhman.prototype = {
 		this.verifyMapCollision();
 		this.verifyGhostCollision();
 		this.verifyBallCollision();		
+		this.verifyDecisionCollision();		
 	},
 	
 	
@@ -103,5 +104,35 @@ Ohhman.prototype = {
 	punctuate : function () {
 		this.score += 10;
 	    this.scoreText.setText( "" + this.score );
+	},
+	
+	//Verifica a colisão do ohhman com o ponto de decisao
+	verifyDecisionCollision : function() {				
+		game.physics.arcade.collide(this.sprite, map.decision, this.correctPosition, null, this);					
+	},
+	
+	correctPosition : function(player, decision) {		
+		console.log("colidiu com o ponto de decisao");	
+		if (decision.body.checkCollision.left)
+			this.sprite.x += 6;
+		
+		if (decision.body.checkCollision.right)
+			this.sprite.x -= 6;
+			
+		if (decision.body.checkCollision.down)
+			this.sprite.y += 6;
+		
+		if (decision.body.checkCollision.up)
+			this.sprite.y -= 6;
+		
+		//this.setNewDirection();
+	},		
+	
+	render : function () {
+		//Mostra as informações do sprite
+		game.debug.bodyInfo(this.sprite, 36, 36);
+		//Mostra o corpo do sprite
+		game.debug.body(this.sprite);		
+
 	}
 };
