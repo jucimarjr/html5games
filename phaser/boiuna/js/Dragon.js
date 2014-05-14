@@ -36,19 +36,28 @@ Dragon.prototype = {
 		"use strict";
 		var tail = this.body.getFirstAlive();
 		
-        if(tail.x > 2*Config.global.screen.width){
+        if( (tail.x > 2*Config.global.screen.width) && (this.head.scale.x > 0)){
+        	this.head.scale.x *= -1;
+        	this.head.y += 90;
+        	this.growBody(5);
         	this.moveLeft();
-        	this.head.scale.x *= -1;
         }
-        else if (tail.x < 0){
+        else if ((tail.x < 0) && (this.head.scale.x < 0)){
+        	this.head.scale.x *= -1;
+        	this.head.y += 90;
+        	this.growBody(5);
         	this.moveRight();
-        	this.head.scale.x *= -1;
         }
+        
 	},
 	grow: function () {
         "use strict";
+        var space = 90;
+        console.log(this.head.scale.x);
+        if(this.head.scale.x < 0)
+        	space*=-1;
         this.body.create(this.head.x, this.head.y, 'dragon');
-        this.head.x += 90;
+        this.head.x += space;
         var sprite = this.body.getTop();
         sprite.animations.add('fly', [4, 5, 6, 7], Config.global.animationVelocity, true);
         sprite.animations.play('fly');
@@ -57,7 +66,7 @@ Dragon.prototype = {
     	if (this.body.length > 0)
     		this.body.destroy(true,true);
     	for(var i=0;i < size; i++){
-    		this.grow();
+    			this.grow();
     	}
     },
     moveRight: function(){
