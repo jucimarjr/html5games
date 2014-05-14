@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Bandeira do Brasil em HTML5</title>
+</head>
+    
+<body onload="init()">
+<canvas id="canvas" width="320" height="240">
+	Navegador não compatível com HTML5 Canvas
+</canvas>
+        
+<script>
+var canvas = document.getElementById("canvas"); 
+var ctx = canvas.getContext("2d"); 
+
+var width = canvas.width; 
+var height = canvas.height; 
+var dx = 10, dy = 10; 
+
+function init() {
+//	//fundo verde 
+//	ctx.fillStyle = "green"; 
+//	ctx.fillRect(0,0,width,height); 
+//	
+//	//losango amarelo 
+//	ctx.beginPath(); 
+//	ctx.moveTo(dx,height / 2); 
+//	ctx.lineTo(width / 2,dy); 
+//	ctx.lineTo(width - dx,height / 2); 
+//	ctx.lineTo(width / 2,height - dy); 
+//	ctx.closePath(); 
+//	ctx.fillStyle = "yellow"; 
+//	ctx.fill(); 
+//	
+//	//circulo azul 
+//	ctx.beginPath(); 
+//	ctx.arc(width / 2,height / 2, 50, 0, Math.PI/*2*Math.PI*/,true); 
+//	ctx.fillStyle = "blue"; 
+//	ctx.fill();
+	
+	// retangulo verde
+	ctx.fillStyle = "green"; 
+	ctx.fillRect(0,0,width /3,height);
+	ctx.fillStyle = "white"; 
+	ctx.fillRect(width / 3, 0, 0.66 * width,height);
+	ctx.fillStyle = "red"; 
+	ctx.fillRect(0.66 * width,0, width ,height);
+}
+
+</script>
+    </body>
+</html>
