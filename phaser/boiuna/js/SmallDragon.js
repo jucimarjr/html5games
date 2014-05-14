@@ -37,7 +37,7 @@ SmallDragon.prototype = {
 	},
     collision: function (spriteHero, spriteSmallDragon) {
         "use strict";
-        if (this.hero.sprite.key === 'hero-attack') {
+        if (this.hero.sprite.key === 'hero-attack' && this.hero.sprite.scale.x !== spriteSmallDragon.scale.x) {
             spriteSmallDragon.kill();
         } else {
             this.hero.sprite.damage(Config.smallDragon.damage);

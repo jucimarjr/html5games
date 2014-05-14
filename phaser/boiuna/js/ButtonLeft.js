@@ -1,19 +1,24 @@
-var ButtonLeft = function (game, hero){
+/*global Config*/
+
+var ButtonLeft = function (game, hero) {
+    "use strict";
     this.game = game;
     this.hero = hero;
     this.sprite = null;
 };
 ButtonLeft.prototype =  {
-    preload: function (){
-      this.game.load.spritesheet('left', 'assets/spritesheets/ButtonLeft_600-60.png', 150, 30);   
+    preload: function () {
+        "use strict";
+        this.game.load.spritesheet('left', Config.buttonLeft.dir, Config.buttonLeft.frame.width, Config.buttonLeft.frame.height);
     },
-    create: function (){
-        this.sprite = this.game.add.button(0, 570, 'left', null, null, 0, 1, 2, 3);
+    create: function () {
+        "use strict";
+        this.sprite = this.game.add.button(Config.buttonLeft.x, Config.buttonLeft.y, 'left', null, null, Config.buttonLeft.frame.over, Config.buttonLeft.frame.out, Config.buttonLeft.frame.down, Config.buttonLeft.frame.up);
         this.sprite.fixedToCamera = true;
     },
-    update: function (){
-        var cursors = this.game.input.keyboard.createCursorKeys();
-        if (this.sprite.frame === 2 || cursors.left.isDown) {
+    update: function () {
+        "use strict";
+        if (this.sprite.frame ===  Config.buttonLeft.frame.down || this.game.input.keyboard.isDown(Config.buttonLeft.key)) {
 			this.hero.sprite.anchor = Config.hero.anchor.left;
 			this.hero.sprite.body.velocity.x = -Config.hero.velocity.run;
 			if (this.hero.sprite.body.onFloor() && this.hero.sprite.key === 'hero-normal') {
@@ -24,4 +29,4 @@ ButtonLeft.prototype =  {
         }
         return false;
     }
-}
+};

@@ -13,7 +13,7 @@ Hero.prototype = {
 		"use strict";
         this.game.load.spritesheet('hero-normal', Config.hero.dir.normal, Config.hero.frame.normal.width, Config.hero.frame.normal.height);
         this.game.load.spritesheet('hero-attack', Config.hero.dir.attack, Config.hero.frame.attack.width, Config.hero.frame.attack.height);
-  	},
+    },
 	create: function () {
 		"use strict";
         var group = this.game.add.group();
@@ -26,6 +26,7 @@ Hero.prototype = {
 		this.sprite.body.collideWorldBounds = true;
 		this.sprite.body.gravity.y = Config.hero.gravity;
 		this.sprite.animations.add('run', [Config.hero.frame.normal.run.one, Config.hero.frame.normal.run.two], Config.global.animationVelocity, true);
+        this.game.camera.follow(this.sprite);
 	},
 	update: function () {
 		"use strict";
@@ -33,8 +34,5 @@ Hero.prototype = {
             this.game.state.start('DefeatScreen');
         }
         this.game.physics.arcade.collide(this.sprite, this.platforms.mainLayer);
-        this.game.camera.follow(this.sprite);
-		var cursors = this.game.input.keyboard.createCursorKeys();
-		this.sprite.body.velocity.setTo(Config.hero.velocity.initial.x, Config.hero.velocity.initial.y);
     }
 };
