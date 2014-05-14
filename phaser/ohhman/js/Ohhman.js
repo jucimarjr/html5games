@@ -120,10 +120,10 @@ Ohhman.prototype = {
 			this.sprite.x -= 6;
 			
 		if (decision.body.checkCollision.down)
-			this.sprite.y += 6;
+			this.sprite.y -= 6;
 		
 		if (decision.body.checkCollision.up)
-			this.sprite.y -= 6;
+			this.sprite.y += 6;
 		
 		//this.setNewDirection();
 	},		
