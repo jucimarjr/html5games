@@ -1,15 +1,14 @@
-//FabioLahis
-
+/*global Phaser*/
 
 //Global
 var Config = {
-    global: {
-        animationVelocity: 6,
-        screen: {
-            width: 960,
-            height: 600
-        }
-    }
+	global: {
+		animationVelocity: 6,
+		screen: {
+			width: 960,
+			height: 600
+		}
+	}
 };
 
 //LudusSplash
@@ -72,7 +71,7 @@ Config.credits = {
 
 //VictoryScreen
 Config.victoryScreen = {
-    dir: 'assets/images/VictoryScreen_960-600.png',
+	dir: 'assets/images/VictoryScreen_960-600.png',
 	x: 0,
 	y: 0
 };
@@ -99,26 +98,34 @@ Config.level = {
 
 //Tilemap
 Config.tilemap = {
-    dir: 'assets/images/Tilemap.json'
+	dir: 'assets/images/Tilemap.json'
 };
 
 //Platform
 Config.platforms = {
-    dir: 'assets/images/Terrain_150-30.png',
-    layer: 'LayerMain',
-    tileset: 'Terrain'
+	dir: 'assets/images/Terrain_150-30.png',
+	layer: 'LayerMain',
+	tileset: 'Terrain'
 };
 
 //Grass
 Config.grass = {
-    dir: 'assets/images/Grass_30-30.png',
-    layer: 'LayerUpper',
-    tileset: 'Grass'
+	dir: 'assets/images/Grass_30-30.png',
+	layer: 'LayerUpper',
+	tileset: 'Grass'
 };
 
 //Hero
 Config.hero = {
-	dir: 'assets/spritesheets/Hero_180-60.png',
+	dir: {
+		normal: 'assets/spritesheets/HeroNormal_180-60.png',
+		attack: 'assets/spritesheets/HeroAttack_120-60.png'
+	},
+	layer: 'LayerHero',
+	gid: 12,
+	health: {
+		initial: 100
+	},
 	velocity: {
 		initial: {
 			x: 0,
@@ -127,47 +134,141 @@ Config.hero = {
 		run: 200,
 		jump: -300
 	},
-	gravity: 9000,
+	gravity: 1000,
 	jump: {
-		max: 80
+		max: 25
 	},
 	anchor: {
 		right: {
 			x: 0,
-			y: 0
+			y: 0.5
 		},
 		left: {
+			x: 0.5,
+			y: 0.5
+		}
+	},
+	scale: {
+		right: {
+			x: 1,
+			y: 1
+		},
+		left: {
+			x: -1,
+			y: 1
+		}
+	},
+	frame: {
+		normal: {
+			width: 30,
+			height: 60,
+			stopped: 0,
+			jumping: 3,
+			falling: 4,
+			run: {
+				one: 1,
+				two: 2
+			}
+		},
+		attack: {
+			width: 60,
+			height: 60,
+			hit: [0, 1]
+		}
+	}
+};
+
+//ButtonHit
+Config.buttonHit = {
+	dir: 'assets/spritesheets/ButtonHit_600-60.png',
+	x: 810,
+	y: 555,
+	frame: {
+		width: 150,
+		height: 30,
+		over: 0,
+		out: 1,
+		down: 2,
+		up: 3
+	},
+	key: Phaser.Keyboard.Z
+};
+
+//ButtonLeft
+Config.buttonLeft = {
+	dir: 'assets/spritesheets/ButtonLeft_600-60.png',
+	x: 0,
+	y: 570,
+	frame: {
+		width: 150,
+		height: 30,
+		over: 0,
+		out: 1,
+		down: 2,
+		up: 3
+	},
+	key: Phaser.Keyboard.LEFT
+};
+
+//ButtonRight
+Config.buttonRight = {
+	dir: 'assets/spritesheets/ButtonRight_600-60.png',
+	x: 200,
+	y: 570,
+	frame: {
+		width: 150,
+		height: 30,
+		over: 0,
+		out: 1,
+		down: 2,
+		up: 3
+	},
+	key: Phaser.Keyboard.RIGHT
+};
+
+//ButtonUp
+Config.buttonUp = {
+	dir: 'assets/spritesheets/ButtonUp_600-60.png',
+	x: 100,
+	y: 540,
+	frame: {
+		width: 150,
+		height: 30,
+		over: 0,
+		out: 1,
+		down: 2,
+		up: 3
+	},
+	key: Phaser.Keyboard.UP
+};
+
+//SmallDragon
+Config.smallDragon = {
+	dir: 'assets/spritesheets/SmallDragon_90-60.png',
+	velocity: 150,
+	xi: 1920,
+	yi: 0,
+	damage: Config.hero.health.initial / 600,
+	intervalBorning: {
+		actual: 10000,
+		min: 5000,
+		decrement: 1000
+	},
+	anchor: {
+		left: {
+			x: 0,
+			y: 0
+		},
+		right: {
 			x: 0.5,
 			y: 0
 		}
 	},
 	scale: {
 		right: {
-			x: 1,
-			y: 1
-		},
-		left: {
 			x: -1,
 			y: 1
-		}
-	},
-	frame: {
-		width: 30,
-		height: 60
-	}
-};
-
-//SmallDragon
-Config.smallDragon = {
-	dir: 'assets/spritesheets/SmallDragon_90-60.png',
-	xi: 1920,
-	yi: 0,
-	velocity: 150,
-	scale: {
-		right: {
-			y: 1
 		},
-			x: -1,
 		left: {
 			x: 1,
 			y: 1
@@ -175,26 +276,69 @@ Config.smallDragon = {
 	},
 	frame: {
 		width: 30,
-		height: 60
-	}
+		height: 60,
+		move: [0, 1]
+	},
+	number: 10
 };
-//FabioLahis
-//JacksonAntonio
 
+//Fire
+Config.fire = {
+	dir: 'assets/spritesheets/Fire_20-10.png',
+	number: 100,
+	animationVelocity: 42,
+	frame: {
+		hight: 10,
+		width: 10,
+		move: [0, 1]
+	},
+	range: 500,
+	damage: Config.hero.health.initial / 6000,
+	intervalShooting: 100,
+	adjust: {
+		x: 15,
+		y: 30
+	},
+	velocity: Config.smallDragon.velocity + 100,
+	lifespan: 3000
+};
+
+//Life
+Config.life = {
+	dir: 'assets/images/Life_20-20.png',
+	x: 0,
+	y: 0,
+	distanceBetween: 20,
+	number: 4
+};
+
+//Dragon
 Config.dragon = {
-	dir :'assets/spritesheets/Boiuna_360-270.png',
+	dir: 'assets/spritesheets/Boiuna_360-270.png',
+    layer: 'LayerDragon',
+    gid: 21,
+    xf: Config.global.screen.width * 2 + 50,
 	frame: {
 		width: 90,
-		height: 90
-	}
-
+		height: 90,
+        move: {
+            one: 0,
+            two: 1,
+            three: 2,
+            four: 3
+        }
+	},
+    timeGrow: 1000 / Config.global.animationVelocity,
+    number: {
+        pieces: 5
+    }
 };
+
+//Princess
 Config.princess = {
-	dir :'assets/spritesheets/Princess_150-60.png',
+	dir: 'assets/spritesheets/Princess_150-60.png',
 	frame: {
 		width: 30,
 		height: 60
 	}
-
 };
-//JacksonAntonio

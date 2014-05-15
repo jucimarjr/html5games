@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="140" height="15" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
+ <tileset firstgid="1" name="tilesSummer" tilewidth="32" tileheight="32">
+  <image source="tilesSummer.png" width="450" height="161"/>
+ </tileset>
+ <tileset firstgid="71" name="cave" tilewidth="32" tileheight="32">
+  <image source="cave.png" width="667" height="161"/>
+ </tileset>
+ <layer name="Camada de Tiles 4" width="140" height="15">
+  <data encoding="base64" compression="zlib">
+   eJzt0bkNgEAQQ1GHsOTA5hw5R/+t4Q4mmWTQf9KXC7AEAAAAAAAAAAD+rrkpcVHT4EbF/66uJy5qmt2i+N/DnYmLmja3K/73cW/ioqbL3Yr//QDsfg61
+  </data>
+ </layer>
+ <layer name="Camada de Tiles 1" width="140" height="15">
+  <data encoding="base64" compression="zlib">
+   eJztlMkNwDAMw7J2jxXadOTq4xEEQwYJ6MF3Yq7l4dBO7dJuPN7dPNqrbe3D491N9z3g9AWnL3iGu+m+BzyjL/Uvu+8Bz+hL/cvue8DpC05f8Ax3QV9mugv6MtNhNvXeAAAp/G3B19w=
+  </data>
+ </layer>
+ <layer name="Camada de Tiles 2" width="140" height="15">
+  <data encoding="base64" compression="zlib">
+   eJztmOkNgkAQRrc77wq8K/CuwLsC7159PzQxGwKCk1Hi95IXGAgMy+4QMiHY0MYOdrGHfRzg0Oj+wo8KVrGGdWxgE1uGOUY4xglOcYZzXBjmED541P4SV7jGDW5xh3vDHMIHj9o/4BFPeMYLXvFmmEP4oNoXeVDtCyGEEEKIsvFr/6pxTzDuDyoud9wMtsQ9wbg/qLjc8SDYEvcEX/efWw8nOc1zjdcYssb3+sxJx4ueT4vnwZZRQo60+fzmevFcj0XWZdb1STWYNc53zqfF1utlmTHWT99XkTn592+RpbvHPN8BWB4N7g==
+  </data>
+ </layer>
+ <layer name="Camada de Tiles 3" width="140" height="15">
+  <data encoding="base64" compression="zlib">
+   eJzt1bcNw0AQBVF2J1+BfAWUrUC+AvleNdeBguUGxAzwUm70eVUVUwdd9NDHAEOMgr5vedVYYY0NtthhH3hjjAmmmGGOBZaBNyynA4444YwLrrgF3vD/0p7ueOCJF9744Bt4w/9Le8rYfsabZzllbD/jzbPmK/vO2H7Gm2fNV/bt9u3fyr7dvpmZmZmZmVlsP5+YMF4=
+  </data>
+ </layer>
+ <objectgroup name="objects" width="140" height="15" visible="0">
+  <object type="edgeShape" x="2" y="367">
+   <polyline points="0,0 4479,2"/>
+  </object>
+ </objectgroup>
+</map>

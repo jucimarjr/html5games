@@ -7,56 +7,72 @@ var Dragon = function (game, tilemap, hero) {
 	this.body = null;
 	this.hero = hero;
 	this.tilemap = tilemap;
-	this.time = 0;
+	this.flag=0;
+	//this.time = 0;
 };
 Dragon.prototype = {
 	preload: function () {
 		"use strict";
-		this.game.load.spritesheet('dragon', 'assets/spritesheets/Boiuna_360-270.png', Config.dragon.frame.width, Config.dragon.frame.height);
+		this.game.load.spritesheet('dragon', Config.dragon.dir, Config.dragon.frame.width, Config.dragon.frame.height);
 	},
 	create: function () {
 		"use strict";
-		this.time = this.game.time.now + 1000/Config.global.animationVelocity;
 		this.body = this.game.add.group();
         this.body.enableBody = true;
         var group = this.game.add.group();
         group.enableBody = true;
-        this.tilemap.map.createFromObjects('LayerDragon', 21, 'dragon', 0, true, false, group);
+        this.tilemap.map.createFromObjects(Config.dragon.layer, Config.dragon.gid, 'dragon', 0, true, false, group);
         this.head = group.getTop();
 		this.game.physics.enable(this.head, Phaser.Physics.ARCADE);
 		this.head.body.allowGravity = false;
-		this.head.animations.add('move', [0, 1, 2, 3], Config.global.animationVelocity, true);
+		this.head.animations.add('move', [Config.dragon.frame.move.one, Config.dragon.frame.move.two, Config.dragon.frame.move.three, Config.dragon.frame.move.four], Config.global.animationVelocity, true);
 		this.head.animations.play('move');
 
-		// MOVIMENTO... ANOMALIA COM MAIS DE 10
-		
-		//
+		this.growBody(Config.dragon.number.pieces);
+		this.moveRight();
 	},
+	
 	update: function () {
 		"use strict";
-		if(this.game.time.now > this.time && this.body.length < 5){
-			this.grow();
-			this.time = this.game.time.now + 1000/Config.global.animationVelocity;
-		}
-		this.game.physics.arcade.moveToXY(this.head, Config.global.screen.width*2+50, this.head.y, 100);
-		for (var index = 0; index < this.body.length; index++) {
-			this.game.physics.arcade.moveToXY(this.body.getAt(index), 2*Config.global.screen.width+50, this.head.y, 100);
-		};
+		var tail = this.body.getFirstAlive();
+		
+        if(tail.x > 2*Config.global.screen.width){
+        	this.moveLeft();
+        	this.head.scale.x *= -1;
+        }
+        else if (tail.x < 0){
+        	this.moveRight();
+        	this.head.scale.x *= -1;
+        }
 	},
-
 	grow: function () {
-		"use strict";
-		this.body.create(this.head.x, this.head.y, 'dragon');
-		this.head.x += 90;
-		var sprite = this.body.getTop();
-		sprite.animations.add('fly', [4, 5, 6, 7], Config.global.animationVelocity, true);
-		sprite.animations.play('fly');
-		//this.body.callAll('animations.add', 'animations', 'fly', [4, 5, 6, 7], Config.global.animationVelocity, true);
-    	//this.body.callAll('animations.play', 'animations', 'fly');
-	},
-
-	move: function() {
-		this.sprite.animations.add('move', [0, 1], Config.global.animationVelocity, true);
-	}
+        "use strict";
+        this.body.create(this.head.x, this.head.y, 'dragon');
+        this.head.x += 90;
+        var sprite = this.body.getTop();
+        sprite.animations.add('fly', [4, 5, 6, 7], Config.global.animationVelocity, true);
+        sprite.animations.play('fly');
+    },
+    growBody: function(size){
+    	if (this.body.length > 0)
+    		this.body.destroy(true,true);
+    	for(var i=0;i < size; i++){
+    		this.grow();
+    	}
+    },
+    moveRight: function(){
+    	var index = 0;
+		this.game.physics.arcade.moveToXY(this.head, Config.dragon.xf, this.head.y, 100);
+		for (index = 0; index < this.body.length; index = index + 1) {
+			this.game.physics.arcade.moveToXY(this.body.getAt(index), 2 * Config.global.screen.width + 50, this.head.y, 100);
+		}
+    },
+    moveLeft: function(){
+    	var index = 0;
+		this.game.physics.arcade.moveToXY(this.head, -50, this.head.y, 100);
+		for (index = 0; index < this.body.length; index = index + 1) {
+			this.game.physics.arcade.moveToXY(this.body.getAt(index), -50, this.head.y, 100);
+		}
+    }
 };
 

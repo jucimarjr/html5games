@@ -105,7 +105,7 @@ Game.prototype.spawnStar = function(){
 	s.checkWorldBounds = true;
 	s.outOfBoundsKill = true;
 	s.alpha = 0.4;
-};
+}
 
 Game.prototype.restart = function(){
 	this.sprite.resetSpaceman();
