@@ -35,6 +35,7 @@ Game.prototype = {
 	
 	render : function() {
 		blinky.render();
+		ohhMan.render();
 	},
 	
 	loadMap : function() {

@@ -1,3 +1,5 @@
+/*global Phaser*/
+
 //Global
 var Config = {
     global: {
@@ -132,9 +134,9 @@ Config.hero = {
 		run: 200,
 		jump: -300
 	},
-	gravity: 9000,
+	gravity: 1000,
 	jump: {
-		max: 80
+		max: 25
 	},
 	anchor: {
 		right: {
@@ -175,6 +177,72 @@ Config.hero = {
         }
     }
 };
+
+//ButtonHit
+Config.buttonHit = {
+    dir: 'assets/spritesheets/ButtonHit_600-60.png',
+    x: 810,
+    y: 555,
+    frame: {
+        width: 150,
+        height: 30,
+        over: 0,
+        out: 1,
+        down: 2,
+        up: 3
+    },
+    key: Phaser.Keyboard.Z
+};
+
+//ButtonLeft
+Config.buttonLeft = {
+    dir: 'assets/spritesheets/ButtonLeft_600-60.png',
+    x: 0,
+    y: 570,
+    frame: {
+        width: 150,
+        height: 30,
+        over: 0,
+        out: 1,
+        down: 2,
+        up: 3
+    },
+    key: Phaser.Keyboard.LEFT
+};
+
+//ButtonRight
+Config.buttonRight = {
+    dir: 'assets/spritesheets/ButtonRight_600-60.png',
+    x: 200,
+    y: 570,
+    frame: {
+        width: 150,
+        height: 30,
+        over: 0,
+        out: 1,
+        down: 2,
+        up: 3
+    },
+    key: Phaser.Keyboard.RIGHT
+};
+
+//ButtonUp
+Config.buttonUp = {
+    dir: 'assets/spritesheets/ButtonUp_600-60.png',
+    x: 100,
+    y: 540,
+    frame: {
+        width: 150,
+        height: 30,
+        over: 0,
+        out: 1,
+        down: 2,
+        up: 3
+    },
+    key: Phaser.Keyboard.UP
+};
+    
+
 
 //SmallDragon
 Config.smallDragon = {

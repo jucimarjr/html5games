@@ -1,4 +1,4 @@
-/*global State, Level, Life, Tilemap, Platforms, Hero, Grass, Fire, SmallDragon, Dragon, Princess*/
+/*global State, Level, Life, Tilemap, Platforms, Hero, ControlHero, Grass, Fire, SmallDragon, Dragon, Princess*/
 
 State.Game = function (game) {
     "use strict";
