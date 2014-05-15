@@ -21,9 +21,9 @@ Splash.prototype.create = function() {
 			fundo.x = game.width/2;
 			fundo.y = game.height/2;
 			fundo.loadTexture('splashGame');
-			var fadein = game.add.tween(fundo).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0, 0, true);
+			var fadein = game.add.tween(fundo).to( { alpha: 1 }, 1000, Phaser.Easing.Linear.None, true, 0, 0, true);
 			setTimeout(function() {
-				var fadeout = game.add.tween(fundo).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true, 0, 0, true);
+				var fadeout = game.add.tween(fundo).to( { alpha: 0 }, 1000, Phaser.Easing.Linear.None, true, 0, 0, true);
 				fadeout.onComplete.add(function(){
 					game.state.start('menu', Menu);
 				});

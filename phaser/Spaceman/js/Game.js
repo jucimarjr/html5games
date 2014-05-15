@@ -104,10 +104,10 @@ Game.prototype.update = function()
 Game.prototype.render = function()
 {
 	
-	game.debug.body(this.sprite.fire1);
+	/*game.debug.body(this.sprite.fire1);
 	this.rocks.forEach(function(r){
 		game.debug.body(r);
-	})
+	})*/
 	//game.debug.body(this.rocks);
 };
 
