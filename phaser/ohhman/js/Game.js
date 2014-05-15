@@ -28,14 +28,14 @@ Game.prototype = {
 		
 		ohhMan.update();
 		blinky.update();
-		clyde.update(layer);
+		clyde.update();
 		inkey.update(layer);
 		pinky.update(layer);		
 	},
 	
 	render : function() {
-		blinky.render();
-		ohhMan.render();
+		//blinky.render();
+		//ohhMan.render();
 	},
 	
 	loadMap : function() {
