@@ -242,6 +242,35 @@ Config.buttonUp = {
 	key: Phaser.Keyboard.UP
 };
 
+//ButtonJumpLeft
+Config.buttonJumpLeft = {
+	dir: "assets/spritesheets/ButtonJumpLeft_600-60.png",
+	x: 0,
+	y: 100,
+	frame: {
+		width: 150,
+		height: 30,
+		over: 0,
+		out: 1,
+		down: 2,
+		up: 0
+	}
+};
+
+Config.buttonJumpRight = {
+	dir: "assets/spritesheets/ButtonJumpRight_600-60.png",
+	x: 810,
+	y: 100,
+	frame: {
+		width: 150,
+		height: 30,
+		over: 0,
+		out: 1,
+		down: 2,
+		up: 0
+	}
+};
+
 //SmallDragon
 Config.smallDragon = {
 	dir: 'assets/spritesheets/SmallDragon_90-60.png',
