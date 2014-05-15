@@ -7,7 +7,6 @@ var Dragon = function (game, tilemap, hero) {
 	this.body = null;
 	this.hero = hero;
 	this.tilemap = tilemap;
-	this.flag=0;
 	//this.time = 0;
 };
 Dragon.prototype = {
@@ -36,19 +35,27 @@ Dragon.prototype = {
 		"use strict";
 		var tail = this.body.getFirstAlive();
 		
-        if(tail.x > 2*Config.global.screen.width){
+        if( (tail.x > 2*Config.global.screen.width) && (this.head.scale.x > 0)){
+        	this.head.scale.x *= -1;
+        	this.head.y += 90;
+        	this.growBody(5);
         	this.moveLeft();
-        	this.head.scale.x *= -1;
         }
-        else if (tail.x < 0){
-        	this.moveRight();
+        else if ((tail.x < 0) && (this.head.scale.x < 0)){
         	this.head.scale.x *= -1;
+        	this.head.y += 90;
+        	this.growBody(5);
+        	this.moveRight();
         }
 	},
 	grow: function () {
         "use strict";
+        var space = 90;
+        console.log(this.head.scale.x);
+        if(this.head.scale.x < 0)
+        	space*=-1;
         this.body.create(this.head.x, this.head.y, 'dragon');
-        this.head.x += 90;
+        this.head.x += space;
         var sprite = this.body.getTop();
         sprite.animations.add('fly', [4, 5, 6, 7], Config.global.animationVelocity, true);
         sprite.animations.play('fly');
