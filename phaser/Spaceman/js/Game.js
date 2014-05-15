@@ -52,17 +52,17 @@ Game.prototype.update = function()
 
 Game.prototype.render = function()
 {
-	/*game.debug.body(this.sprite);
+	game.debug.body(this.sprite);
 	this.rocks.forEach(function(r){
 		game.debug.body(r);
-	})*/
+	})
 	//game.debug.body(this.rocks);
 };
 
 Game.prototype.spawnRock = function()
 {
 	var r = new Rock(game, game.world.width, game.world.randomY); 
-	this.rocks.add(r);
+	this.rocks.add(r.sprite);
 };
 
 Game.prototype.restart = function(){
