@@ -4,6 +4,7 @@ var ButtonHit = function (game, hero) {
 	"use strict";
 	this.game = game;
 	this.hero = hero;
+	this.sprite = null;
 };
 ButtonHit.prototype = {
 	preload: function () {

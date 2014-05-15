@@ -180,16 +180,16 @@ Config.hero = {
 
 //ButtonHit
 Config.buttonHit = {
-	dir: 'assets/spritesheets/ButtonHit_600-60.png',
-	x: 810,
-	y: 555,
+	dir: 'assets/spritesheets/ButtonHit_1920-60.png',
+	x: 0,
+	y: 540,
 	frame: {
-		width: 150,
-		height: 30,
+		width: 960,
+		height: 60,
 		over: 0,
-		out: 1,
-		down: 2,
-		up: 3
+		out: 0,
+		down: 1,
+		up: 0
 	},
 	key: Phaser.Keyboard.Z
 };
