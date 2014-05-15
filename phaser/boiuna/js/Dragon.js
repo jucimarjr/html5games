@@ -39,6 +39,7 @@ Dragon.prototype = {
         	this.head.scale.x *= -1;
         	this.head.y += 90;
         	this.growBody(5);
+            this.head.x +=90;
         	this.moveLeft();
         }
         else if ((tail.x < 0) && (this.head.scale.x < 0)){
