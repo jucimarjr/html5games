@@ -1,11 +1,12 @@
 var Spaceman = function(game, x, y, sprite){
 	Phaser.Sprite.call(this, game, x, y, sprite, 0);
+	
 	this.anchor.setTo(0.7,0.6);
 	game.physics.enable(this, Phaser.Physics.ARCADE);
 	//this.sprite.body.collideWorldBounds = true;
 	this.outOfBoundsKill = true;
 	this.smoothed = true;
-	this.body.setSize(90,25,10,0); 
+	this.body.setSize(80,20,10,0); 
 	this.animations.add('flying',[0,1,2,3,4,3,2,1,0],5,true);
 	this.animations.play('flying');
 	game.add.existing(this);
@@ -29,8 +30,10 @@ Spaceman.prototype.create = function(){
 
 Spaceman.prototype.update = function(){
 	this.fire1.angle = this.angle;
+	this.fire1.x = this.x;
+	this.fire1.y = this.y;
 	//
-	if (game.input.activePointer.isDown)
+	if (game.input.activePointer.isDown && !game.tweens.isTweening(this))
 	{
 		this.fire1.body.velocity.y -= this.upSpeed;
 		this.body.velocity.y -= this.upSpeed;

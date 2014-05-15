@@ -26,8 +26,8 @@
             margin: 0px;
         }
         @font-face {
-    		font-family: '3d font';
-    		src: url('assets/fonts/3D-Thirteen-Pixel-Fonts.ttf');
+    		font-family: 'Back to 1982';
+    		src: url('assets/fonts/BACKTO1982.TTF');
 		}
 		@font-face{
 			font-family: 'karmatic arcade';
@@ -82,6 +82,10 @@ function update()
 function render () 
 {
 
+}
+
+if (typeof localStorage["score"] == "undefined") {
+    localStorage["score"] = 0;
 }
 
 </script>
