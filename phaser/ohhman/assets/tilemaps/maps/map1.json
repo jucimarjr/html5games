@@ -1,7 +1,7 @@
 { "height":17,
  "layers":[
         {
-         "data":[1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1],
+         "data":[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
          "height":17,
          "name":"Wall",
          "opacity":1,
@@ -2744,7 +2744,7 @@
                  "visible":true,
                  "width":0,
                  "x":160,
-                 "y":185
+                 "y":186
                 }, 
                 {
                  "gid":3,
@@ -2760,22 +2760,6 @@
                  "visible":true,
                  "width":0,
                  "x":160,
-                 "y":288
-                }, 
-                {
-                 "gid":3,
-                 "height":0,
-                 "name":"",
-                 "properties":
-                    {
-                     "body.checkCollision.down":"false",
-                     "body.checkCollision.left":"false",
-                     "body.checkCollision.right":"false"
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":304,
                  "y":288
                 }, 
                 {
@@ -2825,22 +2809,6 @@
                  "width":0,
                  "x":304,
                  "y":216
-                }, 
-                {
-                 "gid":3,
-                 "height":0,
-                 "name":"",
-                 "properties":
-                    {
-                     "body.checkCollision.left":"false",
-                     "body.checkCollision.right":"false",
-                     "body.checkCollision.up":"false"
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":303,
-                 "y":258
                 }, 
                 {
                  "gid":3,
@@ -3016,22 +2984,6 @@
                  "visible":true,
                  "width":0,
                  "x":376,
-                 "y":114
-                }, 
-                {
-                 "gid":3,
-                 "height":0,
-                 "name":"",
-                 "properties":
-                    {
-                     "body.checkCollision.down":"false",
-                     "body.checkCollision.left":"false",
-                     "body.checkCollision.right":"false"
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":376,
                  "y":144
                 }, 
                 {
@@ -3143,8 +3095,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":521,
-                 "y":331
+                 "x":519,
+                 "y":330
                 }, 
                 {
                  "gid":3,
@@ -3159,7 +3111,7 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":521,
+                 "x":527,
                  "y":360
                 }, 
                 {
@@ -3808,22 +3760,6 @@
                  "name":"",
                  "properties":
                     {
-                     "body.checkCollision.left":"false",
-                     "body.checkCollision.right":"false",
-                     "body.checkCollision.up":"false"
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":521,
-                 "y":366
-                }, 
-                {
-                 "gid":3,
-                 "height":0,
-                 "name":"",
-                 "properties":
-                    {
                      "body.checkCollision.down":"false",
                      "body.checkCollision.left":"false",
                      "body.checkCollision.right":"false"
@@ -4288,38 +4224,6 @@
                  "name":"",
                  "properties":
                     {
-                     "body.checkCollision.left":"false",
-                     "body.checkCollision.right":"false",
-                     "body.checkCollision.up":"false"
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":51,
-                 "y":546
-                }, 
-                {
-                 "gid":3,
-                 "height":0,
-                 "name":"",
-                 "properties":
-                    {
-                     "body.checkCollision.down":"false",
-                     "body.checkCollision.left":"false",
-                     "body.checkCollision.right":"false"
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":51,
-                 "y":576
-                }, 
-                {
-                 "gid":3,
-                 "height":0,
-                 "name":"",
-                 "properties":
-                    {
                      "body.checkCollision.down":"false",
                      "body.checkCollision.left":"false",
                      "body.checkCollision.up":"false"
@@ -4473,6 +4377,134 @@
                  "width":0,
                  "x":772,
                  "y":432
+                }, 
+                {
+                 "gid":3,
+                 "height":0,
+                 "name":"",
+                 "properties":
+                    {
+                     "body.checkCollision.left":"false",
+                     "body.checkCollision.right":"false",
+                     "body.checkCollision.up":"false"
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":304,
+                 "y":258
+                }, 
+                {
+                 "gid":3,
+                 "height":0,
+                 "name":"",
+                 "properties":
+                    {
+                     "body.checkCollision.down":"false",
+                     "body.checkCollision.left":"false",
+                     "body.checkCollision.right":"false"
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":304,
+                 "y":288
+                }, 
+                {
+                 "gid":3,
+                 "height":0,
+                 "name":"",
+                 "properties":
+                    {
+                     "body.checkCollision.left":"false",
+                     "body.checkCollision.right":"false",
+                     "body.checkCollision.up":"false"
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":520,
+                 "y":366
+                }, 
+                {
+                 "gid":3,
+                 "height":0,
+                 "name":"",
+                 "properties":
+                    {
+                     "body.checkCollision.down":"false",
+                     "body.checkCollision.left":"false",
+                     "body.checkCollision.up":"false"
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":36,
+                 "y":490
+                }, 
+                {
+                 "gid":3,
+                 "height":0,
+                 "name":"",
+                 "properties":
+                    {
+                     "body.checkCollision.down":"false",
+                     "body.checkCollision.right":"false",
+                     "body.checkCollision.up":"false"
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":66,
+                 "y":490
+                }, 
+                {
+                 "gid":3,
+                 "height":0,
+                 "name":"",
+                 "properties":
+                    {
+                     "body.checkCollision.left":"false",
+                     "body.checkCollision.right":"false",
+                     "body.checkCollision.up":"false"
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":700,
+                 "y":546
+                }, 
+                {
+                 "gid":3,
+                 "height":0,
+                 "name":"",
+                 "properties":
+                    {
+                     "body.checkCollision.down":"false",
+                     "body.checkCollision.left":"false",
+                     "body.checkCollision.right":"false"
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":701,
+                 "y":576
+                }, 
+                {
+                 "gid":3,
+                 "height":0,
+                 "name":"",
+                 "properties":
+                    {
+                     "body.checkCollision.left":"false",
+                     "body.checkCollision.right":"false",
+                     "body.checkCollision.up":"false"
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":375,
+                 "y":114
                 }],
          "opacity":1,
          "type":"objectgroup",

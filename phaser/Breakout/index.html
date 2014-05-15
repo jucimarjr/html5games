@@ -19,20 +19,13 @@
     <style type="text/css">
         body {
         	background-color:#ffffff;
-            margin: 16px;
+            margin: 0;
         }
         @font-face {
  	   		font-family: 'karmatic arcade';
     		src: url('assets/fonts/ka1.ttf');
 		}
-		@font-face{
-			font-family: 'Back to 1982';
-    		src: url('assets/fonts/BACKTO1982.TTF');
-		}
-		#game{
-			font-family:'Back to 1982';
-			font-size: 72px;
-		}
+		
 		div{
 			font-family:'karmatic arcade';
 			font-size: 16px;
@@ -50,11 +43,7 @@
     </style>
 </head>
 <body>
-	<div id="game">
-		<center>
-		BREAKOUT !
-	</center>
-	</div>
+	<div id="game"></div>
 
 	<script type="text/javascript">
 	var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game', { preload: preload, create: create, update: update });		
