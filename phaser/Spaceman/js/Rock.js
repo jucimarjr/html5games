@@ -8,7 +8,7 @@ var Rock = function(game,posX,posY)
 	this.body.setSize(46,46,4,4);
 	this.body.allowGravity = false;
 	this.body.angularVelocity = game.rnd.integerInRange(100,250);
-	this.body.velocity.x= -400;
+	this.body.velocity.x= -600;
 	game.add.existing(this);
 };
 
