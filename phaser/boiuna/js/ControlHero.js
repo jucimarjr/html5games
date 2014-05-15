@@ -8,6 +8,8 @@ var ControlHero = function (game, hero) {
 	this.buttonLeft = new ButtonLeft(game, hero);
 	this.buttonRight = new ButtonRight(game, hero);
 	this.buttonUp = new ButtonUp(game, hero);
+	this.buttonJumpLeft = new ButtonJumpLeft(game, hero);
+	this.buttonJumpRight = new ButtonJumpRight(game, hero);
 };
 ControlHero.prototype = {
 	preload: function () {
@@ -16,6 +18,8 @@ ControlHero.prototype = {
 		this.buttonLeft.preload();
 		this.buttonRight.preload();
 		this.buttonUp.preload();
+		this.buttonJumpLeft.preload();
+		this.buttonJumpRight.preload();
 	},
 	create: function () {
 		"use strict";
@@ -23,16 +27,26 @@ ControlHero.prototype = {
 		this.buttonLeft.create();
 		this.buttonRight.create();
 		this.buttonUp.create();
+		this.buttonJumpLeft.create();
+		this.buttonJumpRight.create();
 	},
 	update: function () {
 		"use strict";
-		var inputLeft, inputRight, inputUp;
+		var inputLeft, inputRight, inputUp, inputJumpLeft, inputJumpRight;
 		this.buttonHit.update();
 		inputLeft = this.buttonLeft.update();
 		inputRight = this.buttonRight.update();
 		inputUp = this.buttonUp.update();
-		if (inputLeft === false && inputRight === false && inputUp === false) {
+		inputJumpLeft = this.buttonJumpLeft.update();
+		inputJumpRight = this.buttonJumpRight.update();
+		if (inputLeft === false && inputRight === false && inputUp === false && inputJumpLeft === false && inputJumpRight === false) {
 			this.stop();
+		}
+		if (!this.hero.sprite.body.onFloor() && ((inputUp === false && inputJumpLeft === false && inputJumpRight === false)|| (this.hero.jumpControl >= Config.hero.jump.max))) {
+			this.hero.jumpControl = 0;
+			if (this.hero.sprite.key === 'hero-normal') {
+				this.hero.sprite.frame = Config.hero.frame.normal.falling;
+			}
 		}
 	},
 	stop: function () {

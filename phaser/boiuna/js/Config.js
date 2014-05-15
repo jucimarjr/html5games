@@ -196,50 +196,79 @@ Config.buttonHit = {
 
 //ButtonLeft
 Config.buttonLeft = {
-	dir: 'assets/spritesheets/ButtonLeft_600-60.png',
+	dir: 'assets/spritesheets/ButtonLeft_960-270.png',
 	x: 0,
-	y: 570,
+	y: 270,
 	frame: {
-		width: 150,
-		height: 30,
+		width: 480,
+		height: 270,
 		over: 0,
-		out: 1,
-		down: 2,
-		up: 3
+		out: 0,
+		down: 1,
+		up: 0
 	},
 	key: Phaser.Keyboard.LEFT
 };
 
 //ButtonRight
 Config.buttonRight = {
-	dir: 'assets/spritesheets/ButtonRight_600-60.png',
-	x: 200,
-	y: 570,
+	dir: 'assets/spritesheets/ButtonRight_960-270.png',
+	x: 480,
+	y: 270,
 	frame: {
-		width: 150,
-		height: 30,
+		width: 480,
+		height: 270,
 		over: 0,
-		out: 1,
-		down: 2,
-		up: 3
+		out: 0,
+		down: 1,
+		up: 0
 	},
 	key: Phaser.Keyboard.RIGHT
 };
 
 //ButtonUp
 Config.buttonUp = {
-	dir: 'assets/spritesheets/ButtonUp_600-60.png',
-	x: 100,
-	y: 540,
+	dir: 'assets/spritesheets/ButtonUp_640-270.png',
+	x: 320,
+	y: 0,
 	frame: {
-		width: 150,
-		height: 30,
+		width: 320,
+		height: 270,
 		over: 0,
-		out: 1,
-		down: 2,
-		up: 3
+		out: 0,
+		down: 1,
+		up: 0
 	},
 	key: Phaser.Keyboard.UP
+};
+
+//ButtonJumpLeft
+Config.buttonJumpLeft = {
+	dir: "assets/spritesheets/ButtonJumpLeft_640-270.png",
+	x: 0,
+	y: 0,
+	frame: {
+		width: 320,
+		height: 270,
+		over: 0,
+		out: 0,
+		down: 1,
+		up: 0
+	}
+};
+
+Config.buttonJumpRight = {
+	dir: "assets/spritesheets/ButtonJumpRight_640-270.png",
+	x: 640,
+	y: 0,
+	frame: {
+		width: 320,
+		height: 270,
+		over: 0,
+		out: 0,
+		down: 1,
+		up: 0
+	}
 };
 
 //SmallDragon

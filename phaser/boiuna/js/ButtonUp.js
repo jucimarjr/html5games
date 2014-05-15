@@ -5,7 +5,6 @@ var ButtonUp = function (game, hero) {
 	this.game = game;
 	this.hero = hero;
 	this.sprite = null;
-	this.jumpControl = 0;
 };
 ButtonUp.prototype =  {
 	preload: function () {
@@ -22,22 +21,16 @@ ButtonUp.prototype =  {
 		if ((this.sprite.frame === Config.buttonUp.frame.down || this.game.input.keyboard.isDown(Config.buttonUp.key)) &&
 			this.hero.sprite.body.onFloor()) {
 			this.hero.sprite.body.velocity.y = Config.hero.velocity.jump;
-			this.jumpControl = this.jumpControl + 1;
+			this.hero.jumpControl = this.hero.jumpControl + 1;
 			if (this.hero.sprite.key === 'hero-normal') {
 				this.hero.sprite.animations.stop();
 				this.hero.sprite.frame = Config.hero.frame.normal.jumping;
 			}
 			return true;
 		} else if ((this.sprite.frame ===  Config.buttonUp.frame.down || this.game.input.keyboard.isDown(Config.buttonUp.key)) &&
-			this.jumpControl < Config.hero.jump.max && this.jumpControl !== 0) {
+			this.hero.jumpControl < Config.hero.jump.max && this.hero.jumpControl !== 0) {
 			this.hero.sprite.body.velocity.y = Config.hero.velocity.jump;
-			this.jumpControl = this.jumpControl + 1;
-			return true;
-		} else if (!this.hero.sprite.body.onFloor()) {
-			this.jumpControl = 0;
-			if (this.hero.sprite.key === 'hero-normal') {
-				this.hero.sprite.frame = Config.hero.frame.normal.falling;
-			}
+			this.hero.jumpControl = this.hero.jumpControl + 1;
 			return true;
 		}
 		return false;
