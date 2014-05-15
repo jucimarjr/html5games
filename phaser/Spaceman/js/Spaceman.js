@@ -93,6 +93,9 @@ Spaceman.prototype.explode = function(){
     emitter.minParticleSpeed.setTo(-500, -500);
     emitter.maxParticleSpeed.setTo(500,500);
     emitter.gravity = 0;
+    emitter.forEach(function(p){
+    	game.add.tween(p).to({alpha:0},400,Phaser.Easing.Linear.None,true);
+    })
     emitter.start(true, 400, null, 20);/*
 	if(this.inWorld)
 		this.animations.play('explode').onComplete.add(this.resetSpaceman, this);
