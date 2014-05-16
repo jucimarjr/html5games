@@ -5,13 +5,15 @@ Game = function () {
 	var clyde = null;
 	var inkey = null;
 	var pinky = null;
+	var lives = null;
 };
 
 Game.prototype = {
 	preload : function() {
 		this.loadMap();
 		this.loadOhhman();
-		this.loadGhosts();
+		this.loadGhosts();	
+		this.loadLives();
 	},
 
 	create : function() {			
@@ -20,7 +22,8 @@ Game.prototype = {
 		blinky.create();
 		clyde.create();
 		inkey.create();
-		pinky.create();			
+		pinky.create();	
+		lives.create();
 	},
 	
 	update : function() {				
@@ -58,5 +61,10 @@ Game.prototype = {
 		
 		pinky = new Pinky();
 		pinky.preload();
-	}	
+	},
+	
+	loadLives : function () {
+		lives = new Life();
+		lives.preload();
+	}
 };

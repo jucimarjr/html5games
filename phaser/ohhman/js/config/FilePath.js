@@ -44,3 +44,6 @@ var fp_bgLose = 'assets/screenshots/lose_800-600.png';
 	var fp_clyde = 'assets/images/clyde_36-36.png';
 	var fp_inkey = 'assets/images/inkey_36-36.png';
 	var fp_pinky = 'assets/images/pinky_36-36.png';
+	
+	//Vidas
+	var fp_lives = 'assets/images/heart_32-32.png'
