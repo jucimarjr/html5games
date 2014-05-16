@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="80" height="15" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
+ <tileset firstgid="1" name="background" tilewidth="32" tileheight="32">
+  <image source="background.png" width="600" height="350"/>
+ </tileset>
+ <layer name="Camada de Tiles 1" width="80" height="15">
+  <data encoding="base64" compression="zlib">
+   eJzt0ldOAlEYhuFj3YB1A9YNYF2AqHhhAbHf2BdgL1guVCCA9dqum/Q1mWSMOf/gwTOSmPMlTzL5JpzC/FGl1CCGMIwYRlRw9nGAQ6RwhGOc4BT3eMAjnvCMF7ziDe+oQCWqUI0a1GIK05jBLOYwjwXhLHWoRwMa0YRm710OeRRwiStc4wa3uPu2VgRd6EYPetGH/oC9pLMGrWV6LtN76yKdpwWtaEM7OtDp/eYn3/FrBhBV8jzp9tLNQLG1TM+lm7Wge+tS7G42Yjr7n5FmoJS1pJjOmi42z2MzJjNQakxnzcXFxeUvMooxjGMCcSQwiaTQu87vlrGIJe95BatYw7rQu87vtrCBTe95GzvYxZ7Qu87vpP/OVn+BNDLI4vyfdWfCe1t92N+n3H3Y+4T9fcrdu/n7Xf8Bi9VG+g==
+  </data>
+ </layer>
+ <layer name="Camada de Tiles 2" width="80" height="15">
+  <data encoding="base64" compression="zlib">
+   eJztzzkOg0AQRFFCMAbngFlymzX3wnL/K/Hv0DMCofrSS1vVQaCUUkqpowoR4YYYdyRI8bjoLpe3M+Qo8ESJCjUa405LPne5vP3CGy069BgwYjLutORzl8vbH3zxwx8zFqzYjDst+dx11p+VUkpdvx0wTA5x
+  </data>
+ </layer>
+ <layer name="Camada de Tiles 3" width="80" height="15">
+  <data encoding="base64" compression="zlib">
+   eJztz7kOwjAURNGUJBDSs4Y+C0ufBZL//yVubcmWZRuJYq50So+es0wppZRS/9IGOQpssUOJPaofb7jexdyV4k/mnq0DjjjhjAuuqHHz3A/dcL2LuSvFn8w9Ww1adOhxxwNPvDz3Qzdc72LuSvEnc8/WgBETZrzxwYLVcz90w/Uu5q4UfzL3lFJKqZC+zPAX9Q==
+  </data>
+ </layer>
+</map>
