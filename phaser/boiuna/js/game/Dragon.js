@@ -1,12 +1,13 @@
 /*global Config, Phaser*/
 
-var Dragon = function (game, tilemap, hero) {
+var Dragon = function (game, tilemap, hero, princess) {
 	"use strict";
     this.game = game;
 	this.head = null;
 	this.body = null;
 	this.hero = hero;
 	this.tilemap = tilemap;
+    this.princess = princess;
 	//this.time = 0;
 };
 Dragon.prototype = {
@@ -33,30 +34,29 @@ Dragon.prototype = {
 	
 	update: function () {
 		"use strict";
+        this.game.physics.arcade.overlap(this.head, this.princess.group, this.hitPrincess, null, this);
 		var tail = this.body.getFirstAlive();
 		
         if( (tail.x > 2*Config.global.screen.width) && (this.head.scale.x > 0)){
         	this.head.scale.x *= -1;
-        	this.head.y += 90;
-        	this.growBody(5);
-            this.head.x +=90;
+        	this.head.y += this.head.height/2;
+            console.log(this.body.length);
+        	this.growBody(this.body.length);
+            var space = this.head.width;
+            this.head.x -= space;
         	this.moveLeft();
         }
         else if ((tail.x < 0) && (this.head.scale.x < 0)){
         	this.head.scale.x *= -1;
-        	this.head.y += 90;
-        	this.growBody(5);
+        	this.head.y += this.head.height/2;
+            console.log(this.body.length);
+        	this.growBody(this.body.length);
         	this.moveRight();
         }
 	},
 	grow: function () {
         "use strict";
-        var space = 90;
-        console.log(this.head.scale.x);
-        if(this.head.scale.x < 0)
-        	space*=-1;
         this.body.create(this.head.x, this.head.y, 'dragon');
-        this.head.x += space;
         var sprite = this.body.getTop();
         sprite.animations.add('fly', [4, 5, 6, 7], Config.global.animationVelocity, true);
         sprite.animations.play('fly');
@@ -66,7 +66,10 @@ Dragon.prototype = {
     		this.body.destroy(true,true);
     	for(var i=0;i < size; i++){
     		this.grow();
+            var space = this.head.width;
+            this.head.x += space;
     	}
+
     },
     moveRight: function(){
     	var index = 0;
@@ -81,6 +84,25 @@ Dragon.prototype = {
 		for (index = 0; index < this.body.length; index = index + 1) {
 			this.game.physics.arcade.moveToXY(this.body.getAt(index), -50, this.head.y, 100);
 		}
+    },
+    hitPrincess: function(head, princess){
+
+        princess.kill();
+        
+        if(this.head.scale.x > 0){
+            this.grow();
+            var space = this.head.width;
+            this.head.x += space;
+            this.moveRight();
+        }
+        else{
+            var space = this.head.width;
+            this.head.x += space;
+            this.grow();
+            this.moveLeft();
+        }
+            
+
     }
 };
 
