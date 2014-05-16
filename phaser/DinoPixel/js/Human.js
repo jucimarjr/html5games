@@ -10,6 +10,7 @@ var Human = function()
 Human.prototype.add = function(posX, posY, texture)
 {
 	this.sprite = game.add.sprite(posX, posY, texture);
+	this.sprite.smoothed = false; 
 	game.physics.enable(this.sprite);
 	this.sprite.anchor.setTo(0.5 ,0.5);
 }
@@ -31,5 +32,4 @@ Human.prototype.stayNormal = function() //o human anda de um lado para o outro a
 	{
 		this.sprite.body.velocity.y = -85;
 	}
-		
 }

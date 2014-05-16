@@ -12,6 +12,7 @@ Dino.prototype.add = function(posX, posY)
 	this.sprite = game.add.sprite(posX, posY ,'dino');
 	game.physics.enable(this.sprite);
 	this.sprite.anchor.setTo(0.4 ,0.5);
+	this.sprite.smoothed = false; 
 	this.sprite.animations.add('walk',[0,1,2,3,4,5,6,7],12,true);
 	this.sprite.body.collideWorldBounds = true;
 	this.sprite.body.checkCollision.up = false;
