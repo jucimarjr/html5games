@@ -23,6 +23,9 @@ State.Menu.prototype = {
 		buttonCredits = this.game.add.button(Config.menu.buttonCredits.x, Config.menu.buttonCredits.y, 'button-credits', this.clickCredits, this, 0, 1, 2, 3);
 		buttonCredits.anchor.setTo(Config.menu.buttonCredits.anchor.x, Config.menu.buttonCredits.anchor.y);
 	},
+	update: function () {
+		Config.global.screen.resize(this.game);	
+	},
 	clickPlay: function () {
 		"use strict";
 		this.game.state.start('Game');

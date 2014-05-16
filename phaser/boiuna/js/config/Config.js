@@ -6,7 +6,14 @@ var Config = {
 		animationVelocity: 6,
 		screen: {
 			width: 960,
-			height: 600
+			height: 600,
+			resize: function (game) {
+				"use strict";
+				if(window.innerHeight < 600 || window.innerWidth < 960){
+					game.scale.setExactFit();
+					game.scale.refresh();
+				} 
+			}
 		}
 	}
 };
