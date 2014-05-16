@@ -17,6 +17,7 @@ State.VictoryScreen.prototype = {
 	},
 	update: function () {
 		"use strict";
+		Config.global.screen.resize(this.game);
 		if (this.game.input.keyboard.isDown(Phaser.Keyboard.ENTER)) {
 			this.game.state.start('Menu');
 		}

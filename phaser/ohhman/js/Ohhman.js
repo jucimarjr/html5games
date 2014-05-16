@@ -96,7 +96,9 @@ Ohhman.prototype = {
 			this.checkOverlap(this.sprite, inkey.sprite) ||
 			this.checkOverlap(this.sprite, pinky.sprite))
 			
-			game.state.start('sceneLose');
+			//game.state.start('sceneLose');
+			this.verifyLivesNumber();
+			//game.time.events.add(2200, this.verifyLivesNumber(), this);
 	},
 	
 	//Verifica se 2 sprites se sobreporam, ou seja, se eles colidiram
@@ -170,7 +172,15 @@ Ohhman.prototype = {
 			this.sprite.body.velocity.x = 0;
 			this.sprite.body.velocity.y = this.speed;
 		}	
-	},	
+	},
+
+	verifyLivesNumber : function(){
+		console.log(lives);
+		lives.getFirstAlive().kill();
+		if(lives.countLiving() <= 0){			
+			game.state.start('sceneLose');
+		}
+	},
 	
 	render : function () {
 		//Mostra as informações do sprite

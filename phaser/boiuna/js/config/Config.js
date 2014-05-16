@@ -6,7 +6,14 @@ var Config = {
 		animationVelocity: 6,
 		screen: {
 			width: 960,
-			height: 600
+			height: 600,
+			resize: function (game) {
+				"use strict";
+				if (window.innerHeight < 600 || window.innerWidth < 960) {
+					game.scale.setExactFit();
+					game.scale.refresh();
+				}
+			}
 		}
 	}
 };
@@ -14,6 +21,15 @@ var Config = {
 //LudusSplash
 Config.ludusSplash = {
 	dir: 'assets/images/LudusSplash_960-600.png',
+	x: 0,
+	y: 0,
+	millis: 2000,
+	nextState: 4000
+};
+
+//SponsorSplash
+Config.sponsorSplash = {
+	dir: 'assets/images/SponsorSplash_960-600.png',
 	x: 0,
 	y: 0,
 	millis: 2000,
@@ -45,10 +61,21 @@ Config.menu = {
 			y: 0.5
 		}
 	},
+	buttonHowToPlay: {
+		dir: 'assets/spritesheets/ButtonHowToPlay_600-95.png',
+		x: Config.global.screen.width * 0.5,
+		y: Config.global.screen.height * 0.6,
+		width: 149,
+		height: 94,
+		anchor: {
+			x: 0.5,
+			y: 0.5
+		}
+	},
 	buttonCredits: {
 		dir: 'assets/spritesheets/ButtonCredits_600-95.png',
 		x: Config.global.screen.width * 0.5,
-		y: Config.global.screen.height * 0.7,
+		y: Config.global.screen.height * 0.8,
 		width: 149,
 		height: 94,
 		anchor: {
@@ -60,6 +87,13 @@ Config.menu = {
 		font: '25px Ms Sans Serif',
 		fill: '#ffffff'
 	}
+};
+
+//HowToPlay
+Config.howToPlay = {
+	dir: 'assets/images/HowToPlay_960-600.png',
+	x: 0,
+	y: 0
 };
 
 //Credits
@@ -180,12 +214,12 @@ Config.hero = {
 
 //ButtonHit
 Config.buttonHit = {
-	dir: 'assets/spritesheets/ButtonHit_1920-60.png',
+	dir: 'assets/spritesheets/ButtonHit_1920-150.png',
 	x: 0,
-	y: 540,
+	y: 450,
 	frame: {
 		width: 960,
-		height: 60,
+		height: 150,
 		over: 0,
 		out: 0,
 		down: 1,
@@ -198,10 +232,10 @@ Config.buttonHit = {
 Config.buttonLeft = {
 	dir: 'assets/spritesheets/ButtonLeft_960-270.png',
 	x: 0,
-	y: 270,
+	y: 225,
 	frame: {
 		width: 480,
-		height: 270,
+		height: 225,
 		over: 0,
 		out: 0,
 		down: 1,
@@ -214,10 +248,10 @@ Config.buttonLeft = {
 Config.buttonRight = {
 	dir: 'assets/spritesheets/ButtonRight_960-270.png',
 	x: 480,
-	y: 270,
+	y: 225,
 	frame: {
 		width: 480,
-		height: 270,
+		height: 225,
 		over: 0,
 		out: 0,
 		down: 1,
@@ -233,7 +267,7 @@ Config.buttonUp = {
 	y: 0,
 	frame: {
 		width: 320,
-		height: 270,
+		height: 225,
 		over: 0,
 		out: 0,
 		down: 1,
@@ -249,7 +283,7 @@ Config.buttonJumpLeft = {
 	y: 0,
 	frame: {
 		width: 320,
-		height: 270,
+		height: 225,
 		over: 0,
 		out: 0,
 		down: 1,
@@ -263,7 +297,7 @@ Config.buttonJumpRight = {
 	y: 0,
 	frame: {
 		width: 320,
-		height: 270,
+		height: 225,
 		over: 0,
 		out: 0,
 		down: 1,
@@ -279,8 +313,8 @@ Config.smallDragon = {
 	yi: 0,
 	damage: Config.hero.health.initial / 600,
 	intervalBorning: {
-		actual: 10000,
-		min: 5000,
+		actual: 30000,
+		min: 20000,
 		decrement: 1000
 	},
 	anchor: {

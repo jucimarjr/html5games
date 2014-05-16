@@ -18,15 +18,10 @@ ButtonHit.prototype = {
 	},
 	update: function () {
 		"use strict";
-		if ((this.sprite.frame ===  Config.buttonHit.frame.down || this.game.input.keyboard.isDown(Config.buttonHit.key)) &&
-			this.hero.sprite.key !== 'hero-attack') {
-			this.hero.sprite.loadTexture('hero-attack');
-			this.hero.sprite.animations.add('attack', Config.hero.frame.attack.hit, Config.global.animationVelocity, true);
-		} else if ((this.sprite.frame ===  Config.buttonHit.frame.down || this.game.input.keyboard.isDown(Config.buttonHit.key)) &&
-			this.hero.sprite.key === 'hero-attack') {
-			this.hero.sprite.animations.play('attack');
-		} else if (this.hero.sprite.key !== 'hero-normal') {
-			this.hero.sprite.loadTexture('hero-normal');
+		if (this.sprite.frame ===  Config.buttonHit.frame.down || this.game.input.keyboard.isDown(Config.buttonHit.key)) {
+			this.hero.hit();
+		} else {
+			this.hero.restoreTexture();
 		}
 	}
 };

@@ -18,5 +18,9 @@ State.GameSplash.prototype = {
 		setTimeout(function () {
 			this.game.state.start('Menu');
 		}, Config.gameSplash.nextState);
+	},
+	update: function () {
+		"use strict";
+		Config.global.screen.resize(this.game);
 	}
 };

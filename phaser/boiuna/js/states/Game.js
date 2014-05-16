@@ -46,6 +46,7 @@ State.Game.prototype = {
 	},
 	update: function () {
 		"use strict";
+		this.level.update();
 		this.hero.update();
 		this.controlHero.update();
 		this.life.update();
