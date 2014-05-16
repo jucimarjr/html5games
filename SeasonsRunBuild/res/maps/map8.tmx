@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="140" height="15" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
+ <tileset firstgid="1" name="tiles" tilewidth="32" tileheight="32">
+  <image source="tilesSummer.png" width="450" height="161"/>
+ </tileset>
+ <layer name="Camada de Tiles 1" width="140" height="15">
+  <data encoding="base64" compression="zlib">
+   eJztz7cNwDAMBVGVjq1j69g67r+Z/wJqBEKFfA84sCTpHAAAAAAAAAAA+INM5apQpcGsVB35Jt/O0N8sfkhVo1rVqd5gDmqMfJNvZ+hvFj+kalKzWtRqMDe1R77JtzP0N4sfUnWoU13qNpiPeiPf5NsZ+pvFDyn6AGniGZk=
+  </data>
+ </layer>
+ <objectgroup name="objects" width="140" height="15">
+  <object type="edgeShape" x="60" y="477">
+   <polyline points="0,0 0,-108 673,-110"/>
+  </object>
+  <object type="edgeShape" x="1819" y="476">
+   <polyline points="0,0 2,-106 468,-107"/>
+  </object>
+  <object type="edgeShape" x="2371" y="488">
+   <properties>
+    <property name="group" value="-1"/>
+   </properties>
+   <polyline points="0,-2 2047,-5"/>
+  </object>
+  <object type="rectangleShape" x="2199" y="90" width="77" height="265">
+   <properties>
+    <property name="objectTag" value="2"/>
+    <property name="sensor" value="1"/>
+    <property name="tag" value="destroySensor"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="2591" y="94" width="77" height="265">
+   <properties>
+    <property name="objectTag" value="3"/>
+    <property name="sensor" value="1"/>
+    <property name="tag" value="destroySensor"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="2868" y="184" width="53" height="134">
+   <properties>
+    <property name="density" value="5"/>
+    <property name="friction" value="2"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="woodMediumVertical.png"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="2871" y="421" width="52" height="58">
+   <properties>
+    <property name="density" value="5"/>
+    <property name="friction" value="2"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="woodExtraSmallVertical.png"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="2937" y="148" width="172" height="31">
+   <properties>
+    <property name="density" value="3"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="woodMedium.png"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="3007" y="370" width="54" height="109">
+   <properties>
+    <property name="density" value="5"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="woodSmallVertical.png"/>
+    <property name="tag" value="4"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="3008" y="188" width="54" height="175">
+   <properties>
+    <property name="density" value="5"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="woodMediumVertical.png"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="2652" y="286" width="47" height="50">
+   <properties>
+    <property name="density" value="3"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="woodExtraSmallVertical.png"/>
+    <property name="tag" value="2"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="2583" y="247" width="172" height="31">
+   <properties>
+    <property name="density" value="3"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="woodMedium.png"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="2652" y="340" width="48" height="141">
+   <properties>
+    <property name="density" value="3"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="woodMediumVertical.png"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="2513" y="423" width="48" height="58">
+   <properties>
+    <property name="density" value="3"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="woodExtraSmallVertical.png"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="2514" y="285" width="46" height="134">
+   <properties>
+    <property name="density" value="3"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="woodMediumVertical.png"/>
+    <property name="tag" value="1"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="2198" y="90" width="77" height="265">
+   <properties>
+    <property name="objectTag" value="1"/>
+    <property name="sensor" value="1"/>
+    <property name="tag" value="destroySensor"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="2870" y="321" width="53" height="94">
+   <properties>
+    <property name="density" value="3"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="woodSmallVertical.png"/>
+    <property name="tag" value="3"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="2593" y="94" width="77" height="265">
+   <properties>
+    <property name="objectTag" value="4"/>
+    <property name="sensor" value="1"/>
+    <property name="tag" value="destroySensor"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="3915" y="313" width="46" height="78">
+   <properties>
+    <property name="density" value="3"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="woodSmallVertical.png"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="3833" y="276" width="191" height="31">
+   <properties>
+    <property name="density" value="3"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="woodMedium.png"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="3915" y="396" width="46" height="79">
+   <properties>
+    <property name="density" value="3"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="woodSmallVertical.png"/>
+    <property name="tag" value="6"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="3763" y="417" width="48" height="58">
+   <properties>
+    <property name="density" value="3"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="woodExtraSmallVertical.png"/>
+    <property name="tag" value="5"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="3763" y="312" width="46" height="99">
+   <properties>
+    <property name="density" value="3"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="woodSmallVertical.png"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="4063" y="433" width="46" height="42">
+   <properties>
+    <property name="density" value="3"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="woodExtraSmallVertical.png"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="4251" y="435" width="48" height="40">
+   <properties>
+    <property name="density" value="3"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="woodExtraSmallVertical.png"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="4149" y="400" width="259" height="29">
+   <properties>
+    <property name="density" value="3"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="woodLarge.png"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="3299" y="448" width="287" height="26">
+   <properties>
+    <property name="motion" value="kinematic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="woodLarge.png"/>
+    <property name="tag" value="100"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="2791" y="-265" width="134" height="610">
+   <properties>
+    <property name="objectTag" value="100"/>
+    <property name="sensor" value="1"/>
+    <property name="speedX" value="0"/>
+    <property name="speedY" value="4.2"/>
+    <property name="tag" value="moveSensor"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="3699" y="40" width="77" height="265">
+   <properties>
+    <property name="objectTag" value="6"/>
+    <property name="sensor" value="1"/>
+    <property name="tag" value="destroySensor"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="3700" y="39" width="77" height="265">
+   <properties>
+    <property name="objectTag" value="5"/>
+    <property name="sensor" value="1"/>
+    <property name="tag" value="destroySensor"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="1067" y="398" width="48" height="141">
+   <properties>
+    <property name="density" value="3"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="woodMediumVertical.png"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="998" y="305" width="172" height="31">
+   <properties>
+    <property name="density" value="3"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="woodMedium.png"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="1067" y="344" width="47" height="50">
+   <properties>
+    <property name="density" value="3"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="woodExtraSmallVertical.png"/>
+    <property name="tag" value="41"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="928" y="481" width="48" height="58">
+   <properties>
+    <property name="density" value="3"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="woodExtraSmallVertical.png"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="929" y="343" width="46" height="134">
+   <properties>
+    <property name="density" value="3"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="woodMediumVertical.png"/>
+    <property name="tag" value="40"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="814" y="68" width="77" height="265">
+   <properties>
+    <property name="objectTag" value="40"/>
+    <property name="sensor" value="1"/>
+    <property name="tag" value="destroySensor"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="814" y="69" width="77" height="265">
+   <properties>
+    <property name="objectTag" value="41"/>
+    <property name="sensor" value="1"/>
+    <property name="tag" value="destroySensor"/>
+   </properties>
+  </object>
+  <object type="edgeShape" x="870" y="543">
+   <properties>
+    <property name="group" value="-1"/>
+   </properties>
+   <polyline points="0,0 368,-1"/>
+  </object>
+  <object type="edgeShape" x="1244" y="480">
+   <polyline points="0,0 1,-112 417,-113"/>
+  </object>
+ </objectgroup>
+</map>

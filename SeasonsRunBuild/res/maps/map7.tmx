@@ -1,0 +1,681 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="140" height="15" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
+ <tileset firstgid="1" name="tiles" tilewidth="32" tileheight="32">
+  <image source="tilesSummer.png" width="450" height="161"/>
+ </tileset>
+ <tileset firstgid="71" name="objects" tilewidth="32" tileheight="32">
+  <image source="objectsTile.png" width="450" height="300"/>
+ </tileset>
+ <layer name="objects" width="140" height="15">
+  <data encoding="base64" compression="zlib">
+   eJzt1MENwkAMRNH0CikAKABSAFAApAKaZC4+rjReyUoW/pPmsIexItnKNAEAAODXHJSjMm/9IX8u9tB6u71Mt8dJOSuXovnwxB5ab7eX6fa4KjdlKZoPT+yh9XZ7mW6Pu/JQnkXz4Yk9tN5uL9Pt8VLeylo0H57YQ9j7vXyK5sMz2v8F2+JekDHKvWAfuBdkcC/j+QKjeDWF
+  </data>
+ </layer>
+ <layer name="Camada de Tiles 1" width="140" height="15">
+  <data encoding="base64" compression="zlib">
+   eJztzzkOAjEQBdEJYVjCYQ2HNWS//8moAxg5sNqyUD2p5ND9u06SJEmSJEmSJP27CU2pp1nAO6cFLWsN+iF6Z25/K/eU3j3Qita0CXi3tKN94u+aonfm9rdyT+ndIx3oSKeA90wXuib+ril6Z25/K/eU3n2jOz3oGfC+6E2fxN81Re/M7W/lntK7vwQWMcU=
+  </data>
+ </layer>
+ <objectgroup name="objects" width="140" height="15">
+  <object type="circleShape" x="2371" y="117" width="54" height="46">
+   <properties>
+    <property name="density" value="1"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="static"/>
+    <property name="restitution" value="0.5"/>
+    <property name="tag" value="1"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object type="rectangleShape" x="2565" y="92" width="56" height="51">
+   <properties>
+    <property name="density" value="10"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0.5"/>
+    <property name="sprite" value="box.png"/>
+    <property name="tag" value="81"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="1029" y="156" width="12" height="38">
+   <properties>
+    <property name="density" value="1"/>
+    <property name="friction" value="1"/>
+    <property name="group" value="-1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="chain.png"/>
+    <property name="tag" value="6"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="1035" y="294" width="138" height="22">
+   <properties>
+    <property name="density" value="1"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="woodMedium.png"/>
+    <property name="tag" value="20"/>
+   </properties>
+  </object>
+  <object type="circleShape" x="1024" y="155" width="23" height="23">
+   <properties>
+    <property name="density" value="1"/>
+    <property name="friction" value="1"/>
+    <property name="group" value="-1"/>
+    <property name="motion" value="static"/>
+    <property name="restitution" value="0"/>
+    <property name="tag" value="5"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object type="rectangleShape" x="1028" y="199" width="12" height="38">
+   <properties>
+    <property name="density" value="1"/>
+    <property name="friction" value="1"/>
+    <property name="group" value="-1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="chain.png"/>
+    <property name="tag" value="7"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="1029" y="245" width="12" height="38">
+   <properties>
+    <property name="density" value="1"/>
+    <property name="friction" value="1"/>
+    <property name="group" value="-1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="chain.png"/>
+    <property name="tag" value="8"/>
+   </properties>
+  </object>
+  <object type="revoluteJoint" x="1024" y="154" width="24" height="21">
+   <properties>
+    <property name="anchorAx" value="0"/>
+    <property name="anchorAy" value="0"/>
+    <property name="anchorBx" value="0"/>
+    <property name="anchorBy" value="1"/>
+    <property name="bodyA" value="5"/>
+    <property name="bodyB" value="6"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object type="revoluteJoint" x="1022" y="186" width="23" height="20">
+   <properties>
+    <property name="anchorAx" value="0"/>
+    <property name="anchorAy" value="0"/>
+    <property name="anchorBx" value="0"/>
+    <property name="anchorBy" value="1.5"/>
+    <property name="bodyA" value="6"/>
+    <property name="bodyB" value="7"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object type="revoluteJoint" x="1023" y="229" width="24" height="22">
+   <properties>
+    <property name="anchorAx" value="0"/>
+    <property name="anchorAy" value="0"/>
+    <property name="anchorBx" value="0"/>
+    <property name="anchorBy" value="1.5"/>
+    <property name="bodyA" value="7"/>
+    <property name="bodyB" value="8"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object type="circleShape" x="1164" y="155" width="23" height="23">
+   <properties>
+    <property name="density" value="1"/>
+    <property name="friction" value="1"/>
+    <property name="group" value="-1"/>
+    <property name="motion" value="static"/>
+    <property name="restitution" value="0"/>
+    <property name="tag" value="10"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object type="rectangleShape" x="1170" y="242" width="12" height="38">
+   <properties>
+    <property name="density" value="1"/>
+    <property name="friction" value="1"/>
+    <property name="group" value="-1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="chain.png"/>
+    <property name="tag" value="13"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="1169" y="156" width="12" height="38">
+   <properties>
+    <property name="density" value="1"/>
+    <property name="friction" value="1"/>
+    <property name="group" value="-1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="chain.png"/>
+    <property name="tag" value="11"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="1170" y="198" width="12" height="38">
+   <properties>
+    <property name="density" value="1"/>
+    <property name="friction" value="1"/>
+    <property name="group" value="-1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="chain.png"/>
+    <property name="tag" value="12"/>
+   </properties>
+  </object>
+  <object type="revoluteJoint" x="1162" y="154" width="24" height="21">
+   <properties>
+    <property name="anchorAx" value="0"/>
+    <property name="anchorAy" value="0"/>
+    <property name="anchorBx" value="0"/>
+    <property name="anchorBy" value="1"/>
+    <property name="bodyA" value="10"/>
+    <property name="bodyB" value="11"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object type="revoluteJoint" x="1163" y="227" width="24" height="22">
+   <properties>
+    <property name="anchorAx" value="0"/>
+    <property name="anchorAy" value="0"/>
+    <property name="anchorBx" value="0"/>
+    <property name="anchorBy" value="1.5"/>
+    <property name="bodyA" value="12"/>
+    <property name="bodyB" value="13"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object type="revoluteJoint" x="1164" y="186" width="23" height="20">
+   <properties>
+    <property name="anchorAx" value="0"/>
+    <property name="anchorAy" value="0"/>
+    <property name="anchorBx" value="0"/>
+    <property name="anchorBy" value="1.5"/>
+    <property name="bodyA" value="11"/>
+    <property name="bodyB" value="12"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object type="revoluteJoint" x="1023" y="274" width="24" height="22">
+   <properties>
+    <property name="anchorAx" value="0"/>
+    <property name="anchorAy" value="-1"/>
+    <property name="anchorBx" value="-2.8"/>
+    <property name="anchorBy" value="0"/>
+    <property name="bodyA" value="8"/>
+    <property name="bodyB" value="20"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object type="revoluteJoint" x="1162" y="274" width="24" height="22">
+   <properties>
+    <property name="anchorAx" value="0"/>
+    <property name="anchorAy" value="-1"/>
+    <property name="anchorBx" value="2.8"/>
+    <property name="anchorBy" value="0"/>
+    <property name="bodyA" value="13"/>
+    <property name="bodyB" value="20"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object type="circleShape" x="1480" y="156" width="23" height="23">
+   <properties>
+    <property name="density" value="1"/>
+    <property name="friction" value="1"/>
+    <property name="group" value="-1"/>
+    <property name="motion" value="static"/>
+    <property name="restitution" value="0"/>
+    <property name="tag" value="21"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object type="rectangleShape" x="1645" y="200" width="12" height="38">
+   <properties>
+    <property name="density" value="1"/>
+    <property name="friction" value="1"/>
+    <property name="group" value="-1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="chain.png"/>
+    <property name="tag" value="27"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="1485" y="247" width="12" height="38">
+   <properties>
+    <property name="density" value="1"/>
+    <property name="friction" value="1"/>
+    <property name="group" value="-1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="chain.png"/>
+    <property name="tag" value="24"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="1485" y="157" width="12" height="38">
+   <properties>
+    <property name="density" value="1"/>
+    <property name="friction" value="1"/>
+    <property name="group" value="-1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="chain.png"/>
+    <property name="tag" value="22"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="1500" y="296" width="138" height="22">
+   <properties>
+    <property name="density" value="1"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="woodMedium.png"/>
+    <property name="tag" value="29"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="1484" y="200" width="12" height="38">
+   <properties>
+    <property name="density" value="1"/>
+    <property name="friction" value="1"/>
+    <property name="group" value="-1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="chain.png"/>
+    <property name="tag" value="23"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="1645" y="244" width="12" height="38">
+   <properties>
+    <property name="density" value="1"/>
+    <property name="friction" value="1"/>
+    <property name="group" value="-1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="chain.png"/>
+    <property name="tag" value="28"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="1645" y="159" width="12" height="38">
+   <properties>
+    <property name="density" value="1"/>
+    <property name="friction" value="1"/>
+    <property name="group" value="-1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="chain.png"/>
+    <property name="tag" value="26"/>
+   </properties>
+  </object>
+  <object type="circleShape" x="1640" y="157" width="23" height="23">
+   <properties>
+    <property name="density" value="1"/>
+    <property name="friction" value="1"/>
+    <property name="group" value="-1"/>
+    <property name="motion" value="static"/>
+    <property name="restitution" value="0"/>
+    <property name="tag" value="25"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object type="revoluteJoint" x="1479" y="157" width="24" height="21">
+   <properties>
+    <property name="anchorAx" value="0"/>
+    <property name="anchorAy" value="0"/>
+    <property name="anchorBx" value="0"/>
+    <property name="anchorBy" value="1"/>
+    <property name="bodyA" value="21"/>
+    <property name="bodyB" value="22"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object type="revoluteJoint" x="1640" y="157" width="24" height="21">
+   <properties>
+    <property name="anchorAx" value="0"/>
+    <property name="anchorAy" value="0"/>
+    <property name="anchorBx" value="0"/>
+    <property name="anchorBy" value="1"/>
+    <property name="bodyA" value="25"/>
+    <property name="bodyB" value="26"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object type="revoluteJoint" x="1481" y="188" width="23" height="20">
+   <properties>
+    <property name="anchorAx" value="0"/>
+    <property name="anchorAy" value="0"/>
+    <property name="anchorBx" value="0"/>
+    <property name="anchorBy" value="1.5"/>
+    <property name="bodyA" value="22"/>
+    <property name="bodyB" value="23"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object type="revoluteJoint" x="1480" y="231" width="23" height="20">
+   <properties>
+    <property name="anchorAx" value="0"/>
+    <property name="anchorAy" value="0"/>
+    <property name="anchorBx" value="0"/>
+    <property name="anchorBy" value="1.5"/>
+    <property name="bodyA" value="23"/>
+    <property name="bodyB" value="24"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object type="revoluteJoint" x="1638" y="188" width="23" height="20">
+   <properties>
+    <property name="anchorAx" value="0"/>
+    <property name="anchorAy" value="0"/>
+    <property name="anchorBx" value="0"/>
+    <property name="anchorBy" value="1.5"/>
+    <property name="bodyA" value="26"/>
+    <property name="bodyB" value="27"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object type="revoluteJoint" x="1641" y="233" width="23" height="20">
+   <properties>
+    <property name="anchorAx" value="0"/>
+    <property name="anchorAy" value="0"/>
+    <property name="anchorBx" value="0"/>
+    <property name="anchorBy" value="1.5"/>
+    <property name="bodyA" value="27"/>
+    <property name="bodyB" value="28"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object type="revoluteJoint" x="1482" y="280" width="24" height="22">
+   <properties>
+    <property name="anchorAx" value="0"/>
+    <property name="anchorAy" value="-1"/>
+    <property name="anchorBx" value="-2.8"/>
+    <property name="anchorBy" value="0"/>
+    <property name="bodyA" value="24"/>
+    <property name="bodyB" value="29"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object type="revoluteJoint" x="1635" y="280" width="24" height="22">
+   <properties>
+    <property name="anchorAx" value="0"/>
+    <property name="anchorAy" value="-1"/>
+    <property name="anchorBx" value="2.8"/>
+    <property name="anchorBy" value="0"/>
+    <property name="bodyA" value="28"/>
+    <property name="bodyB" value="29"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object type="edgeShape" x="28" y="476">
+   <polyline points="0,0 0,-108 788,-109"/>
+  </object>
+  <object type="edgeShape" x="1595" y="477">
+   <properties>
+    <property name="friction" value="0"/>
+   </properties>
+   <polyline points="292,5 292,-110 1267,-107"/>
+  </object>
+  <object type="rectangleShape" x="2939" y="337" width="165" height="25">
+   <properties>
+    <property name="motion" value="dynamic"/>
+    <property name="sprite" value="woodMedium.png"/>
+   </properties>
+  </object>
+  <object type="edgeShape" x="2718" y="476">
+   <polyline points="321,-4 320,-110 1618,-107 1619,-2"/>
+  </object>
+  <object type="rectangleShape" x="2547" y="62" width="89" height="18">
+   <properties>
+    <property name="motion" value="static"/>
+    <property name="tag" value="80"/>
+   </properties>
+  </object>
+  <object type="revoluteJoint" x="2584" y="77" width="14" height="13">
+   <properties>
+    <property name="anchorAx" value="0"/>
+    <property name="anchorAy" value="0"/>
+    <property name="anchorBx" value="-2"/>
+    <property name="anchorBy" value="0"/>
+    <property name="bodyA" value="80"/>
+    <property name="bodyB" value="81"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object type="rectangleShape" x="2078" y="57" width="24" height="311">
+   <properties>
+    <property name="objectTag" value="80"/>
+    <property name="sensor" value="1"/>
+    <property name="tag" value="destroySensor"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="3217" y="133" width="149" height="43">
+   <properties>
+    <property name="sprite" value="woodMedium.png"/>
+    <property name="tag" value="90"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="2963" y="401" width="54" height="35">
+   <properties>
+    <property name="tag" value="50"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="2670" y="-11" width="114" height="312">
+   <properties>
+    <property name="objectTag" value="50"/>
+    <property name="sensor" value="1"/>
+    <property name="tag" value="destroySensor"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="3374" y="134" width="149" height="43">
+   <properties>
+    <property name="sprite" value="woodMedium.png"/>
+    <property name="tag" value="91"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="3532" y="134" width="149" height="43">
+   <properties>
+    <property name="sprite" value="woodMedium.png"/>
+    <property name="tag" value="92"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="3227" y="99" width="65" height="252">
+   <properties>
+    <property name="objectTag" value="90"/>
+    <property name="sensor" value="1"/>
+    <property name="tag" value="destroySensor"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="3313" y="100" width="67" height="252">
+   <properties>
+    <property name="objectTag" value="91"/>
+    <property name="sensor" value="1"/>
+    <property name="tag" value="destroySensor"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="3405" y="101" width="69" height="251">
+   <properties>
+    <property name="objectTag" value="92"/>
+    <property name="sensor" value="1"/>
+    <property name="tag" value="destroySensor"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="3691" y="134" width="149" height="43">
+   <properties>
+    <property name="sprite" value="woodMedium.png"/>
+    <property name="tag" value="93"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="3492" y="105" width="69" height="251">
+   <properties>
+    <property name="objectTag" value="93"/>
+    <property name="sensor" value="1"/>
+    <property name="tag" value="destroySensor"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="2388" y="126" width="220" height="23">
+   <properties>
+    <property name="density" value="5"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="woodMedium.png"/>
+    <property name="tag" value="10"/>
+   </properties>
+  </object>
+  <object type="revoluteJoint" x="2389" y="132" width="20" height="17">
+   <properties>
+    <property name="anchorAx" value="0"/>
+    <property name="anchorAy" value="0"/>
+    <property name="anchorBx" value="-2"/>
+    <property name="anchorBy" value="0"/>
+    <property name="bodyA" value="1"/>
+    <property name="bodyB" value="10"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object type="revoluteJoint" x="2582" y="128" width="20" height="17">
+   <properties>
+    <property name="anchorAx" value="0"/>
+    <property name="anchorAy" value="0"/>
+    <property name="anchorBx" value="3"/>
+    <property name="anchorBy" value="0"/>
+    <property name="bodyA" value="81"/>
+    <property name="bodyB" value="10"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object type="rectangleShape" x="3258" y="72" width="57" height="48">
+   <properties>
+    <property name="density" value="10"/>
+    <property name="friction" value="5"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="box.png"/>
+    <property name="tag" value="crashBox"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="3336" y="70" width="57" height="48">
+   <properties>
+    <property name="density" value="10"/>
+    <property name="friction" value="5"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="box.png"/>
+    <property name="tag" value="crashBox"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="3417" y="66" width="57" height="48">
+   <properties>
+    <property name="density" value="10"/>
+    <property name="friction" value="5"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="box.png"/>
+    <property name="tag" value="crashBox"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="3495" y="67" width="57" height="48">
+   <properties>
+    <property name="density" value="10"/>
+    <property name="friction" value="5"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="box.png"/>
+    <property name="tag" value="crashBox"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="3569" y="65" width="57" height="48">
+   <properties>
+    <property name="density" value="10"/>
+    <property name="friction" value="5"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="box.png"/>
+    <property name="tag" value="crashBox"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="3645" y="66" width="57" height="48">
+   <properties>
+    <property name="density" value="10"/>
+    <property name="friction" value="5"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="box.png"/>
+    <property name="tag" value="crashBox"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="3726" y="67" width="57" height="48">
+   <properties>
+    <property name="density" value="10"/>
+    <property name="friction" value="5"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="box.png"/>
+    <property name="tag" value="crashBox"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="3301" y="1" width="57" height="48">
+   <properties>
+    <property name="density" value="10"/>
+    <property name="friction" value="5"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="box.png"/>
+    <property name="tag" value="crashBox"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="3380" y="2" width="57" height="48">
+   <properties>
+    <property name="density" value="10"/>
+    <property name="friction" value="5"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="box.png"/>
+    <property name="tag" value="crashBox"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="3461" y="2" width="57" height="48">
+   <properties>
+    <property name="density" value="10"/>
+    <property name="friction" value="5"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="box.png"/>
+    <property name="tag" value="crashBox"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="3537" y="5" width="57" height="48">
+   <properties>
+    <property name="density" value="10"/>
+    <property name="friction" value="5"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="box.png"/>
+    <property name="tag" value="crashBox"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="3611" y="4" width="57" height="48">
+   <properties>
+    <property name="density" value="10"/>
+    <property name="friction" value="5"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="box.png"/>
+    <property name="tag" value="crashBox"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="3685" y="7" width="57" height="48">
+   <properties>
+    <property name="density" value="10"/>
+    <property name="friction" value="5"/>
+    <property name="motion" value="dynamic"/>
+    <property name="restitution" value="0"/>
+    <property name="sprite" value="box.png"/>
+    <property name="tag" value="crashBox"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>
