@@ -214,12 +214,12 @@ Config.hero = {
 
 //ButtonHit
 Config.buttonHit = {
-	dir: 'assets/spritesheets/ButtonHit_1920-60.png',
+	dir: 'assets/spritesheets/ButtonHit_1920-100.png',
 	x: 0,
 	y: 540,
 	frame: {
 		width: 960,
-		height: 60,
+		height: 100,
 		over: 0,
 		out: 0,
 		down: 1,
@@ -232,10 +232,10 @@ Config.buttonHit = {
 Config.buttonLeft = {
 	dir: 'assets/spritesheets/ButtonLeft_960-270.png',
 	x: 0,
-	y: 270,
+	y: 250,
 	frame: {
 		width: 480,
-		height: 270,
+		height: 250,
 		over: 0,
 		out: 0,
 		down: 1,
@@ -248,10 +248,10 @@ Config.buttonLeft = {
 Config.buttonRight = {
 	dir: 'assets/spritesheets/ButtonRight_960-270.png',
 	x: 480,
-	y: 270,
+	y: 250,
 	frame: {
 		width: 480,
-		height: 270,
+		height: 250,
 		over: 0,
 		out: 0,
 		down: 1,
@@ -267,7 +267,7 @@ Config.buttonUp = {
 	y: 0,
 	frame: {
 		width: 320,
-		height: 270,
+		height: 250,
 		over: 0,
 		out: 0,
 		down: 1,
@@ -283,7 +283,7 @@ Config.buttonJumpLeft = {
 	y: 0,
 	frame: {
 		width: 320,
-		height: 270,
+		height: 250,
 		over: 0,
 		out: 0,
 		down: 1,
@@ -297,7 +297,7 @@ Config.buttonJumpRight = {
 	y: 0,
 	frame: {
 		width: 320,
-		height: 270,
+		height: 250,
 		over: 0,
 		out: 0,
 		down: 1,
@@ -313,8 +313,8 @@ Config.smallDragon = {
 	yi: 0,
 	damage: Config.hero.health.initial / 600,
 	intervalBorning: {
-		actual: 10000,
-		min: 5000,
+		actual: 30000,
+		min: 20000,
 		decrement: 1000
 	},
 	anchor: {
