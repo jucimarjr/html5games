@@ -12,7 +12,7 @@
 		<meta property="og:image:height" content="200">
 
 	<meta charset="UTF-8" />
-	<title>DinoPixel!!! (Em Desenvilvimento)</title>
+	<title>DinoPixel!!! (Em Desenvolvimento)</title>
 	<script type="text/javascript" src="js/phaser.min.js"></script>
 	<script type="text/javascript" src="js/Human.js"></script>
 	<script type="text/javascript" src="js/Game.js"></script>
@@ -50,7 +50,8 @@
 <body>
 	<div id="game"></div>
 <script type="text/javascript">
-var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'game', { preload: preload, create: create, update: update, render: render });
+var game = new Phaser.Game(960, 600, Phaser.CANVAS, 'game', { preload: preload, create: create, update: update, render: render });
+var soundLevel = 0.5;
 game.state.add('splash', Splash, false);
 game.state.add('game', Game, false);
 game.state.add('menu', Menu, false);
@@ -58,6 +59,9 @@ game.state.add('credits', Credits, false);
 
 function preload()
 {
+	
+	game.load.image('splashGame','assets/screens/DinoPixel2.png');
+	game.load.image('pressStart','assets/screens/pressOnScreenToStart.png');
 	game.load.audio('jump','assets/sfx/jump1.wav');
 	game.load.audio('smash','assets/sfx/esmagando3.wav');
 	game.load.audio('fall','assets/sfx/queda3.wav');

@@ -22,7 +22,7 @@ Dino.prototype.add = function(posX, posY)
 	this.sprite.body.setSize(8,32,-4,-4);
 	this.cursors = game.input.keyboard.createCursorKeys();
 	this.jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-	this.soundJump = game.add.audio('jump',5,false);
+	this.soundJump = game.add.audio('jump',soundLevel,false);
 }
 
 Dino.prototype.enableMovement = function () 
