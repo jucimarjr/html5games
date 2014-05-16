@@ -34,5 +34,52 @@ Hero.prototype = {
 			this.game.state.start('DefeatScreen');
 		}
 		this.game.physics.arcade.collide(this.sprite, this.platforms.mainLayer);
+	},
+	moveLeft: function () {
+		"use strict";
+		this.sprite.anchor = Config.hero.anchor.left;
+		this.sprite.body.velocity.x = -Config.hero.velocity.run;
+		if (this.sprite.body.onFloor() && this.sprite.key === 'hero-normal') {
+			this.sprite.animations.play('run');
+		}
+		this.sprite.scale = Config.hero.scale.left;
+	},
+	moveRight: function () {
+		"use strict";
+		this.sprite.anchor = Config.hero.anchor.right;
+		this.sprite.body.velocity.x = Config.hero.velocity.run;
+		if (this.sprite.body.onFloor() && this.sprite.key === 'hero-normal') {
+			this.sprite.animations.play('run');
+		}
+		this.sprite.scale = Config.hero.scale.right;
+	},
+	jump: function () {
+		"use strict";
+		if (this.sprite.body.onFloor()) {
+			this.sprite.body.velocity.y = Config.hero.velocity.jump;
+			this.jumpControl = this.jumpControl + 1;
+			if (this.sprite.key === 'hero-normal') {
+				this.sprite.animations.stop();
+				this.sprite.frame = Config.hero.frame.normal.jumping;
+			}
+		} else if (this.jumpControl < Config.hero.jump.max && this.jumpControl !== 0) {
+			this.sprite.body.velocity.y = Config.hero.velocity.jump;
+			this.jumpControl = this.jumpControl + 1;
+		}
+	},
+	hit: function () {
+		"use strict";
+		if (this.sprite.key !== 'hero-attack') {
+			this.sprite.loadTexture('hero-attack');
+			this.sprite.animations.add('attack', Config.hero.frame.attack.hit, Config.global.animationVelocity, true);
+		} else {
+			this.sprite.animations.play('attack');
+		}
+	},
+	restoreTexture: function () {
+		"use strict";
+		if (this.sprite.key !== 'hero-normal') {
+			this.sprite.loadTexture('hero-normal');
+		}
 	}
 };

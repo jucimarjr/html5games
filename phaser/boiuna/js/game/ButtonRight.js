@@ -19,12 +19,7 @@ ButtonRight.prototype =  {
 	update: function () {
 		"use strict";
 		if (this.sprite.frame === Config.buttonRight.frame.down || this.game.input.keyboard.isDown(Config.buttonRight.key)) {
-			this.hero.sprite.anchor = Config.hero.anchor.right;
-			this.hero.sprite.body.velocity.x = Config.hero.velocity.run;
-			if (this.hero.sprite.body.onFloor() && this.hero.sprite.key === 'hero-normal') {
-				this.hero.sprite.animations.play('run');
-			}
-			this.hero.sprite.scale = Config.hero.scale.right;
+			this.hero.moveRight();
 			return true;
 		}
 		return false;

@@ -1,9 +1,8 @@
-/*global setTimeout, Config, Phaser*/
+/*global setTimeout, State, Config, Phaser*/
 
 State.SponsorSplash = function (game) {
-		"use strict";
-		this.game = game;
-	
+	"use strict";
+	this.game = game;
 };
 State.SponsorSplash.prototype = {
 	preload: function () {
@@ -21,6 +20,7 @@ State.SponsorSplash.prototype = {
 		}, Config.sponsorSplash.nextState);
 	},
 	update: function () {
-		Config.global.screen.resize(this.game);	
+		"use strict";
+		Config.global.screen.resize(this.game);
 	}
 };

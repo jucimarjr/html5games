@@ -14,7 +14,7 @@ State.Menu.prototype = {
 	},
 	create: function () {
 		"use strict";
-		var background, buttonPlay, buttonCredits, buttonHowToPlay ;
+		var background, buttonPlay, buttonCredits, buttonHowToPlay;
 		background = this.game.add.sprite(Config.menu.x, Config.menu.y, 'menu-background');
 		buttonPlay = this.game.add.button(Config.menu.buttonPlay.x, Config.menu.buttonPlay.y, 'button-play', this.clickPlay, this, 0, 1, 2, 3);
 		buttonPlay.anchor.setTo(Config.menu.buttonPlay.anchor.x, Config.menu.buttonPlay.anchor.y);
@@ -24,7 +24,8 @@ State.Menu.prototype = {
 		buttonCredits.anchor.setTo(Config.menu.buttonCredits.anchor.x, Config.menu.buttonCredits.anchor.y);
 	},
 	update: function () {
-		Config.global.screen.resize(this.game);	
+		"use strict";
+		Config.global.screen.resize(this.game);
 	},
 	clickPlay: function () {
 		"use strict";

@@ -18,19 +18,8 @@ ButtonUp.prototype =  {
 	},
 	update: function () {
 		"use strict";
-		if ((this.sprite.frame === Config.buttonUp.frame.down || this.game.input.keyboard.isDown(Config.buttonUp.key)) &&
-			this.hero.sprite.body.onFloor()) {
-			this.hero.sprite.body.velocity.y = Config.hero.velocity.jump;
-			this.hero.jumpControl = this.hero.jumpControl + 1;
-			if (this.hero.sprite.key === 'hero-normal') {
-				this.hero.sprite.animations.stop();
-				this.hero.sprite.frame = Config.hero.frame.normal.jumping;
-			}
-			return true;
-		} else if ((this.sprite.frame ===  Config.buttonUp.frame.down || this.game.input.keyboard.isDown(Config.buttonUp.key)) &&
-			this.hero.jumpControl < Config.hero.jump.max && this.hero.jumpControl !== 0) {
-			this.hero.sprite.body.velocity.y = Config.hero.velocity.jump;
-			this.hero.jumpControl = this.hero.jumpControl + 1;
+		if (this.sprite.frame === Config.buttonUp.frame.down || this.game.input.keyboard.isDown(Config.buttonUp.key)) {
+			this.hero.jump();
 			return true;
 		}
 		return false;
