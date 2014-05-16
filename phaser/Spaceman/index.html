@@ -87,6 +87,17 @@ function render ()
 if (typeof localStorage["score"] == "undefined") {
     localStorage["score"] = 0;
 }
+document.documentElement.addEventListener('keydown', function (e) {
+    if ( ( e.keycode || e.which ) == 32) {
+        e.preventDefault();
+    }
+    if ( ( e.keycode || e.which ) == 38) {
+        e.preventDefault();
+    }
+    if ( ( e.keycode || e.which ) == 40) {
+        e.preventDefault();
+    }
+}, false);
 
 </script>
 <div>

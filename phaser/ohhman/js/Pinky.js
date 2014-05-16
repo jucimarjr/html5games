@@ -51,7 +51,7 @@ Pinky.prototype = {
 	
 	//Verifica a colisão do pinky com o mapa
 	verifyMapCollision : function(layer) {		
-		game.physics.arcade.overlap(this.sprite, layer, this.setNewDirection, null, this);
+		game.physics.arcade.overlap(this.sprite, map.layer, this.setNewDirection, null, this);
 	},
 	
 	//Seta uma direção aleatória para o pinky
@@ -72,5 +72,22 @@ Pinky.prototype = {
 				this.direction = "DOWN";
 				break;
 		}		
+	},
+	
+	//Seta uma direção aleatória para o pinky
+	correctPosition : function(player, decision) {						
+		if (decision.body.checkCollision.left)
+			this.sprite.x += 6;
+		
+		if (decision.body.checkCollision.right)
+			this.sprite.x -= 6;
+			
+		if (decision.body.checkCollision.down)
+			this.sprite.y -= 6;
+		
+		if (decision.body.checkCollision.up)
+			this.sprite.y += 6;
+		
+		this.setNewDirection();
 	}
 };
