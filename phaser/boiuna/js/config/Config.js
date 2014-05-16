@@ -214,12 +214,12 @@ Config.hero = {
 
 //ButtonHit
 Config.buttonHit = {
-	dir: 'assets/spritesheets/ButtonHit_1920-100.png',
+	dir: 'assets/spritesheets/ButtonHit_1920-150.png',
 	x: 0,
-	y: 540,
+	y: 450,
 	frame: {
 		width: 960,
-		height: 100,
+		height: 150,
 		over: 0,
 		out: 0,
 		down: 1,
@@ -232,10 +232,10 @@ Config.buttonHit = {
 Config.buttonLeft = {
 	dir: 'assets/spritesheets/ButtonLeft_960-270.png',
 	x: 0,
-	y: 250,
+	y: 225,
 	frame: {
 		width: 480,
-		height: 250,
+		height: 225,
 		over: 0,
 		out: 0,
 		down: 1,
@@ -248,10 +248,10 @@ Config.buttonLeft = {
 Config.buttonRight = {
 	dir: 'assets/spritesheets/ButtonRight_960-270.png',
 	x: 480,
-	y: 250,
+	y: 225,
 	frame: {
 		width: 480,
-		height: 250,
+		height: 225,
 		over: 0,
 		out: 0,
 		down: 1,
@@ -267,7 +267,7 @@ Config.buttonUp = {
 	y: 0,
 	frame: {
 		width: 320,
-		height: 250,
+		height: 225,
 		over: 0,
 		out: 0,
 		down: 1,
@@ -283,7 +283,7 @@ Config.buttonJumpLeft = {
 	y: 0,
 	frame: {
 		width: 320,
-		height: 250,
+		height: 225,
 		over: 0,
 		out: 0,
 		down: 1,
@@ -297,7 +297,7 @@ Config.buttonJumpRight = {
 	y: 0,
 	frame: {
 		width: 320,
-		height: 250,
+		height: 225,
 		over: 0,
 		out: 0,
 		down: 1,
