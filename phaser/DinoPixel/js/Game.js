@@ -8,7 +8,6 @@ var Game = function()
 	this.track;
 	this.humans;
 	this.objectHuman = new Array();
-	this.guy;
 	this.SoundSmash;
 	this.map;
 	this.humanTexture = new Array();
@@ -21,14 +20,14 @@ var Game = function()
 }
 Game.prototype.create = function()
 {
-	this.track = game.add.audio('track',5,true);
+	game.camera.x = 0;
+	this.track = game.add.audio('track',soundLevel,true);
 	this.track.play();
-	this.soundSmash = game.add.audio('smash',5,false);
+	this.soundSmash = game.add.audio('smash',soundLevel,false);
 	
-	game.physics.startSystem(Phaser.Game.ARCADE);
 	game.physics.arcade.gravity.y = this.gravity;
 
-	this.bg = game.add.tileSprite(0,0,800,600,'backGround');
+	this.bg = game.add.tileSprite(0,0,960,600,'backGround');
 	this.bg.fixedToCamera = true;
 
 	this.map = game.add.tilemap('stage');
@@ -61,13 +60,13 @@ Game.prototype.create = function()
 	for(var i = 0; i< 60; i++)
 	{
 		this.objectHuman[i] = new Human()
-		this.objectHuman[i].add(100 * i,1000, this.humanTexture[game.rnd.integerInRange(0 , this.humanTexture.length)]);
+		this.objectHuman[i].add(100 * i,1420, this.humanTexture[game.rnd.integerInRange(0 , this.humanTexture.length)]);
 		this.humans.add(this.objectHuman[i].sprite);
 	}
 	
 	
 	
-	this.player.add(32,1000);
+	this.player.add(32,1350);
 	
 	game.camera.follow(this.player.sprite);
 	
@@ -78,7 +77,7 @@ Game.prototype.update = function()
 	
 	for (var i = 0; i < this.objectHuman.length; i++)
 	{
-		this.objectHuman[i].stayNormal();
+		this.objectHuman[i].stayNormal();	
 	}
 	
 	this.player.enableMovement(); // faz com que o personagem se mova quando pressionadas as teclas.

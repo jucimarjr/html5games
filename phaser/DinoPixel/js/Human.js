@@ -19,12 +19,12 @@ Human.prototype.stayNormal = function() //o human anda de um lado para o outro a
 {
 	if(game.time.now > this.moveTimer)
 	{
-	var r = game.rnd.integerInRange(0,10);
-	if (r == 10)
+	var r = game.rnd.integerInRange(0,11);
+	if (r <= 11 && r > 7 )
 		this.sprite.body.velocity.x = 0;
-	if ((r < 10) && (r >= 5))
+	if ((r < 8) && (r >= 4))
 		this.sprite.body.velocity.x = this.speed;
- 	if(r <5)
+ 	if(r <4)
 		this.sprite.body.velocity.x = -this.speed;
 	this.moveTimer = game.time.now + 1000;
 	}
