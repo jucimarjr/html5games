@@ -29,6 +29,23 @@ var Game = function(game){
 };
 
 Game.prototype.create = function () {
+	if(this.game.device.touch){
+		this.btns = this.game.add.group(0, 0); 
+		this.right = this.game.add.sprite(100,520,'sprites','btn-right.png');
+		this.thrust = this.game.add.sprite(625,520,'sprites','btn-thrust.png');
+		this.shoot = this.game.add.sprite(715,520,'sprites','btn-shoot.png');
+		this.left = this.game.add.sprite(10,520,'sprites','btn-left.png');
+		this.right.input.start(0,false);
+		this.left.input.start(0,false);
+		this.thrust.input.start(0,false);
+		this.shoot.input.start(0,false);
+		this.btns.add(this.right);
+		this.btns.add(this.left);
+		this.btns.add(this.thrust);
+		this.btns.add(this.shoot);
+		this.pointer1 = this.game.input.addPointer();
+		this.pointer2 = this.game.input.addPointer();
+	}
 	this.shootUfo = this.game.add.group();
 	this.game.world.setBounds(0, 0, 3200, 1920);
 	//this.game.world.setBounds(0, 0, 800, 480);
@@ -160,6 +177,20 @@ Game.prototype.update = function () {
     this.livesHud.y = this.game.camera.y + 10;
     this.tiled2.x -= this.spaceShip.sprite.body.velocity.x/500;
     this.tiled2.y -= this.spaceShip.sprite.body.velocity.y/500;
+    if(this.game.device.touch){
+    	if(this.thrust.input.pointerDown(this.pointer1) || this.thrust.input.pointerDown(this.pointer2)){
+            this.spaceShip.accelerate();
+        }else{
+        	this.spaceShip.stop();
+        }
+        if (this.right.input.pointerDown(this.pointer1) || this.thrust.input.pointerDown(this.pointer2)){
+            this.spaceShip.rotate("right");
+        }else if (this.left.input.pointerDown(this.pointer1) || this.thrust.input.pointerDown(this.pointer2)){        	
+            this.spaceShip.rotate("left");
+        }else if (this.shoot.input.pointerDown(this.pointer1) || this.thrust.input.pointerDown(this.pointer2)){
+            this.spaceShip.shoot();   
+        }
+    }
     if(this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT))
         this.spaceShip.rotate("left");
     else if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT))

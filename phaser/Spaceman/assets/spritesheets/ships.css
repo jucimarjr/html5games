@@ -1,0 +1,19 @@
+/* ----------------------------------------------------
+   created with http://www.codeandweb.com/texturepacker 
+   ----------------------------------------------------
+   $TexturePacker:SmartUpdate:e04d9290db151f394dc3618c6b91572a:55c62e1b114aa7ff94ee29c9656412cf:e10693101987dfb40424ceb0fe42a1ac$
+   ----------------------------------------------------
+
+   usage: <span class="{-spritename-} sprite"></span>
+
+   replace {-spritename-} with the sprite you like to use
+
+*/
+
+.sprite {display:inline-block; overflow:hidden; background-repeat: no-repeat;background-image:url(ships.png);}
+
+.1 {width:153px; height:57px; background-position: -0px -0px}
+.2 {width:153px; height:57px; background-position: -153px -0px}
+.3 {width:153px; height:57px; background-position: -306px -0px}
+.4 {width:153px; height:57px; background-position: -459px -0px}
+.5 {width:153px; height:57px; background-position: -612px -0px}

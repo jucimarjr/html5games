@@ -291,7 +291,7 @@
         }, 
         {
          "firstgid":12,
-         "image":"..\/spritesheets\/Hero_180-60.png",
+         "image":"..\/spritesheets\/HeroNormal_180-60.png",
          "imageheight":60,
          "imagewidth":180,
          "margin":0,

@@ -8,4 +8,4 @@ game.state.add('Credits', State.Credits);
 game.state.add('Game', State.Game);
 game.state.add('VictoryScreen', State.VictoryScreen);
 game.state.add('DefeatScreen', State.DefeatScreen);
-game.state.start('LudusSplash');
+game.state.start('Game');

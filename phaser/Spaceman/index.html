@@ -26,8 +26,8 @@
             margin: 0px;
         }
         @font-face {
-    		font-family: '3d font';
-    		src: url('assets/fonts/3D-Thirteen-Pixel-Fonts.ttf');
+    		font-family: 'Back to 1982';
+    		src: url('assets/fonts/BACKTO1982.TTF');
 		}
 		@font-face{
 			font-family: 'karmatic arcade';
@@ -83,6 +83,21 @@ function render ()
 {
 
 }
+
+if (typeof localStorage["score"] == "undefined") {
+    localStorage["score"] = 0;
+}
+document.documentElement.addEventListener('keydown', function (e) {
+    if ( ( e.keycode || e.which ) == 32) {
+        e.preventDefault();
+    }
+    if ( ( e.keycode || e.which ) == 38) {
+        e.preventDefault();
+    }
+    if ( ( e.keycode || e.which ) == 40) {
+        e.preventDefault();
+    }
+}, false);
 
 </script>
 <div>

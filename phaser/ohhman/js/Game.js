@@ -23,18 +23,17 @@ Game.prototype = {
 		pinky.create();			
 	},
 	
-	update : function() {
-		var layer = map.layer;		
-		
+	update : function() {				
 		ohhMan.update();
 		blinky.update();
-		clyde.update(layer);
-		inkey.update(layer);
-		pinky.update(layer);		
+		clyde.update();
+		inkey.update();
+		pinky.update();		
 	},
 	
 	render : function() {
-		blinky.render();
+		//blinky.render();
+		//ohhMan.render();
 	},
 	
 	loadMap : function() {

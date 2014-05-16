@@ -34,8 +34,7 @@ Map1.prototype = {
 		
 		this.map.createFromObjects(fp_decicionLayer, 3, 'fp_decision', 0, true, false, this.decision);
 
-		this.decision.setAll('body.immovable', true);
-		console.log(this.decision);
+		this.decision.setAll('body.immovable', true);		
 		this.decision.forEach(function(tile){
 			if(tile.body.checkCollision.up == "false")
 				tile.body.checkCollision.up = false;

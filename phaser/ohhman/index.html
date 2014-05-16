@@ -63,8 +63,8 @@
 									
 			function preload() {								
 				//Preload do Splash
-				//splash = new Splash();
-				splash = new Menu();
+				splash = new Splash();
+				//splash = new Menu();
 				splash.preload();
 			}
 
@@ -87,6 +87,19 @@
 			game.state.add('sceneGame', Game);
 			game.state.add('sceneWin', Win);
 			game.state.add('sceneLose', Lose);
+			
+			//Para de rolar a página com os botões do teclado
+			document.documentElement.addEventListener('keydown', function (e) {
+				if ( ( e.keycode || e.which ) == 32) {
+					e.preventDefault();
+				}
+				if ( ( e.keycode || e.which ) == 38) {
+					e.preventDefault();
+				}
+				if ( ( e.keycode || e.which ) == 40) {
+					e.preventDefault();
+				}
+			}, false);
 		</script>
 	</body>
 
