@@ -11,7 +11,6 @@ Human.prototype.add = function(posX, posY, texture)
 {
 	this.sprite = game.add.sprite(posX, posY, texture);
 	game.physics.enable(this.sprite);
-	this.sprite.smoothed = false; // em false, se modificar o tamanho a imagem continua pixelada.
 	this.sprite.anchor.setTo(0.5 ,0.5);
 }
 

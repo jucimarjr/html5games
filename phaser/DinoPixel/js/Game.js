@@ -84,3 +84,9 @@ Game.prototype.update = function()
 	this.player.enableJump(); // faz com que o personagem pule quando pressionada a tecla de pulo.
 }
 
+Game.prototype.render = function() 
+{
+	//game.debug.body(this.player.sprite);
+	//game.debug.bodyInfo(player, 16, 24);
+}
+

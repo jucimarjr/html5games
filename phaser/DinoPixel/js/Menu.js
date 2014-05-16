@@ -35,7 +35,7 @@ Menu.prototype.create = function()
 	
 	this.bg = game.add.tileSprite(0,0,960,600,'backGround');
 	this.bg.fixedToCamera = true;
-
+	// Cenario
 	this.map = game.add.tilemap('stage');
 	this.map.addTilesetImage('cityThings','cityThings');
 	this.map.addTilesetImage('urbanBuildings1','urbanBuildings1');
@@ -111,8 +111,8 @@ Menu.prototype.goGame = function()
 {
 	var playsound = game.add.audio('playsound',soundLevel);
 	playsound.play();
-	this.fadeOut();
-	fadeout.onComplete.add(function()
+	this.fadeoutGoGame = game.add.tween(this.playButton).to( { alpha: 0 }, 100, Phaser.Easing.Linear.None, true, 0, 15, true);
+	this.fadeoutGoGame.onComplete.add(function()
 	{ 
 		game.camera.x = 0;
 		game.state.start('game')
@@ -124,16 +124,10 @@ Menu.prototype.goCredits = function()
 {
 	var playsound = game.add.audio('creditsSound',soundLevel);
 	playsound.play();
-	this.fadeOut();
-	fadeout.onComplete.add(function()
+	this.fadeoutCredits = game.add.tween(this.creditsButton).to( { alpha: 0 }, 100, Phaser.Easing.Linear.None, true, 0, 15, true);;
+	this.fadeoutCredits.onComplete.add(function()
 	{ 
-		game.state.start('credits',false)
+		game.state.start('credits')
 	});
 
-}
-
-Menu.prototype.fadeOut = function()
-{
-	fadeout = fadeout = game.add.tween(this.playButton).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true, 0, 0, true);
-	fadeout = fadeout = game.add.tween(this.creditsButton).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true, 0, 0, true);
 }
