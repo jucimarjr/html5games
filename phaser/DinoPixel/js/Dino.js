@@ -11,15 +11,14 @@ Dino.prototype.add = function(posX, posY)
 {
 	this.sprite = game.add.sprite(posX, posY ,'dino');
 	game.physics.enable(this.sprite);
-	this.sprite.smoothed = false; // em false, se modificar o tamanho a imagem continua pixelada.
 	this.sprite.anchor.setTo(0.4 ,0.5);
-	this.sprite.scale.setTo(4,4); //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< mudar isso depois, trocar o sprite por um 4x maior.
+	this.sprite.smoothed = false; 
 	this.sprite.animations.add('walk',[0,1,2,3,4,5,6,7],12,true);
 	this.sprite.body.collideWorldBounds = true;
 	this.sprite.body.checkCollision.up = false;
 	this.sprite.body.checkCollision.left = false;
 	this.sprite.body.checkCollision.right = false;
-	this.sprite.body.setSize(8,32,-4,-4);
+	this.sprite.body.setSize(32,128,-4,-4);
 	this.cursors = game.input.keyboard.createCursorKeys();
 	this.jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 	this.soundJump = game.add.audio('jump',soundLevel,false);
@@ -30,15 +29,15 @@ Dino.prototype.enableMovement = function ()
 	this.sprite.body.velocity.x = 0;
 	if(this.cursors.left.isDown)
 	{
-		this.sprite.body.setSize(8,32,-2,-4);
-		this.sprite.scale.setTo(-4,4);
+		this.sprite.body.setSize(32,128,-2,-4);
+		this.sprite.scale.setTo(-1,1);
 		this.sprite.animations.play('walk');		
 		this.sprite.body.velocity.x = -this.playerSpeed;
 	}
 	else if(this.cursors.right.isDown)
 		{
-		this.sprite.body.setSize(8,32,-4,-4);
-		this.sprite.scale.setTo(4,4);
+		this.sprite.body.setSize(32,128,-4,-4);
+		this.sprite.scale.setTo(1,1);
 		this.sprite.animations.play('walk');		
 		this.sprite.body.velocity.x = this.playerSpeed;
 		}
@@ -62,4 +61,5 @@ Dino.prototype.enableJump = function()
 		this.sprite.body.velocity.y = -this.jumpForce;
 	}
 }
+
 

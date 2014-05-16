@@ -5,17 +5,20 @@ Game = function () {
 	var clyde = null;
 	var inkey = null;
 	var pinky = null;
+	var lives = null;
 };
 
 Game.prototype = {
 	preload : function() {
 		this.loadMap();
 		this.loadOhhman();
-		this.loadGhosts();
+		this.loadGhosts();	
+		this.loadLives();
 	},
 
 	create : function() {			
 		map.create();
+		lives.create();
 		ohhMan.create();
 		blinky.create();
 		clyde.create();
@@ -58,5 +61,10 @@ Game.prototype = {
 		
 		pinky = new Pinky();
 		pinky.preload();
-	}	
+	},
+	
+	loadLives : function () {
+		lives = new Life();
+		lives.preload();
+	}
 };

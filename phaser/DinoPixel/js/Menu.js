@@ -1,11 +1,14 @@
 var Menu = function()
 {
+	this.carSpawnTime = 0;
 	this.gameName;
 	this.cameraSpeed = 5;
 	this.gravity = 800;
 	this.objectHuman = new Array();
 	this.humans;
+	this.cars;
 	this.objectHuman = new Array();
+	this.objectCar;
 	this.humanTexture = new Array();
 		this.humanTexture[0] = 'regularGuy';
 		this.humanTexture[1] = 'regularGirl';
@@ -30,12 +33,13 @@ Menu.prototype.preload = function()
 
 Menu.prototype.create = function()
 {
+	this.insertCoinSound = game.add.audio('insertCoin',soundLevel);
 	game.physics.startSystem(Phaser.Game.ARCADE);
 	game.physics.arcade.gravity.y = this.gravity;
 	
 	this.bg = game.add.tileSprite(0,0,960,600,'backGround');
 	this.bg.fixedToCamera = true;
-
+	// Cenario
 	this.map = game.add.tilemap('stage');
 	this.map.addTilesetImage('cityThings','cityThings');
 	this.map.addTilesetImage('urbanBuildings1','urbanBuildings1');
@@ -59,14 +63,16 @@ Menu.prototype.create = function()
 	this.layerBack2.scrollFactorX = 0.2;
 	//this.layer.debug = true;
 	//this.layer6.debug = true;
+	
 	this.layer.resizeWorld();
-	
+	this.cars = game.add.group();
 	this.humans = game.add.group();
+	this.objectCar= new Car();
 	
-	for(var i = 0; i< 60; i++)
+	for(var i = 0, l = this.humanTexture.length; i< 25; i++)
 	{
 		this.objectHuman[i] = new Human()
-		this.objectHuman[i].add(100 * i,1420, this.humanTexture[game.rnd.integerInRange(0 , this.humanTexture.length)]);
+		this.objectHuman[i].add(200 * i,1420, this.humanTexture[game.rnd.integerInRange(0 , l)]);
 		this.humans.add(this.objectHuman[i].sprite);
 	}
 		
@@ -85,8 +91,11 @@ Menu.prototype.create = function()
 	game.camera.y = game.world.height;
 	this.cameraMove =game.add.tween(game.camera).to({ x: game.world.width - 960 }, 50000, Phaser.Easing.Linear.None, true).to({ x: 0 }, 50000, Phaser.Easing.Linear.None) .loop();
 	
+	
+	
 	game.input.onDown.addOnce(function()
 	{
+		this.insertCoinSound.play();
 		this.gameName.destroy();
 		this.pressStart.destroy();
 		this.playButton = game.add.button(game.camera.width/2-180 , game.camera.height/2  - 168, 'playButton', this.goGame, this, 1,0);
@@ -99,7 +108,19 @@ Menu.prototype.create = function()
 
 Menu.prototype.update = function()
 {
-	game.physics.arcade.collide(this.layer6, this.humans);
+	game.physics.arcade.collide(this.layer6, [this.humans, this.cars]);
+	
+	if(game.time.now > this.carSpawnTime)
+	{
+		var r = game.rnd.integerInRange(0,1);
+		if (r==1)
+		this.objectCar.addWithSpeed(game.camera.x ,1450,'car',500);
+		else
+		this.objectCar.addWithSpeed(game.camera.x + game.camera.width ,1450,'car',-500);
+		this.cars.add(this.objectCar.sprite);
+		this.objectCar.sprite.outOfBoundsKill = true;
+		this.carSpawnTime = game.time.now + 2000 + game.rnd.integerInRange(0,1000);
+	}
 	
 	for (var i = 0; i < this.objectHuman.length; i++)
 	{
@@ -111,9 +132,11 @@ Menu.prototype.goGame = function()
 {
 	var playsound = game.add.audio('playsound',soundLevel);
 	playsound.play();
-	this.fadeOut();
-	fadeout.onComplete.add(function()
+	this.fadeoutGoGame = game.add.tween(this.playButton).to( { alpha: 0 }, 100, Phaser.Easing.Linear.None, true, 0, 15, true);
+	this.fadeoutGoGameSound = game.add.tween(menuTrack).to( { volume: 0 }, 1500, Phaser.Easing.Linear.None, true, 0, 0, true);
+	this.fadeoutGoGame.onComplete.add(function()
 	{ 
+		menuTrack.stop();
 		game.camera.x = 0;
 		game.state.start('game')
 	});
@@ -124,16 +147,9 @@ Menu.prototype.goCredits = function()
 {
 	var playsound = game.add.audio('creditsSound',soundLevel);
 	playsound.play();
-	this.fadeOut();
-	fadeout.onComplete.add(function()
+	this.fadeoutCredits = game.add.tween(this.creditsButton).to( { alpha: 0 }, 100, Phaser.Easing.Linear.None, true, 0, 15, true);;
+	this.fadeoutCredits.onComplete.add(function()
 	{ 
-		game.state.start('credits',false)
+		game.state.start('credits')
 	});
-
-}
-
-Menu.prototype.fadeOut = function()
-{
-	fadeout = fadeout = game.add.tween(this.playButton).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true, 0, 0, true);
-	fadeout = fadeout = game.add.tween(this.creditsButton).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true, 0, 0, true);
 }
