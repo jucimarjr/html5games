@@ -20,6 +20,15 @@ Config.ludusSplash = {
 	nextState: 4000
 };
 
+//SponsorSplash
+Config.sponsorSplash = {
+	dir: 'assets/images/SponsorSplash_960-600.png',
+	x: 0,
+	y: 0,
+	millis: 2000,
+	nextState: 4000
+};
+
 //GameSplash
 Config.gameSplash = {
 	dir: 'assets/images/GameSplash_960-600.png',
@@ -45,10 +54,21 @@ Config.menu = {
 			y: 0.5
 		}
 	},
+	buttonHowToPlay: {
+		dir: 'assets/spritesheets/ButtonHowToPlay_600-95.png',
+		x: Config.global.screen.width * 0.5,
+		y: Config.global.screen.height * 0.6,
+		width: 149,
+		height: 94,
+		anchor: {
+			x: 0.5,
+			y: 0.5
+		}
+	},
 	buttonCredits: {
 		dir: 'assets/spritesheets/ButtonCredits_600-95.png',
 		x: Config.global.screen.width * 0.5,
-		y: Config.global.screen.height * 0.7,
+		y: Config.global.screen.height * 0.8,
 		width: 149,
 		height: 94,
 		anchor: {
@@ -60,6 +80,13 @@ Config.menu = {
 		font: '25px Ms Sans Serif',
 		fill: '#ffffff'
 	}
+};
+
+//HowToPlay
+Config.howToPlay = {
+	dir: 'assets/images/HowToPlay_960-600.png',
+	x: 0,
+	y: 0
 };
 
 //Credits
