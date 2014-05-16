@@ -1,5 +1,5 @@
 Life = function () {
-	this.sprite = null;	
+	//this.sprite = null;	
 };
 
 Life.prototype = {
@@ -10,9 +10,9 @@ Life.prototype = {
 
 	create : function() {
 		//Adiciona a vida na tela				
-		this.sprite = game.add.group();
+		lives = game.add.group();
 		for(var i = 0; i < 3; i++){
-			this.sprite.create(35 * i + 3, 1, 'lives');				
+			lives.create(35 * i + 3, 1, 'lives');				
 		}
 	}
 };

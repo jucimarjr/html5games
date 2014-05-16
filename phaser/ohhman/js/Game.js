@@ -18,12 +18,12 @@ Game.prototype = {
 
 	create : function() {			
 		map.create();
+		lives.create();
 		ohhMan.create();
 		blinky.create();
 		clyde.create();
 		inkey.create();
-		pinky.create();	
-		lives.create();
+		pinky.create();			
 	},
 	
 	update : function() {				
