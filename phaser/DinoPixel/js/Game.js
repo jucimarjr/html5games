@@ -57,10 +57,10 @@ Game.prototype.create = function()
 	
 	this.humans = game.add.group();
 	
-	for(var i = 0; i< 60; i++)
+	for(var i = 0; i< 32; i++)
 	{
 		this.objectHuman[i] = new Human()
-		this.objectHuman[i].add(100 * i,1420, this.humanTexture[game.rnd.integerInRange(0 , this.humanTexture.length)]);
+		this.objectHuman[i].add(200 * i,1420, this.humanTexture[game.rnd.integerInRange(0 , this.humanTexture.length)]);
 		this.humans.add(this.objectHuman[i].sprite);
 	}
 	
@@ -69,18 +69,22 @@ Game.prototype.create = function()
 	this.player.add(32,1350);
 	
 	game.camera.follow(this.player.sprite);
-	
 }
 Game.prototype.update = function()
 { 
 	game.physics.arcade.collide(this.layer6, [this.humans, this.player.sprite]);
-	
-	for (var i = 0; i < this.objectHuman.length; i++)
+	for (var i = 0, l = this.objectHuman.length; i < l; i++)
 	{
-		this.objectHuman[i].stayNormal();	
+		this.objectHuman[i].stayNormal();				
 	}
 	
 	this.player.enableMovement(); // faz com que o personagem se mova quando pressionadas as teclas.
 	this.player.enableJump(); // faz com que o personagem pule quando pressionada a tecla de pulo.
+}
+
+Game.prototype.render = function() 
+{
+	//game.debug.body(this.player.sprite);
+	//game.debug.bodyInfo(player, 16, 24);
 }
 

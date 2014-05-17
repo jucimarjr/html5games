@@ -8,6 +8,7 @@ Splash.prototype.preload = function() {
 };
 
 Splash.prototype.create = function() {
+	menuTrack.play();
 	var fundo = game.add.sprite(0, 0, 'splashTeam');
 	fundo.alpha = 0;
 	
