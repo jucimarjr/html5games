@@ -50,12 +50,12 @@ Inkey.prototype = {
 	
 	//Verifica a colisão do inkey com o mapa
 	verifyMapCollision : function(layer) {		
-		game.physics.arcade.overlap(this.sprite, layer, this.setNewDirection, null, this);
+		game.physics.arcade.overlap(this.sprite, map.layer, this.setNewDirection, null, this);
 	},
 	
 	//Seta uma direção aleatória para o inkey
 	setNewDirection : function() {
-		var number = Math.round(1 + Math.random()*4);
+		var number = Math.round(1 + Math.random()*3);
 		
 		switch(number){
 			case 1:				
@@ -71,5 +71,22 @@ Inkey.prototype = {
 				this.direction = "DOWN";
 				break;
 		}		
+	},
+	
+	//Seta uma direção aleatória para o inkey
+	correctPosition : function(player, decision) {						
+		if (decision.body.checkCollision.left)
+			this.sprite.x += 6;
+		
+		if (decision.body.checkCollision.right)
+			this.sprite.x -= 6;
+			
+		if (decision.body.checkCollision.down)
+			this.sprite.y -= 6;
+		
+		if (decision.body.checkCollision.up)
+			this.sprite.y += 6;
+		
+		this.setNewDirection();
 	}
 };

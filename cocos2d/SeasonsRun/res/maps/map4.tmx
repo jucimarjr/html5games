@@ -8,12 +8,12 @@
  </tileset>
  <layer name="Camada de Tiles 2" width="140" height="15">
   <data encoding="base64" compression="zlib">
-   eJzt0lmUzgUcx+F3BrlvL+lee8l9KRpbpWhmWmyTaDGkrEmpZlCWGbQPUcaapZh9067ZmJWKaEEGM2OvUJ5uOnXtPe978f9/znnuf+f8vpHI/8tPiEQKKKSIYkoopYzyhEhY2L/V2EMt29hOHfU00EhTuJew//SrPexjPwf4jYO0cIjDHKGVNtrD/QS6M/5/lnP8xd//7CExEkkgkQ50pBMX0Tkx3heHxbOL/f8SLuUyLucKruQqrqYL19CVa8O9BLpu/n8d13MDN3ITN3MLt3Ib3bmdHuFeAt0d/n8nPbmLu+lFb+4hiT70pR/9w70EumT/TyGVh3mER3mMIQxlGMMZQVqA95JEH/rSj/4M4F7u434G8gAPMojBPEQyKaTG/Orolu7/YxnHs4znOZ5nAhOZxGSmMDXAexnKMIYzgjQeZyRPMIrRPMlTPM0zjCGdsYyL9dFRLsP/M5nJLGbzOm8wh7nMYz5ZZAd4LxOZxGSmMJUXmMaLTOclXmYGr/Aqr5FBJjNjfXSUy/H/xSzhA5ayjA/5iOXksoKVrArwXuYyj/lkkc0CFrKIN3mLt3mHd3mP98lhMUtifnV02+T/m8kjnwIKKaKYEkopo5yKAO9lObmsYCWrWM0a1vIx61jPBjbyCZ+yic3kxfzq6Fbp/1VUU0Mt29hOHfU00EgTzQHeSwmllFFOBVv4jM/5gi/5iq/5hq18SyVVVMf66LC4VU8DjTTRzA528h3f8wO72M2P7GEvP/Ezv8T66LC4dZAWDnGYI7TSRjtHOcZxTnCSU5zmd/7gz5hffWGdBzqPr4U=
+   eJzt0mdQ1wUcx/E/qPncUTmf2zb1uXsA2rACtURATS1nqUBDy9PUBKSt50gFRUvL0xwsS5siDpa2x6UFKGLauDOrV0+6fA78Hvx+77vX8+/d9xOLXd++uFhsPwc4SDEllFJGeVwsKuq/Ku3hOCc4ySmqqKaG2mgvUf/rR3s4yzl+4mfqaaCR81ygiYs0R/sJdVf9/0+u8Rd//7uH+Fgsjnja0Z4O3EDH+KAvjgqyTv7fmS505UZu4ma60Z0e9KQXvaO9hLo+/n8Lt3Ibt3MHd3IXfbmbfvRnQLSXUDfQ/wcxmCEMZRjDGcFIRpFAIknRXkJdsv+nMI7xTOBhHmEiqUwijXQyQryXkYwigUSSGM0Y7uFe7uN+xvIAD/IQyaQwrs2vbtlm+f9s5jCXeTzBk8xnAQvJJIvsEO8llUmkkU4Gk5nCVB5lGtOZwWM8zkxmMZs5bX10C7fU/5fxAstZwUpeZBU55JLHavJDvJcFLCSTLLJ5iqd5hmdZxGKe43mWBHFoK7bO/9ezgY28ySY2s4UCCtnKNopCvJcccsljNfm8xMu8wqu8xuu8wRrWBnJp67XH//fyHvvYzwEOUkwJpZRRzqEQ76WAQrayjSK2s4O3eJud7OId3mV3IJe2Xkf9v4JjVHKcE5zkFFVUU0MtdSHeSwmllFHOId7nAw5zhA/5iI/5hE/5jKNUtPnFUUFWRTU11FLHac7wOV/wJV/xNd/wLd/xPT+0+cVRQVZPA42c5wJNXKSZS/zCZa7wK7/xO38EcG9L9A9w36SN
   </data>
  </layer>
  <layer name="Camada de Tiles 3" width="140" height="15">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer name="Camada de Tiles 1" width="140" height="15">
@@ -49,7 +49,7 @@
    </properties>
    <polyline points="0,0 96,28 142,56 193,111 224,75 261,72 317,82"/>
   </object>
-  <object type="edgeShape" x="3036" y="344">
+  <object type="edgeShape" x="3101" y="346">
    <properties>
     <property name="friction" value="1"/>
    </properties>
@@ -61,7 +61,7 @@
   <object type="edgeShape" x="4158" y="476">
    <polyline points="0,0 -1,-76 264,-75"/>
   </object>
-  <object type="edgeShape" x="3200" y="439">
+  <object type="edgeShape" x="3266" y="440">
    <polyline points="0,0 63,-9 95,-2 149,23"/>
   </object>
  </objectgroup>

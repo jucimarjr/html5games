@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="140" height="15" tilewidth="32" tileheight="32" backgroundcolor="#ffaaff">
+ <tileset firstgid="1" name="tileBlur" tilewidth="32" tileheight="32">
+  <image source="cocoBlur.png" width="667" height="500"/>
+ </tileset>
+ <layer name="Camada de Tiles 1" width="140" height="15">
+  <data encoding="base64" compression="zlib">
+   eJzt1kdOXEEQxvG3IF0Ak7GBFR5yXJGDDWxJBmz2Q+YAgEkHIMMBgJHAByAs4ACEK4B9BcA7/hJ60tMIw3RXd8sjzSf9NkDViKK7mpDneSUoRRnKUYFKVKEaNahFHeqRjg/IQCaykI0c5CIP+fiITyhAIYq8l0jrTacYnxHy1Gehkl70oR8DGMQ3DGEYI/iOHxjV/F2SkIwUpCJNs8+/0oRmtKAVbWhHBzrxBV/RhW70ePL5mvj7mJxLAxo1Z6GTMMYwjglMYgrTmMGsYj/X90/13Evnq1vvYi4udsAc5rGAn1jEEpaxglXFfq72Y3R0zr10vir1LudiegcEs4Z1bGATW9jGDnaxp9hPcn/TY+gfvIPBSM69dL6x1Lt8N0zvgGD2cYBDRAJfP8Ixfgl6u9iPfiTnXjpf1XrbczG9A4I5wSnOcB71vQtcCnr7ifX+Rt9BlUjOvXS+uvW23g2bO+AK17jBraDPW9G5v72KnyE599L56tbbejds7oA73OM3/gj6vBXJ/Q3H+BmScy+dr269rXfD5g54wCOe8Ndwbz8296MfybmXzle33tZcXOwAmzG1H/07+Fok5146X916W++Gix1gM6b2Y+T9H9GKdL669S7+d4zHxPt+tJXEXF5PvO9HW0nMJZFE/p9E38FnGB86uw==
+  </data>
+ </layer>
+ <layer name="Camada de Tiles 2" width="140" height="15">
+  <data encoding="base64" compression="zlib">
+   eJztlOkNwjAMhRNgAq4yAff+E5QVuCfgKEwAvEhFqqKkTVIn/MBPfLKrSsSp/SwEi8VisVgsFovFYrFYv1UONg6R9Z/agh3Yg4NHVBzBCZyTV81yUQzvX8AV3MDdIyoK8ADPFneikO+sx/aGa5+od3gK77/AWyUSP+keFR3QBT0ZcDlC+c46tTdC+0Q9pym830evB2AIRh5RMQYZmDjMSy7i+aw6752I0eaN0D5R7/AU3p/i/QzMwcIjKpblvKy1M3S/Hcs8ls+q8z6OGG3eCO0T9Q5P4f2+9q1988zBb0WZx/LZwNDbNnequ6vpe4b2iXqHT2tqD/W+6a76Gd/neeW/bLlpXnS/KY8IKaL5bFapp6neNrmtb6E72nWHrxz6+K3DVnuo903zop/RdE7TGbrf9Dmk9tkHwAseNQ==
+  </data>
+ </layer>
+</map>

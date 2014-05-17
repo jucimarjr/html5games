@@ -16,14 +16,18 @@
 	<script type="text/javascript" src="js/phaser.min.js"></script>
 	<script type="text/javascript" src="js/Game.js"></script>
 	<script type="text/javascript" src="js/Rock.js"></script>
+	<script type="text/javascript" src="js/Spaceman.js"></script>
+	<script type="text/javascript" src="js/Splash.js"></script>
+	<script type="text/javascript" src="js/Menu.js"></script>
+	<script type="text/javascript" src="js/Credits.js"></script>
     <style type="text/css">
         body {
         	background-color:#ffffff;
             margin: 0px;
         }
         @font-face {
-    		font-family: '3d font';
-    		src: url('assets/fonts/3D-Thirteen-Pixel-Fonts.ttf');
+    		font-family: 'Back to 1982';
+    		src: url('assets/fonts/BACKTO1982.TTF');
 		}
 		@font-face{
 			font-family: 'karmatic arcade';
@@ -51,10 +55,10 @@
 	</div>
 <script type="text/javascript">
 	var game = new Phaser.Game(960, 600, Phaser.CANVAS, 'game', { preload: preload, create: create, update: update, render: render });
-//game.state.add('splash', Splash, false);
+game.state.add('splash', Splash, false);
 game.state.add('game', Game, false);
-//game.state.add('menu', Menu, false);
-//game.state.add('credits', Credits, false);
+game.state.add('menu', Menu, false);
+game.state.add('credits', Credits, false);
 
 function preload()
 {
@@ -65,7 +69,7 @@ function preload()
 function create()
 {
 
-	game.state.start('game');
+	game.state.start('splash');
 	
 }
 
@@ -79,6 +83,21 @@ function render ()
 {
 
 }
+
+if (typeof localStorage["score"] == "undefined") {
+    localStorage["score"] = 0;
+}
+document.documentElement.addEventListener('keydown', function (e) {
+    if ( ( e.keycode || e.which ) == 32) {
+        e.preventDefault();
+    }
+    if ( ( e.keycode || e.which ) == 38) {
+        e.preventDefault();
+    }
+    if ( ( e.keycode || e.which ) == 40) {
+        e.preventDefault();
+    }
+}, false);
 
 </script>
 <div>

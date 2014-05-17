@@ -17,7 +17,7 @@ SpaceShip = function(gameClass, x, y) {
 };
 
 SpaceShip.prototype.create = function(x,y){
-	this.velang = 1;
+	this.velang = 1.3;
 	this.aceler = 4;
 	this.velmax = 3;
 	this.resist = 5;

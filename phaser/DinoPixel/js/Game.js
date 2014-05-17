@@ -1,125 +1,90 @@
-var Game = {};
-var player;
-var playerSpeed = 200;
-var gravity = 400;
-var cursors;
-var layer, layer2, layer3, layer4, layer5, layer6;
-var bg;
-var track;
-var humans;
-var guy;
-var soundFall;
-var soundJump;
-var SoundSmash;
-Game = function()
-{}
+var Game = function()
+{
+	this.player = new Dino();
+	this.gravity = 800;
+	this.layer, this.layer2, this.layer3, this.layer4, this.layer5, this.layer6;
+	this.bg; 		//sprite do backGround
+	this.layerBack1, this.layerBack2;
+	this.track;
+	this.humans;
+	this.objectHuman = new Array();
+	this.SoundSmash;
+	this.map;
+	this.humanTexture = new Array();
+		this.humanTexture[0] = 'regularGuy';
+		this.humanTexture[1] = 'regularGirl';
+		this.humanTexture[2] = 'man';
+		this.humanTexture[3] = 'medic';
+		this.humanTexture[4] = 'muscleMan';
+		this.humanTexture[5] = 'worker1';
+}
 Game.prototype.create = function()
 {
-	track = game.add.audio('track',5,true);
-	track.play();
-	soundFall = game.add.audio('fall',5,false);
-	soundJump = game.add.audio('jump',5,false);
-	soundSmash = game.add.audio('smash',5,false);
+	game.camera.x = 0;
+	this.track = game.add.audio('track',soundLevel,true);
+	this.track.play();
+	this.soundSmash = game.add.audio('smash',soundLevel,false);
 	
-	game.physics.startSystem(Phaser.Game.ARCADE);
-	game.physics.arcade.gravity.y = gravity;
-	bg = game.add.tileSprite(0,0,800,600,'backGround');
-	bg.fixedToCamera = true;
-	map = game.add.tilemap('stage1');
-	map.addTilesetImage('stageCity','stage-1');
-	map.addTilesetImage('fatDonald','fatDonald');
-	layerBg = map.createLayer('bg');
-	layer = map.createLayer('Camada de Tiles 1');
-	layer2 = map.createLayer('Camada de Tiles 2');
-	layer3 = map.createLayer('Camada de Tiles 3');
-	layer4 = map.createLayer('Camada de Tiles 4');
-	layer5 = map.createLayer('Camada de Tiles 5');
-	layer6 = map.createLayer('Camada de Tiles 6');
-	map.setCollision([33,34,35,36,37,38],true,'Camada de Tiles 6');
-	map.setCollision([5,6],true, 'Camada de Tiles 1');
-	
-	//layer.debug = true;
-	//layer6.debug = true;
-	layer.resizeWorld();
-	
-	game.stage.backgroundColor = '#000010';
-	
-	humans = game.add.group();
-	var guy = humans.create(544, 950, 'regularGuy');
-	var guy = humans.create(608, 950, 'regularGirl');
-	var guy = humans.create(620, 950, 'regularGuy');
-	var guy = humans.create(864, 950, 'man');
-	var guy = humans.create(896, 950, 'regularGirl');
-	var guy = humans.create(1088, 950, 'man');
-	var guy = humans.create(1216, 950, 'regularGirl');
-	var guy = humans.create(1280, 950, 'muscleMan');
-	var guy = humans.create(1344, 832, 'muscleMan');
-	var guy = humans.create(1408, 832, 'regularGirl');
-	var guy = humans.create(1472, 832, 'muscleMan');
-	var guy = humans.create(1536, 832, 'regularGirl');
-	var guy = humans.create(1440, 950, 'muscleMan');
-	var guy = humans.create(1539, 950, 'muscleMan');
-	game.physics.enable(humans);
-	
-	player = game.add.sprite(50,930,'dino');
-	game.physics.enable(player);
-	player.smoothed = false;
-	player.anchor.setTo(0.4 ,0.5);
-	player.scale.setTo(4,4);
-	player.animations.add('walk',[0,1,2,3,4,5,6,7],12,true);
-	player.body.collideWorldBounds = true;
-	player.body.checkCollision.up = false;
-	player.body.checkCollision.left = false;
-	player.body.checkCollision.right = false;
-	player.body.setSize(8,32,-4,-4);
+	game.physics.arcade.gravity.y = this.gravity;
 
-	game.camera.follow(player);
-	cursors = game.input.keyboard.createCursorKeys();
-	jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-	player.debug = true;
+	this.bg = game.add.tileSprite(0,0,960,600,'backGround');
+	this.bg.fixedToCamera = true;
+
+	this.map = game.add.tilemap('stage');
+	this.map.addTilesetImage('cityThings','cityThings');
+	this.map.addTilesetImage('urbanBuildings1','urbanBuildings1');
+	this.map.addTilesetImage('urbanBuildings2','urbanBuildings2');
+	this.map.addTilesetImage('back2','back2');
+	this.map.addTilesetImage('back1','back1');
+	this.layerBack2 = this.map.createLayer('back2');
+	this.layerBack1 =this. map.createLayer('back1');
+	this.layerBg = this.map.createLayer('bg');
+	this.layer = this.map.createLayer('Camada de Tiles 1');
+	this.layer2 = this.map.createLayer('Camada de Tiles 2');
+	this.layer3 = this.map.createLayer('Camada de Tiles 3');
+	this.layer4 = this.map.createLayer('Camada de Tiles 4');
+	this.layer5 = this.map.createLayer('Camada de Tiles 5');
+	this.layer6 = this.map.createLayer('Camada de Tiles 6');
+	this.map.setCollision([162,163,15,16,2086,2089,2090],true,'Camada de Tiles 6'); // IDs dos tiles que colidem (plataformas).
+	this.map.setCollisionBetween(19,26, true,'Camada de Tiles 6'); // intervaldo de IDs dos tiles que colidem (plataformas).
+	this.map.setCollisionBetween(2152,2156, true,'Camada de Tiles 6');
+	this.map.setCollisionBetween(2083,2085, true,'Camada de Tiles 6');
+	this.layerBack1.scrollFactorX = 0.35; // da o efeito de profundidade.
+	this.layerBack2.scrollFactorX = 0.2;
+	//this.layer.debug = true;
+	//this.layer6.debug = true;
+	this.layer.resizeWorld();
+	
+	this.humans = game.add.group();
+	
+	for(var i = 0; i< 32; i++)
+	{
+		this.objectHuman[i] = new Human()
+		this.objectHuman[i].add(200 * i,1420, this.humanTexture[game.rnd.integerInRange(0 , this.humanTexture.length)]);
+		this.humans.add(this.objectHuman[i].sprite);
+	}
+	
+	
+	
+	this.player.add(32,1350);
+	
+	game.camera.follow(this.player.sprite);
 }
 Game.prototype.update = function()
-{
-	game.physics.arcade.collide(player, layer);
-	game.physics.arcade.collide(player, layer6);
-	game.physics.arcade.collide(layer, humans);	
-	game.physics.arcade.collide(layer6, humans);
-	game.physics.arcade.overlap(player,humans,this.smashHuman);
-	
-	player.body.velocity.x = 0;
-	if(cursors.left.isDown)
+{ 
+	game.physics.arcade.collide(this.layer6, [this.humans, this.player.sprite]);
+	for (var i = 0, l = this.objectHuman.length; i < l; i++)
 	{
-		player.body.setSize(8,32,-2,-4);
-		player.scale.setTo(-4,4);
-		player.animations.play('walk');		
-		player.body.velocity.x = -playerSpeed;
-	}
-	else if(cursors.right.isDown)
-		{
-		player.body.setSize(8,32,-4,-4);
-		player.scale.setTo(4,4);
-		player.animations.play('walk');		
-		player.body.velocity.x = playerSpeed;
-		}
-	else 
-		if(player.body.blocked.down)
-	{
-		player.animations.stop();
-		player.frame = 1;
+		this.objectHuman[i].stayNormal();				
 	}
 	
-	if(player.body.velocity.y < 0)
-		player.frame = 9;
-		else if(player.body.velocity.y > 0)
-		player.frame = 8;
-	if (jumpButton.isDown && player.body.onFloor())
-	{
-		soundJump.play();
-		player.body.velocity.y = -320;
-	}
+	this.player.enableMovement(); // faz com que o personagem se mova quando pressionadas as teclas.
+	this.player.enableJump(); // faz com que o personagem pule quando pressionada a tecla de pulo.
 }
-Game.prototype.smashHuman = function (player, sprite)
+
+Game.prototype.render = function() 
 {
-	soundSmash.play();
-	sprite.kill();
+	//game.debug.body(this.player.sprite);
+	//game.debug.bodyInfo(player, 16, 24);
 }
+

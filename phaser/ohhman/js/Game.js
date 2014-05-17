@@ -5,17 +5,20 @@ Game = function () {
 	var clyde = null;
 	var inkey = null;
 	var pinky = null;
+	var lives = null;
 };
 
 Game.prototype = {
 	preload : function() {
 		this.loadMap();
 		this.loadOhhman();
-		this.loadGhosts();
+		this.loadGhosts();	
+		this.loadLives();
 	},
 
 	create : function() {			
 		map.create();
+		lives.create();
 		ohhMan.create();
 		blinky.create();
 		clyde.create();
@@ -23,18 +26,17 @@ Game.prototype = {
 		pinky.create();			
 	},
 	
-	update : function() {
-		var layer = map.layer;		
-		
+	update : function() {				
 		ohhMan.update();
 		blinky.update();
-		clyde.update(layer);
-		inkey.update(layer);
-		pinky.update(layer);		
+		clyde.update();
+		inkey.update();
+		pinky.update();		
 	},
 	
 	render : function() {
-		blinky.render();
+		//blinky.render();
+		//ohhMan.render();
 	},
 	
 	loadMap : function() {
@@ -59,5 +61,10 @@ Game.prototype = {
 		
 		pinky = new Pinky();
 		pinky.preload();
-	}	
+	},
+	
+	loadLives : function () {
+		lives = new Life();
+		lives.preload();
+	}
 };

@@ -5,7 +5,7 @@ Ufo = function (gameClass, direction) {
     //this.shootUfo = this.game.add.group();    
     this.nextFire = this.game.time.now + this.fireRate;
     Phaser.Sprite.call(this, this.game, 0, 0, 'sprites', 'ufo1-60-59.png');
-    this.game.add.audio('ufo', 1).play();
+    //this.game.add.audio('ufo', 1).play();
     this.anchor.setTo(0.5,0.5);
     switch (direction){
     case 0:
@@ -38,7 +38,7 @@ Ufo.prototype.update = function () {
 };
 
 Ufo.prototype.shoot = function () {
-    this.game.add.audio('shoot', 1, true).play();
+    this.game.add.audio('shoot', 0.5, true).play();
     var direction = Math.random() * 360;
     var shoot = this.gameClass.shootUfo.create(this.position.x + Math.cos(direction * 0.0174) * 24,
         	    this.position.y + Math.sin(direction * 0.0174) * 24, 'sprites', 'shoot-green-5-5.png');

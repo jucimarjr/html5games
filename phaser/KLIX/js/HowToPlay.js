@@ -10,6 +10,7 @@ HowToPlay.prototype.preload = function(){
 
 HowToPlay.prototype.create = function() {
     var bg = game.add.sprite(0, 0, this.screenName);
+    //var bg = game.add.sprite(0, 0, 'botoes', "btnHowToPlaySelected_381-34.png");
 	bg.anchor.setTo(0.5,0.5);
 	bg.x = game.width/2;
 	bg.y = game.height/2;

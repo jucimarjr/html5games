@@ -2,7 +2,9 @@ Ohhman = function () {
 	this.sprite = null;
 	this.speed = 200;
 	
-	this.direction; //LEFT, RIGHT, UP, DOWN
+	this.direction = "LEFT"; //LEFT, RIGHT, UP, DOWN
+	this.nextDirection = "LEFT";	
+	this.oldDirection;
 	
 	this.score = 0;
 	this.scoreText = null;
@@ -32,39 +34,59 @@ Ohhman.prototype = {
 		this.verifyMapCollision();
 		this.verifyGhostCollision();
 		this.verifyBallCollision();		
+		this.verifyDecisionCollision();		
 	},
 	
 	
 	//Move o ohhMan
-	moveByKeyboard : function() {
-		//Move o ohhMan na horizontal (esquerda/direita)
+	moveByKeyboard : function() {	
+		this.oldDirection = this.direction;
+		
+		//Move o OhhMan na horizontal (esquerda/direita)
 		if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
-			this.direction = "LEFT";
-			this.sprite.body.velocity.x = -this.speed;
-			this.sprite.body.velocity.y = 0;
+			this.nextDirection = "LEFT";
+			
+			//Mode o Ohhman apenas quando colidir com a camada de decisao
+			if ((this.direction == "RIGHT") || (this.sprite.body.velocity.x == 0 && this.sprite.body.velocity.y == 0)){
+				this.sprite.body.velocity.x = -this.speed;
+				this.sprite.body.velocity.y = 0;
+			}			
 		}
 		if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
-			this.direction = "RIGHT";
-			this.sprite.body.velocity.x = this.speed;
-			this.sprite.body.velocity.y = 0;
+			this.nextDirection = "RIGHT";
+			
+			//Mode o Ohhman apenas quando colidir com a camada de decisao
+			if ((this.direction == "LEFT") || (this.sprite.body.velocity.x == 0 && this.sprite.body.velocity.y == 0)){				
+				this.sprite.body.velocity.x = this.speed;
+				this.sprite.body.velocity.y = 0;
+			}			
 		}
 		
 		//Move o ohhMan na vertical (cima/baixo)
 		if (game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
-			this.direction = "UP";
-			this.sprite.body.velocity.x = 0;
-			this.sprite.body.velocity.y = -this.speed;
+			this.nextDirection = "UP";
+			
+			//Mode o Ohhman apenas quando colidir com a camada de decisao
+			if ((this.direction == "DOWN") || (this.sprite.body.velocity.x == 0 && this.sprite.body.velocity.y == 0)){
+				this.sprite.body.velocity.x = 0;
+				this.sprite.body.velocity.y = -this.speed;
+			}			
 		}
 		if (game.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
-			this.direction = "DOWN";
-			this.sprite.body.velocity.x = 0;
-			this.sprite.body.velocity.y = this.speed;
+			this.nextDirection = "DOWN";
+			
+			//Mode o Ohhman apenas quando colidir com a camada de decisao
+			if ((this.direction == "UP") || (this.sprite.body.velocity.x == 0 && this.sprite.body.velocity.y == 0)){
+				this.sprite.body.velocity.x = 0;
+				this.sprite.body.velocity.y = this.speed;
+			}			
 		}
 	},
 	
 	//Verifica a colisão do ohhMan com o mapa
 	verifyMapCollision : function() {
-		game.physics.arcade.collide(this.sprite, map.layer);
+		//game.physics.arcade.collide(this.sprite, map.layer);		
+		game.physics.arcade.collide(this.sprite, map.layer, this.keepDirection, null, this);
 	},
 	
 	//Verifica a colisão do ohhMan com os fantasminhas
@@ -74,7 +96,9 @@ Ohhman.prototype = {
 			this.checkOverlap(this.sprite, inkey.sprite) ||
 			this.checkOverlap(this.sprite, pinky.sprite))
 			
-			game.state.start('sceneLose');
+			//game.state.start('sceneLose');
+			this.verifyLivesNumber();
+			//game.time.events.add(2200, this.verifyLivesNumber(), this);
 	},
 	
 	//Verifica se 2 sprites se sobreporam, ou seja, se eles colidiram
@@ -103,5 +127,66 @@ Ohhman.prototype = {
 	punctuate : function () {
 		this.score += 10;
 	    this.scoreText.setText( "" + this.score );
+	},
+	
+	//Verifica a colisão do ohhman com o ponto de decisao
+	verifyDecisionCollision : function() {				
+		game.physics.arcade.collide(this.sprite, map.decision, this.correctPosition, null, this);					
+	},
+	
+	correctPosition : function(player, decision) {				
+		if (decision.body.checkCollision.left)
+			this.sprite.x += 6;
+		
+		if (decision.body.checkCollision.right)
+			this.sprite.x -= 6;
+			
+		if (decision.body.checkCollision.down)
+			this.sprite.y -= 6;
+		
+		if (decision.body.checkCollision.up)
+			this.sprite.y += 6;
+		
+		this.keepDirection();
+	},		
+	
+	//Continua o movimento apos colidir com a camada de decisao
+	keepDirection : function() {			
+		if (this.nextDirection == "LEFT") {
+			this.direction = "LEFT";
+			this.sprite.body.velocity.x = -this.speed;
+			this.sprite.body.velocity.y = 0;
+		}		
+		if (this.nextDirection == "RIGHT") {
+			this.direction = "RIGHT";
+			this.sprite.body.velocity.x = this.speed;
+			this.sprite.body.velocity.y = 0;
+		}		
+		if (this.nextDirection == "UP") {		
+			this.direction = "UP";
+			this.sprite.body.velocity.x = 0;
+			this.sprite.body.velocity.y = -this.speed;
+		}		
+		if (this.nextDirection == "DOWN") {	
+			this.direction = "DOWN";
+			this.sprite.body.velocity.x = 0;
+			this.sprite.body.velocity.y = this.speed;
+		}	
+	},
+
+	verifyLivesNumber : function(){
+		console.log(lives);
+		lives.getFirstAlive().kill();
+		if(lives.countLiving() <= 0){			
+			game.state.start('sceneLose');
+		}
+	},
+	
+	render : function () {
+		//Mostra as informações do sprite
+		game.debug.bodyInfo(this.sprite, 36, 36);
+		//Mostra o corpo do sprite
+		game.debug.body(this.sprite);		
+
 	}
 };
