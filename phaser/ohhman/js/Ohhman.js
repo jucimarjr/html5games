@@ -174,12 +174,24 @@ Ohhman.prototype = {
 		}	
 	},
 
-	verifyLivesNumber : function(){
-		console.log(lives);
+	verifyLivesNumber : function(){		
+		
+		ohhMan.sprite.kill();
+		blinky.sprite.kill();
+		clyde.sprite.kill();
+		inkey.sprite.kill();
+		pinky.sprite.kill();	
+			
 		lives.getFirstAlive().kill();
 		if(lives.countLiving() <= 0){			
 			game.state.start('sceneLose');
-		}
+		}					
+				
+		ohhMan.create();
+		blinky.create();
+		clyde.create();
+		inkey.create();
+		pinky.create();		
 	},
 	
 	render : function () {
