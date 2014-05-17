@@ -1,0 +1,105 @@
+<!doctype html> 
+<html lang="en"> 
+<head> 
+	<meta charset="UTF-8" />
+	<title>Phaser - Making your first game, part 1</title>
+	<script type="text/javascript" src="js/phaser.min.js"></script>
+    <script type="text/javascript" src="Player.js"></script>
+    <style type="text/css">
+        body {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+<script type="text/javascript">
+
+var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+
+var platforms = null;
+var player = null;
+
+var stars = null;
+var score = 0;
+var scoreText = null;
+
+function preload() 
+{
+	game.load.image('sky', 'assets/sky.png');
+    game.load.image('ground', 'assets/platform.png');
+    game.load.image('star', 'assets/star.png');
+
+    player = new Player(game);
+    player.preload();
+}
+
+function create() 
+{
+	game.add.sprite(0, 0, 'sky');
+
+	//  The platforms group contains the ground and the 2 ledges we can jump on
+    platforms = game.add.group();
+ 
+    // Here we create the ground.
+    var ground = platforms.create(0, game.world.height - 64, 'ground');
+
+    //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
+    ground.scale.setTo(2, 2);
+ 
+    //  This stops it from falling away when you jump on it
+    ground.body.immovable = true;
+
+    //  Now let's create two ledges
+    var ledge = platforms.create(400, 400, 'ground');
+    ledge.body.immovable = true;
+ 
+    ledge = platforms.create(-150, 250, 'ground');
+    ledge.body.immovable = true;
+
+    player.create();
+
+    // create a group for stars
+    stars = game.add.group();
+ 
+    //  Here we'll create 12 of them evenly spaced apart
+    for (var i = 0; i < 12; i++)
+    {
+        //  Create a star inside of the 'stars' group
+        var star = stars.create(i * 70, 0, 'star');
+ 
+        //  Let gravity do its thing
+        star.body.gravity.y = 6;
+ 
+        //  This just gives each star a slightly random bounce value
+        star.body.bounce.y = 0.7 + Math.random() * 0.2;
+    }
+
+    scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+}
+
+function collectStar (player, star) 
+{
+    // Removes the star from the screen
+    star.kill(); 
+
+    //  Add and update the score
+    score += 10;
+    scoreText.content = 'Score: ' + score;
+}
+
+function update() 
+{
+	//  Collide the player and the stars with the platforms
+    game.physics.collide(player.sprite, platforms);
+    game.physics.collide(stars, platforms);
+
+    game.physics.overlap(player.sprite, stars, collectStar, null, this);
+
+    player.update();
+}
+
+</script>
+
+</body>
+</html>
