@@ -6,6 +6,7 @@ Game = function () {
 	var inkey = null;
 	var pinky = null;
 	var lives = null;
+	var score = null;
 };
 
 Game.prototype = {
@@ -14,6 +15,7 @@ Game.prototype = {
 		this.loadOhhman();
 		this.loadGhosts();	
 		this.loadLives();
+		this.loadScore();
 	},
 
 	create : function() {			
@@ -23,7 +25,8 @@ Game.prototype = {
 		blinky.create();
 		clyde.create();
 		inkey.create();
-		pinky.create();			
+		pinky.create();				
+		score.create();		
 	},
 	
 	update : function() {				
@@ -66,5 +69,9 @@ Game.prototype = {
 	loadLives : function () {
 		lives = new Life();
 		lives.preload();
+	},
+	
+	loadScore : function() {
+		score = new Score();		
 	}
 };

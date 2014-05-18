@@ -22,11 +22,7 @@ Ohhman.prototype = {
 		game.physics.enable(this.sprite);
 
 		//Impede que o ohhMan saia dos limites da tela
-		this.sprite.body.collideWorldBounds = true;
-		
-		//Insere pontuação na tela
-		var style = { font: "25px Arial", fill: "#ffffff", align: "right" };
-		this.scoreText = game.add.text(game.width/2, 10 , "" + this.score, style);	
+		this.sprite.body.collideWorldBounds = true;		
 	},
 	
 	update : function() {				
@@ -119,15 +115,15 @@ Ohhman.prototype = {
 	
 	//Remove a bolinha amarela após colisão com o Ohhman
 	removeBall : function(player, ball) {		 		 		 
-		 ball.kill();		 		 
-		 this.punctuate();
+		 ball.kill();		
+		 score.punctuate();		 
 	},
 	
 	//Soma dez pontos a cada bolinha removida
-	punctuate : function () {
+	/*punctuate : function () {
 		this.score += 10;
 	    this.scoreText.setText( "" + this.score );
-	},
+	},*/
 	
 	//Verifica a colisão do ohhman com o ponto de decisao
 	verifyDecisionCollision : function() {				
