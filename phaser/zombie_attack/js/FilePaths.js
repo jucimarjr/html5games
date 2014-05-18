@@ -37,6 +37,8 @@ var spriteSheetsImageZombieDead = "assets/spritesheets/zombieDead.png";
 //Spritesheets Do Zumbi
 var spriteSheetsImagePersonDown = "assets/spritesheets/personDown.png";
 
+var spriteRound = "assets/round.png";
+var spriteScore = "assets/score.png";
 
 //audio
 var audioZombieDead = "audio/soundEffects/ugh.ogg";

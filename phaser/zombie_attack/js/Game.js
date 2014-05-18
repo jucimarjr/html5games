@@ -21,7 +21,8 @@ Game.prototype.create = function () {
 	this.soundGame = this.game.add.audio('audioBackGroundGame');
 	//this.soundGame.play();
 	this.spriteCenario = this.game.add.sprite(0, 0,'cenario');
-	
+	this.spriteRound = this.game.add.sprite(100,0,'score');
+	this.spriteRound = this.game.add.sprite(500,0,'round');
 	
 	//grupo de pessoas
     this.amountPeople = 0;
@@ -39,11 +40,10 @@ Game.prototype.create = function () {
 	
 	//Fonte
 	this.stage = 0;
-	var style = { font: "25px Arial", fill: "#ffffff", align: "right" };
-	this.scoreText = game.add.text(100, 20 , this.score,style);
-	this.scoreText.setText( "Score: "+0 );
-	this.roundText = game.add.text(500,20,this.stage,style);
-	this.roundText.setText( "Round: "+0 );
+	this.scoreText = game.add.text(224, 28 , this.score,{ font: "25px arcade_normalregular", fill: "#ffffff", align: "right" });
+	this.scoreText.setText(0);
+	this.roundText = game.add.text(625,28,this.stage,{ font: "25px arcade_normalregular", fill: "#ffffff", align: "right" });
+	this.roundText.setText(0);
 };
 
 Game.prototype.update = function () {
@@ -68,12 +68,12 @@ Game.prototype.update = function () {
 
 Game.prototype.punctuate = function (points) {
 	this.score += points;
-    this.scoreText.setText( "Score: "+this.score );
+    this.scoreText.setText(this.score);
 };
 
 Game.prototype.Stage = function () {
 	console.log("stage ",this.stage);
-    this.roundText.setText( "Round: "+this.stage);
+    this.roundText.setText(this.stage);
 };
 
 Game.prototype.gameOver = function () {
