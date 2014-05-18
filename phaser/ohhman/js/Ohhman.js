@@ -93,7 +93,7 @@ Ohhman.prototype = {
 			this.checkOverlap(this.sprite, pinky.sprite))
 			
 			//game.state.start('sceneLose');
-			this.verifyLivesNumber();
+			life.verifyLivesNumber();
 			//game.time.events.add(2200, this.verifyLivesNumber(), this);
 	},
 	
@@ -168,26 +168,6 @@ Ohhman.prototype = {
 			this.sprite.body.velocity.x = 0;
 			this.sprite.body.velocity.y = this.speed;
 		}	
-	},
-
-	verifyLivesNumber : function(){		
-		
-		ohhMan.sprite.kill();
-		blinky.sprite.kill();
-		clyde.sprite.kill();
-		inkey.sprite.kill();
-		pinky.sprite.kill();	
-			
-		lives.getFirstAlive().kill();
-		if(lives.countLiving() <= 0){			
-			game.state.start('sceneLose');
-		}					
-				
-		ohhMan.create();
-		blinky.create();
-		clyde.create();
-		inkey.create();
-		pinky.create();		
 	},
 	
 	render : function () {

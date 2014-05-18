@@ -5,7 +5,7 @@ Game = function () {
 	var clyde = null;
 	var inkey = null;
 	var pinky = null;
-	var lives = null;
+	var life = null;
 	var score = null;
 };
 
@@ -20,7 +20,7 @@ Game.prototype = {
 
 	create : function() {			
 		map.create();
-		lives.create();
+		life.create();
 		ohhMan.create();
 		blinky.create();
 		clyde.create();
@@ -67,8 +67,8 @@ Game.prototype = {
 	},
 	
 	loadLives : function () {
-		lives = new Life();
-		lives.preload();
+		life = new Life();
+		life.preload();
 	},
 	
 	loadScore : function() {
