@@ -91,10 +91,8 @@ Ohhman.prototype = {
 			this.checkOverlap(this.sprite, clyde.sprite) ||
 			this.checkOverlap(this.sprite, inkey.sprite) ||
 			this.checkOverlap(this.sprite, pinky.sprite))
-			
-			//game.state.start('sceneLose');
-			life.verifyLivesNumber();
-			//game.time.events.add(2200, this.verifyLivesNumber(), this);
+						
+			life.decreaseLivesNumber();			
 	},
 	
 	//Verifica se 2 sprites se sobreporam, ou seja, se eles colidiram
@@ -118,12 +116,6 @@ Ohhman.prototype = {
 		 ball.kill();		
 		 score.punctuate();		 
 	},
-	
-	//Soma dez pontos a cada bolinha removida
-	/*punctuate : function () {
-		this.score += 10;
-	    this.scoreText.setText( "" + this.score );
-	},*/
 	
 	//Verifica a colisão do ohhman com o ponto de decisao
 	verifyDecisionCollision : function() {				
