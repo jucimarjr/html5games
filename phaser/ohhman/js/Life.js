@@ -20,11 +20,11 @@ Life.prototype = {
 	
 	decreaseLivesNumber : function(){		
 		
-		ohhMan.sprite.kill();
-		blinky.sprite.kill();
-		clyde.sprite.kill();
-		inkey.sprite.kill();
-		pinky.sprite.kill();	
+		ohhMan.kill();
+		blinky.kill();
+		clyde.kill();
+		inkey.kill();
+		pinky.kill();	
 			
 		this.sprite.getFirstAlive().kill();
 		game.add.sprite(35 * this.positionLife + 3, 1, 'emptyLife');

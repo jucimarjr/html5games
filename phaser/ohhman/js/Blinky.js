@@ -123,7 +123,12 @@ Blinky.prototype = {
 			this.sprite.y += 6;
 		
 		this.setNewDirection();
-	},				
+	},		
+	
+	//Remove o Blinky do jogo
+	kill : function() {
+		this.sprite.kill();
+	},
 	
 	render : function () {
 		//Mostra as informações do sprite
