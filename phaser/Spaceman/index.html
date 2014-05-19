@@ -4,7 +4,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta property="og:title" content="Spaceman" />
 		<meta property="og:type" content="website" />
-		<meta property="og:description" content="Voe sobre a superfície de um cometa e teste suas habilidades como astronalta intergalático desviando de seu rastro destrutivo." />
+		<meta property="og:description" content="Voe sobre a superfície de um cometa e teste suas habilidades como astronauta intergalático desviando de seu rastro destrutivo." />
 		<meta property="og:url" content="http://computacao.uea.edu.br/ludus/games/spaceman/" />
 		<meta property="og:image" content="http://computacao.uea.edu.br/ludus/games/spaceman/spaceman.png">
 		<meta property="og:image:type" content="image/png">
@@ -68,15 +68,8 @@ function preload()
 
 function create()
 {
-	console.log(window.innerWidth +'x'+ window.innerHeight)
 	game.scale.maxWidth = 960;
-	/*if(window.innerWidth < window.innerHeight){
-		game.scale.forceLandscape = true;
-		game.scale.forceOrientation(true);
-	}*/
-
-	game.scale.orientation = 90;
-	game.scale.setExactFit();
+	game.scale.setShowAll();
 	game.scale.refresh()
 	game.state.start('splash');
 	

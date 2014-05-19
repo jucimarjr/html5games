@@ -6,7 +6,7 @@ var Spaceman = function(game, gameClass, x, y, sprite, player){
 	//this.sprite.body.collideWorldBounds = true;
 	this.outOfBoundsKill = true;
 	this.smoothed = true;
-	this.body.setSize(100,50,0,10); 
+	this.body.setSize(60,20,10,0); 
 	this.animations.add('flying',[0,1,2,3,4,3,2,1,0],5,true);
 	//this.animations.add('explode',[5,6,7,8,9],10,false);
 	this.animations.play('flying');
@@ -23,7 +23,7 @@ var Spaceman = function(game, gameClass, x, y, sprite, player){
 	this.fire1.animations.add('flying',[0,1,2,1],15,true);
 	this.fire1.animations.play('flying');
 	this.fire1.body.setSize(160,120,20,10);	//return this;
-	this.upSpeed = 75;
+	this.upSpeed = 50;
 	this.player = player;
 	if(sound){
 		this.music = game.add.audio('game', 0.5).play('',0,1,true);

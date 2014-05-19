@@ -1,7 +1,7 @@
 var Game = function()
 {
 this.sprite;// mudar depois pra uma classe Player.
-this.gravity = 1800;
+this.gravity = 1300;
 this.frontGround;
 this.frontGround2;
 this.fire1;
@@ -57,7 +57,7 @@ Game.prototype.create = function()
 		this.point2 = 0;
 	}
 	
-	game.time.events.loop(Phaser.Timer.SECOND * 0.5 , this.spawnRock, this);
+	game.time.events.loop(Phaser.Timer.SECOND * 0.50 , this.spawnRock, this);
 	game.time.events.loop(Phaser.Timer.SECOND * 0.2 , this.spawnStar, this);
 	this.txt = game.add.text(370, 120, '',{
 		font: "24px Arial", fill: "#ffffff" , align: "center"
@@ -96,8 +96,8 @@ Game.prototype.update = function()
 		this.score+=2;
 		this.hud.text = parseInt(this.score/10);
 		game.physics.arcade.overlap(this.sprite.fire1, this.rocks, function(){
-			this.score+=2;
-			this.hud.text += '\n2x';
+			this.score+=10;
+			this.hud.text += '\n5x';
 		}, null, this);
 	}
 	game.physics.arcade.collide(this.sprite, this.rocks, this.restart, null, this);
@@ -110,10 +110,10 @@ Game.prototype.update = function()
 Game.prototype.render = function()
 {
 	
-	//game.debug.body(this.sprite.fire1);
-	/*this.rocks.forEach(function(r){
+	game.debug.body(this.sprite);
+	this.rocks.forEach(function(r){
 		game.debug.body(r);
-	})*/
+	})
 	//game.debug.body(this.rocks);
 };
 
