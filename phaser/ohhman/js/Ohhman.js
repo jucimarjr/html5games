@@ -114,6 +114,7 @@ Ohhman.prototype = {
 	removeBall : function(player, ball) {		 		 		 
 		 ball.kill();		
 		 score.punctuateBall();		 
+		 this.verifyBallQuantity();
 	},
 	
 	//Verifica a colisão do ohhman com o ponto de decisao
@@ -175,6 +176,13 @@ Ohhman.prototype = {
 	removeFear : function(player, fear) {		 		 		 
 		 fear.kill();		
 		 score.punctuateFear();		 
+	},
+	
+	verifyBallQuantity : function() {
+		
+		if (map.balls.total <=0){
+			game.state.start('sceneWin');
+		}
 	},
 	
 	render : function () {
