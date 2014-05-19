@@ -24,29 +24,30 @@ Game.prototype.preload = function()
 	game.load.image('fg2','assets/tileSprites/frontGround2.png');
 	game.load.image('star','assets/spritesheets/star.png');
 	game.load.image('explosion','assets/spritesheets/fogo.png');
+	game.load.image('back','assets/spritesheets/back.png');
 	game.load.spritesheet('fire1','assets/spritesheets/fireYelow.png',154,56,3);
 	game.load.spritesheet('fire2','assets/spritesheets/fireBlue.png',154,56,3);
 	game.load.audio('turbine', 'assets/sound/turbina2.wav');
 	game.load.audio('hover', 'assets/sound/hover1.wav');
+	game.load.audio('explosion', 'assets/sound/explosion2.wav');
+	game.load.audio('game', 'assets/sound/game.wav');
 };
 
 Game.prototype.create = function()
 {
 	game.physics.startSystem(Phaser.Game.ARCADE);
 	
-		
+	this.playing = false;
 	this.bg = game.add.tileSprite(0,0,8000,600,'bg');
-	this.bg.autoScroll();
+	//this.bg.autoScroll();
 	this.frontGround2 = game.add.tileSprite(0,game.world.height-99,960,99,'fg2');
 	this.frontGround = game.add.tileSprite(0,game.world.height-35,960,35,'fg');
 	
 	this.rocks = game.add.group();
 	game.input.onDown.addOnce(this.start, this);
-	
 	this.stars = game.add.group();
 	this.stars.createMultiple(30, 'star');	
 	this.stars.enableBody = true;
-
 	this.sprite = new Spaceman(game, this, 350,200,'playerOne',1);//game.add.sprite(350,200,'playerOne');
 	game.add.tween(this.sprite).to({y:230}, 1200, Phaser.Easing.Quadratic.InOut, true, 0, 1000, true);
 	if(players == 2){
@@ -62,9 +63,9 @@ Game.prototype.create = function()
 		font: "24px Arial", fill: "#ffffff" , align: "center"
 	});
 	if(game.device.touch){
-		this.txt.text = 'Tap te screen to fly.\nAvoid the rocks.';
+		this.txt.text = 'Tap the screen to fly.\nAvoid the rocks.';
 	}else{
-		this.txt.text = 'Click te screen to fly.\nAvoid the rocks.';
+		this.txt.text = 'Click the screen to fly.\nAvoid the rocks.';
 	}
 	this.hud = game.add.text(game.world.centerX,75,parseInt(this.score/10),{
 		font: "28px Arial", fill: "#ffffff" , align: "center"
@@ -72,18 +73,23 @@ Game.prototype.create = function()
 	this.highscore = game.add.text(790, 25,'Best: '+localStorage["score"],{
 		font: "24px Arial", fill: "#ffffff" , align: "center"
 	});
+	this.btn = game.add.button(game.world.width - 85, game.world.height - 85, 'back',function(){
+		game.physics.arcade.gravity.y = 0;	
+		game.sound.stopAll();
+		game.state.start('menu', true);
+	},null);
 };
 
 Game.prototype.start = function(){
 	this.txt.text = '';
-	game.physics.arcade.gravity.y = this.gravity;
 	game.tweens.removeAll();
+	game.physics.arcade.gravity.y = this.gravity;
 	this.playing = true;
 };
 
 Game.prototype.update = function()
 {	
-	this.bg.x -= 0.2;
+	//this.bg.x -= 0.2;
 	this.frontGround2.tilePosition.x -= 10;
 	this.frontGround.tilePosition.x -= 15;
 	if(this.playing && players == 1){
@@ -104,8 +110,8 @@ Game.prototype.update = function()
 Game.prototype.render = function()
 {
 	
-	/*game.debug.body(this.sprite.fire1);
-	this.rocks.forEach(function(r){
+	//game.debug.body(this.sprite.fire1);
+	/*this.rocks.forEach(function(r){
 		game.debug.body(r);
 	})*/
 	//game.debug.body(this.rocks);
