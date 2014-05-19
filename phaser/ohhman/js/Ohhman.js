@@ -22,11 +22,7 @@ Ohhman.prototype = {
 		game.physics.enable(this.sprite);
 
 		//Impede que o ohhMan saia dos limites da tela
-		this.sprite.body.collideWorldBounds = true;
-		
-		//Insere pontuação na tela
-		var style = { font: "25px Arial", fill: "#ffffff", align: "right" };
-		this.scoreText = game.add.text(game.width/2, 10 , "" + this.score, style);	
+		this.sprite.body.collideWorldBounds = true;		
 	},
 	
 	update : function() {				
@@ -95,10 +91,8 @@ Ohhman.prototype = {
 			this.checkOverlap(this.sprite, clyde.sprite) ||
 			this.checkOverlap(this.sprite, inkey.sprite) ||
 			this.checkOverlap(this.sprite, pinky.sprite))
-			
-			//game.state.start('sceneLose');
-			this.verifyLivesNumber();
-			//game.time.events.add(2200, this.verifyLivesNumber(), this);
+						
+			life.decreaseLivesNumber();			
 	},
 	
 	//Verifica se 2 sprites se sobreporam, ou seja, se eles colidiram
@@ -119,14 +113,8 @@ Ohhman.prototype = {
 	
 	//Remove a bolinha amarela após colisão com o Ohhman
 	removeBall : function(player, ball) {		 		 		 
-		 ball.kill();		 		 
-		 this.punctuate();
-	},
-	
-	//Soma dez pontos a cada bolinha removida
-	punctuate : function () {
-		this.score += 10;
-	    this.scoreText.setText( "" + this.score );
+		 ball.kill();		
+		 score.punctuate();		 
 	},
 	
 	//Verifica a colisão do ohhman com o ponto de decisao
@@ -172,14 +160,6 @@ Ohhman.prototype = {
 			this.sprite.body.velocity.x = 0;
 			this.sprite.body.velocity.y = this.speed;
 		}	
-	},
-
-	verifyLivesNumber : function(){
-		console.log(lives);
-		lives.getFirstAlive().kill();
-		if(lives.countLiving() <= 0){			
-			game.state.start('sceneLose');
-		}
 	},
 	
 	render : function () {

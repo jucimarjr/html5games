@@ -3,6 +3,7 @@
 <head> 
 	<meta charset="UTF-8" />
 	<title>Zombie Invaders</title>
+	<link rel="stylesheet" type="text/css" href="fonts/fonts_game/stylesheet.css">
 	<script type="text/javascript" src="js/phaser.min.js"></script>
 	<script type="text/javascript" src="js/FilePaths.js"></script>
 	<script type="text/javascript" src="js/Splash.js"></script>
@@ -11,24 +12,6 @@
 	<script type="text/javascript" src="js/Person.js"></script>
 	<script type="text/javascript" src="js/Round.js"></script>
 	<script type="text/javascript" src="js/Game.js"></script>
-	<!--<style type="text/css">
-	        body {
-	        	border:1px dashed #000000;
-				position:absolute;
-				top:50%;
-				left:50%;
-				margin-top: -400px;
-				margin-left:-400px;
-	        }
-			
-			#footer {
-				position:absolute;
-				bottom:-200px;
-				width:100%;
-				height:200px;
-				overflow:scroll;
-			}
-	    </style>-->
 </head>
 
 <body>
@@ -59,6 +42,8 @@ function preload()
 	game.load.spritesheet('zombieRigth',spriteSheetsImageZombieRigth,100,168,3);
 	game.load.spritesheet('zombieDead',spriteSheetsImageZombieDead,100,136,10);
 	
+	game.load.image('round', spriteRound);
+	game.load.image('score', spriteScore);
 	game.load.image('cenario', imageCenario);
 	game.load.audio('audioZombieDead',audioZombieDead);
 	game.load.audio('audioBackGroundGame',audioBackGroundGame);

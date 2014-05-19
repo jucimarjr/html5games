@@ -46,4 +46,5 @@ var fp_bgLose = 'assets/screenshots/lose_800-600.png';
 	var fp_pinky = 'assets/images/pinky_36-36.png';
 	
 	//Vidas
-	var fp_lives = 'assets/images/heart_32-32.png'
+	var fp_life = 'assets/images/heart_32-32.png'
+	var fp_emptyLife = 'assets/images/heartEmpty_32-32.png';
