@@ -12,8 +12,8 @@ Inkey.prototype = {
 	},
 
 	create : function() {
-		//Adiciona o inkey na tela
-		this.sprite = game.add.sprite(game.world.width/2, game.world.height - 72, 'inkey');
+		//Adiciona o inkey na tela		
+		this.sprite = game.add.sprite(414, 540, 'inkey');
 		game.physics.enable(this.sprite);
 
 		//Impede que o inkey saia dos limites da tela

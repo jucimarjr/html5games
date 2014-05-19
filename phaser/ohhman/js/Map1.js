@@ -5,6 +5,7 @@ Map1 = function () {
 	this.balls = null;
 	this.decision = null;
 	this.fear = null;
+	this.earthLayer = null;
 };
 
 Map1.prototype = {
@@ -13,7 +14,7 @@ Map1.prototype = {
 		game.load.image('fp_walls', fp_walls);		
 		game.load.image('fp_balls', fp_balls);
 		game.load.image('fp_decision', fp_decision);		
-		game.load.image('fp_fear', fp_fear);
+		game.load.image('fp_fear', fp_fear);		
 	},
 
 	create : function() {
@@ -51,7 +52,7 @@ Map1.prototype = {
 		this.fear = game.add.group();
 		this.fear.enableBody = true;
 		
-		this.map.createFromObjects(fp_fearLayer, 4, 'fp_fear', 0, true, false, this.fear);	
+		this.map.createFromObjects(fp_fearLayer, 4, 'fp_fear', 0, true, false, this.fear);			
 	},
 	
 	update : function() {		

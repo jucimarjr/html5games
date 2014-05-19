@@ -17,12 +17,16 @@ Ohhman.prototype = {
 	},
 
 	create : function() {
-		//Adiciona o ohhMan na tela
-		this.sprite = game.add.sprite(game.world.width/2 - 18, game.height/2 + 60, 'ohhMan');
+		//Adiciona o ohhMan na tela		
+		this.sprite = game.add.sprite(396, 360, 'ohhMan');
 		game.physics.enable(this.sprite);
 
 		//Impede que o ohhMan saia dos limites da tela
 		this.sprite.body.collideWorldBounds = true;		
+		
+		//Faz a camera seguir o Ohhman
+		game.camera.follow(this.sprite);
+
 	},
 	
 	update : function() {				
