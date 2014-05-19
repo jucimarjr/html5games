@@ -95,4 +95,9 @@ Clyde.prototype = {
 		
 		this.setNewDirection();
 	},		
+	
+	//Remove o Clyde do jogo
+	kill : function() {
+		this.sprite.kill();
+	}
 };

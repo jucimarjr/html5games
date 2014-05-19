@@ -89,5 +89,10 @@ Pinky.prototype = {
 			this.sprite.y += 6;
 		
 		this.setNewDirection();
+	},
+	
+	//Remove o Pinky do jogo
+	kill : function() {
+		this.sprite.kill();
 	}
 };

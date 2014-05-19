@@ -88,5 +88,10 @@ Inkey.prototype = {
 			this.sprite.y += 6;
 		
 		this.setNewDirection();
+	},
+	
+	//Remove o Inkey do jogo
+	kill : function() {
+		this.sprite.kill();
 	}
 };

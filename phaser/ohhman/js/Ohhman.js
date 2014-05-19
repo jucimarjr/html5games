@@ -162,6 +162,11 @@ Ohhman.prototype = {
 		}	
 	},
 	
+	//Remove o Ohhman do jogo
+	kill : function() {
+		this.sprite.kill();
+	},
+	
 	render : function () {
 		//Mostra as informações do sprite
 		game.debug.bodyInfo(this.sprite, 36, 36);
