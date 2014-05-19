@@ -26,20 +26,6 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":36,
-                 "y":72
-                }, 
-                {
-                 "gid":2,
-                 "height":0,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":0,
                  "x":72,
                  "y":72
                 }, 
@@ -307,20 +293,6 @@
                  "visible":true,
                  "width":0,
                  "x":756,
-                 "y":72
-                }, 
-                {
-                 "gid":2,
-                 "height":0,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":756,
                  "y":108
                 }, 
                 {
@@ -502,20 +474,6 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":756,
-                 "y":576
-                }, 
-                {
-                 "gid":2,
-                 "height":0,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":0,
                  "x":720,
                  "y":576
                 }, 
@@ -531,20 +489,6 @@
                  "visible":true,
                  "width":0,
                  "x":684,
-                 "y":576
-                }, 
-                {
-                 "gid":2,
-                 "height":0,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":36,
                  "y":576
                 }, 
                 {
@@ -2702,6 +2646,20 @@
                  "width":0,
                  "x":720,
                  "y":144
+                }, 
+                {
+                 "gid":2,
+                 "height":0,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":720,
+                 "y":432
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -4508,7 +4466,74 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
+         "width":23,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "height":17,
+         "name":"Fear",
+         "objects":[
+                {
+                 "gid":4,
+                 "height":0,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":756,
+                 "y":72
+                }, 
+                {
+                 "gid":4,
+                 "height":0,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":756,
+                 "y":576
+                }, 
+                {
+                 "gid":4,
+                 "height":0,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":36,
+                 "y":72
+                }, 
+                {
+                 "gid":4,
+                 "height":0,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":36,
+                 "y":576
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":false,
          "width":23,
          "x":0,
          "y":0
@@ -4564,6 +4589,21 @@
          "spacing":0,
          "tileheight":6,
          "tilewidth":6
+        }, 
+        {
+         "firstgid":4,
+         "image":"..\/tiles\/fear.png",
+         "imageheight":36,
+         "imagewidth":36,
+         "margin":0,
+         "name":"fear",
+         "properties":
+            {
+
+            },
+         "spacing":0,
+         "tileheight":36,
+         "tilewidth":36
         }],
  "tilewidth":36,
  "version":1,

@@ -20,6 +20,7 @@ var fp_bgLose = 'assets/screenshots/lose_800-600.png';
 	var fp_wallLayer = 'Wall';
 	var fp_ballLayer = 'Ball';
 	var fp_decicionLayer = 'Decision';
+	var fp_fearLayer = 'Fear';
 
 
 //Sprites
@@ -37,6 +38,7 @@ var fp_bgLose = 'assets/screenshots/lose_800-600.png';
 	var fp_walls = 'assets/tilemaps/tiles/wall.png';	
 	var fp_balls = 'assets/tilemaps/tiles/ball.png';	
 	var fp_decision = 'assets/tilemaps/tiles/decision.png';		
+	var fp_fear = 'assets/tilemaps/tiles/fear.png';	
 	
 	//Personagens
 	var fp_ohhMan = 'assets/images/ohhMan_36-36.png';
