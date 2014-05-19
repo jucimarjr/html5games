@@ -152,8 +152,8 @@ Config.grass = {
 //Hero
 Config.hero = {
 	dir: {
-		normal: 'assets/spritesheets/HeroNormal_180-60.png',
-		attack: 'assets/spritesheets/HeroAttack_120-60.png'
+		normal: 'assets/spritesheets/HeroNormal_468-71.png',
+		attack: 'assets/spritesheets/HeroAttack_124-96.png'
 	},
 	layer: 'LayerHero',
 	gid: 12,
@@ -175,11 +175,11 @@ Config.hero = {
 	anchor: {
 		right: {
 			x: 0,
-			y: 0.5
+			y: 1
 		},
 		left: {
 			x: 0.5,
-			y: 0.5
+			y: 1
 		}
 	},
 	scale: {
@@ -194,8 +194,8 @@ Config.hero = {
 	},
 	frame: {
 		normal: {
-			width: 30,
-			height: 60,
+			width: 78,
+			height: 71,
 			stopped: 0,
 			jumping: 3,
 			falling: 4,
@@ -205,8 +205,8 @@ Config.hero = {
 			}
 		},
 		attack: {
-			width: 60,
-			height: 60,
+			width: 62,
+			height: 96,
 			hit: [0, 1]
 		}
 	}
