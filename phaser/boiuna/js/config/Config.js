@@ -382,10 +382,8 @@ Config.dragon = {
 		width: 90,
 		height: 90,
         move: {
-            one: 0,
-            two: 1,
-            three: 2,
-            four: 3
+			head: [0,1,2,3],
+			body: [7,6,5,4]
         }
 	},
     timeGrow: 1000 / Config.global.animationVelocity,
