@@ -1,13 +1,13 @@
 /*global Config, Phaser*/
 
-var Dragon = function (game, tilemap, hero, princess) {
+var Dragon = function (game, tilemap, hero, lady) {
 	"use strict";
     this.game = game;
 	this.head = null;
 	this.body = null;
 	this.hero = hero;
 	this.tilemap = tilemap;
-    this.princess = princess;
+    this.lady = lady;
 };
 Dragon.prototype = {
 	preload: function () {
@@ -26,16 +26,15 @@ Dragon.prototype = {
 		this.head.body.allowGravity = false;
 		this.head.animations.add('move', Config.dragon.frame.move.head, Config.global.animationVelocity, true);
 		this.head.animations.play('move');
-
 		this.growBody(Config.dragon.number.pieces);
 		this.moveRight();
 	},
 	
 	update: function () {
 		"use strict";
-        this.game.physics.arcade.overlap(this.head, this.princess.group, this.hitPrincess, null, this);
+        this.game.physics.arcade.overlap(this.head, this.lady.group, this.hitPrincess, null, this);
 		var tail = this.body.getFirstAlive();
-        if (tail === null){
+		if (tail === null){
 			this.head.destroy();
 			this.hero.win();
 			return;
@@ -78,21 +77,21 @@ Dragon.prototype = {
     },
     moveRight: function(){
     	var index = 0;
-		this.game.physics.arcade.moveToXY(this.head, Config.dragon.xf, this.head.y, 100);
+		this.game.physics.arcade.moveToXY(this.head, Config.dragon.xf, this.head.y, 500);
 		for (index = 0; index < this.body.length; index = index + 1) {
-			this.game.physics.arcade.moveToXY(this.body.getAt(index), 2 * Config.global.screen.width + 50, this.head.y, 100);
+			this.game.physics.arcade.moveToXY(this.body.getAt(index), 2 * Config.global.screen.width + 50, this.head.y, 500);
 		}
     },
     moveLeft: function(){
     	var index = 0;
-		this.game.physics.arcade.moveToXY(this.head, -50, this.head.y, 100);
+		this.game.physics.arcade.moveToXY(this.head, -50, this.head.y, 500);
 		for (index = 0; index < this.body.length; index = index + 1) {
-			this.game.physics.arcade.moveToXY(this.body.getAt(index), -50, this.head.y, 100);
+			this.game.physics.arcade.moveToXY(this.body.getAt(index), -50, this.head.y, 500);
 		}
     },
-    hitPrincess: function(head, princess){
+    hitPrincess: function(head, lady){
 
-        princess.kill();
+        lady.kill();
         
         if(this.head.scale.x > 0){
             this.grow();
