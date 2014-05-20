@@ -12,8 +12,8 @@ Clyde.prototype = {
 	},
 
 	create : function() {
-		//Adiciona o clyde na tela
-		this.sprite = game.add.sprite(game.world.width/2 - 18, game.world.height/2 - 20, 'clyde');
+		//Adiciona o clyde na tela		
+		this.sprite = game.add.sprite(396, 286, 'clyde');
 		game.physics.enable(this.sprite);
 
 		//Impede que o clyde saia dos limites da tela
@@ -95,4 +95,9 @@ Clyde.prototype = {
 		
 		this.setNewDirection();
 	},		
+	
+	//Remove o Clyde do jogo
+	kill : function() {
+		this.sprite.kill();
+	}
 };

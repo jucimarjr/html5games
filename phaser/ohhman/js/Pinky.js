@@ -12,8 +12,8 @@ Pinky.prototype = {
 	},
 
 	create : function() {
-		//Adiciona o pinky na tela
-		this.sprite = game.add.sprite(37, game.height/2 + 61, 'pinky');
+		//Adiciona o pinky na tela		
+		this.sprite = game.add.sprite(37, 361, 'pinky');
 		game.physics.enable(this.sprite);
 
 		//Impede que o pinky saia dos limites da tela
@@ -89,5 +89,10 @@ Pinky.prototype = {
 			this.sprite.y += 6;
 		
 		this.setNewDirection();
+	},
+	
+	//Remove o Pinky do jogo
+	kill : function() {
+		this.sprite.kill();
 	}
 };

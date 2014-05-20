@@ -17,12 +17,16 @@ Ohhman.prototype = {
 	},
 
 	create : function() {
-		//Adiciona o ohhMan na tela
-		this.sprite = game.add.sprite(game.world.width/2 - 18, game.height/2 + 60, 'ohhMan');
+		//Adiciona o ohhMan na tela		
+		this.sprite = game.add.sprite(396, 360, 'ohhMan');
 		game.physics.enable(this.sprite);
 
 		//Impede que o ohhMan saia dos limites da tela
 		this.sprite.body.collideWorldBounds = true;		
+		
+		//Faz a camera seguir o Ohhman
+		game.camera.follow(this.sprite);
+
 	},
 	
 	update : function() {				
@@ -31,6 +35,7 @@ Ohhman.prototype = {
 		this.verifyGhostCollision();
 		this.verifyBallCollision();		
 		this.verifyDecisionCollision();		
+		this.verifyFearCollision();
 	},
 	
 	
@@ -105,16 +110,15 @@ Ohhman.prototype = {
 	},
 	
 	//Verifica a colisão do ohhMan com as bolinhas amarelas
-	verifyBallCollision : function() {			
-		//this.sprite.body.setSize(6, 6);		
-		game.physics.arcade.overlap(this.sprite, map.balls, this.removeBall, null, this);				
-		//this.sprite.body.setSize(36, 36);
+	verifyBallCollision : function() {						
+		game.physics.arcade.overlap(this.sprite, map.balls, this.removeBall, null, this);						
 	},
 	
 	//Remove a bolinha amarela após colisão com o Ohhman
 	removeBall : function(player, ball) {		 		 		 
 		 ball.kill();		
-		 score.punctuate();		 
+		 score.punctuateBall();		 
+		 this.verifyBallQuantity();
 	},
 	
 	//Verifica a colisão do ohhman com o ponto de decisao
@@ -160,6 +164,29 @@ Ohhman.prototype = {
 			this.sprite.body.velocity.x = 0;
 			this.sprite.body.velocity.y = this.speed;
 		}	
+	},
+	
+	//Remove o Ohhman do jogo
+	kill : function() {
+		this.sprite.kill();
+	},
+	
+	//Verifica a colisão do ohhMan com os quadrados grandes
+	verifyFearCollision : function() {					
+		game.physics.arcade.overlap(this.sprite, map.fear, this.removeFear, null, this);						
+	},
+	
+	//Remove o quadrado grande após colisão com o Ohhman
+	removeFear : function(player, fear) {		 		 		 
+		 fear.kill();		
+		 score.punctuateFear();		 
+	},
+	
+	verifyBallQuantity : function() {
+		
+		if (map.balls.total <=0){
+			game.state.start('sceneWin');
+		}
 	},
 	
 	render : function () {
