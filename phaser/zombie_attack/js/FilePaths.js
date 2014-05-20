@@ -6,6 +6,7 @@ var btScore = 'bt_score.png';
 var btScoreSelecionado = 'bt_score_ativo.png';
 var btCredits = 'bt_credits.png';
 var btCreditsSelected = 'bt_credits_ativo.png';
+var btVoltar = 'voltar.png';
 
 //Sprites Cenários
 var imageCenario = 'assets/cenario.png';
@@ -21,7 +22,7 @@ var personHeigth = 267;
 var splashGroupImage = 'assets/screenshots/SplashTeam_800-600.png';
 var SplashGameImage = 'assets/screenshots/SplashGame_800-600.png';
 var screenMenu = 'assets/screenshots/MenuZombie.png';
-
+var splashCredits = 'assets/screenshots/Credits.png'
 //SpriteSheets
 
 //Spritesheets Botões do menu
