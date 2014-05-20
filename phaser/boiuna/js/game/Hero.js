@@ -25,14 +25,12 @@ Hero.prototype = {
 		this.game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
 		this.sprite.body.collideWorldBounds = true;
 		this.sprite.body.gravity.y = Config.hero.gravity;
-		this.sprite.animations.add('run', [Config.hero.frame.normal.run.one, Config.hero.frame.normal.run.two], Config.global.animationVelocity, true);
+		this.sprite.animations.add('run', Config.hero.frame.normal.run, Config.global.animationVelocity, true);
 		this.game.camera.follow(this.sprite);
+		this.sprite.events.onKilled.add(this.onKill, this);
 	},
 	update: function () {
 		"use strict";
-		if (this.sprite.alive === false) {
-			this.game.state.start('DefeatScreen');
-		}
 		this.game.physics.arcade.collide(this.sprite, this.platforms.mainLayer);
 	},
 	moveLeft: function () {
@@ -70,7 +68,9 @@ Hero.prototype = {
 	hit: function () {
 		"use strict";
 		if (this.sprite.key !== 'hero-attack') {
+			this.sprite.y -= Config.hero.frame.attack.height - Config.hero.frame.normal.height;
 			this.sprite.loadTexture('hero-attack');
+			this.sprite.body.setSize(Config.hero.frame.attack.width, Config.hero.frame.attack.height);
 			this.sprite.animations.add('attack', Config.hero.frame.attack.hit, Config.global.animationVelocity, true);
 		} else {
 			this.sprite.animations.play('attack');
@@ -78,8 +78,34 @@ Hero.prototype = {
 	},
 	restoreTexture: function () {
 		"use strict";
-		if (this.sprite.key !== 'hero-normal') {
+		if (this.sprite.key !== 'hero-normal' && this.sprite.alive) {
 			this.sprite.loadTexture('hero-normal');
+			this.sprite.body.setSize(Config.hero.frame.normal.width, Config.hero.frame.normal.height);
+			this.sprite.y += Config.hero.frame.attack.height - Config.hero.frame.normal.height;
 		}
+	},
+	hurt: function (damage) {
+		"use strict";
+		this.game.add.tween(this.sprite).to({alpha : 0.3}, 100, Phaser.Easing.Linear.None).to({alpha : 1}, 100, Phaser.Easing.Linear.None).start();
+		this.sprite.damage(damage);
+	},
+	onKill: function () {
+		"use strict";
+		this.sprite.visible = true;
+		var tweenDie = this.game.add.tween(this.game.world).to({alpha : 0.3}, 5000, Phaser.Easing.Linear.None).to({alpha : 1}, 100, Phaser.Easing.Linear.None).start();
+		tweenDie.onComplete.add(function () {this.game.state.start('DefeatScreen'); }, this);
+	},
+	stop: function () {
+		"use strict";
+		if (this.sprite.key === 'hero-normal') {
+			this.sprite.animations.stop();
+			this.sprite.frame = Config.hero.frame.normal.stopped;
+		}
+		this.sprite.body.velocity.x = Config.hero.velocity.initial.x;
+	},
+	win: function () {
+		"use strict";
+		var tweenWin = this.game.add.tween(this.game.world).to({alpha : 2}, 5000, Phaser.Easing.Linear.None).to({alpha : 1}, 100, Phaser.Easing.Linear.None).start();
+		tweenWin.onComplete.add(function () {this.game.state.start('VictoryScreen'); }, this);
 	}
 };

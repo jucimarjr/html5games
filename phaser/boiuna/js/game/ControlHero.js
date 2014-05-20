@@ -40,7 +40,7 @@ ControlHero.prototype = {
 		inputJumpLeft = this.buttonJumpLeft.update();
 		inputJumpRight = this.buttonJumpRight.update();
 		if (inputLeft === false && inputRight === false && inputUp === false && inputJumpLeft === false && inputJumpRight === false) {
-			this.stop();
+			this.hero.stop();
 		}
 		if (!this.hero.sprite.body.onFloor() && ((inputUp === false && inputJumpLeft === false && inputJumpRight === false) || (this.hero.jumpControl >= Config.hero.jump.max))) {
 			this.hero.jumpControl = 0;
@@ -48,13 +48,5 @@ ControlHero.prototype = {
 				this.hero.sprite.frame = Config.hero.frame.normal.falling;
 			}
 		}
-	},
-	stop: function () {
-		"use strict";
-		if (this.hero.sprite.key === 'hero-normal') {
-			this.hero.sprite.animations.stop();
-			this.hero.sprite.frame = Config.hero.frame.normal.stopped;
-		}
-		this.hero.sprite.body.velocity.x = Config.hero.velocity.initial.x;
 	}
 };
