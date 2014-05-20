@@ -2,21 +2,24 @@ var Menu = {};
 
 Menu = function (game) {
     this.game = game;
+    this.background = null;
     this.btnPlay = null;
     this.btnHowToPlay = null;
     this.btnHighScores = null;
     this.btnCredits = null;
+    this.btnBack = null;
 };
 
 Menu.prototype.preload = function(){
-	game.load.image('menu', screenMenu);
+	this.game.load.image('menu', screenMenu);
 	//game.load.atlas('buttons', spriteSheetsImageButtons, spriteSheetsJsonButtons);
-	game.load.atlas('buttons', spriteSheetsImageButtons, spriteSheetsJsonButtons);
+	this.game.load.atlas('buttons', spriteSheetsImageButtons, spriteSheetsJsonButtons);
 };
 
 Menu.prototype.create = function() {
-	var background = game.add.sprite(0, 0, 'menu');
-	background.name = 'background';
+	
+	this.background = this.game.add.sprite(0, 0, 'menu');
+	this.background.name = 'background';
 	
 
     var fadeout;
@@ -37,7 +40,7 @@ Menu.prototype.create = function() {
     	    this.btnHighScores.anchor.x = 0.5;
 
     this.btnCredits = game.add.button(410, 535, 'buttons',
-    	    function(){ this.credits(); }, this);
+    	    function(){ this.credits(this.background); }, this);
     	    this.btnCredits.setFrames(btCreditsSelected,btCredits);
     	    this.btnCredits.anchor.x = 0.5;
    
@@ -65,16 +68,39 @@ Menu.prototype.play = function () {
 //    });
 //}
 
-//Menu.prototype.credits = function () {
-//    this.fadeOut();
-//    fadeout.onComplete.add(function () {
-//        //this.game.state.start('Credits', Credits);
-//    });
-//};
+Menu.prototype.credits = function (background) {
+    this.fadeOut();
+    fadeout.onComplete.add(function () {
+      //this.game.state.start('Credits', Credits);
+    	background.alpha = 0.5;
+    	this.game.add.tween(background).to( { alpha: 0}, Phaser.Easing.Linear.None, true, 0, 1000, false);
+    	
+    	credits = game.add.sprite(-50, 200, 'credits');
+
+        credits.scale.setTo(0.5, 0.5);
+
+        creditsArrives = game.add.tween(credits);
+        
+        creditsArrives.to({x:250}, 1000, Phaser.Easing.Bounce.Out);
+        //creditsArrives.onComplete.add(backMenu, this);
+        
+        btnBack = game.add.button(324, 467, 'buttons',
+        function(){ BackMenu(credits); }, this);
+        btnBack.setFrames(btVoltar,btVoltar);
+        btnBack.anchor.x = 0.5;
+        
+        creditsArrives.start();
+        
+    });
+};
+
+Menu.prototype.BackMenu = function(Credits) {
+	console.log("bakcmenu");
+};
 
 Menu.prototype.fadeOut = function () {
     fadeout = game.add.tween(this.btnPlay).to({ alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
-//    fadeout = game.add.tween(this.btnHowToPlay).to({ alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
-//    fadeout = game.add.tween(this.btnHighScores).to({ alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
-  // fadeout = game.add.tween(this.btnCredits).to({ alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
+    fadeout = game.add.tween(this.btnHowToPlay).to({ alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
+    fadeout = game.add.tween(this.btnHighScores).to({ alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
+    fadeout = game.add.tween(this.btnCredits).to({ alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
 };

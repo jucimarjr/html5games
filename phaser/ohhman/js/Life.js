@@ -16,6 +16,9 @@ Life.prototype = {
 		for(var i = 0; i < 3; i++){
 			this.sprite.create(35 * i + 3, 1, 'life');				
 		}
+		
+		//Fixa a camera nas vidas
+		this.sprite.fixedToCamera = true;
 	},
 	
 	decreaseLivesNumber : function(){		
@@ -27,7 +30,8 @@ Life.prototype = {
 		pinky.kill();	
 			
 		this.sprite.getFirstAlive().kill();
-		game.add.sprite(35 * this.positionLife + 3, 1, 'emptyLife');
+		game.add.sprite(35 * this.positionLife + 3, 1, 'emptyLife');		
+		
 		this.positionLife++;
 		if(this.sprite.countLiving() <= 0){			
 			game.state.start('sceneLose');

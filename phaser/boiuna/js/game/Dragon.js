@@ -25,6 +25,7 @@ Dragon.prototype = {
         this.head = group.getTop();
 		this.game.physics.enable(this.head, Phaser.Physics.ARCADE);
 		this.head.body.allowGravity = false;
+        this.head.anchor.setTo[0.5,0.5];
 		this.head.animations.add('move', [Config.dragon.frame.move.one, Config.dragon.frame.move.two, Config.dragon.frame.move.three, Config.dragon.frame.move.four], Config.global.animationVelocity, true);
 		this.head.animations.play('move');
 
@@ -34,14 +35,18 @@ Dragon.prototype = {
 	
 	update: function () {
 		"use strict";
+        //this.game.physics.arcade.overlap(this.head, this.princess.group, this.hitPrincess, null, this);
+		//var tail = this.body.getFirstAlive();
+		/*
+		// Fabio
 		this.game.physics.arcade.collide(this.body, this.hero.sprite, this.hitHero, null, this);
-        this.game.physics.arcade.overlap(this.head, this.princess.group, this.hitPrincess, null, this);
-		var tail = this.body.getFirstAlive();
 		if(tail === null){
 			this.hero.win();
 			return;
 		}
-		if( (tail.x > 2*Config.global.screen.width) && (this.head.scale.x > 0)){
+		//Fabio
+        if( (tail.x > 2*Config.global.screen.width) && (this.head.scale.x > 0)){
+>>>>>>> 18e363306aa6dd291d52970f28d51f5d9b4452c8
         	this.head.scale.x *= -1;
         	this.head.y += this.head.height/2;
             console.log(this.body.length);
@@ -57,11 +62,23 @@ Dragon.prototype = {
         	this.growBody(this.body.length);
         	this.moveRight();
         }
+        */
+        this.head.body.velocity.copyFrom(game.physics.arcade.velocityFromAngle(0,150));
+        var part = this.body.getBottom();
+        this.body.bringToTop(part);
+        part.poiter.setTo(this.head.x, this.head.y);
+        //this.body.setAll('x+','6');
+        for(var i=1; i<5;i++){
+            part = this.body.getAt(i);
+            part.x += 45;
+        }
 	},
 	grow: function () {
         "use strict";
         this.body.create(this.head.x, this.head.y, 'dragon');
         var sprite = this.body.getTop();
+        sprite.poiter = new Phaser.Point(this.head.x, this.head.y);
+        sprite.anchor.setTo[0.5,0.5];
         sprite.animations.add('fly', [4, 5, 6, 7], Config.global.animationVelocity, true);
         sprite.animations.play('fly');
 		sprite.body.immovable = true;
@@ -69,10 +86,8 @@ Dragon.prototype = {
     growBody: function(size){
     	if (this.body.length > 0)
     		this.body.destroy(true,true);
-    	for(var i=0;i < size; i++){
+    	for(var i=1;i < size; i++){
     		this.grow();
-            var space = this.head.width;
-            this.head.x += space;
     	}
 
     },

@@ -5,10 +5,10 @@ var Rock = function(game,posX,posY)
 	this.outOfBoundsKill = true;
 	this.anchor.setTo(0.5,0.5);
 	this.frame = game.rnd.integerInRange(0,4);
-	this.body.setSize(46,46,4,4);
+	this.body.setSize(40,40,2,2);
 	this.body.allowGravity = false;
 	this.body.angularVelocity = game.rnd.integerInRange(100,250);
-	this.body.velocity.x= -600;
+	this.body.velocity.x= -500;
 	game.add.existing(this);
 };
 

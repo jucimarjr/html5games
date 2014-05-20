@@ -14,32 +14,29 @@ Menu.prototype = {
 	create : function() {
 		var bg = game.add.sprite(0, 0, 'bgMenu');
 		var fadeout = null;
-
-		var position = 130;
-	    var range = 100;
-
-	    this.btnPlay = game.add.button(game.world.centerX, game.world.centerY - (position - 0*range), 'ssButtons',
+		
+	    this.btnPlay = game.add.button(400, 170, 'ssButtons',
 	    function(){
 	    	this.goPlay();
 	    }, this);
 	    this.btnPlay.setFrames(fp_btnPlaySelected, fp_btnPlay);
 	    this.btnPlay.anchor.x = 0.5;
 		    		
-	    this.btnHighScores = game.add.button(game.world.centerX, game.world.centerY - (position - 1*range), 'ssButtons',
+	    this.btnHighScores = game.add.button(400, 270, 'ssButtons',
 	    function() {
 	    	this.goHighScores();
 	    }, this);
 	    this.btnHighScores.setFrames(fp_btnHighScoresSelected, fp_btnHighScores);
 	    this.btnHighScores.anchor.x = 0.5;
 
-	    this.btnHowToPlay = game.add.button(game.world.centerX, game.world.centerY - (position - 2*range), 'ssButtons',
+	    this.btnHowToPlay = game.add.button(400, 370, 'ssButtons',
 	    function(){
 	    	this.goHowToPlay();
 	    }, this);
 	    this.btnHowToPlay.setFrames(fp_btnHowToPlaySelected, fp_btnHowToPlay);
 	    this.btnHowToPlay.anchor.x = 0.5;
 		
-	    this.btnCredits = game.add.button(game.world.centerX, game.world.centerY - (position - 3*range), 'ssButtons',
+	    this.btnCredits = game.add.button(400, 470, 'ssButtons',
 	    function(){
 	    	this.goCredits();
 	    }, this);
