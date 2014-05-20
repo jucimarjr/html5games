@@ -23,7 +23,7 @@ var Spaceman = function(game, gameClass, x, y, sprite, player){
 	this.fire1.animations.add('flying',[0,1,2,1],15,true);
 	this.fire1.animations.play('flying');
 	this.fire1.body.setSize(160,120,20,10);	//return this;
-	this.upSpeed = 50;
+	this.upSpeed = 60;
 	this.player = player;
 	if(sound){
 		this.music = game.add.audio('game', 0.5).play('',0,1,true);
