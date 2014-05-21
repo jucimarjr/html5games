@@ -14,25 +14,6 @@ this.high = 0;
 this.turbine = null;
 };
 
-Game.prototype.preload = function()
-{
-	game.load.spritesheet('rock','assets/spritesheets/rocks.png',58,58,4);
-	game.load.spritesheet('playerOne','assets/spritesheets/playerOne.png',154,56,10);
-	game.load.spritesheet('playerTwo','assets/spritesheets/playerTwo.png',154,56,5);
-	game.load.image('bg','assets/tileSprites/background.png');
-	game.load.image('fg','assets/tileSprites/frontGround.png');
-	game.load.image('fg2','assets/tileSprites/frontGround2.png');
-	game.load.image('star','assets/spritesheets/star.png');
-	game.load.image('explosion','assets/spritesheets/fogo.png');
-	game.load.image('back','assets/spritesheets/back.png');
-	game.load.spritesheet('fire1','assets/spritesheets/fireYelow.png',154,56,3);
-	game.load.spritesheet('fire2','assets/spritesheets/fireBlue.png',154,56,3);
-	game.load.audio('turbine', 'assets/sound/turbina2.wav');
-	game.load.audio('hover', 'assets/sound/hover1.wav');
-	game.load.audio('explosion', 'assets/sound/explosion2.wav');
-	game.load.audio('game', 'assets/sound/game.wav');
-};
-
 Game.prototype.create = function()
 {
 	game.physics.startSystem(Phaser.Game.ARCADE);
@@ -92,12 +73,13 @@ Game.prototype.update = function()
 	//this.bg.x -= 0.2;
 	this.frontGround2.tilePosition.x -= 10;
 	this.frontGround.tilePosition.x -= 15;
+	this.hud.fill = '#ffffff';
 	if(this.playing && players == 1){
 		this.score+=2;
 		this.hud.text = parseInt(this.score/10);
 		game.physics.arcade.overlap(this.sprite.fire1, this.rocks, function(){
 			this.score+=10;
-			this.hud.text += '\n5x';
+			this.hud.fill = '#ff9900';
 		}, null, this);
 	}
 	game.physics.arcade.collide(this.sprite, this.rocks, this.restart, null, this);
@@ -109,11 +91,11 @@ Game.prototype.update = function()
 
 Game.prototype.render = function()
 {
-	
+	/*
 	game.debug.body(this.sprite);
 	this.rocks.forEach(function(r){
 		game.debug.body(r);
-	})
+	})*/
 	//game.debug.body(this.rocks);
 };
 
@@ -137,8 +119,6 @@ Game.prototype.spawnStar = function(){
 }
 
 Game.prototype.restart = function(s, r){
-	console.log(s);
-	//game.add.tween(this.sprite).to({y:230}, 1200, Phaser.Easing.Quadratic.InOut, true, 0, 1000, true);
 	if(players == 1){
 		this.sprite.explode();
 	}else if(players == 2){
@@ -157,7 +137,6 @@ Game.prototype.restart = function(s, r){
 	}
 	this.rocks.removeAll(true);
 	game.physics.arcade.gravity.y = 0;
-	game.input.onDown.addOnce(this.start, this);
 	this.playing = false;
 	if(localStorage["score"] < parseInt(this.score/10)){
 		localStorage["score"] = parseInt(this.score/10);

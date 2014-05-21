@@ -1,11 +1,5 @@
 Credits = function (game) {
     this.game = game;
-    this.screenName = 'creditScreen';
-    this.image = 'assets/screens/credits.png';
-};
-
-Credits.prototype.preload = function(){
-    game.load.image(this.screenName, this.image);
 };
 
 Credits.prototype.create = function() {
