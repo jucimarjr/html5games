@@ -1,5 +1,5 @@
 var Dino = function()
-{
+{	
 	this.sprite;
 	this.jumpButton
 	this.cursors;
@@ -61,5 +61,10 @@ Dino.prototype.enableJump = function()
 		this.sprite.body.velocity.y = -this.jumpForce;
 	}
 }
+
+Dino.prototype.smash = function(dino,target)
+{
+	target.destroy();
+};
 
 
