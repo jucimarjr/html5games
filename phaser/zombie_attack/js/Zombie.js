@@ -53,6 +53,7 @@ Zombie.prototype.preload = function(){
 function killZombie(){
 	//this.sound.play();
 	//this.spriteZombie.destroy();
+	this.spriteZombie.inputEnabled=false;
 	this.spriteZombie.body.velocity.x  = 0;
     this.spriteZombie.body.velocity.y  = 0;
 	this.alive = false;

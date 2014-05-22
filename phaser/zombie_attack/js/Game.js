@@ -63,6 +63,8 @@ Game.prototype.update = function () {
 		this.game.time.events.repeat(Phaser.Timer.SECOND * 2, this.amountPeople, this.initPeople, this);
 	}
 	//this.game.physics.arcade.moveToObject(bullet, this.player, 500);
+	
+	
 };
 
 
@@ -105,6 +107,7 @@ Game.prototype.initZombies = function(person){
 		var zombie = new Zombie(this.idZombie,this.game, person, this);
 		this.groupZombies.add(zombie.spriteZombie);
 	}
+	//console.log("quantidade de zumbis no grupo",this.groupZombies.length);
 };
 
 Game.prototype.createZombie = function(person){

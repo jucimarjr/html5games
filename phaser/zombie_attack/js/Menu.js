@@ -40,7 +40,7 @@ Menu.prototype.create = function() {
     	    this.btnHighScores.anchor.x = 0.5;
 
     this.btnCredits = game.add.button(410, 535, 'buttons',
-    	    function(){ this.credits(this.background); }, this);
+    	    function(){ this.credits(this.background, this); }, this);
     	    this.btnCredits.setFrames(btCreditsSelected,btCredits);
     	    this.btnCredits.anchor.x = 0.5;
    
@@ -68,11 +68,11 @@ Menu.prototype.play = function () {
 //    });
 //}
 
-Menu.prototype.credits = function (background) {
+Menu.prototype.credits = function (background,parent) {
     this.fadeOut();
     fadeout.onComplete.add(function () {
       //this.game.state.start('Credits', Credits);
-    	background.alpha = 0.5;
+    	background.alpha = 0.75;
     	this.game.add.tween(background).to( { alpha: 0}, Phaser.Easing.Linear.None, true, 0, 1000, false);
     	
     	credits = game.add.sprite(-50, 200, 'credits');
@@ -81,11 +81,11 @@ Menu.prototype.credits = function (background) {
 
         creditsArrives = game.add.tween(credits);
         
-        creditsArrives.to({x:250}, 1000, Phaser.Easing.Bounce.Out);
+        creditsArrives.to({x:300}, 1000, Phaser.Easing.Bounce.Out);
         //creditsArrives.onComplete.add(backMenu, this);
         
-        btnBack = game.add.button(324, 467, 'buttons',
-        function(){ BackMenu(credits); }, this);
+        btnBack = game.add.button(500, 420, 'buttons',
+        function(){parent.BackMenu(credits); }, this);
         btnBack.setFrames(btVoltar,btVoltar);
         btnBack.anchor.x = 0.5;
         
@@ -94,8 +94,14 @@ Menu.prototype.credits = function (background) {
     });
 };
 
-Menu.prototype.BackMenu = function(Credits) {
+Menu.prototype.BackMenu = function(credits) {
 	console.log("bakcmenu");
+	creditscreditsArrives = game.add.tween(credits);
+    
+	creditsArrives.to({ x: -300 }, 1000, Phaser.Easing.Bounce.Out);
+	creditsArrives.start();
+	//while(creditsArrives.isRunning){}
+	this.create();
 };
 
 Menu.prototype.fadeOut = function () {
