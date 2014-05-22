@@ -11,19 +11,9 @@ Menu = function (game) {
     this.button = 0;
 };
 
-Menu.prototype.preload = function(){
-
-    //game.stage.backgroundColor = '#111111';
-    game.load.spritesheet('botoes', 'assets/screens/btns.png', 600, 72);
-    game.load.spritesheet('sound', 'assets/spritesheets/soundbtn.png', 74,74);
-    game.load.image('title', 'assets/screens/menu.png');
-		
-};
-
 Menu.prototype.create = function() {
 	this.game.world.setBounds(0, 0, 800, 480);
     var fadeout;
-    
     this.title = game.add.sprite(game.world.centerX,game.world.centerY, 'title');
     this.title.anchor.setTo(0.5,0.5);
     this.button = 1;

@@ -12,14 +12,9 @@
 		<meta property="og:image:height" content="200">
 
 	<meta charset="UTF-8" />
-	<title>Spaceman</title>
+	<title>Map</title>
 	<script type="text/javascript" src="js/phaser.min.js"></script>
 	<script type="text/javascript" src="js/Game.js"></script>
-	<script type="text/javascript" src="js/Rock.js"></script>
-	<script type="text/javascript" src="js/Spaceman.js"></script>
-	<script type="text/javascript" src="js/Splash.js"></script>
-	<script type="text/javascript" src="js/Menu.js"></script>
-	<script type="text/javascript" src="js/Credits.js"></script>
     <style type="text/css">
         body {
         	background-color:#ffffff;
@@ -55,41 +50,17 @@
 	</div>
 <script type="text/javascript">
 	var game = new Phaser.Game(960, 600, Phaser.CANVAS, 'game', { preload: preload, create: create, update: update, render: render });
-game.state.add('splash', Splash, false);
 game.state.add('game', Game, false);
-game.state.add('menu', Menu, false);
-game.state.add('credits', Credits, false);
 
 function preload()
 {
-    game.load.image('creditScreen', 'assets/screens/credits.png');
-    game.load.spritesheet('botoes', 'assets/screens/btns.png', 600, 72);
-    game.load.spritesheet('sound', 'assets/spritesheets/soundbtn.png', 74,74);
-    game.load.image('title', 'assets/screens/menu.png');
-	game.load.spritesheet('rock','assets/spritesheets/rocks.png',58,58,4);
-	game.load.spritesheet('playerOne','assets/spritesheets/playerOne.png',154,56,10);
-	game.load.spritesheet('playerTwo','assets/spritesheets/playerTwo.png',154,56,5);
-	game.load.image('bg','assets/tileSprites/background.png');
-	game.load.image('fg','assets/tileSprites/frontGround.png');
-	game.load.image('fg2','assets/tileSprites/frontGround2.png');
-	game.load.image('star','assets/spritesheets/star.png');
-	game.load.image('explosion','assets/spritesheets/fogo.png');
-	game.load.image('back','assets/spritesheets/back.png');
-	game.load.spritesheet('fire1','assets/spritesheets/fireYelow.png',154,56,3);
-	game.load.spritesheet('fire2','assets/spritesheets/fireBlue.png',154,56,3);
-	game.load.audio('turbine', 'assets/sound/turbina2.wav');
-	game.load.audio('hover', 'assets/sound/hover1.wav');
-	game.load.audio('explosion', 'assets/sound/explosion2.wav');
-	game.load.audio('game', 'assets/sound/game.wav');
+	
 	
 }
 
 function create()
 {
-	game.scale.maxWidth = 960;
-	game.scale.setShowAll();
-	game.scale.refresh()
-	game.state.start('splash');
+	game.state.start('game');
 	
 }
 
@@ -121,14 +92,6 @@ document.documentElement.addEventListener('keydown', function (e) {
 
 </script>
 <div>
-<center>
-<h3>Desenvolvedores:</h3>
-<a href = 'https://www.facebook.com/people/Luiz-Gama/1167844510'>Luiz Gama</a><br>
-<a href = 'https://www.facebook.com/artuurfernandes'>Artur Fernandes</a><br>
-<a href = 'https://www.facebook.com/matheus.palhetabarbosa'>Matheus Palheta</a>
-<h3>Orientador:</h3>
-<a href = 'https://www.facebook.com/jucimar.jr'>Jucimar Jr.</a>
-</center>
 
 </div>
 </body>

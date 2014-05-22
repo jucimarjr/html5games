@@ -12,7 +12,6 @@ Splash.prototype.preload = function() {
 Splash.prototype.create = function() {
 	var fundo = game.add.sprite(0, 0, 'splashTeam');
 	fundo.alpha = 0;
-	
 	var fadein = game.add.tween(fundo).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true, 0, 0, true);
 	setTimeout(function() {
 		var fadeout = game.add.tween(fundo).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true, 0, 0, true);
