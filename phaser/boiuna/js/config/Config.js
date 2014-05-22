@@ -51,33 +51,33 @@ Config.menu = {
 	x: 0,
 	y: 0,
 	buttonPlay: {
-		dir: 'assets/spritesheets/ButtonPlay_600-95.png',
+		dir: 'assets/spritesheets/ButtonPlay_423-75.png',
 		x: Config.global.screen.width * 0.5,
 		y: Config.global.screen.height * 0.4,
-		width: 149,
-		height: 94,
+		width: 141,
+		height: 75,
 		anchor: {
 			x: 0.5,
 			y: 0.5
 		}
 	},
 	buttonHowToPlay: {
-		dir: 'assets/spritesheets/ButtonHowToPlay_600-95.png',
+		dir: 'assets/spritesheets/ButtonHowToPlay_825-75.png',
 		x: Config.global.screen.width * 0.5,
 		y: Config.global.screen.height * 0.6,
-		width: 149,
-		height: 94,
+		width: 275,
+		height: 75,
 		anchor: {
 			x: 0.5,
 			y: 0.5
 		}
 	},
 	buttonCredits: {
-		dir: 'assets/spritesheets/ButtonCredits_600-95.png',
+		dir: 'assets/spritesheets/ButtonCredits_612-75.png',
 		x: Config.global.screen.width * 0.5,
 		y: Config.global.screen.height * 0.8,
-		width: 149,
-		height: 94,
+		width: 204,
+		height: 75,
 		anchor: {
 			x: 0.5,
 			y: 0.5
@@ -356,8 +356,8 @@ Config.fire = {
 	damage: Config.hero.health.initial / 6000,
 	intervalShooting: 100,
 	adjust: {
-		x: 50,
-		y: 0
+		x: 60,
+		y: 5
 	},
 	velocity: Config.smallDragon.velocity + 100,
 	lifespan: 3000

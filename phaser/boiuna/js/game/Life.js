@@ -21,6 +21,7 @@ Life.prototype = {
 		}
 		this.group.setAll('alive', true);
 		this.group.setAll('fixedToCamera', true);
+		this.lifesLost = 0;
 	},
 	update: function () {
 		"use strict";

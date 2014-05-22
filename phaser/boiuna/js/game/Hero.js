@@ -93,7 +93,10 @@ Hero.prototype = {
 		"use strict";
 		this.sprite.visible = true;
 		var tweenDie = this.game.add.tween(this.game.world).to({alpha : 0.3}, 10000, Phaser.Easing.Linear.None).to({alpha : 1}, 100, Phaser.Easing.Linear.None).start();
-		tweenDie.onComplete.add(function () {this.game.state.start('DefeatScreen'); }, this);
+		tweenDie.onComplete.add(function () {
+			this.game.world.alpha = 1;
+			this.game.state.start('DefeatScreen'); 
+		}, this);
 	},
 	stop: function () {
 		"use strict";
@@ -103,9 +106,14 @@ Hero.prototype = {
 		}
 		this.sprite.body.velocity.x = Config.hero.velocity.initial.x;
 	},
+	fall: function () {
+		this.jumpControl = 0;
+		if (this.sprite.key === 'hero-normal') {
+			this.sprite.frame = Config.hero.frame.normal.falling;
+		}
+	},
 	win: function () {
 		"use strict";
-		var tweenWin = this.game.add.tween(this.game.world).to({alpha : 2}, 5000, Phaser.Easing.Linear.None).to({alpha : 1}, 100, Phaser.Easing.Linear.None).start();
-		tweenWin.onComplete.add(function () {this.game.state.start('VictoryScreen'); }, this);
+		this.game.state.start('VictoryScreen'); 
 	}
 };

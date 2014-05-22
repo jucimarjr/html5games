@@ -77,16 +77,16 @@ Dragon.prototype = {
     },
     moveRight: function(){
     	var index = 0;
-		this.game.physics.arcade.moveToXY(this.head, Config.dragon.xf, this.head.y, 500);
+		this.game.physics.arcade.moveToXY(this.head, Config.dragon.xf, this.head.y, 100);
 		for (index = 0; index < this.body.length; index = index + 1) {
-			this.game.physics.arcade.moveToXY(this.body.getAt(index), 2 * Config.global.screen.width + 50, this.head.y, 500);
+			this.game.physics.arcade.moveToXY(this.body.getAt(index), 2 * Config.global.screen.width + 50, this.head.y, 100);
 		}
     },
     moveLeft: function(){
     	var index = 0;
-		this.game.physics.arcade.moveToXY(this.head, -50, this.head.y, 500);
+		this.game.physics.arcade.moveToXY(this.head, -50, this.head.y, 100);
 		for (index = 0; index < this.body.length; index = index + 1) {
-			this.game.physics.arcade.moveToXY(this.body.getAt(index), -50, this.head.y, 500);
+			this.game.physics.arcade.moveToXY(this.body.getAt(index), -50, this.head.y, 100);
 		}
     },
     hitPrincess: function(head, lady){

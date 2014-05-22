@@ -42,11 +42,9 @@ ControlHero.prototype = {
 		if (inputLeft === false && inputRight === false && inputUp === false && inputJumpLeft === false && inputJumpRight === false) {
 			this.hero.stop();
 		}
-		if (!this.hero.sprite.body.onFloor() && ((inputUp === false && inputJumpLeft === false && inputJumpRight === false) || (this.hero.jumpControl >= Config.hero.jump.max))) {
-			this.hero.jumpControl = 0;
-			if (this.hero.sprite.key === 'hero-normal') {
-				this.hero.sprite.frame = Config.hero.frame.normal.falling;
-			}
+		if (!this.hero.sprite.body.onFloor() && ((inputUp === false && inputJumpLeft === false && inputJumpRight === false) ||
+			(this.hero.jumpControl >= Config.hero.jump.max))) {
+			this.hero.fall();
 		}
 	}
 };
