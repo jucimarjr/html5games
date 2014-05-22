@@ -1,14 +1,18 @@
 var Dino = function()
 {	
+	this.safetyMode = false;
+	this.lives = 3;
+	this.score = 0;
 	this.sprite;
 	this.jumpButton
 	this.cursors;
-	this.playerSpeed = 200;
+	this.playerSpeed = 250;
 	this.jumpForce = 520;
 	this.soundJump;
 }
 Dino.prototype.add = function(posX, posY)
 {
+	this.score = 0;
 	this.sprite = game.add.sprite(posX, posY ,'dino');
 	game.physics.enable(this.sprite);
 	this.sprite.anchor.setTo(0.4 ,0.5);
@@ -22,6 +26,10 @@ Dino.prototype.add = function(posX, posY)
 	this.cursors = game.input.keyboard.createCursorKeys();
 	this.jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 	this.soundJump = game.add.audio('jump',soundLevel,false);
+	this.hearts = game.add.group();
+	this.hearts.fixedToCamera=true;
+	for(var i =0; i<this.lives;i++)
+		this.hearts.create(i*60,0, 'heart');
 }
 
 Dino.prototype.enableMovement = function () 
@@ -65,6 +73,38 @@ Dino.prototype.enableJump = function()
 Dino.prototype.smash = function(dino,target)
 {
 	target.destroy();
+	switch(target.tag)
+	{
+		case 'car': this.score += 15;
+		break;
+		case 'human': this.score += 5;
+		break;
+		default : this.score +=1; 
+	}
 };
 
+Dino.prototype.takeDamage = function()
+{
+	if(this.hearts.countLiving()!=0)
+	{
+		if(!this.safetyMode)
+		{
+			this.safetyMode = true
+			this.sprite.alpha= 0;
+			this.safetyTween = game.add.tween(this.sprite).to( { alpha: 1 }, 100, Phaser.Easing.Linear.None, true, 0, 10, true);
+			this.safetyTween.onComplete.add(function(){this.safetyMode = false},this);
+			this.hearts.getTop().destroy();
+		}
+	}
+	else
+		this.callGameOver();
+};
 
+Dino.prototype.callGameOver = function()
+{
+		this.sprite.destroy();
+		game.add.sprite(game.camera.x+250, game.camera.y+150,'gameOver');
+	    game.input.onDown.add(function() {
+        game.state.start('game');
+        })
+};

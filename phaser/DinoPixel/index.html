@@ -54,6 +54,7 @@ var game = new Phaser.Game(960, 600, Phaser.CANVAS, 'game', { preload: preload, 
 var soundLevel = 0.5;
 var menuTrack;
 var style = { font: "18px Arial", fill: "#ffffff", align: "center" };
+var style2 = { font: "24px karmatic arcade", fill: "#ffffff", align: "center" };
 game.state.add('splash', Splash, false);
 game.state.add('game', Game, false);
 game.state.add('credits', Credits, false);
@@ -61,21 +62,17 @@ game.state.add('credits', Credits, false);
 function preload()
 {
 	
+	game.load.audio('menuSound','assets/musics/menu.mp3');
 	game.load.audio('track','assets/musics/jogo.mp3');
 	game.load.audio('jump','assets/sfx/jump.mp3');
-	game.load.audio('menuSound','assets/musics/menu.mp3');
 	game.load.audio('smash','assets/sfx/esmagando.mp3');
 	game.load.audio('playsound', 'assets/sfx/menusound.mp3');
 	game.load.audio('creditsSound', 'assets/sfx/menusoundluan.mp3');
 	game.load.audio('insertCoin','assets/sfx/insertCoin.mp3');
 	game.load.image('splashGame','assets/screens/DinoPixel.png');
+	game.load.image('gameOver','assets/screens/gameOver.png');
 	game.load.image('pressStart','assets/screens/pressOnScreenToStart.png');
-	game.load.image('regularGuy','assets/sprites/regularGuy.png');
-	game.load.image('regularGirl','assets/sprites/regularGirl.png');
-	game.load.image('man','assets/sprites/man.png');
-	game.load.image('medic','assets/sprites/medic.png');
-	game.load.image('muscleMan','assets/sprites/muscleMan.png');
-	game.load.image('worker1','assets/sprites/worker1.png');
+	game.load.image('heart','assets/sprites/heart.png');
 	game.load.image('backGround','assets/sprites/backGround.png');
 	game.load.image('cityThings', 'assets/tileMaps/cityThings.png');
 	game.load.image('urbanBuildings1', 'assets/tileMaps/urbanBuildings1.png');
@@ -83,7 +80,8 @@ function preload()
 	game.load.image('playButton', 'assets/screens/play.png', 434, 102);
 	game.load.image('creditsButton','assets/screens/cerdits.png', 606, 98);
     game.load.spritesheet('dino','assets/spriteSheets/dp.png',144,128,10);
-	game.load.spritesheet('car','assets/spriteSheets/cars.png',128,64,4);
+	game.load.spritesheet('carTexture','assets/spriteSheets/cars.png',128,64,4);
+	game.load.spritesheet('humanTexture','assets/spriteSheets/humans.png',32,36,7);
 	game.load.tilemap('stage', 'assets/tileMaps/stage.json', null, Phaser.Tilemap.TILED_JSON);
 	
 }
