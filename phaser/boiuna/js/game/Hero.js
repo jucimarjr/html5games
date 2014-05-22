@@ -92,7 +92,7 @@ Hero.prototype = {
 	onKill: function () {
 		"use strict";
 		this.sprite.visible = true;
-		var tweenDie = this.game.add.tween(this.game.world).to({alpha : 0.3}, 5000, Phaser.Easing.Linear.None).to({alpha : 1}, 100, Phaser.Easing.Linear.None).start();
+		var tweenDie = this.game.add.tween(this.game.world).to({alpha : 0.3}, 10000, Phaser.Easing.Linear.None).to({alpha : 1}, 100, Phaser.Easing.Linear.None).start();
 		tweenDie.onComplete.add(function () {this.game.state.start('DefeatScreen'); }, this);
 	},
 	stop: function () {

@@ -392,11 +392,20 @@ Config.dragon = {
     }
 };
 
-//Princess
-Config.princess = {
-	dir: 'assets/spritesheets/Princess_150-60.png',
+//Lady
+Config.lady = {
+	dir: 'assets/spritesheets/Lady_153-78.png',
 	frame: {
 		width: 51,
+		height: 78
+	}
+};
+
+//Princess
+Config.princess = {
+	dir: 'assets/spritesheets/Princess_135-78.png',
+	frame: {
+		width: 45,
 		height: 78
 	}
 };

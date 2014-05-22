@@ -25,7 +25,6 @@ SmallDragon.prototype = {
 		"use strict";
 		var i;
 		this.game.physics.arcade.collide(this.hero.sprite, this.group, this.collision, null, this);
-		//this.game.physics.arcade.collide(this.group, this.platforms.mainLayer);
 		this.group.forEachAlive(this.move, this);
 		if (this.game.time.now > this.bornTime) {
 			if (Config.smallDragon.intervalBorning.actual > Config.smallDragon.intervalBorning.min) {

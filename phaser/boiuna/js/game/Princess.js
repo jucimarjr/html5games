@@ -13,7 +13,7 @@ var Princess = function (game, platforms, lady, dragon, hero) {
 Princess.prototype = {
 	preload: function () {
 		"use strict";
-		this.game.load.spritesheet('princess', 'assets/spritesheets/Lady_153-78.png', Config.princess.frame.width, Config.princess.frame.height);
+		this.game.load.spritesheet('princess', 'assets/spritesheets/Princess_135-78.png', Config.princess.frame.width, Config.princess.frame.height);
 	},
 	create: function () {
 		"use strict";
@@ -23,6 +23,8 @@ Princess.prototype = {
 		this.sprite.alpha = 0;
 	    this.game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
 		this.sprite.body.gravity.y = 1000;
+		this.sprite.animations.add('stay', [0, 1, 2, 1], Config.global.animationVelocity, true);
+        this.sprite.animations.play('stay');
 	},
 	update: function () {
 		"use strict";
