@@ -7,7 +7,6 @@ State.HowToPlay = function (game) {
 State.HowToPlay.prototype = {
 	preload: function () {
 		"use strict";
-		this.game.load.image('how-to-play', Config.howToPlay.dir);
 	},
 	create: function () {
 		"use strict";

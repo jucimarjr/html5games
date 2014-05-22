@@ -7,7 +7,6 @@ State.Credits = function (game) {
 State.Credits.prototype = {
 	preload: function () {
 		"use strict";
-		this.game.load.image('credits', Config.credits.dir);
 	},
 	create: function () {
 		"use strict";
