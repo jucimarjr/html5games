@@ -128,16 +128,16 @@ Ohhman.prototype = {
 	
 	correctPosition : function(player, decision) {				
 		if (decision.body.checkCollision.left)
-			this.sprite.x += 6;
+			this.sprite.x += 7;
 		
 		if (decision.body.checkCollision.right)
-			this.sprite.x -= 6;
+			this.sprite.x -= 7;
 			
 		if (decision.body.checkCollision.down)
-			this.sprite.y -= 6;
+			this.sprite.y -= 7;
 		
 		if (decision.body.checkCollision.up)
-			this.sprite.y += 6;
+			this.sprite.y += 7;
 		
 		this.keepDirection();
 	},		

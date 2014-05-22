@@ -1,14 +1,13 @@
 /*global Config, Phaser*/
 
-var Dragon = function (game, tilemap, hero, princess) {
+var Dragon = function (game, tilemap, hero, lady) {
 	"use strict";
     this.game = game;
 	this.head = null;
 	this.body = null;
 	this.hero = hero;
 	this.tilemap = tilemap;
-    this.princess = princess;
-	//this.time = 0;
+    this.lady = lady;
 };
 Dragon.prototype = {
 	preload: function () {
@@ -25,20 +24,22 @@ Dragon.prototype = {
         this.head = group.getTop();
 		this.game.physics.enable(this.head, Phaser.Physics.ARCADE);
 		this.head.body.allowGravity = false;
-        this.head.anchor.setTo[0.5,0.5];
-		this.head.animations.add('move', [Config.dragon.frame.move.one, Config.dragon.frame.move.two, Config.dragon.frame.move.three, Config.dragon.frame.move.four], Config.global.animationVelocity, true);
+		this.head.animations.add('move', Config.dragon.frame.move.head, Config.global.animationVelocity, true);
 		this.head.animations.play('move');
-
 		this.growBody(Config.dragon.number.pieces);
 		this.moveRight();
 	},
 	
 	update: function () {
 		"use strict";
-        //this.game.physics.arcade.overlap(this.head, this.princess.group, this.hitPrincess, null, this);
-		//var tail = this.body.getFirstAlive();
-		/*
-        if( (tail.x > 2*Config.global.screen.width) && (this.head.scale.x > 0)){
+        this.game.physics.arcade.overlap(this.head, this.lady.group, this.hitPrincess, null, this);
+		var tail = this.body.getFirstAlive();
+		if (tail === null){
+			this.head.destroy();
+			this.hero.win();
+			return;
+		}
+		if( (tail.x > 2*Config.global.screen.width) && (this.head.scale.x > 0)){
         	this.head.scale.x *= -1;
         	this.head.y += this.head.height/2;
             console.log(this.body.length);
@@ -54,51 +55,43 @@ Dragon.prototype = {
         	this.growBody(this.body.length);
         	this.moveRight();
         }
-        */
-        this.head.body.velocity.copyFrom(game.physics.arcade.velocityFromAngle(0,150));
-        var part = this.body.getBottom();
-        this.body.bringToTop(part);
-        part.poiter.setTo(this.head.x, this.head.y);
-        //this.body.setAll('x+','6');
-        for(var i=1; i<5;i++){
-            part = this.body.getAt(i);
-            part.x += 45;
-        }
+		this.game.physics.arcade.collide(this.body, this.hero.sprite, this.hitHero, null, this);
 	},
 	grow: function () {
         "use strict";
         this.body.create(this.head.x, this.head.y, 'dragon');
         var sprite = this.body.getTop();
-        sprite.poiter = new Phaser.Point(this.head.x, this.head.y);
-        sprite.anchor.setTo[0.5,0.5];
-        sprite.animations.add('fly', [4, 5, 6, 7], Config.global.animationVelocity, true);
+        sprite.animations.add('fly', Config.dragon.frame.move.body, Config.global.animationVelocity, true);
         sprite.animations.play('fly');
+		sprite.body.immovable = true;
     },
     growBody: function(size){
     	if (this.body.length > 0)
     		this.body.destroy(true,true);
-    	for(var i=1;i < size; i++){
-    		this.grow();
+    	for(var i=0;i < size; i++){
+			this.grow();
+			Config.dragon.frame.move.body.unshift(Config.dragon.frame.move.body.pop());
+			this.head.x += this.head.width;
     	}
 
     },
     moveRight: function(){
     	var index = 0;
-		this.game.physics.arcade.moveToXY(this.head, Config.dragon.xf, this.head.y, 100);
+		this.game.physics.arcade.moveToXY(this.head, Config.dragon.xf, this.head.y, 500);
 		for (index = 0; index < this.body.length; index = index + 1) {
-			this.game.physics.arcade.moveToXY(this.body.getAt(index), 2 * Config.global.screen.width + 50, this.head.y, 100);
+			this.game.physics.arcade.moveToXY(this.body.getAt(index), 2 * Config.global.screen.width + 50, this.head.y, 500);
 		}
     },
     moveLeft: function(){
     	var index = 0;
-		this.game.physics.arcade.moveToXY(this.head, -50, this.head.y, 100);
+		this.game.physics.arcade.moveToXY(this.head, -50, this.head.y, 500);
 		for (index = 0; index < this.body.length; index = index + 1) {
-			this.game.physics.arcade.moveToXY(this.body.getAt(index), -50, this.head.y, 100);
+			this.game.physics.arcade.moveToXY(this.body.getAt(index), -50, this.head.y, 500);
 		}
     },
-    hitPrincess: function(head, princess){
+    hitPrincess: function(head, lady){
 
-        princess.kill();
+        lady.kill();
         
         if(this.head.scale.x > 0){
             this.grow();
@@ -114,6 +107,12 @@ Dragon.prototype = {
         }
             
 
-    }
+    },
+	hitHero: function(spriteHero, spriteSection){
+		if(spriteSection == this.body.getBottom() && this.hero.sprite.key === 'hero-attack'){
+			spriteSection.destroy();
+		} else {
+			this.hero.hurt(100);
+		}
+	}
 };
-

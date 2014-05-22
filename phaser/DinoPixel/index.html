@@ -17,7 +17,6 @@
 	<script type="text/javascript" src="js/Human.js"></script>
 	<script type="text/javascript" src="js/Game.js"></script>
 	<script type="text/javascript" src="js/Credits.js"></script>
-	<script type="text/javascript" src="js/Menu.js"></script>
 	<script type="text/javascript" src="js/Splash.js"></script>
 	<script type="text/javascript" src="js/Dino.js"></script>
 	<script type="text/javascript" src="js/Car.js"></script>
@@ -57,40 +56,41 @@ var menuTrack;
 var style = { font: "18px Arial", fill: "#ffffff", align: "center" };
 game.state.add('splash', Splash, false);
 game.state.add('game', Game, false);
-game.state.add('menu', Menu, false);
 game.state.add('credits', Credits, false);
 
 function preload()
 {
 	
+	game.load.audio('track','assets/musics/jogo.mp3');
+	game.load.audio('jump','assets/sfx/jump.mp3');
+	game.load.audio('menuSound','assets/musics/menu.mp3');
+	game.load.audio('smash','assets/sfx/esmagando.mp3');
+	game.load.audio('playsound', 'assets/sfx/menusound.mp3');
+	game.load.audio('creditsSound', 'assets/sfx/menusoundluan.mp3');
+	game.load.audio('insertCoin','assets/sfx/insertCoin.mp3');
 	game.load.image('splashGame','assets/screens/DinoPixel.png');
 	game.load.image('pressStart','assets/screens/pressOnScreenToStart.png');
-	game.load.audio('jump','assets/sfx/jump.wav');
-	game.load.audio('menuSound','assets/musics/menu.ogg');
-	game.load.audio('smash','assets/sfx/esmagando.wav');
-	game.load.audio('insertCoin','assets/sfx/insertCoin.wav');
 	game.load.image('regularGuy','assets/sprites/regularGuy.png');
 	game.load.image('regularGirl','assets/sprites/regularGirl.png');
 	game.load.image('man','assets/sprites/man.png');
 	game.load.image('medic','assets/sprites/medic.png');
 	game.load.image('muscleMan','assets/sprites/muscleMan.png');
 	game.load.image('worker1','assets/sprites/worker1.png');
-	game.load.audio('track','assets/musics/jogo.ogg');
 	game.load.image('backGround','assets/sprites/backGround.png');
-	game.load.tilemap('stage', 'assets/tileMaps/stage.json', null, Phaser.Tilemap.TILED_JSON);
 	game.load.image('cityThings', 'assets/tileMaps/cityThings.png');
 	game.load.image('urbanBuildings1', 'assets/tileMaps/urbanBuildings1.png');
 	game.load.image('urbanBuildings2', 'assets/tileMaps/urbanBuildings2.png');
-	game.load.image('back1','assets/sprites/back1.png');
-	game.load.image('back2','assets/sprites/back2.png');
+	game.load.image('playButton', 'assets/screens/play.png', 434, 102);
+	game.load.image('creditsButton','assets/screens/cerdits.png', 606, 98);
     game.load.spritesheet('dino','assets/spriteSheets/dp.png',144,128,10);
 	game.load.spritesheet('car','assets/spriteSheets/cars.png',128,64,4);
+	game.load.tilemap('stage', 'assets/tileMaps/stage.json', null, Phaser.Tilemap.TILED_JSON);
 	
 }
 function create()
 {
 	menuTrack = game.add.audio('menuSound',soundLevel,true);
-	game.state.start('splash');
+	game.state.start('game');
 }
 
 </script>

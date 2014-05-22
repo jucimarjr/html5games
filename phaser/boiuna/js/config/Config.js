@@ -3,7 +3,7 @@
 //Global
 var Config = {
 	global: {
-		animationVelocity: 6,
+		animationVelocity: 8,
 		screen: {
 			width: 960,
 			height: 600,
@@ -175,11 +175,11 @@ Config.hero = {
 	anchor: {
 		right: {
 			x: 0,
-			y: 1
+			y: 0.5
 		},
 		left: {
 			x: 0.5,
-			y: 1
+			y: 0.5
 		}
 	},
 	scale: {
@@ -199,10 +199,7 @@ Config.hero = {
 			stopped: 0,
 			jumping: 3,
 			falling: 4,
-			run: {
-				one: 1,
-				two: 2
-			}
+			run: [1, 5, 2, 0]
 		},
 		attack: {
 			width: 62,
@@ -307,7 +304,7 @@ Config.buttonJumpRight = {
 
 //SmallDragon
 Config.smallDragon = {
-	dir: 'assets/spritesheets/SmallDragon_90-60.png',
+	dir: 'assets/spritesheets/SmallDragon_380-52.png',
 	velocity: 150,
 	xi: 1920,
 	yi: 0,
@@ -320,11 +317,11 @@ Config.smallDragon = {
 	anchor: {
 		left: {
 			x: 0,
-			y: 0
+			y: 0.5
 		},
 		right: {
 			x: 0.5,
-			y: 0
+			y: 0.5
 		}
 	},
 	scale: {
@@ -338,29 +335,29 @@ Config.smallDragon = {
 		}
 	},
 	frame: {
-		width: 30,
-		height: 60,
-		move: [0, 1]
+		width: 95,
+		height: 52,
+		move: [0, 1, 2, 3]
 	},
 	number: 10
 };
 
 //Fire
 Config.fire = {
-	dir: 'assets/spritesheets/Fire_20-10.png',
+	dir: 'assets/spritesheets/Fire_40-10.png',
 	number: 100,
-	animationVelocity: 42,
+	animationVelocity: 24,
 	frame: {
 		hight: 10,
 		width: 10,
-		move: [0, 1]
+		move: [0, 1, 2, 3]
 	},
 	range: 500,
 	damage: Config.hero.health.initial / 6000,
 	intervalShooting: 100,
 	adjust: {
-		x: 15,
-		y: 30
+		x: 50,
+		y: 0
 	},
 	velocity: Config.smallDragon.velocity + 100,
 	lifespan: 3000
@@ -379,16 +376,14 @@ Config.life = {
 Config.dragon = {
 	dir: 'assets/spritesheets/Boiuna_360-270.png',
     layer: 'LayerDragon',
-    gid: 21,
+    gid: 22,
     xf: Config.global.screen.width * 2 + 50,
 	frame: {
 		width: 90,
 		height: 90,
         move: {
-            one: 0,
-            two: 1,
-            three: 2,
-            four: 3
+			head: [0,1,2,3],
+			body: [7,6,5,4]
         }
 	},
     timeGrow: 1000 / Config.global.animationVelocity,
@@ -401,7 +396,7 @@ Config.dragon = {
 Config.princess = {
 	dir: 'assets/spritesheets/Princess_150-60.png',
 	frame: {
-		width: 30,
-		height: 60
+		width: 51,
+		height: 78
 	}
 };

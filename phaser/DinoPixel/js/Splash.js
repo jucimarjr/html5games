@@ -19,7 +19,7 @@ Splash.prototype.create = function() {
 			fundo.anchor.setTo(0.5,0.5);
 			fundo.x = game.width/2;
 			fundo.y = game.height/2;
-			game.state.start('menu')	
+			game.state.start('game');	
 		});
 	}, 3000);
 };

@@ -62,7 +62,25 @@ game.state.add('credits', Credits, false);
 
 function preload()
 {
-	
+    game.load.image('creditScreen', 'assets/screens/credits.png');
+    game.load.spritesheet('botoes', 'assets/screens/btns.png', 600, 72);
+    game.load.spritesheet('sound', 'assets/spritesheets/soundbtn.png', 74,74);
+    game.load.image('title', 'assets/screens/menu.png');
+	game.load.spritesheet('rock','assets/spritesheets/rocks.png',58,58,4);
+	game.load.spritesheet('playerOne','assets/spritesheets/playerOne.png',154,56,10);
+	game.load.spritesheet('playerTwo','assets/spritesheets/playerTwo.png',154,56,5);
+	game.load.image('bg','assets/tileSprites/background.png');
+	game.load.image('fg','assets/tileSprites/frontGround.png');
+	game.load.image('fg2','assets/tileSprites/frontGround2.png');
+	game.load.image('star','assets/spritesheets/star.png');
+	game.load.image('explosion','assets/spritesheets/fogo.png');
+	game.load.image('back','assets/spritesheets/back.png');
+	game.load.spritesheet('fire1','assets/spritesheets/fireYelow.png',154,56,3);
+	game.load.spritesheet('fire2','assets/spritesheets/fireBlue.png',154,56,3);
+	game.load.audio('turbine', 'assets/sound/turbina2.wav');
+	game.load.audio('hover', 'assets/sound/hover1.wav');
+	game.load.audio('explosion', 'assets/sound/explosion2.wav');
+	game.load.audio('game', 'assets/sound/game.wav');
 	
 }
 
