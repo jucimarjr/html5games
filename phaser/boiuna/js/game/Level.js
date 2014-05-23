@@ -6,10 +6,6 @@ var Level = function (game) {
 	this.sprite = null;
 };
 Level.prototype = {
-	preload: function () {
-		"use strict";
-		this.game.load.image('game-background', 'assets/images/GameBackground_1920-600.png');
-	},
 	create: function () {
 		"use strict";
 		this.game.physics.startSystem(Phaser.Physics.ARCADE);

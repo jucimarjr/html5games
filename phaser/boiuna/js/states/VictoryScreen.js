@@ -5,10 +5,6 @@ State.VictoryScreen = function (game) {
 	this.game = game;
 };
 State.VictoryScreen.prototype = {
-	preload: function () {
-		"use strict";
-		this.game.load.image('victory-screen', Config.victoryScreen.dir);
-	},
 	create: function () {
 		"use strict";
 		var background = this.game.add.sprite(Config.victoryScreen.x, Config.victoryScreen.y, 'victory-screen');

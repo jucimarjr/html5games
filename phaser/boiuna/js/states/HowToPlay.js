@@ -5,10 +5,6 @@ State.HowToPlay = function (game) {
 	this.game = game;
 };
 State.HowToPlay.prototype = {
-	preload: function () {
-		"use strict";
-		this.game.load.image('how-to-play', Config.howToPlay.dir);
-	},
 	create: function () {
 		"use strict";
 		var background = this.game.add.sprite(Config.howToPlay.x, Config.howToPlay.y, 'how-to-play');

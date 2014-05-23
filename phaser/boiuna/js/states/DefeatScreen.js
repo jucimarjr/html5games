@@ -5,10 +5,6 @@ State.DefeatScreen = function (game) {
 	this.game = game;
 };
 State.DefeatScreen.prototype = {
-	preload: function () {
-		"use strict";
-		this.game.load.image('defeat-screen', Config.defeatScreen.dir);
-	},
 	create: function () {
 		"use strict";
 		var background = this.game.add.sprite(Config.defeatScreen.x, Config.defeatScreen.y, 'defeat-screen');

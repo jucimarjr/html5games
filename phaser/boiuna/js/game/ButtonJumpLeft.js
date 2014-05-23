@@ -7,10 +7,6 @@ var ButtonJumpLeft = function (game, hero) {
 	this.sprite = null;
 };
 ButtonJumpLeft.prototype = {
-	preload: function () {
-		"use strict";
-		this.game.load.spritesheet('jump-left', Config.buttonJumpLeft.dir, Config.buttonJumpLeft.frame.width, Config.buttonJumpLeft.frame.height);
-	},
 	create: function () {
 		"use strict";
 		this.sprite = this.game.add.button(Config.buttonJumpLeft.x, Config.buttonJumpLeft.y, 'right', null, null, Config.buttonJumpLeft.frame.over, Config.buttonJumpLeft.frame.out, Config.buttonJumpLeft.frame.down, Config.buttonJumpLeft.frame.up);
