@@ -55,7 +55,7 @@ Config.gameSplash = {
 	x: 0,
 	y: 0,
 	time: {
-		nextState: 4000
+		nextState: 2000
 	}
 };
 
@@ -82,7 +82,7 @@ Config.menu = {
 	buttonPlay: {
 		dir: 'assets/spritesheets/ButtonPlay_141-75_3.png',
 		x: Config.global.screen.width * 0.5,
-		y: Config.global.screen.height * 0.4,
+		y: Config.global.screen.height * 0.55,
 		frame: {
 			width: 141,
 			height: 75,
@@ -99,7 +99,7 @@ Config.menu = {
 	buttonHowToPlay: {
 		dir: 'assets/spritesheets/ButtonHowToPlay_275-75_3.png',
 		x: Config.global.screen.width * 0.5,
-		y: Config.global.screen.height * 0.6,
+		y: Config.global.screen.height * 0.7,
 		frame: {
 			width: 275,
 			height: 75,
@@ -116,7 +116,7 @@ Config.menu = {
 	buttonCredits: {
 		dir: 'assets/spritesheets/ButtonCredits_204-75_3.png',
 		x: Config.global.screen.width * 0.5,
-		y: Config.global.screen.height * 0.8,
+		y: Config.global.screen.height * 0.85,
 		frame: {
 			width: 204,
 			height: 75,
@@ -129,10 +129,6 @@ Config.menu = {
 			x: 0.5,
 			y: 0.5
 		}
-	},
-	textStyle: {
-		font: '25px Ms Sans Serif',
-		fill: '#ffffff'
 	}
 };
 
@@ -161,7 +157,18 @@ Config.credits = {
 Config.victoryScreen = {
 	dir: 'assets/images/VictoryScreen_960-600.png',
 	x: 0,
-	y: 0
+	y: 0,
+	message: {
+		text: "O seu tempo foi: ",
+		style: {
+			font: '5em Old English Text MT',
+			fill: '#ffc90e'
+		},
+		anchor: {
+			x: 0.5,
+			y: 0.5
+		}
+	}
 };
 
 //DefeatScreen
@@ -388,8 +395,8 @@ Config.smallDragon = {
 	},
 	damage: Config.hero.health.initial / 600,
 	intervalBorning: {
-		actual: 30000,
-		min: 20000,
+		actual: 10000,
+		min: 5000,
 		decrement: 1000
 	},
 	anchor: {
@@ -468,9 +475,9 @@ Config.dragon = {
 	},
 	timeGrow: 1000 / Config.global.animationVelocity,
 	number: {
-		pieces: 5
+		pieces: 10
 	},
-	velocity: 1000,
+	velocity: 140,
 	damage: Config.hero.health.initial / 2
 };
 

@@ -25,7 +25,6 @@ Dragon.prototype = {
 		this.growBody(Config.dragon.number.pieces);
 		this.moveRight();
 	},
-	
 	update: function () {
 		"use strict";
 		var tail, space;

@@ -25,10 +25,10 @@ State.VictoryScreen.prototype = {
 		"use strict";
 		var message, text;
 		this.background.events.onInputDown.removeAll();
-		this.background.alpha = 0.3;
-		message = "O seu tempo foi: " + this.timePlayed;
-		text = this.game.add.text(Config.global.screen.width / 2, Config.global.screen.height / 2, message, { font: '16px Arial', fill: '#fff' });
-		text.anchor.setTo(0.5, 0.5);
+		this.background.alpha = 0.1;
+		message = Config.victoryScreen.message.text + this.timePlayed;
+		text = this.game.add.text(Config.global.screen.width / 2, Config.global.screen.height / 2, message, Config.victoryScreen.message.style);
+		text.anchor = Config.victoryScreen.message.anchor;
 		this.background.events.onInputDown.add(this.onSecondClick, this);
 	},
 	onSecondClick: function () {
