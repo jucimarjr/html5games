@@ -90,7 +90,7 @@ Game.prototype.create = function()
 		this.creditsButton.fixedToCamera = true;
 	},this);
 
-		this.fpsTxt = game.add.text(0,0,'fps',style);
+		this.fpsTxt = game.add.text(0,game.camera.height-30,'fps',style);
 		this.fpsTxt.fixedToCamera = true;
 	//adicionando o player no mundo
 	this.player.add(32,1400);
