@@ -47,7 +47,7 @@ Game.prototype.create = function()
 	this.map.setCollisionBetween(2152,2156, true,'Camada de Tiles 4');
 	this.map.setCollisionBetween(2083,2085, true,'Camada de Tiles 4');
 	this.layerBg1.scrollFactorX = 0.3;
-	this.layerBg2.scrollFactorX = 0.2;
+	this.layerBg2.scrollFactorX = 0.1;
 	//this.layer4.debug = true;
 	
 	this.layer4.resizeWorld();
