@@ -17,27 +17,21 @@ var Game = function()
 	this.objectHuman = new Array();
 	this.objectCar;
 	this.cars;
-	this.SoundSmash;
 	this.map;
-	this.humanTexture = new Array();
-		this.humanTexture[0] = 'regularGuy';
-		this.humanTexture[1] = 'regularGirl';
-		this.humanTexture[2] = 'man';
-		this.humanTexture[3] = 'medic';
-		this.humanTexture[4] = 'muscleMan';
-		this.humanTexture[5] = 'worker1';
 		this.playButton;
 		this.creditsButton;
 }
 Game.prototype.create = function()
 {
+	//audios
+	this.track = game.add.audio('track',soundLevel,true)
 	this.insertCoinSound = game.add.audio('insertCoin',soundLevel);
+	//fisicas
 	game.physics.startSystem(Phaser.Game.ARCADE);
 	game.physics.arcade.gravity.y = this.gravity;
-	
+	//cenario
 	this.bg = game.add.tileSprite(0,0,960,600,'backGround');
 	this.bg.fixedToCamera = true;
-	// Cenario
 	this.map = game.add.tilemap('stage');
 	this.map.addTilesetImage('cityThings','cityThings');
 	this.map.addTilesetImage('urbanBuildings1','urbanBuildings1');
@@ -56,18 +50,20 @@ Game.prototype.create = function()
 	this.layerBg2.scrollFactorX = 0.2;
 	//this.layer4.debug = true;
 	
-	this.layer.resizeWorld();
+	this.layer4.resizeWorld();
+	//grupos
 	this.cars = game.add.group();
 	this.humans = game.add.group();
 	this.objectCar= new Car();
-	
-	for(var i = 0, l = this.humanTexture.length; i< 25; i++)
+
+	//instanciando e colocando humans no mapa
+	for(var i = 0; i< 25; i++)
 	{
 		this.objectHuman[i] = new Human()
-		this.objectHuman[i].add(200 * i,1300, this.humanTexture[game.rnd.integerInRange(0 , l)]);
+		this.objectHuman[i].add(200 * i,1300);
 		this.humans.add(this.objectHuman[i].sprite);
 	}
-		
+	//botoes do menu	
 	this.pressStart = game.add.sprite(game.camera.width/2, game.camera.height - 60 ,'pressStart');
 	this.pressStart.anchor.setTo(0.5, 0.5);
 	this.pressStart.fixedToCamera = true;
@@ -82,11 +78,7 @@ Game.prototype.create = function()
 	this.gameName.y = 100;
 	game.camera.y = game.world.height;
 	this.cameraMove =game.add.tween(game.camera).to({ x: game.world.width - 960 }, 50000, Phaser.Easing.Linear.None, true).to({ x: 0 }, 50000, Phaser.Easing.Linear.None) .loop();
-	this.player.add(32,1400);
-	this.player.sprite.kill();
-	game.time.advancedTiming = true;
-	this.fpsTxt = game.add.text(0,0,'fps',style);
-	this.fpsTxt.fixedToCamera = true;
+
 	game.input.onDown.addOnce(function()
 	{
 		this.insertCoinSound.play();
@@ -97,31 +89,40 @@ Game.prototype.create = function()
 		this.playButton.fixedToCamera = true;
 		this.creditsButton.fixedToCamera = true;
 	},this);
+
+		this.fpsTxt = game.add.text(0,game.camera.height-30,'fps',style);
+		this.fpsTxt.fixedToCamera = true;
+	//adicionando o player no mundo
+	this.player.add(32,1400);
+	this.player.sprite.kill();
+	this.player.hearts.visible =false;
 	
 }
 
 Game.prototype.update = function()
 {
 	game.physics.arcade.collide(this.layer4, [this.humans, this.cars, this.player.sprite]);
-	game.physics.arcade.collide(this.player.sprite, [this.humans,this.cars], this.player.smash );
-	
+	game.physics.arcade.collide(this.player.sprite, [this.humans,this.cars], this.player.smash,null, this.player );
+	game.physics.arcade.overlap(this.player.sprite, this.cars, this.player.takeDamage,null, this.player );	
+	if(this.inGame)
+		this.scoreTxt.text = 'Score  '+ this.player.score;
 	this.fpsTxt.text = game.time.fps + ' fps';
 
 	this.player.enableMovement();
 	this.player.enableJump();
-	
+	//spawnando os carros
 	if(game.time.now > this.carSpawnTime)
 	{
 		var r = game.rnd.integerInRange(0,1);
 		if (r==1)
-		this.objectCar.addWithSpeed(game.camera.x ,1450,'car',500);
+		this.objectCar.addWithSpeed(game.camera.x ,1450,200);
 		else
-		this.objectCar.addWithSpeed(game.camera.x + game.camera.width ,1450,'car',-500);
+		this.objectCar.addWithSpeed(game.camera.x + game.camera.width ,1450,-200);
 		this.cars.add(this.objectCar.sprite);
 		this.objectCar.sprite.outOfBoundsKill = true;
 		this.carSpawnTime = game.time.now + 2000 + game.rnd.integerInRange(0,1000);
 	}
-	
+	//adicionando comportamento nos humans
 	for (var i = 0; i < this.objectHuman.length; i++)
 	{
 		this.objectHuman[i].stayNormal();	
@@ -130,12 +131,18 @@ Game.prototype.update = function()
 
 Game.prototype.goGame = function()
 {
+	game.time.advancedTiming = true;
 	var playsound = game.add.audio('playsound',soundLevel);
 	playsound.play();
 	this.fadeoutGoGame = game.add.tween(this.playButton).to( { alpha: 0 }, 100, Phaser.Easing.Linear.None, true, 0, 15, true);
 	this.fadeoutGoGameSound = game.add.tween(menuTrack).to( { volume: 0 }, 1500, Phaser.Easing.Linear.None, true, 0, 0, true);
 	this.fadeoutGoGame.onComplete.add(function()
 	{ 
+		this.player.hearts.visible = true;
+		this.scoreTxt = game.add.text(game.camera.width-250,16,'Score 0',style2);
+		this.scoreTxt.fixedToCamera = true;
+		this.inGame =true;
+		this.track.play();
 		this.cameraMove.stop();
 		this.playButton.destroy();
 		this.creditsButton.destroy();
@@ -156,4 +163,4 @@ Game.prototype.goCredits = function()
 	{ 
 		game.state.start('credits')
 	});
-}
+};

@@ -29,8 +29,8 @@ Life.prototype = {
 		inkey.kill();
 		pinky.kill();	
 			
-		this.sprite.getFirstAlive().kill();
-		game.add.sprite(35 * this.positionLife + 3, 1, 'emptyLife');		
+		this.sprite.getFirstAlive().kill();		
+		this.sprite.create(35 * this.positionLife + 3, 1, 'emptyLife');	
 		
 		this.positionLife++;
 		if(this.sprite.countLiving() <= 0){			

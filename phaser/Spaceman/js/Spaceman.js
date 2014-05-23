@@ -91,6 +91,7 @@ Spaceman.prototype.resetSpaceman = function(){
 		game.add.tween(this).to({y:280}, 1200, Phaser.Easing.Quadratic.InOut, true, 0, 1000, true);
 	}
 	game.input.onDown.addOnce(this.gameClass.start, this.gameClass);
+	game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onDown.addOnce(this.gameClass.start, this.gameClass)
 	//this.animations.play('flying');
 };
 
