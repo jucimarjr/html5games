@@ -40,7 +40,6 @@ State.Game.prototype = {
 		this.life.update();
 		this.fire.update();
 		this.smallDragon.update();
-		this.lady.update();
 		this.dragon.update();
 		this.princess.update();
 	}

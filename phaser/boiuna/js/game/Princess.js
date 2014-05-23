@@ -22,19 +22,12 @@ Princess.prototype = {
 		this.sprite.body.gravity.y = Config.princess.gravity;
 		this.sprite.animations.add('stay', Config.princess.frame.stay, Config.global.animationVelocity, true);
 		this.sprite.animations.play('stay');
+		this.lady.group.forEachAlive(this.setOnKilledEvent, this);
 	},
 	update: function () {
 		"use strict";
 		this.game.physics.arcade.collide(this.sprite, this.platforms.mainLayer);
-		if (this.lady.group.getFirstAlive() === null && this.flag) {
-			this.flag = false;
-			this.sprite.alpha = 1;
-			this.dragon.head.y = this.sprite.y;
-			this.dragon.head.x = -Config.dragon.frame.width * this.dragon.body.length;
-			this.dragon.growBody(this.dragon.body.length);
-			this.dragon.moveRight();
-		}
-		if (this.lady.group.getFirstAlive() === null) {
+		if (this.lady.group.countLiving() === 0) {
 			this.game.physics.arcade.overlap(this.dragon.head, this.sprite, this.collision, null, this);
 		}
 	},
@@ -42,5 +35,23 @@ Princess.prototype = {
 		"use strict";
 		this.sprite.kill();
 		this.hero.sprite.kill();
+	},
+	appear: function () {
+		"use strict";
+		this.sprite.alpha = 1;
+		this.dragon.head.y = this.sprite.y;
+		this.dragon.head.x = -Config.dragon.frame.width * this.dragon.body.length;
+		this.dragon.growBody(this.dragon.body.length);
+		this.dragon.moveRight();
+	},
+	setOnKilledEvent: function (spriteLady) {
+		"use strict";
+		spriteLady.events.onKilled.add(this.checkNumberLadies, this);
+	},
+	checkNumberLadies: function () {
+		"use strict";
+		if (this.lady.group.countLiving() === 1) {
+			this.appear();
+		}
 	}
 };

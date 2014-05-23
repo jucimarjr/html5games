@@ -16,9 +16,6 @@ Lady.prototype = {
 		this.group.callAll('animations.add', 'animations', 'stay', Config.lady.frame.stay, Config.global.animationVelocity, true);
 		this.group.callAll('animations.play', 'animations', 'stay');
 		this.group.setAll('alive', true);
-	},
-	update: function () {
-		"use strict";
 	}
 };
 

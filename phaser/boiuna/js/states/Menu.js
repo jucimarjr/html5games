@@ -26,7 +26,7 @@ State.Menu.prototype = {
 	},
 	clickHowToPlay: function () {
 		"use strict";
-		this.game.state.start('HowToPlay');
+		this.game.state.start('HowToPlayDesktop');
 	},
 	clickCredits: function () {
 		"use strict";

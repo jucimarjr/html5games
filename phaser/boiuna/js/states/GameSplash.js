@@ -21,11 +21,15 @@ State.GameSplash.prototype = {
 	nextState: function () {
 		"use strict";
 		setTimeout(function () {
-			this.game.state.start('Menu');
+			this.game.state.start('StoryBefore');
 		}, Config.gameSplash.time.nextState);
 	},
 	loadAssets: function () {
 		"use strict";
+		//StoryBefore
+		this.game.load.image('story-before',  Config.storyBefore.dir);
+		//StoryAfter
+		this.game.load.image('story-after',  Config.storyAfter.dir);
 		//Menu
 		this.game.load.image('menu-background',  Config.menu.dir);
 		this.game.load.spritesheet('button-play', Config.menu.buttonPlay.dir, Config.menu.buttonPlay.frame.width, Config.menu.buttonPlay.frame.height);
@@ -33,8 +37,10 @@ State.GameSplash.prototype = {
 		this.game.load.spritesheet('button-credits', Config.menu.buttonCredits.dir, Config.menu.buttonCredits.frame.width, Config.menu.buttonCredits.frame.height);
 		//Credits
 		this.game.load.image('credits', Config.credits.dir);
-		//HowToPlay
-		this.game.load.image('how-to-play', Config.howToPlay.dir);
+		//HowToPlayDesktop
+		this.game.load.image('how-to-play-desktop', Config.howToPlayDesktop.dir);
+		//HowToPlayMobile
+		this.game.load.image('how-to-play-mobile', Config.howToPlayMobile.dir);
 		//Level
 		this.game.load.image('game-background', 'assets/images/GameBackground_1920-600.png');
 		//Tilemap
@@ -69,7 +75,7 @@ State.GameSplash.prototype = {
 		//Dragon
 		this.game.load.spritesheet('dragon', Config.dragon.dir, Config.dragon.frame.width, Config.dragon.frame.height);
 		//Princess
-		this.game.load.spritesheet('princess', 'assets/spritesheets/Princess_135-78.png', Config.princess.frame.width, Config.princess.frame.height);
+		this.game.load.spritesheet('princess', Config.princess.dir, Config.princess.frame.width, Config.princess.frame.height);
 		//DefeatScreen
 		this.game.load.image('defeat-screen', Config.defeatScreen.dir);
 		//VictoryScreen
