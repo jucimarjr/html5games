@@ -1,17 +1,13 @@
 /*global State, Config, Phaser*/
 
-State.HowToPlay = function (game) {
+State.StoryAfter = function (game) {
 	"use strict";
 	this.game = game;
 };
-State.HowToPlay.prototype = {
-	preload: function () {
-		"use strict";
-		this.game.load.image('how-to-play', Config.howToPlay.dir);
-	},
+State.StoryAfter.prototype = {
 	create: function () {
 		"use strict";
-		var background = this.game.add.sprite(Config.howToPlay.x, Config.howToPlay.y, 'how-to-play');
+		var background = this.game.add.sprite(Config.storyAfter.x, Config.storyAfter.y, 'story-after');
 		background.inputEnabled = true;
 		background.events.onInputDown.add(this.onClick, this);
 	},

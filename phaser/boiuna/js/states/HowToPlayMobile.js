@@ -1,13 +1,13 @@
 /*global State, Config, Phaser*/
 
-State.Credits = function (game) {
+State.HowToPlayMobile = function (game) {
 	"use strict";
 	this.game = game;
 };
-State.Credits.prototype = {
+State.HowToPlayMobile.prototype = {
 	create: function () {
 		"use strict";
-		var background = this.game.add.sprite(Config.credits.x, Config.credits.y, 'credits');
+		var background = this.game.add.sprite(Config.howToPlayMobile.x, Config.howToPlayMobile.y, 'how-to-play-mobile');
 		background.inputEnabled = true;
 		background.events.onInputDown.add(this.onClick, this);
 	},

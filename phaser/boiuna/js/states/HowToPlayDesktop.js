@@ -1,13 +1,13 @@
 /*global State, Config, Phaser*/
 
-State.Credits = function (game) {
+State.HowToPlayDesktop = function (game) {
 	"use strict";
 	this.game = game;
 };
-State.Credits.prototype = {
+State.HowToPlayDesktop.prototype = {
 	create: function () {
 		"use strict";
-		var background = this.game.add.sprite(Config.credits.x, Config.credits.y, 'credits');
+		var background = this.game.add.sprite(Config.howToPlayDesktop.x, Config.howToPlayDesktop.y, 'how-to-play-desktop');
 		background.inputEnabled = true;
 		background.events.onInputDown.add(this.onClick, this);
 	},
@@ -15,11 +15,11 @@ State.Credits.prototype = {
 		"use strict";
 		Config.global.screen.resize(this.game);
 		if (this.game.input.keyboard.isDown(Phaser.Keyboard.ENTER)) {
-			this.game.state.start('Menu');
+			this.game.state.start('HowToPlayMobile');
 		}
 	},
 	onClick: function () {
 		"use strict";
-		this.game.state.start('Menu');
+		this.game.state.start('HowToPlayMobile');
 	}
 };

@@ -7,10 +7,6 @@ var ButtonHit = function (game, hero) {
 	this.sprite = null;
 };
 ButtonHit.prototype = {
-	preload: function () {
-		"use strict";
-		this.game.load.spritesheet('hit', Config.buttonHit.dir, Config.buttonHit.frame.width, Config.buttonHit.frame.height);
-	},
 	create: function () {
 		"use strict";
 		this.sprite = this.game.add.button(Config.buttonHit.x, Config.buttonHit.y, 'hit', null, null, Config.buttonHit.frame.over, Config.buttonHit.frame.out, Config.buttonHit.frame.down, Config.buttonHit.frame.up);

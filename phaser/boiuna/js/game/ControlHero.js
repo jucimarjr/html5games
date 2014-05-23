@@ -12,15 +12,6 @@ var ControlHero = function (game, hero) {
 	this.buttonJumpRight = new ButtonJumpRight(game, hero);
 };
 ControlHero.prototype = {
-	preload: function () {
-		"use strict";
-		this.buttonHit.preload();
-		this.buttonLeft.preload();
-		this.buttonRight.preload();
-		this.buttonUp.preload();
-		this.buttonJumpLeft.preload();
-		this.buttonJumpRight.preload();
-	},
 	create: function () {
 		"use strict";
 		this.buttonHit.create();

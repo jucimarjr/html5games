@@ -9,10 +9,6 @@ var Fire = function (game, hero, smallDragon) {
 	this.shootTime = [];
 };
 Fire.prototype = {
-	preload: function () {
-		"use strict";
-		this.game.load.spritesheet('fire', Config.fire.dir, Config.fire.frame.width, Config.fire.frame.hight);
-	},
 	create: function () {
 		"use strict";
 		var i;

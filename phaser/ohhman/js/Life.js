@@ -33,7 +33,7 @@ Life.prototype = {
 		this.sprite.create(35 * this.positionLife + 3, 1, 'emptyLife');	
 		
 		this.positionLife++;
-		if(this.sprite.countLiving() <= 0){			
+		if(this.positionLife == 3){			
 			game.state.start('sceneLose');
 		}					
 				
