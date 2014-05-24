@@ -66,10 +66,10 @@ State.GameSplash.prototype = {
 		this.game.load.spritesheet('up', Config.buttonUp.dir, Config.buttonUp.frame.width, Config.buttonUp.frame.height);
 		//Life
 		this.game.load.image('life', Config.life.dir);
-		//Fire
-		this.game.load.spritesheet('fire', Config.fire.dir, Config.fire.frame.width, Config.fire.frame.hight);
 		//SmallDragon
 		this.game.load.spritesheet('small-dragon', Config.smallDragon.dir, Config.smallDragon.frame.width, Config.smallDragon.frame.height);
+		//Fire
+		this.game.load.spritesheet('fire', Config.fire.dir, Config.fire.frame.width, Config.fire.frame.hight);
 		//Lady
 		this.game.load.spritesheet('lady', Config.lady.dir, Config.lady.frame.width, Config.lady.frame.height);
 		//Dragon

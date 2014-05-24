@@ -26,8 +26,8 @@ State.Game.prototype = {
 		this.hero.create();
 		this.controlHero.create();
 		this.life.create();
-		this.fire.create();
 		this.smallDragon.create();
+		this.fire.create();
 		this.lady.create();
 		this.dragon.create();
 		this.princess.create();
@@ -38,8 +38,8 @@ State.Game.prototype = {
 		this.hero.update();
 		this.controlHero.update();
 		this.life.update();
-		this.fire.update();
 		this.smallDragon.update();
+		this.fire.update();
 		this.dragon.update();
 		this.princess.update();
 	}

@@ -29,7 +29,7 @@ Dragon.prototype = {
 		"use strict";
 		var tail, space;
 		tail = this.body.getFirstAlive();
-		this.game.physics.arcade.overlap(this.head, this.lady.group, this.hitPrincess, null, this);
+		this.game.physics.arcade.overlap(this.head, this.lady.group, this.hitLady, null, this);
 		if (tail === null) {
 			this.head.destroy();
 			this.hero.win();
@@ -86,7 +86,7 @@ Dragon.prototype = {
 			this.game.physics.arcade.moveToXY(this.body.getAt(index), Config.dragon.xi, this.head.y, Config.dragon.velocity);
 		}
 	},
-	hitPrincess: function (head, lady) {
+	hitLady: function (head, lady) {
 		"use strict";
 		var space;
 		lady.kill();
