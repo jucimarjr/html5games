@@ -1,30 +1,15 @@
-var Game = function()
+var Game = function(){};
+Game.prototype.create = function()
 {
-	this.carSpawnTime = 0;
 	this.gameName;
 	this.cameraSpeed = 5;
 	this.player = new Dino();
 	this.gravity = 800;
-	this.layerBg1;
-	this.layerBg2;
-	this.layer; 
-	this.layer2; 
-	this.layer3; 
-	this.layer4;
-	this.bg; 		//sprite do backGround (estrelas).
-	this.track;
-	this.humans;
 	this.objectHuman = new Array();
-	this.objectCar;
-	this.cars;
-	this.map;
-		this.playButton;
-		this.creditsButton;
-}
-Game.prototype.create = function()
-{
+	this.currentWave = 0;
+	
 	//audios
-	this.track = game.add.audio('track',soundLevel,true)
+	this.track = game.add.audio('track',soundLevel,true);
 	this.insertCoinSound = game.add.audio('insertCoin',soundLevel);
 	//fisicas
 	game.physics.startSystem(Phaser.Game.ARCADE);
@@ -51,18 +36,13 @@ Game.prototype.create = function()
 	//this.layer4.debug = true;
 	
 	this.layer4.resizeWorld();
+	
 	//grupos
 	this.cars = game.add.group();
 	this.humans = game.add.group();
+	this.humans.enableBody = true;
 	this.objectCar= new Car();
-
-	//instanciando e colocando humans no mapa
-	for(var i = 0; i< 25; i++)
-	{
-		this.objectHuman[i] = new Human()
-		this.objectHuman[i].add(200 * i,1300);
-		this.humans.add(this.objectHuman[i].sprite);
-	}
+	
 	//botoes do menu	
 	this.pressStart = game.add.sprite(game.camera.width/2, game.camera.height - 60 ,'pressStart');
 	this.pressStart.anchor.setTo(0.5, 0.5);
@@ -90,54 +70,56 @@ Game.prototype.create = function()
 		this.creditsButton.fixedToCamera = true;
 	},this);
 
-		this.fpsTxt = game.add.text(0,game.camera.height-30,'fps',style);
-		this.fpsTxt.fixedToCamera = true;
+	game.time.advancedTiming = true;
+	this.fpsTxt = game.add.text(0,game.camera.height-30,'fps',style);
+	this.fpsTxt.fixedToCamera = true;
 	//adicionando o player no mundo
-	this.player.add(32,1400);
+	this.player.add(32,0);
 	this.player.sprite.kill();
 	this.player.hearts.visible =false;
 	
-}
+	// A magia acontece aqui
+	switch(this.currentWave)
+	{
+		case 0 : this.waveZeroCreate();
+		break;
+	}
+
+};
 
 Game.prototype.update = function()
 {
+	if(game.time.fps < 1)
+		game.physics.arcade.gravity.y = 0;
+	else game.physics.arcade.gravity.y = this.gravity;
 	game.physics.arcade.collide(this.layer4, [this.humans, this.cars, this.player.sprite]);
 	game.physics.arcade.collide(this.player.sprite, [this.humans,this.cars], this.player.smash,null, this.player );
-	game.physics.arcade.overlap(this.player.sprite, this.cars, this.player.takeDamage,null, this.player );	
+	game.physics.arcade.overlap(this.player.sprite, this.cars, this.player.hitByCar,null, this.player );
+	game.physics.arcade.overlap(this.player.sprite, this.humans, this.player.bit,null, this.player );
 	if(this.inGame)
 		this.scoreTxt.text = 'Score  '+ this.player.score;
 	this.fpsTxt.text = game.time.fps + ' fps';
 
-	this.player.enableMovement();
-	this.player.enableJump();
-	//spawnando os carros
-	if(game.time.now > this.carSpawnTime)
+	this.player.update();
+	
+	// A magia acontece aqui
+	switch(this.currentWave)
 	{
-		var r = game.rnd.integerInRange(0,1);
-		if (r==1)
-		this.objectCar.addWithSpeed(game.camera.x ,1450,200);
-		else
-		this.objectCar.addWithSpeed(game.camera.x + game.camera.width ,1450,-200);
-		this.cars.add(this.objectCar.sprite);
-		this.objectCar.sprite.outOfBoundsKill = true;
-		this.carSpawnTime = game.time.now + 2000 + game.rnd.integerInRange(0,1000);
+		case 0 : this.waveZeroUpdate();
+		break;
 	}
-	//adicionando comportamento nos humans
-	for (var i = 0; i < this.objectHuman.length; i++)
-	{
-		this.objectHuman[i].stayNormal();	
-	}
-}
+	
+};
 
 Game.prototype.goGame = function()
 {
-	game.time.advancedTiming = true;
 	var playsound = game.add.audio('playsound',soundLevel);
 	playsound.play();
 	this.fadeoutGoGame = game.add.tween(this.playButton).to( { alpha: 0 }, 100, Phaser.Easing.Linear.None, true, 0, 15, true);
 	this.fadeoutGoGameSound = game.add.tween(menuTrack).to( { volume: 0 }, 1500, Phaser.Easing.Linear.None, true, 0, 0, true);
 	this.fadeoutGoGame.onComplete.add(function()
 	{ 
+		this.carSpawnTime = game.time.now + 10000;
 		this.player.hearts.visible = true;
 		this.scoreTxt = game.add.text(game.camera.width-250,16,'Score 0',style2);
 		this.scoreTxt.fixedToCamera = true;
@@ -148,11 +130,12 @@ Game.prototype.goGame = function()
 		this.creditsButton.destroy();
 		menuTrack.stop();
 		this.player.sprite.revive();
-		this.player.sprite.x = game.camera.x + game.camera.width/2
+		this.player.sprite.x = game.camera.x + game.camera.width/2;
+		this.player.sprite.y = 1300;
 		game.camera.follow(this.player.sprite);
 	},this);
 
-}
+};
 
 Game.prototype.goCredits = function()
 {
@@ -161,6 +144,60 @@ Game.prototype.goCredits = function()
 	this.fadeoutCredits = game.add.tween(this.creditsButton).to( { alpha: 0 }, 100, Phaser.Easing.Linear.None, true, 0, 15, true);;
 	this.fadeoutCredits.onComplete.add(function()
 	{ 
-		game.state.start('credits')
+		game.state.start('credits');
 	});
+};
+
+Game.prototype.waveZeroCreate = function()
+{
+	this.carSpawnTime = 0;
+	//instanciando e colocando humans no mapa
+		//colocando os objetos criados no tiled
+	this.map.createFromObjects('Camada de Objetos 1',2561,'humanTexture',0,true,false,this.humans);
+	this.map.createFromObjects('Camada de Objetos 1',2562,'humanTexture',1,true,false,this.humans);
+	this.map.createFromObjects('Camada de Objetos 1',2563,'humanTexture',2,true,false,this.humans);
+	this.map.createFromObjects('Camada de Objetos 1',2564,'humanTexture',3,true,false,this.humans);
+	this.map.createFromObjects('Camada de Objetos 1',2565,'humanTexture',4,true,false,this.humans);
+	this.map.createFromObjects('Camada de Objetos 1',2566,'humanTexture',5,true,false,this.humans);
+	this.map.createFromObjects('Camada de Objetos 1',2567,'humanTexture',6,true,false,this.humans);
+	for (var i = 0,l = this.humans.total; i<l;i++ )
+	{
+		this.objectHuman[i] = new Human();
+		this.objectHuman[i].create(this.humans.getAt(i));
+		this.objectHuman[i].bahavior = 'stayJumping';
+		
+	}
+	for(var i = 0, a = this.humans.total; i< 20;i++) //cria mais humans aleatorios pelo mapa
+	{
+		this.humans.create(300*i, 1400,'humanTexture',game.rnd.integerInRange(0,4));
+		this.objectHuman[a+i] = new Human();
+		this.objectHuman[a+i].create(this.humans.getAt(a+i));
+		this.objectHuman[a+i].bahavior = 'stayNormal';
+	}
+		
+};
+Game.prototype.waveZeroUpdate = function()
+{
+	//spawnando os carros
+	if(game.time.now > this.carSpawnTime )
+	{
+		var r = game.rnd.integerInRange(0,1);
+		if (r==1)
+		this.objectCar.addWithSpeed(game.camera.x ,1442,400);
+		else
+		this.objectCar.addWithSpeed(game.camera.x + game.camera.width ,1438,-400);
+		this.cars.add(this.objectCar.sprite);
+		this.objectCar.sprite.outOfBoundsKill = true;
+		this.carSpawnTime = game.time.now + 4000 + game.rnd.integerInRange(0,2000);
+	}
+	//adicionando comportamento nos humans
+	for (var i = 0; i < this.objectHuman.length; i++)
+	{
+		this.objectHuman[i].update();	
+	}
+};
+
+Game.prototype.render = function()
+{
+	//game.debug.body(this.player.sprite);
 };
