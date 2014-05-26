@@ -52,8 +52,8 @@ Game.prototype.create = function () {
 	this.tiled2 = this.game.add.tileSprite(-this.game.world.width*5, -this.game.world.height*5, this.game.world.width * 10, this.game.world.height * 10, 'tiled2');
     this.velAsteroids = 5;
     this.score = 0;
-    this.scoreText = this.game.add.text(this.game.width/2, 20 , this.score, {
-        font: "25px Vector Battle", fill: "#ffffff" , align: "right"
+    this.scoreText = this.game.add.text(this.game.width/2, 20 , ''+this.score, {
+        font: "24px 'Hyperspace'", fill: "#ffffff" , align: "right"
     });
     this.livesHud = this.game.add.group();
 	for(var i = 0; i<3; i++){
@@ -71,10 +71,10 @@ Game.prototype.create = function () {
 	this.groupResources = this.game.add.group();
 	this.addResources(10);
 	this.fps = this.game.add.text(10, 470, 'FPS: '+this.game.time.fps, {
-        font: "12px 'Vector Battle'", fill: "#ffffff" , align: "right"
+        font: "12px 'Hyperspace'", fill: "#ffffff" , align: "right"
     });
 	this.Hud = this.game.add.text(50, 50, 'TIME: '+this.time/10, {
-        font: "24px 'Vector Battle'", fill: "#ffffff" , align: "right"
+        font: "24px 'Hyperspace'", fill: "#ffffff" , align: "right"
     });		
 	this.alert = this.game.add.sprite(0,0,'alert');
 	//console.log(this.alert)
@@ -417,7 +417,7 @@ Game.prototype.wait = function(ship){
     this.spaceShip.sprite.y = this.game.world.height/2; 
 	if(this.livesHud.countLiving() >= 1){
 		this.spawnText = this.game.add.text(this.spaceShip.sprite.x - 100, this.spaceShip.sprite.y - 20,'Press R to Respawn Here',  
-										   {font: "12px Vector Battle", fill: "#ffffff" , align: "center"});
+										   {font: "25px 'Hyperspace'", fill: "#ffffff" , align: "center"});
 	}
 	var key1 = this.game.input.keyboard.addKey(Phaser.Keyboard.R);
     key1.onDown.add(this.resetShip, this);
@@ -529,6 +529,7 @@ Game.prototype.addResources = function(num){
 	for(var i = 0;i < num;i++){
 		var resource = this.game.add.sprite(Math.random() * this.game.world.width, Math.random() * this.game.world.height, 'sprites', 'collect-red-9-9.png');
 		resource.anchor.setTo(0.5,0.5);
+		resource.scale.setTo(1.6,1.6);
 		resource.body.angularVelocity = 5;
 		//resource.scale.setTo(2,2);
 		this.game.add.tween(resource).to( { alpha: 0.5}, 200, Phaser.Easing.Linear.InOut, true, 0, 1000, true);
