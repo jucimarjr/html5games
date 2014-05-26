@@ -7,9 +7,12 @@ State.StoryBefore = function (game) {
 State.StoryBefore.prototype = {
 	create: function () {
 		"use strict";
-		var background = this.game.add.sprite(Config.storyBefore.x, Config.storyBefore.y, 'story-before');
+		var background, audio;
+		background = this.game.add.sprite(Config.storyBefore.x, Config.storyBefore.y, 'story-before');
 		background.inputEnabled = true;
 		background.events.onInputDown.add(this.onClick, this);
+		audio = this.game.add.audio('music');
+		audio.play('', 0, 1, true, true);
 	},
 	update: function () {
 		"use strict";

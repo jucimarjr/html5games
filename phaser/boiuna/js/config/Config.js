@@ -66,6 +66,7 @@ Config.gameSplash = {
 //StoryBefore
 Config.storyBefore = {
 	dir: 'assets/images/StoryBefore_960-600.png',
+	music: 'assets/audios/Music.mp3',
 	x: 0,
 	y: 0
 };
@@ -479,7 +480,7 @@ Config.dragon = {
 	},
 	timeGrow: 1000 / Config.global.animationVelocity,
 	number: {
-		pieces: 10
+		pieces: 1
 	},
 	velocity: 140,
 	damage: Config.hero.health.initial / 2

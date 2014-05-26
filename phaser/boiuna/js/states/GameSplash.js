@@ -27,6 +27,7 @@ State.GameSplash.prototype = {
 	loadAssets: function () {
 		"use strict";
 		//StoryBefore
+		this.game.load.audio('music', Config.storyBefore.music);
 		this.game.load.image('story-before',  Config.storyBefore.dir);
 		//StoryAfter
 		this.game.load.image('story-after',  Config.storyAfter.dir);
