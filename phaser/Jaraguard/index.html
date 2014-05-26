@@ -9,6 +9,10 @@
         <script type="text/javascript" src="js/Menu.js"></script>
         <script type="text/javascript" src="js/Mapa.js"></script>
         <script type="text/javascript" src="js/FilePaths.js"></script>
+        <script type="text/javascript" src="js/Game.js"></script>
+         <script type="text/javascript" src="js/Life.js"></script>
+          <script type="text/javascript" src="js/Score.js"></script>
+          <script type="text/javascript" src="js/Player.js"></script>
         <style type="text/css">
             body {
                 border:1px dashed #000000;
@@ -34,7 +38,7 @@
 
 
             game.state.add('menu', Menu);
-            game.state.add('mapa', Mapa);
+            game.state.add('game', Game);
 //game.state.add('game', Game);
 //game.state.add('HowToPlay', HowToPlay);
 //game.state.add('HighScore', HighScore);
@@ -47,8 +51,8 @@
                 var btPlay = 'assets/buttons/btPlay_147-33.png';
                 var btPlaySelected = 'assets/buttons/btPlaySelected_147-33.png';
                 //game.load.image('btPlaySelected', btPlaySelected);
-                 game.load.audio('Menu_Sound', audioSplashMenu);  
-                 game.load.audio('Splash_Sound', audioSplashGame); 
+                game.load.audio('Menu_Sound', audioSplashMenu);
+                game.load.audio('Splash_Sound', audioSplashGame);
 
                 //game.load.atlas('enemy1', 'assets/spritesheets/enemy1.png', 'assets/spritesheets/enemy1.json');
                 //game.load.image('bullet','assets/bullet_4-9.png');
@@ -61,8 +65,8 @@
                 splashScene = new Splash(game);
                 splashScene.preload();
 
-                mapaScene = new Mapa(game);
-                mapaScene.preload();
+                gameScene = new Game(game);
+                gameScene.preload();
 
 
             }

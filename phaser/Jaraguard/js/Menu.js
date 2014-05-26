@@ -65,7 +65,7 @@ Menu.prototype.play = function() {
         //  this.game.state.start('game', Game);
         console.log("play");
     });
-    game.state.start('mapa', Mapa);
+    game.state.start('game', Game);
 
 };
 
