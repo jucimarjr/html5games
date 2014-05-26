@@ -50,7 +50,8 @@ Config.sponsorSplash = {
 Config.gameSplash = {
 	dir: {
 		background: 'assets/images/GameSplash_960-600.png',
-		progressBar: 'assets/images/ProgressBar_960-30.png'
+		progressBar: 'assets/images/ProgressBar_960-30.png',
+		music: 'assets/audios/Music.mp3'
 	},
 	progressBar: {
 		x: 0,
@@ -66,7 +67,6 @@ Config.gameSplash = {
 //StoryBefore
 Config.storyBefore = {
 	dir: 'assets/images/StoryBefore_960-600.png',
-	music: 'assets/audios/Music.mp3',
 	x: 0,
 	y: 0
 };
@@ -252,7 +252,10 @@ Config.hero = {
 			x: 0,
 			y: 0
 		},
-		run: 200,
+		run: {
+			normal: 280,
+			attack: 180
+		},
 		jump: -300
 	},
 	gravity: 1000,
@@ -292,6 +295,18 @@ Config.hero = {
 			width: 62,
 			height: 96,
 			hit: [0, 1]
+		}
+	},
+	body: {
+		size: {
+			normal: {
+				width: 78,
+				height: 71
+			},
+			attack: {
+				width: 78,
+				height: 96
+			}
 		}
 	}
 };
@@ -480,7 +495,7 @@ Config.dragon = {
 	},
 	timeGrow: 1000 / Config.global.animationVelocity,
 	number: {
-		pieces: 1
+		pieces: 10
 	},
 	velocity: 140,
 	damage: Config.hero.health.initial / 2

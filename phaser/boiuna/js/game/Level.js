@@ -10,6 +10,7 @@ Level.prototype = {
 		"use strict";
 		this.game.physics.startSystem(Phaser.Physics.ARCADE);
 		this.game.world.setBounds(Config.level.worldBounds.xi, Config.level.worldBounds.yi, Config.level.worldBounds.xf, Config.level.worldBounds.yf);
+		this.game.physics.arcade.checkCollision.up = false;
 		this.sprite = this.game.add.tileSprite(Config.level.x, Config.level.y, Config.global.screen.width * 2, Config.global.screen.height, 'game-background');
 		this.game.beginTime = this.game.time.totalElapsedSeconds();
 	},

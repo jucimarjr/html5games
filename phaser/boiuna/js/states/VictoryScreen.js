@@ -25,20 +25,11 @@ State.VictoryScreen.prototype = {
 		this.background.events.onInputDown.removeAll();
 		this.key.onDown.removeAll();
 		this.background.alpha = 0.1;
-		timePlayed = this.game.endTime - this.game.beginTime;
-		hours = Math.floor(timePlayed / 3600);
-		if (hours < 10) {
-			hours = "0" + hours;
+		timePlayed = Math.floor(this.game.endTime - this.game.beginTime);
+		if(timePlayed < this.game.bestScore || !("bestScore" in this.game)){
+			this.game.bestScore = timePlayed;
 		}
-		minutes = Math.floor((timePlayed % 3600) / 60);
-		if (minutes < 10) {
-			minutes = "0" + minutes;
-		}
-		seconds = Math.floor(timePlayed % 3600 % 60);
-		if (seconds < 10) {
-			seconds = "0" + seconds;
-		}
-		message = Config.victoryScreen.message.text + hours + ":" + minutes + ":" + seconds;
+		message = Config.victoryScreen.message.text + timePlayed + " segundos\n Melhor tempo: " + this.game.bestScore + " segundos";
 		text = this.game.add.text(Config.global.screen.width / 2, Config.global.screen.height / 2, message, Config.victoryScreen.message.style);
 		text.anchor = Config.victoryScreen.message.anchor;
 		this.key.onDown.add(this.onSecondClick, this);

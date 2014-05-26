@@ -14,6 +14,11 @@ State.GameSplash.prototype = {
 		this.game.load.onLoadComplete.add(this.nextState, this);
 		this.loadAssets();
 	},
+	create: function () {
+		"use strict";
+		var audio = this.game.add.audio('music');
+		audio.play('', 0, 1, true, true);
+	},
 	update: function () {
 		"use strict";
 		Config.global.screen.resize(this.game);
@@ -27,7 +32,6 @@ State.GameSplash.prototype = {
 	loadAssets: function () {
 		"use strict";
 		//StoryBefore
-		this.game.load.audio('music', Config.storyBefore.music);
 		this.game.load.image('story-before',  Config.storyBefore.dir);
 		//StoryAfter
 		this.game.load.image('story-after',  Config.storyAfter.dir);
