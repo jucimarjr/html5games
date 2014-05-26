@@ -25,7 +25,6 @@ Game.prototype.create = function()
 	this.frontGround = game.add.tileSprite(0,game.world.height-35,960,35,'fg');
 	
 	this.rocks = game.add.group();
-	game.input.onDown.addOnce(this.start, this);
 	this.stars = game.add.group();
 	this.stars.createMultiple(30, 'star');	
 	this.stars.enableBody = true;
@@ -47,6 +46,7 @@ Game.prototype.create = function()
 		this.txt.text = 'Tap the screen to fly.\nAvoid the rocks.';
 	}else{
 		this.txt.text = 'Click the screen to fly.\nAvoid the rocks.';
+		if(players == 2)this.txt.text += '\n\n\n\n\nPress Space to fly.\nAvoid the rocks.'
 	}
 	this.hud = game.add.text(game.world.centerX,75,parseInt(this.score/10),{
 		font: "28px Arial", fill: "#ffffff" , align: "center"
@@ -58,7 +58,9 @@ Game.prototype.create = function()
 		game.physics.arcade.gravity.y = 0;	
 		game.sound.stopAll();
 		game.state.start('menu', true);
-	},null);
+	},null);	
+	game.input.onDown.addOnce(this.start, this);
+	game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onDown.addOnce(this.start, this)
 };
 
 Game.prototype.start = function(){

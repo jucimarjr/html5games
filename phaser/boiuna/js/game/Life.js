@@ -8,10 +8,6 @@ var Life = function (game, hero) {
 	this.lifesLost = 0;
 };
 Life.prototype = {
-	preload: function () {
-		"use strict";
-		this.game.load.image('life', Config.life.dir);
-	},
 	create: function () {
 		"use strict";
 		var i;
@@ -21,6 +17,7 @@ Life.prototype = {
 		}
 		this.group.setAll('alive', true);
 		this.group.setAll('fixedToCamera', true);
+		this.lifesLost = 0;
 	},
 	update: function () {
 		"use strict";

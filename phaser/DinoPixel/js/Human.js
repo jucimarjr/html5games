@@ -1,35 +1,63 @@
-var Human = function()
+var Human = function(){};
+Human.prototype.create = function(sprite)
 {
-	this.sprite;
+	this.sprite = sprite;
 	this.speed = 25;
 	this.stoped = true;
 	this.moveTimer = 0;
 	this.jumpTimer = 0;
-}
-
-Human.prototype.add = function(posX, posY, texture)
-{
-	this.sprite = game.add.sprite(posX, posY, texture);
+	this. bahavior;
 	this.sprite.smoothed = false; 
 	game.physics.enable(this.sprite);
+	this.sprite.body.tilePadding.y = 100;
+	this.sprite.body.tilePadding.x = 100;
 	this.sprite.anchor.setTo(0.5 ,0.5);
-}
-
+	this.sprite.tag='human';
+	
+	this.sprite.takeDamage = function()
+	{
+		this.destroy();
+	};
+};
+Human.prototype.update = function()
+{
+	switch(this.bahavior)
+	{
+		case 'stayNormal' : this.stayNormal();
+		break;
+		case 'stayJumping' : this.stayJumping();
+		break;
+		default : this.stayNormal();
+		break;
+	}
+};
+//comportamentos
 Human.prototype.stayNormal = function() //o human anda de um lado para o outro aleatoriamente.
 {
 	if(game.time.now > this.moveTimer)
 	{
-	var r = game.rnd.integerInRange(0,11);
-	if (r <= 11 && r > 7 )
-		this.sprite.body.velocity.x = 0;
-	if ((r < 8) && (r >= 4))
-		this.sprite.body.velocity.x = this.speed;
- 	if(r <4)
-		this.sprite.body.velocity.x = -this.speed;
-	this.moveTimer = game.time.now + 1000;
+		var r = game.rnd.integerInRange(0,2);
+		switch(r)
+		{
+			case 0: this.sprite.body.velocity.x = 0;
+			break;
+			case 1: this.sprite.body.velocity.x = this.speed;
+			break;
+			case 2:this.sprite.body.velocity.x = -this.speed;
+			break;
+		}
+		this.moveTimer = game.time.now + 1000;
 	}
-	if( (this.sprite.body.onFloor()) && (this.sprite.body.velocity.x !=0))
+	if( (this.sprite.body.onFloor()) && (this.sprite.body.velocity.x !=0))//fica pulando
 	{
-		this.sprite.body.velocity.y = -85;
+		this.sprite.body.velocity.y = -150;
 	}
-}
+};
+
+Human.prototype.stayJumping = function()
+{
+	if(this.sprite.body.onFloor())
+	{
+		this.sprite.body.velocity.y = -150;
+	}
+};

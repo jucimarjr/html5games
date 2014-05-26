@@ -9,11 +9,6 @@ var Hero = function (game, tilemap, platforms) {
 	this.platforms = platforms;
 };
 Hero.prototype = {
-	preload: function () {
-		"use strict";
-		this.game.load.spritesheet('hero-normal', Config.hero.dir.normal, Config.hero.frame.normal.width, Config.hero.frame.normal.height);
-		this.game.load.spritesheet('hero-attack', Config.hero.dir.attack, Config.hero.frame.attack.width, Config.hero.frame.attack.height);
-	},
 	create: function () {
 		"use strict";
 		var group = this.game.add.group();
@@ -86,14 +81,17 @@ Hero.prototype = {
 	},
 	hurt: function (damage) {
 		"use strict";
-		this.game.add.tween(this.sprite).to({alpha : 0.3}, 100, Phaser.Easing.Linear.None).to({alpha : 1}, 100, Phaser.Easing.Linear.None).start();
+		this.game.add.tween(this.sprite).to({alpha : Config.hero.alpha.hurt}, Config.hero.time.tween.hurt.dim.min, Phaser.Easing.Linear.None).to({alpha : 1}, Config.hero.time.tween.hurt.dim.max, Phaser.Easing.Linear.None).start();
 		this.sprite.damage(damage);
 	},
 	onKill: function () {
 		"use strict";
 		this.sprite.visible = true;
-		var tweenDie = this.game.add.tween(this.game.world).to({alpha : 0.3}, 5000, Phaser.Easing.Linear.None).to({alpha : 1}, 100, Phaser.Easing.Linear.None).start();
-		tweenDie.onComplete.add(function () {this.game.state.start('DefeatScreen'); }, this);
+		var tweenDie = this.game.add.tween(this.game.world).to({alpha : Config.hero.alpha.die}, Config.hero.time.tween.die.dim.min, Phaser.Easing.Linear.None).start();
+		tweenDie.onComplete.add(function () {
+			this.game.world.alpha = 1;
+			this.game.state.start('DefeatScreen');
+		}, this);
 	},
 	stop: function () {
 		"use strict";
@@ -103,9 +101,15 @@ Hero.prototype = {
 		}
 		this.sprite.body.velocity.x = Config.hero.velocity.initial.x;
 	},
+	fall: function () {
+		"use strict";
+		this.jumpControl = 0;
+		if (this.sprite.key === 'hero-normal') {
+			this.sprite.frame = Config.hero.frame.normal.falling;
+		}
+	},
 	win: function () {
 		"use strict";
-		var tweenWin = this.game.add.tween(this.game.world).to({alpha : 2}, 5000, Phaser.Easing.Linear.None).to({alpha : 1}, 100, Phaser.Easing.Linear.None).start();
-		tweenWin.onComplete.add(function () {this.game.state.start('VictoryScreen'); }, this);
+		this.game.state.start('VictoryScreen');
 	}
 };

@@ -5,10 +5,6 @@ State.Credits = function (game) {
 	this.game = game;
 };
 State.Credits.prototype = {
-	preload: function () {
-		"use strict";
-		this.game.load.image('credits', Config.credits.dir);
-	},
 	create: function () {
 		"use strict";
 		var background = this.game.add.sprite(Config.credits.x, Config.credits.y, 'credits');

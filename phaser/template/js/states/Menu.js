@@ -7,10 +7,6 @@ State.Menu = function (game) {
 State.Menu.prototype = {
 	preload: function () {
 		"use strict";
-		this.game.load.image('menu-background',  Config.menu.dir);
-		this.game.load.spritesheet('button-play', Config.menu.buttonPlay.dir, Config.menu.buttonPlay.width, Config.menu.buttonPlay.height);
-		this.game.load.spritesheet('button-credits', Config.menu.buttonCredits.dir, Config.menu.buttonCredits.width, Config.menu.buttonCredits.height);
-		this.game.load.spritesheet('button-how-to-play', Config.menu.buttonHowToPlay.dir, Config.menu.buttonHowToPlay.width, Config.menu.buttonHowToPlay.height);
 	},
 	create: function () {
 		"use strict";

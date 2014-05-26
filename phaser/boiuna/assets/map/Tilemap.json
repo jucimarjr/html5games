@@ -13,35 +13,10 @@
         }, 
         {
          "height":20,
-         "name":"LayerSmallDragon",
-         "objects":[
-                {
-                 "gid":18,
-                 "height":0,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":1504,
-                 "y":322
-                }],
-         "opacity":1,
-         "type":"objectgroup",
-         "visible":true,
-         "width":64,
-         "x":0,
-         "y":0
-        }, 
-        {
-         "height":20,
          "name":"LayerHero",
          "objects":[
                 {
-                 "gid":12,
+                 "gid":10,
                  "height":0,
                  "name":"",
                  "properties":
@@ -63,7 +38,7 @@
         }, 
         {
          "height":20,
-         "name":"LayerPrincess",
+         "name":"LayerLady",
          "objects":[
                 {
                  "gid":7,
@@ -214,7 +189,7 @@
          "name":"LayerDragon",
          "objects":[
                 {
-                 "gid":22,
+                 "gid":16,
                  "height":0,
                  "name":"",
                  "properties":
@@ -275,7 +250,7 @@
         }, 
         {
          "firstgid":7,
-         "image":"..\/spritesheets\/Lady_153-78.png",
+         "image":"Lady_51-78_3.png",
          "imageheight":78,
          "imagewidth":153,
          "margin":0,
@@ -290,8 +265,8 @@
          "transparentcolor":"#ffffff"
         }, 
         {
-         "firstgid":12,
-         "image":"..\/spritesheets\/HeroNormal_468-71.png",
+         "firstgid":10,
+         "image":"HeroNormal_78-71_6.png",
          "imageheight":71,
          "imagewidth":468,
          "margin":0,
@@ -305,24 +280,8 @@
          "tilewidth":78
         }, 
         {
-         "firstgid":18,
-         "image":"..\/spritesheets\/SmallDragon_380-52.png",
-         "imageheight":52,
-         "imagewidth":380,
-         "margin":0,
-         "name":"SmallDragon",
-         "properties":
-            {
-
-            },
-         "spacing":0,
-         "tileheight":52,
-         "tilewidth":95,
-         "transparentcolor":"#ffffff"
-        }, 
-        {
-         "firstgid":22,
-         "image":"..\/spritesheets\/Boiuna_360-270.png",
+         "firstgid":16,
+         "image":"Boiuna_90-90_8.png",
          "imageheight":180,
          "imagewidth":360,
          "margin":0,

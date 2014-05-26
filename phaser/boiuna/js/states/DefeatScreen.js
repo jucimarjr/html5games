@@ -5,13 +5,8 @@ State.DefeatScreen = function (game) {
 	this.game = game;
 };
 State.DefeatScreen.prototype = {
-	preload: function () {
-		"use strict";
-		this.game.load.image('defeat-screen', Config.defeatScreen.dir);
-	},
 	create: function () {
 		"use strict";
-		this.game.world.alpha = 1;
 		var background = this.game.add.sprite(Config.defeatScreen.x, Config.defeatScreen.y, 'defeat-screen');
 		background.inputEnabled = true;
 		background.events.onInputDown.add(this.onClick, this);
