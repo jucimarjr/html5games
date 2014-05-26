@@ -27,16 +27,18 @@ Game.prototype.create = function () {
 	//grupo de pessoas
     this.amountPeople = 0;
 	this.groupPeople = this.game.add.group();
-	this.groupPeople.enableBody = true;
-	this.groupPeople.physicsBodyType = Phaser.Physics.ARCADE;
-	
-	
 	
 	 //grupo de zumbis
 	this.amountZombies  = 0;
     this.groupZombies = this.game.add.group();
 	this.groupZombies.enableBody = true;
 	this.groupZombies.physicsBodyType = Phaser.Physics.ARCADE;
+	
+	this.groupGame = this.game.add.group();
+	this.groupPeople.enableBody = true;
+	this.groupPeople.physicsBodyType = Phaser.Physics.ARCADE;
+	this.groupGame.add(this.groupZombies);
+	this.groupGame.add(this.groupPeople);
 	
 	//Fonte
 	this.stage = 0;
@@ -63,7 +65,23 @@ Game.prototype.update = function () {
 		this.game.time.events.repeat(Phaser.Timer.SECOND * 2, this.amountPeople, this.initPeople, this);
 	}
 	//this.game.physics.arcade.moveToObject(bullet, this.player, 500);
+	this.groupZombies.forEach(function(zombie){
+		if(zombie.body.y < 400)
+		{
+		    zombie.body.velocity.y  *= -1;
+		}
+	},this);
 	
+	this.groupPeople.forEach(function(people){
+		if(people.body.y < 400)
+		{
+		    people.body.velocity.y  *= -1;
+		}
+	},this);
+	
+	this.groupZombies.sort('y', Phaser.Group.SORT_ASCENDING);
+	this.groupPeople.sort('y', Phaser.Group.SORT_ASCENDING);
+	this.groupGame.sort('y', Phaser.Group.SORT_ASCENDING);
 	
 };
 
