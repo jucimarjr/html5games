@@ -41,14 +41,19 @@ var Zombie = function (index, game, person, classGame) {
 Zombie.prototype.update = function (){
 	//this.classGame
 	if(!this.alive&&!this.spriteZombie.animation.isPlaying){
-		console.log("destroy");
 		this.spriteZombie.destroy();
 	}
+	console.log("posicao y do zumbi = ",this.spriteZombie.body.y);
+	
 };
 
 Zombie.prototype.preload = function(){
 	
 };
+
+Zombie.prototype.swapZombie = function(zombie){
+	
+}
 
 function killZombie(){
 	//this.sound.play();
