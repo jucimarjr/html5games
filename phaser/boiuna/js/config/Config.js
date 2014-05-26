@@ -14,6 +14,10 @@ var Config = {
 					game.scale.refresh();
 				}
 			}
+		},
+		key: {
+			nextScreen: Phaser.Keyboard.ENTER,
+			annoying: [Phaser.Keyboard.SPACEBAR, Phaser.Keyboard.DOWN]
 		}
 	}
 };

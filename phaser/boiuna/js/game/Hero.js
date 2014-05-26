@@ -110,6 +110,7 @@ Hero.prototype = {
 	},
 	win: function () {
 		"use strict";
+		this.game.endTime = this.game.time.totalElapsedSeconds();
 		this.game.state.start('VictoryScreen');
 	}
 };

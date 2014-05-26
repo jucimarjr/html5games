@@ -14,7 +14,7 @@ State.DefeatScreen.prototype = {
 	update: function () {
 		"use strict";
 		Config.global.screen.resize(this.game);
-		if (this.game.input.keyboard.isDown(Phaser.Keyboard.ENTER)) {
+		if (this.game.input.keyboard.isDown(Config.global.key.nextScreen)) {
 			this.game.state.start('Menu');
 		}
 	},
