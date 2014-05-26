@@ -3,7 +3,7 @@
 //Global
 var Config = {
 	global: {
-		animationVelocity: 6,
+		animationVelocity: 8,
 		screen: {
 			width: 960,
 			height: 600,
@@ -14,6 +14,10 @@ var Config = {
 					game.scale.refresh();
 				}
 			}
+		},
+		key: {
+			nextScreen: Phaser.Keyboard.ENTER,
+			annoying: [Phaser.Keyboard.SPACEBAR, Phaser.Keyboard.DOWN]
 		}
 	}
 };
@@ -23,8 +27,11 @@ Config.ludusSplash = {
 	dir: 'assets/images/LudusSplash_960-600.png',
 	x: 0,
 	y: 0,
-	millis: 2000,
-	nextState: 4000
+	dim: 0,
+	time: {
+		dim: 2000,
+		nextState: 4000
+	}
 };
 
 //SponsorSplash
@@ -32,18 +39,45 @@ Config.sponsorSplash = {
 	dir: 'assets/images/SponsorSplash_960-600.png',
 	x: 0,
 	y: 0,
-	millis: 2000,
-	nextState: 4000
+	dim: 0,
+	time: {
+		dim: 2000,
+		nextState: 4000
+	}
 };
 
 //GameSplash
 Config.gameSplash = {
-	dir: 'assets/images/GameSplash_960-600.png',
+	dir: {
+		background: 'assets/images/GameSplash_960-600.png',
+		progressBar: 'assets/images/ProgressBar_960-30.png'
+	},
+	progressBar: {
+		x: 0,
+		y: 560
+	},
 	x: 0,
 	y: 0,
-	millis: 2000,
-	nextState: 4000
+	time: {
+		nextState: 2000
+	}
 };
+
+//StoryBefore
+Config.storyBefore = {
+	dir: 'assets/images/StoryBefore_960-600.png',
+	music: 'assets/audios/Music.mp3',
+	x: 0,
+	y: 0
+};
+
+//StoryAfter
+Config.storyAfter = {
+	dir: 'assets/images/StoryAfter_960-600.png',
+	x: 0,
+	y: 0
+};
+
 
 //Menu
 Config.menu = {
@@ -51,47 +85,68 @@ Config.menu = {
 	x: 0,
 	y: 0,
 	buttonPlay: {
-		dir: 'assets/spritesheets/ButtonPlay_600-95.png',
+		dir: 'assets/spritesheets/ButtonPlay_141-75_3.png',
 		x: Config.global.screen.width * 0.5,
-		y: Config.global.screen.height * 0.4,
-		width: 149,
-		height: 94,
+		y: Config.global.screen.height * 0.55,
+		frame: {
+			width: 141,
+			height: 75,
+			over: 1,
+			out: 0,
+			down: 2,
+			up: 1
+		},
 		anchor: {
 			x: 0.5,
 			y: 0.5
 		}
 	},
 	buttonHowToPlay: {
-		dir: 'assets/spritesheets/ButtonHowToPlay_600-95.png',
+		dir: 'assets/spritesheets/ButtonHowToPlay_275-75_3.png',
 		x: Config.global.screen.width * 0.5,
-		y: Config.global.screen.height * 0.6,
-		width: 149,
-		height: 94,
+		y: Config.global.screen.height * 0.7,
+		frame: {
+			width: 275,
+			height: 75,
+			over: 0,
+			out: 1,
+			down: 2,
+			up: 0
+		},
 		anchor: {
 			x: 0.5,
 			y: 0.5
 		}
 	},
 	buttonCredits: {
-		dir: 'assets/spritesheets/ButtonCredits_600-95.png',
+		dir: 'assets/spritesheets/ButtonCredits_204-75_3.png',
 		x: Config.global.screen.width * 0.5,
-		y: Config.global.screen.height * 0.8,
-		width: 149,
-		height: 94,
+		y: Config.global.screen.height * 0.85,
+		frame: {
+			width: 204,
+			height: 75,
+			over: 2,
+			out: 1,
+			down: 0,
+			up: 0
+		},
 		anchor: {
 			x: 0.5,
 			y: 0.5
 		}
-	},
-	textStyle: {
-		font: '25px Ms Sans Serif',
-		fill: '#ffffff'
 	}
 };
 
-//HowToPlay
-Config.howToPlay = {
-	dir: 'assets/images/HowToPlay_960-600.png',
+//HowToPlayMobile
+Config.howToPlayMobile = {
+	dir: 'assets/images/HowToPlayMobile_960-600.png',
+	x: 0,
+	y: 0
+};
+
+//HowToPlayDesktop
+Config.howToPlayDesktop = {
+	dir: 'assets/images/HowToPlayDesktop_960-600.png',
 	x: 0,
 	y: 0
 };
@@ -107,7 +162,18 @@ Config.credits = {
 Config.victoryScreen = {
 	dir: 'assets/images/VictoryScreen_960-600.png',
 	x: 0,
-	y: 0
+	y: 0,
+	message: {
+		text: "O seu tempo foi: ",
+		style: {
+			font: '5em Old English Text MT',
+			fill: '#ffc90e'
+		},
+		anchor: {
+			x: 0.5,
+			y: 0.5
+		}
+	}
 };
 
 //DefeatScreen
@@ -132,19 +198,21 @@ Config.level = {
 
 //Tilemap
 Config.tilemap = {
-	dir: 'assets/images/Tilemap.json'
+	dir: 'assets/map/Tilemap.json'
 };
 
 //Platform
 Config.platforms = {
-	dir: 'assets/images/Terrain_150-30.png',
+	dir: 'assets/map/Terrain_150-30.png',
 	layer: 'LayerMain',
-	tileset: 'Terrain'
+	tileset: 'Terrain',
+	height: 30,
+	width: 150
 };
 
 //Grass
 Config.grass = {
-	dir: 'assets/images/Grass_30-30.png',
+	dir: 'assets/map/Grass_30-30.png',
 	layer: 'LayerUpper',
 	tileset: 'Grass'
 };
@@ -152,13 +220,32 @@ Config.grass = {
 //Hero
 Config.hero = {
 	dir: {
-		normal: 'assets/spritesheets/HeroNormal_180-60.png',
-		attack: 'assets/spritesheets/HeroAttack_120-60.png'
+		normal: 'assets/map/HeroNormal_78-71_6.png',
+		attack: 'assets/spritesheets/HeroAttack_62-96_2.png'
 	},
 	layer: 'LayerHero',
-	gid: 12,
+	gid: 10,
 	health: {
 		initial: 100
+	},
+	alpha: {
+		hurt: 0.3,
+		die: 0.3
+	},
+	time: {
+		tween: {
+			hurt: {
+				dim: {
+					min: 100,
+					max: 100
+				}
+			},
+			die: {
+				dim: {
+					min: 3000
+				}
+			}
+		}
 	},
 	velocity: {
 		initial: {
@@ -194,19 +281,16 @@ Config.hero = {
 	},
 	frame: {
 		normal: {
-			width: 30,
-			height: 60,
+			width: 78,
+			height: 71,
 			stopped: 0,
 			jumping: 3,
 			falling: 4,
-			run: {
-				one: 1,
-				two: 2
-			}
+			run: [1, 5, 2, 0]
 		},
 		attack: {
-			width: 60,
-			height: 60,
+			width: 62,
+			height: 96,
 			hit: [0, 1]
 		}
 	}
@@ -214,7 +298,7 @@ Config.hero = {
 
 //ButtonHit
 Config.buttonHit = {
-	dir: 'assets/spritesheets/ButtonHit_1920-150.png',
+	dir: 'assets/spritesheets/ButtonHit_960-150_2.png',
 	x: 0,
 	y: 450,
 	frame: {
@@ -230,7 +314,7 @@ Config.buttonHit = {
 
 //ButtonLeft
 Config.buttonLeft = {
-	dir: 'assets/spritesheets/ButtonLeft_960-270.png',
+	dir: 'assets/spritesheets/ButtonLeft_480-225_2.png',
 	x: 0,
 	y: 225,
 	frame: {
@@ -246,7 +330,7 @@ Config.buttonLeft = {
 
 //ButtonRight
 Config.buttonRight = {
-	dir: 'assets/spritesheets/ButtonRight_960-270.png',
+	dir: 'assets/spritesheets/ButtonRight_480-225_2.png',
 	x: 480,
 	y: 225,
 	frame: {
@@ -262,7 +346,7 @@ Config.buttonRight = {
 
 //ButtonUp
 Config.buttonUp = {
-	dir: 'assets/spritesheets/ButtonUp_640-270.png',
+	dir: 'assets/spritesheets/ButtonUp_320-225_2.png',
 	x: 320,
 	y: 0,
 	frame: {
@@ -278,7 +362,7 @@ Config.buttonUp = {
 
 //ButtonJumpLeft
 Config.buttonJumpLeft = {
-	dir: "assets/spritesheets/ButtonJumpLeft_640-270.png",
+	dir: "assets/spritesheets/ButtonJumpLeft_320-225_2.png",
 	x: 0,
 	y: 0,
 	frame: {
@@ -292,7 +376,7 @@ Config.buttonJumpLeft = {
 };
 
 Config.buttonJumpRight = {
-	dir: "assets/spritesheets/ButtonJumpRight_640-270.png",
+	dir: "assets/spritesheets/ButtonJumpRight_320-225_2.png",
 	x: 640,
 	y: 0,
 	frame: {
@@ -307,24 +391,27 @@ Config.buttonJumpRight = {
 
 //SmallDragon
 Config.smallDragon = {
-	dir: 'assets/spritesheets/SmallDragon_90-60.png',
+	dir: 'assets/spritesheets/SmallDragon_95-52_4.png',
 	velocity: 150,
 	xi: 1920,
 	yi: 0,
+	distance: {
+		hero: 150
+	},
 	damage: Config.hero.health.initial / 600,
 	intervalBorning: {
-		actual: 30000,
-		min: 20000,
+		actual: 10000,
+		min: 5000,
 		decrement: 1000
 	},
 	anchor: {
 		left: {
 			x: 0,
-			y: 0
+			y: 0.5
 		},
 		right: {
 			x: 0.5,
-			y: 0
+			y: 0.5
 		}
 	},
 	scale: {
@@ -338,29 +425,29 @@ Config.smallDragon = {
 		}
 	},
 	frame: {
-		width: 30,
-		height: 60,
-		move: [0, 1]
+		width: 95,
+		height: 52,
+		move: [0, 1, 2, 3]
 	},
 	number: 10
 };
 
 //Fire
 Config.fire = {
-	dir: 'assets/spritesheets/Fire_20-10.png',
+	dir: 'assets/spritesheets/Fire_10-10_4.png',
 	number: 100,
-	animationVelocity: 42,
+	animationVelocity: 24,
 	frame: {
 		hight: 10,
 		width: 10,
-		move: [0, 1]
+		move: [0, 1, 2, 3]
 	},
 	range: 500,
 	damage: Config.hero.health.initial / 6000,
 	intervalShooting: 100,
 	adjust: {
-		x: 15,
-		y: 30
+		x: 60,
+		y: 5
 	},
 	velocity: Config.smallDragon.velocity + 100,
 	lifespan: 3000
@@ -377,31 +464,48 @@ Config.life = {
 
 //Dragon
 Config.dragon = {
-	dir: 'assets/spritesheets/Boiuna_360-270.png',
-    layer: 'LayerDragon',
-    gid: 21,
-    xf: Config.global.screen.width * 2 + 50,
+	dir: 'assets/map/Boiuna_90-90_8.png',
+	layer: 'LayerDragon',
+	gid: 16,
+	xf: Config.level.worldBounds.xf + 50,
+	xi: Config.level.worldBounds.xi - 50,
 	frame: {
 		width: 90,
 		height: 90,
-        move: {
-            one: 0,
-            two: 1,
-            three: 2,
-            four: 3
-        }
+		start: 0,
+		move: {
+			head: [0, 1, 2, 3],
+			body: [7, 6, 5, 4]
+		}
 	},
-    timeGrow: 1000 / Config.global.animationVelocity,
-    number: {
-        pieces: 5
-    }
+	timeGrow: 1000 / Config.global.animationVelocity,
+	number: {
+		pieces: 1
+	},
+	velocity: 140,
+	damage: Config.hero.health.initial / 2
+};
+
+//Lady
+Config.lady = {
+	dir: 'assets/map/Lady_51-78_3.png',
+	layer: 'LayerLady',
+	gid: 7,
+	frame: {
+		width: 51,
+		height: 78,
+		stay: [0, 1, 2, 1]
+	}
 };
 
 //Princess
 Config.princess = {
-	dir: 'assets/spritesheets/Princess_150-60.png',
+	dir: 'assets/spritesheets/Princess_45-78_3.png',
 	frame: {
-		width: 30,
-		height: 60
-	}
+		width: 45,
+		height: 78,
+		start: 0,
+		stay: [0, 1, 2, 1]
+	},
+	gravity: 100
 };

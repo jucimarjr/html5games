@@ -9,10 +9,6 @@ var SmallDragon = function (game, hero, platforms) {
 	this.platforms = platforms;
 };
 SmallDragon.prototype = {
-	preload: function () {
-		"use strict";
-		this.game.load.spritesheet('small-dragon', Config.smallDragon.dir, Config.smallDragon.frame.width, Config.smallDragon.frame.height);
-	},
 	create: function () {
 		"use strict";
 		this.group = this.game.add.group();
@@ -25,7 +21,6 @@ SmallDragon.prototype = {
 		"use strict";
 		var i;
 		this.game.physics.arcade.collide(this.hero.sprite, this.group, this.collision, null, this);
-		this.game.physics.arcade.collide(this.group, this.platforms.mainLayer);
 		this.group.forEachAlive(this.move, this);
 		if (this.game.time.now > this.bornTime) {
 			if (Config.smallDragon.intervalBorning.actual > Config.smallDragon.intervalBorning.min) {
@@ -40,7 +35,7 @@ SmallDragon.prototype = {
 		if (this.hero.sprite.key === 'hero-attack' && this.hero.sprite.scale.x !== spriteSmallDragon.scale.x) {
 			spriteSmallDragon.kill();
 		} else {
-			this.hero.sprite.damage(Config.smallDragon.damage);
+			this.hero.hurt(Config.smallDragon.damage);
 		}
 	},
 	born: function () {
@@ -54,7 +49,11 @@ SmallDragon.prototype = {
 	},
 	move: function (spriteSmallDragon) {
 		"use strict";
-		this.game.physics.arcade.moveToObject(spriteSmallDragon, this.hero.sprite, Config.smallDragon.velocity);
+		if (Phaser.Point.distance(spriteSmallDragon, this.hero.sprite) > Config.smallDragon.distance.hero) {
+			this.game.physics.arcade.moveToObject(spriteSmallDragon, this.hero.sprite, Config.smallDragon.velocity);
+		} else {
+			spriteSmallDragon.body.velocity.setTo(0, 0);
+		}
 		if (spriteSmallDragon.x > this.hero.sprite.x) {
 			spriteSmallDragon.anchor = Config.smallDragon.anchor.right;
 			spriteSmallDragon.scale = Config.smallDragon.scale.right;

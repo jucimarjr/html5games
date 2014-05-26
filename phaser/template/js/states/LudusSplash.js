@@ -10,6 +10,9 @@ State.LudusSplash.prototype = {
 	preload: function () {
 		"use strict";
 		this.game.load.image('ludus-splash', Config.ludusSplash.dir);
+		//GameSplash
+		this.game.load.image('game-splash', Config.gameSplash.dir.background);
+		this.game.load.image('progress-bar', Config.gameSplash.dir.bar);
 	},
 	create: function () {
 		"use strict";
@@ -20,5 +23,9 @@ State.LudusSplash.prototype = {
 		setTimeout(function () {
 			this.game.state.start('SponsorSplash');
 		}, Config.ludusSplash.nextState);
+	},
+	update: function () {
+		"use strict";
+		Config.global.screen.resize(this.game);
 	}
 };

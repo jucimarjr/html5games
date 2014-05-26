@@ -7,7 +7,6 @@ State.Credits = function (game) {
 State.Credits.prototype = {
 	preload: function () {
 		"use strict";
-		this.game.load.image('credits', Config.credits.dir);
 	},
 	create: function () {
 		"use strict";
@@ -17,6 +16,7 @@ State.Credits.prototype = {
 	},
 	update: function () {
 		"use strict";
+		Config.global.screen.resize(this.game);
 		if (this.game.input.keyboard.isDown(Phaser.Keyboard.ENTER)) {
 			this.game.state.start('Menu');
 		}

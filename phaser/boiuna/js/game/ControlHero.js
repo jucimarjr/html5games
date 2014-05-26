@@ -12,15 +12,6 @@ var ControlHero = function (game, hero) {
 	this.buttonJumpRight = new ButtonJumpRight(game, hero);
 };
 ControlHero.prototype = {
-	preload: function () {
-		"use strict";
-		this.buttonHit.preload();
-		this.buttonLeft.preload();
-		this.buttonRight.preload();
-		this.buttonUp.preload();
-		this.buttonJumpLeft.preload();
-		this.buttonJumpRight.preload();
-	},
 	create: function () {
 		"use strict";
 		this.buttonHit.create();
@@ -40,21 +31,11 @@ ControlHero.prototype = {
 		inputJumpLeft = this.buttonJumpLeft.update();
 		inputJumpRight = this.buttonJumpRight.update();
 		if (inputLeft === false && inputRight === false && inputUp === false && inputJumpLeft === false && inputJumpRight === false) {
-			this.stop();
+			this.hero.stop();
 		}
-		if (!this.hero.sprite.body.onFloor() && ((inputUp === false && inputJumpLeft === false && inputJumpRight === false) || (this.hero.jumpControl >= Config.hero.jump.max))) {
-			this.hero.jumpControl = 0;
-			if (this.hero.sprite.key === 'hero-normal') {
-				this.hero.sprite.frame = Config.hero.frame.normal.falling;
-			}
+		if (!this.hero.sprite.body.onFloor() && ((inputUp === false && inputJumpLeft === false && inputJumpRight === false) ||
+			(this.hero.jumpControl >= Config.hero.jump.max))) {
+			this.hero.fall();
 		}
-	},
-	stop: function () {
-		"use strict";
-		if (this.hero.sprite.key === 'hero-normal') {
-			this.hero.sprite.animations.stop();
-			this.hero.sprite.frame = Config.hero.frame.normal.stopped;
-		}
-		this.hero.sprite.body.velocity.x = Config.hero.velocity.initial.x;
 	}
 };

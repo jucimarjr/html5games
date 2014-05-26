@@ -1,5 +1,6 @@
 var Menu = {};
 var players = 0;
+var sound = true;
 Menu = function (game) {
     this.game = game;
     this.btnPlay = null;
@@ -10,18 +11,9 @@ Menu = function (game) {
     this.button = 0;
 };
 
-Menu.prototype.preload = function(){
-
-    //game.stage.backgroundColor = '#111111';
-    game.load.spritesheet('botoes', 'assets/screens/btns.png', 600, 72);
-    game.load.image('title', 'assets/screens/menu.png');
-		
-};
-
 Menu.prototype.create = function() {
 	this.game.world.setBounds(0, 0, 800, 480);
     var fadeout;
-    
     this.title = game.add.sprite(game.world.centerX,game.world.centerY, 'title');
     this.title.anchor.setTo(0.5,0.5);
     this.button = 1;
@@ -29,6 +21,10 @@ Menu.prototype.create = function() {
     function(){ this.play(1); }, this);
     this.btnPlay1.setFrames(0, 0);
     this.btnPlay1.anchor.x = 0.5;
+    
+    this.btnSound = game.add.sprite(game.world.width - 85, game.world.height - 85, 'sound', 0);
+    this.btnSound.inputEnabled = true;
+    this.btnSound.events.onInputDown.add(this.changeSound, this);
     
     this.btnPlay2 = game.add.button(game.world.centerX + 15, game.world.centerY + 110, 'botoes',
     function(){ this.play(2); }, this);
@@ -41,11 +37,21 @@ Menu.prototype.create = function() {
     this.btnCredits.anchor.x = 0.5;
 };
 
+Menu.prototype.changeSound = function(){
+	if(sound){
+		sound = false;
+		this.btnSound.frame = 1;
+	}else{
+		sound = true;
+		this.btnSound.frame = 0;
+	}
+}
+
 Menu.prototype.play = function (p) {
     this.fadeOut();
     players = p;
     fadeout.onComplete.add(function () {
-    	game.state.start('game');
+    	game.state.start('game', true);
     });
 };
 

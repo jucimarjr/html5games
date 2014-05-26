@@ -28,14 +28,14 @@ Menu.prototype.create = function() {
 //  music = game.add.audio('Menu_Sound', 1, false);sem música por enquanto
     //  music.play('', 0, 1, false);sem música por enquanto
 
-    this.btnPlay = game.add.button(game.world.centerX, game.world.centerY - 100, 'buttons',
+    this.btnPlay = game.add.button(game.world.centerX, game.world.centerY - 120, 'buttons',
             function() {
                 this.play();
             }, this);
     this.btnPlay.setFrames(btPlaySelected, btPlay);
     this.btnPlay.anchor.x = 0.5;
 
-    this.btnHowToPlay = game.add.button(game.world.centerX, game.world.centerY - 40, 'buttons',
+    this.btnHowToPlay = game.add.button(game.world.centerX, game.world.centerY - 50, 'buttons',
             function() {
                 this.howToPlay();
             }, this);
@@ -49,7 +49,7 @@ Menu.prototype.create = function() {
     this.btnHighScores.setFrames(btScoreSelected, btScore);
     this.btnHighScores.anchor.x = 0.5;
 
-    this.btnCredits = game.add.button(game.world.centerX, game.world.centerY + 80, 'buttons',
+    this.btnCredits = game.add.button(game.world.centerX, game.world.centerY + 90, 'buttons',
             function() {
                 this.credits();
             }, this);

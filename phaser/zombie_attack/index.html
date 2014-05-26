@@ -1,0 +1,102 @@
+<!doctype html> 
+<html lang="en"> 
+<head> 
+	<meta charset="UTF-8" />
+	<title>Zombie Invaders</title>
+	<link rel="stylesheet" type="text/css" href="fonts/fonts_game/stylesheet.css">
+	<script type="text/javascript" src="js/phaser.min.js"></script>
+	<script type="text/javascript" src="js/FilePaths.js"></script>
+	<script type="text/javascript" src="js/Splash.js"></script>
+	<script type="text/javascript" src="js/Menu.js"></script>
+	<script type="text/javascript" src="js/Zombie.js"></script>
+	<script type="text/javascript" src="js/Person.js"></script>
+	<script type="text/javascript" src="js/Round.js"></script>
+	<script type="text/javascript" src="js/Game.js"></script>
+</head>
+
+<body>
+<script type="text/javascript">
+
+var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+var score = null;
+var cursors;
+var gameScene = null;
+var splashScene = null;
+
+game.state.add('menu', Menu);
+game.state.add('game', Game);
+//game.state.add('HowToPlay', HowToPlay);
+//game.state.add('HighScore', HighScore);
+//game.state.add('HighScoreInput', HighScoreInput);
+//game.state.add('Credits', Credits);
+
+function preload()
+{
+	//SpriteSheets Pessoas
+	game.load.spritesheet('personDown', spriteSheetsImagePersonDown, 100, 161, 6);
+	
+	//SpriteSheets Zumbis
+	game.load.atlas('zombieDown', spriteSheetsImageZombieDown, spriteSheetsJsonZombieDown);
+	game.load.spritesheet('zombieUp',spriteSheetsImageZombieUp,100,168,4);
+	game.load.spritesheet('zombieLeft',spriteSheetsImageZombieLeft,100,168,3);
+	game.load.spritesheet('zombieRigth',spriteSheetsImageZombieRigth,100,168,3);
+	game.load.spritesheet('zombieDead',spriteSheetsImageZombieDead,100,136,10);
+	
+	game.load.image('round', spriteRound);
+	game.load.image('score', spriteScore);
+	game.load.image('cenario', imageCenario);
+	game.load.image('credits',splashCredits);
+	game.load.audio('audioZombieDead',audioZombieDead);
+	game.load.audio('audioBackGroundGame',audioBackGroundGame);
+	
+	splashScene = new Splash(game);
+	splashScene.preload();
+}
+
+function create()
+{
+	splashScene.create();
+}
+
+function update() 
+{
+	
+}
+
+function setHighScore()
+{
+    /*if (typeof localStorage["scores"] == "undefined") {
+        localStorage["score1"] = 500;
+        localStorage["score2"] = 400;
+        localStorage["score3"] = 300;
+        localStorage["score4"] = 200;
+        localStorage["score5"] = 100;
+        localStorage["nameScore1"] = "AAA";
+        localStorage["nameScore2"] = "BBB";
+        localStorage["nameScore3"] = "CCC";
+        localStorage["nameScore4"] = "DDD";
+        localStorage["nameScore5"] = "EEE";
+        localStorage["scores"] = "OK";
+    }*/
+}
+
+
+
+</script>
+
+</body>
+
+  <!--<div id="footer">
+	<!--	<span style="position:relative; top:600px">
+		<center>
+			<h3> Desenvolvedores </h3>
+				<a href = "https://www.facebook.com/camdsf?fret=ts"> Carlos Alberto </a> </br>
+				<a href = "https://www.facebook.com"> Anne Oliveira </a>  </br>
+			<h3> Designer </h3>
+				<a href = "https://www.facebook.com/johnmaycon.silva?fref=ts"> John Maycon </a> </br>
+			<h3> Orientador </h3>
+				<a href = "https://www.facebook.com/jucimar.jr?fret=ts"> Prof. Jucimar Jr. </a> </br></br>
+		</center>
+	<!--	</span> 
+	</div>-->
+</html>

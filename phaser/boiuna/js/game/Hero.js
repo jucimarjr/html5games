@@ -9,11 +9,6 @@ var Hero = function (game, tilemap, platforms) {
 	this.platforms = platforms;
 };
 Hero.prototype = {
-	preload: function () {
-		"use strict";
-		this.game.load.spritesheet('hero-normal', Config.hero.dir.normal, Config.hero.frame.normal.width, Config.hero.frame.normal.height);
-		this.game.load.spritesheet('hero-attack', Config.hero.dir.attack, Config.hero.frame.attack.width, Config.hero.frame.attack.height);
-	},
 	create: function () {
 		"use strict";
 		var group = this.game.add.group();
@@ -25,14 +20,12 @@ Hero.prototype = {
 		this.game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
 		this.sprite.body.collideWorldBounds = true;
 		this.sprite.body.gravity.y = Config.hero.gravity;
-		this.sprite.animations.add('run', [Config.hero.frame.normal.run.one, Config.hero.frame.normal.run.two], Config.global.animationVelocity, true);
+		this.sprite.animations.add('run', Config.hero.frame.normal.run, Config.global.animationVelocity, true);
 		this.game.camera.follow(this.sprite);
+		this.sprite.events.onKilled.add(this.onKill, this);
 	},
 	update: function () {
 		"use strict";
-		if (this.sprite.alive === false) {
-			this.game.state.start('DefeatScreen');
-		}
 		this.game.physics.arcade.collide(this.sprite, this.platforms.mainLayer);
 	},
 	moveLeft: function () {
@@ -70,7 +63,9 @@ Hero.prototype = {
 	hit: function () {
 		"use strict";
 		if (this.sprite.key !== 'hero-attack') {
+			this.sprite.y -= Config.hero.frame.attack.height - Config.hero.frame.normal.height;
 			this.sprite.loadTexture('hero-attack');
+			this.sprite.body.setSize(Config.hero.frame.attack.width, Config.hero.frame.attack.height);
 			this.sprite.animations.add('attack', Config.hero.frame.attack.hit, Config.global.animationVelocity, true);
 		} else {
 			this.sprite.animations.play('attack');
@@ -78,8 +73,44 @@ Hero.prototype = {
 	},
 	restoreTexture: function () {
 		"use strict";
-		if (this.sprite.key !== 'hero-normal') {
+		if (this.sprite.key !== 'hero-normal' && this.sprite.alive) {
 			this.sprite.loadTexture('hero-normal');
+			this.sprite.body.setSize(Config.hero.frame.normal.width, Config.hero.frame.normal.height);
+			this.sprite.y += Config.hero.frame.attack.height - Config.hero.frame.normal.height;
 		}
+	},
+	hurt: function (damage) {
+		"use strict";
+		this.game.add.tween(this.sprite).to({alpha : Config.hero.alpha.hurt}, Config.hero.time.tween.hurt.dim.min, Phaser.Easing.Linear.None).to({alpha : 1}, Config.hero.time.tween.hurt.dim.max, Phaser.Easing.Linear.None).start();
+		this.sprite.damage(damage);
+	},
+	onKill: function () {
+		"use strict";
+		this.sprite.visible = true;
+		var tweenDie = this.game.add.tween(this.game.world).to({alpha : Config.hero.alpha.die}, Config.hero.time.tween.die.dim.min, Phaser.Easing.Linear.None).start();
+		tweenDie.onComplete.add(function () {
+			this.game.world.alpha = 1;
+			this.game.state.start('DefeatScreen');
+		}, this);
+	},
+	stop: function () {
+		"use strict";
+		if (this.sprite.key === 'hero-normal') {
+			this.sprite.animations.stop();
+			this.sprite.frame = Config.hero.frame.normal.stopped;
+		}
+		this.sprite.body.velocity.x = Config.hero.velocity.initial.x;
+	},
+	fall: function () {
+		"use strict";
+		this.jumpControl = 0;
+		if (this.sprite.key === 'hero-normal') {
+			this.sprite.frame = Config.hero.frame.normal.falling;
+		}
+	},
+	win: function () {
+		"use strict";
+		this.game.endTime = this.game.time.totalElapsedSeconds();
+		this.game.state.start('VictoryScreen');
 	}
 };

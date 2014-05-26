@@ -17,16 +17,16 @@ Ohhman.prototype = {
 	},
 
 	create : function() {
-		//Adiciona o ohhMan na tela
-		this.sprite = game.add.sprite(game.world.width/2 - 18, game.height/2 + 60, 'ohhMan');
+		//Adiciona o ohhMan na tela		
+		this.sprite = game.add.sprite(396, 360, 'ohhMan');
 		game.physics.enable(this.sprite);
 
 		//Impede que o ohhMan saia dos limites da tela
-		this.sprite.body.collideWorldBounds = true;
+		this.sprite.body.collideWorldBounds = true;		
 		
-		//Insere pontuação na tela
-		var style = { font: "25px Arial", fill: "#ffffff", align: "right" };
-		this.scoreText = game.add.text(game.width/2, 10 , "" + this.score, style);	
+		//Faz a camera seguir o Ohhman
+		game.camera.follow(this.sprite);
+
 	},
 	
 	update : function() {				
@@ -35,6 +35,7 @@ Ohhman.prototype = {
 		this.verifyGhostCollision();
 		this.verifyBallCollision();		
 		this.verifyDecisionCollision();		
+		this.verifyFearCollision();
 	},
 	
 	
@@ -95,10 +96,8 @@ Ohhman.prototype = {
 			this.checkOverlap(this.sprite, clyde.sprite) ||
 			this.checkOverlap(this.sprite, inkey.sprite) ||
 			this.checkOverlap(this.sprite, pinky.sprite))
-			
-			//game.state.start('sceneLose');
-			this.verifyLivesNumber();
-			//game.time.events.add(2200, this.verifyLivesNumber(), this);
+						
+			life.decreaseLivesNumber();			
 	},
 	
 	//Verifica se 2 sprites se sobreporam, ou seja, se eles colidiram
@@ -111,22 +110,15 @@ Ohhman.prototype = {
 	},
 	
 	//Verifica a colisão do ohhMan com as bolinhas amarelas
-	verifyBallCollision : function() {			
-		//this.sprite.body.setSize(6, 6);		
-		game.physics.arcade.overlap(this.sprite, map.balls, this.removeBall, null, this);				
-		//this.sprite.body.setSize(36, 36);
+	verifyBallCollision : function() {						
+		game.physics.arcade.overlap(this.sprite, map.balls, this.removeBall, null, this);						
 	},
 	
 	//Remove a bolinha amarela após colisão com o Ohhman
 	removeBall : function(player, ball) {		 		 		 
-		 ball.kill();		 		 
-		 this.punctuate();
-	},
-	
-	//Soma dez pontos a cada bolinha removida
-	punctuate : function () {
-		this.score += 10;
-	    this.scoreText.setText( "" + this.score );
+		 ball.kill();		
+		 score.punctuateBall();		 
+		 this.verifyBallQuantity();
 	},
 	
 	//Verifica a colisão do ohhman com o ponto de decisao
@@ -136,16 +128,16 @@ Ohhman.prototype = {
 	
 	correctPosition : function(player, decision) {				
 		if (decision.body.checkCollision.left)
-			this.sprite.x += 6;
+			this.sprite.x += 7;
 		
 		if (decision.body.checkCollision.right)
-			this.sprite.x -= 6;
+			this.sprite.x -= 7;
 			
 		if (decision.body.checkCollision.down)
-			this.sprite.y -= 6;
+			this.sprite.y -= 7;
 		
 		if (decision.body.checkCollision.up)
-			this.sprite.y += 6;
+			this.sprite.y += 7;
 		
 		this.keepDirection();
 	},		
@@ -173,12 +165,27 @@ Ohhman.prototype = {
 			this.sprite.body.velocity.y = this.speed;
 		}	
 	},
-
-	verifyLivesNumber : function(){
-		console.log(lives);
-		lives.getFirstAlive().kill();
-		if(lives.countLiving() <= 0){			
-			game.state.start('sceneLose');
+	
+	//Remove o Ohhman do jogo
+	kill : function() {
+		this.sprite.kill();
+	},
+	
+	//Verifica a colisão do ohhMan com os quadrados grandes
+	verifyFearCollision : function() {					
+		game.physics.arcade.overlap(this.sprite, map.fear, this.removeFear, null, this);						
+	},
+	
+	//Remove o quadrado grande após colisão com o Ohhman
+	removeFear : function(player, fear) {		 		 		 
+		 fear.kill();		
+		 score.punctuateFear();		 
+	},
+	
+	verifyBallQuantity : function() {
+		
+		if (map.balls.total <=0){
+			game.state.start('sceneWin');
 		}
 	},
 	
