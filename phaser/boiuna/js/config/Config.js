@@ -503,8 +503,8 @@ Config.dragon = {
 	dir: 'assets/map/Boiuna_90-90_8.png',
 	layer: 'LayerDragon',
 	gid: 16,
-	xf: Config.level.worldBounds.xf + 50,
-	xi: Config.level.worldBounds.xi - 50,
+	xf: Config.level.worldBounds.xf + 90,
+	xi: Config.level.worldBounds.xi - 90,
 	frame: {
 		width: 90,
 		height: 90,
