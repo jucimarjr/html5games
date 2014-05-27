@@ -39,10 +39,6 @@ var Spaceman = function(game, gameClass, x, y, sprite, player){
 Spaceman.prototype = Object.create(Phaser.Sprite.prototype);
 Spaceman.prototype.constructor = Spaceman;
 
-Spaceman.prototype.create = function(){
-	
-};
-
 Spaceman.prototype.update = function(){
 	this.fire1.angle = this.angle;
 	this.fire1.x = this.x;
@@ -79,17 +75,16 @@ Spaceman.prototype.update = function(){
 
 Spaceman.prototype.resetSpaceman = function(){
 	if(this.player == 1){
-		this.loadTexture('playerOne');
 		this.reset(350, 200);
 		this.fire1.reset(350,200);
 		game.add.tween(this).to({y:230}, 1200, Phaser.Easing.Quadratic.InOut, true, 0, 1000, true);
 	}		
 	else{		
-		this.loadTexture('playerTwo');
 		this.reset(350, 250);
 		this.fire1.reset(350,250);
 		game.add.tween(this).to({y:280}, 1200, Phaser.Easing.Quadratic.InOut, true, 0, 1000, true);
 	}
+	this.animations.play('flying');
 	game.input.onDown.addOnce(this.gameClass.start, this.gameClass);
 	game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onDown.addOnce(this.gameClass.start, this.gameClass)
 	//this.animations.play('flying');

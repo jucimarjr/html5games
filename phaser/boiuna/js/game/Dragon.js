@@ -35,14 +35,14 @@ Dragon.prototype = {
 			this.hero.win();
 			return;
 		}
-		if ((tail.x > Config.level.worldBounds.xf) && (this.head.scale.x > 0)) {
+		if ((tail.x > Config.dragon.xf) && (this.head.scale.x > 0)) {
 			this.head.scale.x *= -1;
 			this.head.y += this.head.height / 2;
 			this.growBody(this.body.length);
 			space = this.head.width;
 			this.head.x -= space;
 			this.moveLeft();
-		} else if ((tail.x < Config.level.worldBounds.xi) && (this.head.scale.x < 0)) {
+		} else if ((tail.x < Config.dragon.xi) && (this.head.scale.x < 0)) {
 			this.head.scale.x *= -1;
 			this.head.y += this.head.height / 2;
 			this.growBody(this.body.length);

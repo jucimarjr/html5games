@@ -15,7 +15,7 @@ HighScore.prototype.create = function () {
         font: "40px 'Hyperspace'", fill: "#ffffff", align: "center"
     }
     bg.anchor.setTo(0.5,0.5);
-    game.add.text(this.game.width / 2 - 150, 100, localStorage["nameScore1"], );
+    game.add.text(this.game.width / 2 - 150, 100, localStorage["nameScore1"], style);
 
     game.add.text(this.game.width / 2 + 50, 100, localStorage["score1"], style);
 
@@ -33,7 +33,7 @@ HighScore.prototype.create = function () {
 
     game.add.text(this.game.width / 2 - 150, 340, localStorage["nameScore5"], style);
 
-    game.add.text(this.game.width / 2 + 50, 340, localStorage["score5"], style});
+    game.add.text(this.game.width / 2 + 50, 340, localStorage["score5"], style);
 		
     game.input.onDown.add(function() {
         var fadeout = game.add.tween(bg).to( { alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
