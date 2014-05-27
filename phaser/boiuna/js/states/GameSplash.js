@@ -20,12 +20,16 @@ State.GameSplash.prototype = {
 	},
 	nextState: function () {
 		"use strict";
+		var audio = this.game.add.audio('music');
+		audio.play('', 0, 1, true, true);
 		setTimeout(function () {
 			this.game.state.start('StoryBefore');
 		}, Config.gameSplash.time.nextState);
 	},
 	loadAssets: function () {
 		"use strict";
+		//GameSplash
+		this.game.load.audio('music', Config.gameSplash.dir.music);
 		//StoryBefore
 		this.game.load.image('story-before',  Config.storyBefore.dir);
 		//StoryAfter

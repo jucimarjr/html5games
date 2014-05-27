@@ -26,8 +26,16 @@
     		src: url('assets/fonts/VectorB.ttf');
 		}	
 		@font-face {
+ 	   		font-family: 'FORCED SQUARE';
+    		src: url('assets/fonts/FORCED SQUARE.ttf');
+		}	
+		@font-face {
+ 	   		font-family: 'Hyperspace';
+    		src: url('assets/fonts/Hyperspace-Bold.ttf');
+		}	
+		@font-face {
  	   		font-family: 'Arcade Interlaced';
-    		src: url('assets/fonts/ARCADE_I.ttf');
+    		src: url('assets/fonts/arcade.ttf');
 		}
 		div{
 			font-family:'Arcade Interlaced';
@@ -46,7 +54,7 @@
 <div id="game"></div>
 <script type="text/javascript">
 
-var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'game', { preload: preload, create: create, update: update, render:render});//
+var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game', { preload: preload, create: create, update: update, render:render});//
 var score = null;
 
 var gameScene = null;
@@ -100,7 +108,9 @@ function preload()
 
 function create()
 {
+/*
 	game.stage.scale.maxWidth = 800;
+	game.stage.scale.maxHeight = 600;*/
 	game.stage.scale.setShowAll();;
 	game.stage.scale.refresh()
 	splashScene.create();

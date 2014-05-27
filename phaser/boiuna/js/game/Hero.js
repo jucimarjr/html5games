@@ -31,7 +31,11 @@ Hero.prototype = {
 	moveLeft: function () {
 		"use strict";
 		this.sprite.anchor = Config.hero.anchor.left;
-		this.sprite.body.velocity.x = -Config.hero.velocity.run;
+		if (this.sprite.key === 'hero-normal') {
+			this.sprite.body.velocity.x = -Config.hero.velocity.run.normal;
+		} else {
+			this.sprite.body.velocity.x = -Config.hero.velocity.run.attack;
+		}
 		if (this.sprite.body.onFloor() && this.sprite.key === 'hero-normal') {
 			this.sprite.animations.play('run');
 		}
@@ -40,7 +44,11 @@ Hero.prototype = {
 	moveRight: function () {
 		"use strict";
 		this.sprite.anchor = Config.hero.anchor.right;
-		this.sprite.body.velocity.x = Config.hero.velocity.run;
+		if (this.sprite.key === 'hero-normal') {
+			this.sprite.body.velocity.x = Config.hero.velocity.run.normal;
+		} else {
+			this.sprite.body.velocity.x = Config.hero.velocity.run.attack;
+		}
 		if (this.sprite.body.onFloor() && this.sprite.key === 'hero-normal') {
 			this.sprite.animations.play('run');
 		}
@@ -65,7 +73,7 @@ Hero.prototype = {
 		if (this.sprite.key !== 'hero-attack') {
 			this.sprite.y -= Config.hero.frame.attack.height - Config.hero.frame.normal.height;
 			this.sprite.loadTexture('hero-attack');
-			this.sprite.body.setSize(Config.hero.frame.attack.width, Config.hero.frame.attack.height);
+			this.sprite.body.setSize(Config.hero.body.size.attack.width, Config.hero.body.size.attack.height);
 			this.sprite.animations.add('attack', Config.hero.frame.attack.hit, Config.global.animationVelocity, true);
 		} else {
 			this.sprite.animations.play('attack');
@@ -75,7 +83,7 @@ Hero.prototype = {
 		"use strict";
 		if (this.sprite.key !== 'hero-normal' && this.sprite.alive) {
 			this.sprite.loadTexture('hero-normal');
-			this.sprite.body.setSize(Config.hero.frame.normal.width, Config.hero.frame.normal.height);
+			this.sprite.body.setSize(Config.hero.body.size.normal.width, Config.hero.body.size.normal.height);
 			this.sprite.y += Config.hero.frame.attack.height - Config.hero.frame.normal.height;
 		}
 	},

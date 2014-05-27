@@ -87,6 +87,8 @@ Game.prototype.update = function()
 	game.physics.arcade.collide(this.sprite, this.rocks, this.restart, null, this);
 	if(players == 2){
 		game.physics.arcade.collide(this.sprite2, this.rocks, this.restart, null, this);
+		this.hud.y = 25;
+		this.hud.x = 370;
 	}
 	
 };
@@ -129,12 +131,12 @@ Game.prototype.restart = function(s, r){
 			s.explode();
 			this.sprite2.resetSpaceman();
 			this.point2++;
-			this.hud.text = this.point1 + ' - ' + this.point2;
+			this.hud.text = 'Player 1: '+this.point1 + '\n\n'+'Player 2: '+this.point2;
 		}else{
 			s.explode();
 			this.sprite.resetSpaceman();
 			this.point1++;
-			this.hud.text = this.point1 + ' - ' + this.point2;
+			this.hud.text = 'Player 1: '+this.point1 + '\n\n'+'Player 2: '+this.point2;
 		}
 	}
 	this.rocks.removeAll(true);
