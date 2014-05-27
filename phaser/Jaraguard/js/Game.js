@@ -25,7 +25,7 @@ Game.prototype.preload = function() {
     game.load.spritesheet('sheetInimigoTipo2', 'assets/sheetInimigoTipo2_57X75.png', 50, 50);
     game.load.spritesheet('tiroInimigo', 'assets/sheetTiroInimigo1_17x16.png', 17, 16);
     game.load.spritesheet('tiroInimigo2', 'assets/sheetTiroInimigo2_47x81.png', 40, 50);
-
+    game.load.spritesheet('sheetInimigoTipo3', 'assets/spritSheetMorcego32x22.png', 32, 22);
     mapaScene = new Mapa();
     mapaScene.preload();
     lifeScene = new Life();
@@ -66,10 +66,23 @@ Game.prototype.create = function() {
     inimigoTipo2.callAll('animations.play', 'animations', 'spin');
     var tween = game.add.tween(inimigoTipo2).to({x: 100}, 1000, Phaser.Easing.Linear.Out, true, 10, 100, true);
 
+    //inimigo tipo 3
+    inimigosTipo3 = game.add.group();
+    inimigosTipo3.enableBody = true;
+    inimigosTipo3.physicsBodyType = Phaser.Physics.ARCADE;
+    mapaScene.getMap().createFromObjects('Camada de Objetos 1', 1251, 'sheetInimigoTipo3', 0, true, true, inimigosTipo3);
+//  Add animations to all of the coin sprites
+    inimigosTipo3.createMultiple(500, 'sheetInimigoTipo3');
+    inimigosTipo3.callAll('animations.add', 'animations', 'spin', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], 10, true);
+    inimigosTipo3.callAll('animations.play', 'animations', 'spin');
+    var tween3 = game.add.tween(inimigosTipo3).to({x: 100}, 1000, Phaser.Easing.Linear.Out, true, 10, 100, true);
+
+
     // Tiro inimigo 
     tirosInimigo1 = game.add.group();
     tirosInimigo1.enableBody = true;
     tirosInimigo1.physicsBodyType = Phaser.Physics.ARCADE;
+    tirosInimigo1.outOfBoundsKill = true;
     tirosInimigo1.createMultiple(500, 'tiroInimigo');
     tirosInimigo1.callAll('animations.add', 'animations', 'spin', [0, 1, 2, 3], 10, true);
     tirosInimigo1.callAll('animations.play', 'animations', 'spin');
@@ -108,11 +121,11 @@ Game.prototype.update = function() {
 
     game.angle += 0.1;
     //posiciona painel de pontuacao
-    scoreScene.poscionaPontuacao();
+  //  scoreScene.();
     //inicializa velocidade do player
     playerScene.update();
     //controle de tiros da nave
-    playerScene.controlaExistenciaTirosPlayer();
+
     //colisoes
     this.verificaColisoes();
     //verifica movimentos da nave e aplica sua açáo correspondente 
@@ -121,7 +134,7 @@ Game.prototype.update = function() {
     this.verificaTipoDeTiroAcionado();
     //controla quantidade de tiros do inimigo por segundos e verifica se a nave já foi destruída
     this.controlaTiroDoInimigoPorTempoPorLife();
-
+    this.AcionaImigo3();
 };
 
 Game.prototype.controlaTiroDoInimigoPorTempoPorLife = function() {
@@ -159,7 +172,7 @@ Game.prototype.verificaTipoDeTiroAcionado = function() {
     {
         playerScene.tiroNormal();
     }
-    else if (buttonSpaceBar.isDown && buttonEnter.isDown)
+    else if (buttonEnter.isDown)
     {
         playerScene.tiroCanhao();
 
@@ -177,6 +190,7 @@ Game.prototype.verificaColisoes = function() {
     game.physics.arcade.overlap(playerScene.getCanhao(), this.inimigosTipo1, this.colisaoBytirosPlayerByinimigo, null, this);
     game.physics.arcade.overlap(playerScene.getCanhao(), inimigoTipo2, this.colisaoBytirosPlayerByinimigo, null, this);
     game.physics.arcade.overlap(tirosInimigo2, playerScene.getPlayer(), this.colisaoByTiroInimigoByPlayer, null, this);
+    game.physics.arcade.overlap(inimigosTipo3, playerScene.getPlayer(), this.colisaoByTiroInimigoByPlayer, null, this);
 };
 
 Game.prototype.tirosInimigo1 = function() {
@@ -205,6 +219,30 @@ Game.prototype.tirosInimigo1 = function() {
             tiroInimigo1.reset(shooter.body.x, shooter.body.y);
 
             game.physics.arcade.moveToObject(tiroInimigo1, playerScene.getPlayer(), 220);
+            tiroInimigoTimer = game.time.now + 30;
+        }
+    }
+};
+
+Game.prototype.AcionaImigo3 = function() {
+
+    //array do inimigo3
+    livingEnemies.length = 0;
+
+    inimigosTipo3.forEach(function(inimigoTipo1Tmp) {
+
+        // carrega na lista  todos os inimigos do tipo 1 
+        livingEnemies.push(inimigoTipo1Tmp);
+
+    });
+
+    if (livingEnemies.length > 0)
+    {
+        var random = game.rnd.integerInRange(0, livingEnemies.length - 1);
+        // randomly select one of them
+        var shooter = livingEnemies[random];
+        if (((playerScene.getPlayer().x - shooter.body.x < 500 && playerScene.getPlayer().x - shooter.body.x > 0) && ((playerScene.getPlayer().y - shooter.body.y < 500 && playerScene.getPlayer().y - shooter.body.y > 0) || (shooter.body.y - playerScene.getPlayer().y < 500 && shooter.body.y - playerScene.getPlayer().y > 0))) || ((shooter.body.x - playerScene.getPlayer().x < 500 && shooter.body.x - playerScene.getPlayer().x > 0) && ((playerScene.getPlayer().y - shooter.body.y < 500 && playerScene.getPlayer().y - shooter.body.y > 0) || (shooter.body.y - playerScene.getPlayer().y < 500 && shooter.body.y - playerScene.getPlayer().y > 0)))) {
+            game.physics.arcade.moveToObject(shooter, playerScene.getPlayer(), 220);
             tiroInimigoTimer = game.time.now + 30;
         }
     }

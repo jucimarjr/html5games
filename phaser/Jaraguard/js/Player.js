@@ -29,7 +29,9 @@ Player.prototype.create = function() {
     tirosPlayer = game.add.group();
     tirosPlayer.enableBody = true;
     tirosPlayer.physicsBodyType = Phaser.Physics.ARCADE;
+
     tirosPlayer.createMultiple(500, 'tiroplayer');
+
     tirosPlayer.setAll('anchor.x', 0.5);
     tirosPlayer.setAll('anchor.y', 1);
     tirosPlayer.setAll('outOfBoundsKill', true);
@@ -68,19 +70,19 @@ Player.prototype.getCanhao = function() {
 
 
 Player.prototype.moverParaEsquerda = function() {
-    player.body.velocity.x = -hozMove;
+    player.body.velocity.x = -hozMove - 200;
 };
 
 Player.prototype.moverParaDireita = function() {
-    player.body.velocity.x = hozMove;
+    player.body.velocity.x = hozMove + 200;
 };
 
 Player.prototype.moverParaCima = function() {
-    player.body.velocity.y = -hozMove;
+    player.body.velocity.y = -hozMove - 200;
 };
 
 Player.prototype.moverParaBaixo = function() {
-    player.body.velocity.y = hozMove;
+    player.body.velocity.y = hozMove + 200;
 };
 
 Player.prototype.inicializarAnimacaoPlayer = function(objetoAux) {
@@ -109,6 +111,7 @@ Player.prototype.tiroNormal = function() {
 
         // procurar se ainda existe tiro inimigo 
         tiro = tirosPlayer.getFirstExists(false);
+        tiro.outOfBoundsKill = true;
 
         if (tiro)
         {  //executar animacao

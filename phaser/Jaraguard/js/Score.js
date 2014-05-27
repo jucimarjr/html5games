@@ -11,9 +11,12 @@ Score.prototype.preload = function() {
 };
 
 Score.prototype.create = function() {
+
     score = 0;
-    scoreText = game.add.text(30, game.world.centerY + 300, '' + score, {font: '34px Arial', fill: '#fff'});
-    imagePlayerVidas = game.add.sprite(30, game.world.height - 300, 'playerVidas');
+    scoreText = game.add.text(game.camera.x + 120,  game.camera.y + 6, '' + score, {font: '34px Arial', fill: '#fff'});
+    scoreText.fixedToCamera = true;
+    imagePlayerVidas = game.add.sprite(game.camera.x + 250, game.camera.y + 10, 'playerVidas');
+    imagePlayerVidas.fixedToCamera = true;
     imagePlayerVidas.angle = 0;
     imagePlayerVidas.alpha = 1;
 };
@@ -24,7 +27,7 @@ Score.prototype.poscionaPontuacao = function() {
     //  posiciona imagem da nave 
     imagePlayerVidas.x = game.camera.x + 250;
     imagePlayerVidas.y = game.camera.y + 10;
-    lifeScene.posicionaLife();
+  //  lifeScene.posicionaLife();
 };
 
 Score.prototype.pontuacao = function(pontuacao) {
