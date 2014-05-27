@@ -50,7 +50,8 @@ Config.sponsorSplash = {
 Config.gameSplash = {
 	dir: {
 		background: 'assets/images/GameSplash_960-600.png',
-		progressBar: 'assets/images/ProgressBar_960-30.png'
+		progressBar: 'assets/images/ProgressBar_960-30.png',
+		music: 'assets/audios/Music.mp3'
 	},
 	progressBar: {
 		x: 0,
@@ -66,7 +67,6 @@ Config.gameSplash = {
 //StoryBefore
 Config.storyBefore = {
 	dir: 'assets/images/StoryBefore_960-600.png',
-	music: 'assets/audios/Music.mp3',
 	x: 0,
 	y: 0
 };
@@ -163,8 +163,13 @@ Config.victoryScreen = {
 	dir: 'assets/images/VictoryScreen_960-600.png',
 	x: 0,
 	y: 0,
+	dim: 0.1,
 	message: {
-		text: "O seu tempo foi: ",
+		text: {
+			yourTimeWas: "O seu tempo foi: ",
+			seconds: "segundos",
+			bestWinScore: "Melhor tempo: "
+		},
 		style: {
 			font: '5em Old English Text MT',
 			fill: '#ffc90e'
@@ -180,7 +185,23 @@ Config.victoryScreen = {
 Config.defeatScreen = {
 	dir: 'assets/images/DefeatScreen_960-600.png',
 	x: 0,
-	y: 0
+	y: 0,
+	dim: 0.1,
+	message: {
+		text: {
+			youGot: "Chegou a faltar apenas: ",
+			dragonPart: "partes do dragão",
+			bestLoseScore: "Melhor resultado: "
+		},
+		style: {
+			font: '5em Old English Text MT',
+			fill: '#ffc90e'
+		},
+		anchor: {
+			x: 0.5,
+			y: 0.5
+		}
+	}
 };
 
 //Level
@@ -252,7 +273,10 @@ Config.hero = {
 			x: 0,
 			y: 0
 		},
-		run: 200,
+		run: {
+			normal: 280,
+			attack: 180
+		},
 		jump: -300
 	},
 	gravity: 1000,
@@ -292,6 +316,18 @@ Config.hero = {
 			width: 62,
 			height: 96,
 			hit: [0, 1]
+		}
+	},
+	body: {
+		size: {
+			normal: {
+				width: 60,
+				height: 71
+			},
+			attack: {
+				width: 78,
+				height: 96
+			}
 		}
 	}
 };
@@ -467,8 +503,8 @@ Config.dragon = {
 	dir: 'assets/map/Boiuna_90-90_8.png',
 	layer: 'LayerDragon',
 	gid: 16,
-	xf: Config.level.worldBounds.xf + 50,
-	xi: Config.level.worldBounds.xi - 50,
+	xf: Config.level.worldBounds.xf + 90,
+	xi: Config.level.worldBounds.xi - 90,
 	frame: {
 		width: 90,
 		height: 90,
@@ -480,7 +516,7 @@ Config.dragon = {
 	},
 	timeGrow: 1000 / Config.global.animationVelocity,
 	number: {
-		pieces: 1
+		pieces: 10
 	},
 	velocity: 140,
 	damage: Config.hero.health.initial / 2
@@ -508,4 +544,20 @@ Config.princess = {
 		stay: [0, 1, 2, 1]
 	},
 	gravity: 100
+};
+
+//Score
+Config.score = {
+	message: {
+		x: Config.global.screen.width - 50,
+		y: 0,
+		style: {
+			font: '5em Old English Text MT',
+			fill: '#880015'
+		},
+		anchor: {
+			x: 1,
+			y: 0
+		}
+	}
 };
