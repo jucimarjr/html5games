@@ -163,11 +163,12 @@ Config.victoryScreen = {
 	dir: 'assets/images/VictoryScreen_960-600.png',
 	x: 0,
 	y: 0,
+	dim: 0.1,
 	message: {
 		text: {
 			yourTimeWas: "O seu tempo foi: ",
 			seconds: "segundos",
-			bestScore: "Melhor tempo: "
+			bestWinScore: "Melhor tempo: "
 		},
 		style: {
 			font: '5em Old English Text MT',
@@ -184,7 +185,23 @@ Config.victoryScreen = {
 Config.defeatScreen = {
 	dir: 'assets/images/DefeatScreen_960-600.png',
 	x: 0,
-	y: 0
+	y: 0,
+	dim: 0.1,
+	message: {
+		text: {
+			youGot: "Chegou a faltar apenas: ",
+			dragonPart: "partes do dragão",
+			bestLoseScore: "Melhor resultado: "
+		},
+		style: {
+			font: '5em Old English Text MT',
+			fill: '#ffc90e'
+		},
+		anchor: {
+			x: 0.5,
+			y: 0.5
+		}
+	}
 };
 
 //Level

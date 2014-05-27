@@ -5,9 +5,6 @@ State.Credits = function (game) {
 	this.game = game;
 };
 State.Credits.prototype = {
-	preload: function () {
-		"use strict";
-	},
 	create: function () {
 		"use strict";
 		var background = this.game.add.sprite(Config.credits.x, Config.credits.y, 'credits');
@@ -17,7 +14,7 @@ State.Credits.prototype = {
 	update: function () {
 		"use strict";
 		Config.global.screen.resize(this.game);
-		if (this.game.input.keyboard.isDown(Phaser.Keyboard.ENTER)) {
+		if (this.game.input.keyboard.isDown(Config.global.key.nextScreen)) {
 			this.game.state.start('Menu');
 		}
 	},
