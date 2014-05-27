@@ -22,6 +22,7 @@ Dragon.prototype = {
 		this.head.body.allowGravity = false;
 		this.head.animations.add('move', Config.dragon.frame.move.head, Config.global.animationVelocity, true);
 		this.head.animations.play('move');
+		this.head.body.immovable = true;
 		this.growBody(Config.dragon.number.pieces);
 		this.moveRight();
 	},
@@ -37,6 +38,7 @@ Dragon.prototype = {
 		}
 		if ((tail.x > Config.dragon.xf) && (this.head.scale.x > 0)) {
 			this.head.scale.x *= -1;
+			this.head.body.offset.x = -Config.dragon.frame.width;
 			this.head.y += this.head.height / 2;
 			this.growBody(this.body.length);
 			space = this.head.width;
@@ -44,11 +46,13 @@ Dragon.prototype = {
 			this.moveLeft();
 		} else if ((tail.x < Config.dragon.xi) && (this.head.scale.x < 0)) {
 			this.head.scale.x *= -1;
+			this.head.body.offset.x = 0;
 			this.head.y += this.head.height / 2;
 			this.growBody(this.body.length);
 			this.moveRight();
 		}
-		this.game.physics.arcade.collide(this.body, this.hero.sprite, this.hitHero, null, this);
+		this.game.physics.arcade.collide(this.hero.sprite, this.body, this.bodyHitHero, null, this);
+		this.game.physics.arcade.collide(this.hero.sprite, this.head, this.headHitHero, null, this);
 	},
 	grow: function () {
 		"use strict";
@@ -102,12 +106,16 @@ Dragon.prototype = {
 			this.moveLeft();
 		}
 	},
-	hitHero: function (spriteHero, spriteSection) {
+	bodyHitHero: function (spriteHero, spriteSection) {
 		"use strict";
 		if (spriteSection === this.body.getBottom() && this.hero.sprite.key === 'hero-attack') {
 			spriteSection.destroy();
 		} else {
 			this.hero.hurt(Config.dragon.damage);
 		}
+	},
+	headHitHero: function (spriteHero, spriteHead) {
+		"use strict";
+		this.hero.hurt(Config.dragon.damage);
 	}
 };

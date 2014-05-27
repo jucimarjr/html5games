@@ -321,7 +321,7 @@ Config.hero = {
 	body: {
 		size: {
 			normal: {
-				width: 78,
+				width: 60,
 				height: 71
 			},
 			attack: {
