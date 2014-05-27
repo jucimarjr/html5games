@@ -545,3 +545,19 @@ Config.princess = {
 	},
 	gravity: 100
 };
+
+//Score
+Config.score = {
+	message: {
+		x: Config.global.screen.width - 50,
+		y: 0,
+		style: {
+			font: '5em Old English Text MT',
+			fill: '#880015'
+		},
+		anchor: {
+			x: 1,
+			y: 0
+		}
+	}
+};
