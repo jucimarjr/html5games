@@ -26,7 +26,7 @@ State.VictoryScreen.prototype = {
 		this.background.events.onInputDown.removeAll();
 		this.key.onDown.removeAll();
 		this.background.alpha = Config.victoryScreen.dim;
-		message = Config.victoryScreen.message.text.yourTimeWas + this.game.score.timePlayed + " " + Config.victoryScreen.message.text.seconds + "\n" + Config.victoryScreen.message.text.bestWinScore + this.game.score.bestWinScore + " " + Config.victoryScreen.message.text.seconds;
+		message = Config.victoryScreen.message.text.yourTimeWas + this.game.score.actualWinScore + " " + Config.victoryScreen.message.text.seconds + "\n" + Config.victoryScreen.message.text.bestWinScore + this.game.score.bestWinScore + " " + Config.victoryScreen.message.text.seconds;
 		text = this.game.add.text(Config.global.screen.width / 2, Config.global.screen.height / 2, message, Config.victoryScreen.message.style);
 		text.anchor = Config.victoryScreen.message.anchor;
 		this.key.onDown.add(this.onSecondClick, this);

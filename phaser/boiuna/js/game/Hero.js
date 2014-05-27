@@ -94,8 +94,11 @@ Hero.prototype = {
 	},
 	onKill: function () {
 		"use strict";
+		var audio, tweenDie;
 		this.sprite.visible = true;
-		var tweenDie = this.game.add.tween(this.game.world).to({alpha : Config.hero.alpha.die}, Config.hero.time.tween.die.dim.min, Phaser.Easing.Linear.None).start();
+		this.game.sound.stopAll();
+		this.game.sound.play('music-lose', 1, true);
+		tweenDie = this.game.add.tween(this.game.world).to({alpha : Config.hero.alpha.die}, Config.hero.time.tween.die.dim.min, Phaser.Easing.Linear.None).start();
 		tweenDie.onComplete.add(function () {
 			this.game.world.alpha = 1;
 			this.game.state.start('DefeatScreen');

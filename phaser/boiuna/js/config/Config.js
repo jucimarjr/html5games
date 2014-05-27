@@ -22,6 +22,16 @@ var Config = {
 	}
 };
 
+//Audio
+Config.audio = {
+	dir: {
+		music: {
+			normal: 'assets/audios/MusicNormal.mp3',
+			lose: 'assets/audios/MusicLose.mp3'
+		}
+	}
+};
+
 //LudusSplash
 Config.ludusSplash = {
 	dir: 'assets/images/LudusSplash_960-600.png',
@@ -50,8 +60,7 @@ Config.sponsorSplash = {
 Config.gameSplash = {
 	dir: {
 		background: 'assets/images/GameSplash_960-600.png',
-		progressBar: 'assets/images/ProgressBar_960-30.png',
-		music: 'assets/audios/Music.mp3'
+		progressBar: 'assets/images/ProgressBar_960-30.png'
 	},
 	progressBar: {
 		x: 0,
@@ -60,7 +69,7 @@ Config.gameSplash = {
 	x: 0,
 	y: 0,
 	time: {
-		nextState: 2000
+		nextState: 3000
 	}
 };
 
@@ -171,7 +180,7 @@ Config.victoryScreen = {
 			bestWinScore: "Melhor tempo: "
 		},
 		style: {
-			font: '5em Old English Text MT',
+			font: '40px Old English Text MT',
 			fill: '#ffc90e'
 		},
 		anchor: {
@@ -183,7 +192,10 @@ Config.victoryScreen = {
 
 //DefeatScreen
 Config.defeatScreen = {
-	dir: 'assets/images/DefeatScreen_960-600.png',
+	dir: {
+		background: 'assets/images/DefeatScreen_960-600.png',
+		music: 'assets/audios/MusicLose.mp3'
+	},
 	x: 0,
 	y: 0,
 	dim: 0.1,
@@ -194,7 +206,7 @@ Config.defeatScreen = {
 			bestLoseScore: "Melhor resultado: "
 		},
 		style: {
-			font: '5em Old English Text MT',
+			font: '40px Old English Text MT',
 			fill: '#ffc90e'
 		},
 		anchor: {
@@ -552,7 +564,7 @@ Config.score = {
 		x: Config.global.screen.width - 50,
 		y: 0,
 		style: {
-			font: '5em Old English Text MT',
+			font: '40px Old English Text MT',
 			fill: '#880015'
 		},
 		anchor: {
