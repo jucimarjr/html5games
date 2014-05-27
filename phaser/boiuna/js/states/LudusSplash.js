@@ -29,7 +29,6 @@ State.LudusSplash.prototype = {
 	},
 	loadAssetsGameSplash: function () {
 		"use strict";
-		this.game.load.audio('music', Config.gameSplash.dir.music);
 		this.game.load.image('progress-bar', Config.gameSplash.dir.progressBar);
 		this.game.load.image('game-splash', Config.gameSplash.dir.background);
 	}

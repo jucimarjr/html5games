@@ -13,6 +13,7 @@ Level.prototype = {
 		this.game.physics.arcade.checkCollision.up = false;
 		this.sprite = this.game.add.tileSprite(Config.level.x, Config.level.y, Config.global.screen.width * 2, Config.global.screen.height, 'game-background');
 		this.game.beginTime = this.game.time.totalElapsedSeconds();
+		this.game.bestScore = window.localStorage.getItem("bestScore");
 	},
 	update: function () {
 		"use strict";

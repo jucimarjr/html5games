@@ -164,7 +164,11 @@ Config.victoryScreen = {
 	x: 0,
 	y: 0,
 	message: {
-		text: "O seu tempo foi: ",
+		text: {
+			yourTimeWas: "O seu tempo foi: ",
+			seconds: "segundos",
+			bestScore: "Melhor tempo: "
+		},
 		style: {
 			font: '5em Old English Text MT',
 			fill: '#ffc90e'

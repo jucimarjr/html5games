@@ -14,23 +14,22 @@ State.GameSplash.prototype = {
 		this.game.load.onLoadComplete.add(this.nextState, this);
 		this.loadAssets();
 	},
-	create: function () {
-		"use strict";
-		var audio = this.game.add.audio('music');
-		audio.play('', 0, 1, true, true);
-	},
 	update: function () {
 		"use strict";
 		Config.global.screen.resize(this.game);
 	},
 	nextState: function () {
 		"use strict";
+		var audio = this.game.add.audio('music');
+		audio.play('', 0, 1, true, true);
 		setTimeout(function () {
 			this.game.state.start('StoryBefore');
 		}, Config.gameSplash.time.nextState);
 	},
 	loadAssets: function () {
 		"use strict";
+		//GameSplash
+		this.game.load.audio('music', Config.gameSplash.dir.music);
 		//StoryBefore
 		this.game.load.image('story-before',  Config.storyBefore.dir);
 		//StoryAfter

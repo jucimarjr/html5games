@@ -26,10 +26,11 @@ State.VictoryScreen.prototype = {
 		this.key.onDown.removeAll();
 		this.background.alpha = 0.1;
 		timePlayed = Math.floor(this.game.endTime - this.game.beginTime);
-		if(timePlayed < this.game.bestScore || !("bestScore" in this.game)){
+		if (timePlayed < this.game.bestScore || !(this.game.bestScore)) {
 			this.game.bestScore = timePlayed;
+			window.localStorage.setItem("bestScore", timePlayed);
 		}
-		message = Config.victoryScreen.message.text + timePlayed + " segundos\n Melhor tempo: " + this.game.bestScore + " segundos";
+		message = Config.victoryScreen.message.text.yourTimeWas + timePlayed + " " + Config.victoryScreen.message.text.seconds + "\n" + Config.victoryScreen.message.text.bestScore + this.game.bestScore + " " + Config.victoryScreen.message.text.seconds;
 		text = this.game.add.text(Config.global.screen.width / 2, Config.global.screen.height / 2, message, Config.victoryScreen.message.style);
 		text.anchor = Config.victoryScreen.message.anchor;
 		this.key.onDown.add(this.onSecondClick, this);
