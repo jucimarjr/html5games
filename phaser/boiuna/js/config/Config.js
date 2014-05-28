@@ -531,7 +531,7 @@ Config.dragon = {
 		pieces: 10
 	},
 	velocity: 140,
-	damage: Config.hero.health.initial / 2
+	damage: Config.hero.health.initial / 1000
 };
 
 //Lady
