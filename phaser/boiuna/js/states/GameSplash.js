@@ -20,16 +20,22 @@ State.GameSplash.prototype = {
 	},
 	nextState: function () {
 		"use strict";
-		var audio = this.game.add.audio('music');
-		audio.play('', 0, 1, true, true);
+		this.setAudios();
 		setTimeout(function () {
 			this.game.state.start('StoryBefore');
 		}, Config.gameSplash.time.nextState);
 	},
+	setAudios: function () {
+		"use strict";
+		this.game.sound.add('music-normal', 1, true);
+		this.game.sound.add('music-lose', 1, true);
+		this.game.sound.play('music-normal', 1, true);
+	},
 	loadAssets: function () {
 		"use strict";
-		//GameSplash
-		this.game.load.audio('music', Config.gameSplash.dir.music);
+		//Audios
+		this.game.load.audio('music-normal', Config.audio.dir.music.normal);
+		this.game.load.audio('music-lose', Config.audio.dir.music.lose);
 		//StoryBefore
 		this.game.load.image('story-before',  Config.storyBefore.dir);
 		//StoryAfter
@@ -81,7 +87,7 @@ State.GameSplash.prototype = {
 		//Princess
 		this.game.load.spritesheet('princess', Config.princess.dir, Config.princess.frame.width, Config.princess.frame.height);
 		//DefeatScreen
-		this.game.load.image('defeat-screen', Config.defeatScreen.dir);
+		this.game.load.image('defeat-screen', Config.defeatScreen.dir.background);
 		//VictoryScreen
 		this.game.load.image('victory-screen', Config.victoryScreen.dir);
 	}
