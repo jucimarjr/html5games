@@ -63,9 +63,9 @@ Game.prototype.create = function()
 Game.prototype.start = function(){
 	this.txt.text = '';
 	this.hud.y = 75;
-	this.hud.style = {
+	this.hud.setStyle({
 		font: "18px 'OCR A Std'", fill: "#ffffff" , align: "center"
-	}
+	})
 	game.tweens.removeAll();
 	game.physics.arcade.gravity.y = this.gravity;
 	this.playing = true;
@@ -143,11 +143,14 @@ Game.prototype.restart = function(s, r){
 	this.rocks.removeAll(true);
 	game.physics.arcade.gravity.y = 0;
 	this.playing = false;
-	this.hud.text = 'Você morreu\nPontuação:\n'+(this.score/10);
-	this.hud.style = {
-		font: "24px 'OCR A Std'", fill: "#ffffff" , align: "center"
-	};
-	this.hud.y = 175;
+	this.hud.text = 'Você morreu\nPontuação:\n'+parseInt(this.score/10);
+	this.hud.y = 235;
+	this.hud.x = 330;
+	this.hud.setStyle({
+		font: "36px 'OCR A Std'", fill: "#ffffff" , align: "center"
+	})
+	this.txt.text = 'Clique para reiniciar';
+	this.txt.y = 500;
 	if(localStorage["score"] < parseInt(this.score/10)){
 		localStorage["score"] = parseInt(this.score/10);
 		this.highscore.text = 'Best: '+localStorage["score"];
