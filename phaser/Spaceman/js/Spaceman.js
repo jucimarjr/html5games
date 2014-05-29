@@ -84,6 +84,7 @@ Spaceman.prototype.resetSpaceman = function(){
 		this.fire1.reset(350,250);
 		game.add.tween(this).to({y:280}, 1200, Phaser.Easing.Quadratic.InOut, true, 0, 1000, true);
 	}
+	this.fire1.alpha = 1;
 	this.animations.play('flying');
 	game.input.onDown.addOnce(this.gameClass.start, this.gameClass);
 	game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onDown.addOnce(this.gameClass.start, this.gameClass)
@@ -101,6 +102,7 @@ Spaceman.prototype.explode = function(){
     emitter.forEach(function(p){
     	game.add.tween(p).to({alpha:0},500,Phaser.Easing.Linear.None,true);
     })
+	this.fire1.alpha = 0;
     emitter.start(true, 1000, null, 30);
     if(sound)this.explosion.play();	
     if(this.inWorld == true)this.animations.play('explode').onComplete.addOnce(this.resetSpaceman, this)

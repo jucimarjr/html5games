@@ -40,19 +40,16 @@ Game.prototype.create = function()
 	game.time.events.loop(Phaser.Timer.SECOND * 0.50 , this.spawnRock, this);
 	game.time.events.loop(Phaser.Timer.SECOND * 0.2 , this.spawnStar, this);
 	this.txt = game.add.text(370, 120, '',{
-		font: "24px Arial", fill: "#ffffff" , align: "center"
+		font: "18px 'OCR A Std'", fill: "#ffffff" , align: "center"
 	});
-	if(game.device.touch){
-		this.txt.text = 'Tap the screen to fly.\nAvoid the rocks.';
-	}else{
-		this.txt.text = 'Click the screen to fly.\nAvoid the rocks.';
-		if(players == 2)this.txt.text += '\n\n\n\n\nPress Space to fly.\nAvoid the rocks.'
-	}
+	this.txt.text = 'Pressione a tela para voar.\nCuidado com as rochas.';
+	if(players == 2)this.txt.text += '\n\n\n\n\nPressione a tela para voar.\nCuidado com as rochas.'
+	
 	this.hud = game.add.text(game.world.centerX,75,parseInt(this.score/10),{
-		font: "28px Arial", fill: "#ffffff" , align: "center"
+		font: "18px 'OCR A Std'", fill: "#ffffff" , align: "center"
 	});
 	this.highscore = game.add.text(790, 25,'Best: '+localStorage["score"],{
-		font: "24px Arial", fill: "#ffffff" , align: "center"
+		font: "18px 'OCR A Std'", fill: "#ffffff" , align: "center"
 	});
 	this.btn = game.add.button(game.world.width - 85, game.world.height - 85, 'back',function(){
 		game.physics.arcade.gravity.y = 0;	
@@ -65,6 +62,10 @@ Game.prototype.create = function()
 
 Game.prototype.start = function(){
 	this.txt.text = '';
+	this.hud.y = 75;
+	this.hud.style = {
+		font: "18px 'OCR A Std'", fill: "#ffffff" , align: "center"
+	}
 	game.tweens.removeAll();
 	game.physics.arcade.gravity.y = this.gravity;
 	this.playing = true;
@@ -142,6 +143,11 @@ Game.prototype.restart = function(s, r){
 	this.rocks.removeAll(true);
 	game.physics.arcade.gravity.y = 0;
 	this.playing = false;
+	this.hud.text = 'Você morreu\nPontuação:\n'+(this.score/10);
+	this.hud.style = {
+		font: "24px 'OCR A Std'", fill: "#ffffff" , align: "center"
+	};
+	this.hud.y = 175;
 	if(localStorage["score"] < parseInt(this.score/10)){
 		localStorage["score"] = parseInt(this.score/10);
 		this.highscore.text = 'Best: '+localStorage["score"];

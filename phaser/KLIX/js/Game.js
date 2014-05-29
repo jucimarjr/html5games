@@ -29,7 +29,7 @@ var Game = function(game){
 };
 
 Game.prototype.create = function () {
-	//if(this.game.device.touch){
+	if(this.game.device.touch){
 		console.log('touch enabled');
 		this.btns = this.game.add.group(0, 0); 
 		this.right = this.game.add.sprite(170,430,'sprites','btn-right.png');
@@ -48,7 +48,7 @@ Game.prototype.create = function () {
 		this.btns.add(this.left);
 		this.btns.add(this.thrust);
 		this.btns.add(this.shoot);
-	//}
+	}
 	this.shootUfo = this.game.add.group();
 	this.game.world.setBounds(0, 0, 3200, 1920);
 	//this.game.world.setBounds(0, 0, 800, 480);
