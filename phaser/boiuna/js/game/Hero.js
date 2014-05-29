@@ -71,7 +71,6 @@ Hero.prototype = {
 	hit: function () {
 		"use strict";
 		if (this.sprite.key !== 'hero-attack') {
-			this.sprite.y -= Config.hero.frame.attack.height - Config.hero.frame.normal.height;
 			this.sprite.loadTexture('hero-attack');
 			this.sprite.body.setSize(Config.hero.body.size.attack.width, Config.hero.body.size.attack.height);
 			this.sprite.animations.add('attack', Config.hero.frame.attack.hit, Config.global.animationVelocity, true);
@@ -84,7 +83,6 @@ Hero.prototype = {
 		if (this.sprite.key !== 'hero-normal' && this.sprite.alive) {
 			this.sprite.loadTexture('hero-normal');
 			this.sprite.body.setSize(Config.hero.body.size.normal.width, Config.hero.body.size.normal.height);
-			this.sprite.y += Config.hero.frame.attack.height - Config.hero.frame.normal.height;
 		}
 	},
 	hurt: function (damage) {
