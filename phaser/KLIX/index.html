@@ -83,13 +83,14 @@ function preload()
 	//game.load.image('ship','assets/tests/nave-azul.png');
 	//game.load.image('shipalt','assets/images/nave1.png');
     game.load.audio('thrust', 'assets/audios/AsteroidsThrust.mp3');
-    game.load.audio('shoot', 'assets/audios/AsteroidsShoot.mp3');
-    game.load.audio('ufo', 'assets/audios/AsteroidsSaucer.mp3');
-    game.load.audio('tick1', 'assets/audios/tick1.wav');
-    game.load.audio('tick2', 'assets/audios/tick2.wav');
+    game.load.audio('shoot', 'assets/audios/AsteroidsShoot.wav');
+    game.load.audio('tick1', 'assets/audios/bip.wav');
+    game.load.audio('tick2', 'assets/audios/bip1.wav');
     game.load.audio('siren', 'assets/audios/siren.wav');
-    game.load.audio('bang1', 'assets/audios/bangMedium.wav');
-    game.load.audio('bang2', 'assets/audios/bangSmall.wav');
+    game.load.audio('bang1', 'assets/audios/Explosion4.wav');
+    game.load.audio('bang2', 'assets/audios/Explosion2.wav');
+	game.load.audio('collect', 'assets/audios/reset.wav');
+	game.load.audio('reset', 'assets/audios/Powerup.wav');
     setHighScore();
     var keyFull = this.game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
 	keyFull.onDown.add(function(){
@@ -97,7 +98,9 @@ function preload()
 			game.stage.fullScreenScaleMode = Phaser.StageScaleMode.EXACT_FIT;		
 			game.stage.scale.startFullScreen();
 		}else{
-			game.stage.scale.stopFullScreen();
+			//game.stage.scale.stopFullScreen();
+			game.stage.scale.setShowAll();
+			game.stage.scale.refresh();
 		}
 	}, this);
     
