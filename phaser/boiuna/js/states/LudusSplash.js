@@ -14,6 +14,7 @@ State.LudusSplash.prototype = {
 	},
 	create: function () {
 		"use strict";
+		this.game.input.keyboard.addKeyCapture(Config.global.key.annoying);
 		var sprite = this.game.add.sprite(Config.ludusSplash.x, Config.ludusSplash.y, 'ludus-splash');
 		setTimeout(function () {
 			this.game.add.tween(sprite).to({alpha : Config.ludusSplash.dim}, Config.ludusSplash.time.dim, Phaser.Easing.Linear.None).start();

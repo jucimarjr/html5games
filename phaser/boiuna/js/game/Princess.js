@@ -50,7 +50,7 @@ Princess.prototype = {
 	},
 	checkNumberLadies: function () {
 		"use strict";
-		if (this.lady.group.countLiving() === 1) {
+		if (this.lady.group.countLiving() === 0) {
 			this.appear();
 		}
 	}

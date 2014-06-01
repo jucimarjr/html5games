@@ -14,6 +14,20 @@ var Config = {
 					game.scale.refresh();
 				}
 			}
+		},
+		key: {
+			nextScreen: Phaser.Keyboard.ENTER,
+			annoying: [Phaser.Keyboard.SPACEBAR, Phaser.Keyboard.DOWN]
+		}
+	}
+};
+
+//Audio
+Config.audio = {
+	dir: {
+		music: {
+			normal: 'assets/audios/MusicNormal.mp3',
+			lose: 'assets/audios/MusicLose.mp3'
 		}
 	}
 };
@@ -55,7 +69,7 @@ Config.gameSplash = {
 	x: 0,
 	y: 0,
 	time: {
-		nextState: 4000
+		nextState: 3000
 	}
 };
 
@@ -82,7 +96,7 @@ Config.menu = {
 	buttonPlay: {
 		dir: 'assets/spritesheets/ButtonPlay_141-75_3.png',
 		x: Config.global.screen.width * 0.5,
-		y: Config.global.screen.height * 0.4,
+		y: Config.global.screen.height * 0.55,
 		frame: {
 			width: 141,
 			height: 75,
@@ -99,7 +113,7 @@ Config.menu = {
 	buttonHowToPlay: {
 		dir: 'assets/spritesheets/ButtonHowToPlay_275-75_3.png',
 		x: Config.global.screen.width * 0.5,
-		y: Config.global.screen.height * 0.6,
+		y: Config.global.screen.height * 0.7,
 		frame: {
 			width: 275,
 			height: 75,
@@ -116,7 +130,7 @@ Config.menu = {
 	buttonCredits: {
 		dir: 'assets/spritesheets/ButtonCredits_204-75_3.png',
 		x: Config.global.screen.width * 0.5,
-		y: Config.global.screen.height * 0.8,
+		y: Config.global.screen.height * 0.85,
 		frame: {
 			width: 204,
 			height: 75,
@@ -129,10 +143,6 @@ Config.menu = {
 			x: 0.5,
 			y: 0.5
 		}
-	},
-	textStyle: {
-		font: '25px Ms Sans Serif',
-		fill: '#ffffff'
 	}
 };
 
@@ -161,14 +171,49 @@ Config.credits = {
 Config.victoryScreen = {
 	dir: 'assets/images/VictoryScreen_960-600.png',
 	x: 0,
-	y: 0
+	y: 0,
+	dim: 0.1,
+	message: {
+		text: {
+			yourTimeWas: "O seu tempo foi: ",
+			seconds: "segundos",
+			bestWinScore: "Melhor tempo: "
+		},
+		style: {
+			font: '40px Old English Text MT',
+			fill: '#ffc90e'
+		},
+		anchor: {
+			x: 0.5,
+			y: 0.5
+		}
+	}
 };
 
 //DefeatScreen
 Config.defeatScreen = {
-	dir: 'assets/images/DefeatScreen_960-600.png',
+	dir: {
+		background: 'assets/images/DefeatScreen_960-600.png',
+		music: 'assets/audios/MusicLose.mp3'
+	},
 	x: 0,
-	y: 0
+	y: 0,
+	dim: 0.1,
+	message: {
+		text: {
+			youGot: "Chegou a faltar apenas: ",
+			dragonPart: "partes do dragão",
+			bestLoseScore: "Melhor resultado: "
+		},
+		style: {
+			font: '40px Old English Text MT',
+			fill: '#ffc90e'
+		},
+		anchor: {
+			x: 0.5,
+			y: 0.5
+		}
+	}
 };
 
 //Level
@@ -208,7 +253,7 @@ Config.grass = {
 //Hero
 Config.hero = {
 	dir: {
-		normal: 'assets/map/HeroNormal_78-71_6.png',
+		normal: 'assets/map/HeroNormal_78-96_6.png',
 		attack: 'assets/spritesheets/HeroAttack_62-96_2.png'
 	},
 	layer: 'LayerHero',
@@ -240,7 +285,10 @@ Config.hero = {
 			x: 0,
 			y: 0
 		},
-		run: 200,
+		run: {
+			normal: 280,
+			attack: 180
+		},
 		jump: -300
 	},
 	gravity: 1000,
@@ -270,7 +318,7 @@ Config.hero = {
 	frame: {
 		normal: {
 			width: 78,
-			height: 71,
+			height: 96,
 			stopped: 0,
 			jumping: 3,
 			falling: 4,
@@ -280,6 +328,18 @@ Config.hero = {
 			width: 62,
 			height: 96,
 			hit: [0, 1]
+		}
+	},
+	body: {
+		size: {
+			normal: {
+				width: 78,
+				height: 96
+			},
+			attack: {
+				width: 78,
+				height: 96
+			}
 		}
 	}
 };
@@ -388,8 +448,8 @@ Config.smallDragon = {
 	},
 	damage: Config.hero.health.initial / 600,
 	intervalBorning: {
-		actual: 30000,
-		min: 20000,
+		actual: 10000,
+		min: 5000,
 		decrement: 1000
 	},
 	anchor: {
@@ -455,8 +515,8 @@ Config.dragon = {
 	dir: 'assets/map/Boiuna_90-90_8.png',
 	layer: 'LayerDragon',
 	gid: 16,
-	xf: Config.level.worldBounds.xf + 50,
-	xi: Config.level.worldBounds.xi - 50,
+	xf: Config.level.worldBounds.xf + 90,
+	xi: Config.level.worldBounds.xi - 90,
 	frame: {
 		width: 90,
 		height: 90,
@@ -468,10 +528,10 @@ Config.dragon = {
 	},
 	timeGrow: 1000 / Config.global.animationVelocity,
 	number: {
-		pieces: 5
+		pieces: 10
 	},
-	velocity: 1000,
-	damage: Config.hero.health.initial / 2
+	velocity: 140,
+	damage: Config.hero.health.initial / 1000
 };
 
 //Lady
@@ -496,4 +556,20 @@ Config.princess = {
 		stay: [0, 1, 2, 1]
 	},
 	gravity: 100
+};
+
+//Score
+Config.score = {
+	message: {
+		x: Config.global.screen.width - 50,
+		y: 0,
+		style: {
+			font: '40px Old English Text MT',
+			fill: '#880015'
+		},
+		anchor: {
+			x: 1,
+			y: 0
+		}
+	}
 };

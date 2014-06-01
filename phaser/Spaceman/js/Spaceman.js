@@ -33,15 +33,11 @@ var Spaceman = function(game, gameClass, x, y, sprite, player){
 		this.explosion = game.add.audio('explosion', 0.5);
 		this.hover.play('', 0,1,true);
 	}
-	
+	this.alive = true;
 }
 
 Spaceman.prototype = Object.create(Phaser.Sprite.prototype);
 Spaceman.prototype.constructor = Spaceman;
-
-Spaceman.prototype.create = function(){
-	
-};
 
 Spaceman.prototype.update = function(){
 	this.fire1.angle = this.angle;
@@ -70,7 +66,7 @@ Spaceman.prototype.update = function(){
 		}		
 	}
 	
-	if(this.inWorld == false)
+	if(this.inWorld == false && this.alive)
 	{
 		this.gameClass.restart(this, null);
 	}
@@ -79,17 +75,24 @@ Spaceman.prototype.update = function(){
 
 Spaceman.prototype.resetSpaceman = function(){
 	if(this.player == 1){
-		this.loadTexture('playerOne');
 		this.reset(350, 200);
 		this.fire1.reset(350,200);
 		game.add.tween(this).to({y:230}, 1200, Phaser.Easing.Quadratic.InOut, true, 0, 1000, true);
 	}		
 	else{		
-		this.loadTexture('playerTwo');
 		this.reset(350, 250);
 		this.fire1.reset(350,250);
 		game.add.tween(this).to({y:280}, 1200, Phaser.Easing.Quadratic.InOut, true, 0, 1000, true);
 	}
+	this.fire1.alpha = 1;
+	this.animations.play('flying');
+	this.gameClass.hud.y = 75;
+	this.gameClass.hud.x = game.world.centerX;
+	this.gameClass.hud.text = 0;
+	this.gameClass.hud.setStyle({
+		font: "18px 'OCR A Std'", fill: "#ffffff" , align: "center"
+	})
+	this.gameClass.txt.text = '';
 	game.input.onDown.addOnce(this.gameClass.start, this.gameClass);
 	game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onDown.addOnce(this.gameClass.start, this.gameClass)
 	//this.animations.play('flying');
@@ -106,8 +109,11 @@ Spaceman.prototype.explode = function(){
     emitter.forEach(function(p){
     	game.add.tween(p).to({alpha:0},500,Phaser.Easing.Linear.None,true);
     })
-    emitter.start(true, 1000, null, 30);
+	this.fire1.alpha = 0;
+    emitter.start(true, 1000, null, 30);	
+	game.input.onDown.addOnce(this.resetSpaceman, this);
     if(sound)this.explosion.play();	
-    if(this.inWorld == true)this.animations.play('explode').onComplete.addOnce(this.resetSpaceman, this)
-    else this.resetSpaceman();
+	if(this.inWorld)this.animations.play('explode').onComplete.addOnce(this.kill, this);
+	else this.kill();
+	this.alive = false;
 }

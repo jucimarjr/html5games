@@ -5,9 +5,6 @@ State.HowToPlay = function (game) {
 	this.game = game;
 };
 State.HowToPlay.prototype = {
-	preload: function () {
-		"use strict";
-	},
 	create: function () {
 		"use strict";
 		var background = this.game.add.sprite(Config.howToPlay.x, Config.howToPlay.y, 'how-to-play');
@@ -17,7 +14,7 @@ State.HowToPlay.prototype = {
 	update: function () {
 		"use strict";
 		Config.global.screen.resize(this.game);
-		if (this.game.input.keyboard.isDown(Phaser.Keyboard.ENTER)) {
+		if (this.game.input.keyboard.isDown(Config.global.key.nextScreen)) {
 			this.game.state.start('Menu');
 		}
 	},

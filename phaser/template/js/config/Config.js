@@ -3,7 +3,7 @@
 //Global
 var Config = {
 	global: {
-		animationVelocity: 6,
+		animationVelocity: 8,
 		screen: {
 			width: 960,
 			height: 600,
@@ -14,6 +14,10 @@ var Config = {
 					game.scale.refresh();
 				}
 			}
+		},
+		key: {
+			nextScreen: Phaser.Keyboard.ENTER,
+			annoying: [Phaser.Keyboard.SPACEBAR, Phaser.Keyboard.DOWN]
 		}
 	}
 };
@@ -23,8 +27,11 @@ Config.ludusSplash = {
 	dir: 'assets/images/LudusSplash_960-600.png',
 	x: 0,
 	y: 0,
-	millis: 2000,
-	nextState: 4000
+	dim: 0,
+	time: {
+		dim: 2000,
+		nextState: 4000
+	}
 };
 
 //SponsorSplash
@@ -32,20 +39,28 @@ Config.sponsorSplash = {
 	dir: 'assets/images/SponsorSplash_960-600.png',
 	x: 0,
 	y: 0,
-	millis: 2000,
-	nextState: 4000
+	dim: 0,
+	time: {
+		dim: 2000,
+		nextState: 4000
+	}
 };
 
 //GameSplash
 Config.gameSplash = {
 	dir: {
 		background: 'assets/images/GameSplash_960-600.png',
-		bar: 'assets/images/ProgressBar_960-30.png'
+		progressBar: 'assets/images/ProgressBar_960-30.png'
+	},
+	progressBar: {
+		x: 0,
+		y: 560
 	},
 	x: 0,
 	y: 0,
-	millis: 2000,
-	nextState: 4000
+	time: {
+		nextState: 2000
+	}
 };
 
 //Menu
@@ -54,41 +69,55 @@ Config.menu = {
 	x: 0,
 	y: 0,
 	buttonPlay: {
-		dir: 'assets/spritesheets/ButtonPlay_600-95.png',
+		dir: 'assets/spritesheets/ButtonPlay_150-95_4.png',
 		x: Config.global.screen.width * 0.5,
-		y: Config.global.screen.height * 0.4,
-		width: 150,
-		height: 95,
+		y: Config.global.screen.height * 0.45,
+		frame: {
+			width: 150,
+			height: 95,
+			over: 0,
+			out: 1,
+			down: 2,
+			up: 0
+		},
 		anchor: {
 			x: 0.5,
 			y: 0.5
 		}
 	},
 	buttonHowToPlay: {
-		dir: 'assets/spritesheets/ButtonHowToPlay_600-95.png',
+		dir: 'assets/spritesheets/ButtonHowToPlay_150-95_4.png',
 		x: Config.global.screen.width * 0.5,
-		y: Config.global.screen.height * 0.6,
-		width: 150,
-		height: 95,
+		y: Config.global.screen.height * 0.65,
+		frame: {
+			width: 150,
+			height: 95,
+			over: 0,
+			out: 1,
+			down: 2,
+			up: 0
+		},
 		anchor: {
 			x: 0.5,
 			y: 0.5
 		}
 	},
 	buttonCredits: {
-		dir: 'assets/spritesheets/ButtonCredits_600-95.png',
+		dir: 'assets/spritesheets/ButtonCredits_150-95_4.png',
 		x: Config.global.screen.width * 0.5,
-		y: Config.global.screen.height * 0.8,
-		width: 150,
-		height: 95,
+		y: Config.global.screen.height * 0.85,
+		frame: {
+			width: 150,
+			height: 95,
+			over: 0,
+			out: 1,
+			down: 2,
+			up: 0
+		},
 		anchor: {
 			x: 0.5,
 			y: 0.5
 		}
-	},
-	textStyle: {
-		font: '25px Ms Sans Serif',
-		fill: '#ffffff'
 	}
 };
 

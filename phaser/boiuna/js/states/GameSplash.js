@@ -20,12 +20,22 @@ State.GameSplash.prototype = {
 	},
 	nextState: function () {
 		"use strict";
+		this.setAudios();
 		setTimeout(function () {
 			this.game.state.start('StoryBefore');
 		}, Config.gameSplash.time.nextState);
 	},
+	setAudios: function () {
+		"use strict";
+		this.game.sound.add('music-normal', 1, true);
+		this.game.sound.add('music-lose', 1, true);
+		this.game.sound.play('music-normal', 1, true);
+	},
 	loadAssets: function () {
 		"use strict";
+		//Audios
+		this.game.load.audio('music-normal', Config.audio.dir.music.normal);
+		this.game.load.audio('music-lose', Config.audio.dir.music.lose);
 		//StoryBefore
 		this.game.load.image('story-before',  Config.storyBefore.dir);
 		//StoryAfter
@@ -66,10 +76,10 @@ State.GameSplash.prototype = {
 		this.game.load.spritesheet('up', Config.buttonUp.dir, Config.buttonUp.frame.width, Config.buttonUp.frame.height);
 		//Life
 		this.game.load.image('life', Config.life.dir);
-		//Fire
-		this.game.load.spritesheet('fire', Config.fire.dir, Config.fire.frame.width, Config.fire.frame.hight);
 		//SmallDragon
 		this.game.load.spritesheet('small-dragon', Config.smallDragon.dir, Config.smallDragon.frame.width, Config.smallDragon.frame.height);
+		//Fire
+		this.game.load.spritesheet('fire', Config.fire.dir, Config.fire.frame.width, Config.fire.frame.hight);
 		//Lady
 		this.game.load.spritesheet('lady', Config.lady.dir, Config.lady.frame.width, Config.lady.frame.height);
 		//Dragon
@@ -77,7 +87,7 @@ State.GameSplash.prototype = {
 		//Princess
 		this.game.load.spritesheet('princess', Config.princess.dir, Config.princess.frame.width, Config.princess.frame.height);
 		//DefeatScreen
-		this.game.load.image('defeat-screen', Config.defeatScreen.dir);
+		this.game.load.image('defeat-screen', Config.defeatScreen.dir.background);
 		//VictoryScreen
 		this.game.load.image('victory-screen', Config.victoryScreen.dir);
 	}

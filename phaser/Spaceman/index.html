@@ -27,16 +27,11 @@
         }
         @font-face {
     		font-family: 'Back to 1982';
-    		src: url('assets/fonts/BACKTO1982.TTF');
+    		src: url('assets/fonts/backto1982.TTF');
 		}
 		@font-face{
-			font-family: 'karmatic arcade';
-			src: url('assets/fonts/ka1.ttf');
-		}
-		#game{
-			font-family:'3d font';
-			font-size: 122px;
-			color: #00ff00;
+			font-family: 'OCR A Std';
+			src: url('assets/fonts/std.ttf');
 		}
 		h3 {
 			color:#000000;
@@ -63,7 +58,7 @@ game.state.add('credits', Credits, false);
 function preload()
 {
     game.load.image('creditScreen', 'assets/screens/credits.png');
-    game.load.spritesheet('botoes', 'assets/screens/btns.png', 600, 72);
+    game.load.spritesheet('botoes', 'assets/screens/btns.png', 315, 67);
     game.load.spritesheet('sound', 'assets/spritesheets/soundbtn.png', 74,74);
     game.load.image('title', 'assets/screens/menu.png');
 	game.load.spritesheet('rock','assets/spritesheets/rocks.png',58,58,4);
@@ -86,7 +81,8 @@ function preload()
 
 function create()
 {
-	game.scale.maxWidth = 960;
+	//game.scale.maxWidth = 960;
+	//game.scale.maxHeight = 800;
 	game.scale.setShowAll();
 	game.scale.refresh()
 	game.state.start('splash');

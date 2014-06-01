@@ -15,6 +15,7 @@ State.Game = function (game) {
 	this.lady = new Lady(game, this.tilemap);
 	this.dragon = new Dragon(game, this.tilemap, this.hero, this.lady);
 	this.princess = new Princess(game, this.platforms, this.lady, this.dragon, this.hero);
+	this.score = new Score(game, this.dragon);
 };
 State.Game.prototype = {
 	create: function () {
@@ -26,11 +27,12 @@ State.Game.prototype = {
 		this.hero.create();
 		this.controlHero.create();
 		this.life.create();
-		this.fire.create();
 		this.smallDragon.create();
+		this.fire.create();
 		this.lady.create();
 		this.dragon.create();
 		this.princess.create();
+		this.score.create();
 	},
 	update: function () {
 		"use strict";
@@ -38,9 +40,10 @@ State.Game.prototype = {
 		this.hero.update();
 		this.controlHero.update();
 		this.life.update();
-		this.fire.update();
 		this.smallDragon.update();
+		this.fire.update();
 		this.dragon.update();
 		this.princess.update();
+		this.score.update();
 	}
 };
