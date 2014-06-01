@@ -22,8 +22,9 @@ Player.prototype.create = function() {
     //jogador = nave
     player = game.add.sprite(30, game.world.height - 300, 'nave');
     player.anchor.setTo(0.5, 0.5);
-    game.physics.enable(player, Phaser.Physics.ARCADE);
-    game.camera.follow(player);
+    game.physics.enable(player);
+    player.body.collideWorldBounds = true;
+    //game.camera.follow(player);
 
     //  tiros de nossa nave
     tirosPlayer = game.add.group();

@@ -27,20 +27,6 @@
          "name":"Camada de Objetos 1",
          "objects":[
                 {
-                 "gid":1250,
-                 "height":0,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":210,
-                 "y":2345
-                }, 
-                {
                  "gid":1249,
                  "height":0,
                  "name":"",
@@ -223,20 +209,6 @@
                  "y":2310
                 }, 
                 {
-                 "gid":1250,
-                 "height":0,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":2310,
-                 "y":2485
-                }, 
-                {
                  "gid":1249,
                  "height":0,
                  "name":"",
@@ -249,34 +221,6 @@
                  "width":0,
                  "x":2310,
                  "y":2730
-                }, 
-                {
-                 "gid":1249,
-                 "height":0,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":2765,
-                 "y":2345
-                }, 
-                {
-                 "gid":1250,
-                 "height":0,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":2870,
-                 "y":2205
                 }, 
                 {
                  "gid":1250,
@@ -2629,6 +2573,20 @@
                  "width":0,
                  "x":5950,
                  "y":2310
+                }, 
+                {
+                 "gid":1252,
+                 "height":0,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":6545,
+                 "y":2380
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -2718,6 +2676,21 @@
          "spacing":0,
          "tileheight":22,
          "tilewidth":32
+        }, 
+        {
+         "firstgid":1252,
+         "image":"spriteChefao.png",
+         "imageheight":35,
+         "imagewidth":35,
+         "margin":0,
+         "name":"spriteChefao",
+         "properties":
+            {
+
+            },
+         "spacing":0,
+         "tileheight":35,
+         "tilewidth":35
         }],
  "tilewidth":35,
  "version":1,
