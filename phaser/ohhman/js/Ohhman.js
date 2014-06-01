@@ -1,6 +1,6 @@
 Ohhman = function () {
 	this.sprite = null;
-	this.speed = 200;
+	this.speed = 180;
 	
 	this.direction = "LEFT"; //LEFT, RIGHT, UP, DOWN
 	this.nextDirection = "LEFT";	
