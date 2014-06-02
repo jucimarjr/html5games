@@ -114,7 +114,7 @@ SpaceShip.prototype.shoot = function () {
     		this.bullet = this.bulletsGroup.getFirstDead();
     		if(this.bullet != null){
     			this.nextFire = game.time.now + this.fireRate;
-    			this.game.add.audio('shoot', 5).play();
+    			this.game.add.audio('shoot', 0.2).play();
     		
     			this.bullet = this.bulletsGroup.getFirstDead();
     			this.bullet.loadTexture('sprites', 'shoot-red-5-5.png');
@@ -152,7 +152,7 @@ SpaceShip.prototype.shoot = function () {
     	{
     		if(this.bullet != null){
     			this.nextFire = game.time.now + this.fireRate*2;
-    			this.game.add.audio('shoot', 5).play();
+    			this.game.add.audio('shoot', 2).play();
     		
     			this.bullet = this.bulletsGroup.getFirstDead();
     			this.bullet.loadTexture('sprites', 'shoot-blue-18-3.png');
