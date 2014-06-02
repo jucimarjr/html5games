@@ -74,28 +74,30 @@ Spaceman.prototype.update = function(){
 };
 
 Spaceman.prototype.resetSpaceman = function(){
-	if(this.player == 1){
-		this.reset(350, 200);
-		this.fire1.reset(350,200);
-		game.add.tween(this).to({y:230}, 1200, Phaser.Easing.Quadratic.InOut, true, 0, 1000, true);
-	}		
-	else{		
-		this.reset(350, 250);
-		this.fire1.reset(350,250);
-		game.add.tween(this).to({y:280}, 1200, Phaser.Easing.Quadratic.InOut, true, 0, 1000, true);
-	}
-	this.fire1.alpha = 1;
-	this.animations.play('flying');
-	this.gameClass.hud.y = 75;
-	this.gameClass.hud.x = game.world.centerX;
-	this.gameClass.hud.text = 0;
-	this.gameClass.hud.setStyle({
-		font: "18px 'OCR A Std'", fill: "#ffffff" , align: "center"
-	})
-	this.gameClass.txt.text = '';
-	game.input.onDown.addOnce(this.gameClass.start, this.gameClass);
-	game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onDown.addOnce(this.gameClass.start, this.gameClass)
-	//this.animations.play('flying');
+	if(!this.animations.getAnimation('explode').isPlaying){
+		if(this.player == 1){
+			this.reset(350, 200);
+			this.fire1.reset(350,200);
+			game.add.tween(this).to({y:230}, 1200, Phaser.Easing.Quadratic.InOut, true, 0, 1000, true);
+		}		
+		else{		
+			this.reset(350, 250);
+			this.fire1.reset(350,250);
+			game.add.tween(this).to({y:280}, 1200, Phaser.Easing.Quadratic.InOut, true, 0, 1000, true);
+		}
+		this.fire1.alpha = 1;
+		this.animations.play('flying');
+		this.gameClass.hud.y = 75;
+		this.gameClass.hud.x = game.world.centerX;
+		this.gameClass.hud.text = 0;
+		this.gameClass.hud.setStyle({
+			font: "18px 'OCR A Std'", fill: "#ffffff" , align: "center"
+		})
+		this.gameClass.txt.text = '';
+		game.input.onDown.addOnce(this.gameClass.start, this.gameClass);
+		game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onDown.addOnce(this.gameClass.start, this.gameClass)
+		//this.animations.play('flying');
+	} else {this.resetSpaceman()}
 };
 
 Spaceman.prototype.explode = function(){
