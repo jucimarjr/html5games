@@ -53,7 +53,7 @@
 <body>
 <div id="game"></div>
 <script type="text/javascript">
-
+"use strict";
 var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game', { preload: preload, create: create, update: update, render:render});//
 var score = null;
 
@@ -71,18 +71,10 @@ game.state.add('credits', Credits);
 function preload()
 {
 	game.load.atlas('sprites', 'assets/spritesheets/sprites.png', 'assets/spritesheets/sprites.json');
-	//game.load.atlas('asteroids', 'assets/spritesheets/AsteroidsSpriteSheet.png', 'assets/spritesheets/AsteroidsSpriteSheet.json');
-	//game.load.atlas('shoots', 'assets/spritesheets/spriteSchips.png', 'assets/spritesheets/spriteSchips.json');
-	//game.load.atlas('ships', 'assets/spritesheets/SpaceShips.png', 'assets/spritesheets/SpaceShips.json');
-	//game.load.image('largeasteroids', 'assets/images/asteroid1_25-60.png');
 	game.load.image('tiled1','assets/images/Tiled1.png');
 	game.load.image('tiled2','assets/images/Tiled2.png');
 	game.load.image('alert','assets/images/alert.png');
-	//game.load.image('res','assets/images/res.png');
-	//game.load.image('laser','assets/images/laser_5-2.png');
-	//game.load.image('ship','assets/tests/nave-azul.png');
-	//game.load.image('shipalt','assets/images/nave1.png');
-    game.load.audio('thrust', 'assets/audios/AsteroidsThrust.mp3');
+	game.load.audio('thrust', 'assets/audios/AsteroidsThrust.mp3');
     game.load.audio('shoot', 'assets/audios/AsteroidsShoot.wav');
     game.load.audio('tick1', 'assets/audios/bip.wav');
     game.load.audio('tick2', 'assets/audios/bip1.wav');
