@@ -27,7 +27,8 @@ Config.audio = {
 	dir: {
 		music: {
 			normal: 'assets/audios/MusicNormal.mp3',
-			lose: 'assets/audios/MusicLose.mp3'
+			lose: 'assets/audios/MusicLose.mp3',
+			win: 'assets/audios/MusicWin.mp3'
 		}
 	}
 };

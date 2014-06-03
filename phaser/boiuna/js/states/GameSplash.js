@@ -36,6 +36,7 @@ State.GameSplash.prototype = {
 		//Audios
 		this.game.load.audio('music-normal', Config.audio.dir.music.normal);
 		this.game.load.audio('music-lose', Config.audio.dir.music.lose);
+		this.game.load.audio('music-win', Config.audio.dir.music.win);
 		//StoryBefore
 		this.game.load.image('story-before',  Config.storyBefore.dir);
 		//StoryAfter

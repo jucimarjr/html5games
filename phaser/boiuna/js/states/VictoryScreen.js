@@ -34,6 +34,8 @@ State.VictoryScreen.prototype = {
 	},
 	onSecondClick: function () {
 		"use strict";
+		this.game.sound.stopAll();
+		this.game.sound.play('music-normal', 1, true);
 		this.game.state.start('Menu');
 	}
 };

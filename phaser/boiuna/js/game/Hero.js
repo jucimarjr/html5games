@@ -92,7 +92,7 @@ Hero.prototype = {
 	},
 	onKill: function () {
 		"use strict";
-		var audio, tweenDie;
+		var tweenDie;
 		this.sprite.visible = true;
 		this.game.sound.stopAll();
 		this.game.sound.play('music-lose', 1, true);
@@ -119,6 +119,8 @@ Hero.prototype = {
 	},
 	win: function () {
 		"use strict";
+		this.game.sound.stopAll();
+		this.game.sound.play('music-win', 1, true);
 		this.game.state.start('VictoryScreen');
 	}
 };
