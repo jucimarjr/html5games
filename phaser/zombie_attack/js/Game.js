@@ -7,8 +7,10 @@ var Game = function(game){
     this.score = 0;
     this.scoreText = null;
     this.roundText = null;
-    this.groupZombies = null;
-    this.groupPeople = null;
+//    this.groupZombies = null;
+//    this.groupPeople = null;
+    this.groupZombies = [];
+    this.groupPeople = [];
 };
 
 Game.prototype.preload = function(){
@@ -26,19 +28,26 @@ Game.prototype.create = function () {
 	
 	//grupo de pessoas
     this.amountPeople = 0;
-	this.groupPeople = this.game.add.group();
+//	this.groupPeople = this.game.add.group();
+//	this.groupPeople.enableBody = true;
+//	this.groupPeople.name = 'groupPeople';
+//	this.groupPeople.physicsBodyType = Phaser.Physics.ARCADE;
+	this.game.time.events.repeat(Phaser.Timer.SECOND * 5, 10, this.initPeople, this);
 	
 	 //grupo de zumbis
-	this.amountZombies  = 0;
-    this.groupZombies = this.game.add.group();
-	this.groupZombies.enableBody = true;
-	this.groupZombies.physicsBodyType = Phaser.Physics.ARCADE;
+//	this.amountZombies  = 0;
+//    this.groupZombies = this.game.add.group();
+//	this.groupZombies.enableBody = true;
+//	this.groupZombies.physicsBodyType = Phaser.Physics.ARCADE;
+	this.game.time.events.repeat(Phaser.Timer.SECOND * 5, 10, this.initZombies, this);
+	//this.groupZombies.add(this.groupPeople);
 	
 	this.groupGame = this.game.add.group();
 	this.groupPeople.enableBody = true;
 	this.groupPeople.physicsBodyType = Phaser.Physics.ARCADE;
-	this.groupGame.add(this.groupZombies);
-	this.groupGame.add(this.groupPeople);
+//	this.groupGame.add(this.groupZombies);
+//	this.groupGame.add(this.groupPeople);
+//	
 	
 	//Fonte
 	this.stage = 0;
@@ -52,36 +61,17 @@ Game.prototype.update = function () {
 	//console.log("quantidade zumbis: ",this.amountZombies);
 	
 	//Colisão
-	this.game.physics.arcade.collide(this.groupZombies, this.groupPeople, this.collisionHandler, null, this);
+	//this.game.physics.arcade.collide(this.groupZombies, this.collisionHandler, null, this);
 	
 	//IA do jogo
-	if(this.amountZombies == 0){
-		console.log("criando pessoas");
-		this.amountPeople += 2;
-		this.amountZombies += (this.amountPeople * 2);
-		this.stage += 1;
-		this.Stage();
-		round = new Round(this.stage,this.amountZombies,this.amountPeople);
-		this.game.time.events.repeat(Phaser.Timer.SECOND * 2, this.amountPeople, this.initPeople, this);
-	}
-	//this.game.physics.arcade.moveToObject(bullet, this.player, 500);
-	this.groupZombies.forEach(function(zombie){
-		if(zombie.body.y < 400)
-		{
-		    zombie.body.velocity.y  *= -1;
-		}
-	},this);
+	//this.boundWorld(this.groupZombies);
+	//this.boundOut(this.groupZombies);
 	
-	this.groupPeople.forEach(function(people){
-		if(people.body.y < 400)
-		{
-		    people.body.velocity.y  *= -1;
-		}
-	},this);
-	
-	this.groupZombies.sort('y', Phaser.Group.SORT_ASCENDING);
-	this.groupPeople.sort('y', Phaser.Group.SORT_ASCENDING);
+//	this.groupZombies.sort('y', Phaser.Group.SORT_ASCENDING);
+//	this.groupPeople.sort('y', Phaser.Group.SORT_ASCENDING);
 	this.groupGame.sort('y', Phaser.Group.SORT_ASCENDING);
+	this.boundWorld(this.groupGame);
+	this.VerifyCollision();
 	
 };
 
@@ -101,33 +91,90 @@ Game.prototype.gameOver = function () {
 };
 
 Game.prototype.collisionHandler = function(zombie,person){
-	console.log("colidiu");
-	person.kill();
+	if(person.alive)
+	{
+		console.log("colidiu");
+		person.killPerson(person.spritePerson,zombie.spriteZombie);
+	}
+	
+	//zombie.spriteZombie.revive();
 };
 
 Game.prototype.initStage = function(){
 	
 };
 
-Game.prototype.initPeople = function(amountPeople){
-	console.log("initPeople");
-		this.idPerson +=1;
-			var person = new Person(this.idPerson,this.game);
-			this.groupPeople.add(person.spritePerson);
-			//Cada pessoa criada 2 novos zumbis são criados
-			this.initZombies(person);
+Game.prototype.initPeople = function(){
+	//console.log("initPeople");
+	this.idPerson +=1;
+	var person = new Person(this.idPerson,this.game,this);
+	this.groupPeople.push(person);
+	//this.groupGame.add(person.spritePerson);
+	this.groupGame.add(person.spritePerson);
+	//this.groupPeople.add(person.spritePerson);
 };
 
 Game.prototype.initZombies = function(person){
-	console.log("initZombie");
+	//console.log("initZombie");
 	this.idZombie += 1;
-	for(var i = 0; i < 2 ; i++){
-		var zombie = new Zombie(this.idZombie,this.game, person, this);
-		this.groupZombies.add(zombie.spriteZombie);
-	}
+	var zombie = new Zombie(this.idZombie,this.game, this,person);
+	//this.groupZombies.add(zombie.spriteZombie);
+	this.groupGame.add(zombie.spriteZombie);
+	this.groupZombies.push(zombie);
 	//console.log("quantidade de zumbis no grupo",this.groupZombies.length);
+};
+
+Game.prototype.boundWorld = function(group)
+{
+	group.forEach(function(object){
+		if(object.y < 400 || object.y > 600)
+		{
+			object.body.velocity.y *= -1;
+		}
+		
+	});
 };
 
 Game.prototype.createZombie = function(person){
 	
+};
+
+Game.prototype.VerifyCollision  = function()
+{
+	for(var i = 0; i < this.groupPeople.length; i++)
+	{
+		for(var j = 0; j < this.groupZombies.length; j++)
+		{
+			if(this.intersect(this.groupPeople[i].spritePerson, this.groupZombies[j].spriteZombie))
+			{
+				this.collisionHandler(this.groupZombies[j], this.groupPeople[i]);
+			}
+		}
+	}
+};
+
+
+Game.prototype.intersect = function(object1,object2)
+{
+        if (object1.body.right <= object2.body.position.x)
+        {
+            return false;
+        }
+
+        if (object1.body.bottom <= object2.body.position.y)
+        {
+            return false;
+        }
+
+        if (object1.body.position.x >= object2.body.right)
+        {
+            return false;
+        }
+
+        if (object1.body.position.y >= object2.body.bottom)
+        {
+            return false;
+        }
+
+        return true;
 };
