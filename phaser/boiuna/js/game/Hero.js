@@ -71,7 +71,6 @@ Hero.prototype = {
 	hit: function () {
 		"use strict";
 		if (this.sprite.key !== 'hero-attack') {
-			this.sprite.y -= Config.hero.frame.attack.height - Config.hero.frame.normal.height;
 			this.sprite.loadTexture('hero-attack');
 			this.sprite.body.setSize(Config.hero.body.size.attack.width, Config.hero.body.size.attack.height);
 			this.sprite.animations.add('attack', Config.hero.frame.attack.hit, Config.global.animationVelocity, true);
@@ -84,7 +83,6 @@ Hero.prototype = {
 		if (this.sprite.key !== 'hero-normal' && this.sprite.alive) {
 			this.sprite.loadTexture('hero-normal');
 			this.sprite.body.setSize(Config.hero.body.size.normal.width, Config.hero.body.size.normal.height);
-			this.sprite.y += Config.hero.frame.attack.height - Config.hero.frame.normal.height;
 		}
 	},
 	hurt: function (damage) {
@@ -94,8 +92,11 @@ Hero.prototype = {
 	},
 	onKill: function () {
 		"use strict";
+		var audio, tweenDie;
 		this.sprite.visible = true;
-		var tweenDie = this.game.add.tween(this.game.world).to({alpha : Config.hero.alpha.die}, Config.hero.time.tween.die.dim.min, Phaser.Easing.Linear.None).start();
+		this.game.sound.stopAll();
+		this.game.sound.play('music-lose', 1, true);
+		tweenDie = this.game.add.tween(this.game.world).to({alpha : Config.hero.alpha.die}, Config.hero.time.tween.die.dim.min, Phaser.Easing.Linear.None).start();
 		tweenDie.onComplete.add(function () {
 			this.game.world.alpha = 1;
 			this.game.state.start('DefeatScreen');

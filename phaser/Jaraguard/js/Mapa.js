@@ -31,6 +31,37 @@ Mapa.prototype.create = function() {
 Mapa.prototype.getLayerColisao = function() {
     return layerColisao;
 };
+
 Mapa.prototype.getMap = function() {
     return map;
+};
+
+Mapa.prototype.paralax = function() {
+    console.log("x=" + game.camera.x + " y=" + game.camera.y);
+    if (game.camera.x < 2570) {
+        game.camera.x += 5;
+    }
+    if (game.camera.x === 2570 && game.camera.y > 1) {
+        game.camera.y -= 5;
+    }
+
+    if (game.camera.y === 0 && game.camera.x < 4400) {
+        game.camera.x += 5;
+    }
+
+    if (game.camera.x === 4400 && game.camera.y < 2200) {
+        game.camera.y += 5;
+    }
+    if (game.camera.y === 2200 && game.camera.x >= 4400) {
+        game.camera.x += 5;
+    }
+
+
+}
+;
+
+Mapa.prototype.incializaCamera = function() {
+    game.camera.x = 30;
+    game.camera.y = game.world.height - 100;
+
 };

@@ -38,7 +38,9 @@ Ufo.prototype.update = function () {
 };
 
 Ufo.prototype.shoot = function () {
-    this.game.add.audio('shoot', 0.5, true).play();
+	if(this.inCamera){
+    this.game.add.audio('shoot', 0.2).play();
+	}
     var direction = Math.random() * 360;
     var shoot = this.gameClass.shootUfo.create(this.position.x + Math.cos(direction * 0.0174) * 24,
         	    this.position.y + Math.sin(direction * 0.0174) * 24, 'sprites', 'shoot-green-5-5.png');

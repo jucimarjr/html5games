@@ -266,8 +266,8 @@
         }, 
         {
          "firstgid":10,
-         "image":"HeroNormal_78-71_6.png",
-         "imageheight":71,
+         "image":"HeroNormal_78-96_6.png",
+         "imageheight":96,
          "imagewidth":468,
          "margin":0,
          "name":"Hero",
@@ -276,7 +276,7 @@
 
             },
          "spacing":0,
-         "tileheight":71,
+         "tileheight":96,
          "tilewidth":78
         }, 
         {

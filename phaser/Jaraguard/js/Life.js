@@ -7,7 +7,8 @@ var liveText;
 
 Life.prototype.create = function() {
     lives = 50;
-    liveText = game.add.text(30, game.world.centerY + 300, ' x ' + lives, {font: '34px Arial', fill: '#fff'});
+    liveText = game.add.text(game.camera.x + 280, game.camera.y + 6, ' x ' + lives, {font: '34px Arial', fill: '#fff'});
+    liveText.fixedToCamera = true;
 };
 
 Life.prototype.getVida = function() {
@@ -26,8 +27,7 @@ Life.prototype.controleVidas = function() {
 
 Life.prototype.posicionaLife = function() {
     //posicao das vidas alinhado  ao score 
-    console.log("posicionaLife");
     liveText.x = game.camera.x + 280;
     liveText.y = game.camera.y + 6;
-    console.log("posicionaLife pos");
+
 };
