@@ -56,7 +56,7 @@ var Zombie = function (index, game, classGame, person) {
 Zombie.prototype.update = function (){
 	//this.classGame
 	if(!this.alive){
-		console.log("destroy");
+		
 		this.spriteZombie.destroy();
 	}
 };

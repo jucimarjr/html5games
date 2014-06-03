@@ -19,7 +19,6 @@ Game.prototype.preload = function(){
 };
 
 Game.prototype.create = function () {
-	console.log("criando game");
 	this.soundGame = this.game.add.audio('audioBackGroundGame');
 	//this.soundGame.play();
 	this.spriteCenario = this.game.add.sprite(0, 0,'cenario');
@@ -82,7 +81,6 @@ Game.prototype.punctuate = function (points) {
 };
 
 Game.prototype.Stage = function () {
-	console.log("stage ",this.stage);
     this.roundText.setText(this.stage);
 };
 
@@ -93,7 +91,6 @@ Game.prototype.gameOver = function () {
 Game.prototype.collisionHandler = function(zombie,person){
 	if(person.alive)
 	{
-		console.log("colidiu");
 		person.killPerson(person.spritePerson,zombie.spriteZombie);
 	}
 	
