@@ -7,12 +7,11 @@ var Game = function(game){
     this.score = 0;
     this.scoreText = null;
     this.roundText = null;
-//    this.groupZombies = null;
-//    this.groupPeople = null;
     this.groupZombies = [];
     this.groupPeople = [];
     this.amountPeople = 5;
     this.amountZombies = 10;
+    this.target = null;
 };
 
 Game.prototype.preload = function(){
@@ -26,7 +25,7 @@ Game.prototype.create = function () {
 	this.spriteCenario = this.game.add.sprite(0, 0,'cenario');
 	this.spriteRound = this.game.add.sprite(100,0,'score');
 	this.spriteRound = this.game.add.sprite(500,0,'round');
-	
+	//this.target = this.game.add.sprite(500,0,'round');
 	//grupo de pessoas
 //	this.groupPeople = this.game.add.group();
 //	this.groupPeople.enableBody = true;
@@ -55,6 +54,9 @@ Game.prototype.create = function () {
 	this.scoreText.setText(0);
 	this.roundText = game.add.text(625,28,this.stage,{ font: "25px arcade_normalregular", fill: "#ffffff", align: "right" });
 	this.roundText.setText(0);
+	
+	
+	
 };
 
 Game.prototype.update = function () {

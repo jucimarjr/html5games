@@ -45,6 +45,8 @@ var spriteSheetsImageBitePerson = "assets/spritesheets/bitePerson.png";
 var spriteRound = "assets/round.png";
 var spriteScore = "assets/score.png";
 
+var spriteTarget = "assets/target.png";
+
 //audio
 var audioZombieDead = "audio/soundEffects/ugh.ogg";
 var audioBackGroundGame = "audio/550039_Hyrule-Castle.ogg";
