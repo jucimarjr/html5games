@@ -25,29 +25,46 @@ var Person = function (index, game,classGame) {
     this.spritePerson.body.setSize(personWidth,20,0,personHeigth-10);
 
     this.spritePerson.checkWorldBounds = true;
-    this.spritePerson.events.onOutOfBounds.add(boundOut, this);
-    
+    this.spritePerson.events.onOutOfBounds.add(this.boundOut, this);
+//    
     this.setVelocity(this.spritePerson);
     //this.spritePerson.z = 0;
 
 };
 
-function boundOut(person)
+Person.prototype.boundOut = function(person)
 {
-	var y = 0;
-	var x = 0;
-	if(person.name.contains("rigth"))
-	{
-		y = game.rnd.integerInRange(162,400);
-		x = -50;
-	}
-	else 
-	{
-		y = game.rnd.integerInRange(162,400);
-		x = 650;
-	}
-	person.body.reset(x,y);
-	this.setVelocity(person);
+	
+	var velocityX = person.body.velocity.x;
+    var velocityY = person.body.velocity.y;
+    
+
+    if (person.x < 0)
+    	person.reset(this.game.world.width, person.y);
+    if (person.x > game.world.width)
+    	person.reset(0, person.y);
+   
+    person.body.velocity.x = velocityX;
+    person.body.velocity.y = velocityY;
+	
+//	console.log("person::boundout =" + person.name);
+//	var y = 0;
+//	var x = 0;
+//	if(person.name.contains("rigth"))
+//	{
+//		
+//		y = game.rnd.integerInRange(162,400);
+//		x = -25;
+//	}
+//	else 
+//	{
+//		y = game.rnd.integerInRange(162,400);
+//		x = 625;
+//	}
+//	console.log("x = "+x+" y = "+y);
+//	person.body.reset(x,y);
+//	this.setVelocity(person);
+//	console.log("person::boundout =" + person.name);
 };
 
 Person.prototype.getPosition = function(positionX)

@@ -11,6 +11,8 @@ var Game = function(game){
 //    this.groupPeople = null;
     this.groupZombies = [];
     this.groupPeople = [];
+    this.amountPeople = 5;
+    this.amountZombies = 10;
 };
 
 Game.prototype.preload = function(){
@@ -26,19 +28,18 @@ Game.prototype.create = function () {
 	this.spriteRound = this.game.add.sprite(500,0,'round');
 	
 	//grupo de pessoas
-    this.amountPeople = 0;
 //	this.groupPeople = this.game.add.group();
 //	this.groupPeople.enableBody = true;
 //	this.groupPeople.name = 'groupPeople';
 //	this.groupPeople.physicsBodyType = Phaser.Physics.ARCADE;
-	this.game.time.events.repeat(Phaser.Timer.SECOND * 5, 10, this.initPeople, this);
+	this.game.time.events.repeat(Phaser.Timer.SECOND * 5, this.amountPeople, this.initPeople, this);
 	
 	 //grupo de zumbis
 //	this.amountZombies  = 0;
 //    this.groupZombies = this.game.add.group();
 //	this.groupZombies.enableBody = true;
 //	this.groupZombies.physicsBodyType = Phaser.Physics.ARCADE;
-	this.game.time.events.repeat(Phaser.Timer.SECOND * 5, 10, this.initZombies, this);
+	this.game.time.events.repeat(Phaser.Timer.SECOND * 5, this.amountZombies, this.initZombies, this);
 	//this.groupZombies.add(this.groupPeople);
 	
 	this.groupGame = this.game.add.group();
@@ -65,12 +66,15 @@ Game.prototype.update = function () {
 	//IA do jogo
 	//this.boundWorld(this.groupZombies);
 	//this.boundOut(this.groupZombies);
+
 	
 //	this.groupZombies.sort('y', Phaser.Group.SORT_ASCENDING);
 //	this.groupPeople.sort('y', Phaser.Group.SORT_ASCENDING);
 	this.groupGame.sort('y', Phaser.Group.SORT_ASCENDING);
-	this.boundWorld(this.groupGame);
 	this.VerifyCollision();
+//	this.boundOut(this.groupPeople);
+//	this.boundOut(this.groupZombies);
+	this.boundWorld(this.groupGame);
 	
 };
 
@@ -84,8 +88,11 @@ Game.prototype.Stage = function () {
     this.roundText.setText(this.stage);
 };
 
-Game.prototype.gameOver = function () {
-
+Game.prototype.gameOver = function (amountPeople) {
+	if(amountPeople == 0)
+	{
+		
+	}
 };
 
 Game.prototype.collisionHandler = function(zombie,person){
@@ -132,9 +139,14 @@ Game.prototype.boundWorld = function(group)
 	});
 };
 
-Game.prototype.createZombie = function(person){
-	
+Game.prototype.boundOut = function(group)
+{
+	for(var i = 0 ; i < group.length ; i++)
+	{
+		group[i].boundOut(group[i]);
+	}
 };
+
 
 Game.prototype.VerifyCollision  = function()
 {

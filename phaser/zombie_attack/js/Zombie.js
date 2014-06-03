@@ -48,8 +48,8 @@ var Zombie = function (index, game, classGame, person) {
     this.setVelocity(this.spriteZombie);
     
     this.spriteZombie.checkWorldBounds = true;
-    this.spriteZombie.events.onOutOfBounds.add(boundOut, this);
-    //
+    this.spriteZombie.events.onOutOfBounds.add(this.boundOut, this);
+//    //
 
 };
 
@@ -83,22 +83,38 @@ function killZombie()
 //    }
 };
 
-function boundOut(zombie)
+Zombie.prototype.boundOut = function(zombie)
 {
-	var y = 0;
-	var x = 0;
-	if(zombie.name.contains("zRigth"))
-	{
-		y = game.rnd.integerInRange(162,400);
-		x = -150;
-	}
-	else 
-	{
-		y = game.rnd.integerInRange(162,400);
-		x = 750;
-	}
-	zombie.body.reset(x,y);
-	this.setVelocity(zombie);
+	
+	var velocityX = zombie.body.velocity.x;
+    var velocityY = zombie.body.velocity.y;
+    
+
+    if (zombie.x < 0)
+    	zombie.reset(this.game.world.width, zombie.y);
+    if (zombie.x > game.world.width)
+    	zombie.reset(0, zombie.y);
+   
+    zombie.body.velocity.x = velocityX;
+    zombie.body.velocity.y = velocityY;
+	
+//	console.log("zombie::boundout =" + zombie.name);
+//	var y = 0;
+//	var x = 0;
+//	if(zombie.name.contains("zRigth"))
+//	{
+//		y = game.rnd.integerInRange(162,400);
+//		x = -150;
+//	}
+//	else 
+//	{
+//		y = game.rnd.integerInRange(162,400);
+//		x = 750;
+//	}
+//	zombie.body.reset(x,y);
+//	this.setVelocity(zombie);
+//	console.log("x = "+x+" y = "+y);
+//	console.log("zombie::boundout =" + zombie.name);
 };
 
 Zombie.prototype.createSprite = function(positionX)
@@ -131,6 +147,7 @@ function randX(rand)
 
 Zombie.prototype.setVelocity = function(zombie)
 {	
+	console.log("zombie::boundout =" + zombie.name);
 	if(zombie.name.contains("zRigth"))
 	{
 		zombie.body.velocity.x  = game.rnd.integerInRange(10,50);
@@ -141,5 +158,6 @@ Zombie.prototype.setVelocity = function(zombie)
 		zombie.body.velocity.x  = - game.rnd.integerInRange(10,50);
 	    zombie.body.velocity.y  = - Math.random()*10;
 	}
+	console.log("zombie::boundout =" + zombie.name);
 };
 
