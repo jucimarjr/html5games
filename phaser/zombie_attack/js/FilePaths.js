@@ -18,6 +18,7 @@ var zombieHeigth = 267;
 var imagePessoa = 'assets/Pessoa.png';
 var personWidth = 100;
 var personHeigth = 267;
+
 //Telas
 var splashGroupImage = 'assets/screenshots/SplashTeam_800-600.png';
 var SplashGameImage = 'assets/screenshots/SplashGame_800-600.png';
@@ -35,8 +36,11 @@ var spriteSheetsImageZombieLeft = "assets/spritesheets/zombieLeft.png";
 var spriteSheetsImageZombieRigth = "assets/spritesheets/zombieRigth.png";
 var spriteSheetsImageZombieUp = "assets/spritesheets/zombieUp.png";
 var spriteSheetsImageZombieDead = "assets/spritesheets/zombieDead.png";
-//Spritesheets Do Zumbi
+//Spritesheets Da Pessoa
 var spriteSheetsImagePersonDown = "assets/spritesheets/personDown.png";
+
+//PessoaVSZumbi
+var spriteSheetsImageBitePerson = "assets/spritesheets/bitePerson.png";
 
 var spriteRound = "assets/round.png";
 var spriteScore = "assets/score.png";
