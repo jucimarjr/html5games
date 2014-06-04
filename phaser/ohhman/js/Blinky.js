@@ -24,9 +24,9 @@ Blinky.prototype = {
 		game.load.image('blinky', fp_blinky);
 	},
 
-	create : function() {
+	create : function(xPosition, yPosition) {
 		//Adiciona o blinky na tela		
-		this.sprite = game.add.sprite(396, 180, 'blinky');
+		this.sprite = game.add.sprite(xPosition, yPosition, 'blinky');
 		game.physics.enable(this.sprite);
 
 		//Impede que o blinky saia dos limites da tela
@@ -95,18 +95,18 @@ Blinky.prototype = {
 	},
 	
 	//Seta uma direcaoo para o blinky de acordo com a posicao atual do Ohhman
-	setNewDirection : function(){		
-		console.log("acordo com o mapa");
+	setNewDirection : function(){				
 		this.valueXInTiles = Math.round(this.sprite.x/36);
 		this.valueYInTiles = Math.round(this.sprite.y/36);
-		this.vx = this.sprite.x/36;
+		
+		/*this.vx = this.sprite.x/36;
 		this.vy = this.sprite.y/36;
 		
 		console.log(this.valueXInTiles);
 		console.log(this.valueYInTiles);
 		
 		console.log(this.vx);
-		console.log(this.vy);
+		console.log(this.vy);*/
 		
 		if (this.direction == "LEFT"){			 									
 			this.upTile = map.map.getTileAbove(map.map.getLayerIndex("Wall") , this.valueXInTiles, this.valueYInTiles);
@@ -126,12 +126,14 @@ Blinky.prototype = {
 				this.direction = "DOWN";
 			else 
 				this.direction = "LEFT";
-
+			
+			/*
 			console.log(this.upDistance);
 			console.log(this.downDistance);
 			console.log(this.leftDistance);
 			
-			console.log(this.direction);												
+			console.log(this.direction);				
+			*/
 		}
 		else if (this.direction == "RIGHT"){						
 			this.upTile = map.map.getTileAbove(map.map.getLayerIndex("Wall") , this.valueXInTiles, this.valueYInTiles);
@@ -151,12 +153,14 @@ Blinky.prototype = {
 				this.direction = "DOWN";
 			else 
 				this.direction = "RIGHT";			
-						
+			
+			/*
 			console.log(this.upDistance);
 			console.log(this.downDistance);
 			console.log(this.rightDistance);
 			
-			console.log(this.direction);						
+			console.log(this.direction);	
+			*/
 		}
 		else if (this.direction == "UP"){			
 			this.upTile = map.map.getTileAbove(map.map.getLayerIndex("Wall") , this.valueXInTiles, this.valueYInTiles);			
@@ -177,11 +181,13 @@ Blinky.prototype = {
 			else 
 				this.direction = "RIGHT";
 
+			/*
 			console.log(this.upDistance);
 			console.log(this.leftDistance);
 			console.log(this.rightDistance);
 			
-			console.log(this.direction);												
+			console.log(this.direction);
+			*/
 		}
 		else if (this.direction == "DOWN"){						
 			this.downTile = map.map.getTileBelow(map.map.getLayerIndex("Wall") , this.valueXInTiles, this.valueYInTiles);			
@@ -201,24 +207,26 @@ Blinky.prototype = {
 				this.direction = "LEFT";
 			else 
 				this.direction = "RIGHT";
-						
+				
+			/*
 			console.log(this.downDistance);
 			console.log(this.leftDistance);
 			console.log(this.rightDistance);
 			
-			console.log(this.direction);					
+			console.log(this.direction);
+			*/
 		}		
-		
+		/*
 		console.log(this.upTile);
 		console.log(this.downTile);
 		console.log(this.leftTile);
 		console.log(this.rightTile);
-		
+		*/
 		this.upTile = "FILL";
 		this.downTile = "FILL";
 		this.leftTile = "FILL";
 		this.rightTile = "FILL";
-		console.log("*********************************************************");
+		//console.log("*********************************************************");
 		
 		this.leftDistance = 2000;
 		this.rightDistance = 2000;

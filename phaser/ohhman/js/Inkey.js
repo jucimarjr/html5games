@@ -11,18 +11,19 @@ Inkey.prototype = {
 		game.load.image('inkey', fp_inkey);
 	},
 
-	create : function() {
+	create : function(xPosition, yPosition) {
 		//Adiciona o inkey na tela		
-		this.sprite = game.add.sprite(414, 540, 'inkey');
+		this.sprite = game.add.sprite(xPosition, yPosition, 'inkey');
 		game.physics.enable(this.sprite);
 
 		//Impede que o inkey saia dos limites da tela
 		this.sprite.body.collideWorldBounds = true;
 	},
 	
-	update : function(layer) {
-		this.moveRandomly();
-		this.verifyMapCollision(layer);
+	update : function(layer) {		
+		this.verifyMapCollision();
+		this.verifyDecisionCollision();	
+		this.moveRandomly();		
 	},
 	
 	//Move o inkey
@@ -49,9 +50,14 @@ Inkey.prototype = {
 	},
 	
 	//Verifica a colisão do inkey com o mapa
-	verifyMapCollision : function(layer) {		
-		game.physics.arcade.overlap(this.sprite, map.layer, this.setNewDirection, null, this);
+	verifyMapCollision : function(layer) {				
+		game.physics.arcade.collide(this.sprite, map.layer, this.setNewDirection, null, this);		
 	},
+	
+	//Verifica a colisão do inkey com o ponto de decisao
+	verifyDecisionCollision : function() {						
+		game.physics.arcade.collide(this.sprite, map.decision, this.correctPosition, null, this);					
+	},	
 	
 	//Seta uma direção aleatória para o inkey
 	setNewDirection : function() {
