@@ -7,7 +7,7 @@ var Person = function (index, game,classGame) {
     this.alive = true;
     this.classGame = classGame;
     this.spritePerson = this.game.add.sprite(x, y,'personDown');
-    this.spritePerson.z = 0;
+    
     this.spritePerson.animations.add('personWalkDown');
     this.spritePerson.animations.play('personWalkDown', 10, true);
     
@@ -26,6 +26,7 @@ var Person = function (index, game,classGame) {
 
     this.spritePerson.checkWorldBounds = true;
     this.spritePerson.events.onOutOfBounds.add(this.boundOut, this);
+    this.block = false;
 //    
     this.setVelocity(this.spritePerson);
     //this.spritePerson.z = 0;
@@ -97,25 +98,27 @@ Person.prototype.setVelocity = function(person)
 {	
 	if(person.name.contains("rigth"))
 	{
-		person.body.velocity.x  = game.rnd.integerInRange(10,20);
+		person.body.velocity.x  = game.rnd.integerInRange(10,30);
 		person.body.velocity.y  = Math.random()*10;
 	}
 	else
 	{
-		person.body.velocity.x  = - game.rnd.integerInRange(10,20);
+		person.body.velocity.x  = - game.rnd.integerInRange(10,30);
 		person.body.velocity.y  = - Math.random()*10;
 	}
 };
 
 Person.prototype.killPerson = function(person,zombie)
 {
-	this.spriteZombie = zombie;
-	zombie.y = person.y;
-	zombie.x = person.x;
-	zombie.kill();
+	zombie.block = false;
+	this.spriteZombie = zombie.spriteZombie;
+	this.spriteZombie.y = person.y;
+	this.spriteZombie.x = person.x;
+	this.spriteZombie.kill();
 	this.spritePerson = person;
     person.body.velocity.x  = 0;
     person.body.velocity.y  = 0;
+    this.classGame.amountPeople -= 1;
 	this.alive = false;
 	person.loadTexture('zombieBitePerson');
 	person.animations.add('zBitePerson');
@@ -127,5 +130,6 @@ Person.prototype.killPerson = function(person,zombie)
 Person.prototype.initReviveZombie = function()
 {
 	this.spriteZombie.revive();
+	//this.setVelocity(this.spriteZombie);
 	this.classGame.initZombies(this.spritePerson);
 };

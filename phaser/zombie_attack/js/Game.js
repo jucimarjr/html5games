@@ -10,7 +10,9 @@ var Game = function(game){
     this.groupZombies = [];
     this.groupPeople = [];
     this.amountPeople = 5;
-    this.amountZombies = 10;
+    this.amountZombiesDead = 0;
+    this.amountZombies = 0;
+    this.amountAliveZombies = 0;
     this.target = null;
 };
 
@@ -19,134 +21,132 @@ Game.prototype.preload = function(){
 	
 };
 
-Game.prototype.create = function () {
-	this.soundGame = this.game.add.audio('audioBackGroundGame');
-	//this.soundGame.play();
+Game.prototype.create = function () 
+{
+	this.soundGame = this.game.add.audio('audioBackGroundGame',1,true);
+	this.soundGame.play();
 	this.spriteCenario = this.game.add.sprite(0, 0,'cenario');
 	this.spriteRound = this.game.add.sprite(100,0,'score');
 	this.spriteRound = this.game.add.sprite(500,0,'round');
-	//this.target = this.game.add.sprite(500,0,'round');
-	//grupo de pessoas
-//	this.groupPeople = this.game.add.group();
-//	this.groupPeople.enableBody = true;
-//	this.groupPeople.name = 'groupPeople';
-//	this.groupPeople.physicsBodyType = Phaser.Physics.ARCADE;
 	this.game.time.events.repeat(Phaser.Timer.SECOND * 5, this.amountPeople, this.initPeople, this);
-	
-	 //grupo de zumbis
-//	this.amountZombies  = 0;
-//    this.groupZombies = this.game.add.group();
-//	this.groupZombies.enableBody = true;
-//	this.groupZombies.physicsBodyType = Phaser.Physics.ARCADE;
-	this.game.time.events.repeat(Phaser.Timer.SECOND * 5, this.amountZombies, this.initZombies, this);
-	//this.groupZombies.add(this.groupPeople);
+	this.game.time.events.repeat(Phaser.Timer.SECOND * 5, 10, this.initZombies, this);
 	
 	this.groupGame = this.game.add.group();
 	this.groupPeople.enableBody = true;
 	this.groupPeople.physicsBodyType = Phaser.Physics.ARCADE;
-//	this.groupGame.add(this.groupZombies);
-//	this.groupGame.add(this.groupPeople);
-//	
+	this.amountAliveZombies = this.amountZombies;
 	
 	//Fonte
-	this.stage = 0;
+	this.stage = 1;
 	this.scoreText = game.add.text(224, 28 , this.score,{ font: "25px arcade_normalregular", fill: "#ffffff", align: "right" });
 	this.scoreText.setText(0);
 	this.roundText = game.add.text(625,28,this.stage,{ font: "25px arcade_normalregular", fill: "#ffffff", align: "right" });
 	this.roundText.setText(0);
 	
+	this.Stage();
+	
 	
 	
 };
 
-Game.prototype.update = function () {
-	//console.log("quantidade zumbis: ",this.amountZombies);
-	
-	//Colisão
-	//this.game.physics.arcade.collide(this.groupZombies, this.collisionHandler, null, this);
-	
-	//IA do jogo
-	//this.boundWorld(this.groupZombies);
-	//this.boundOut(this.groupZombies);
-
-	
-//	this.groupZombies.sort('y', Phaser.Group.SORT_ASCENDING);
-//	this.groupPeople.sort('y', Phaser.Group.SORT_ASCENDING);
+Game.prototype.update = function () 
+{	
 	this.groupGame.sort('y', Phaser.Group.SORT_ASCENDING);
 	this.VerifyCollision();
-//	this.boundOut(this.groupPeople);
-//	this.boundOut(this.groupZombies);
+	this.initRound();
+	if(this.stage > 5)
+	{
+		this.ZombieFollowPerson();
+	}
 	this.boundWorld(this.groupGame);
-	
+	this.gameOver(this.amountPeople);
 };
 
 
 Game.prototype.punctuate = function (points) {
 	this.score += points;
     this.scoreText.setText(this.score);
+    if(this.score > 9)
+    {
+    	this.scoreText.x = 200;
+    }
+    else if(this.score > 99)
+    {
+    	this.scoreText.x = 176;
+    }
+    else if(this.score > 999)
+    {
+    	this.scoreText.x = 152;
+    }
 };
 
 Game.prototype.Stage = function () {
     this.roundText.setText(this.stage);
+    if(this.stage > 9)
+    {
+    	this.roundText.x = 601;
+    }
+    else if(this.stage > 99)
+    {
+    	this.roundText.x = 477;
+    }
 };
 
 Game.prototype.gameOver = function (amountPeople) {
+	
+	//console.log("amount people = "+amountPeople)
 	if(amountPeople == 0)
 	{
-		
+		//this.game.states.shutDown();
 	}
 };
 
 Game.prototype.collisionHandler = function(zombie,person){
 	if(person.alive)
 	{
-		person.killPerson(person.spritePerson,zombie.spriteZombie);
+		person.killPerson(person.spritePerson,zombie);
 	}
 	
 	//zombie.spriteZombie.revive();
 };
 
-Game.prototype.initStage = function(){
-	
-};
-
-Game.prototype.initPeople = function(){
-	//console.log("initPeople");
+Game.prototype.initPeople = function()
+{	
 	this.idPerson +=1;
 	var person = new Person(this.idPerson,this.game,this);
 	this.groupPeople.push(person);
-	//this.groupGame.add(person.spritePerson);
 	this.groupGame.add(person.spritePerson);
-	//this.groupPeople.add(person.spritePerson);
 };
 
-Game.prototype.initZombies = function(person){
-	//console.log("initZombie");
+
+Game.prototype.initZombies = function(person)
+{
 	this.idZombie += 1;
 	var zombie = new Zombie(this.idZombie,this.game, this,person);
-	//this.groupZombies.add(zombie.spriteZombie);
 	this.groupGame.add(zombie.spriteZombie);
 	this.groupZombies.push(zombie);
-	//console.log("quantidade de zumbis no grupo",this.groupZombies.length);
+	this.amountZombies +=1;
 };
 
 Game.prototype.boundWorld = function(group)
 {
 	group.forEach(function(object){
-		if(object.y < 400 || object.y > 600)
+		
+		if(object.y < 400 || object.body.y > 800)
 		{
 			object.body.velocity.y *= -1;
 		}
 		
+//		if(object.body.y < 400)
+//		{
+//			object.body.y =+ 1 ;
+//		}
+//		else if(object.body.y > 600)
+//		{
+//			object.body.y -= 600;
+//		}
+		
 	});
-};
-
-Game.prototype.boundOut = function(group)
-{
-	for(var i = 0 ; i < group.length ; i++)
-	{
-		group[i].boundOut(group[i]);
-	}
 };
 
 
@@ -156,11 +156,27 @@ Game.prototype.VerifyCollision  = function()
 	{
 		for(var j = 0; j < this.groupZombies.length; j++)
 		{
-			if(this.intersect(this.groupPeople[i].spritePerson, this.groupZombies[j].spriteZombie))
+			if(this.groupZombies[j].alive)
 			{
-				this.collisionHandler(this.groupZombies[j], this.groupPeople[i]);
+				if(this.intersect(this.groupPeople[i].spritePerson, this.groupZombies[j].spriteZombie))
+				{
+					this.collisionHandler(this.groupZombies[j], this.groupPeople[i]);
+				}
 			}
 		}
+	}
+};
+
+Game.prototype.initRound = function()
+{
+	//console.log("this.stage = "+this.stage);
+	if(this.amountZombiesDead >= this.stage*10)
+	{
+		this.amountAliveZombies += this.stage+3;
+		this.game.time.events.repeat(Phaser.Timer.SECOND * 2, 5, this.initPeople, this);
+		this.game.time.events.repeat(Phaser.Timer.SECOND * 4, 8, this.initZombies, this);
+		this.stage += 1;
+		this.Stage();
 	}
 };
 
@@ -188,4 +204,66 @@ Game.prototype.intersect = function(object1,object2)
         }
 
         return true;
+};
+
+Game.prototype.ZombieFollowPerson = function()
+{
+	for(var j = 0; j < this.groupZombies.length; j++)
+	{
+		
+		if(this.groupZombies[j].alive&&this.groupZombies[j].block==false)
+		{
+			for(var i = 0; i < this.groupPeople.length; i++)
+			{
+				var velocityX = this.groupZombies[j].spriteZombie.body.velocity.x;
+				var velocityY = this.groupZombies[j].spriteZombie.body.velocity.y;
+				if(this.distanceBetweenBody(this.groupZombies[j], this.groupPeople[i]) < 20);
+				{
+					//console.log("movetozombie");
+//					var velocityX = this.groupZombies[j].spriteZombie.body.velocity.x;
+//					var velocityY = this.groupZombies[j].spriteZombie.body.velocity.y;
+					this.groupZombies[j].block = true;
+					this.groupPeople[i].block = true;
+					this.moveZombieToPerson(this.groupZombies[j], this.groupPeople[i]);
+//					this.groupZombies[j].spriteZombie.body.velocity.x = velocityX;
+//					this.groupZombies[j].spriteZombie.body.velocity.y = velocityY;
+				}
+			}
+		}
+	}
+	
+};
+
+Game.prototype.moveZombieToPerson = function(zombie,person)
+{
+		var velocityX = zombie.velocity0X;
+		var velocityY = zombie.velocity0Y;
+		
+		if(person.alive)
+		{
+			this._angle = Math.atan2(person.spritePerson.y - zombie.spriteZombie.y, person.spritePerson.x - zombie.spriteZombie.x);
+
+	        zombie.spriteZombie.body.velocity.x = Math.cos(this._angle) * 20;
+	        zombie.spriteZombie.body.velocity.y = Math.sin(this._angle) * 20;
+		}
+		else
+		{
+			zombie.spriteZombie.body.velocity.x = velocityX;
+			zombie.spriteZombie.body.velocity.y = velocityY;
+		}
+        
+ 
+        return this._angle;
+};
+
+Game.prototype.distanceBetweenBody = function(source,target)
+{
+	this._dx = source.x - target.x;
+	this._dy = source.y - target.y;
+	return Math.sqrt(this._dx * this._dx + this._dy * this._dy);
+};
+
+Game.prototype.gameOverView = function()
+{
+	console.log("game over")
 };
