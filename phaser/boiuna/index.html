@@ -58,45 +58,38 @@
 			}(document, 'script', 'facebook-jssdk'));
 		</script>
 		<style type="text/css">
-			#game {
-				margin: auto;
-				display: table;
-			}
-			#fb-root {
+			body {
+				margin: 0;
+				padding: 0;
 				text-align: center;
 			}
-			.fb-comments {
-				width: 100%;
-				height: 100%;
-				position: absolute;
-				top: 0;
-				left: 0;
+			#everything {
+				width: 960px;
+				margin:0 auto;
+				text-align:left;
 			}
-			.fb-like {
-				width: 100%;
-				height: 100%;
-				position: absolute;
-				top: 0;
-				left: 0;
-			}
-	</style>
+		</style>
 	</head>
 	<body >
-		<div id="game">
-		</div>
-		<div id="fb-root">
-			<div class="fb-like"
-				data-href="http://computacao.uea.edu.br/ludus/games/html5games/phaser/boiuna/"
-				data-layout="button_count"
-				data-action="like"
-				data-show-faces="true"
-				data-share="true">
-			</div>
-			<div class="fb-comments"
-				data-href="http://computacao.uea.edu.br/ludus/games/html5games/phaser/boiuna/"
-				data-width="960"
-				data-numposts="10"
-				data-colorscheme="light">
+		<div id="everything">
+			<div id="content">
+				<div id="game">
+				</div>
+				<div id="fb-root">
+					<div class="fb-like"
+						data-href="http://computacao.uea.edu.br/ludus/games/html5games/phaser/boiuna/"
+						data-layout="button_count"
+						data-action="like"
+						data-show-faces="true"
+						data-share="true">
+					</div>
+					<div class="fb-comments"
+						data-href="http://computacao.uea.edu.br/ludus/games/html5games/phaser/boiuna/"
+						data-width="960"
+						data-numposts="10"
+						data-colorscheme="light">
+					</div>
+				</div>
 			</div>
 		</div>
 	</body>
