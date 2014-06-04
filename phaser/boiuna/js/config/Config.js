@@ -9,10 +9,8 @@ var Config = {
 			height: 600,
 			resize: function (game) {
 				"use strict";
-				if (window.innerHeight < 600 || window.innerWidth < 960) {
-					game.scale.setExactFit();
-					game.scale.refresh();
-				}
+				game.scale.setExactFit();
+				game.scale.refresh();
 			}
 		},
 		key: {
