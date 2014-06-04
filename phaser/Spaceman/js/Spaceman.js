@@ -45,7 +45,22 @@ Spaceman.prototype.update = function(){
 	this.fire1.y = this.y;
 	//
 	if(game.device.touch){
-		
+		if(!this.animations.getAnimation('explode').isPlaying){
+			if (game.input.activePointer.isDown && !game.tweens.isTweening(this) && this.player == 1 && this.gameClass.playing == true)
+			{
+				if(sound){if(!this.turbine.isPlaying){
+					this.turbine.play();
+				}}
+				this.fire1.body.velocity.y -= this.upSpeed;
+				this.body.velocity.y -= this.upSpeed;
+			}else{
+				if(sound)this.turbine.stop();
+			}
+			if(this.player == 2 && game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR) && !game.tweens.isTweening(this) && this.gameClass.playing == true){
+				this.fire1.body.velocity.y -= this.upSpeed;
+				this.body.velocity.y -= this.upSpeed;
+			}
+		}		
 	}else{
 		if(!this.animations.getAnimation('explode').isPlaying){
 			if (game.input.keyboard.isDown(Phaser.Keyboard.CONTROL) && !game.tweens.isTweening(this) && this.player == 1 && this.gameClass.playing == true)
@@ -99,27 +114,36 @@ Spaceman.prototype.resetSpaceman = function(){
 		game.input.keyboard.clearCaptures();
 		game.input.keyboard.addKey(Phaser.Keyboard.CONTROL).onDown.addOnce(this.gameClass.start, this.gameClass)
 		game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onDown.addOnce(this.gameClass.start, this.gameClass)
+		game.input.onDown.addOnce(this.gameClass.start, this);
 		//this.animations.play('flying');
 	} else {this.resetSpaceman()}
 };
 
+Spaceman.prototype.explosion = function(){
+	var emitter = game.add.emitter(this.x, this.y, 30);
+    emitter.makeParticles('explosion', 0);
+    emitter.minParticleSpeed.setTo(-500, -500);
+    emitter.maxParticleSpeed.setTo(500,500);
+    emitter.gravity = 0;
+	emitter.maxRotation = 0;
+    emitter.forEach(function(p){
+    	//game.add.tween(p).to({alpha:0},500,Phaser.Easing.Linear.None,true);
+		p.animations.add('explode', [0,1,2,3,4,5,6], 15).play();
+		//p.body.angularVelocity = 0;
+    })
+	emitter.start(true, 500, null, 30);
+	this.kill();
+}
+
 Spaceman.prototype.explode = function(){
 	this.body.velocity.setTo(0,0);
-	//this.body.acceleration.y = this.gameClass.gravity;
-	var emitter = game.add.emitter(this.x, this.y, 30);
-    emitter.makeParticles('explosion');
-    emitter.minParticleSpeed.setTo(-1000, -1000);
-    emitter.maxParticleSpeed.setTo(1000,1000);
-    emitter.gravity = 0;
-    emitter.forEach(function(p){
-    	game.add.tween(p).to({alpha:0},500,Phaser.Easing.Linear.None,true);
-    })
+	//this.body.acceleration.y = this.gameClass.gravity	
 	this.fire1.alpha = 0;
-    emitter.start(true, 1000, null, 30);	
 	game.input.keyboard.addKey(Phaser.Keyboard.CONTROL).onDown.addOnce(this.resetSpaceman, this);
 	game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onDown.addOnce(this.resetSpaceman, this);
+	game.input.onDown.addOnce(this.resetSpaceman, this);
     if(sound)this.explosion.play();	
-	if(this.inWorld)this.animations.play('explode').onComplete.addOnce(this.kill, this);
+	if(this.inWorld)this.animations.play('explode').onComplete.addOnce(this.explosion, this);
 	else this.kill();
 	this.alive = false;
 }

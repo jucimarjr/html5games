@@ -64,6 +64,7 @@ Game.prototype.create = function()
 	//game.input.onDown.addOnce(this.start, this);
 	game.input.keyboard.addKey(Phaser.Keyboard.CONTROL).onDown.addOnce(this.start, this)
 	game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onDown.addOnce(this.start, this)
+	game.input.onDown.addOnce(this.start, this);
 };
 
 Game.prototype.start = function(){

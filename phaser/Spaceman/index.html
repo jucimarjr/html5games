@@ -13,13 +13,6 @@
 
 	<meta charset="UTF-8" />
 	<title>Spaceman</title>
-	<script type="text/javascript" src="js/phaser.min.js"></script>
-	<script type="text/javascript" src="js/Game.js"></script>
-	<script type="text/javascript" src="js/Rock.js"></script>
-	<script type="text/javascript" src="js/Spaceman.js"></script>
-	<script type="text/javascript" src="js/Splash.js"></script>
-	<script type="text/javascript" src="js/Menu.js"></script>
-	<script type="text/javascript" src="js/Credits.js"></script>
     <style type="text/css">
         body {
         	background-color:#ffffff;
@@ -45,9 +38,37 @@
     </style>
 </head>
 <body>
-	<div id="game">
-		
-	</div>
+<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&appId=391075467572191&version=v2.0";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+        </script>
+
+		<div id="game"></div>
+
+		<div class="fb-like" 
+		data-href="http://computacao.uea.edu.br/ludus/games/html5games/phaser/Spaceman/" 
+		data-layout="button_count" data-action="like" 
+		data-show-faces="true" 
+		data-share="true">
+		</div>
+
+		<div class="fb-comments" 
+             	data-href="http://computacao.uea.edu.br/ludus/games/html5games/phaser/Spaceman/" 
+   		data-width="960" data-numposts="10" data-colorscheme="light">
+        	</div>
+		<script type="text/javascript" src="js/phaser.min.js"></script>
+	<script type="text/javascript" src="js/Game.js"></script>
+	<script type="text/javascript" src="js/Rock.js"></script>
+	<script type="text/javascript" src="js/Spaceman.js"></script>
+	<script type="text/javascript" src="js/Splash.js"></script>
+	<script type="text/javascript" src="js/Menu.js"></script>
+	<script type="text/javascript" src="js/Credits.js"></script>
+	
 <script type="text/javascript">
 	var game = new Phaser.Game(960, 600, Phaser.CANVAS, 'game', { preload: preload, create: create, update: update, render: render });
 game.state.add('splash', Splash, false);
@@ -70,7 +91,7 @@ function preload()
 	game.load.image('fg','assets/tileSprites/frontGround.png');
 	game.load.image('fg2','assets/tileSprites/frontGround2.png');
 	game.load.image('star','assets/spritesheets/star.png');
-	game.load.image('explosion','assets/spritesheets/fogo.png');
+	game.load.spritesheet('explosion','assets/spritesheets/fogo.png',80,74,7);
 	game.load.image('back','assets/spritesheets/back.png');
 	game.load.spritesheet('fire1','assets/spritesheets/fireYelow.png',154,56,3);
 	game.load.spritesheet('fire2','assets/spritesheets/fireBlue.png',154,56,3);
