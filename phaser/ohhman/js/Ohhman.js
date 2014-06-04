@@ -29,10 +29,10 @@ Ohhman.prototype = {
 
 	},
 	
-	update : function() {				
-		this.moveByKeyboard();
-		this.verifyMapCollision();
-		this.verifyGhostCollision();
+	update : function() {		
+		this.verifyMapCollision();	
+		this.moveByKeyboard();		
+		//this.verifyGhostCollision();
 		this.verifyBallCollision();		
 		this.verifyDecisionCollision();		
 		this.verifyFearCollision();
@@ -87,7 +87,8 @@ Ohhman.prototype = {
 	//Verifica a colisão do ohhMan com o mapa
 	verifyMapCollision : function() {
 		//game.physics.arcade.collide(this.sprite, map.layer);		
-		game.physics.arcade.collide(this.sprite, map.layer, this.keepDirection, null, this);
+		//game.physics.arcade.collide(this.sprite, map.layer, this.keepDirection, null, this);
+		game.physics.arcade.collide(this.sprite, map.layer);
 	},
 	
 	//Verifica a colisão do ohhMan com os fantasminhas
