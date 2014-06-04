@@ -12,6 +12,7 @@
 	<script type="text/javascript" src="js/Person.js"></script>
 	<script type="text/javascript" src="js/Round.js"></script>
 	<script type="text/javascript" src="js/Game.js"></script>
+	<script type="text/javascript" src="js/GameOver.js"></script>
 </head>
 
 <body>
@@ -25,6 +26,7 @@ var splashScene = null;
 
 game.state.add('menu', Menu);
 game.state.add('game', Game);
+game.state.add('gameover',GameOver);
 //game.state.add('HowToPlay', HowToPlay);
 //game.state.add('HighScore', HighScore);
 //game.state.add('HighScoreInput', HighScoreInput);
@@ -49,6 +51,7 @@ function preload()
 	game.load.image('score', spriteScore);
 	game.load.image('cenario', imageCenario);
 	game.load.image('credits',splashCredits);
+	game.load.audio('audioPuchZombie',audioPuchZombie);
 	game.load.audio('audioZombieDead',audioZombieDead);
 	game.load.audio('audioBackGroundGame',audioBackGroundGame);
 	

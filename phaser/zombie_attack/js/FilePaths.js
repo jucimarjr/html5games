@@ -48,5 +48,6 @@ var spriteScore = "assets/score.png";
 var spriteTarget = "assets/target.png";
 
 //audio
-var audioZombieDead = "audio/soundEffects/ugh.ogg";
-var audioBackGroundGame = "audio/550039_Hyrule-Castle.ogg";
+var audioPuchZombie = "audio/soundEffects/slap-soundmaster13-49669815.mp3";
+var audioZombieDead = "audio/soundEffects/ugh.mp3";
+var audioBackGroundGame = "audio/hyrulecastle.mp3";

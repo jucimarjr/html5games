@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:og="http://opengraphprotocol.org/schema/">
+<html prefix="og: http://ogp.me/ns#">
 	<head>
-		<meta charset="UTF-8"/>
 		<meta name="viewport" content="width=device-width"/>
 		<meta property="og:title" content="Boiuna Come Come" />
 		<meta property="og:type" content="website" />
@@ -45,6 +44,16 @@
 		<script type="text/javascript" src="./js/states/VictoryScreen.js"></script>
 		<script type="text/javascript" src="./js/states/DefeatScreen.js"></script>
 		<script type="text/javascript" src="./js/Main.js"></script>
+		<script type="text/javascript">
+			(function(d, s, id) {
+				var js, fjs = d.getElementsByTagName(s)[0];
+				if (d.getElementById(id)) return;
+				js = d.createElement(s);
+				js.id = id;
+				js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&appId=391075467572191&version=v2.0";
+				fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
+		</script>
 		<title>Boiúna come-come</title>
 		<style type="text/css">
 			body {
@@ -55,6 +64,21 @@
 	</head>
 	<body >
 		<div id="game">
+		</div>
+		<div id="fb-root">
+		</div>
+		<div class="fb-like"
+			data-href="http://computacao.uea.edu.br/ludus/jucimarjr/jogo/"
+			data-layout="button_count"
+			data-action="like"
+			data-show-faces="true"
+			data-share="true">
+		</div>
+		<div class="fb-comments"
+			data-href="http://computacao.uea.edu.br/ludus/jucimarjr/jogo/"
+			data-width="960"
+			data-numposts="10"
+			data-colorscheme="light">
 		</div>
 	</body>
 </html>
