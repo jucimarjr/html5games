@@ -39,11 +39,11 @@ Person.prototype.boundOut = function(person)
 	var velocityX = person.body.velocity.x;
     var velocityY = person.body.velocity.y;
     
-
+    
     if (person.x < 0)
-    	person.reset(this.game.world.width, person.y);
+    	person.reset(this.game.world.width, game.rnd.integerInRange(162, 400));
     if (person.x > game.world.width)
-    	person.reset(0, person.y);
+    	person.reset(0, game.rnd.integerInRange(162, 400));
    
     person.body.velocity.x = velocityX;
     person.body.velocity.y = velocityY;
@@ -132,4 +132,8 @@ Person.prototype.initReviveZombie = function()
 	this.spriteZombie.revive();
 	//this.setVelocity(this.spriteZombie);
 	this.classGame.initZombies(this.spritePerson);
+};
+
+Person.prototype.randPosition(y)
+{
 };
