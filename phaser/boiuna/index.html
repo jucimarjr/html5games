@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html prefix="og: http://ogp.me/ns#">
 	<head>
+		<title>Boiúna come-come</title>
+		<meta charset="utf-8"/>
 		<meta name="viewport" content="width=device-width"/>
 		<meta property="og:title" content="Boiuna Come Come" />
 		<meta property="og:type" content="website" />
@@ -54,31 +56,47 @@
 				fjs.parentNode.insertBefore(js, fjs);
 			}(document, 'script', 'facebook-jssdk'));
 		</script>
-		<title>Boiúna come-come</title>
 		<style type="text/css">
-			body {
+			#game {
 				margin: auto;
 				display: table;
 			}
-		</style>
+			#fb-root {
+				text-align: center;
+			}
+			.fb-comments {
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			.fb-like {
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+	</style>
 	</head>
 	<body >
 		<div id="game">
 		</div>
 		<div id="fb-root">
-		</div>
-		<div class="fb-like"
-			data-href="http://computacao.uea.edu.br/ludus/jucimarjr/jogo/"
-			data-layout="button_count"
-			data-action="like"
-			data-show-faces="true"
-			data-share="true">
-		</div>
-		<div class="fb-comments"
-			data-href="http://computacao.uea.edu.br/ludus/jucimarjr/jogo/"
-			data-width="960"
-			data-numposts="10"
-			data-colorscheme="light">
+			<div class="fb-like"
+				data-href="http://computacao.uea.edu.br/ludus/games/html5games/phaser/boiuna/"
+				data-layout="button_count"
+				data-action="like"
+				data-show-faces="true"
+				data-share="true">
+			</div>
+			<div class="fb-comments"
+				data-href="http://computacao.uea.edu.br/ludus/games/html5games/phaser/boiuna/"
+				data-width="960"
+				data-numposts="10"
+				data-colorscheme="light">
+			</div>
 		</div>
 	</body>
 </html>
