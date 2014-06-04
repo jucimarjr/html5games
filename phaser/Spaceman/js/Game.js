@@ -42,9 +42,14 @@ Game.prototype.create = function()
 	this.txt = game.add.text(370, 120, '',{
 		font: "18px 'OCR A Std'", fill: "#ffffff" , align: "center"
 	});
-	this.txt.text = 'Pressione a tela para voar.\nCuidado com as rochas.';
-	if(players == 2)this.txt.text += '\n\n\n\n\nPressione a tela para voar.\nCuidado com as rochas.'
-	
+	this.txt.text = 'Pressione a tecla para voar.\nCuidado com as rochas.';
+	this.control1 = game.add.sprite(480, 180, 'control1', 0);
+	this.control1.animations.add('anim', [0,1],3,true).play();
+	if(players == 2){
+		this.txt.text += '\n\n\n\n\n\n\n\nPressione a tecla para voar.\nCuidado com as rochas.'
+		this.control2 = game.add.sprite(410, 380, 'control2', 0);
+		this.control2.animations.add('anim', [0,1],3,true).play();
+	}
 	this.hud = game.add.text(game.world.centerX,75,parseInt(this.score/10),{
 		font: "18px 'OCR A Std'", fill: "#ffffff" , align: "center"
 	});
@@ -56,12 +61,15 @@ Game.prototype.create = function()
 		game.sound.stopAll();
 		game.state.start('menu', true);
 	},null);	
-	game.input.onDown.addOnce(this.start, this);
+	//game.input.onDown.addOnce(this.start, this);
+	game.input.keyboard.addKey(Phaser.Keyboard.CONTROL).onDown.addOnce(this.start, this)
 	game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onDown.addOnce(this.start, this)
 };
 
 Game.prototype.start = function(){
 	this.txt.text = '';
+	this.control1.kill();
+	if(players == 2) this.control2.kill();
 	this.hud.y = 75;
 	this.hud.setStyle({
 		font: "18px 'OCR A Std'", fill: "#ffffff" , align: "center"
@@ -69,6 +77,7 @@ Game.prototype.start = function(){
 	game.tweens.removeAll();
 	game.physics.arcade.gravity.y = this.gravity;
 	this.playing = true;
+	game.input.keyboard.clearCaptures();
 };
 
 Game.prototype.update = function()
