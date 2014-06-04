@@ -200,22 +200,22 @@ Game.prototype.update = function () {
         }else if (this.shoot.input.pointerDown(0) || this.thrust.input.pointerDown(1)){
             this.spaceShip.shoot();   
         }
-    }
-    
-    if(this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT))
-        this.spaceShip.rotate("left");
-    else if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT))
-        this.spaceShip.rotate("right");
-    
-    if (this.game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
-        this.spaceShip.accelerate();
-        this.spaceShip.animate();
-    } else{
-        this.spaceShip.stop();
-    }      	    
-    if (this.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)){
-        this.spaceShip.shoot();   
-    }
+    }else{    
+		if(this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT))
+			this.spaceShip.rotate("left");
+		else if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT))
+			this.spaceShip.rotate("right");
+		
+		if (this.game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
+			this.spaceShip.accelerate();
+			this.spaceShip.animate();
+		} else{
+			this.spaceShip.stop();
+		}      	    
+		if (this.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)){
+			this.spaceShip.shoot();   
+		}
+	}
     
     if (this.game.time.now > this.nextAddUfo) {
         this.nextAddUfo = this.game.time.now + this.addUfoTime;
