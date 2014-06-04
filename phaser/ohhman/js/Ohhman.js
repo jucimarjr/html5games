@@ -32,7 +32,7 @@ Ohhman.prototype = {
 	update : function() {		
 		this.verifyMapCollision();	
 		this.moveByKeyboard();		
-		//this.verifyGhostCollision();
+		this.verifyGhostCollision();
 		this.verifyBallCollision();		
 		this.verifyDecisionCollision();		
 		this.verifyFearCollision();
