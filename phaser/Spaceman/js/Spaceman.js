@@ -47,9 +47,8 @@ Spaceman.prototype.update = function(){
 	if(game.device.touch){
 		
 	}else{
-		console.log(!this.animations.getAnimation('explode').isPlaying);
 		if(!this.animations.getAnimation('explode').isPlaying){
-			if (game.input.activePointer.isDown && !game.tweens.isTweening(this) && this.player == 1 && this.gameClass.playing == true)
+			if (game.input.keyboard.isDown(Phaser.Keyboard.CONTROL) && !game.tweens.isTweening(this) && this.player == 1 && this.gameClass.playing == true)
 			{
 				if(sound){if(!this.turbine.isPlaying){
 					this.turbine.play();
@@ -74,7 +73,10 @@ Spaceman.prototype.update = function(){
 };
 
 Spaceman.prototype.resetSpaceman = function(){
-	if(!this.animations.getAnimation('explode').isPlaying){
+	console.log(this);
+	
+	game.input.keyboard.clearCaptures();
+	if(this.animations.getAnimation('explode') !== null) if(!this.animations.getAnimation('explode').isPlaying){
 		if(this.player == 1){
 			this.reset(350, 200);
 			this.fire1.reset(350,200);
@@ -94,7 +96,8 @@ Spaceman.prototype.resetSpaceman = function(){
 			font: "18px 'OCR A Std'", fill: "#ffffff" , align: "center"
 		})
 		this.gameClass.txt.text = '';
-		game.input.onDown.addOnce(this.gameClass.start, this.gameClass);
+		game.input.keyboard.clearCaptures();
+		game.input.keyboard.addKey(Phaser.Keyboard.CONTROL).onDown.addOnce(this.gameClass.start, this.gameClass)
 		game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onDown.addOnce(this.gameClass.start, this.gameClass)
 		//this.animations.play('flying');
 	} else {this.resetSpaceman()}
@@ -113,7 +116,8 @@ Spaceman.prototype.explode = function(){
     })
 	this.fire1.alpha = 0;
     emitter.start(true, 1000, null, 30);	
-	game.input.onDown.addOnce(this.resetSpaceman, this);
+	game.input.keyboard.addKey(Phaser.Keyboard.CONTROL).onDown.addOnce(this.resetSpaceman, this);
+	game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onDown.addOnce(this.resetSpaceman, this);
     if(sound)this.explosion.play();	
 	if(this.inWorld)this.animations.play('explode').onComplete.addOnce(this.kill, this);
 	else this.kill();

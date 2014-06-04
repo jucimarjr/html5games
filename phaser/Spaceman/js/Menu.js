@@ -17,21 +17,21 @@ Menu.prototype.create = function() {
     this.title = game.add.sprite(game.world.centerX,game.world.centerY, 'title');
     this.title.anchor.setTo(0.5,0.5);
     this.button = 1;
-    this.btnPlay1 = game.add.button(game.world.centerX + 15, game.world.centerY + 30, 'botoes',
+    this.btnPlay1 = game.add.button(game.world.centerX + 15, game.world.centerY + 45, 'botoes',
     function(){ this.play(1); }, this);
     this.btnPlay1.setFrames(0, 0);
     this.btnPlay1.anchor.x = 0.5;
     
-    this.btnSound = game.add.sprite(game.world.width - 85, game.world.height - 85, 'sound', 0);
+    this.btnSound = game.add.sprite(game.world.width - 85, game.world.height - 85, 'sound', 1);
     this.btnSound.inputEnabled = true;
     this.btnSound.events.onInputDown.add(this.changeSound, this);
     
-    this.btnPlay2 = game.add.button(game.world.centerX + 15, game.world.centerY + 110, 'botoes',
+    this.btnPlay2 = game.add.button(game.world.centerX + 15, game.world.centerY + 125, 'botoes',
     function(){ this.play(2); }, this);
     this.btnPlay2.setFrames(1, 1);
     this.btnPlay2.anchor.x = 0.5;
 
-    this.btnCredits = game.add.button(game.world.centerX + 15, game.world.centerY + 190, 'botoes',
+    this.btnCredits = game.add.button(game.world.centerX + 15, game.world.centerY + 205, 'botoes',
     function(){ this.credits(); }, this);
     this.btnCredits.setFrames(2, 2);
     this.btnCredits.anchor.x = 0.5;
@@ -40,10 +40,10 @@ Menu.prototype.create = function() {
 Menu.prototype.changeSound = function(){
 	if(sound){
 		sound = false;
-		this.btnSound.frame = 1;
+		this.btnSound.frame = 0;
 	}else{
 		sound = true;
-		this.btnSound.frame = 0;
+		this.btnSound.frame = 1;
 	}
 }
 
