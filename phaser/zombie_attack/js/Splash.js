@@ -24,7 +24,6 @@ Splash.prototype.create = function() {
 			setTimeout(function() {
 				var fadeout = game.add.tween(fundo).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true, 0, 0, true);
 				fadeout.onComplete.add(function(){
-					console.log("menu");
 					game.state.start('menu', Menu);
 				});
 			}, 2500);
