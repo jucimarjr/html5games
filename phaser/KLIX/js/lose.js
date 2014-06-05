@@ -13,7 +13,7 @@ Lose.prototype.create = function() {
 	fundo.x = game.world.width/2;
 	fundo.y = 80;*/
 	var msg = game.add.text(game.width/2 - 220, game.world.height/2, "YOUR SCORE: " + this.game.score, {
-        font: "36px Vector Battle", fill: "#ffffff" , align: "right"
+        font: "40px 'Hyperspace'", fill: "#ffffff" , align: "right"
     });
 	
 	var keySelect = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);

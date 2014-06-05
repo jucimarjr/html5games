@@ -9,11 +9,6 @@ var Hero = function (game, tilemap, platforms) {
 	this.platforms = platforms;
 };
 Hero.prototype = {
-	preload: function () {
-		"use strict";
-		this.game.load.spritesheet('hero-normal', Config.hero.dir.normal, Config.hero.frame.normal.width, Config.hero.frame.normal.height);
-		this.game.load.spritesheet('hero-attack', Config.hero.dir.attack, Config.hero.frame.attack.width, Config.hero.frame.attack.height);
-	},
 	create: function () {
 		"use strict";
 		var group = this.game.add.group();
@@ -36,7 +31,11 @@ Hero.prototype = {
 	moveLeft: function () {
 		"use strict";
 		this.sprite.anchor = Config.hero.anchor.left;
-		this.sprite.body.velocity.x = -Config.hero.velocity.run;
+		if (this.sprite.key === 'hero-normal') {
+			this.sprite.body.velocity.x = -Config.hero.velocity.run.normal;
+		} else {
+			this.sprite.body.velocity.x = -Config.hero.velocity.run.attack;
+		}
 		if (this.sprite.body.onFloor() && this.sprite.key === 'hero-normal') {
 			this.sprite.animations.play('run');
 		}
@@ -45,7 +44,11 @@ Hero.prototype = {
 	moveRight: function () {
 		"use strict";
 		this.sprite.anchor = Config.hero.anchor.right;
-		this.sprite.body.velocity.x = Config.hero.velocity.run;
+		if (this.sprite.key === 'hero-normal') {
+			this.sprite.body.velocity.x = Config.hero.velocity.run.normal;
+		} else {
+			this.sprite.body.velocity.x = Config.hero.velocity.run.attack;
+		}
 		if (this.sprite.body.onFloor() && this.sprite.key === 'hero-normal') {
 			this.sprite.animations.play('run');
 		}
@@ -68,9 +71,8 @@ Hero.prototype = {
 	hit: function () {
 		"use strict";
 		if (this.sprite.key !== 'hero-attack') {
-			this.sprite.y -= Config.hero.frame.attack.height - Config.hero.frame.normal.height;
 			this.sprite.loadTexture('hero-attack');
-			this.sprite.body.setSize(Config.hero.frame.attack.width, Config.hero.frame.attack.height);
+			this.sprite.body.setSize(Config.hero.body.size.attack.width, Config.hero.body.size.attack.height);
 			this.sprite.animations.add('attack', Config.hero.frame.attack.hit, Config.global.animationVelocity, true);
 		} else {
 			this.sprite.animations.play('attack');
@@ -80,20 +82,25 @@ Hero.prototype = {
 		"use strict";
 		if (this.sprite.key !== 'hero-normal' && this.sprite.alive) {
 			this.sprite.loadTexture('hero-normal');
-			this.sprite.body.setSize(Config.hero.frame.normal.width, Config.hero.frame.normal.height);
-			this.sprite.y += Config.hero.frame.attack.height - Config.hero.frame.normal.height;
+			this.sprite.body.setSize(Config.hero.body.size.normal.width, Config.hero.body.size.normal.height);
 		}
 	},
 	hurt: function (damage) {
 		"use strict";
-		this.game.add.tween(this.sprite).to({alpha : 0.3}, 100, Phaser.Easing.Linear.None).to({alpha : 1}, 100, Phaser.Easing.Linear.None).start();
+		this.game.add.tween(this.sprite).to({alpha : Config.hero.alpha.hurt}, Config.hero.time.tween.hurt.dim.min, Phaser.Easing.Linear.None).to({alpha : 1}, Config.hero.time.tween.hurt.dim.max, Phaser.Easing.Linear.None).start();
 		this.sprite.damage(damage);
 	},
 	onKill: function () {
 		"use strict";
+		var tweenDie;
 		this.sprite.visible = true;
-		var tweenDie = this.game.add.tween(this.game.world).to({alpha : 0.3}, 10000, Phaser.Easing.Linear.None).to({alpha : 1}, 100, Phaser.Easing.Linear.None).start();
-		tweenDie.onComplete.add(function () {this.game.state.start('DefeatScreen'); }, this);
+		this.game.sound.stopAll();
+		this.game.sound.play('music-lose', 1, true);
+		tweenDie = this.game.add.tween(this.game.world).to({alpha : Config.hero.alpha.die}, Config.hero.time.tween.die.dim.min, Phaser.Easing.Linear.None).start();
+		tweenDie.onComplete.add(function () {
+			this.game.world.alpha = 1;
+			this.game.state.start('DefeatScreen');
+		}, this);
 	},
 	stop: function () {
 		"use strict";
@@ -103,9 +110,17 @@ Hero.prototype = {
 		}
 		this.sprite.body.velocity.x = Config.hero.velocity.initial.x;
 	},
+	fall: function () {
+		"use strict";
+		this.jumpControl = 0;
+		if (this.sprite.key === 'hero-normal') {
+			this.sprite.frame = Config.hero.frame.normal.falling;
+		}
+	},
 	win: function () {
 		"use strict";
-		var tweenWin = this.game.add.tween(this.game.world).to({alpha : 2}, 5000, Phaser.Easing.Linear.None).to({alpha : 1}, 100, Phaser.Easing.Linear.None).start();
-		tweenWin.onComplete.add(function () {this.game.state.start('VictoryScreen'); }, this);
+		this.game.sound.stopAll();
+		this.game.sound.play('music-win', 1, true);
+		this.game.state.start('VictoryScreen');
 	}
 };

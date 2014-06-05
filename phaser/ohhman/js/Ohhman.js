@@ -1,6 +1,6 @@
 Ohhman = function () {
 	this.sprite = null;
-	this.speed = 200;
+	this.speed = 180;
 	
 	this.direction = "LEFT"; //LEFT, RIGHT, UP, DOWN
 	this.nextDirection = "LEFT";	
@@ -29,9 +29,9 @@ Ohhman.prototype = {
 
 	},
 	
-	update : function() {				
-		this.moveByKeyboard();
-		this.verifyMapCollision();
+	update : function() {		
+		this.verifyMapCollision();	
+		this.moveByKeyboard();		
 		this.verifyGhostCollision();
 		this.verifyBallCollision();		
 		this.verifyDecisionCollision();		
@@ -87,7 +87,8 @@ Ohhman.prototype = {
 	//Verifica a colisão do ohhMan com o mapa
 	verifyMapCollision : function() {
 		//game.physics.arcade.collide(this.sprite, map.layer);		
-		game.physics.arcade.collide(this.sprite, map.layer, this.keepDirection, null, this);
+		//game.physics.arcade.collide(this.sprite, map.layer, this.keepDirection, null, this);
+		game.physics.arcade.collide(this.sprite, map.layer);
 	},
 	
 	//Verifica a colisão do ohhMan com os fantasminhas
@@ -95,7 +96,20 @@ Ohhman.prototype = {
 		if (this.checkOverlap(this.sprite, blinky.sprite) ||
 			this.checkOverlap(this.sprite, clyde.sprite) ||
 			this.checkOverlap(this.sprite, inkey.sprite) ||
-			this.checkOverlap(this.sprite, pinky.sprite))
+			this.checkOverlap(this.sprite, pinky.sprite) ||
+			this.checkOverlap(this.sprite, blinky2.sprite) ||
+			this.checkOverlap(this.sprite, clyde2.sprite) ||
+			this.checkOverlap(this.sprite, inkey2.sprite) ||
+			this.checkOverlap(this.sprite, pinky2.sprite) ||
+			this.checkOverlap(this.sprite, blinky3.sprite) ||
+			this.checkOverlap(this.sprite, clyde3.sprite) ||
+			this.checkOverlap(this.sprite, inkey3.sprite) ||
+			this.checkOverlap(this.sprite, pinky3.sprite) ||
+			this.checkOverlap(this.sprite, blinky4.sprite) ||
+			this.checkOverlap(this.sprite, clyde4.sprite) ||
+			this.checkOverlap(this.sprite, inkey4.sprite) ||
+			this.checkOverlap(this.sprite, pinky4.sprite)
+		)
 						
 			life.decreaseLivesNumber();			
 	},

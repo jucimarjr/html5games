@@ -1,4 +1,4 @@
-/*global State, Level, Life, Tilemap, Platforms, Hero, ControlHero, Grass, Fire, SmallDragon, Dragon, Princess*/
+/*global State, Tutorial, Level, Life, Tilemap, Platforms, Hero, ControlHero, Grass, Fire, SmallDragon, Lady, Dragon, Princess, Score*/
 
 State.Game = function (game) {
 	"use strict";
@@ -15,23 +15,10 @@ State.Game = function (game) {
 	this.lady = new Lady(game, this.tilemap);
 	this.dragon = new Dragon(game, this.tilemap, this.hero, this.lady);
 	this.princess = new Princess(game, this.platforms, this.lady, this.dragon, this.hero);
+	this.score = new Score(game, this.dragon);
+	this.tutorial = new Tutorial(game);
 };
 State.Game.prototype = {
-	preload: function () {
-		"use strict";
-		this.level.preload();
-		this.tilemap.preload();
-		this.platforms.preload();
-		this.grass.preload();
-		this.hero.preload();
-		this.controlHero.preload();
-		this.life.preload();
-		this.fire.preload();
-		this.smallDragon.preload();
-		this.lady.preload();
-		this.dragon.preload();
-		this.princess.preload();
-	},
 	create: function () {
 		"use strict";
 		this.level.create();
@@ -41,11 +28,13 @@ State.Game.prototype = {
 		this.hero.create();
 		this.controlHero.create();
 		this.life.create();
-		this.fire.create();
 		this.smallDragon.create();
+		this.fire.create();
 		this.lady.create();
 		this.dragon.create();
 		this.princess.create();
+		this.score.create();
+		this.tutorial.create();
 	},
 	update: function () {
 		"use strict";
@@ -53,10 +42,10 @@ State.Game.prototype = {
 		this.hero.update();
 		this.controlHero.update();
 		this.life.update();
-		this.fire.update();
 		this.smallDragon.update();
+		this.fire.update();
 		this.dragon.update();
-		this.lady.update();
 		this.princess.update();
+		this.score.update();
 	}
 };

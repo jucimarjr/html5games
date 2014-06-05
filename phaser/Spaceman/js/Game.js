@@ -25,7 +25,6 @@ Game.prototype.create = function()
 	this.frontGround = game.add.tileSprite(0,game.world.height-35,960,35,'fg');
 	
 	this.rocks = game.add.group();
-	game.input.onDown.addOnce(this.start, this);
 	this.stars = game.add.group();
 	this.stars.createMultiple(30, 'star');	
 	this.stars.enableBody = true;
@@ -41,31 +40,45 @@ Game.prototype.create = function()
 	game.time.events.loop(Phaser.Timer.SECOND * 0.50 , this.spawnRock, this);
 	game.time.events.loop(Phaser.Timer.SECOND * 0.2 , this.spawnStar, this);
 	this.txt = game.add.text(370, 120, '',{
-		font: "24px Arial", fill: "#ffffff" , align: "center"
+		font: "18px 'OCR A Std'", fill: "#ffffff" , align: "center"
 	});
-	if(game.device.touch){
-		this.txt.text = 'Tap the screen to fly.\nAvoid the rocks.';
-	}else{
-		this.txt.text = 'Click the screen to fly.\nAvoid the rocks.';
+	this.txt.text = 'Pressione a tecla para voar.\nCuidado com as rochas.';
+	this.control1 = game.add.sprite(480, 180, 'control1', 0);
+	this.control1.animations.add('anim', [0,1],3,true).play();
+	if(players == 2){
+		this.txt.text += '\n\n\n\n\n\n\n\nPressione a tecla para voar.\nCuidado com as rochas.'
+		this.control2 = game.add.sprite(410, 380, 'control2', 0);
+		this.control2.animations.add('anim', [0,1],3,true).play();
 	}
 	this.hud = game.add.text(game.world.centerX,75,parseInt(this.score/10),{
-		font: "28px Arial", fill: "#ffffff" , align: "center"
+		font: "18px 'OCR A Std'", fill: "#ffffff" , align: "center"
 	});
 	this.highscore = game.add.text(790, 25,'Best: '+localStorage["score"],{
-		font: "24px Arial", fill: "#ffffff" , align: "center"
+		font: "18px 'OCR A Std'", fill: "#ffffff" , align: "center"
 	});
 	this.btn = game.add.button(game.world.width - 85, game.world.height - 85, 'back',function(){
 		game.physics.arcade.gravity.y = 0;	
 		game.sound.stopAll();
 		game.state.start('menu', true);
-	},null);
+	},null);	
+	//game.input.onDown.addOnce(this.start, this);
+	game.input.keyboard.addKey(Phaser.Keyboard.CONTROL).onDown.addOnce(this.start, this)
+	game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onDown.addOnce(this.start, this)
+	game.input.onDown.addOnce(this.start, this);
 };
 
 Game.prototype.start = function(){
 	this.txt.text = '';
+	this.control1.kill();
+	if(players == 2) this.control2.kill();
+	this.hud.y = 75;
+	this.hud.setStyle({
+		font: "18px 'OCR A Std'", fill: "#ffffff" , align: "center"
+	})
 	game.tweens.removeAll();
 	game.physics.arcade.gravity.y = this.gravity;
 	this.playing = true;
+	game.input.keyboard.clearCaptures();
 };
 
 Game.prototype.update = function()
@@ -85,6 +98,8 @@ Game.prototype.update = function()
 	game.physics.arcade.collide(this.sprite, this.rocks, this.restart, null, this);
 	if(players == 2){
 		game.physics.arcade.collide(this.sprite2, this.rocks, this.restart, null, this);
+		this.hud.y = 25;
+		this.hud.x = 370;
 	}
 	
 };
@@ -127,17 +142,25 @@ Game.prototype.restart = function(s, r){
 			s.explode();
 			this.sprite2.resetSpaceman();
 			this.point2++;
-			this.hud.text = this.point1 + ' - ' + this.point2;
+			this.hud.text = 'Player 1: '+this.point1 + '\n\n'+'Player 2: '+this.point2;
 		}else{
 			s.explode();
 			this.sprite.resetSpaceman();
 			this.point1++;
-			this.hud.text = this.point1 + ' - ' + this.point2;
+			this.hud.text = 'Player 1: '+this.point1 + '\n\n'+'Player 2: '+this.point2;
 		}
 	}
 	this.rocks.removeAll(true);
 	game.physics.arcade.gravity.y = 0;
 	this.playing = false;
+	this.hud.text = 'Você morreu\nPontuação:\n'+parseInt(this.score/10);
+	this.hud.y = 235;
+	this.hud.x = 330;
+	this.hud.setStyle({
+		font: "36px 'OCR A Std'", fill: "#ffffff" , align: "center"
+	})
+	this.txt.text = 'Clique para reiniciar';
+	this.txt.y = 500;
 	if(localStorage["score"] < parseInt(this.score/10)){
 		localStorage["score"] = parseInt(this.score/10);
 		this.highscore.text = 'Best: '+localStorage["score"];

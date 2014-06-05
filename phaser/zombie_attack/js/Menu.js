@@ -49,7 +49,6 @@ Menu.prototype.create = function() {
 Menu.prototype.play = function () {
     this.fadeOut();
     fadeout.onComplete.add(function () {
-    	console.log("play");
         this.game.state.start('game', Game);
     });
 };
@@ -95,7 +94,6 @@ Menu.prototype.credits = function (background,parent) {
 };
 
 Menu.prototype.BackMenu = function(credits) {
-	console.log("bakcmenu");
 	creditscreditsArrives = game.add.tween(credits);
     
 	creditsArrives.to({ x: -300 }, 1000, Phaser.Easing.Bounce.Out);
