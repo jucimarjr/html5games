@@ -53,7 +53,11 @@ State.GameSplash.prototype = {
 		//HowToPlayMobile
 		this.game.load.image('how-to-play-mobile', Config.howToPlayMobile.dir);
 		//Tutorial
-		this.game.load.image('tutorial', Config.tutorial.dir);
+		if (Config.global.isMobile) {
+			this.game.load.image('tutorial', Config.tutorial.dir.mobile);
+		} else {
+			this.game.load.image('tutorial', Config.tutorial.dir.desktop);
+		}
 		//Level
 		this.game.load.image('game-background', Config.level.dir);
 		//Tilemap

@@ -4,6 +4,13 @@
 var Config = {
 	global: {
 		animationVelocity: 8,
+		isMobile: navigator.userAgent.match(/Android/i)
+					|| navigator.userAgent.match(/webOS/i)
+					|| navigator.userAgent.match(/iPhone/i)
+					|| navigator.userAgent.match(/iPad/i)
+					|| navigator.userAgent.match(/iPod/i)
+					|| navigator.userAgent.match(/BlackBerry/i)
+					|| navigator.userAgent.match(/Windows Phone/i),
 		screen: {
 			width: 960,
 			height: 600,
@@ -537,7 +544,7 @@ Config.dragon = {
 	},
 	timeGrow: 1000 / Config.global.animationVelocity,
 	number: {
-		pieces: 10
+		pieces: Config.global.isMobile ? 8 : 20
 	},
 	velocity: 140,
 	damage: Config.hero.health.initial / 1000
@@ -585,7 +592,10 @@ Config.score = {
 
 //Tutorial
 Config.tutorial = {
-	dir: 'assets/images/Tutorial_960-600.png',
+	dir: {
+		desktop: 'assets/images/TutorialDesktop_960-600.png',
+		mobile: 'assets/images/TutorialMobile_960-600.png'
+	},
 	x: Config.global.screen.width / 2,
 	y: Config.global.screen.height / 2,
 	dim: 0,
