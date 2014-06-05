@@ -113,13 +113,13 @@ Spaceman.prototype.resetSpaceman = function(){
 		this.gameClass.txt.text = '';
 		game.input.keyboard.clearCaptures();
 		game.input.keyboard.addKey(Phaser.Keyboard.CONTROL).onDown.addOnce(this.gameClass.start, this.gameClass)
-		game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onDown.addOnce(this.gameClass.start, this.gameClass)
-		game.input.onDown.addOnce(this.gameClass.start, this);
+		if(players == 2) game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onDown.addOnce(this.gameClass.start, this.gameClass)
+		if(game.device.touch) game.input.onDown.addOnce(this.gameClass.start, this.gameClass);
 		//this.animations.play('flying');
 	} else {this.resetSpaceman()}
 };
 
-Spaceman.prototype.explosion = function(){
+Spaceman.prototype.boom = function(){
 	var emitter = game.add.emitter(this.x, this.y, 30);
     emitter.makeParticles('explosion', 0);
     emitter.minParticleSpeed.setTo(-500, -500);
@@ -140,10 +140,10 @@ Spaceman.prototype.explode = function(){
 	//this.body.acceleration.y = this.gameClass.gravity	
 	this.fire1.alpha = 0;
 	game.input.keyboard.addKey(Phaser.Keyboard.CONTROL).onDown.addOnce(this.resetSpaceman, this);
-	game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onDown.addOnce(this.resetSpaceman, this);
-	game.input.onDown.addOnce(this.resetSpaceman, this);
+	if(players == 2) game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onDown.addOnce(this.resetSpaceman, this);
+	if(game.device.touch) game.input.onDown.addOnce(this.resetSpaceman, this);
     if(sound)this.explosion.play();	
-	if(this.inWorld)this.animations.play('explode').onComplete.addOnce(this.explosion, this);
+	if(this.inWorld)this.animations.play('explode').onComplete.addOnce(this.boom, this);
 	else this.kill();
 	this.alive = false;
 }
