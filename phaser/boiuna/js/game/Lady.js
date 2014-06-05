@@ -15,7 +15,7 @@ Lady.prototype = {
 		this.game.physics.enable(this.group, Phaser.Physics.ARCADE);
 		this.group.callAll('animations.add', 'animations', 'stay', Config.lady.frame.stay, Config.global.animationVelocity, true);
 		this.group.callAll('animations.play', 'animations', 'stay');
-		this.group.setAll('alive', true);
+		//this.group.setAll('alive', true);
 	}
 };
 

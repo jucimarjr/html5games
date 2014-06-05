@@ -93,7 +93,7 @@ Dragon.prototype = {
 	hitLady: function (head, lady) {
 		"use strict";
 		var space;
-		lady.kill();
+		lady.destroy();
 		if (this.head.scale.x > 0) {
 			this.grow();
 			space = this.head.width;
