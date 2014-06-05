@@ -1,23 +1,36 @@
 var Dino = function()
 {	};
 Dino.prototype.add = function(posX, posY)
-{
+{	
+
+	this.sfxEat = game.add.audio('smash',soundLevel,false);
+	this.sfxlifeUp = game.add.audio('lifeUp',soundLevel,false);
+	this.sfxTakeDamage = game.add.audio('takeDamage',soundLevel,false);
+	this.sfxFoodDown = game.add.audio('foodDown',soundLevel,false);
 	this.score = 0;
+	this.enemysKiled = 0;
+	this.killsToCallTank = 0;
+	this.killsNeeded = 75;
+	this.foodCount=0;
 	this.safetyMode = false;
 	this.lives = 3;
+	this.food = 5;
 	this.playerSpeed = 250;
 	this.jumpForce = 520;
 	this.timeToAtack = 0;
-	this.atackDelay = 300;
+	this.atackDelay = 400;
 	this.onAtackMode = false;
 	
 	this.sprite = game.add.sprite(posX, posY ,'dino');
 	game.physics.enable(this.sprite);
+	this.sprite.body.maxVelocity.x = 1400;
 	this.sprite.anchor.setTo(0.4 ,0.5);
 	this.sprite.smoothed = false; 
 	this.sprite.animations.add('stoped',[1],1);
 	this.sprite.animations.add('walk',[1,2,3,4,5,6,7,0],12,true);
 	this.sprite.animations.add('atack',[10,11,1],10);
+	this.dieAnim = this.sprite.animations.add('die',[12,13,14,15,16,17,18],10);
+	this.dieAnim.onComplete.add(function(){this.callGameOver();},this);
 	this.sprite.body.collideWorldBounds = true;
 	this.sprite.body.checkCollision.up = false;
 	this.sprite.body.checkCollision.left = false;
@@ -29,14 +42,21 @@ Dino.prototype.add = function(posX, posY)
 	this.jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 	this.atackButton = game.input.keyboard.addKey(Phaser.Keyboard.X);
 	this.soundJump = game.add.audio('jump',soundLevel,false);
+	this.hungryTimeDelay=10000;
+	this.hungryTime = game.time.now + this.hungryTimeDelay;
+	this.foods = game.add.group();
+	this.foods.fixedToCamera = true;
+	for(var i = 0;i< this.food;i++)
+		this.foods.create(i*60,48,'food');
 	this.hearts = game.add.group();
 	this.hearts.fixedToCamera=true;
 	for(var i =0; i<this.lives;i++)
-		this.hearts.create(i*60,0, 'heart');
+		this.hearts.create(i*64,0, 'heart');
 };
 
 Dino.prototype.update = function()
 {
+	this.regulateFood();
 	this.enableAtack();
 	this.enableJump();
 	this.enableMovement();
@@ -59,7 +79,7 @@ Dino.prototype.enableMovement = function ()
 		this.sprite.body.velocity.x = this.playerSpeed;
 		}
 	else 
-		if(this.sprite.body.velocity.y==0 && this.sprite.body.velocity.x==0 && this.sprite.animations.currentAnim.name!= 'atack')
+		if(this.sprite.body.velocity.y==0 && this.sprite.body.velocity.x==0 && this.sprite.animations.currentAnim.name!= 'atack' && this.sprite.animations.currentAnim.name!= 'die')
 	{
 		this.sprite.animations.play('stoped');
 	}
@@ -97,16 +117,39 @@ Dino.prototype.enableAtack = function()
 
 Dino.prototype.smash = function(dino,target)
 {
-	dino.body.velocity.y = -this.jumpForce/1.2;
+	var p;
+	if(target.tag != 'human')
+		dino.body.velocity.y = -this.jumpForce/1.2;
 	target.body.velocity.y = -150;
-	switch(target.tag)
+	switch(target.job)
 	{
-		case 'car': this.score += 15;
+		case 'normalCar':  
+		p = 35; 
+		this.score += p; 
 		break;
-		case 'human': this.score += 5;
+		case 'people':
+			splashBlood1(target.x,target.y);
+		p = 20; 
+		this.score += p; 
 		break;
+		case 'shooter' : 
+			splashBlood1(target.x,target.y);
+		p = 35;
+		this.score += p;
+		splashBlood1(target.x,target.y);
+		break;
+		case 'bomber' :
+			splashBlood1(target.x,target.y);
+		p = 50;
+		this.score += p;
+		break;
+		case 'sniper' :
+			splashBlood1(target.x,target.y);
+		p = 55;
+		this.score += p;
 		default : this.score +=1; 
 	}
+	this.displayPoint(p);
 	target.takeDamage();
 };
 
@@ -114,12 +157,39 @@ Dino.prototype.bit = function(dino,target)
 {
 	if(this.onAtackMode)
 	{	
+		var p;
 		switch(target.tag)
 		{
-			case 'human': this.score += 15;
+			case 'human': 
+				splashBlood2(target.x,target.y);
+				this.replaceFood();
+				this.sfxEat.play();
+				p = 15;
+				this.score += p; 
 			break;
-			default : this.score +=1; 
+			case 'shooter' : 
+				splashBlood2(target.x,target.y);
+				this.replaceFood();
+				this.sfxEat.play();
+				p = 30;
+				this.score += p;
+			break;
+			case 'bomber' : 
+				splashBlood2(target.x,target.y);
+				this.replaceFood();
+				this.sfxEat.play();
+				p = 45;
+				this.score += p;
+			break;
+			case 'sniper' : 
+				splashBlood2(target.x,target.y);
+				this.replaceFood();
+				this.sfxEat.play();
+				p = 50;
+				this.score += p;
+			break;
 		}
+		this.displayPoint(p);
 		target.takeDamage();
 	}
 };
@@ -129,21 +199,46 @@ Dino.prototype.takeDamage = function(dino, target)
 	if(!this.safetyMode)
 	{
 		this.startSafetyMode();
-		this.hearts.getTop().destroy();
+		if(target.isTank)
+		{
+			explode(dino.x,target.y);
+			explode(dino.x+100,target.y);
+			explode(dino.x-100,target.y);
+			explode(dino.x,target.y-100);
+			explode(dino.x,target.y+100);
+		}
+		if(target.isBomber)
+			explode(dino.x,target.y);
+		for(var i = 0; i < target.damage; i++)
+		{
+			if(this.hearts.countLiving()!==0)
+				this.hearts.getTop().destroy();
+		}
 		if(this.hearts.countLiving()==0)
-			this.callGameOver();
+				this.sprite.animations.play('die');
 	}
+	target.kill();
 };
 
 Dino.prototype.hitByCar = function(dino,target)
 {	
+	if(this.hearts.countLiving()!==0 && !target.destroyed)
+	{
+		this.startSafetyMode();
+		this.hearts.getTop().destroy();
+	}
+	if(this.hearts.countLiving()==0) 
+		this.sprite.animations.play('die');
 	target.runOver(this);	
 };
 
 Dino.prototype.callGameOver = function()
 {
-	this.sprite.kill();
-	game.add.sprite(game.camera.x+250, game.camera.y+150,'gameOver');
+	var gO = game.add.sprite(game.camera.width/2-200, game.camera.height/2-150,'gameOver');
+	gO.fixedToCamera = true;
+	track.stop();
+	var s = game.add.audio('lose',soundLevel,false);
+	s.play();
 	game.input.onDown.addOnce(function() {
 	game.state.restart();
         },this);
@@ -151,8 +246,59 @@ Dino.prototype.callGameOver = function()
 
 Dino.prototype.startSafetyMode = function()
 {
-	this.safetyMode = true;
-	this.sprite.alpha= 0;
-	this.safetyTween = game.add.tween(this.sprite).to( { alpha: 1 }, 100, Phaser.Easing.Linear.None, true, 0, 10, true);
-	this.safetyTween.onComplete.add(function(){this.safetyMode = false;},this);
+	if(this.hearts.countLiving()>1)
+	{
+		this.sfxTakeDamage.play();
+		this.safetyMode = true;
+		this.sprite.alpha= 0;
+		var safetyTween = game.add.tween(this.sprite).to( { alpha: 1 }, 50, Phaser.Easing.Linear.None, true, 0, 10, true);
+		safetyTween.onComplete.add(function(){this.safetyMode = false;},this);
+	}
+};
+
+Dino.prototype.displayPoint = function(point)
+{
+	var txt = game.add.text(this.sprite.x, this.sprite.y, point, style3);
+	var txt2 = game.add.text(this.sprite.x, this.sprite.y, point, style4);
+	txt2.alpha = 0;
+	game.add.tween(txt).to( { y:txt.y - 300 }, 4000, Phaser.Easing.Linear.None, true, 0, 0, true);
+	game.add.tween(txt2).to( { y:txt.y - 300 },4000, Phaser.Easing.Linear.None, true, 0, 0, true);
+	var blinkTween1 = game.add.tween(txt).to( { alpha:0 }, 50, Phaser.Easing.Linear.None, true, 0, 25, true);
+	var blinkTween2 = game.add.tween(txt2).to( { alpha:1 }, 50, Phaser.Easing.Linear.None, true, 0, 25, true);
+	blinkTween1.onComplete.add(function(){txt.destroy();});
+	blinkTween2.onComplete.add(function(){txt.destroy();});
+};
+
+Dino.prototype.regulateFood = function()
+{
+	if (game.time.now > this.hungryTime)
+	{
+		if(this.foods.countLiving()!=0)
+		{
+			this.foods.getTop().destroy();
+			this.sfxFoodDown.play();
+		}
+		else
+			if(this.hearts.countLiving()!=0)
+			{
+				this.sfxTakeDamage.play(); 
+				this.hearts.getTop().destroy();
+			}
+			if(this.hearts.countLiving()==0) 
+				this.sprite.animations.play('die');
+		this.hungryTime = game.time.now + this.hungryTimeDelay;
+	}
+};
+Dino.prototype.replaceFood = function()
+{
+	this.foodCount += 1;
+	if(this.hearts.countLiving()<10 && this.foodCount ==5)
+	{
+		this.hearts.create(this.hearts.countLiving() * 64,0, 'heart');
+		this.sfxlifeUp.play();
+		this.foodCount = 0;
+	}
+	if(this.foods.countLiving()<5)
+		this.foods.create(this.foods.countLiving() * 60,48, 'food');
+	this.hungryTime = game.time.now + this.hungryTimeDelay;
 };
