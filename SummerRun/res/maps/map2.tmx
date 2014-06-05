@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="140" height="15" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
+ <tileset firstgid="1" name="tiles" tilewidth="32" tileheight="32">
+  <image source="tiles2.png" width="667" height="161"/>
+ </tileset>
+ <tileset firstgid="101" name="coqueiros" tilewidth="32" tileheight="32">
+  <image source="coqueiro.png" width="744" height="1052"/>
+ </tileset>
+ <layer name="coqueiros2" width="140" height="15">
+  <data encoding="base64" compression="zlib">
+   eJzt08VRRFEQRuFbM1vcEsBhSAC3EHBLALcEcEsAnQESYAYnAZyBBHBLANeTAhRF96JP1be97y36d05vFR7nKlGFatSgFnWoRwMa0eSR/lNLQ83cQQta0YZ2dKATXehGD3rtXtQkufE+3uzHAAYxhGGMYBRjGMeE3YuaJDc+yZtTmMYMZjEHPwKYxwIW7V7UJLnxJd4MIoRlrGAVa1jHBjaxZfeiJsmNb/PmDnaxh30c4BBHCOMYJ3YvapLc+ClvnuEcF7jEFa5xg1vc4d7uRU2SG3/gzUc84RkveMUb3vGBT3zZvahJcuMRXuciEYVoxCAWcYhHAhKR5P37b1u/S3LjydxBClKRhnRkIBNZyIYPOXYvapLceC5v5iEfBShEEYpRglKUodzuRU22cesn2cYty7Ks/+gbSeiA/w==
+  </data>
+ </layer>
+ <layer name="coqueiros" width="140" height="15">
+  <data encoding="base64" compression="zlib">
+   eJzt1kWQXFUUBuAOQaP4BklG41CxmYk7RYC4Gxp3Q+NuECDuhltccYviGzSKb9AozreexQzv9aM7NdWn6tucxbl9z/ur61Y/JxarQU1qUZsccsnjv1b1iOacbRXmXuWKxWLlSSOdDDLJIpsKVKQSlalCVapxHdcXK/g3Pe7cJ3iSp3iaZ3iW53ieF1jPhoh3f6N5LbmJm7mFVrSmDW1pR3s6FHB2vHM66nWiM13oSje604Oe9OLWBGcvzL1yfO9c8qhDXepRnwY0pBGNaUJTmtGcFtxQSF5ecs7LvMKrvMbrvMGbvMXb7GZPxPu6zbzbuYM7uYve9KEv/ejPAAYWcHa8cwbpDWYIQxnGcEYwklGM5u4E5yXMvVr53q1pQ1va0Z4OdKQTnelCV7rRnR70pFcheclfHzv3Ez7lMz7nCw5yKOJ93WPevdzH/TzAGMYyjvFMYCKTCjg73jmT9aYwlWlMZwYzmcVs5vBggvMS5l69fe8+9KUf/RnAQAYxmCEMZRjDGcFIRjE6YF5+cO6P/MTP/MKvHOdExPt6yLy5PMwjPMo85rOAhSxiMUsKODveOUv1lrGcFaxkFatZw1rW8ViC8xLmXmN877GMYzwTmMgkJjOFqUxjOjOYySxmMydgXs4tHoudx/lcwIVcRAlKFo92H1G9neKds1FvE5vZwla2sZ0d7GQXLyY4L2HuNc/3ns8CFrKIxSxhKctYzgpWsorVrGEt6wLm5SqZuJpruJZylCeN9IjzEtXbKd45e/X2sZ8DvMO7vMf7fMCHfJTgvES1n/UysIGNbGIzW9jKNrazg53sCpiXGjJRk1rUJodc8qgTcV7yV1Rvp6BzDusd4SjH+JKv+Jpv+Jbv+D7BeclfYfezWwb2sJd97OdAwFycjRXV2ynonJN6pzjNGX7jd/7gT/7ib/5Jcl7C7uegbBziMEc4yrEikJeo3k5B55TSK00ZynIxl3Apl3E5V3Dl//z/WliF3c9x2TjBSU5xmjNFIC9RvZ2CzsnQyySLbCpQkUpUpgpVqZbkvITdTwn/PSUpRWnKUDbJ/5VRVFRvp6Bz6urVoz4NaEgjGtOEpjSjeZLzEnY/abKRTgaZZJFdBPKSqlSlKlWpSlUy6l/M0lD5
+  </data>
+ </layer>
+ <layer name="Camada de Tiles 1" width="140" height="15">
+  <data encoding="base64" compression="zlib">
+   eJztV0kOwyAM7N4XdH9B9xc06fL/P3UuSBayiaEhiMojjWJHiGBjD2Q0MhgMBoPBYDAYDIYyGIMTcArOwDm4YHxuzLLAeg1lsQLX4Abcgjtwz/jcmEOB9dYIbU/W0I9H8ASewQt4BW+Mz425F1hvjdD2ZA39+AAbsAWf4At8Mz435jP0YgeEVhOoLemCtidr6EdaLw1hS55+vTj7n+tFqwnUlnRB25M19KNfL64+6Nrd+9azc8STetbH+Jp7glYTqC3pAlcvfv/RvIbymyM/Ic30cxOKpeuprRcuRmnPUs/6GF9zT9BqArUlXeiqF78nW2GeXPkJaWZIK6Xnr/cXLkZpz1LP+hhfc0+I2WPnS7ogzcWd8V36kiM/Ic2M1Uq/9t27mHrhYpT2LPWsj/E1caTUi/tOH/oi1UuO/IQ0UxNL3/9H3Dekub53E2y6
+  </data>
+ </layer>
+ <objectgroup name="objects" width="140" height="15">
+  <object type="edgeShape" x="26" y="476">
+   <polyline points="0,0 3,-110 913,-108"/>
+  </object>
+  <object type="edgeShape" x="1114" y="479">
+   <polyline points="0,0 -1,-176 468,-176"/>
+  </object>
+  <object type="edgeShape" x="2330" y="477">
+   <properties>
+    <property name="friction" value="2"/>
+   </properties>
+   <polyline points="0,0 0,-109 884,-107"/>
+  </object>
+  <object type="edgeShape" x="1723" y="478">
+   <polyline points="0,0 1,-242 437,-241"/>
+  </object>
+  <object type="edgeShape" x="3353" y="479">
+   <polyline points="0,0 3,-303 469,-303"/>
+  </object>
+  <object type="edgeShape" x="4155" y="481">
+   <polyline points="0,0 1,-114 273,-114"/>
+  </object>
+  <object type="rectangleShape" x="2377" y="333" width="29" height="27">
+   <properties>
+    <property name="density" value="2"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="sprite" value="box.png"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="2383" y="290" width="29" height="27">
+   <properties>
+    <property name="density" value="2"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="sprite" value="box.png"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="2386" y="243" width="29" height="27">
+   <properties>
+    <property name="density" value="2"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="sprite" value="box.png"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="2391" y="200" width="29" height="27">
+   <properties>
+    <property name="density" value="2"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="sprite" value="box.png"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="2591" y="198" width="29" height="27">
+   <properties>
+    <property name="density" value="2"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="sprite" value="box.png"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="2583" y="288" width="29" height="27">
+   <properties>
+    <property name="density" value="2"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="sprite" value="box.png"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="2577" y="331" width="29" height="27">
+   <properties>
+    <property name="density" value="2"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="sprite" value="box.png"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="2586" y="241" width="29" height="27">
+   <properties>
+    <property name="density" value="2"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="sprite" value="box.png"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="2769" y="196" width="29" height="27">
+   <properties>
+    <property name="density" value="2"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="sprite" value="box.png"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="2761" y="286" width="29" height="27">
+   <properties>
+    <property name="density" value="2"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="sprite" value="box.png"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="2755" y="329" width="29" height="27">
+   <properties>
+    <property name="density" value="2"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="sprite" value="box.png"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="2764" y="239" width="29" height="27">
+   <properties>
+    <property name="density" value="2"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="sprite" value="box.png"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="2959" y="198" width="29" height="27">
+   <properties>
+    <property name="density" value="2"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="sprite" value="box.png"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="2951" y="288" width="29" height="27">
+   <properties>
+    <property name="density" value="2"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="sprite" value="box.png"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="2945" y="331" width="29" height="27">
+   <properties>
+    <property name="density" value="2"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="sprite" value="box.png"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="2954" y="241" width="29" height="27">
+   <properties>
+    <property name="density" value="2"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="sprite" value="box.png"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="3120" y="200" width="29" height="27">
+   <properties>
+    <property name="density" value="2"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="sprite" value="box.png"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="3112" y="290" width="29" height="27">
+   <properties>
+    <property name="density" value="2"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="sprite" value="box.png"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="3106" y="333" width="29" height="27">
+   <properties>
+    <property name="density" value="2"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="sprite" value="box.png"/>
+   </properties>
+  </object>
+  <object type="rectangleShape" x="3115" y="243" width="29" height="27">
+   <properties>
+    <property name="density" value="2"/>
+    <property name="friction" value="1"/>
+    <property name="motion" value="dynamic"/>
+    <property name="sprite" value="box.png"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

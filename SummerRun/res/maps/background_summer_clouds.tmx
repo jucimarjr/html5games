@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="80" height="15" tilewidth="32" tileheight="32" backgroundcolor="#8b8b8b">
+ <tileset firstgid="1" name="sun" tilewidth="32" tileheight="32">
+  <image source="sun.png" width="744" height="912"/>
+ </tileset>
+ <layer name="sol" width="80" height="15">
+  <data encoding="base64" compression="zlib">
+   eJzt1TdOxFAQxnGvKcipQGRaKBCZAwAicwByPADhEIRDAEs4AojUkZNIHTmJ1JFTxd/C7rzPXssWYf1Jv8rWvJnx6m28LEkJSEQSkpGCVAQjGznIRR7yUQCvR5JGMIoxjMPuFFGzWK0bL+hTyzzvLmARS1jGClaxhnVBj1M8m8YMZjFncp4swY7SUIZyVKASVaiWrZ/nT/+1qPMY96lln3cPcIgjHOMEpzjDuaDHLZ5tYwe72FPfNfompYIdFaIJzWhBK9rQLvs+z2r06nWiS60r6lPLPe8+4BFPeMYLXvGGd0GPVzy7xg1ucecx900aBTuqUXur1znX13lWo1evF31qXVGfWpT7JgShCEM4IhCJKETL+meLYvRNROlQz+s2sZs4B+6/QWoOOVDXnxh9EzPpNzFDpgNzTlBz8of3Z0eGTcxQ4sCcG9Tc/Af7MxPljmywedYL6l0GyP6UO7LH5lk/qPcZIPtT7sgBm2eN4X6OtfCf+ZciM1+Q/H1Het3f369KIPz+nEw6u8tw9+fGjc98AXWGfR0=
+  </data>
+ </layer>
+ <layer name="nuvens" width="80" height="15">
+  <data encoding="base64" compression="zlib">
+   eJzt0ctOwkAUgOHpbAQFfRORyyuIt1fwBg8JojsvCCZ426EImADKThTRpX9TuqNyUmRjzp98SRed6ZmpMV5Fx5gjlHCME8dM7ZR3znCOC5RxiQqquJqwh2RNDXU84BENPKGJFtp4Fswn/V4Bq9aYBNaQRAppZKy3T9A8ftc83+AWd7gXzBfmjJI1HbxhgHd8YIhPjPCFb+H9Sb7n/q917imLDWxiC9vYGd9f0Dx+XZ57eMEr+oL5wpxRumaBuSOIYhFLiCGOZaxY2f1Jvuf+r13228M+DnCIHPL293lmKcwZ/+pe5jmjpmmapmmapmma9v/6Ae48ehE=
+  </data>
+ </layer>
+</map>

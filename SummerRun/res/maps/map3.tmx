@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="140" height="15" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
+ <tileset firstgid="1" name="tiles" tilewidth="32" tileheight="32">
+  <image source="tiles2.png" width="667" height="161"/>
+ </tileset>
+ <tileset firstgid="101" name="coqueiros" tilewidth="32" tileheight="32">
+  <image source="coqueiro.png" width="744" height="1052"/>
+ </tileset>
+ <objectgroup name="objects" width="140" height="15">
+  <object type="edgeShape" x="59" y="479">
+   <polyline points="0,0 1,-111 915,-110"/>
+  </object>
+  <object type="edgeShape" x="1241" y="478">
+   <polyline points="0,0 3,-110 566,-108"/>
+  </object>
+  <object type="edgeShape" x="2075" y="478">
+   <polyline points="0,0 -1,-175 596,-174"/>
+  </object>
+  <object type="edgeShape" x="3004" y="478">
+   <polyline points="0,0 0,-112 565,-110"/>
+  </object>
+  <object type="edgeShape" x="3994" y="478">
+   <polyline points="0,0 1,-112 374,-111"/>
+  </object>
+ </objectgroup>
+ <layer name="Camada de Tiles 3" width="140" height="15">
+  <data encoding="base64" compression="zlib">
+   eJzt1cVNRVEUheGb98a4VIBLBbi0AA+vAJcKcKkAh1cBLhXgUgEuFeD2D5ifZOdkc0P2Sr7ZSfYdrKwbBJa6SBDUI4YGNKIJzWhBK9oif/2VlrCknS50oBNd6EYPetGHfgxYXyy/GaQLQxjGCEYxhnFMYBJT1hdnJDutue2+bk3zZgazmMM8FrCIJSwjbn1xRrLTmtvu69YKb1axhnVsYBNb2MYOdq0vzkh2WnPbfd3a480+DnCIIxzjBKc4w7n1xRnJTmtuu69bF7y5xBWucYNb3OEeD3i0vjgj2WnNbfd164k3z3jBK97wjg984gvf1hdnJDutue2+biVEgyARSUhGClKRhnRkIDPq55v/cyQ7rbntvm5l0YVs5CAXechHAQpRhGLrizOSndbcdl+3SuhCKcpQjgpUogrVqEGt9cUZyU5rbrv9R8IVyU5rbrv9R8IVyU5rbrv9RyyWcOcHNjDrZQ==
+  </data>
+ </layer>
+ <layer name="Camada de Tiles 2" width="140" height="15">
+  <data encoding="base64" compression="zlib">
+   eJzt0Pe7z2Ucx/Fv50RlNUTFsZOUsjnHSKkfhNJQaFBkpCFpkhJFWiqzQTSsFkWTJiJ7FZUKoWhabXr8B+dzf66uuq/TeV7X49f7ut+vTCasclmZTHlyqEBFKlGZKlmBj/3Py2/LqgVgz7puqEd9GtCQRjQmtwDc92+W35Z5Ee95gb9dSAc60omLuJhLuJTOtOJMWtOGtpzF2bTjHM7lPM6nfcQ3h5R0n5BCt4ypq/3nGq6lD9fRl+vpxw3cSBcu43K60o0r6E4PetKLK+nNVZHdmbak+4QUumVMDfGfu7iboQzjHoZzL/dxPzdxM7dwK/0ZwG0M5HbuYBB3MjiyO9OWdJ+QQreMqcf853GeYDwTeJKJTOIpnuYBHmQED/EwjzCSUYxmDGMZx6OR3Zm2pPuEFLplTM30n5d5hVnM5lVe43Xe4E2e4VkmM4WpTGM6z/E8L/AiLzEjsjvTlnSfkEK3jKmF/rOIj1jMEpayjOWsYCVvMYe5vM07vMt7vM8HzGM+C/gwsjvTlnSfkEK3jKkv/ecrNrKJzXzNFrayjW9YxWrWsJaP+YR1rOdTPuNzNvBFZHemLek+IYVuGVN7/ecXfuU3fucP/uQv9rGfb9nODr7je37gR37iZ3ayi93siezOtCXdJ6TQLWOqZHYmU4pDOYzDOYLSHEkZypLhALLI5kCKUJSDOJhDKEZxSmT/15f9MyXeJ6TALWPqWP+pznHU4HhqcgInUouTOIqjOYZylCeHClSkEpWpQlWqRXZn2pLuE1LoljHV1H+a0ZxTaMGpnEZLTucMTqY2dahLPerTgIY0ojG55NEksjvTlnSfkEK3LKywwgoryP0NVgkCAw==
+  </data>
+ </layer>
+ <layer name="Camada de Tiles 1" width="140" height="15">
+  <data encoding="base64" compression="zlib">
+   eJztk1kOwjAMRMt+AvYTlPUEFCj3vxPzU8lCjuyQyPAxTxopnladpMo0DSGEEEIIIYQQQgghhPwHI2gMTaApNIPmypzy5XoRvHcSzxJaQWtoA22hnTKnfLneB+/9V+R0zNs7y7e6WNp7b04LHaAjdILO0EWZU75cX42s6LPVyNYycjrm7Z3lW10s7b035wZ10B16QE+oV+aUL9cvIyv6bDWytYycjnl7Z/lWF0t7783R7ksnvF55Lj35nve+RJ2tRraWkdMxb+8s3/q3pb3/Jkfek+Fbw2x5Ofcl6mw1sj8z3qlXQGk=
+  </data>
+ </layer>
+</map>
