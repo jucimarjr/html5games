@@ -29,7 +29,7 @@ var Game = function(game){
 };
 
 Game.prototype.create = function () {
-	//if(this.game.device.touch){
+	if(this.game.device.touch){
 		console.log('touch enabled');
 		//this.btns = this.game.add.group(0, 0); 
 		this.right = this.game.add.sprite(170,430,'sprites','btn-right.png');
@@ -52,7 +52,7 @@ Game.prototype.create = function () {
 		//this.btns.add(this.left);
 		//this.btns.add(this.thrust);
 		//this.btns.add(this.shoot);
-	//}
+	}
 	this.shootUfo = this.game.add.group();
 	this.game.world.setBounds(0, 0, 3200, 1920);
 	//this.game.world.setBounds(0, 0, 800, 480);
@@ -208,22 +208,7 @@ Game.prototype.update = function () {
 				  (game.input.pointer1.isDown && Phaser.Rectangle.containsPoint(this.shoot.bounds, game.input.pointer1.position))){
 			this.spaceShip.shoot();   
 		}
-	}
-    /*if(this.game.device.touch){
-    	if(this.thrust.input.pointerDown(0) || this.thrust.input.pointerDown(1)){
-            this.spaceShip.accelerate();
-            this.spaceShip.animate();
-        }else{
-        	this.spaceShip.stop();
-        }
-        if (this.right.input.pointerDown(0) || this.thrust.input.pointerDown(1)){
-            this.spaceShip.rotate("right");
-        }else if (this.left.input.pointerDown(0) || this.thrust.input.pointerDown(1)){        	
-            this.spaceShip.rotate("left");
-        }else if (this.shoot.input.pointerDown(0) || this.thrust.input.pointerDown(1)){
-            this.spaceShip.shoot();   
-        }*/
-    //}else{    
+	}else{    
 		if(this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT))
 			this.spaceShip.rotate("left");
 		else if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT))
@@ -238,7 +223,7 @@ Game.prototype.update = function () {
 		if (this.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)){
 			this.spaceShip.shoot();   
 		}
-	//}
+	}
     
     if (this.game.time.now > this.nextAddUfo) {
         this.nextAddUfo = this.game.time.now + this.addUfoTime;
