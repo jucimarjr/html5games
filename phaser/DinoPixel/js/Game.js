@@ -163,6 +163,8 @@ Game.prototype.goGame = function()
 		this.fadeoutGoGameSound = game.add.tween(menuTrack).to( { volume: 0 }, 1500, Phaser.Easing.Linear.None, true, 0, 0, true);
 		this.fadeoutGoGame.onComplete.add(function()
 		{ 
+			var portalTimeSfx = game.add.audio('portalTime',soundLevel);
+			portalTimeSfx.play();
 			var txtT = game.add.text(50,120,'Pressione "X" para devorar as pessoas,\n"Barra de Espaco" para pular \ne setas direcionais para se mover.',style5);
 			txtT.fixedToCamera = true;
 			txtT.time = 100;
