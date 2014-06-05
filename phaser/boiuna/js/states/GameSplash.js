@@ -52,8 +52,10 @@ State.GameSplash.prototype = {
 		this.game.load.image('how-to-play-desktop', Config.howToPlayDesktop.dir);
 		//HowToPlayMobile
 		this.game.load.image('how-to-play-mobile', Config.howToPlayMobile.dir);
+		//Tutorial
+		this.game.load.image('tutorial', Config.tutorial.dir);
 		//Level
-		this.game.load.image('game-background', 'assets/images/GameBackground_1920-600.png');
+		this.game.load.image('game-background', Config.level.dir);
 		//Tilemap
 		this.game.load.tilemap('tilemap', Config.tilemap.dir, null, Phaser.Tilemap.TILED_JSON);
 		//Platforms
