@@ -3,6 +3,7 @@ var Game = function(){};
 Game.prototype.create = function()
 {
 	this.gameName;
+	this.canPressPlay = true;
 	this.cameraSpeed = 5;
 	this.player = new Dino();
 	this.gravity = 800;
@@ -75,10 +76,6 @@ Game.prototype.create = function()
 	},this);
 
 	game.time.advancedTiming = true;
-	this.fpsTxt = game.add.text(0,game.camera.height-30,'fps',style);
-	this.fpsTxt.fixedToCamera = true;
-	this.debugTxt = game.add.text(100,game.camera.height-30,'',style);
-	this.debugTxt.fixedToCamera = true;
 	//adicionando o player no mundo
 	this.player.add(32,0);
 	this.player.sprite.kill();
@@ -118,26 +115,31 @@ Game.prototype.update = function()
 	for(var i =0,l=this.objectEnemy.length; i<l;i++)
 	{
 		this.objectEnemy[i].update(this.player.sprite,this);
-	}
-	this.fpsTxt.text = game.time.fps + ' fps';
-	//this.debugTxt.text =  this.player.killsToCallTank;this.player.enemysKiled; this.enemys.countLiving(); 
+	} 
 
 	if(this.player.killsToCallTank == this.player.killsNeeded)
 	{
 		this.callTank();
 		this.player.killsToCallTank =0;
-		this.player.killsNeeded =30;
+		this.player.killsNeeded =20;
 	}
-	if(this.player.enemysKiled>20)
+	if(this.player.enemysKiled>15)
 		this.dificutyLevel = 2;
-	if(this.player.enemysKiled>60)
+	if(this.player.enemysKiled>35)
 		this.dificutyLevel = 3;
 	if(this.enemys.countLiving() == 0 && this.waveStarted)
 		this.CallEnemys();
-	if(game.time.now>this.waveBeginDelay && this.inGame)
+	if(game.time.now>this.waveBeginDelay && this.inGame && this.enemys.countLiving() < 5 )
 	{
 		this.waveStarted= true;
-		this.CallEnemys();
+		var r= game.rnd.integerInRange(0,1);
+		switch(r)
+		{
+			case 0: this.CallEnemys();
+			break;
+			case 1:this.callPlataformEnemys();
+			break;
+		}
 		this.waveBeginDelay = game.time.now + this.waveDelay;
 	}
 	
@@ -152,33 +154,41 @@ Game.prototype.update = function()
 
 Game.prototype.goGame = function()
 {
-	var playsound = game.add.audio('playsound',soundLevel);
-	playsound.play();
-	this.fadeoutGoGame = game.add.tween(this.playButton).to( { alpha: 0 }, 100, Phaser.Easing.Linear.None, true, 0, 15, true);
-	this.fadeoutGoGameSound = game.add.tween(menuTrack).to( { volume: 0 }, 1500, Phaser.Easing.Linear.None, true, 0, 0, true);
-	this.fadeoutGoGame.onComplete.add(function()
-	{ 
-		this.waveBeginDelay = game.time.now + 100000; 
-		this.carSpawnTime = game.time.now + 10000;
-		this.player.hungryTime = game.time.now + this.player.hungryTimeDelay;
-		this.player.hearts.visible = true;
-		this.player.foods.visible = true;
-		this.scoreTxt = game.add.text(game.camera.width-250,16,'Score 0',style2);
-		this.scoreTxt.fixedToCamera = true;
-		this.inGame =true;
-		track.stop();
-		track.play();
-		this.cameraMove.stop();
-		this.playButton.destroy();
-		this.creditsButton.destroy();
-		menuTrack.stop();
-		this.player.sprite.revive();
-		this.player.sprite.x = game.camera.x + game.camera.width/2;
-		this.player.sprite.y = 1300;
-		particlesExplodeBlue(this.player.sprite.x,this.player.sprite.y);
-		game.camera.follow(this.player.sprite);
-	},this);
-
+	if(this.canPressPlay)
+	{
+		this.canPressPlay = false;
+		var playsound = game.add.audio('playsound',soundLevel);
+		playsound.play();
+		this.fadeoutGoGame = game.add.tween(this.playButton).to( { alpha: 0 }, 100, Phaser.Easing.Linear.None, true, 0, 15, true);
+		this.fadeoutGoGameSound = game.add.tween(menuTrack).to( { volume: 0 }, 1500, Phaser.Easing.Linear.None, true, 0, 0, true);
+		this.fadeoutGoGame.onComplete.add(function()
+		{ 
+			var txtT = game.add.text(50,120,'Pressione "X" para devorar as pessoas,\n"Barra de Espaco" para pular \ne setas direcionais para se mover.',style5);
+			txtT.fixedToCamera = true;
+			txtT.time = 100;
+			var txtTween = game.add.tween(txtT).to( { time: 0 }, 10000, Phaser.Easing.Linear.None, true, 0, 0, true);
+			txtTween.onComplete.add(function(){txtT.destroy();}, this);
+			this.waveBeginDelay = game.time.now + 25000; 
+			this.carSpawnTime = game.time.now + 10000;
+			this.player.hungryTime = game.time.now + this.player.hungryTimeDelay;
+			this.player.hearts.visible = true;
+			this.player.foods.visible = true;
+			this.scoreTxt = game.add.text(game.camera.width-250,16,'Score 0',style2);
+			this.scoreTxt.fixedToCamera = true;
+			this.inGame =true;
+			track.stop();
+			track.play();
+			this.cameraMove.stop();
+			this.playButton.destroy();
+			this.creditsButton.destroy();
+			menuTrack.stop();
+			this.player.sprite.revive();
+			this.player.sprite.x = game.camera.x + game.camera.width/2;
+			this.player.sprite.y = 1300;
+			particlesExplodeBlue(this.player.sprite.x,this.player.sprite.y);
+			game.camera.follow(this.player.sprite);
+		},this);
+	}
 };
 
 Game.prototype.goCredits = function()
@@ -265,6 +275,48 @@ Game.prototype.CallEnemys = function()
 		else
 			this.objectEnemy[this.objectEnemy.length] = new Enemy(this.player,this.layer4,this.enemys.create(game.world.width,1400,'truck'),'followAndSpawn','truck');
 	break;
+	}
+};
+
+Game.prototype.callPlataformEnemys = function()
+{
+	var r = game.rnd.integerInRange(0,3);
+	switch(this.dificutyLevel)
+	{
+		case 2:
+		switch(r)
+			{
+				case 0 : this.objectEnemy[this.objectEnemy.length] = new Enemy(this.player,this.layer4,this.enemys.create(2304,1024,'specialOpsSniper'),'stayHold','sniper'); 
+				break;
+				case 1 : this.objectEnemy[this.objectEnemy.length] = new Enemy(this.player,this.layer4,this.enemys.create(5248,576,'specialOpsSniper'),'stayHold','sniper');
+				break;
+				case 2 : this.objectEnemy[this.objectEnemy.length] = new Enemy(this.player,this.layer4,this.enemys.create(4064,448,'specialOpsSniper'),'stayHold','sniper');
+				break;
+				case 3 : this.objectEnemy[this.objectEnemy.length] = new Enemy(this.player,this.layer4,this.enemys.create(3264,1120,'specialOpsSniper'),'stayHold','sniper');
+				break;
+			}
+			break;
+		case 3:
+		switch(r)
+			{
+				case 0 : 
+					this.objectEnemy[this.objectEnemy.length] = new Enemy(this.player,this.layer4,this.enemys.create(2304,1024,'armySniper'),'stayHold','sniper');
+					this.objectEnemy[this.objectEnemy.length] = new Enemy(this.player,this.layer4,this.enemys.create(5248,576,'armySniper'),'stayHold','sniper');
+				break;
+				case 1 : 
+					this.objectEnemy[this.objectEnemy.length] = new Enemy(this.player,this.layer4,this.enemys.create(5248,576,'armySniper'),'stayHold','sniper');
+					this.objectEnemy[this.objectEnemy.length] = new Enemy(this.player,this.layer4,this.enemys.create(4064,448,'armySniper'),'stayHold','sniper');
+				break;
+				case 2 : 
+					this.objectEnemy[this.objectEnemy.length] = new Enemy(this.player,this.layer4,this.enemys.create(5248,576,'armySniper'),'stayHold','sniper');
+					this.objectEnemy[this.objectEnemy.length] = new Enemy(this.player,this.layer4,this.enemys.create(4064,448,'armySniper'),'stayHold','sniper');
+				break;
+				default :
+					this.objectEnemy[this.objectEnemy.length] = new Enemy(this.player,this.layer4,this.enemys.create(5248,576,'armySniper'),'stayHold','sniper');
+					this.objectEnemy[this.objectEnemy.length] = new Enemy(this.player,this.layer4,this.enemys.create(3264,1120,'armySniper'),'stayHold','sniper');
+				break;
+			}
+		break;
 	}
 };
 
