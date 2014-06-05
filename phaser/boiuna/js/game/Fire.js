@@ -9,10 +9,6 @@ var Fire = function (game, hero, smallDragon) {
 	this.shootTime = [];
 };
 Fire.prototype = {
-	preload: function () {
-		"use strict";
-		this.game.load.spritesheet('fire', Config.fire.dir, Config.fire.frame.width, Config.fire.frame.hight);
-	},
 	create: function () {
 		"use strict";
 		var i;
@@ -43,7 +39,7 @@ Fire.prototype = {
 				if (sprite.scale === Config.smallDragon.scale.left) {
 					fire.reset(sprite.x + Config.fire.adjust.x, sprite.y + Config.fire.adjust.y);
 				} else {
-					fire.reset(sprite.x, sprite.y + Config.fire.adjust.y);
+					fire.reset(sprite.x - Config.fire.adjust.x, sprite.y + Config.fire.adjust.y);
 				}
 				fire.lifespan = Config.fire.lifespan;
 				this.game.physics.arcade.moveToObject(fire, this.hero.sprite, Config.fire.velocity);
@@ -52,6 +48,6 @@ Fire.prototype = {
 	},
 	collision: function (spriteHero, spriteFire) {
 		"use strict";
-		this.hero.sprite.damage(Config.fire.damage);
+		this.hero.hurt(Config.fire.damage);
 	}
 };

@@ -1,10 +1,21 @@
 Blinky = function () {
 	this.sprite = null;
-	this.speed = 200;
+	this.speed = 100;
 	
 	this.direction = "LEFT"; //LEFT, RIGHT, UP, DOWN
 	
-	this.changeDirection = false;
+	this.valueXInTiles;
+	this.valueYInTiles;
+	
+	this.leftTile = "FILL";
+	this.rightTile = "FILL";
+	this.upTile = "FILL";
+	this.downTile = "FILL";
+	
+	this.leftDistance = 2000;
+	this.rightDistance = 2000;
+	this.upDistance = 2000;
+	this.downDistance = 2000;
 };
 
 Blinky.prototype = {
@@ -13,117 +24,215 @@ Blinky.prototype = {
 		game.load.image('blinky', fp_blinky);
 	},
 
-	create : function() {
-		//Adiciona o blinky na tela
-		this.sprite = game.add.sprite(game.world.width/2, game.world.height/2 - 126, 'blinky');
+	create : function(xPosition, yPosition) {
+		//Adiciona o blinky na tela		
+		this.sprite = game.add.sprite(xPosition, yPosition, 'blinky');
 		game.physics.enable(this.sprite);
 
 		//Impede que o blinky saia dos limites da tela
 		this.sprite.body.collideWorldBounds = true;					
 	},
 	
-	update : function() {
-		this.moveRandomly();
+	update : function() {		
 		this.verifyMapCollision();
-		this.verifyDecisionCollision();						
+		this.verifyDecisionCollision();					
+		this.moveRandomly();		
 	},
 	
 	//Move o blinky
-	moveRandomly : function() {
+	moveRandomly : function() {		
 		//Move o blinky na horizontal (esquerda/direita)
-		if (this.direction == "LEFT") {			
-			//this.sprite.body.setSize(36, 36, 35, 0);				
+		if (this.direction == "LEFT") {					
 			this.sprite.body.velocity.x = -this.speed;
-			this.sprite.body.velocity.y = 0;			
+			this.sprite.body.velocity.y = 0;								
 		}
-		if (this.direction == "RIGHT") {			
-			//this.sprite.body.setSize(36, 36, -35, 0);
+		if (this.direction == "RIGHT") {						
 			this.sprite.body.velocity.x = this.speed;			
-			this.sprite.body.velocity.y = 0;
+			this.sprite.body.velocity.y = 0;			
 		}
 		
 		//Move o blinky na vertical (cima/baixo)
-		if (this.direction == "UP") {			
-			//this.sprite.body.setSize(30, 30, -1, 35);	
+		if (this.direction == "UP") {						
 			this.sprite.body.velocity.x = 0;
-			this.sprite.body.velocity.y = -this.speed;
+			this.sprite.body.velocity.y = -this.speed;			
 		}
-		if (this.direction == "DOWN") {				
-		    //this.sprite.body.setSize(30, 30, -1, -30);			
+		if (this.direction == "DOWN") {						    	
 			this.sprite.body.velocity.x = 0;
-			this.sprite.body.velocity.y = this.speed;			
+			this.sprite.body.velocity.y = this.speed;						
 		}
 	},
 	
 	//Verifica a colisão do blinky com o mapa
-	verifyMapCollision : function() {					
-		//console.log("colidiu com mapa");
-		game.physics.arcade.overlap(this.sprite, map.layer, this.setNewDirection, null, this);
+	verifyMapCollision : function() {			
+		game.physics.arcade.collide(this.sprite, map.layer, this.setNewDirection, null, this);		
 	},
 	
 	//Verifica a colisão do blinky com o ponto de decisao
-	verifyDecisionCollision : function() {				
+	verifyDecisionCollision : function() {						
 		game.physics.arcade.collide(this.sprite, map.decision, this.correctPosition, null, this);					
-	},
-	
-	//Seta uma direção aleatória para o blinky
-	setNewDirection : function() {	
-		var numberDirection = Math.round(1 + Math.random()*3);
-		//console.log(numberDirection);		
-		switch(numberDirection){
-			case 1:				
-				this.direction = "LEFT";				
-				break;
-			case 2:				
-				this.direction = "RIGHT";								
-				break;
-			case 3:				
-				this.direction = "UP";				
-				break;
-			case 4:
-				this.direction = "DOWN";				
-				break;
-		}				
 	},	
 	
-	//Seta uma direção aleatória para o blinky
+	//Corrige a posicao do blinky apos colidir com a camada de decisao
 	correctPosition : function(player, decision) {				
-		//console.log("colidiu com o ponto de decisao");				
-		//console.log(decision.body.checkCollision);
-		/*if (this.direction == 'RIGHT'){
-			this.sprite.x += 6;
-			this.direction = 'UP';			
-		}
-		else if (this.direction == 'UP'){
-			this.sprite.y -= 6;
-			this.direction = 'LEFT';
-		}
-		else if (this.direction == 'LEFT'){
-			this.sprite.x -= 6;
-			this.direction = 'RIGHT';
-		}
-		*/
-		/*else if (this.direction == 'RIGHT')
-			this.direction = 'DOWN';
-		*/
-			//this.sprite.body.setSize(10, 10);
-			//this.sprite.body.offset.setTo(0,0);
-			
-		
 		if (decision.body.checkCollision.left)
-			this.sprite.x += 6;
+			this.sprite.x += 7;
 		
 		if (decision.body.checkCollision.right)
-			this.sprite.x -= 6;
+			this.sprite.x -= 7;
 			
 		if (decision.body.checkCollision.down)
-			this.sprite.y -= 6;
+			this.sprite.y -= 7;
 		
 		if (decision.body.checkCollision.up)
-			this.sprite.y += 6;
-		
+			this.sprite.y += 7;
+		 		
 		this.setNewDirection();
-	},				
+	},		
+	
+	//Remove o Blinky do jogo
+	kill : function() {
+		this.sprite.kill();
+	},
+	
+	//Seta uma direcaoo para o blinky de acordo com a posicao atual do Ohhman
+	setNewDirection : function(){				
+		this.valueXInTiles = Math.round(this.sprite.x/36);
+		this.valueYInTiles = Math.round(this.sprite.y/36);
+		
+		/*this.vx = this.sprite.x/36;
+		this.vy = this.sprite.y/36;
+		
+		console.log(this.valueXInTiles);
+		console.log(this.valueYInTiles);
+		
+		console.log(this.vx);
+		console.log(this.vy);*/
+		
+		if (this.direction == "LEFT"){			 									
+			this.upTile = map.map.getTileAbove(map.map.getLayerIndex("Wall") , this.valueXInTiles, this.valueYInTiles);
+			this.downTile = map.map.getTileBelow(map.map.getLayerIndex("Wall") , this.valueXInTiles, this.valueYInTiles);
+			this.leftTile = map.map.getTileLeft(map.map.getLayerIndex("Wall") , this.valueXInTiles, this.valueYInTiles);		
+			
+			if (this.upTile == null)
+				this.upDistance = game.physics.arcade.distanceToXY(ohhMan.sprite, (this.valueXInTiles * 36), ((this.valueYInTiles - 1) * 36));
+			if (this.downTile == null)
+				this.downDistance = game.physics.arcade.distanceToXY(ohhMan.sprite, (this.valueXInTiles * 36), (this.valueYInTiles + 1) * 36);
+			if (this.leftTile == null)
+				this.leftDistance = game.physics.arcade.distanceToXY(ohhMan.sprite, ((this.valueXInTiles - 1) * 36), (this.valueYInTiles * 36));			
+			
+			if (this.upDistance < this.downDistance && this.upDistance < this.leftDistance)
+				this.direction = "UP";
+			else if (this.downDistance < this.leftDistance)
+				this.direction = "DOWN";
+			else 
+				this.direction = "LEFT";
+			
+			/*
+			console.log(this.upDistance);
+			console.log(this.downDistance);
+			console.log(this.leftDistance);
+			
+			console.log(this.direction);				
+			*/
+		}
+		else if (this.direction == "RIGHT"){						
+			this.upTile = map.map.getTileAbove(map.map.getLayerIndex("Wall") , this.valueXInTiles, this.valueYInTiles);
+			this.downTile = map.map.getTileBelow(map.map.getLayerIndex("Wall") , this.valueXInTiles, this.valueYInTiles);
+			this.rightTile = map.map.getTileRight(map.map.getLayerIndex("Wall") , this.valueXInTiles, this.valueYInTiles);			
+			
+			if (this.upTile == null)
+				this.upDistance = game.physics.arcade.distanceToXY(ohhMan.sprite, (this.valueXInTiles * 36), ((this.valueYInTiles - 1) * 36));
+			if (this.downTile == null)
+				this.downDistance = game.physics.arcade.distanceToXY(ohhMan.sprite, (this.valueXInTiles * 36), ((this.valueYInTiles + 1) * 36));
+			if (this.rightTile == null)
+				this.rightDistance = game.physics.arcade.distanceToXY(ohhMan.sprite, ((this.valueXInTiles + 1) * 36), (this.valueYInTiles * 36));
+			
+			if (this.upDistance < this.downDistance && this.upDistance < this.rightDistance)
+				this.direction = "UP";
+			else if (this.downDistance < this.rightDistance)
+				this.direction = "DOWN";
+			else 
+				this.direction = "RIGHT";			
+			
+			/*
+			console.log(this.upDistance);
+			console.log(this.downDistance);
+			console.log(this.rightDistance);
+			
+			console.log(this.direction);	
+			*/
+		}
+		else if (this.direction == "UP"){			
+			this.upTile = map.map.getTileAbove(map.map.getLayerIndex("Wall") , this.valueXInTiles, this.valueYInTiles);			
+			this.leftTile = map.map.getTileLeft(map.map.getLayerIndex("Wall") , this.valueXInTiles, this.valueYInTiles);
+			this.rightTile = map.map.getTileRight(map.map.getLayerIndex("Wall") , this.valueXInTiles, this.valueYInTiles);
+			
+			if (this.upTile == null)
+				this.upDistance = game.physics.arcade.distanceToXY(ohhMan.sprite, (this.valueXInTiles * 36), ((this.valueYInTiles - 1) * 36));			
+			if (this.leftTile == null)
+				this.leftDistance = game.physics.arcade.distanceToXY(ohhMan.sprite, ((this.valueXInTiles - 1) * 36), (this.valueYInTiles * 36));
+			if (this.rightTile == null)
+				this.rightDistance = game.physics.arcade.distanceToXY(ohhMan.sprite, ((this.valueXInTiles + 1) * 36), (this.valueYInTiles * 36));
+			
+			if (this.upDistance < this.leftDistance && this.upDistance < this.rightDistance)
+				this.direction = "UP";
+			else if (this.leftDistance < this.rightDistance)
+				this.direction = "LEFT";
+			else 
+				this.direction = "RIGHT";
+
+			/*
+			console.log(this.upDistance);
+			console.log(this.leftDistance);
+			console.log(this.rightDistance);
+			
+			console.log(this.direction);
+			*/
+		}
+		else if (this.direction == "DOWN"){						
+			this.downTile = map.map.getTileBelow(map.map.getLayerIndex("Wall") , this.valueXInTiles, this.valueYInTiles);			
+			this.leftTile = map.map.getTileLeft(map.map.getLayerIndex("Wall") , this.valueXInTiles, this.valueYInTiles);
+			this.rightTile = map.map.getTileRight(map.map.getLayerIndex("Wall") , this.valueXInTiles, this.valueYInTiles);
+						
+			if (this.downTile == null)
+				this.downDistance = game.physics.arcade.distanceToXY(ohhMan.sprite, (this.valueXInTiles * 36), ((this.valueYInTiles + 1) * 36));
+			if (this.leftTile == null)
+				this.leftDistance = game.physics.arcade.distanceToXY(ohhMan.sprite, ((this.valueXInTiles - 1) * 36), (this.valueYInTiles * 36));
+			if (this.rightTile == null)
+				this.rightDistance = game.physics.arcade.distanceToXY(ohhMan.sprite, ((this.valueXInTiles + 1) * 36), (this.valueYInTiles * 36));
+			
+			if (this.downDistance < this.leftDistance && this.downDistance < this.rightDistance)
+				this.direction = "DOWN";
+			else if (this.leftDistance < this.rightDistance)
+				this.direction = "LEFT";
+			else 
+				this.direction = "RIGHT";
+				
+			/*
+			console.log(this.downDistance);
+			console.log(this.leftDistance);
+			console.log(this.rightDistance);
+			
+			console.log(this.direction);
+			*/
+		}		
+		/*
+		console.log(this.upTile);
+		console.log(this.downTile);
+		console.log(this.leftTile);
+		console.log(this.rightTile);
+		*/
+		this.upTile = "FILL";
+		this.downTile = "FILL";
+		this.leftTile = "FILL";
+		this.rightTile = "FILL";
+		//console.log("*********************************************************");
+		
+		this.leftDistance = 2000;
+		this.rightDistance = 2000;
+		this.upDistance = 2000;
+		this.downDistance = 2000;
+	},
 	
 	render : function () {
 		//Mostra as informações do sprite

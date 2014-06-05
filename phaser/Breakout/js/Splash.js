@@ -2,13 +2,13 @@ var Splash = function()
 {	
 	this.ludusSplashImage = 'assets/screens/ludus.png';
 	this.gameSplashImage = 'assets/screens/breakout.png';
-}
+};
 
 Splash.prototype.preload = function()
 {
 	game.load.image('ludusSplash',this.ludusSplashImage);
 	game.load.image('gameSplash',this.gameSplashImage);
-}
+};
 
 Splash.prototype.create = function()
 {

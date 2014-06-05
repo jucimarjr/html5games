@@ -1,1 +1,0 @@
-Destrua os blocos coloridos e teste seus reflexos nesta versão do classico Breakout de 1976 do Atari.

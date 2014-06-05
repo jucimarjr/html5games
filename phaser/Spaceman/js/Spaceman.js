@@ -6,8 +6,9 @@ var Spaceman = function(game, gameClass, x, y, sprite, player){
 	//this.sprite.body.collideWorldBounds = true;
 	this.outOfBoundsKill = true;
 	this.smoothed = true;
-	this.body.setSize(80,20,10,0); 
+	this.body.setSize(60,20,10,0); 
 	this.animations.add('flying',[0,1,2,3,4,3,2,1,0],5,true);
+	this.animations.add('explode',[5,6,7,8],10,false);
 	//this.animations.add('explode',[5,6,7,8,9],10,false);
 	this.animations.play('flying');
 	game.add.existing(this);
@@ -23,19 +24,20 @@ var Spaceman = function(game, gameClass, x, y, sprite, player){
 	this.fire1.animations.add('flying',[0,1,2,1],15,true);
 	this.fire1.animations.play('flying');
 	this.fire1.body.setSize(160,120,20,10);	//return this;
-	this.upSpeed = 75;
+	this.upSpeed = 60;
 	this.player = player;
-	this.hover = game.add.audio('hover', 0.5);
-	this.turbine = game.add.audio('turbine', 0.5);
-	this.hover.play('', 0,1,true);
+	if(sound){
+		this.music = game.add.audio('game', 0.5).play('',0,1,true);
+		this.hover = game.add.audio('hover', 0.5);
+		this.turbine = game.add.audio('turbine', 0.7);
+		this.explosion = game.add.audio('explosion', 0.5);
+		this.hover.play('', 0,1,true);
+	}
+	this.alive = true;
 }
 
 Spaceman.prototype = Object.create(Phaser.Sprite.prototype);
 Spaceman.prototype.constructor = Spaceman;
-
-Spaceman.prototype.create = function(){
-	
-};
 
 Spaceman.prototype.update = function(){
 	this.fire1.angle = this.angle;
@@ -43,62 +45,105 @@ Spaceman.prototype.update = function(){
 	this.fire1.y = this.y;
 	//
 	if(game.device.touch){
-		
-	}else{
-		if (game.input.activePointer.isDown && !game.tweens.isTweening(this) && this.player == 1)
-		{
-			if(!this.turbine.isPlaying){
-				this.turbine.play();
+		if(!this.animations.getAnimation('explode').isPlaying){
+			if (game.input.activePointer.isDown && !game.tweens.isTweening(this) && this.player == 1 && this.gameClass.playing == true)
+			{
+				if(sound){if(!this.turbine.isPlaying){
+					this.turbine.play();
+				}}
+				this.fire1.body.velocity.y -= this.upSpeed;
+				this.body.velocity.y -= this.upSpeed;
+			}else{
+				if(sound)this.turbine.stop();
 			}
-			this.fire1.body.velocity.y -= this.upSpeed;
-			this.body.velocity.y -= this.upSpeed;
-		}else{
-			this.turbine.stop();
-		}
-		if(this.player == 2 && game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR) && !game.tweens.isTweening(this)){
-			this.fire1.body.velocity.y -= this.upSpeed;
-			this.body.velocity.y -= this.upSpeed;
-		}
+			if(this.player == 2 && game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR) && !game.tweens.isTweening(this) && this.gameClass.playing == true){
+				this.fire1.body.velocity.y -= this.upSpeed;
+				this.body.velocity.y -= this.upSpeed;
+			}
+		}		
+	}else{
+		if(!this.animations.getAnimation('explode').isPlaying){
+			if (game.input.keyboard.isDown(Phaser.Keyboard.CONTROL) && !game.tweens.isTweening(this) && this.player == 1 && this.gameClass.playing == true)
+			{
+				if(sound){if(!this.turbine.isPlaying){
+					this.turbine.play();
+				}}
+				this.fire1.body.velocity.y -= this.upSpeed;
+				this.body.velocity.y -= this.upSpeed;
+			}else{
+				if(sound)this.turbine.stop();
+			}
+			if(this.player == 2 && game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR) && !game.tweens.isTweening(this) && this.gameClass.playing == true){
+				this.fire1.body.velocity.y -= this.upSpeed;
+				this.body.velocity.y -= this.upSpeed;
+			}
+		}		
 	}
 	
-	if(this.inWorld == false)
+	if(this.inWorld == false && this.alive)
 	{
 		this.gameClass.restart(this, null);
 	}
 	this.angle = this.body.velocity.y * 0.02
-	this.fire1.angle = this.fire1.body.velocity.y * 0.02
 };
 
 Spaceman.prototype.resetSpaceman = function(){
-	if(this.player == 1){
-		this.loadTexture('playerOne');
-		this.reset(350, 200);
-		this.fire1.reset(350,200);
-		game.add.tween(this).to({y:230}, 1200, Phaser.Easing.Quadratic.InOut, true, 0, 1000, true);
-	}		
-	else{
-		
-		this.loadTexture('playerTwo');
-		this.reset(350, 250);
-		this.fire1.reset(350,250);
-		game.add.tween(this).to({y:280}, 1200, Phaser.Easing.Quadratic.InOut, true, 0, 1000, true);
-	}
-	//this.animations.play('flying');
+	console.log(this);
+	
+	game.input.keyboard.clearCaptures();
+	if(this.animations.getAnimation('explode') !== null) if(!this.animations.getAnimation('explode').isPlaying){
+		if(this.player == 1){
+			this.reset(350, 200);
+			this.fire1.reset(350,200);
+			game.add.tween(this).to({y:230}, 1200, Phaser.Easing.Quadratic.InOut, true, 0, 1000, true);
+		}		
+		else{		
+			this.reset(350, 250);
+			this.fire1.reset(350,250);
+			game.add.tween(this).to({y:280}, 1200, Phaser.Easing.Quadratic.InOut, true, 0, 1000, true);
+		}
+		this.fire1.alpha = 1;
+		this.animations.play('flying');
+		this.gameClass.hud.y = 75;
+		this.gameClass.hud.x = game.world.centerX;
+		this.gameClass.hud.text = 0;
+		this.gameClass.hud.setStyle({
+			font: "18px 'OCR A Std'", fill: "#ffffff" , align: "center"
+		})
+		this.gameClass.txt.text = '';
+		game.input.keyboard.clearCaptures();
+		game.input.keyboard.addKey(Phaser.Keyboard.CONTROL).onDown.addOnce(this.gameClass.start, this.gameClass)
+		if(players == 2) game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onDown.addOnce(this.gameClass.start, this.gameClass)
+		if(game.device.touch) game.input.onDown.addOnce(this.gameClass.start, this.gameClass);
+		//this.animations.play('flying');
+	} else {this.resetSpaceman()}
 };
 
-Spaceman.prototype.explode = function(){
-	this.body.velocity.x = 0;
-	var emitter = game.add.emitter(this.x, this.y, 20);
-    emitter.makeParticles('explosion');
+Spaceman.prototype.boom = function(){
+	var emitter = game.add.emitter(this.x, this.y, 30);
+    emitter.makeParticles('explosion', 0);
     emitter.minParticleSpeed.setTo(-500, -500);
     emitter.maxParticleSpeed.setTo(500,500);
     emitter.gravity = 0;
+	emitter.maxRotation = 0;
     emitter.forEach(function(p){
-    	game.add.tween(p).to({alpha:0},400,Phaser.Easing.Linear.None,true);
+    	//game.add.tween(p).to({alpha:0},500,Phaser.Easing.Linear.None,true);
+		p.animations.add('explode', [0,1,2,3,4,5,6], 15).play();
+		//p.body.angularVelocity = 0;
     })
-    emitter.start(true, 400, null, 20);/*
-	if(this.inWorld)
-		this.animations.play('explode').onComplete.add(this.resetSpaceman, this);
-	else*/
-		this.resetSpaceman();
+	emitter.start(true, 500, null, 30);
+	this.kill();
+}
+
+Spaceman.prototype.explode = function(){
+	this.body.velocity.setTo(0,0);
+	//this.body.acceleration.y = this.gameClass.gravity	
+	this.fire1.alpha = 0;
+	game.input.keyboard.addKey(Phaser.Keyboard.CONTROL).onDown.addOnce(this.resetSpaceman, this);
+	if(players == 2) game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onDown.addOnce(this.resetSpaceman, this);
+	if(game.device.touch) game.input.onDown.addOnce(this.resetSpaceman, this);
+    if(sound)this.explosion.play();	
+	if(this.inWorld)this.animations.play('explode').onComplete.addOnce(this.boom, this);
+	else this.kill();
+	this.alive = false;
 }

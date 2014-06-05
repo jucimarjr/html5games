@@ -4,7 +4,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta property="og:title" content="Spaceman" />
 		<meta property="og:type" content="website" />
-		<meta property="og:description" content="Voe sobre a superfície de um cometa e teste suas habilidades como astronalta intergalático desviando de seu rastro destrutivo." />
+		<meta property="og:description" content="Voe sobre a superfície de um cometa e teste suas habilidades como astronauta intergalático desviando de seu rastro destrutivo." />
 		<meta property="og:url" content="http://computacao.uea.edu.br/ludus/games/spaceman/" />
 		<meta property="og:image" content="http://computacao.uea.edu.br/ludus/games/spaceman/spaceman.png">
 		<meta property="og:image:type" content="image/png">
@@ -13,13 +13,6 @@
 
 	<meta charset="UTF-8" />
 	<title>Spaceman</title>
-	<script type="text/javascript" src="js/phaser.min.js"></script>
-	<script type="text/javascript" src="js/Game.js"></script>
-	<script type="text/javascript" src="js/Rock.js"></script>
-	<script type="text/javascript" src="js/Spaceman.js"></script>
-	<script type="text/javascript" src="js/Splash.js"></script>
-	<script type="text/javascript" src="js/Menu.js"></script>
-	<script type="text/javascript" src="js/Credits.js"></script>
     <style type="text/css">
         body {
         	background-color:#ffffff;
@@ -27,16 +20,11 @@
         }
         @font-face {
     		font-family: 'Back to 1982';
-    		src: url('assets/fonts/BACKTO1982.TTF');
+    		src: url('assets/fonts/backto1982.TTF');
 		}
 		@font-face{
-			font-family: 'karmatic arcade';
-			src: url('assets/fonts/ka1.ttf');
-		}
-		#game{
-			font-family:'3d font';
-			font-size: 122px;
-			color: #00ff00;
+			font-family: 'OCR A Std';
+			src: url('assets/fonts/std.ttf');
 		}
 		h3 {
 			color:#000000;
@@ -50,9 +38,37 @@
     </style>
 </head>
 <body>
-	<div id="game">
-		
-	</div>
+<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&appId=391075467572191&version=v2.0";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+        </script>
+
+		<div id="game"></div>
+
+		<div class="fb-like" 
+		data-href="http://computacao.uea.edu.br/ludus/games/html5games/phaser/Spaceman/" 
+		data-layout="button_count" data-action="like" 
+		data-show-faces="true" 
+		data-share="true">
+		</div>
+
+		<div class="fb-comments" 
+             	data-href="http://computacao.uea.edu.br/ludus/games/html5games/phaser/Spaceman/" 
+   		data-width="960" data-numposts="10" data-colorscheme="light">
+        	</div>
+		<script type="text/javascript" src="js/phaser.min.js"></script>
+	<script type="text/javascript" src="js/Game.js"></script>
+	<script type="text/javascript" src="js/Rock.js"></script>
+	<script type="text/javascript" src="js/Spaceman.js"></script>
+	<script type="text/javascript" src="js/Splash.js"></script>
+	<script type="text/javascript" src="js/Menu.js"></script>
+	<script type="text/javascript" src="js/Credits.js"></script>
+	
 <script type="text/javascript">
 	var game = new Phaser.Game(960, 600, Phaser.CANVAS, 'game', { preload: preload, create: create, update: update, render: render });
 game.state.add('splash', Splash, false);
@@ -62,13 +78,36 @@ game.state.add('credits', Credits, false);
 
 function preload()
 {
-	
+    game.load.image('creditScreen', 'assets/screens/credits.png');
+    game.load.spritesheet('botoes', 'assets/screens/btns.png', 220, 60);
+    game.load.spritesheet('sound', 'assets/spritesheets/soundbtn.png', 70,81);
+	game.load.spritesheet('control1', 'assets/spritesheets/control1.png', 101,130);
+	game.load.spritesheet('control2', 'assets/spritesheets/control2.png', 252,130);
+    game.load.image('title', 'assets/screens/menu.png');
+	game.load.spritesheet('rock','assets/spritesheets/rocks.png',58,58,4);
+	game.load.spritesheet('playerOne','assets/spritesheets/playerOne.png',154,56,10);
+	game.load.spritesheet('playerTwo','assets/spritesheets/playerTwo.png',154,56,10);
+	game.load.image('bg','assets/tileSprites/background.png');
+	game.load.image('fg','assets/tileSprites/frontGround.png');
+	game.load.image('fg2','assets/tileSprites/frontGround2.png');
+	game.load.image('star','assets/spritesheets/star.png');
+	game.load.spritesheet('explosion','assets/spritesheets/fogo.png',80,74,7);
+	game.load.image('back','assets/spritesheets/back.png');
+	game.load.spritesheet('fire1','assets/spritesheets/fireYelow.png',154,56,3);
+	game.load.spritesheet('fire2','assets/spritesheets/fireBlue.png',154,56,3);
+	game.load.audio('turbine', 'assets/sound/turbina2.wav');
+	game.load.audio('hover', 'assets/sound/hover1.wav');
+	game.load.audio('explosion', 'assets/sound/explosion2.wav');
+	game.load.audio('game', 'assets/sound/fly.mp3');
 	
 }
 
 function create()
 {
-
+	//game.scale.maxWidth = 960;
+	//game.scale.maxHeight = 800;
+	game.scale.setShowAll();
+	game.scale.refresh()
 	game.state.start('splash');
 	
 }
@@ -105,7 +144,7 @@ document.documentElement.addEventListener('keydown', function (e) {
 <h3>Desenvolvedores:</h3>
 <a href = 'https://www.facebook.com/people/Luiz-Gama/1167844510'>Luiz Gama</a><br>
 <a href = 'https://www.facebook.com/artuurfernandes'>Artur Fernandes</a><br>
-
+<a href = 'https://www.facebook.com/matheus.palhetabarbosa'>Matheus Palheta</a>
 <h3>Orientador:</h3>
 <a href = 'https://www.facebook.com/jucimar.jr'>Jucimar Jr.</a>
 </center>

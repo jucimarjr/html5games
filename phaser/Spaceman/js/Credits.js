@@ -1,15 +1,9 @@
 Credits = function (game) {
     this.game = game;
-    this.screenName = 'creditScreen';
-    this.image = 'assets/screens/credits.png';
-};
-
-Credits.prototype.preload = function(){
-    game.load.image(this.screenName, this.image);
 };
 
 Credits.prototype.create = function() {
-    var bg = game.add.sprite(0, 0, this.screenName);
+    var bg = game.add.sprite(0, 0, 'creditScreen');
 		
     game.input.onDown.add(function() {
         var fadeout = game.add.tween(bg).to( { alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);

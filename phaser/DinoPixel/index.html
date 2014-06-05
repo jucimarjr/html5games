@@ -5,21 +5,22 @@
 		<meta property="og:title" content="DinoPixel" />
 		<meta property="og:type" content="website" />
 		<meta property="og:description" content="Controle um dinossauro que acabou de viajar no tempo e agora esta no presente esmagando pessoas e destruindo a cidade!" />
-		<meta property="og:url" content="http://computacao.uea.edu.br/ludus/games/dinopixel/" />
-		<meta property="og:image" content="http://computacao.uea.edu.br/ludus/games/dinopixel/assets/dinopixel.png">
+		<meta property="og:url" content="http://computacao.uea.edu.br/ludus/games/html5games/phaser/DinoPixel/" />
+		<meta property="og:image" content="http://computacao.uea.edu.br/ludus/games/html5games/phaser/DinoPixel/assets/dinopixel.png">
 		<meta property="og:image:type" content="image/png">
 		<meta property="og:image:width" content="200">
 		<meta property="og:image:height" content="200">
 
 	<meta charset="UTF-8" />
-	<title>DinoPixel!!! (Em Desenvilvimento)</title>
-	<script type="text/javascript" src="js/phaser.min.js"></script>
+	<title>DinoPixel!!! (Em Desenvolvimento)</title>
+	<script type="text/javascript" src="../phaser/phaser.min.js"></script>
 	<script type="text/javascript" src="js/Human.js"></script>
 	<script type="text/javascript" src="js/Game.js"></script>
 	<script type="text/javascript" src="js/Credits.js"></script>
-	<script type="text/javascript" src="js/Menu.js"></script>
 	<script type="text/javascript" src="js/Splash.js"></script>
 	<script type="text/javascript" src="js/Dino.js"></script>
+	<script type="text/javascript" src="js/Car.js"></script>
+	<script type="text/javascript" src="js/Enemy.js"></script>
 	
     <style type="text/css">
         body {
@@ -30,6 +31,11 @@
 		@font-face{
 			font-family: 'karmatic arcade';
 			src: url('assets/fonts/ka1.ttf');
+		}
+		
+		@font-face{
+			font-family: 'press start';
+			src: url('assets/fonts/PressStart2P-Regular.ttf');
 		}
 		
 		div{
@@ -50,55 +56,82 @@
 <body>
 	<div id="game"></div>
 <script type="text/javascript">
-var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'game', { preload: preload, create: create, update: update, render: render });
+var game = new Phaser.Game(960, 600, Phaser.CANVAS, 'game', { preload: preload, create: create});
+var soundLevel = 0.1;
+var menuTrack;
+var track;
+var explosion;
+var bloodEmitter;
+var style = { font: "18px Arial", fill: "#ffffff", align: "center" };
+var style2 = { font: "24px karmatic arcade", fill: "#ffffff", align: "center" };
+var style3 = { font: "24px  press start", fill: "#ff0000", align: "center" };
+var style4 = { font: "24px  press start", fill: "#0000ff", align: "center" };
 game.state.add('splash', Splash, false);
 game.state.add('game', Game, false);
-game.state.add('menu', Menu, false);
 game.state.add('credits', Credits, false);
 
 function preload()
 {
-	game.load.audio('jump','assets/sfx/jump1.wav');
-	game.load.audio('smash','assets/sfx/esmagando3.wav');
-	game.load.audio('fall','assets/sfx/queda3.wav');
-	game.load.image('regularGuy','assets/sprites/regularGuy.png');
-	game.load.image('regularGirl','assets/sprites/regularGirl.png');
-	game.load.image('man','assets/sprites/man.png');
-	game.load.image('medic','assets/sprites/medic.png');
-	game.load.image('muscleMan','assets/sprites/muscleMan.png');
-	game.load.image('worker1','assets/sprites/worker1.png');
-	game.load.image('cloud','assets/sprites/cloud.png');
-	game.load.audio('track','assets/musics/jogo.wav');
+	
+	game.load.audio('menuSound','assets/musics/menu.mp3');
+	game.load.audio('track','assets/musics/jogo.mp3');
+	game.load.audio('jump','assets/sfx/jump.mp3');
+	game.load.audio('smash','assets/sfx/esmagando.mp3');
+	game.load.audio('playsound', 'assets/sfx/menusound.mp3');
+	game.load.audio('creditsSound', 'assets/sfx/menusoundluan.mp3');
+	game.load.audio('insertCoin','assets/sfx/insertCoin.mp3');
+	game.load.audio('inimigoTiro','assets/sfx/inimigoTiro.mp3');
+	game.load.audio('explosion','assets/sfx/explosion3.mp3');
+	game.load.audio('hitCar','assets/sfx/hitCar.mp3');
+	game.load.audio('eat','assets/sfx/eat.mp3');
+	game.load.audio('lifeUp','assets/sfx/lifeUp.mp3');
+	game.load.audio('lose','assets/sfx/lose2.mp3');
+	game.load.audio('foodDown','assets/sfx/foodDown.mp3');
+	game.load.audio('portalTime','assets/sfx/portalTime.mp3');
+	game.load.audio('takeDamage','assets/sfx/takeDamage.mp3');
+	game.load.audio('tiroTank','assets/sfx/explosion3.mp3');
+	game.load.image('splashGame','assets/screens/DinoPixel.png');
+	game.load.image('gameOver','assets/screens/gameOver.png');
+	game.load.image('pressStart','assets/screens/pressOnScreenToStart.png');
+	game.load.image('heart','assets/sprites/heart.png');
+	game.load.image('food','assets/sprites/food.png');
 	game.load.image('backGround','assets/sprites/backGround.png');
-	game.load.tilemap('stage', 'assets/tileMaps/stage.json', null, Phaser.Tilemap.TILED_JSON);
 	game.load.image('cityThings', 'assets/tileMaps/cityThings.png');
 	game.load.image('urbanBuildings1', 'assets/tileMaps/urbanBuildings1.png');
 	game.load.image('urbanBuildings2', 'assets/tileMaps/urbanBuildings2.png');
-	game.load.image('back1','assets/sprites/back1.png');
-	game.load.image('back2','assets/sprites/back2.png');
-    game.load.spritesheet('dino','assets/spriteSheets/dp.png', 36, 32,10);
+	game.load.image('playButton', 'assets/screens/play.png', 434, 102);
+	game.load.image('creditsButton','assets/screens/cerdits.png', 606, 98);
+	game.load.spritesheet('dino','assets/spriteSheets/dp.png',144,128,19);
+  	game.load.spritesheet('bullet1','assets/spriteSheets/bullet1.png',24,24,3);
+    game.load.spritesheet('bullet2','assets/spriteSheets/bullet2.png',28,28,3);
+    game.load.spritesheet('bullet3','assets/spriteSheets/bullet3.png',40,40,3);
+	game.load.spritesheet('soldier1','assets/spriteSheets/soldier1.png',64,48,4);
+	game.load.spritesheet('soldier2','assets/spriteSheets/soldier2.png',64,48,4);
+	game.load.spritesheet('specialOps1','assets/spriteSheets/specialOps1.png',64,48,4);
+	game.load.spritesheet('specialOps2','assets/spriteSheets/specialOps2.png',64,48,4);
+	game.load.spritesheet('policeMan','assets/spriteSheets/policeMan.png',48,36,4);
+	game.load.spritesheet('armySniper','assets/spriteSheets/armySniper.png',128,28,4);
+	game.load.spritesheet('specialOpsSniper','assets/spriteSheets/specialOpsSniper.png',128,28,4);
+	game.load.spritesheet('tank','assets/spriteSheets/tank.png',424,140,5);
+	game.load.spritesheet('explosion','assets/spriteSheets/explosion.png',200,188,5);
+	game.load.spritesheet('carTexture','assets/spriteSheets/cars.png',128,64,8);
+	game.load.spritesheet('humanTexture','assets/spriteSheets/humans.png',32,36,7);
+	game.load.spritesheet('particles','assets/spriteSheets/particles.png',8,8,6);
+	game.load.spritesheet('particles2','assets/spriteSheets/particles2.png',8,8,6);
+	game.load.spritesheet('policeCar','assets/spriteSheets/policeCar.png',128,64,6);
+	game.load.spritesheet('specialOpsCar','assets/spriteSheets/specialOpsCar.png',176,112,3);
+	game.load.spritesheet('truck','assets/spriteSheets/truck.png',188,116,3);
+	game.load.tilemap('stage', 'assets/tileMaps/stage.json', null, Phaser.Tilemap.TILED_JSON);
 	
 }
-
 function create()
-{
-
+{	
+	menuTrack = game.add.audio('menuSound',soundLevel,true);
+	game.scale.setShowAll();
+	game.scale.refresh();	
 	game.state.start('splash');
-	
 }
 
-function update()
-{
-	
-	
-}
-
-function render () {
-
-   // game.debug.body(player);
-     //game.debug.bodyInfo(player, 16, 24);
-
-}
 </script>
 <div>
 <center>
