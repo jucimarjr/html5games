@@ -544,7 +544,7 @@ Config.dragon = {
 	},
 	timeGrow: 1000 / Config.global.animationVelocity,
 	number: {
-		pieces: Config.global.isMobile ? 8 : 20
+		pieces: Config.global.isMobile ? 7 : 20
 	},
 	velocity: 140,
 	damage: Config.hero.health.initial / 1000
