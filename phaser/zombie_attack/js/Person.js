@@ -22,7 +22,7 @@ var Person = function (index, game,classGame) {
     this.spritePerson.customSeparateX = true;
     this.spritePerson.customSeparateY = true;
     
-    this.spritePerson.body.setSize(personWidth,20,0,personHeigth-10);
+    this.spritePerson.body.setSize(personWidth,30,0,personHeigth-10);
 
     this.spritePerson.checkWorldBounds = true;
     this.spritePerson.events.onOutOfBounds.add(this.boundOut, this);
@@ -41,31 +41,13 @@ Person.prototype.boundOut = function(person)
     
     
     if (person.x < 0)
-    	person.reset(this.game.world.width, game.rnd.integerInRange(162, 400));
-    if (person.x > game.world.width)
-    	person.reset(0, game.rnd.integerInRange(162, 400));
+    	person.reset(this.game.world.width, this.game.rnd.integerInRange(162, 400));
+    if (person.x > this.game.world.width)
+    	person.reset(0, this.game.rnd.integerInRange(162, 400));
    
     person.body.velocity.x = velocityX;
     person.body.velocity.y = velocityY;
 	
-//	console.log("person::boundout =" + person.name);
-//	var y = 0;
-//	var x = 0;
-//	if(person.name.contains("rigth"))
-//	{
-//		
-//		y = game.rnd.integerInRange(162,400);
-//		x = -25;
-//	}
-//	else 
-//	{
-//		y = game.rnd.integerInRange(162,400);
-//		x = 625;
-//	}
-//	console.log("x = "+x+" y = "+y);
-//	person.body.reset(x,y);
-//	this.setVelocity(person);
-//	console.log("person::boundout =" + person.name);
 };
 
 Person.prototype.getPosition = function(positionX)
@@ -134,6 +116,4 @@ Person.prototype.initReviveZombie = function()
 	this.classGame.initZombies(this.spritePerson);
 };
 
-Person.prototype.randPosition(y)
-{
-};
+

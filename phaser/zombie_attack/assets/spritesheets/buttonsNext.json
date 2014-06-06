@@ -1,0 +1,28 @@
+{"frames": [
+
+{
+	"filename": "proximo.png",
+	"frame": {"x":2,"y":2,"w":150,"h":58},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":150,"h":58},
+	"sourceSize": {"w":150,"h":58}
+},
+{
+	"filename": "proximoSelecionado.png",
+	"frame": {"x":2,"y":62,"w":150,"h":58},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":150,"h":58},
+	"sourceSize": {"w":150,"h":58}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker ",
+	"version": "1.0",
+	"image": "buttonsNext.png",
+	"format": "RGBA8888",
+	"size": {"w":256,"h":128},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:a8caa73c996d363557fce43e6c4413c1:6d861b7b6d9fe92ebb6d29403d42d027:88b7976a397776452cbfd0db965150b7$"
+}
+}

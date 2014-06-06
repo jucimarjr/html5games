@@ -1,5 +1,5 @@
 var Dino = function()
-{	};
+{};
 Dino.prototype.add = function(posX, posY)
 {	
 
@@ -10,7 +10,7 @@ Dino.prototype.add = function(posX, posY)
 	this.score = 0;
 	this.enemysKiled = 0;
 	this.killsToCallTank = 0;
-	this.killsNeeded = 75;
+	this.killsNeeded = 45;
 	this.foodCount=0;
 	this.safetyMode = false;
 	this.lives = 3;
@@ -20,7 +20,7 @@ Dino.prototype.add = function(posX, posY)
 	this.timeToAtack = 0;
 	this.atackDelay = 400;
 	this.onAtackMode = false;
-	
+	this.isAlive = true;
 	this.sprite = game.add.sprite(posX, posY ,'dino');
 	game.physics.enable(this.sprite);
 	this.sprite.body.maxVelocity.x = 1400;
@@ -124,28 +124,28 @@ Dino.prototype.smash = function(dino,target)
 	switch(target.job)
 	{
 		case 'normalCar':  
-		p = 35; 
+		p = 12; 
 		this.score += p; 
 		break;
 		case 'people':
 			splashBlood1(target.x,target.y);
-		p = 20; 
+		p = 5; 
 		this.score += p; 
 		break;
 		case 'shooter' : 
 			splashBlood1(target.x,target.y);
-		p = 35;
+		p = 12;
 		this.score += p;
 		splashBlood1(target.x,target.y);
 		break;
 		case 'bomber' :
 			splashBlood1(target.x,target.y);
-		p = 50;
+		p = 16;
 		this.score += p;
 		break;
 		case 'sniper' :
 			splashBlood1(target.x,target.y);
-		p = 55;
+		p = 20;
 		this.score += p;
 		default : this.score +=1; 
 	}
@@ -164,28 +164,28 @@ Dino.prototype.bit = function(dino,target)
 				splashBlood2(target.x,target.y);
 				this.replaceFood();
 				this.sfxEat.play();
-				p = 15;
+				p = 5;
 				this.score += p; 
 			break;
 			case 'shooter' : 
 				splashBlood2(target.x,target.y);
 				this.replaceFood();
 				this.sfxEat.play();
-				p = 30;
+				p = 10;
 				this.score += p;
 			break;
 			case 'bomber' : 
 				splashBlood2(target.x,target.y);
 				this.replaceFood();
 				this.sfxEat.play();
-				p = 45;
+				p = 15;
 				this.score += p;
 			break;
 			case 'sniper' : 
 				splashBlood2(target.x,target.y);
 				this.replaceFood();
 				this.sfxEat.play();
-				p = 50;
+				p = 17;
 				this.score += p;
 			break;
 		}
@@ -227,16 +227,21 @@ Dino.prototype.hitByCar = function(dino,target)
 		this.startSafetyMode();
 		this.hearts.getTop().destroy();
 	}
-	if(this.hearts.countLiving()==0) 
+	if(this.hearts.countLiving()==0 && this.isAlive ) 
+	{
+		this.isAlive = false;
 		this.sprite.animations.play('die');
+	}
 	target.runOver(this);	
 };
 
 Dino.prototype.callGameOver = function()
 {
-	var gO = game.add.sprite(game.camera.width/2-200, game.camera.height/2-150,'gameOver');
+	var gO = game.add.sprite(game.camera.width/2-200, game.camera.height/2-150,'scoreTable');
 	gO.fixedToCamera = true;
 	track.stop();
+	var score = game.add.text(game.camera.width/2 - 50, game.camera.height/2 +70, this.score,style6);
+	score.fixedToCamera = true;
 	var s = game.add.audio('lose',soundLevel,false);
 	s.play();
 	game.input.onDown.addOnce(function() {
@@ -292,7 +297,7 @@ Dino.prototype.regulateFood = function()
 Dino.prototype.replaceFood = function()
 {
 	this.foodCount += 1;
-	if(this.hearts.countLiving()<10 && this.foodCount ==5)
+	if(this.hearts.countLiving()<5 && this.foodCount ==5)
 	{
 		this.hearts.create(this.hearts.countLiving() * 64,0, 'heart');
 		this.sfxlifeUp.play();

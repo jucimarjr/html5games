@@ -1,8 +1,17 @@
 <!doctype html> 
-<html lang="en"> 
-<head> 
+<html lang="en" prefix="og: http://ogp.me/ns#"> 
+<head>
+	<title>Zombie Attack</title>
 	<meta charset="UTF-8" />
-	<title>Zombie Invaders</title>
+	<meta property="og:title" content="Zombie Attack" />
+	<meta property="og:type" content="website" />
+	<meta property="og:site_name" content="LUDUS - Laboratório de Jogos e Entretenimento Digital da UEA"/>
+	<meta property="og:url" content="http://computacao.uea.edu.br/ludus/games/html5games/phaser/zombie_attack/" />
+	<meta property="og:description" content="O mundo foi infectado por um vírus mortal da corporação Jarabrella, proteja os sobreviventes dos ataques dos zumbis." />
+	<meta property="og:image" content="http://computacao.uea.edu.br/ludus/games/html5games/phaser/zombie_attack/assets/screenshots/SplashGame_800-600.png"/>
+	<meta property="og:image:type" content="image/png"/>
+	<meta property="og:image:width" content="800"/>
+	<meta property="og:image:height" content="600"/>
 	<link rel="stylesheet" type="text/css" href="fonts/fonts_game/stylesheet.css">
 	<script type="text/javascript" src="js/phaser.min.js"></script>
 	<script type="text/javascript" src="js/FilePaths.js"></script>
@@ -13,96 +22,132 @@
 	<script type="text/javascript" src="js/Round.js"></script>
 	<script type="text/javascript" src="js/Game.js"></script>
 	<script type="text/javascript" src="js/GameOver.js"></script>
+	<script type="text/javascript" src="js/HowToPlay.js"></script>
+	<script type="text/javascript">
+			(function(d, s, id) {
+				var js, fjs = d.getElementsByTagName(s)[0];
+				if (d.getElementById(id)) return;
+				js = d.createElement(s);
+				js.id = id;
+				js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&appId=391075467572191&version=v2.0";
+				fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
+	</script>
+	<style type="text/css">
+			body {
+				margin: 0;
+			}
+			#everything {
+				width: 800px;
+				margin: auto;
+			}
+			#fb-root {
+				text-align: center;
+			}
+		</style>
 </head>
 
 <body>
-<script type="text/javascript">
 
-var game = new Phaser.Game(800, 600, Phaser.CANVAS, '', { preload: preload, create: create, update: update });
-var score = null;
-var cursors;
-var gameScene = null;
-var splashScene = null;
+<div id="everything">
+			<div id="content">
+				<div id="game">
+					<script type="text/javascript">
+						var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'game', { preload: preload, create: create, update: update });
+						var lastScore = window.localStorage.getItem("lastScore");
+						var lastRound = window.localStorage.getItem("lastRound");
+						var bestScore = window.localStorage.getItem("bestScore");
+						var bestRound = window.localStorage.getItem("bestRound");
+						var cursors;
+						var gameScene = null;
+						var splashScene = null;
 
-game.state.add('menu', Menu);
-game.state.add('game', Game);
-game.state.add('gameover',GameOver);
-//game.state.add('HowToPlay', HowToPlay);
-//game.state.add('HighScore', HighScore);
-//game.state.add('HighScoreInput', HighScoreInput);
-//game.state.add('Credits', Credits);
+						game.state.add('menu', Menu);
+						game.state.add('game', Game);
+						game.state.add('gameover',GameOver);
+						game.state.add('howtoplay', HowToPlay);
+						//game.state.add('HighScore', HighScore);
+						//game.state.add('HighScoreInput', HighScoreInput);
+						//game.state.add('Credits', Credits);
 
-function preload()
-{
-	//SpriteSheets Pessoas
-	game.load.spritesheet('personDown', spriteSheetsImagePersonDown, 100, 161, 6);
-	
-	//SpriteSheets Zumbis
-	game.load.atlas('zombieDown', spriteSheetsImageZombieDown, spriteSheetsJsonZombieDown);
-	game.load.spritesheet('zombieUp',spriteSheetsImageZombieUp,100,168,4);
-	game.load.spritesheet('zombieLeft',spriteSheetsImageZombieLeft,100,168,3);
-	game.load.spritesheet('zombieRigth',spriteSheetsImageZombieRigth,100,168,3);
-	game.load.spritesheet('zombieDead',spriteSheetsImageZombieDead,100,136,10);
-	
-	game.load.spritesheet('zombieBitePerson',spriteSheetsImageBitePerson,100,168,4);
-	
-	game.load.image('round', spriteRound);
-	game.load.image('target', spriteTarget);
-	game.load.image('score', spriteScore);
-	game.load.image('cenario', imageCenario);
-	game.load.image('credits',splashCredits);
-	game.load.audio('audioPuchZombie',audioPuchZombie);
-	game.load.audio('audioZombieDead',audioZombieDead);
-	game.load.audio('audioBackGroundGame',audioBackGroundGame);
-	
-	splashScene = new Splash(game);
-	splashScene.preload();
-}
+						function preload()
+						{	
+						//SpriteSheets Pessoas
+							game.load.spritesheet('personDown', spriteSheetsImagePersonDown, 100, 161, 6);
+		
+							//SpriteSheets Zumbis
+							game.load.atlas('zombieDown', spriteSheetsImageZombieDown, spriteSheetsJsonZombieDown);
+							game.load.atlas('howtoplaysheet', spriteSheetsImageHowToPlay, spriteSheetsJsonHowToPlay);
+							game.load.spritesheet('zombieUp',spriteSheetsImageZombieUp,100,168,4);
+							game.load.spritesheet('zombieLeft',spriteSheetsImageZombieLeft,100,168,3);
+							game.load.spritesheet('zombieRigth',spriteSheetsImageZombieRigth,100,168,3);
+							game.load.spritesheet('zombieDead',spriteSheetsImageZombieDead,100,136,10);
+							
+							game.load.spritesheet('zombieBitePerson',spriteSheetsImageBitePerson,100,168,4);
+							
+							game.load.image('cenarioBlack', cenarioBlack);
+							
+							game.load.image('target', spriteTarget);
+							game.load.image('score', spriteScore);
+							game.load.image('round', spriteRound);
+							game.load.image('cenario', imageCenario);
+							game.load.image('credits',splashCredits);
+							game.load.image('gameoverScreen',gameOverScreen);
+							game.load.audio('audioPuchZombie',audioPuchZombie);
+							game.load.audio('audioZombieDead',audioZombieDead);
+							game.load.audio('audioBackGroundGame',audioBackGroundGame);
+							game.load.image('gameOverScreen', gameOverScreen);
+							
+							
+							game.load.image('btMenu', btImageMenu);
+							
+							game.load.atlas('buttonsNext', btImageProximoImage, btImageProximoJson);
+							game.load.image('screenBlack','assets/screenshots/CenarioBlack.png');
+							game.load.image('howTo','assets/screenshots/HowToPlay.png');
+							game.load.image('htp1','assets/htp1.png');
+							game.load.image('htp2','assets/htp2.png');
+		
+							splashScene = new Splash(game);
+							splashScene.preload();
+						}
 
-function create()
-{
-	splashScene.create();
-}
+					function create()
+					{
+						splashScene.create();
+					}
+					
+					function update() 
+					{
+						
+					}
+					
+					function setHighScore()
+					{
+					    
+					}
+					
+					
+					
+					</script>
+				</div>
+				<div id="fb-root">
+					<div class="fb-like"
+						data-href="http://computacao.uea.edu.br/ludus/games/html5games/phaser/zombie_attack/"
+						data-layout="button_count"
+						data-action="like"
+						data-show-faces="true"
+						data-share="true">
+					</div>
+					<div class="fb-comments"
+						data-href="http://computacao.uea.edu.br/ludus/games/html5games/phaser/zombie_attack/"
+						data-width="800"
+						data-numposts="10"
+						data-colorscheme="light">
+					</div>
+				</div>
+			</div>
+		</div>
 
-function update() 
-{
-	
-}
-
-function setHighScore()
-{
-    /*if (typeof localStorage["scores"] == "undefined") {
-        localStorage["score1"] = 500;
-        localStorage["score2"] = 400;
-        localStorage["score3"] = 300;
-        localStorage["score4"] = 200;
-        localStorage["score5"] = 100;
-        localStorage["nameScore1"] = "AAA";
-        localStorage["nameScore2"] = "BBB";
-        localStorage["nameScore3"] = "CCC";
-        localStorage["nameScore4"] = "DDD";
-        localStorage["nameScore5"] = "EEE";
-        localStorage["scores"] = "OK";
-    }*/
-}
-
-
-
-</script>
 
 </body>
-
-  <!--<div id="footer">
-	<!--	<span style="position:relative; top:600px">
-		<center>
-			<h3> Desenvolvedores </h3>
-				<a href = "https://www.facebook.com/camdsf?fret=ts"> Carlos Alberto </a> </br>
-				<a href = "https://www.facebook.com"> Anne Oliveira </a>  </br>
-			<h3> Designer </h3>
-				<a href = "https://www.facebook.com/johnmaycon.silva?fref=ts"> John Maycon </a> </br>
-			<h3> Orientador </h3>
-				<a href = "https://www.facebook.com/jucimar.jr?fret=ts"> Prof. Jucimar Jr. </a> </br></br>
-		</center>
-	<!--	</span> 
-	</div>-->
 </html>

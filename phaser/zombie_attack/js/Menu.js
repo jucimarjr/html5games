@@ -53,19 +53,19 @@ Menu.prototype.play = function () {
     });
 };
 
-//Menu.prototype.howToPlay = function() {
-//    this.fadeOut();
-//    fadeout.onComplete.add(function () {
-//        //this.game.state.start('HowToPlay', HowToPlay);
-//    });
-//}
-//
-//Menu.prototype.highScores = function () {
-//    this.fadeOut();
-//    fadeout.onComplete.add(function () {
-//        //this.game.state.start('HighScore', HighScore);
-//    });
-//}
+Menu.prototype.howToPlay = function() {
+    this.fadeOut();
+    fadeout.onComplete.add(function () {
+        this.game.state.start('howtoplay', HowToPlay);
+    });
+};
+
+Menu.prototype.highScores = function () {
+    this.fadeOut();
+    fadeout.onComplete.add(function () {
+        this.game.state.start('gameover', GameOver);
+    });
+}
 
 Menu.prototype.credits = function (background,parent) {
     this.fadeOut();
