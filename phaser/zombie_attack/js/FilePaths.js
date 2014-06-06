@@ -23,7 +23,9 @@ var personHeigth = 267;
 var splashGroupImage = 'assets/screenshots/SplashTeam_800-600.png';
 var SplashGameImage = 'assets/screenshots/SplashGame_800-600.png';
 var screenMenu = 'assets/screenshots/MenuZombie.png';
-var splashCredits = 'assets/screenshots/Credits.png'
+var gameOverScreen = 'assets/screenshots/GameOver.png';
+var splashCredits = 'assets/screenshots/Credits.png';
+var cenarioBlack = 'assets/assets/screenshots/CenarioBlack.png';
 //SpriteSheets
 
 //Spritesheets Botões do menu
@@ -42,6 +44,9 @@ var spriteSheetsImagePersonDown = "assets/spritesheets/personDown.png";
 //PessoaVSZumbi
 var spriteSheetsImageBitePerson = "assets/spritesheets/bitePerson.png";
 
+var spriteSheetsImageHowToPlay = "assets/spritesheets/hotToPlay.json";
+var spriteSheetsJsonHowToPlay = "assets/spritesheets/hotToPlay.json";
+
 var spriteRound = "assets/round.png";
 var spriteScore = "assets/score.png";
 
@@ -51,3 +56,8 @@ var spriteTarget = "assets/target.png";
 var audioPuchZombie = "audio/soundEffects/slap-soundmaster13-49669815.mp3";
 var audioZombieDead = "audio/soundEffects/ugh.mp3";
 var audioBackGroundGame = "audio/hyrulecastle.mp3";
+
+var btImageMenu = "assets/menu.png";
+var btImageProximoJson = "assets/spritesheets/buttonsNext.json";
+var btImageProximoImage = "assets/spritesheets/buttonsNext.png";
+
