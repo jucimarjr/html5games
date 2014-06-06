@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns#">
+	<head>
+		<title>Summer Run</title>
+		<meta charset="utf-8"/>
+
+		<meta name="viewport" content="width=device-width"/>
+		<meta property="og:title" content="Summer Run" />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="LUDUS - Laboratório de Jogos e Entretenimento Digital da UEA"/>
+		<meta property="og:url" content="http://computacao.uea.edu.br/ludus/games/html5games/summerRun/" />
+		<meta property="og:description" content="Corra o máximo que puder evitando todos os obstáculos!" />
+		<meta property="og:image" content="http://computacao.uea.edu.br/ludus/games/html5games/summerRun/res/screenshots/splashGame_800-480.png"/>
+		<meta property="og:image:type" content="image/png"/>
+		<meta property="og:image:width" content="960"/>
+		<meta property="og:image:height" content="600"/>
+
+		<script type="text/javascript" src="cocos2d.js"></script>
+		<script type="text/javascript">
+			(function(d, s, id) {
+				var js, fjs = d.getElementsByTagName(s)[0];
+				if (d.getElementById(id)) return;
+				js = d.createElement(s);
+				js.id = id;
+				js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&appId=391075467572191&version=v2.0";
+				fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
+		</script>
+
+		<style type="text/css">
+			#gameCanvas {
+				margin: auto;
+				display: table;
+				width: 800px;
+				height: 480px;
+			}
+			#fb-root {
+				text-align: center;
+			}
+			.fb-comments {
+				width: 100%;
+				height: 100%;
+				position: relative;
+				top: 0;
+				left: 0;
+			}
+			.fb-like {
+				width: 100%;
+				height: 100%;
+				position: relative;
+				top: 0;
+				left: 0;
+			}
+	</style>
+	</head>
+	<body >
+		<div id="gameCanvas"></div>
+		<div id="fb-root">
+			<div class="fb-like"
+				data-href="http://computacao.uea.edu.br/ludus/games/html5games/summerRun/"
+				data-layout="button_count"
+				data-action="like"
+				data-show-faces="true"
+				data-share="true">
+			</div>
+			<div class="fb-comments"
+				data-href="http://computacao.uea.edu.br/ludus/games/html5games/summerRun/"
+				data-width="960"
+				data-numposts="10"
+				data-colorscheme="light">
+			</div>
+		</div>
+	</body>
+</html>

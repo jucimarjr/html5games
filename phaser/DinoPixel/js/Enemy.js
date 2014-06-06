@@ -8,6 +8,7 @@ Enemy.prototype.create = function(player,colliderLayer,sprite,bahavior,job)
 	this.sfxTiroTank = game.add.audio('tiroTank',soundLevel,false);
 	this.colliderLayer = colliderLayer;
 	this.sprite = sprite;
+	this.sprite.outOfBoundsKill = true;
 	this.sprite.f = 0;
 	this.sprite.smoothed = false; 
 	game.physics.enable(this.sprite);
@@ -36,7 +37,7 @@ Enemy.prototype.create = function(player,colliderLayer,sprite,bahavior,job)
 				this.sprite.frame = 3;
 				this.distance =game.rnd.integerInRange(1000,1500);
 				this.bulletTexture = 'bullet1';
-				this.bulletSpeed = 500;
+				this.bulletSpeed = 300;
 				this.fireRate = 5000;
 				this.damage = 2;
 				break;
@@ -125,7 +126,7 @@ Enemy.prototype.create = function(player,colliderLayer,sprite,bahavior,job)
 					this.sfxHitCar.play();
 					particlesExplodeSmall(this.x,this.y);
 					this.hp -=1;
-					var p = 15;
+					var p = 5;
 					this.player.displayPoint(p);
 					this.player.score+=p;
 				break;
@@ -134,7 +135,7 @@ Enemy.prototype.create = function(player,colliderLayer,sprite,bahavior,job)
 					this.sfxHitCar.play();
 					particlesExplodeSmall(this.x,this.y);
 					this.hp -=1;
-					var p = 25;
+					var p = 10;
 					this.player.displayPoint(p);
 					this.player.score+=p;
 					this.animations.stop();
@@ -146,7 +147,7 @@ Enemy.prototype.create = function(player,colliderLayer,sprite,bahavior,job)
 					this.sfxHitCar.play();
 					particlesExplodeSmall(this.x,this.y);
 					this.hp -=1;
-					var p = 25;
+					var p = 10;
 					this.player.displayPoint(p);
 					this.player.score+=p;
 					this.animations.stop();
@@ -165,11 +166,11 @@ Enemy.prototype.create = function(player,colliderLayer,sprite,bahavior,job)
 		var p;
 		switch(this.job)
 		{
-			case 'tank':p = 500;
+			case 'tank':p = 200;
 			break;
-			case 'police':p = 200;
+			case 'police':p = 35;
 			break;
-			case 'truck':p = 300;
+			case 'truck':p = 50;
 			break;
 		}
 		this.player.displayPoint(p);
@@ -215,7 +216,7 @@ Enemy.prototype.update = function(target,Game)
 			break;
 			case 'follow' : this.follow(target);
 			break;
-			case 'follow' : this.stayHold(target);
+			case 'stayHold' : this.stayHold(target);
 			break;
 			case 'tankFollow' : this.tankFollow(target);
 			break;
@@ -300,7 +301,6 @@ Enemy.prototype.followAndSpawn = function(target,Game)
 			break;
 			case 'specialOpsCar':
 				Game.objectEnemy[Game.objectEnemy.length] = new Enemy(Game.player,Game.layer4,Game.enemys.create(this.sprite.x+100,this.sprite.y,'specialOps1'),'stayNormal','shooter');
-				Game.objectEnemy[Game.objectEnemy.length] = new Enemy(Game.player,Game.layer4,Game.enemys.create(this.sprite.x-100,this.sprite.y,'specialOps1'),'stayNormal','shooter');
 				Game.objectEnemy[Game.objectEnemy.length] = new Enemy(Game.player,Game.layer4,Game.enemys.create(this.sprite.x,this.sprite.y,'specialOps1'),'stayNormal','shooter');
 				Game.objectEnemy[Game.objectEnemy.length] = new Enemy(Game.player,Game.layer4,Game.enemys.create(this.sprite.x+200,this.sprite.y,'specialOps2'),'stayNormal','bomber');
 			break;

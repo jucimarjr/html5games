@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="140" height="15" tilewidth="32" tileheight="32" backgroundcolor="#ffffff">
+ <tileset firstgid="1" name="tiles" tilewidth="32" tileheight="32">
+  <image source="tiles_spring.png" width="600" height="450"/>
+ </tileset>
+ <layer name="Camada de Tiles 1" width="140" height="15">
+  <data encoding="base64" compression="zlib">
+   eJztzyWs1lEcx+GbcE+4J9wT7gn3hHvCPeFecZcNd9lwlw132XCpuASe/AbKvf+dE85ne3bi73vy8lKpOCtEYYpQlGIUpwQlKUVpylCWcmFmpiKpPBWoSCUqU4WqVKM6NahJLWoHWZmKpTrUpR71aUBDGtGYJjSlGc1pEWZmKpJa0orWtKEt7WhPBzrSic50oWuQlalY6kZ3etCTXvSmD33pR38GMJBBYWamImkwQxjKMIYzgpGMYjRjGMs4xgdZmYqlCUxkEpOZwlSmMZ0ZzGQWs5kTZmYqkuYyj/ksYCGLWMwSlrKM5axgZZiZqQhbxWrWsJZ1rGcDG9nE5lDjUtG1i93sYS/72M8BDnKIw8HWpf7XFrayje3syODdmXPzFKc5w1nOcZ4LXOQSlwv+q6kC6AhHOcZxTmTwnsy5eYvb3OEu97jPAx7yiMcZ/DWV/65wlWtc50YG782cm694zRve8o73fOAjn/icwV9T+e8JT3nGc15k8L7MufmFr3zjOz/4yS9+84e/Gfw1lb/+AR3QnHM=
+  </data>
+ </layer>
+</map>
