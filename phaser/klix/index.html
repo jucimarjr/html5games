@@ -1,0 +1,196 @@
+<!doctype html> 
+<html lang="en"> 
+<head> 
+	<meta charset="UTF-8"/>
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:url" content="http://computacao.uea.edu.br/ludus/games/html5games/phaser/klix/">
+    <meta="og:title" content="Klix">
+    <meta property="og:site_name" content="LUDUS - Laboratório de Jogos e Entretenimento Digital da UEA">
+    <meta property="og:description" content="Desvie de asteroides e colete recursos para sobreviver em meio aos destroços do planeta Klix, e aos ataques dos OVNIs que destruiram o seu planeta.">
+    <meta property="og:image" content="http://computacao.uea.edu.br/ludus/games/html5games/phaser/klix/assets/klix-800x600.png">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="800">
+    <meta property="og:image:height" content="600">
+    <meta property="og:type" content="website">
+	<title>Klix</title>
+	
+	
+    <style type="text/css">
+        body {
+            margin: 0;
+        }
+        @font-face {
+ 	   		font-family: 'Vector Battle';
+    		src: url('assets/fonts/VectorB.ttf');
+		}	
+		@font-face {
+ 	   		font-family: 'FORCED SQUARE';
+    		src: url('assets/fonts/FORCED SQUARE.ttf');
+		}	
+		@font-face {
+ 	   		font-family: 'Hyperspace';
+    		src: url('assets/fonts/Hyperspace-Bold.ttf');
+		}	
+		@font-face {
+ 	   		font-family: 'Arcade Interlaced';
+    		src: url('assets/fonts/arcade.ttf');
+		}
+		div{
+			font-family:'Arcade Interlaced';
+			font-size: 28px;
+		}
+		canvas {
+    		padding-left: 0;
+    		padding-right: 0;
+    		margin-left: auto;
+    		margin-right: auto;
+    		display: block;
+		}
+		#everything {
+			margin: auto;
+		}
+		#fb-root {
+			text-align: center;
+		}
+    </style>
+</head>
+<body>
+<div id="everything">
+	<div id="content">
+		<script>(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s); js.id = id;
+			js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&appId=391075467572191&version=v2.0";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+		</script>
+		<div id ="phaser-game"></div>
+		<div class="fb-like" 
+		data-href="http://computacao.uea.edu.br/ludus/games/html5games/phaser/klix/" 
+		data-layout="button_count" data-action="like" 
+		data-show-faces="true" 
+		data-share="true">
+		</div>
+		<div class="fb-comments" 
+		data-href="http://computacao.uea.edu.br/ludus/games/html5games/phaser/klix/"
+		data-width="960" data-numposts="10" data-colorscheme="light">
+		</div>
+	</div>
+</div>
+		<script type="text/javascript" src="js/phaser.min.js"></script>	
+		<script type="text/javascript" src="js/Splash.js"></script>
+		<script type="text/javascript" src="js/Win.js"></script>	
+		<script type="text/javascript" src="js/lose.js"></script>
+		<script type="text/javascript" src="js/Menu.js"></script>
+		<script type="text/javascript" src="js/HowToPlay.js"></script>
+		<script type="text/javascript" src="js/HighScores.js"></script>
+		<script type="text/javascript" src="js/HighScoresInput.js"></script>
+		<script type="text/javascript" src="js/Credits.js"></script>
+		<script type="text/javascript" src="js/Game.js"></script>
+		<script type="text/javascript" src="js/SpaceShip.js"></script>
+		<script type="text/javascript" src="js/Asteroid.js"></script>
+		<script type="text/javascript" src="js/Ufo.js"></script>
+		
+
+<script type="text/javascript">
+var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-game', { preload: preload, create: create, update: update, render:render});//
+var score = null;
+
+var gameScene = null;
+var splashScene = null;
+game.state.add('menu', Menu);
+game.state.add('game', Game);
+game.state.add('howToPlay', HowToPlay);
+game.state.add('highScore', HighScore);
+game.state.add('Win', Win);
+game.state.add('lose', Lose);
+game.state.add('highScoreInput', HighScoreInput);
+game.state.add('credits', Credits);
+
+function preload()
+{
+	game.load.atlas('sprites', 'assets/spritesheets/sprites.png', 'assets/spritesheets/sprites.json');
+	game.load.image('tiled1','assets/images/Tiled1.png');
+	game.load.image('tiled2','assets/images/Tiled2.png');
+	game.load.image('alert','assets/images/alert.png');
+	game.load.audio('thrust', 'assets/audios/AsteroidsThrust.mp3');
+    game.load.audio('shoot', 'assets/audios/AsteroidsShoot.wav');
+    game.load.audio('tick1', 'assets/audios/bip.wav');
+    game.load.audio('tick2', 'assets/audios/bip1.wav');
+    game.load.audio('siren', 'assets/audios/siren.wav');
+    game.load.audio('bang1', 'assets/audios/Explosion4.wav');
+    game.load.audio('bang2', 'assets/audios/Explosion2.wav');
+	game.load.audio('collect', 'assets/audios/reset.wav');
+	game.load.audio('reset', 'assets/audios/Powerup.wav');
+    setHighScore();
+    var keyFull = this.game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
+	keyFull.onDown.add(function(){
+		if(!game.stage.scale.isFullScreen){
+			game.stage.fullScreenScaleMode = Phaser.StageScaleMode.EXACT_FIT;		
+			game.stage.scale.startFullScreen();
+		}else{
+			//game.stage.scale.stopFullScreen();
+			game.stage.scale.setShowAll();
+			game.stage.scale.refresh();
+		}
+	}, this);
+    
+	splashScene = new Splash(game);
+	splashScene.preload();
+	//gameScene = new Game(game);
+}
+
+function create()
+{
+/*
+	game.stage.scale.maxWidth = 800;
+	game.stage.scale.maxHeight = 600;*/
+	game.stage.scale.setShowAll();;
+	game.stage.scale.refresh()
+	splashScene.create();
+	//gameScene.create()
+}
+
+function update() 
+{
+	//gameScene.update();
+}
+
+function setHighScore()
+{
+    if (typeof localStorage["scores"] == "undefined") {
+        localStorage["score1"] = 0;
+        localStorage["score2"] = 0;
+        localStorage["score3"] = 0;
+        localStorage["score4"] = 0;
+        localStorage["score5"] = 0;
+        localStorage["nameScore1"] = "";
+        localStorage["nameScore2"] = "";
+        localStorage["nameScore3"] = "";
+        localStorage["nameScore4"] = "";
+        localStorage["nameScore5"] = "";
+        localStorage["scores"] = "OK";
+    }
+}
+
+function render(){
+	//gameScene.render();
+}
+
+document.documentElement.addEventListener('keydown', function (e) {
+    if ( ( e.keycode || e.which ) == 32) {
+        e.preventDefault();
+    }
+    if ( ( e.keycode || e.which ) == 38) {
+        e.preventDefault();
+    }
+    if ( ( e.keycode || e.which ) == 40) {
+        e.preventDefault();
+    }
+}, false);
+</script>
+
+</body>
+
+</html>

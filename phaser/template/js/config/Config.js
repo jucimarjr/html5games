@@ -4,14 +4,28 @@
 var Config = {
 	global: {
 		animationVelocity: 8,
+		isMobile: navigator.userAgent.match(/Android/i)
+					|| navigator.userAgent.match(/webOS/i)
+					|| navigator.userAgent.match(/iPhone/i)
+					|| navigator.userAgent.match(/iPad/i)
+					|| navigator.userAgent.match(/iPod/i)
+					|| navigator.userAgent.match(/BlackBerry/i)
+					|| navigator.userAgent.match(/Windows Phone/i),
 		screen: {
 			width: 960,
 			height: 600,
 			resize: function (game) {
 				"use strict";
-				if (window.innerHeight < 600 || window.innerWidth < 960) {
+				if (navigator.userAgent.match(/Android/i)
+						|| navigator.userAgent.match(/webOS/i)
+						|| navigator.userAgent.match(/iPhone/i)
+						|| navigator.userAgent.match(/iPad/i)
+						|| navigator.userAgent.match(/iPod/i)
+						|| navigator.userAgent.match(/BlackBerry/i)
+						|| navigator.userAgent.match(/Windows Phone/i)) {
 					game.scale.setExactFit();
 					game.scale.refresh();
+					document.getElementById('everything').style.width = '100%';
 				}
 			}
 		},

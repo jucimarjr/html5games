@@ -1,4 +1,4 @@
-/*global State, Level, Life, Tilemap, Platforms, Hero, ControlHero, Grass, Fire, SmallDragon, Lady, Dragon, Princess*/
+/*global State, Tutorial, Level, Life, Tilemap, Platforms, Hero, ControlHero, Grass, Fire, SmallDragon, Lady, Dragon, Princess, Score*/
 
 State.Game = function (game) {
 	"use strict";
@@ -16,6 +16,7 @@ State.Game = function (game) {
 	this.dragon = new Dragon(game, this.tilemap, this.hero, this.lady);
 	this.princess = new Princess(game, this.platforms, this.lady, this.dragon, this.hero);
 	this.score = new Score(game, this.dragon);
+	this.tutorial = new Tutorial(game);
 };
 State.Game.prototype = {
 	create: function () {
@@ -33,6 +34,7 @@ State.Game.prototype = {
 		this.dragon.create();
 		this.princess.create();
 		this.score.create();
+		this.tutorial.create();
 	},
 	update: function () {
 		"use strict";

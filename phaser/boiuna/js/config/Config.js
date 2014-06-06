@@ -4,14 +4,28 @@
 var Config = {
 	global: {
 		animationVelocity: 8,
+		isMobile: navigator.userAgent.match(/Android/i)
+					|| navigator.userAgent.match(/webOS/i)
+					|| navigator.userAgent.match(/iPhone/i)
+					|| navigator.userAgent.match(/iPad/i)
+					|| navigator.userAgent.match(/iPod/i)
+					|| navigator.userAgent.match(/BlackBerry/i)
+					|| navigator.userAgent.match(/Windows Phone/i),
 		screen: {
 			width: 960,
 			height: 600,
 			resize: function (game) {
 				"use strict";
-				if (window.innerHeight < 600 || window.innerWidth < 960) {
+				if (navigator.userAgent.match(/Android/i)
+						|| navigator.userAgent.match(/webOS/i)
+						|| navigator.userAgent.match(/iPhone/i)
+						|| navigator.userAgent.match(/iPad/i)
+						|| navigator.userAgent.match(/iPod/i)
+						|| navigator.userAgent.match(/BlackBerry/i)
+						|| navigator.userAgent.match(/Windows Phone/i)) {
 					game.scale.setExactFit();
 					game.scale.refresh();
+					document.getElementById('everything').style.width = '100%';
 				}
 			}
 		},
@@ -216,6 +230,7 @@ Config.defeatScreen = {
 		}
 	}
 };
+
 
 //Level
 Config.level = {
@@ -529,7 +544,7 @@ Config.dragon = {
 	},
 	timeGrow: 1000 / Config.global.animationVelocity,
 	number: {
-		pieces: 10
+		pieces: Config.global.isMobile ? 7 : 20
 	},
 	velocity: 140,
 	damage: Config.hero.health.initial / 1000
@@ -573,4 +588,19 @@ Config.score = {
 			y: 0
 		}
 	}
+};
+
+//Tutorial
+Config.tutorial = {
+	dir: {
+		desktop: 'assets/images/TutorialDesktop_960-600.png',
+		mobile: 'assets/images/TutorialMobile_960-600.png'
+	},
+	x: Config.global.screen.width / 2,
+	y: Config.global.screen.height / 2,
+	dim: 0,
+	time: {
+		dim: 1000
+	},
+	tweenRepeat: 5
 };
