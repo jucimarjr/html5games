@@ -1,6 +1,6 @@
 Inkey = function () {
 	this.sprite = null;
-	this.speed = 200;
+	this.speed = 80;
 	
 	this.direction = "RIGHT"; //LEFT, RIGHT, UP, DOWN
 };
@@ -50,7 +50,7 @@ Inkey.prototype = {
 	},
 	
 	//Verifica a colisão do inkey com o mapa
-	verifyMapCollision : function(layer) {				
+	verifyMapCollision : function() {				
 		game.physics.arcade.collide(this.sprite, map.layer, this.setNewDirection, null, this);		
 	},
 	
