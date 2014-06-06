@@ -86,7 +86,7 @@ Menu.prototype.highScores = function() {
 Menu.prototype.credits = function() {
     this.fadeOut();
     fadeout.onComplete.add(function() {
-        //this.game.state.start('Credits', Credits);
+        this.game.state.start('Credits', Credits);
     });
 };
 

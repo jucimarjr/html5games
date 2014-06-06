@@ -13,6 +13,7 @@
         <script type="text/javascript" src="js/Life.js"></script>
         <script type="text/javascript" src="js/Score.js"></script>
         <script type="text/javascript" src="js/Player.js"></script>
+        <script type="text/javascript" src="js/Credits.js"></script>
         <style type="text/css">
             body {
                 border:1px dashed #000000;
@@ -43,7 +44,7 @@
 //game.state.add('HowToPlay', HowToPlay);
 //game.state.add('HighScore', HighScore);
 //game.state.add('HighScoreInput', HighScoreInput);
-//game.state.add('Credits', Credits);
+			game.state.add('Credits', Credits);
             function preload() {
                 game.load.atlas('Menu', spriteSheetsImageMenu, spriteSheetsJsonMenu);
                 game.load.image('btPlay', btPlay);
@@ -53,6 +54,7 @@
                 //game.load.image('btPlaySelected', btPlaySelected);
                 game.load.audio('Menu_Sound', audioSplashMenu);
                 game.load.audio('Splash_Sound', audioSplashGame);
+                game.load.image('tela_creditos', 'assets/screenshots/About_800-600.png');
 
                 //game.load.atlas('enemy1', 'assets/spritesheets/enemy1.png', 'assets/spritesheets/enemy1.json');
                 //game.load.image('bullet','assets/bullet_4-9.png');

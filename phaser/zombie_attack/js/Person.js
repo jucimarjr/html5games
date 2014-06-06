@@ -48,24 +48,6 @@ Person.prototype.boundOut = function(person)
     person.body.velocity.x = velocityX;
     person.body.velocity.y = velocityY;
 	
-//	console.log("person::boundout =" + person.name);
-//	var y = 0;
-//	var x = 0;
-//	if(person.name.contains("rigth"))
-//	{
-//		
-//		y = game.rnd.integerInRange(162,400);
-//		x = -25;
-//	}
-//	else 
-//	{
-//		y = game.rnd.integerInRange(162,400);
-//		x = 625;
-//	}
-//	console.log("x = "+x+" y = "+y);
-//	person.body.reset(x,y);
-//	this.setVelocity(person);
-//	console.log("person::boundout =" + person.name);
 };
 
 Person.prototype.getPosition = function(positionX)
