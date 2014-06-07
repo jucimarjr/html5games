@@ -22,6 +22,7 @@ Game.prototype.create = function ()
 {
 	this.stage = 0;
 	this.playing = true;
+	this.createGame = true;
 	this.idPerson = 0;
 	this.idZombie = 0;
 	this.score = 0;
@@ -29,11 +30,10 @@ Game.prototype.create = function ()
 	this.roundText = null;
 	this.groupZombies = [];
 	this.groupPeople = [];
-	this.amountPeople;
 	this.amountZombiesDead = 0;
 	this.amountZombies = 0;
 	this.amountAliveZombies = 0;
-	this.amountPeople = 5;
+	this.amountPeople = 0;
 	this.soundGame = this.game.add.audio('audioBackGroundGame',1,true);
 	this.soundGame.play();
 	this.spriteCenario = this.game.add.sprite(0, 0,'cenario');
@@ -41,7 +41,7 @@ Game.prototype.create = function ()
 	this.spriteRound = this.game.add.sprite(500,0,'round');
 	this.target = this.game.add.sprite(this.game.input.x-this.targetRadius,this.game.input.y-this.targetRadius,'target');
 	this.target.z = 1;
-	this.game.time.events.repeat(Phaser.Timer.SECOND * 5, this.amountPeople, this.initPeople, this);
+	this.game.time.events.repeat(Phaser.Timer.SECOND * 5, 5, this.initPeople, this);
 	this.game.time.events.repeat(Phaser.Timer.SECOND * 5, 10, this.initZombies, this);
 	
 	this.groupGame = this.game.add.group();
@@ -113,7 +113,7 @@ Game.prototype.gameOver = function (amountPeople) {
 	//console.log("amount people = "+amountPeople)
 	game.lastScore = this.score;
 	game.lastRound = this.stage;
-	if(amountPeople == 0)
+	if(amountPeople == 0&&!this.createGame)
 	{
 		this.soundGame.pause();
 		this.soundGame.stop();
@@ -138,6 +138,7 @@ Game.prototype.initPeople = function()
 	this.groupPeople.push(person);
 	this.groupGame.add(person.spritePerson);
 	this.amountPeople +=1;
+	this.createGame = false;
 };
 
 
