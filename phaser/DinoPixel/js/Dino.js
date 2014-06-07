@@ -23,7 +23,7 @@ Dino.prototype.add = function(posX, posY)
 	this.isAlive = true;
 	this.sprite = game.add.sprite(posX, posY ,'dino');
 	game.physics.enable(this.sprite);
-	this.sprite.body.maxVelocity.x = 1400;
+	this.sprite.body.maxVelocity.y = 800;
 	this.sprite.anchor.setTo(0.4 ,0.5);
 	this.sprite.smoothed = false; 
 	this.sprite.animations.add('stoped',[1],1);
@@ -237,7 +237,7 @@ Dino.prototype.hitByCar = function(dino,target)
 
 Dino.prototype.callGameOver = function()
 {
-	var gO = game.add.sprite(game.camera.width/2-200, game.camera.height/2-150,'scoreTable');
+	var gO = game.add.sprite(game.camera.width/2-200, game.camera.height/2-50,'scoreTable');
 	gO.fixedToCamera = true;
 	track.stop();
 	var score = game.add.text(game.camera.width/2 - 50, game.camera.height/2 +70, this.score,style6);
@@ -297,7 +297,7 @@ Dino.prototype.regulateFood = function()
 Dino.prototype.replaceFood = function()
 {
 	this.foodCount += 1;
-	if(this.hearts.countLiving()<5 && this.foodCount ==5)
+	if(this.hearts.countLiving()<5 && this.foodCount >=5)
 	{
 		this.hearts.create(this.hearts.countLiving() * 64,0, 'heart');
 		this.sfxlifeUp.play();

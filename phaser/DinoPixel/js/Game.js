@@ -250,9 +250,9 @@ Game.prototype.waveZeroUpdate = function()
 Game.prototype.callTank = function()
 {
 	if(this.player.sprite.x > game.world.width/2)
-		this.objectEnemy[this.objectEnemy.length] = new Enemy(this.player,this.layer4,this.enemys.create(0,1400,'tank'),'follow','tank');
+		this.objectEnemy[this.objectEnemy.length] = new Enemy(this.player,this.layer4,this.enemys.create(0,1250,'tank'),'follow','tank');
 	else
-		this.objectEnemy[this.objectEnemy.length] = new Enemy(this.player,this.layer4,this.enemys.create(game.world.width-200,1300,'tank'),'follow','tank');
+		this.objectEnemy[this.objectEnemy.length] = new Enemy(this.player,this.layer4,this.enemys.create(game.world.width-200,1250,'tank'),'follow','tank');
 };
 
 Game.prototype.CallEnemys = function()
