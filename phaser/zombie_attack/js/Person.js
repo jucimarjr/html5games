@@ -78,7 +78,7 @@ function randX(rand)
 
 Person.prototype.setVelocity = function(person)
 {	
-	if(person.name.contains("rigth"))
+	if(person.name.indexOf("rigth") != -1)
 	{
 		person.body.velocity.x  = game.rnd.integerInRange(10,30);
 		person.body.velocity.y  = Math.random()*10;

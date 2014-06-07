@@ -137,6 +137,7 @@ Game.prototype.initPeople = function()
 	var person = new Person(this.idPerson,this.game,this);
 	this.groupPeople.push(person);
 	this.groupGame.add(person.spritePerson);
+	this.amountPeople +=1;
 };
 
 

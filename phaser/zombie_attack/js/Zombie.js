@@ -152,7 +152,7 @@ function randX(rand)
 Zombie.prototype.setVelocity = function(zombie)
 {	
 	//console.log("zombie::boundout =" + zombie.name);
-	if(zombie.name.contains("zRigth"))
+	if(zombie.name.indexOf("zRigth") != -1)
 	{
 		zombie.body.velocity.x  = game.rnd.integerInRange(10,50);
 	    zombie.body.velocity.y  = Math.random()*10;
