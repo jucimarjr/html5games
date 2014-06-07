@@ -101,13 +101,7 @@ Pinky.prototype = {
 		this.valueYInTiles = Math.round(this.sprite.y/36);
 		this.vx = this.sprite.x/36;
 		this.vy = this.sprite.y/36;		
-		/*
-		console.log(this.valueXInTiles);
-		console.log(this.valueYInTiles);
 		
-		console.log(this.vx);
-		console.log(this.vy);
-		*/
 		if (this.direction == "LEFT"){			 									
 			this.upTile = map.map.getTileAbove(map.map.getLayerIndex("Wall") , this.valueXInTiles, this.valueYInTiles);
 			this.downTile = map.map.getTileBelow(map.map.getLayerIndex("Wall") , this.valueXInTiles, this.valueYInTiles);
@@ -144,15 +138,10 @@ Pinky.prototype = {
 				this.direction = "UP";
 			else if (this.downDistance < this.leftDistance)
 				this.direction = "DOWN";
-			else 
+			else if (this.leftDistance < this.downDistance)
 				this.direction = "LEFT";
-			/*
-			console.log(this.upDistance);
-			console.log(this.downDistance);
-			console.log(this.leftDistance);
-			
-			console.log(this.direction);	
-			*/
+			else
+				this.direction = "DOWN";			
 		}
 		else if (this.direction == "RIGHT"){						
 			this.upTile = map.map.getTileAbove(map.map.getLayerIndex("Wall") , this.valueXInTiles, this.valueYInTiles);
@@ -190,16 +179,10 @@ Pinky.prototype = {
 				this.direction = "UP";
 			else if (this.downDistance < this.rightDistance)
 				this.direction = "DOWN";
-			else 
+			else if (this.rightDistance < this.downDistance)
 				this.direction = "RIGHT";			
-						
-			/*
-			console.log(this.upDistance);
-			console.log(this.downDistance);
-			console.log(this.rightDistance);
-			
-			console.log(this.direction);	
-			*/
+			else
+				this.direction = "UP";			
 		}
 		else if (this.direction == "UP"){			
 			this.upTile = map.map.getTileAbove(map.map.getLayerIndex("Wall") , this.valueXInTiles, this.valueYInTiles);			
@@ -238,16 +221,10 @@ Pinky.prototype = {
 				this.direction = "UP";
 			else if (this.leftDistance < this.rightDistance)
 				this.direction = "LEFT";
-			else 
+			else if (this.rightDistance < this.leftDistance)
 				this.direction = "RIGHT";
-
-			/*
-			console.log(this.upDistance);
-			console.log(this.leftDistance);
-			console.log(this.rightDistance);
-			
-			console.log(this.direction);	
-			*/
+			else
+				this.direction = "LEFT";
 		}
 		else if (this.direction == "DOWN"){		
 			this.downTile = map.map.getTileBelow(map.map.getLayerIndex("Wall") , this.valueXInTiles, this.valueYInTiles);			
@@ -285,28 +262,15 @@ Pinky.prototype = {
 				this.direction = "DOWN";
 			else if (this.leftDistance < this.rightDistance)
 				this.direction = "LEFT";
-			else 
+			else if (this.rightDistance < this.leftDistance)
 				this.direction = "RIGHT";
-			
-			/*
-			console.log(this.downDistance);
-			console.log(this.leftDistance);
-			console.log(this.rightDistance);
-			
-			console.log(this.direction);	
-			*/
+			else
+				this.direction = "RIGHT";			
 		}		
-		/*
-		console.log(this.upTile);
-		console.log(this.downTile);
-		console.log(this.leftTile);
-		console.log(this.rightTile);
-		*/
 		this.upTile = "FILL";
 		this.downTile = "FILL";
 		this.leftTile = "FILL";
 		this.rightTile = "FILL";
-		//console.log("*********************************************************");
 		
 		this.leftDistance = 2000;
 		this.rightDistance = 2000;

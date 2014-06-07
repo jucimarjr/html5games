@@ -1,6 +1,6 @@
 Clyde = function () {
 	this.sprite = null;
-	this.speed = 200;
+	this.speed = 80;
 	
 	this.direction = "UP"; //LEFT, RIGHT, UP, DOWN
 };
@@ -59,59 +59,23 @@ Clyde.prototype = {
 		game.physics.arcade.collide(this.sprite, map.decision, this.correctPosition, null, this);					
 	},
 	
-	//Seta uma direção aleatória para o clyde
+	//Seta uma direção aleatória para o Clyde
 	setNewDirection : function() {
-		var number = Math.round(1 + Math.random()*2);	
-		this.valueXInTiles = Math.round(this.sprite.x/36);
-		this.valueYInTiles = Math.round(this.sprite.y/36);		
+		var number = Math.round(1 + Math.random()*3);
 		
-		if (this.direction == "LEFT"){			 									
-			this.upTile = map.map.getTileAbove(map.map.getLayerIndex("Wall") , this.valueXInTiles, this.valueYInTiles);
-			this.downTile = map.map.getTileBelow(map.map.getLayerIndex("Wall") , this.valueXInTiles, this.valueYInTiles);
-			this.leftTile = map.map.getTileLeft(map.map.getLayerIndex("Wall") , this.valueXInTiles, this.valueYInTiles);		
-			
-			if (this.upTile == null && number == 3)
-				this.direction = "UP";
-			else if (this.downTile == null && number == 4)
-				this.direction = "DOWN";
-			else if (this.leftTile == null && number == 1)
-				this.direction = "LEFT";							
-		}
-		else if (this.direction == "RIGHT"){						
-			this.upTile = map.map.getTileAbove(map.map.getLayerIndex("Wall") , this.valueXInTiles, this.valueYInTiles);
-			this.downTile = map.map.getTileBelow(map.map.getLayerIndex("Wall") , this.valueXInTiles, this.valueYInTiles);
-			this.rightTile = map.map.getTileRight(map.map.getLayerIndex("Wall") , this.valueXInTiles, this.valueYInTiles);			
-			
-			if (this.upTile == null && number == 3)
-				this.direction = "UP";
-			else if (this.downTile == null && number === 4)
-				this.direction = "DOWN";
-			else if (this.rightTile == null && number == 2)
-				this.direction = "RIGHT";						
-		}
-		else if (this.direction == "UP"){			
-			this.upTile = map.map.getTileAbove(map.map.getLayerIndex("Wall") , this.valueXInTiles, this.valueYInTiles);			
-			this.leftTile = map.map.getTileLeft(map.map.getLayerIndex("Wall") , this.valueXInTiles, this.valueYInTiles);
-			this.rightTile = map.map.getTileRight(map.map.getLayerIndex("Wall") , this.valueXInTiles, this.valueYInTiles);
-			
-			if (this.upTile == null && number == 3)
-				this.direction = "UP";
-			if (this.leftTile == null && number == 1)
+		switch(number){
+			case 1:				
 				this.direction = "LEFT";
-			if (this.rightTile == null && number == 2)
-				this.direction = "RIGHT";				
-		}
-		else if (this.direction == "DOWN"){						
-			this.downTile = map.map.getTileBelow(map.map.getLayerIndex("Wall") , this.valueXInTiles, this.valueYInTiles);			
-			this.leftTile = map.map.getTileLeft(map.map.getLayerIndex("Wall") , this.valueXInTiles, this.valueYInTiles);
-			this.rightTile = map.map.getTileRight(map.map.getLayerIndex("Wall") , this.valueXInTiles, this.valueYInTiles);
-						
-			if (this.downTile == null && number == 4)
+				break;
+			case 2:				
+				this.direction = "RIGHT";
+				break;
+			case 3:				
+				this.direction = "UP";
+				break;
+			case 4:				
 				this.direction = "DOWN";
-			if (this.leftTile == null && number == 1)
-				this.direction = "LEFT";
-			if (this.rightTile == null && number == 2)
-				this.direction = "RIGHT";						
+				break;
 		}		
 	},
 	
@@ -130,7 +94,7 @@ Clyde.prototype = {
 			this.sprite.y += 7;
 		
 		this.setNewDirection();
-	},		
+	},
 	
 	//Remove o Clyde do jogo
 	kill : function() {

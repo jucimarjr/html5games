@@ -113,9 +113,9 @@ Zombie.prototype.boundOut = function(zombie)
     
 
     if (zombie.x < 0)
-    	zombie.reset(this.game.world.width, zombie.y);
-    if (zombie.x > game.world.width)
-    	zombie.reset(0, zombie.y);
+    	zombie.reset(this.game.world.width, this.game.rnd.integerInRange(162, 400));
+    if (zombie.x > this.game.world.width)
+    	zombie.reset(0, this.game.rnd.integerInRange(162, 400));
     
     zombie.body.velocity.x = velocityX;
     zombie.body.velocity.y = velocityY;
@@ -152,7 +152,7 @@ function randX(rand)
 Zombie.prototype.setVelocity = function(zombie)
 {	
 	//console.log("zombie::boundout =" + zombie.name);
-	if(zombie.name.contains("zRigth"))
+	if(zombie.name.indexOf("zRigth") != -1)
 	{
 		zombie.body.velocity.x  = game.rnd.integerInRange(10,50);
 	    zombie.body.velocity.y  = Math.random()*10;

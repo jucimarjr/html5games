@@ -1,39 +1,53 @@
 var Game = function(game){
     this.game = game;
-    this.stage = 0;
-    this.playing = true;
-    this.idPerson = 0;
-    this.idZombie = 0;
-    this.score = 0;
-    this.scoreText = null;
-    this.roundText = null;
-    this.groupZombies = [];
-    this.groupPeople = [];
-    this.amountPeople = 5;
-    this.amountZombiesDead = 0;
-    this.amountZombies = 0;
-    this.amountAliveZombies = 0;
-    this.target = null;
+    this.stage;
+    this.playing;
+    this.idPerson;
+    this.idZombie;
+    this.score;
+    this.scoreText;
+    this.roundText;
+    this.groupZombies;
+    this.groupPeople;
+    this.amountPeople;
+    this.amountZombiesDead;
+    this.amountZombies;
+    this.amountAliveZombies;
+    this.target;
+    this.targetRadius = 10;
 };
 
-Game.prototype.preload = function(){
-	
-	
-};
 
 Game.prototype.create = function () 
 {
+	this.stage = 0;
+	this.playing = true;
+	this.createGame = true;
+	this.idPerson = 0;
+	this.idZombie = 0;
+	this.score = 0;
+	this.scoreText = null;
+	this.roundText = null;
+	this.groupZombies = [];
+	this.groupPeople = [];
+	this.amountZombiesDead = 0;
+	this.amountZombies = 0;
+	this.amountAliveZombies = 0;
+	this.amountPeople = 0;
 	this.soundGame = this.game.add.audio('audioBackGroundGame',1,true);
 	this.soundGame.play();
 	this.spriteCenario = this.game.add.sprite(0, 0,'cenario');
 	this.spriteRound = this.game.add.sprite(100,0,'score');
 	this.spriteRound = this.game.add.sprite(500,0,'round');
-	this.game.time.events.repeat(Phaser.Timer.SECOND * 5, this.amountPeople, this.initPeople, this);
+	this.target = this.game.add.sprite(this.game.input.x-this.targetRadius,this.game.input.y-this.targetRadius,'target');
+	this.target.z = 1;
+	this.game.time.events.repeat(Phaser.Timer.SECOND * 5, 5, this.initPeople, this);
 	this.game.time.events.repeat(Phaser.Timer.SECOND * 5, 10, this.initZombies, this);
 	
 	this.groupGame = this.game.add.group();
-	this.groupPeople.enableBody = true;
-	this.groupPeople.physicsBodyType = Phaser.Physics.ARCADE;
+	this.groupGame.enableBody = true;
+	this.groupGame.physicsBodyType = Phaser.Physics.ARCADE;
+	this.groupGame.add(this.target);
 	this.amountAliveZombies = this.amountZombies;
 	
 	//Fonte
@@ -60,6 +74,8 @@ Game.prototype.update = function ()
 	}
 	this.boundWorld(this.groupGame);
 	this.gameOver(this.amountPeople);
+	this.target.x = this.game.input.x-this.targetRadius;
+	this.target.y = this.game.input.y-this.targetRadius;
 };
 
 
@@ -95,8 +111,13 @@ Game.prototype.Stage = function () {
 Game.prototype.gameOver = function (amountPeople) {
 	
 	//console.log("amount people = "+amountPeople)
-	if(amountPeople == 0)
+	game.lastScore = this.score;
+	game.lastRound = this.stage;
+	if(amountPeople == 0&&!this.createGame)
 	{
+		this.soundGame.pause();
+		this.soundGame.stop();
+		setTimeout(function () { this.game.world.setBounds(0, 0, 800, 480);this.game.state.start('gameover', GameOver);} , 500 );
 		//this.game.states.shutDown();
 	}
 };
@@ -116,6 +137,8 @@ Game.prototype.initPeople = function()
 	var person = new Person(this.idPerson,this.game,this);
 	this.groupPeople.push(person);
 	this.groupGame.add(person.spritePerson);
+	this.amountPeople +=1;
+	this.createGame = false;
 };
 
 
@@ -136,15 +159,6 @@ Game.prototype.boundWorld = function(group)
 		{
 			object.body.velocity.y *= -1;
 		}
-		
-//		if(object.body.y < 400)
-//		{
-//			object.body.y =+ 1 ;
-//		}
-//		else if(object.body.y > 600)
-//		{
-//			object.body.y -= 600;
-//		}
 		
 	});
 };

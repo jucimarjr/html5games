@@ -42,14 +42,14 @@ Game.prototype = {
 		clyde2.create(1188, 252);
 		inkey2.create(1260, 540);
 		pinky2.create(828, 432);	
-		blinky3.create(36, 900);
+		blinky3.create(144, 900);
 		clyde3.create(648, 1152);
 		inkey3.create(612, 828);
 		pinky3.create(504, 612);
 		blinky4.create(1152, 756);
 		clyde4.create(1548, 864);
 		inkey4.create(828, 1008);
-		pinky4.create(1368, 1152);		
+		pinky4.create(1368, 1007);		
 		score.create();				
 	},
 	
@@ -71,11 +71,6 @@ Game.prototype = {
 		clyde4.update();
 		inkey4.update();
 		pinky4.update();	
-	},
-	
-	render : function() {
-		//blinky.render();
-		//ohhMan.render();
 	},
 	
 	loadMap : function() {
