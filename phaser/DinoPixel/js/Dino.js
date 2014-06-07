@@ -237,7 +237,7 @@ Dino.prototype.hitByCar = function(dino,target)
 
 Dino.prototype.callGameOver = function()
 {
-	var gO = game.add.sprite(game.camera.width/2-200, game.camera.height/2-50,'scoreTable');
+	var gO = game.add.sprite(game.camera.width/2-200, game.camera.height/2-250,'scoreTable');
 	gO.fixedToCamera = true;
 	track.stop();
 	var score = game.add.text(game.camera.width/2 - 50, game.camera.height/2 -30, this.score,style6);
