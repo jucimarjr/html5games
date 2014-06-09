@@ -13,8 +13,8 @@ HowToPlay.prototype.create = function()
 {
 	this.countFrames = 0;
 	this.background = this.game.add.sprite(0, 0,'screenBlack');
-	this.spriteHowtoPlay = this.game.add.sprite(300,100,'howTo');
-	this.spriteHowToPlayScene = this.game.add.sprite(300,143,'htp1');
+	//this.spriteHowtoPlay = this.game.add.sprite(300,100,'howTo');
+	this.spriteHowToPlayScene = this.game.add.sprite(300,100,'htp1');
 	
 	this.btnProximo = game.add.button(545,460, 'buttonsNext',
     	    function(){ this.ProximoFrame(); }, this);
@@ -45,9 +45,13 @@ HowToPlay.prototype.ProximoFrame = function()
 	this.countFrames +=1;
 	if (this.countFrames == 1)
 	{
-		this.spriteHowToPlayScene = this.game.add.sprite(300,143,'htp2');
+		this.spriteHowToPlayScene = this.game.add.sprite(300,100,'htp2');
 	}
-	else if (this.countFrames > 1)
+	else if (this.countFrames == 2)
+	{
+		this.spriteHowToPlayScene = this.game.add.sprite(300,100,'htp3');
+	}
+	else if (this.countFrames == 3)
 	{
 		this.game.state.start('menu', Menu);
 	}

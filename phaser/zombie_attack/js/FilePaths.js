@@ -25,7 +25,7 @@ var SplashGameImage = 'assets/screenshots/SplashGame_800-600.png';
 var screenMenu = 'assets/screenshots/MenuZombie.png';
 var gameOverScreen = 'assets/screenshots/GameOver.png';
 var splashCredits = 'assets/screenshots/Credits.png';
-var cenarioBlack = 'assets/assets/screenshots/CenarioBlack.png';
+
 //SpriteSheets
 
 //Spritesheets Botões do menu
@@ -53,9 +53,9 @@ var spriteScore = "assets/score.png";
 var spriteTarget = "assets/target.png";
 
 //audio
-var audioPuchZombie = "audio/soundEffects/slap-soundmaster13-49669815.mp3";
-var audioZombieDead = "audio/soundEffects/ugh.mp3";
-var audioBackGroundGame = "audio/hyrulecastle.mp3";
+var audioPuchZombie = "audios/soundEffects/slap-soundmaster13-49669815.mp3";
+var audioZombieDead = "audios/soundEffects/ugh.mp3";
+var audioBackGroundGame = "audios/hyrulecastle.mp3";
 
 var btImageMenu = "assets/menu.png";
 var btImageProximoJson = "assets/spritesheets/buttonsNext.json";

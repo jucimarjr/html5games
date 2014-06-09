@@ -101,6 +101,7 @@ Person.prototype.killPerson = function(person,zombie)
     person.body.velocity.x  = 0;
     person.body.velocity.y  = 0;
     this.classGame.amountPeople -= 1;
+    this.classGame.amountPeopleMethod(this.classGame.amountPeople);
 	this.alive = false;
 	person.loadTexture('zombieBitePerson');
 	person.animations.add('zBitePerson');
