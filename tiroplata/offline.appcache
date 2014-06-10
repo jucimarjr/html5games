@@ -1,5 +1,5 @@
 ﻿CACHE MANIFEST
-#1402007446
+#1402435090
 index.html
 c2runtime.js
 jquery-2.0.0.min.js
@@ -21,6 +21,14 @@ images\teclabaixo-sheet0.png
 images\teclaesquerda-sheet0.png
 images\tecladireita-sheet0.png
 images\nuvem-sheet0.png
+media\movimento_tanque.m4a
+media\movimento_tanque.ogg
+media\tiro_acerta_tanque.m4a
+media\tiro_acerta_tanque.ogg
+media\tiro_no_chao.m4a
+media\tiro_no_chao.ogg
+media\tiro_sai_do_cano.m4a
+media\tiro_sai_do_cano.ogg
 icon-16.png
 icon-32.png
 icon-114.png
