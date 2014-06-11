@@ -40,12 +40,17 @@ HighScoreInput.prototype.setLocalStorageScore = function (score, position) {
             localStorage["nameScore" + i] = nameScoreTemp;
         } else {
             localStorage["score" + position] = score;
-            var name = prompt("Enter your name:","");
-            while( name.length > 5 ){
-                alert("Maximum 5 letters!");
-                name = prompt("Enter your name:","");
-            }
-            localStorage["nameScore" + position] = name.trim();
+            do{
+				var name = prompt("Enter your name:","");
+			}while(name == null);
+			while( name.length > 5 ){
+				alert("Maximum 5 letters!");
+				do{
+					var name = prompt("Enter your name:","");
+				}while(name == null);
+			}
+			localStorage["nameScore" + position] = name.trim();
+            
         }
     }
     
