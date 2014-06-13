@@ -112,8 +112,8 @@ Spaceman.prototype.resetSpaceman = function(){
 		})
 		this.gameClass.txt.text = '';
 		game.input.keyboard.clearCaptures();
-		game.input.keyboard.addKey(Phaser.Keyboard.CONTROL).onDown.addOnce(this.gameClass.start, this.gameClass)
-		if(players == 2) game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onDown.addOnce(this.gameClass.start, this.gameClass)
+		game.input.keyboard.addKey(Phaser.Keyboard.CONTROL).onDown.addOnce(this.gameClass.start, this.gameClass);
+		if(players == 2) game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onDown.addOnce(this.gameClass.start, this.gameClass);
 		if(game.device.touch) game.input.onDown.addOnce(this.gameClass.start, this.gameClass);
 		//this.animations.play('flying');
 	} else {this.resetSpaceman()}
