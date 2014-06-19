@@ -87,24 +87,7 @@ game.state.add('credits', Credits, false);
 function preload()
 {
 	
-	game.load.audio('menuSound','assets/musics/menu.mp3');
-	game.load.audio('portalTime','assets/sfx/portalTime2.mp3');
-	game.load.audio('track','assets/musics/jogo.mp3');
-	game.load.audio('jump','assets/sfx/jump.mp3');
-	game.load.audio('smash','assets/sfx/esmagando.mp3');
-	game.load.audio('playsound', 'assets/sfx/menusound.mp3');
-	game.load.audio('creditsSound', 'assets/sfx/menusoundluan.mp3');
-	game.load.audio('insertCoin','assets/sfx/insertCoin.mp3');
-	game.load.audio('inimigoTiro','assets/sfx/inimigoTiro.mp3');
-	game.load.audio('explosion','assets/sfx/explosion3.mp3');
-	game.load.audio('hitCar','assets/sfx/hitCar.mp3');
-	game.load.audio('eat','assets/sfx/eat.mp3');
-	game.load.audio('lifeUp','assets/sfx/lifeUp.mp3');
-	game.load.audio('lose','assets/sfx/lose2.mp3');
-	game.load.audio('foodDown','assets/sfx/foodDown.mp3');
-	game.load.audio('portalTime','assets/sfx/portalTime.mp3');
-	game.load.audio('takeDamage','assets/sfx/takeDamage.mp3');
-	game.load.audio('tiroTank','assets/sfx/explosion3.mp3');
+	
 	game.load.image('splashGame','assets/screens/DinoPixel.png');
 	game.load.image('scoreTable','assets/sprites/scoreTable.png');
 	game.load.image('pressStart','assets/screens/pressOnScreenToStart.png');
@@ -137,6 +120,24 @@ function preload()
 	game.load.spritesheet('specialOpsCar','assets/spriteSheets/specialOpsCar.png',176,112,3);
 	game.load.spritesheet('truck','assets/spriteSheets/truck.png',188,116,3);
 	game.load.tilemap('stage', 'assets/tileMaps/stage.json', null, Phaser.Tilemap.TILED_JSON);
+game.load.audio('menuSound','assets/musics/menu.mp3');
+	game.load.audio('portalTime','assets/sfx/portalTime2.mp3');
+	game.load.audio('track','assets/musics/jogo.mp3');
+	game.load.audio('jump','assets/sfx/jump.mp3');
+	game.load.audio('smash','assets/sfx/esmagando.mp3');
+	game.load.audio('playsound', 'assets/sfx/menusound.mp3');
+	game.load.audio('creditsSound', 'assets/sfx/menusoundluan.mp3');
+	game.load.audio('insertCoin','assets/sfx/insertCoin.mp3');
+	game.load.audio('inimigoTiro','assets/sfx/inimigoTiro.mp3');
+	game.load.audio('explosion','assets/sfx/explosion3.mp3');
+	game.load.audio('hitCar','assets/sfx/hitCar.mp3');
+	game.load.audio('eat','assets/sfx/eat.mp3');
+	game.load.audio('lifeUp','assets/sfx/lifeUp.mp3');
+	game.load.audio('lose','assets/sfx/lose2.mp3');
+	game.load.audio('foodDown','assets/sfx/foodDown.mp3');
+	game.load.audio('portalTime','assets/sfx/portalTime.mp3');
+	game.load.audio('takeDamage','assets/sfx/takeDamage.mp3');
+	game.load.audio('tiroTank','assets/sfx/explosion3.mp3');
 	
 }
 function create()
