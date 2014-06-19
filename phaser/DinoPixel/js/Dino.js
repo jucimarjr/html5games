@@ -26,16 +26,24 @@ Dino.prototype.add = function(posX, posY)
 	this.sprite.body.maxVelocity.y = 800;
 	this.sprite.anchor.setTo(0.4 ,0.5);
 	this.sprite.smoothed = false; 
-	this.sprite.animations.add('stoped',[1],1);
 	this.sprite.animations.add('walk',[1,2,3,4,5,6,7,0],12,true);
-	this.sprite.animations.add('atack',[10,11,1],10);
+	this.sprite.animations.add('stoped',[1],1);
+	this.ataqueAnim = this.sprite.animations.add('atack',[10,11,1],10);
+	this.ataqueAnim.onComplete.add(function()
+			{
+				this.sprite.animations.play('stoped');
+				if(this.sprite.scale.x == -1)
+				this.sprite.body.setSize(32,110,-2,5);
+				else if(this.sprite.scale.x == 1)
+				this.sprite.body.setSize(32,110,-4,5);
+			}, this);
 	this.dieAnim = this.sprite.animations.add('die',[12,13,14,15,16,17,18],10);
 	this.dieAnim.onComplete.add(function(){this.callGameOver();},this);
 	this.sprite.body.collideWorldBounds = true;
 	this.sprite.body.checkCollision.up = false;
 	this.sprite.body.checkCollision.left = false;
 	this.sprite.body.checkCollision.right = false;
-	this.sprite.body.setSize(32,128,-4,-4);
+	this.sprite.body.setSize(32,110,-4,5);
 	this.sprite.body.tilePadding.y = 100;
 	this.sprite.body.tilePadding.x = 100;
 	this.cursors = game.input.keyboard.createCursorKeys();
@@ -66,14 +74,14 @@ Dino.prototype.enableMovement = function ()
 	this.sprite.body.velocity.x = 0;
 	if(this.cursors.left.isDown && !this.onAtackMode)
 	{
-		this.sprite.body.setSize(32,128,-2,-4);
+		this.sprite.body.setSize(32,110,-2,5);
 		this.sprite.scale.setTo(-1,1);
 		this.sprite.animations.play('walk');		
 		this.sprite.body.velocity.x = -this.playerSpeed;
 	}
 	else if(this.cursors.right.isDown && !this.onAtackMode)
 		{
-		this.sprite.body.setSize(32,128,-4,-4);
+		this.sprite.body.setSize(32,110,-4,5);
 		this.sprite.scale.setTo(1,1);
 		this.sprite.animations.play('walk');		
 		this.sprite.body.velocity.x = this.playerSpeed;
@@ -81,12 +89,25 @@ Dino.prototype.enableMovement = function ()
 	else 
 		if(this.sprite.body.velocity.y==0 && this.sprite.body.velocity.x==0 && this.sprite.animations.currentAnim.name!= 'atack' && this.sprite.animations.currentAnim.name!= 'die')
 	{
-		this.sprite.animations.play('stoped');
+		this.sprite.animations.play('stoped');	
+		if(this.sprite.scale.x == -1)
+			this.sprite.body.setSize(32,110,-2,5);
+			else if(this.sprite.scale.x == 1)
+			this.sprite.body.setSize(32,110,-4,5);
 	}
-	if(this.sprite.body.velocity.y < 0)
-		this.sprite.frame = 9;
-		else if(this.sprite.body.velocity.y > 0)
-		this.sprite.frame = 8;
+		if (this.cursors.down.isDown && this.sprite.body.velocity.y==0 && this.sprite.body.velocity.x==0 && this.sprite.animations.currentAnim.name!= 'atack' && this.sprite.animations.currentAnim.name!= 'die')
+		{
+			this.sprite.animations.stop();
+			this.sprite.frame = 19;
+			if(this.sprite.scale.x == -1)
+				this.sprite.body.setSize(32,48,-2,34);
+				else if(this.sprite.scale.x == 1)
+				this.sprite.body.setSize(32,48,-4,34);
+		}
+		if(this.sprite.body.velocity.y < 0 )
+			this.sprite.frame = 9;
+			else if(this.sprite.body.velocity.y > 50)
+			this.sprite.frame = 8;
 };
 
 Dino.prototype.enableJump = function()
@@ -100,12 +121,13 @@ Dino.prototype.enableJump = function()
 
 Dino.prototype.enableAtack = function()
 {
+	game.camera.y += 100; 
 	if(this.atackButton.isDown && game.time.now >= this.timeToAtack && this.sprite.body.onFloor())
 	{	
 		if(this.sprite.scale.x == -1)
-			this.sprite.body.setSize(96,128,-50,-4);
-		else
-			this.sprite.body.setSize(96,128,30,-4);
+			this.sprite.body.setSize(96,110,-50,5);
+		else if(this.sprite.scale.x == 1)
+			this.sprite.body.setSize(96,110,30,5);
 		this.onAtackMode = true;
 		this.sprite.animations.stop();
 		this.sprite.animations.play('atack');
@@ -129,22 +151,26 @@ Dino.prototype.smash = function(dino,target)
 		break;
 		case 'people':
 			splashBlood1(target.x,target.y);
+			this.sfxEat.play();
 		p = 5; 
 		this.score += p; 
 		break;
 		case 'shooter' : 
 			splashBlood1(target.x,target.y);
+			this.sfxEat.play();
 		p = 12;
 		this.score += p;
 		splashBlood1(target.x,target.y);
 		break;
 		case 'bomber' :
 			splashBlood1(target.x,target.y);
+			this.sfxEat.play();
 		p = 16;
 		this.score += p;
 		break;
 		case 'sniper' :
 			splashBlood1(target.x,target.y);
+			this.sfxEat.play();
 		p = 20;
 		this.score += p;
 		default : this.score +=1; 
@@ -157,34 +183,31 @@ Dino.prototype.bit = function(dino,target)
 {
 	if(this.onAtackMode)
 	{	
+		this.sfxEat.play();
 		var p;
 		switch(target.tag)
 		{
 			case 'human': 
 				splashBlood2(target.x,target.y);
 				this.replaceFood();
-				this.sfxEat.play();
 				p = 5;
 				this.score += p; 
 			break;
 			case 'shooter' : 
 				splashBlood2(target.x,target.y);
 				this.replaceFood();
-				this.sfxEat.play();
 				p = 10;
 				this.score += p;
 			break;
 			case 'bomber' : 
 				splashBlood2(target.x,target.y);
 				this.replaceFood();
-				this.sfxEat.play();
 				p = 15;
 				this.score += p;
 			break;
 			case 'sniper' : 
 				splashBlood2(target.x,target.y);
 				this.replaceFood();
-				this.sfxEat.play();
 				p = 17;
 				this.score += p;
 			break;

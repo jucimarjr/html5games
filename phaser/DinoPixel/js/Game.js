@@ -19,24 +19,24 @@ Game.prototype.create = function()
 	game.physics.startSystem(Phaser.Game.ARCADE);
 	game.physics.arcade.gravity.y = this.gravity;
 	//cenario
-	this.bg = game.add.image(0,0,'backGround');
-	this.bg.fixedToCamera = true;
+	//this.bg = game.add.image(0,0,'backGround');
+	//this.bg.fixedToCamera = true;
 	this.map = game.add.tilemap('stage');
 	this.map.addTilesetImage('cityThings','cityThings');
 	this.map.addTilesetImage('urbanBuildings1','urbanBuildings1');
 	this.map.addTilesetImage('urbanBuildings2','urbanBuildings2');
-	this.layerBg2 = this.map.createLayer('bg2');
-	this.layerBg1 = this.map.createLayer('bg1');
-	this.layer = this.map.createLayer('Camada de Tiles 1');
-	this.layer2 = this.map.createLayer('Camada de Tiles 2');
-	this.layer3 = this.map.createLayer('Camada de Tiles 3');
+	//this.layerBg2 = this.map.createLayer('bg2');
+	//this.layerBg1 = this.map.createLayer('bg1');
+	//this.layer = this.map.createLayer('Camada de Tiles 1');
+	//this.layer2 = this.map.createLayer('Camada de Tiles 2');
+	//this.layer3 = this.map.createLayer('Camada de Tiles 3');
 	this.layer4 = this.map.createLayer('Camada de Tiles 4');
 	this.map.setCollision([162,163,15,16,2086,2089,2090],true,'Camada de Tiles 4'); // IDs dos tiles que colidem (plataformas).
 	this.map.setCollisionBetween(19,26, true,'Camada de Tiles 4'); // intervaldo de IDs dos tiles que colidem (plataformas).
 	this.map.setCollisionBetween(2152,2156, true,'Camada de Tiles 4');
 	this.map.setCollisionBetween(2083,2085, true,'Camada de Tiles 4');
-	this.layerBg1.scrollFactorX = 0.3;
-	this.layerBg2.scrollFactorX = 0.1;
+	//this.layerBg1.scrollFactorX = 0.3;
+	//this.layerBg2.scrollFactorX = 0.1;
 	//this.layer4.debug = true;
 	
 	this.layer4.resizeWorld();
@@ -325,7 +325,6 @@ Game.prototype.callPlataformEnemys = function()
 Game.prototype.render = function()
 {
 	//game.debug.body(this.player.sprite);
-	//game.debug.body(this.objectEnemy[0].sprite);
 };
 function explode(x,y)
 {
