@@ -64,6 +64,7 @@ Dino.prototype.add = function(posX, posY)
 
 Dino.prototype.update = function()
 {
+	adjustePos(this);
 	this.regulateFood();
 	this.enableAtack();
 	this.enableJump();

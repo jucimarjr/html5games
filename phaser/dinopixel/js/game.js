@@ -250,9 +250,9 @@ Game.prototype.waveZeroUpdate = function()
 Game.prototype.callTank = function()
 {
 	if(this.player.sprite.x > game.world.width/2)
-		this.objectEnemy[this.objectEnemy.length] = new Enemy(this.player,this.layer4,this.enemys.create(0,1250,'tank'),'follow','tank');
+		this.objectEnemy[this.enemys.countLiving()] = new Enemy(this.player,this.layer4,this.enemys.create(0,1250,'tank'),'follow','tank');
 	else
-		this.objectEnemy[this.objectEnemy.length] = new Enemy(this.player,this.layer4,this.enemys.create(game.world.width-200,1250,'tank'),'follow','tank');
+		this.objectEnemy[this.enemys.countLiving()] = new Enemy(this.player,this.layer4,this.enemys.create(game.world.width-200,1250,'tank'),'follow','tank');
 };
 
 Game.prototype.CallEnemys = function()
@@ -261,21 +261,21 @@ Game.prototype.CallEnemys = function()
 	{
 	case 1:
 		if(this.player.sprite.x > game.world.width/2)
-			this.objectEnemy[this.objectEnemy.length] = new Enemy(this.player,this.layer4,this.enemys.create(0,1400,'policeCar'),'followAndSpawn','police');
+			this.objectEnemy[this.enemys.countLiving()] = new Enemy(this.player,this.layer4,this.enemys.create(0,1400,'policeCar'),'followAndSpawn','police');
 		else
-			this.objectEnemy[this.objectEnemy.length] = new Enemy(this.player,this.layer4,this.enemys.create(game.world.width,1400,'policeCar'),'followAndSpawn','police');
+			this.objectEnemy[this.enemys.countLiving()] = new Enemy(this.player,this.layer4,this.enemys.create(game.world.width,1400,'policeCar'),'followAndSpawn','police');
 	break;
 	case 2:
 		if(this.player.sprite.x > game.world.width/2)
-			this.objectEnemy[this.objectEnemy.length] = new Enemy(this.player,this.layer4,this.enemys.create(0,1400,'specialOpsCar'),'followAndSpawn','truck');
+			this.objectEnemy[this.enemys.countLiving()] = new Enemy(this.player,this.layer4,this.enemys.create(0,1400,'specialOpsCar'),'followAndSpawn','truck');
 		else
-			this.objectEnemy[this.objectEnemy.length] = new Enemy(this.player,this.layer4,this.enemys.create(game.world.width,1400,'specialOpsCar'),'followAndSpawn','truck');
+			this.objectEnemy[this.enemys.countLiving()] = new Enemy(this.player,this.layer4,this.enemys.create(game.world.width,1400,'specialOpsCar'),'followAndSpawn','truck');
 	break;
 	case 3:
 		if(this.player.sprite.x > game.world.width/2)
-			this.objectEnemy[this.objectEnemy.length] = new Enemy(this.player,this.layer4,this.enemys.create(0,1400,'truck'),'followAndSpawn','truck');
+			this.objectEnemy[this.enemys.countLiving()] = new Enemy(this.player,this.layer4,this.enemys.create(0,1400,'truck'),'followAndSpawn','truck');
 		else
-			this.objectEnemy[this.objectEnemy.length] = new Enemy(this.player,this.layer4,this.enemys.create(game.world.width,1400,'truck'),'followAndSpawn','truck');
+			this.objectEnemy[this.enemys.countLiving()] = new Enemy(this.player,this.layer4,this.enemys.create(game.world.width,1400,'truck'),'followAndSpawn','truck');
 	break;
 	}
 };
@@ -288,13 +288,13 @@ Game.prototype.callPlataformEnemys = function()
 		case 2:
 		switch(r)
 			{
-				case 0 : this.objectEnemy[this.objectEnemy.length] = new Enemy(this.player,this.layer4,this.enemys.create(2304,1024,'specialOpsSniper'),'stayHold','sniper'); 
+				case 0 : this.objectEnemy[this.enemys.countLiving()] = new Enemy(this.player,this.layer4,this.enemys.create(2304,1024,'specialOpsSniper'),'stayHold','sniper'); 
 				break;
-				case 1 : this.objectEnemy[this.objectEnemy.length] = new Enemy(this.player,this.layer4,this.enemys.create(5248,576,'specialOpsSniper'),'stayHold','sniper');
+				case 1 : this.objectEnemy[this.enemys.countLiving()] = new Enemy(this.player,this.layer4,this.enemys.create(5248,576,'specialOpsSniper'),'stayHold','sniper');
 				break;
-				case 2 : this.objectEnemy[this.objectEnemy.length] = new Enemy(this.player,this.layer4,this.enemys.create(4064,448,'specialOpsSniper'),'stayHold','sniper');
+				case 2 : this.objectEnemy[this.enemys.countLiving()] = new Enemy(this.player,this.layer4,this.enemys.create(4064,448,'specialOpsSniper'),'stayHold','sniper');
 				break;
-				case 3 : this.objectEnemy[this.objectEnemy.length] = new Enemy(this.player,this.layer4,this.enemys.create(3264,1120,'specialOpsSniper'),'stayHold','sniper');
+				case 3 : this.objectEnemy[this.enemys.countLiving()] = new Enemy(this.player,this.layer4,this.enemys.create(3264,1120,'specialOpsSniper'),'stayHold','sniper');
 				break;
 			}
 			break;
@@ -302,20 +302,20 @@ Game.prototype.callPlataformEnemys = function()
 		switch(r)
 			{
 				case 0 : 
-					this.objectEnemy[this.objectEnemy.length] = new Enemy(this.player,this.layer4,this.enemys.create(2304,1024,'armySniper'),'stayHold','sniper');
-					this.objectEnemy[this.objectEnemy.length] = new Enemy(this.player,this.layer4,this.enemys.create(5248,576,'armySniper'),'stayHold','sniper');
+					this.objectEnemy[this.enemys.countLiving()] = new Enemy(this.player,this.layer4,this.enemys.create(2304,1024,'armySniper'),'stayHold','sniper');
+					this.objectEnemy[this.enemys.countLiving()] = new Enemy(this.player,this.layer4,this.enemys.create(5248,576,'armySniper'),'stayHold','sniper');
 				break;
 				case 1 : 
-					this.objectEnemy[this.objectEnemy.length] = new Enemy(this.player,this.layer4,this.enemys.create(5248,576,'armySniper'),'stayHold','sniper');
-					this.objectEnemy[this.objectEnemy.length] = new Enemy(this.player,this.layer4,this.enemys.create(4064,448,'armySniper'),'stayHold','sniper');
+					this.objectEnemy[this.enemys.countLiving()] = new Enemy(this.player,this.layer4,this.enemys.create(5248,576,'armySniper'),'stayHold','sniper');
+					this.objectEnemy[this.enemys.countLiving()] = new Enemy(this.player,this.layer4,this.enemys.create(4064,448,'armySniper'),'stayHold','sniper');
 				break;
 				case 2 : 
-					this.objectEnemy[this.objectEnemy.length] = new Enemy(this.player,this.layer4,this.enemys.create(5248,576,'armySniper'),'stayHold','sniper');
-					this.objectEnemy[this.objectEnemy.length] = new Enemy(this.player,this.layer4,this.enemys.create(4064,448,'armySniper'),'stayHold','sniper');
+					this.objectEnemy[this.enemys.countLiving()] = new Enemy(this.player,this.layer4,this.enemys.create(5248,576,'armySniper'),'stayHold','sniper');
+					this.objectEnemy[this.enemys.countLiving()] = new Enemy(this.player,this.layer4,this.enemys.create(4064,448,'armySniper'),'stayHold','sniper');
 				break;
 				default :
-					this.objectEnemy[this.objectEnemy.length] = new Enemy(this.player,this.layer4,this.enemys.create(5248,576,'armySniper'),'stayHold','sniper');
-					this.objectEnemy[this.objectEnemy.length] = new Enemy(this.player,this.layer4,this.enemys.create(3264,1120,'armySniper'),'stayHold','sniper');
+					this.objectEnemy[this.enemys.countLiving()] = new Enemy(this.player,this.layer4,this.enemys.create(5248,576,'armySniper'),'stayHold','sniper');
+					this.objectEnemy[this.enemys.countLiving()] = new Enemy(this.player,this.layer4,this.enemys.create(3264,1120,'armySniper'),'stayHold','sniper');
 				break;
 			}
 		break;
@@ -326,6 +326,13 @@ Game.prototype.render = function()
 {
 	//game.debug.body(this.player.sprite);
 };
+
+function adjustePos(context)
+{
+	if (context.sprite.y + context.sprite.height/2 > 1500)
+		context.sprite.y = 1390;
+}
+
 function explode(x,y)
 {
 	var explosion = game.add.sprite(x,y,'explosion');
