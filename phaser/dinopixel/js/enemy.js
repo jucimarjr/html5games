@@ -196,6 +196,7 @@ Enemy.prototype.create = function(player,colliderLayer,sprite,bahavior,job)
 };
 Enemy.prototype.update = function(target,Game)
 {
+	adjustePos(this);
 	if(this.sprite.player.hearts.countLiving()!=0)
 		game.physics.arcade.overlap(this.sprite.player.sprite, this.bullets, this.sprite.player.takeDamage,null, this.sprite.player);
 	if(this.sprite.isAlive)
@@ -293,21 +294,21 @@ Enemy.prototype.followAndSpawn = function(target,Game)
 			switch(this.sprite.key)
 			{
 			case 'truck':
-				Game.objectEnemy[Game.objectEnemy.length] = new Enemy(Game.player,Game.layer4,Game.enemys.create(this.sprite.x+100,this.sprite.y,'soldier1'),'stayNormal','shooter');
-				Game.objectEnemy[Game.objectEnemy.length] = new Enemy(Game.player,Game.layer4,Game.enemys.create(this.sprite.x-100,this.sprite.y,'soldier1'),'stayNormal','shooter');
-				Game.objectEnemy[Game.objectEnemy.length] = new Enemy(Game.player,Game.layer4,Game.enemys.create(this.sprite.x,this.sprite.y,'soldier1'),'stayNormal','shooter');
-				Game.objectEnemy[Game.objectEnemy.length] = new Enemy(Game.player,Game.layer4,Game.enemys.create(this.sprite.x+200,this.sprite.y,'soldier2'),'stayNormal','bomber');
-				Game.objectEnemy[Game.objectEnemy.length] = new Enemy(Game.player,Game.layer4,Game.enemys.create(this.sprite.x-200,this.sprite.y,'soldier2'),'stayNormal','bomber');
+				Game.objectEnemy[Game.enemys.countLiving()] = new Enemy(Game.player,Game.layer4,Game.enemys.create(this.sprite.x+100,this.sprite.y,'soldier1'),'stayNormal','shooter');
+				Game.objectEnemy[Game.enemys.countLiving()] = new Enemy(Game.player,Game.layer4,Game.enemys.create(this.sprite.x-100,this.sprite.y,'soldier1'),'stayNormal','shooter');
+				Game.objectEnemy[Game.enemys.countLiving()] = new Enemy(Game.player,Game.layer4,Game.enemys.create(this.sprite.x,this.sprite.y,'soldier1'),'stayNormal','shooter');
+				Game.objectEnemy[Game.enemys.countLiving()] = new Enemy(Game.player,Game.layer4,Game.enemys.create(this.sprite.x+200,this.sprite.y,'soldier2'),'stayNormal','bomber');
+				Game.objectEnemy[Game.enemys.countLiving()] = new Enemy(Game.player,Game.layer4,Game.enemys.create(this.sprite.x-200,this.sprite.y,'soldier2'),'stayNormal','bomber');
 			break;
 			case 'specialOpsCar':
-				Game.objectEnemy[Game.objectEnemy.length] = new Enemy(Game.player,Game.layer4,Game.enemys.create(this.sprite.x+100,this.sprite.y,'specialOps1'),'stayNormal','shooter');
-				Game.objectEnemy[Game.objectEnemy.length] = new Enemy(Game.player,Game.layer4,Game.enemys.create(this.sprite.x,this.sprite.y,'specialOps1'),'stayNormal','shooter');
+				Game.objectEnemy[Game.enemys.countLiving()] = new Enemy(Game.player,Game.layer4,Game.enemys.create(this.sprite.x+100,this.sprite.y,'specialOps1'),'stayNormal','shooter');
+				Game.objectEnemy[Game.enemys.countLiving()] = new Enemy(Game.player,Game.layer4,Game.enemys.create(this.sprite.x,this.sprite.y,'specialOps1'),'stayNormal','shooter');
 				Game.objectEnemy[Game.objectEnemy.length] = new Enemy(Game.player,Game.layer4,Game.enemys.create(this.sprite.x+200,this.sprite.y,'specialOps2'),'stayNormal','bomber');
 			break;
 			case 'policeCar':
-				Game.objectEnemy[Game.objectEnemy.length] = new Enemy(Game.player,Game.layer4,Game.enemys.create(this.sprite.x+80,this.sprite.y,'policeMan'),'stayNormal','shooter');
-				Game.objectEnemy[Game.objectEnemy.length] = new Enemy(Game.player,Game.layer4,Game.enemys.create(this.sprite.x-80,this.sprite.y,'policeMan'),'stayNormal','shooter');
-				Game.objectEnemy[Game.objectEnemy.length] = new Enemy(Game.player,Game.layer4,Game.enemys.create(this.sprite.x,this.sprite.y,'policeMan'),'stayNormal','shooter');
+				Game.objectEnemy[Game.enemys.countLiving()] = new Enemy(Game.player,Game.layer4,Game.enemys.create(this.sprite.x+80,this.sprite.y,'policeMan'),'stayNormal','shooter');
+				Game.objectEnemy[Game.enemys.countLiving()] = new Enemy(Game.player,Game.layer4,Game.enemys.create(this.sprite.x-80,this.sprite.y,'policeMan'),'stayNormal','shooter');
+				Game.objectEnemy[Game.enemys.countLiving()] = new Enemy(Game.player,Game.layer4,Game.enemys.create(this.sprite.x,this.sprite.y,'policeMan'),'stayNormal','shooter');
 				break;
 			}
 		}

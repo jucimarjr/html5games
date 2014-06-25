@@ -25,6 +25,7 @@ Human.prototype.create = function(sprite,bahavior)
 };
 Human.prototype.update = function()
 {
+	adjustePos(this);
 	switch(this.bahavior)
 	{
 		case 'stayNormal' : this.stayNormal();
