@@ -63,22 +63,54 @@ Game.prototype.create = function()
 	},null);	
 	//game.input.onDown.addOnce(this.start, this);
 	game.input.keyboard.addKey(Phaser.Keyboard.CONTROL).onDown.addOnce(this.start, this)
-	game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onDown.addOnce(this.start, this)
-	game.input.onDown.addOnce(this.start, this);
+	if(players == 2) game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onDown.addOnce(this.start, this)
+	if(game.device.touch) game.input.onDown.addOnce(this.start, this);
+	this.repeat = 5;
+	this.started = false;
+};
+
+Game.prototype.countTime = function(){
+	this.repeat--;
+	this.hud.text = ""+this.repeat;
+	if(this.repeat<=0){
+		this.txt.text = '';
+		this.control1.kill();
+		this.control2.kill();
+		this.hud.y = 75;
+		this.hud.setStyle({
+			font: "18px 'OCR A Std'", fill: "#ffffff" , align: "center"
+		})
+		game.tweens.removeAll();
+		game.physics.arcade.gravity.y = this.gravity;
+		console.log('play');
+		this.playing = true;
+	}
 };
 
 Game.prototype.start = function(){
-	this.txt.text = '';
-	this.control1.kill();
-	if(players == 2) this.control2.kill();
-	this.hud.y = 75;
-	this.hud.setStyle({
-		font: "18px 'OCR A Std'", fill: "#ffffff" , align: "center"
-	})
-	game.tweens.removeAll();
-	game.physics.arcade.gravity.y = this.gravity;
-	this.playing = true;
-	game.input.keyboard.clearCaptures();
+	if(!this.started){
+		this.started = true;
+		if(players == 1){
+			this.txt.text = '';
+			this.control1.kill();
+			this.hud.y = 75;
+			this.hud.setStyle({
+				font: "18px 'OCR A Std'", fill: "#ffffff" , align: "center"
+			})
+			game.tweens.removeAll();
+			game.physics.arcade.gravity.y = this.gravity;
+			this.playing = true;
+			game.input.keyboard.clearCaptures();
+		}else{
+			console.log('start');
+			this.hud.text = ""+this.repeat;
+			this.hud.setStyle({
+				font: "36px 'OCR A Std'", fill: "#ffffff" , align: "center"
+			})
+			game.time.events.repeat(1000,5,this.countTime, this);
+		}
+	}
+		
 };
 
 Game.prototype.update = function()
@@ -136,29 +168,32 @@ Game.prototype.spawnStar = function(){
 Game.prototype.restart = function(s, r){
 	if(players == 1){
 		this.sprite.explode();
+		this.hud.text = 'Você morreu\nPontuação:\n'+parseInt(this.score/10);
+		this.hud.y = 235;
+		this.hud.x = 330;
+		this.hud.setStyle({
+			font: "36px 'OCR A Std'", fill: "#ffffff" , align: "center"
+		})
 	}else if(players == 2){
 		//game.add.tween(this.sprite2).to({y:280}, 1200, Phaser.Easing.Quadratic.InOut, true, 0, 1000, true);
 		if(s.player == 1){
 			s.explode();
+			this.sprite2.body.velocity.setTo(0,0);
+			this.sprite2.kill();
 			this.sprite2.resetSpaceman();
-			this.point2++;
-			this.hud.text = 'Player 1: '+this.point1 + '\n\n'+'Player 2: '+this.point2;
+			this.point2++;			
 		}else{
 			s.explode();
+			this.sprite.body.velocity.setTo(0,0);
+			this.sprite.kill();
 			this.sprite.resetSpaceman();
 			this.point1++;
-			this.hud.text = 'Player 1: '+this.point1 + '\n\n'+'Player 2: '+this.point2;
 		}
+		this.hud.text = 'Player 1: '+this.point1 + '\n\n'+'Player 2: '+this.point2;
 	}
 	this.rocks.removeAll(true);
 	game.physics.arcade.gravity.y = 0;
 	this.playing = false;
-	this.hud.text = 'Você morreu\nPontuação:\n'+parseInt(this.score/10);
-	this.hud.y = 235;
-	this.hud.x = 330;
-	this.hud.setStyle({
-		font: "36px 'OCR A Std'", fill: "#ffffff" , align: "center"
-	})
 	this.txt.text = 'Clique para reiniciar';
 	this.txt.y = 500;
 	if(localStorage["score"] < parseInt(this.score/10)){
@@ -166,4 +201,6 @@ Game.prototype.restart = function(s, r){
 		this.highscore.text = 'Best: '+localStorage["score"];
 	}
 	this.score = 0;
+	this.started = false;
+	this.repeat = 5;
 };
