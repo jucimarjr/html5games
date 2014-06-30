@@ -33,6 +33,6 @@ function update() {
 	game.scale.refresh();
 }
 
-socket = io.connect('http://192.168.0.106:3000', {transports: ['websocket']});
+socket = io.connect('http://127.0.0.1:3000', {transports: ['websocket']});
 socket.on('create rectangle', createRectangle);
 game = new Phaser.Game(960, 600, Phaser.AUTO, '', {preload: preload, create: create, update: update});
