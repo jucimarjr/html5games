@@ -89,6 +89,7 @@ Spaceman.prototype.update = function(){
 
 Spaceman.prototype.resetSpaceman = function(){
 	game.input.keyboard.clearCaptures();
+	//if(!this.gameClass.started){
 		if(this.animations.getAnimation('explode') !== null) if(!this.animations.getAnimation('explode').isPlaying){
 			if(this.player == 1){
 				this.reset(350, 200);
@@ -115,7 +116,7 @@ Spaceman.prototype.resetSpaceman = function(){
 			if(game.device.touch) game.input.onDown.addOnce(this.gameClass.start, this.gameClass);
 			//this.animations.play('flying');
 		} else {this.resetSpaceman()}
-		
+	//}
 };
 
 Spaceman.prototype.boom = function(){
@@ -132,17 +133,22 @@ Spaceman.prototype.boom = function(){
     })
 	emitter.start(true, 500, null, 30);
 	this.kill();
+	this.resetSpaceman();
 }
 
 Spaceman.prototype.explode = function(){
 	this.body.velocity.setTo(0,0);
 	//this.body.acceleration.y = this.gameClass.gravity	
 	this.fire1.alpha = 0;
-	game.input.keyboard.addKey(Phaser.Keyboard.CONTROL).onDown.addOnce(this.resetSpaceman, this);
-	if(players == 2) game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onDown.addOnce(this.resetSpaceman, this);
+	if(players == 2){
+		
+	}else{
+		game.input.keyboard.addKey(Phaser.Keyboard.CONTROL).onDown.addOnce(this.resetSpaceman, this);
+	} 
+	//
+	//this.resetSpaceman();
 	if(game.device.touch) game.input.onDown.addOnce(this.resetSpaceman, this);
 	if(sound)this.explosion.play();	
 	if(this.inWorld)this.animations.play('explode').onComplete.addOnce(this.boom, this);
-	else this.kill();
-	this.alive = false;
+	else {this.kill();this.resetSpaceman();}
 }
