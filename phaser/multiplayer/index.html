@@ -1,11 +1,52 @@
 <!doctype html>
 <html>
     <head>
-        <title>Jogo</title>
-        <script src="http://127.0.0.1:3000/socket.io/socket.io.js"></script>
+        <title>Login</title>
+		<script src="http://127.0.0.1:3000/socket.io/socket.io.js"></script>
         <script type="text/javascript" src="phaser.min.js"></script>
-        <script type="text/javascript" src="game.js"></script>
+		<script type="text/javascript" src="auth.js"></script>
+		<script type="text/javascript" src="game.js"></script>
+		<style type="text/css">
+			.container {
+				height: 500px;
+				line-height: 500px;
+				text-align: center;
+			}
+			.form {
+				margin: 0 auto;
+				width: 350px;
+				line-height: normal;
+				display: inline-block;
+				vertical-align: middle;
+			}
+			.username {
+
+			}
+			.password {
+
+			}
+		</style>
     </head>
     <body style="margin:0;">
+		<div class="everything">
+			<div class="container">
+				<form class="form">
+					<input class="username" 
+						   type="text" 
+						   autocomplete="on" 
+						   size="50"
+						   name="login" 
+						   id="loginfield">
+					<input class="password" 
+						   type="password" 
+						   size="50" 
+						   name="password" 
+						   id="passwordfield">
+					<input type="button"
+						   value="Submit"
+						   onclick="getForm(this.parentNode)">
+				</form>
+			</div>
+		</div>
     </body>
 </html>

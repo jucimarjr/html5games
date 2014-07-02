@@ -1,6 +1,6 @@
-/*global Phaser, io*/
+/*global Phaser, socket*/
 
-var game, socket;
+var game, socket, userroom;
 
 function createRectangle(object) {
 	'use strict';
@@ -12,7 +12,8 @@ function onClick() {
 	'use strict';
 	var object = {
 		x: game.input.position.x,
-		y: game.input.position.y
+		y: game.input.position.y,
+		room: userroom
 	};
 	socket.emit('user clicked!', object);
 }
@@ -33,6 +34,11 @@ function update() {
 	game.scale.refresh();
 }
 
-socket = io.connect('http://127.0.0.1:3000', {transports: ['websocket']});
+function start(room) {
+	'use strict';
+	userroom = room;
+	game = new Phaser.Game(960, 600, Phaser.AUTO, 'game', {preload: preload, create: create, update: update});
+}
+
 socket.on('create rectangle', createRectangle);
-game = new Phaser.Game(960, 600, Phaser.AUTO, '', {preload: preload, create: create, update: update});
+socket.on('start game', start);
