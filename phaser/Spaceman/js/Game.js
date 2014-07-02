@@ -62,20 +62,27 @@ Game.prototype.create = function()
 		game.state.start('menu', true);
 	},null);	
 	//game.input.onDown.addOnce(this.start, this);
-	game.input.keyboard.addKey(Phaser.Keyboard.CONTROL).onDown.addOnce(this.start, this)
-	if(players == 2) game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onDown.addOnce(this.start, this)
+	this.start1 = game.input.keyboard.addKey(Phaser.Keyboard.CONTROL)
+	this.start1.onDown.addOnce(this.start, this)
+	if(players == 2) {
+		this.start2 = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR)
+		this.start2.onDown.addOnce(this.start, this)
+	}
 	if(game.device.touch) game.input.onDown.addOnce(this.start, this);
 	this.repeat = 5;
 	this.started = false;
 };
 
 Game.prototype.countTime = function(){
+	
 	this.repeat--;
 	this.hud.text = ""+this.repeat;
 	if(this.repeat<=0){
 		this.txt.text = '';
 		this.control1.kill();
 		this.control2.kill();
+		this.start1.isDown = false;
+		this.start2.isDown = false;
 		this.hud.y = 75;
 		this.hud.setStyle({
 			font: "18px 'OCR A Std'", fill: "#ffffff" , align: "center"
@@ -89,6 +96,7 @@ Game.prototype.countTime = function(){
 
 Game.prototype.start = function(){
 	if(!this.started){
+		//game.input.keyboard.reset(true);
 		this.started = true;
 		if(players == 1){
 			this.txt.text = '';
@@ -102,7 +110,6 @@ Game.prototype.start = function(){
 			this.playing = true;
 			game.input.keyboard.clearCaptures();
 		}else{
-			console.log('start');
 			this.hud.text = ""+this.repeat;
 			this.hud.setStyle({
 				font: "36px 'OCR A Std'", fill: "#ffffff" , align: "center"
@@ -179,13 +186,13 @@ Game.prototype.restart = function(s, r){
 		if(s.player == 1){
 			s.explode();
 			this.sprite2.body.velocity.setTo(0,0);
-			this.sprite2.kill();
+			//this.sprite2.kill();
 			this.sprite2.resetSpaceman();
 			this.point2++;			
 		}else{
 			s.explode();
 			this.sprite.body.velocity.setTo(0,0);
-			this.sprite.kill();
+			//this.sprite.kill();
 			this.sprite.resetSpaceman();
 			this.point1++;
 		}
