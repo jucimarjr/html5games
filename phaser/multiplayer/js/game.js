@@ -76,11 +76,12 @@ function onClick() {
 
 function preload() {
 	'use strict';
-	game.load.image('rectangle', 'rectangle.png');
+	game.load.image('rectangle', 'assets/images/rectangle.png');
 }
 
 function create() {
 	'use strict';
+    this.game.stage.backgroundColor = "#ffffff"
 	game.input.onDown.add(onClick);
 	var sprite = game.add.sprite(game.world.centerX, game.world.centerY, 'rectangle');
 	sprite.anchor.setTo(0.5, 0.5);

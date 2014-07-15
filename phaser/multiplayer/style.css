@@ -1,0 +1,47 @@
+body {
+    margin: 0;  
+}
+
+.top {
+    background-color: #006400;
+    padding: 0.5%;
+    color: #ffffff;
+    font-size: 2em;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.loginbox {
+    width: 100%;
+    padding: 0.5%;
+}
+
+.title {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 2em;
+}
+
+.text {
+    font-family: 'Open Sans', sans-serif;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+    font-size: 1.5em;    
+}
+
+.input {
+    height: 30px;
+    font-size: 1.5em;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.container {
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+}
+
+.bottom {
+    position: absolute;
+    bottom: 0;
+    height: 10%;
+    width: 100%;
+    background-color: #dfdfdf;
+}
