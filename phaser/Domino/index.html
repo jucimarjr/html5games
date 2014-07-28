@@ -1,0 +1,179 @@
+<!doctype html>
+<html xmlns:og="http://opengraphprotocol.org/schema/">
+	<head> 
+		<!-- Configuração do resumo, imagem de divulgação do grupo de jogos para o Facebook -->
+		<meta charset="UTF-8"/>
+		<meta property="og:title" content="asteroids" />
+		<meta property="og:type" content="website" />
+		<meta property="og:description" content="Destrua os asteroides antes que eles atinjam você, nessa nova versão do clássico da atari e arcade." />
+		<meta property="og:url" content="http://computacao.uea.edu.br/ludus/games/asteroids/" />
+		<meta property="og:image" content="http://computacao.uea.edu.br/ludus/games/asteroids/assets/divulgation_200-200.png" />
+		
+		<title>Domino</title>
+		
+		<script type="text/javascript" src="./../phaser/205/phaser.min.js"></script>
+		<script type="text/javascript" src="js/pecas.js"></script>
+		
+        <style type="text/css">
+			body {
+				margin: 0;
+			}
+			#everything {
+				width: 960px;
+				margin: auto;
+			}
+			#fb-root {
+				text-align: center;
+			}
+		</style>
+	</head>
+<body>
+
+<script type="text/javascript">
+
+
+var game, socket, userroom, pieces = new Array(), pieceWidth, pieceHeight;
+game = new Phaser.Game(960, 600, Phaser.AUTO, 'game', {preload: preload, create: create, update: update});
+pieceHeight = 60;
+pieceWidth = 30;
+var pecas = [[6,6],[6,5],[6,4],[6,3],[6,2],[6,1],[6,0],
+             [5,5],[5,4],[5,3],[5,2],[5,1],[5,0],[4,4],
+             [4,3],[4,2],[4,1],[4,0],[3,3],[3,2],[3,1],
+             [3,0],[2,2],[2,1],[2,0],[1,1],[1,0],[0,0]];
+
+function createRectangle(object) {
+	'use strict';
+	var sprite = game.add.sprite(object.piece.x, object.piece.y, 'pecas', 1);
+	sprite.anchor.setTo(0.5, 0.5);
+	sprite.angle = object.piece.angle;
+	pieces.next = object.next;
+	pieces[object.array].push(object.piece);
+}
+
+function createPiece(x, y, angle) {
+	'use strict';
+	return ({x: x, y: y, angle: angle});
+}
+
+function playPiece2(object) {
+	'use strict';
+	if (Phaser.Point.distance(object, pieces.next.top) > Phaser.Point.distance(object, pieces.next.bottom)) {
+		object.piece = createPiece(pieces.next.bottom.x, pieces.next.bottom.y, pieces.next.bottom.angle);
+		object.array = 'bottom';
+		pieces.next.bottom.y += pieceHeight;
+	} else {
+		object.piece = createPiece(pieces.next.top.x, pieces.next.top.y, pieces.next.top.angle);
+		object.array = 'top';
+		pieces.next.top.y -= pieceHeight;
+	}
+	object.next = pieces.next;
+	return object;
+}
+
+function playPiece4(object) {
+	'use strict';
+	var dTop, dBottom, dLeft, dRight;
+	dTop = Phaser.Point.distance(object, pieces.next.top);
+	dBottom = Phaser.Point.distance(object, pieces.next.bottom);
+	dLeft = Phaser.Point.distance(object, pieces.next.left);
+	dRight = Phaser.Point.distance(object, pieces.next.right);
+	if (dTop <= dBottom && dTop <= dLeft && dTop <= dRight) {
+		object.piece = createPiece(pieces.next.top.x, pieces.next.top.y, pieces.next.top.angle);
+		object.array = 'top';
+		pieces.next.top.y -= pieceHeight;
+	} else if ((dBottom <= dTop && dBottom <= dLeft && dBottom <= dRight)) {
+		object.piece = createPiece(pieces.next.bottom.x, pieces.next.bottom.y, pieces.next.bottom.angle);
+		object.array = 'bottom';
+		pieces.next.bottom.y += pieceHeight;
+	} else if ((dRight <= dTop && dRight <= dLeft && dRight <= dBottom)) {
+		object.piece = createPiece(pieces.next.right.x, pieces.next.right.y, pieces.next.right.angle);
+		object.array = 'right';
+		pieces.next.right.x += pieceHeight;
+	} else {
+		object.piece = createPiece(pieces.next.left.x, pieces.next.left.y, pieces.next.left.angle);
+		object.array = 'left';
+		pieces.next.left.x -= pieceHeight;
+	}
+	object.next = pieces.next;
+	return object;
+}
+
+function onClick() {
+	'use strict';
+	var object = {
+		x: game.input.position.x,
+		y: game.input.position.y,
+		room: userroom
+	};
+	if (pieces.top.length === 0 || pieces.bottom.length === 0) {
+		object = playPiece2(object);
+	} else {
+		object = playPiece4(object);
+	}
+	//socket.emit('user clicked!', object);
+	createRectangle(object);
+}
+
+function preload() {
+	'use strict';
+	game.load.image('rectangle', 'assets/images/rectangle.png');
+	game.load.spritesheet('pecas', 'assets/spritesheets/domino.png',30,60);
+}
+
+function create() {
+	'use strict';
+    this.game.stage.backgroundColor = "#000000"
+	//game.input.onDown.add(onClick);
+	//var sprite = game.add.sprite(game.world.centerX, game.world.centerY, 'pecas');
+	//sprite.anchor.setTo(0.5, 0.5);
+	//sprite.angle = 90;
+	var sprite=0;
+	for(var j=0;j<4;j++){
+		for(var i = 0;i<7;i++){
+			var peca = new Peca(this.game,300 + 45*i,150+75*j,pecas[sprite][0],pecas[sprite][1],sprite);
+			pieces.push(peca);
+			sprite++;						
+		}
+	}
+	for(i = 0;i<pieces.length;i++){
+		var j = Math.floor(Math.random()*28)
+		var temp = pieces[i].position;
+		pieces[i].position = pieces[j].position;
+		pieces[j].position = temp;
+	}
+	pieces = {
+		top: [],
+		bottom: [],
+		left: [],
+		right: [],
+		next: {
+			top: {x: game.world.centerX, y: game.world.centerY - (pieceHeight / 2 + pieceWidth / 2), angle: 0},
+			bottom: {x: game.world.centerX, y: game.world.centerY + (pieceHeight / 2 + pieceWidth / 2), angle: 0},
+			left: {x: game.world.centerX - pieceHeight, y: game.world.centerY, angle: 90},
+			right: {x: game.world.centerX + pieceHeight, y: game.world.centerY, angle: 90}
+		}
+	};
+}
+
+function update() {
+	'use strict';
+	game.scale.setExactFit();
+	game.scale.refresh();
+}
+/*
+function start(room) {
+	'use strict';
+	userroom = room;
+	pieceHeight = 60;
+	pieceWidth = 30;
+	game = new Phaser.Game(960, 600, Phaser.AUTO, 'game', {preload: preload, create: create, update: update});
+}
+
+socket.on('create rectangle', createRectangle);
+socket.on('start game', start);
+*/
+</script>
+<div id="game">
+</div>
+</body>
+</html>
