@@ -1,6 +1,6 @@
 /*global Phaser, socket, console*/
 
-var game, socket, userroom, pieces, pieceWidth, pieceHeight;
+var game, socket, userroom, pieces, pieceWidth, pieceHeight, myPieces;
 
 function createRectangle(object) {
 	'use strict';
@@ -74,14 +74,30 @@ function onClick() {
 	socket.emit('user clicked!', object);
 }
 
+
+function showMyPieces() {
+	'use strict';
+	var i, x, y, sprite;
+	x = game.world.centerX - 3 * pieceWidth;
+	y = game.height - pieceHeight / 2;
+	for (i = 0; i < myPieces.length; i = i + 1) {
+		sprite = game.add.sprite(x, y, 'pieces');
+		sprite.frame = myPieces[i].frame;
+		sprite.anchor.setTo(0.5, 0.5);
+		x = x + pieceWidth;
+	}
+}
+
 function preload() {
 	'use strict';
 	game.load.image('rectangle', 'assets/images/rectangle.png');
+	game.load.spritesheet('pieces', 'assets/spritesheets/domino.png', 30, 60);
 }
 
 function create() {
 	'use strict';
-    this.game.stage.backgroundColor = "#ffffff"
+    showMyPieces();
+	game.stage.backgroundColor = "#ffffff";
 	game.input.onDown.add(onClick);
 	var sprite = game.add.sprite(game.world.centerX, game.world.centerY, 'rectangle');
 	sprite.anchor.setTo(0.5, 0.5);
@@ -106,9 +122,11 @@ function update() {
 	game.scale.refresh();
 }
 
-function start(room) {
+function start(dataString) {
 	'use strict';
-	userroom = room;
+	var data = JSON.parse(dataString);
+	userroom = data.room;
+	myPieces = data.pieces;
 	pieceHeight = 60;
 	pieceWidth = 30;
 	game = new Phaser.Game(960, 600, Phaser.AUTO, 'game', {preload: preload, create: create, update: update});
