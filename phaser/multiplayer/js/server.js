@@ -2,11 +2,11 @@
 
 var server, defaultUsers, clients, pecas, userpieces, roomCounter;
 
-var Peca = function (l1, l2, frame) {
+var Peca = function (s1, s2, frame) {
 	'use strict';
 	this.frame = frame;
-	this.lado1 = l1;
-	this.lado2 = l2;
+	this.side1 = s1;
+	this.side2 = s2;
 };
 
 function getSocketById(id) {
@@ -44,9 +44,9 @@ function onLoginTry(user) {
 	console.log('login failed!');
 }
 
-function onUserClicked(object) {
+function onUserClicked(objectString) {
 	'use strict';
-	server.to(object.room).emit('create rectangle', object);
+	server.to(JSON.parse(objectString).room).emit('create rectangle', objectString);
 }
 
 function onSocketConnection(socketClient) {
