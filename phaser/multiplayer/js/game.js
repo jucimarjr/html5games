@@ -22,17 +22,55 @@ function setPiece(x, y, angle) {
 	return selected.piece;
 }
 
+function isMovePossible(piece, array) {
+	'use strict';
+	var last = pieces[array].length - 1;
+	if (piece.side1 === pieces[array][last][pieces[array][last].freeSide] || piece.side2 === pieces[array][last][pieces[array][last].freeSide]) {
+		return true;
+	}
+	return false;
+}
+
+function rotatePiece(piece, array) {
+	'use strict';
+	var last;
+	last = pieces[array].length - 1;
+	if (piece.side1 === pieces[array][last].side1 || piece.side2 === pieces[array][last].side2) {
+		piece.angle = pieces[array][last].angle + 180;
+		piece.freeSide = piece.side1 === pieces[array][last].side1 ? 'side2' : 'side 1';
+	} else if (piece.side1 === pieces[array][last].side2 || piece.side2 === pieces[array][last].side1) {
+		piece.angle = pieces[array][last].angle;
+		piece.freeSide = piece.side1 === pieces[array][last].side2 ? 'side2' : 'side 1';
+	}
+	if (piece.side1 === piece.side2 && (piece.side1 === pieces[array][last].side1 || piece.side1 === pieces[array][last].side2)) {
+		piece.angle = pieces[array][last].angle + 90;
+	} else if (pieces[array][last].side1 === pieces[array][last].side2 && (pieces[array][last].side1 === piece.side1 || pieces[array][last].side1 === piece.side2)) {
+		if (piece.side1 === pieces[array][last - 1].side1 || piece.side2 === pieces[array][last - 1].side2) {
+			piece.angle = pieces[array][last].angle + 180;
+		} else if (piece.side1 === pieces[array][last - 1].side2 || piece.side2 === pieces[array][last - 1].side1) {
+			piece.angle = pieces[array][last].angle;
+		}
+	}
+}
+
 function playPiece2(object) {
 	'use strict';
 	if (Phaser.Point.distance(object, pieces.next.top) > Phaser.Point.distance(object, pieces.next.bottom)) {
 		object.piece = setPiece(pieces.next.bottom.x, pieces.next.bottom.y, pieces.next.bottom.angle);
 		object.array = 'bottom';
+		if (!isMovePossible(object.piece, object.array)) {
+			return false;
+		}
 		pieces.next.bottom.y += pieceHeight;
 	} else {
 		object.piece = setPiece(pieces.next.top.x, pieces.next.top.y, pieces.next.top.angle);
 		object.array = 'top';
+		if (!isMovePossible(object.piece, object.array)) {
+			return false;
+		}
 		pieces.next.top.y -= pieceHeight;
 	}
+	rotatePiece(object.piece, object.array);
 	object.next = pieces.next;
 	return object;
 }
@@ -47,20 +85,33 @@ function playPiece4(object) {
 	if (dTop <= dBottom && dTop <= dLeft && dTop <= dRight) {
 		object.piece = setPiece(pieces.next.top.x, pieces.next.top.y, pieces.next.top.angle);
 		object.array = 'top';
+		if (!isMovePossible(object.piece, object.array)) {
+			return false;
+		}
 		pieces.next.top.y -= pieceHeight;
 	} else if ((dBottom <= dTop && dBottom <= dLeft && dBottom <= dRight)) {
 		object.piece = setPiece(pieces.next.bottom.x, pieces.next.bottom.y, pieces.next.bottom.angle);
 		object.array = 'bottom';
+		if (!isMovePossible(object.piece, object.array)) {
+			return false;
+		}
 		pieces.next.bottom.y += pieceHeight;
 	} else if ((dRight <= dTop && dRight <= dLeft && dRight <= dBottom)) {
 		object.piece = setPiece(pieces.next.right.x, pieces.next.right.y, pieces.next.right.angle);
 		object.array = 'right';
+		if (!isMovePossible(object.piece, object.array)) {
+			return false;
+		}
 		pieces.next.right.x += pieceHeight;
 	} else {
 		object.piece = setPiece(pieces.next.left.x, pieces.next.left.y, pieces.next.left.angle);
 		object.array = 'left';
+		if (!isMovePossible(object.piece, object.array)) {
+			return false;
+		}
 		pieces.next.left.x -= pieceHeight;
 	}
+	rotatePiece(object.piece, object.array);
 	object.next = pieces.next;
 	return object;
 }
@@ -76,10 +127,14 @@ function onClick() {
 		y: game.input.position.y,
 		room: userroom
 	};
-	if (pieces.top.length === 0 || pieces.bottom.length === 0) {
+	if (pieces.top.length <= 1 || pieces.bottom.length <= 1) {
 		object = playPiece2(object);
 	} else {
 		object = playPiece4(object);
+	}
+	if (!object) {
+		console.log('move refused');
+		return;
 	}
 	socket.emit('user clicked!', JSON.stringify(object));
 }
@@ -106,9 +161,7 @@ function indexOfFrame(frame) {
 
 function select(sprite, e) {
 	'use strict';
-	console.log("piece selected");
 	selected.piece = myPieces[indexOfFrame(sprite.frame)];
-	console.log(selected.piece);
 	selected.sprite = sprite;
 	selected.enabled = true;
 }
@@ -154,6 +207,10 @@ function create() {
 			right: {x: game.world.centerX + pieceHeight, y: game.world.centerY, angle: 90}
 		}
 	};
+	pieces.top.push({side1: 6, side2: 7, angle: 0, freeSide: 'side1'});
+	pieces.bottom.push({side1: 6, side2: 7, angle: 180, freeSide: 'side1'});
+	pieces.left.push({side1: 6, side2: 7, angle: 270, freeSide: 'side1'});
+	pieces.right.push({side1: 6, side2: 7, angle: 90, freeSide: 'side1'});
 }
 
 function update() {
