@@ -1,6 +1,6 @@
 /*global Phaser, socket, console*/
 
-var game, socket, userroom, pieces, pieceWidth, pieceHeight, myPieces, selected;
+var game, socket, userroom, pieces, pieceWidth, pieceHeight, myPieces, selected, hint;
 
 
 function countCarroca(array, branch) {
@@ -67,6 +67,46 @@ function rotateNextPosition() {
 	}
 }
 
+function rotateCounterClock() {
+	'use strict';
+	var i, arrays;
+	arrays = ['top', 'left', 'bottom', 'right'];
+	for (i = 0; i < 4; i = i + 1) {
+		if (pieces.numberRotate[arrays[i]].length > 0 && pieces[arrays[i]].length === pieces.numberRotate[arrays[i]][0]) {
+			pieces.numberRotate[arrays[i]][1] += pieces.numberRotate[arrays[i]][0];
+			pieces.numberRotate[arrays[i]].shift();
+			pieces.angle[arrays[i]] = pieces.angle[arrays[i]] - 90;
+			if (pieces.grow[arrays[i]] === 'right') {
+				pieces.next[arrays[i]].x = pieces.next[arrays[i]].x - pieceHeight / 2 - pieceWidth / 2;
+				pieces.next[arrays[i]].y = pieces.next[arrays[i]].y - pieceWidth / 2 - pieceHeight / 2;
+				if (pieces[arrays[i]][pieces[arrays[i]].length - 1].side1 === pieces[arrays[i]][pieces[arrays[i]].length - 1].side2) {
+					pieces.next[arrays[i]].y = pieces.next[arrays[i]].y - pieceHeight / 4;
+				}
+			} else if (pieces.grow[arrays[i]] === 'bottom') {
+				pieces.next[arrays[i]].x = pieces.next[arrays[i]].x + pieceHeight / 2 + pieceWidth / 2;
+				pieces.next[arrays[i]].y = pieces.next[arrays[i]].y - pieceWidth / 2 - pieceHeight / 2;
+				if (pieces[arrays[i]][pieces[arrays[i]].length - 1].side1 === pieces[arrays[i]][pieces[arrays[i]].length - 1].side2) {
+					pieces.next[arrays[i]].x = pieces.next[arrays[i]].x + pieceHeight / 4;
+				}
+			} else if (pieces.grow[arrays[i]] === 'left') {
+				pieces.next[arrays[i]].x = pieces.next[arrays[i]].x + pieceHeight / 2 + pieceWidth / 2;
+				pieces.next[arrays[i]].y = pieces.next[arrays[i]].y + pieceWidth / 2 + pieceHeight / 2;
+				if (pieces[arrays[i]][pieces[arrays[i]].length - 1].side1 === pieces[arrays[i]][pieces[arrays[i]].length - 1].side2) {
+					pieces.next[arrays[i]].y = pieces.next[arrays[i]].y + pieceHeight / 4;
+				}
+			} else {
+				pieces.next[arrays[i]].x = pieces.next[arrays[i]].x - pieceHeight / 2 - pieceWidth / 2;
+				pieces.next[arrays[i]].y = pieces.next[arrays[i]].y + pieceWidth / 2 + pieceHeight / 2;
+				if (pieces[arrays[i]][pieces[arrays[i]].length - 1].side1 === pieces[arrays[i]][pieces[arrays[i]].length - 1].side2) {
+					pieces.next[arrays[i]].x = pieces.next[arrays[i]].x - pieceHeight / 4;
+				}
+			}
+			pieces.grow[arrays[i]] = arrays[(arrays.indexOf(pieces.grow[arrays[i]]) + 1) % arrays.length];
+			pieces.branch[arrays[i]] = pieces.branch[arrays[i]] + 1;
+		}
+	}
+}
+
 function createRectangle(objectString) {
 	'use strict';
 	var sprite, object;
@@ -81,7 +121,11 @@ function createRectangle(objectString) {
 	if (object.piece.side1 === object.piece.side2) {
 		calculateRotationMoment(object.array);
 	}
-	rotateNextPosition();
+	if ((object.array === 'left' || object.array === 'right') && pieces[object.array].length > 2) {
+		rotateCounterClock();
+	} else {
+		rotateNextPosition();
+	}
 }
 
 function setPiece(x, y, angle) {
@@ -124,36 +168,33 @@ function rotatePiece(piece, array) {
 	}
 }
 
-function calculateNextPosition(array, piece) {
+function fixCarrocaPosition(array, piece) {
 	'use strict';
 	if (pieces.grow[array] === 'left') {
-		if (piece.side1 === piece.side2) {
-			pieces.next[array].x = pieces.next[array].x - pieceWidth;
-			piece.x = piece.x + pieceHeight / 2 - pieceWidth / 2;
-		} else {
-			pieces.next[array].x -= pieceHeight;
-		}
+		piece.x = piece.x + pieceHeight / 2 - pieceWidth / 2;
 	} else if (pieces.grow[array] === 'top') {
-		if (piece.side1 === piece.side2) {
-			pieces.next[array].y = pieces.next[array].y - pieceWidth;
-			piece.y = piece.y + pieceHeight / 2 - pieceWidth / 2;
-		} else {
-			pieces.next[array].y -= pieceHeight;
-		}
+		piece.y = piece.y + pieceHeight / 2 - pieceWidth / 2;
 	} else if (pieces.grow[array] === 'right') {
-		if (piece.side1 === piece.side2) {
-			pieces.next[array].x = pieces.next[array].x + pieceWidth;
-			piece.x = piece.x - pieceHeight / 2 + pieceWidth / 2;
-		} else {
-			pieces.next[array].x += pieceHeight;
-		}
+		piece.x = piece.x - pieceHeight / 2 + pieceWidth / 2;
 	} else {
-		if (piece.side1 === piece.side2) {
-			pieces.next[array].y = pieces.next[array].y + pieceWidth;
-			piece.y = piece.y - pieceHeight / 2 + pieceWidth / 2;
-		} else {
-			pieces.next[array].y += pieceHeight;
-		}
+		piece.y = piece.y - pieceHeight / 2 + pieceWidth / 2;
+	}
+}
+
+function calculateNextPosition(array, piece) {
+	'use strict';
+	var isCarroca = piece.side1 === piece.side2;
+	if (isCarroca) {
+		fixCarrocaPosition(array, piece);
+	}
+	if (pieces.grow[array] === 'left') {
+		pieces.next[array].x -= isCarroca ? pieceWidth : pieceHeight;
+	} else if (pieces.grow[array] === 'top') {
+		pieces.next[array].y -= isCarroca ? pieceWidth : pieceHeight;
+	} else if (pieces.grow[array] === 'right') {
+		pieces.next[array].x += isCarroca ? pieceWidth : pieceHeight;
+	} else {
+		pieces.next[array].y += isCarroca ? pieceWidth : pieceHeight;
 	}
 }
 
@@ -172,9 +213,6 @@ function playPiece2(object) {
 			return false;
 		}
 	}
-	calculateNextPosition(object.array, object.piece);
-	rotatePiece(object.piece, object.array);
-	object.next = pieces.next;
 	return object;
 }
 
@@ -210,9 +248,6 @@ function playPiece4(object) {
 			return false;
 		}
 	}
-	calculateNextPosition(object.array, object.piece);
-	rotatePiece(object.piece, object.array);
-	object.next = pieces.next;
 	return object;
 }
 
@@ -232,6 +267,9 @@ function onClick() {
 	} else {
 		object = playPiece4(object);
 	}
+	calculateNextPosition(object.array, object.piece);
+	rotatePiece(object.piece, object.array);
+	object.next = pieces.next;
 	if (!object) {
 		console.log('move refused');
 		return;
@@ -288,6 +326,7 @@ function showMyPieces() {
 function preload() {
 	'use strict';
 	game.load.image('rectangle', 'assets/images/rectangle.png');
+	game.load.spritesheet('hint', 'assets/spritesheets/hint.png', 30, 60);
 	game.load.spritesheet('pieces', 'assets/spritesheets/domino.png', 30, 60);
 }
 
@@ -321,10 +360,10 @@ function create() {
 			right: 90
 		},
 		numberRotate: {
-			top: [5, 6, 3, 5, 2, 3, 1],
-			bottom: [5, 6, 3, 5, 2, 3, 1],
-			left:  [7, 4, 4, 4, 3, 2, 2],
-			right:  [7, 4, 4, 4, 3, 2, 2]
+			top: [5, 6, 3, 4, 2, 3, 1],
+			bottom: [5, 6, 3, 4, 2, 3, 1],
+			left:  [2, 4, 5, 3, 4, 2, 3, 1],
+			right:  [2, 4, 5, 3, 4, 2, 3, 1]
 		},
 		branch: {
 			top: 0,
@@ -337,12 +376,45 @@ function create() {
 	pieces.bottom.push({side1: 6, side2: 7, angle: 180, freeSide: 'side1'});
 	pieces.left.push({side1: 6, side2: 7, angle: 270, freeSide: 'side1'});
 	pieces.right.push({side1: 6, side2: 7, angle: 90, freeSide: 'side1'});
+	hint = game.add.sprite(0, 0, 'hint');
+	hint.anchor.setTo(0.5, 0.5);
+}
+
+function showHint() {
+	'use strict';
+	if (!selected.enabled) {
+		hint.alpha = 0;
+		return;
+	}
+	var object = {
+		x: game.input.position.x,
+		y: game.input.position.y
+	};
+	if (pieces.top.length <= 1 || pieces.bottom.length <= 1) {
+		playPiece2(object);
+	} else {
+		playPiece4(object);
+	}
+	hint.x = object.piece.x;
+	hint.y = object.piece.y;
+	hint.angle = pieces.angle[object.array];
+	if (object.piece.side1 === object.piece.side2) {
+		hint.angle += 90;
+		fixCarrocaPosition(object.array, hint);
+	}
+	hint.alpha = 1;
+	if (isMovePossible(object.piece, object.array)) {
+		hint.frame = 0;
+		return;
+	}
+	hint.frame = 1;
 }
 
 function update() {
 	'use strict';
 	game.scale.setExactFit();
 	game.scale.refresh();
+	showHint();
 }
 
 function start(dataString) {
