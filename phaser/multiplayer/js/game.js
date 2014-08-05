@@ -3,106 +3,106 @@
 var game, socket, userroom, pieces, pieceWidth, pieceHeight, myPieces, selected, hint;
 
 
-function countCarroca(array, branch) {
+function countCarroca(arrayName, branch) {
 	'use strict';
-	var i, counter = 0, size = pieces[array].length;
+	var i, counter = 0, size = pieces[arrayName].length;
 	for (i = 0; i < size; i = i + 1) {
-		if (pieces[array][i].side1 === pieces[array][i].side2 && pieces[array][i].branch === branch) {
+		if (pieces[arrayName][i].side1 === pieces[arrayName][i].side2 && pieces[arrayName][i].branch === branch) {
 			counter = counter + 1;
 		}
 	}
 	return counter;
 }
 
-function calculateRotationMoment(array) {
+function calculateRotationMoment(arrayName) {
 	'use strict';
-	if (pieces.grow[array] === 'top' && countCarroca(array, pieces.branch[array]) === 2) {
-		pieces.numberRotate[array][0] = pieces.numberRotate[array][0] + 1;
-	} else if (pieces.grow[array] === 'right' && countCarroca(array, pieces.branch[array]) === 1) {
-		pieces.numberRotate[array][0] = pieces.numberRotate[array][0] + 1;
-	} else if (pieces.grow[array] === 'left' && countCarroca(array, pieces.branch[array]) === 1) {
-		pieces.numberRotate[array][0] = pieces.numberRotate[array][0] + 1;
-	} else if (pieces.grow[array] === 'bottom' && countCarroca(array, pieces.branch[array]) === 2) {
-		pieces.numberRotate[array][0] = pieces.numberRotate[array][0] + 1;
+	if (pieces.grow[arrayName] === 'top' && countCarroca(arrayName, pieces.branch[arrayName]) === 2) {
+		pieces.numberRotate[arrayName][0] = pieces.numberRotate[arrayName][0] + 1;
+	} else if (pieces.grow[arrayName] === 'right' && countCarroca(arrayName, pieces.branch[arrayName]) === 1) {
+		pieces.numberRotate[arrayName][0] = pieces.numberRotate[arrayName][0] + 1;
+	} else if (pieces.grow[arrayName] === 'left' && countCarroca(arrayName, pieces.branch[arrayName]) === 1) {
+		pieces.numberRotate[arrayName][0] = pieces.numberRotate[arrayName][0] + 1;
+	} else if (pieces.grow[arrayName] === 'bottom' && countCarroca(arrayName, pieces.branch[arrayName]) === 3) {
+		pieces.numberRotate[arrayName][0] = pieces.numberRotate[arrayName][0] + 1;
 	}
 }
 
 function rotateNextPosition() {
 	'use strict';
-	var i, arrays;
-	arrays = ['top', 'right', 'bottom', 'left'];
+	var i, arraysNames;
+	arraysNames = ['top', 'right', 'bottom', 'left'];
 	for (i = 0; i < 4; i = i + 1) {
-		if (pieces.numberRotate[arrays[i]].length > 0 && pieces[arrays[i]].length === pieces.numberRotate[arrays[i]][0]) {
-			pieces.numberRotate[arrays[i]][1] += pieces.numberRotate[arrays[i]][0];
-			pieces.numberRotate[arrays[i]].shift();
-			pieces.angle[arrays[i]] = pieces.angle[arrays[i]] + 90;
-			if (pieces.grow[arrays[i]] === 'left') {
-				pieces.next[arrays[i]].x = pieces.next[arrays[i]].x + pieceHeight / 2 + pieceWidth / 2;
-				pieces.next[arrays[i]].y = pieces.next[arrays[i]].y - pieceWidth / 2 - pieceHeight / 2;
-				if (pieces[arrays[i]][pieces[arrays[i]].length - 1].side1 === pieces[arrays[i]][pieces[arrays[i]].length - 1].side2) {
-					pieces.next[arrays[i]].y = pieces.next[arrays[i]].y - pieceHeight / 4;
+		if (pieces.numberRotate[arraysNames[i]].length > 0 && pieces[arraysNames[i]].length === pieces.numberRotate[arraysNames[i]][0]) {
+			pieces.numberRotate[arraysNames[i]][1] += pieces.numberRotate[arraysNames[i]][0];
+			pieces.numberRotate[arraysNames[i]].shift();
+			pieces.angle[arraysNames[i]] = pieces.angle[arraysNames[i]] + 90;
+			if (pieces.grow[arraysNames[i]] === 'left') {
+				pieces.next[arraysNames[i]].x = pieces.next[arraysNames[i]].x + pieceHeight / 2 + pieceWidth / 2;
+				pieces.next[arraysNames[i]].y = pieces.next[arraysNames[i]].y - pieceWidth / 2 - pieceHeight / 2;
+				if (pieces[arraysNames[i]][pieces[arraysNames[i]].length - 1].side1 === pieces[arraysNames[i]][pieces[arraysNames[i]].length - 1].side2) {
+					pieces.next[arraysNames[i]].y = pieces.next[arraysNames[i]].y - pieceHeight / 4;
 				}
-			} else if (pieces.grow[arrays[i]] === 'top') {
-				pieces.next[arrays[i]].x = pieces.next[arrays[i]].x + pieceHeight / 2 + pieceWidth / 2;
-				pieces.next[arrays[i]].y = pieces.next[arrays[i]].y + pieceWidth / 2 + pieceHeight / 2;
-				if (pieces[arrays[i]][pieces[arrays[i]].length - 1].side1 === pieces[arrays[i]][pieces[arrays[i]].length - 1].side2) {
-					pieces.next[arrays[i]].x = pieces.next[arrays[i]].x + pieceHeight / 4;
+			} else if (pieces.grow[arraysNames[i]] === 'top') {
+				pieces.next[arraysNames[i]].x = pieces.next[arraysNames[i]].x + pieceHeight / 2 + pieceWidth / 2;
+				pieces.next[arraysNames[i]].y = pieces.next[arraysNames[i]].y + pieceWidth / 2 + pieceHeight / 2;
+				if (pieces[arraysNames[i]][pieces[arraysNames[i]].length - 1].side1 === pieces[arraysNames[i]][pieces[arraysNames[i]].length - 1].side2) {
+					pieces.next[arraysNames[i]].x = pieces.next[arraysNames[i]].x + pieceHeight / 4;
 				}
-			} else if (pieces.grow[arrays[i]] === 'right') {
-				pieces.next[arrays[i]].x = pieces.next[arrays[i]].x - pieceHeight / 2 - pieceWidth / 2;
-				pieces.next[arrays[i]].y = pieces.next[arrays[i]].y + pieceWidth / 2 + pieceHeight / 2;
-				if (pieces[arrays[i]][pieces[arrays[i]].length - 1].side1 === pieces[arrays[i]][pieces[arrays[i]].length - 1].side2) {
-					pieces.next[arrays[i]].y = pieces.next[arrays[i]].y + pieceHeight / 4;
+			} else if (pieces.grow[arraysNames[i]] === 'right') {
+				pieces.next[arraysNames[i]].x = pieces.next[arraysNames[i]].x - pieceHeight / 2 - pieceWidth / 2;
+				pieces.next[arraysNames[i]].y = pieces.next[arraysNames[i]].y + pieceWidth / 2 + pieceHeight / 2;
+				if (pieces[arraysNames[i]][pieces[arraysNames[i]].length - 1].side1 === pieces[arraysNames[i]][pieces[arraysNames[i]].length - 1].side2) {
+					pieces.next[arraysNames[i]].y = pieces.next[arraysNames[i]].y + pieceHeight / 4;
 				}
 			} else {
-				pieces.next[arrays[i]].x = pieces.next[arrays[i]].x - pieceHeight / 2 - pieceWidth / 2;
-				pieces.next[arrays[i]].y = pieces.next[arrays[i]].y - pieceWidth / 2 - pieceHeight / 2;
-				if (pieces[arrays[i]][pieces[arrays[i]].length - 1].side1 === pieces[arrays[i]][pieces[arrays[i]].length - 1].side2) {
-					pieces.next[arrays[i]].x = pieces.next[arrays[i]].x - pieceHeight / 4;
+				pieces.next[arraysNames[i]].x = pieces.next[arraysNames[i]].x - pieceHeight / 2 - pieceWidth / 2;
+				pieces.next[arraysNames[i]].y = pieces.next[arraysNames[i]].y - pieceWidth / 2 - pieceHeight / 2;
+				if (pieces[arraysNames[i]][pieces[arraysNames[i]].length - 1].side1 === pieces[arraysNames[i]][pieces[arraysNames[i]].length - 1].side2) {
+					pieces.next[arraysNames[i]].x = pieces.next[arraysNames[i]].x - pieceHeight / 4;
 				}
 			}
-			pieces.grow[arrays[i]] = arrays[(arrays.indexOf(pieces.grow[arrays[i]]) + 1) % arrays.length];
-			pieces.branch[arrays[i]] = pieces.branch[arrays[i]] + 1;
+			pieces.grow[arraysNames[i]] = arraysNames[(arraysNames.indexOf(pieces.grow[arraysNames[i]]) + 1) % arraysNames.length];
+			pieces.branch[arraysNames[i]] = pieces.branch[arraysNames[i]] + 1;
 		}
 	}
 }
 
 function rotateCounterClock() {
 	'use strict';
-	var i, arrays;
-	arrays = ['top', 'left', 'bottom', 'right'];
+	var i, arraysNames;
+	arraysNames = ['top', 'left', 'bottom', 'right'];
 	for (i = 0; i < 4; i = i + 1) {
-		if (pieces.numberRotate[arrays[i]].length > 0 && pieces[arrays[i]].length === pieces.numberRotate[arrays[i]][0]) {
-			pieces.numberRotate[arrays[i]][1] += pieces.numberRotate[arrays[i]][0];
-			pieces.numberRotate[arrays[i]].shift();
-			pieces.angle[arrays[i]] = pieces.angle[arrays[i]] - 90;
-			if (pieces.grow[arrays[i]] === 'right') {
-				pieces.next[arrays[i]].x = pieces.next[arrays[i]].x - pieceHeight / 2 - pieceWidth / 2;
-				pieces.next[arrays[i]].y = pieces.next[arrays[i]].y - pieceWidth / 2 - pieceHeight / 2;
-				if (pieces[arrays[i]][pieces[arrays[i]].length - 1].side1 === pieces[arrays[i]][pieces[arrays[i]].length - 1].side2) {
-					pieces.next[arrays[i]].y = pieces.next[arrays[i]].y - pieceHeight / 4;
+		if (pieces.numberRotate[arraysNames[i]].length > 0 && pieces[arraysNames[i]].length === pieces.numberRotate[arraysNames[i]][0]) {
+			pieces.numberRotate[arraysNames[i]][1] += pieces.numberRotate[arraysNames[i]][0];
+			pieces.numberRotate[arraysNames[i]].shift();
+			pieces.angle[arraysNames[i]] = pieces.angle[arraysNames[i]] - 90;
+			if (pieces.grow[arraysNames[i]] === 'right') {
+				pieces.next[arraysNames[i]].x = pieces.next[arraysNames[i]].x - pieceHeight / 2 - pieceWidth / 2;
+				pieces.next[arraysNames[i]].y = pieces.next[arraysNames[i]].y - pieceWidth / 2 - pieceHeight / 2;
+				if (pieces[arraysNames[i]][pieces[arraysNames[i]].length - 1].side1 === pieces[arraysNames[i]][pieces[arraysNames[i]].length - 1].side2) {
+					pieces.next[arraysNames[i]].y = pieces.next[arraysNames[i]].y - pieceHeight / 4;
 				}
-			} else if (pieces.grow[arrays[i]] === 'bottom') {
-				pieces.next[arrays[i]].x = pieces.next[arrays[i]].x + pieceHeight / 2 + pieceWidth / 2;
-				pieces.next[arrays[i]].y = pieces.next[arrays[i]].y - pieceWidth / 2 - pieceHeight / 2;
-				if (pieces[arrays[i]][pieces[arrays[i]].length - 1].side1 === pieces[arrays[i]][pieces[arrays[i]].length - 1].side2) {
-					pieces.next[arrays[i]].x = pieces.next[arrays[i]].x + pieceHeight / 4;
+			} else if (pieces.grow[arraysNames[i]] === 'bottom') {
+				pieces.next[arraysNames[i]].x = pieces.next[arraysNames[i]].x + pieceHeight / 2 + pieceWidth / 2;
+				pieces.next[arraysNames[i]].y = pieces.next[arraysNames[i]].y - pieceWidth / 2 - pieceHeight / 2;
+				if (pieces[arraysNames[i]][pieces[arraysNames[i]].length - 1].side1 === pieces[arraysNames[i]][pieces[arraysNames[i]].length - 1].side2) {
+					pieces.next[arraysNames[i]].x = pieces.next[arraysNames[i]].x + pieceHeight / 4;
 				}
-			} else if (pieces.grow[arrays[i]] === 'left') {
-				pieces.next[arrays[i]].x = pieces.next[arrays[i]].x + pieceHeight / 2 + pieceWidth / 2;
-				pieces.next[arrays[i]].y = pieces.next[arrays[i]].y + pieceWidth / 2 + pieceHeight / 2;
-				if (pieces[arrays[i]][pieces[arrays[i]].length - 1].side1 === pieces[arrays[i]][pieces[arrays[i]].length - 1].side2) {
-					pieces.next[arrays[i]].y = pieces.next[arrays[i]].y + pieceHeight / 4;
+			} else if (pieces.grow[arraysNames[i]] === 'left') {
+				pieces.next[arraysNames[i]].x = pieces.next[arraysNames[i]].x + pieceHeight / 2 + pieceWidth / 2;
+				pieces.next[arraysNames[i]].y = pieces.next[arraysNames[i]].y + pieceWidth / 2 + pieceHeight / 2;
+				if (pieces[arraysNames[i]][pieces[arraysNames[i]].length - 1].side1 === pieces[arraysNames[i]][pieces[arraysNames[i]].length - 1].side2) {
+					pieces.next[arraysNames[i]].y = pieces.next[arraysNames[i]].y + pieceHeight / 4;
 				}
 			} else {
-				pieces.next[arrays[i]].x = pieces.next[arrays[i]].x - pieceHeight / 2 - pieceWidth / 2;
-				pieces.next[arrays[i]].y = pieces.next[arrays[i]].y + pieceWidth / 2 + pieceHeight / 2;
-				if (pieces[arrays[i]][pieces[arrays[i]].length - 1].side1 === pieces[arrays[i]][pieces[arrays[i]].length - 1].side2) {
-					pieces.next[arrays[i]].x = pieces.next[arrays[i]].x - pieceHeight / 4;
+				pieces.next[arraysNames[i]].x = pieces.next[arraysNames[i]].x - pieceHeight / 2 - pieceWidth / 2;
+				pieces.next[arraysNames[i]].y = pieces.next[arraysNames[i]].y + pieceWidth / 2 + pieceHeight / 2;
+				if (pieces[arraysNames[i]][pieces[arraysNames[i]].length - 1].side1 === pieces[arraysNames[i]][pieces[arraysNames[i]].length - 1].side2) {
+					pieces.next[arraysNames[i]].x = pieces.next[arraysNames[i]].x - pieceHeight / 4;
 				}
 			}
-			pieces.grow[arrays[i]] = arrays[(arrays.indexOf(pieces.grow[arrays[i]]) + 1) % arrays.length];
-			pieces.branch[arrays[i]] = pieces.branch[arrays[i]] + 1;
+			pieces.grow[arraysNames[i]] = arraysNames[(arraysNames.indexOf(pieces.grow[arraysNames[i]]) + 1) % arraysNames.length];
+			pieces.branch[arraysNames[i]] = pieces.branch[arraysNames[i]] + 1;
 		}
 	}
 }
@@ -136,84 +136,69 @@ function setPiece(x, y, angle) {
 	return selected.piece;
 }
 
-function isMovePossible(piece, array) {
+function isMovePossible(piece, arrayName) {
 	'use strict';
-	var last = pieces[array].length - 1;
-	if (piece.side1 === pieces[array][last][pieces[array][last].freeSide] || piece.side2 === pieces[array][last][pieces[array][last].freeSide]) {
+	var last = pieces[arrayName].length - 1;
+	if ((arrayName === 'left' || arrayName === 'right') && (pieces.top.length === 1 || pieces.bottom.length === 1)) {
+		return false;
+	}
+	if (piece.side1 === pieces[arrayName][last][pieces[arrayName][last].freeSide] || piece.side2 === pieces[arrayName][last][pieces[arrayName][last].freeSide]) {
 		return true;
 	}
 	return false;
 }
 
-function rotatePiece(piece, array) {
+function rotatePiece(piece, arrayName) {
 	'use strict';
 	var index;
-	index = pieces[array].length - 1;
-	if (pieces[array][index].side1 === pieces[array][index].side2) {
+	index = pieces[arrayName].length - 1;
+	if (pieces[arrayName][index].side1 === pieces[arrayName][index].side2) {
 		index = index - 1;
 	}
-	if (piece.side1 === piece.side2 && (piece.side1 === pieces[array][index].side1 || piece.side1 === pieces[array][index].side2)) {
-		piece.angle = pieces.angle[array] + 90;
+	if (piece.side1 === piece.side2 && (piece.side1 === pieces[arrayName][index].side1 || piece.side1 === pieces[arrayName][index].side2)) {
+		piece.angle = pieces.angle[arrayName] + 90;
 		piece.freeSide = 'side1';
 		return;
 	}
-	if (piece.side1 === pieces[array][index].side1 || piece.side2 === pieces[array][index].side2) {
-		piece.angle = pieces.angle[array] + 180;
-		pieces.angle[array] = piece.angle;
-		piece.freeSide = piece.side1 === pieces[array][index].side1 ? 'side2' : 'side1';
-	} else if (piece.side1 === pieces[array][index].side2 || piece.side2 === pieces[array][index].side1) {
-		piece.angle = pieces.angle[array];
-		pieces.angle[array] = piece.angle;
-		piece.freeSide = piece.side1 === pieces[array][index].side2 ? 'side2' : 'side1';
+	if (piece.side1 === pieces[arrayName][index].side1 || piece.side2 === pieces[arrayName][index].side2) {
+		piece.angle = pieces.angle[arrayName] + 180;
+		pieces.angle[arrayName] = piece.angle;
+		piece.freeSide = piece.side1 === pieces[arrayName][index].side1 ? 'side2' : 'side1';
+	} else if (piece.side1 === pieces[arrayName][index].side2 || piece.side2 === pieces[arrayName][index].side1) {
+		piece.angle = pieces.angle[arrayName];
+		pieces.angle[arrayName] = piece.angle;
+		piece.freeSide = piece.side1 === pieces[arrayName][index].side2 ? 'side2' : 'side1';
 	}
 }
 
-function fixCarrocaPosition(array, piece) {
+function fixCarrocaPosition(arrayName, piece) {
 	'use strict';
-	if (pieces.grow[array] === 'left') {
+	if (pieces.grow[arrayName] === 'left') {
 		piece.x = piece.x + pieceHeight / 2 - pieceWidth / 2;
-	} else if (pieces.grow[array] === 'top') {
+	} else if (pieces.grow[arrayName] === 'top') {
 		piece.y = piece.y + pieceHeight / 2 - pieceWidth / 2;
-	} else if (pieces.grow[array] === 'right') {
+	} else if (pieces.grow[arrayName] === 'right') {
 		piece.x = piece.x - pieceHeight / 2 + pieceWidth / 2;
 	} else {
 		piece.y = piece.y - pieceHeight / 2 + pieceWidth / 2;
 	}
 }
 
-function calculateNextPosition(array, piece) {
+function calculateNextPosition(arrayName, piece) {
 	'use strict';
 	var isCarroca = piece.side1 === piece.side2;
 	if (isCarroca) {
-		fixCarrocaPosition(array, piece);
+		fixCarrocaPosition(arrayName, piece);
 	}
-	if (pieces.grow[array] === 'left') {
-		pieces.next[array].x -= isCarroca ? pieceWidth : pieceHeight;
-	} else if (pieces.grow[array] === 'top') {
-		pieces.next[array].y -= isCarroca ? pieceWidth : pieceHeight;
-	} else if (pieces.grow[array] === 'right') {
-		pieces.next[array].x += isCarroca ? pieceWidth : pieceHeight;
+	if (pieces.grow[arrayName] === 'left') {
+		pieces.next[arrayName].x -= isCarroca ? pieceWidth : pieceHeight;
+	} else if (pieces.grow[arrayName] === 'top') {
+		pieces.next[arrayName].y -= isCarroca ? pieceWidth : pieceHeight;
+	} else if (pieces.grow[arrayName] === 'right') {
+		pieces.next[arrayName].x += isCarroca ? pieceWidth : pieceHeight;
 	} else {
-		pieces.next[array].y += isCarroca ? pieceWidth : pieceHeight;
+		pieces.next[arrayName].y += isCarroca ? pieceWidth : pieceHeight;
 	}
-}
-
-function playPiece2(object) {
-	'use strict';
-	if (Phaser.Point.distance(object, pieces.next.top) > Phaser.Point.distance(object, pieces.next.bottom)) {
-		object.piece = setPiece(pieces.next.bottom.x, pieces.next.bottom.y, pieces.next.bottom.angle);
-		object.array = 'bottom';
-		if (!isMovePossible(object.piece, object.array)) {
-			return false;
-		}
-	} else {
-		object.piece = setPiece(pieces.next.top.x, pieces.next.top.y, pieces.next.top.angle);
-		object.array = 'top';
-		if (!isMovePossible(object.piece, object.array)) {
-			return false;
-		}
-	}
-	return object;
 }
 
 function playPiece4(object) {
@@ -226,54 +211,41 @@ function playPiece4(object) {
 	if (dTop <= dBottom && dTop <= dLeft && dTop <= dRight) {
 		object.piece = setPiece(pieces.next.top.x, pieces.next.top.y, pieces.next.top.angle);
 		object.array = 'top';
-		if (!isMovePossible(object.piece, object.array)) {
-			return false;
-		}
 	} else if ((dBottom <= dTop && dBottom <= dLeft && dBottom <= dRight)) {
 		object.piece = setPiece(pieces.next.bottom.x, pieces.next.bottom.y, pieces.next.bottom.angle);
 		object.array = 'bottom';
-		if (!isMovePossible(object.piece, object.array)) {
-			return false;
-		}
 	} else if ((dRight <= dTop && dRight <= dLeft && dRight <= dBottom)) {
 		object.piece = setPiece(pieces.next.right.x, pieces.next.right.y, pieces.next.right.angle);
 		object.array = 'right';
-		if (!isMovePossible(object.piece, object.array)) {
-			return false;
-		}
 	} else {
 		object.piece = setPiece(pieces.next.left.x, pieces.next.left.y, pieces.next.left.angle);
 		object.array = 'left';
-		if (!isMovePossible(object.piece, object.array)) {
-			return false;
-		}
 	}
 	return object;
 }
 
 function onClick() {
 	'use strict';
-	if (!selected.enabled) {
+	if (!selected.enabled || (game.input.position.y > game.height - pieceHeight)) {
 		return;
 	}
 	selected.enabled = false;
+	if (selected.sprite) {
+		selected.sprite.destroy();
+	}
 	var object = {
 		x: game.input.position.x,
 		y: game.input.position.y,
 		room: userroom
 	};
-	if (pieces.top.length <= 1 || pieces.bottom.length <= 1) {
-		object = playPiece2(object);
-	} else {
-		object = playPiece4(object);
+	playPiece4(object);
+	if (!isMovePossible(object.piece, object.array)) {
+		return;
 	}
+	selected.spriteClicked.destroy();
 	calculateNextPosition(object.array, object.piece);
 	rotatePiece(object.piece, object.array);
 	object.next = pieces.next;
-	if (!object) {
-		console.log('move refused');
-		return;
-	}
 	object.piece.branch = pieces.branch[object.array];
 	object.angle = pieces.angle;
 	socket.emit('user clicked!', JSON.stringify(object));
@@ -301,8 +273,17 @@ function indexOfFrame(frame) {
 
 function select(sprite, e) {
 	'use strict';
+	if (selected.sprite) {
+		selected.sprite.destroy();
+	}
+	if (selected.enabled && selected.piece === myPieces[indexOfFrame(sprite.frame)]) {
+		selected.enabled = false;
+		return;
+	}
 	selected.piece = myPieces[indexOfFrame(sprite.frame)];
-	selected.sprite = sprite;
+	selected.spriteClicked = sprite;
+	selected.sprite = game.add.sprite(sprite.x, sprite.y, 'selection');
+	selected.sprite.anchor.setTo(0.5, 0.5);
 	selected.enabled = true;
 }
 
@@ -326,6 +307,7 @@ function showMyPieces() {
 function preload() {
 	'use strict';
 	game.load.image('rectangle', 'assets/images/rectangle.png');
+	game.load.image('selection', 'assets/images/selection.png');
 	game.load.spritesheet('hint', 'assets/spritesheets/hint.png', 30, 60);
 	game.load.spritesheet('pieces', 'assets/spritesheets/domino.png', 30, 60);
 }
@@ -376,38 +358,37 @@ function create() {
 	pieces.bottom.push({side1: 6, side2: 7, angle: 180, freeSide: 'side1'});
 	pieces.left.push({side1: 6, side2: 7, angle: 270, freeSide: 'side1'});
 	pieces.right.push({side1: 6, side2: 7, angle: 90, freeSide: 'side1'});
-	hint = game.add.sprite(0, 0, 'hint');
-	hint.anchor.setTo(0.5, 0.5);
+	hint = [game.add.sprite(0, 0, 'hint'), game.add.sprite(0, 0, 'hint'), game.add.sprite(0, 0, 'hint'), game.add.sprite(0, 0, 'hint')];
 }
 
 function showHint() {
 	'use strict';
+	var i, position = {}, arraysNames = ['top', 'right', 'left', 'bottom'], size = arraysNames.length;
 	if (!selected.enabled) {
-		hint.alpha = 0;
+		for (i = 0; i < size; i = i + 1) {
+			hint[i].alpha = 0;
+		}
 		return;
 	}
-	var object = {
-		x: game.input.position.x,
-		y: game.input.position.y
-	};
-	if (pieces.top.length <= 1 || pieces.bottom.length <= 1) {
-		playPiece2(object);
-	} else {
-		playPiece4(object);
+	for (i = 0; i < size; i = i + 1) {
+		hint[i].anchor.setTo(0.5, 0.5);
+		position.x = pieces.next[arraysNames[i]].x;
+		position.y = pieces.next[arraysNames[i]].y;
+		position.angle = pieces.angle[arraysNames[i]];
+		if (selected.piece.side1 === selected.piece.side2) {
+			position.angle += 90;
+			fixCarrocaPosition(arraysNames[i], position);
+		}
+		hint[i].x = position.x;
+		hint[i].y = position.y;
+		hint[i].angle = position.angle;
+		hint[i].alpha = 1;
+		if (isMovePossible(selected.piece, arraysNames[i])) {
+			hint[i].frame = 0;
+		} else {
+			hint[i].frame = 1;
+		}
 	}
-	hint.x = object.piece.x;
-	hint.y = object.piece.y;
-	hint.angle = pieces.angle[object.array];
-	if (object.piece.side1 === object.piece.side2) {
-		hint.angle += 90;
-		fixCarrocaPosition(object.array, hint);
-	}
-	hint.alpha = 1;
-	if (isMovePossible(object.piece, object.array)) {
-		hint.frame = 0;
-		return;
-	}
-	hint.frame = 1;
 }
 
 function update() {
