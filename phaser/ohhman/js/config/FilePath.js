@@ -15,13 +15,12 @@ var fp_bgLose = 'assets/screenshots/lose_800-600.png';
 	var fp_ssButtonsPNG = 'assets/spritesheets/buttons_291-75-8.png';
 	var fp_ssButtonsJSON = 'assets/spritesheets/buttons_291-75-8.json';
 
-	//Mapas
+//Mapas
 	var fp_map1 = 'assets/tilemaps/maps/map1.json';
 	var fp_wallLayer = 'Wall';
 	var fp_ballLayer = 'Ball';
 	var fp_decicionLayer = 'Decision';
 	var fp_fearLayer = 'Fear';	
-
 
 //Sprites
 	//Botões do Menu
@@ -51,3 +50,9 @@ var fp_bgLose = 'assets/screenshots/lose_800-600.png';
 	//Vidas
 	var fp_life = 'assets/images/heart_32-32.png'
 	var fp_emptyLife = 'assets/images/heartEmpty_32-32.png';
+
+//Audios
+	var fp_aud_chomp = 'assets/audios/pacman_chomp.wav';
+	var fp_aud_death = 'assets/audios/pacman_death.wav';
+	var fp_aud_eatghost = 'assets/audios/pacman_eatghost.wav';
+	var fp_aud_beginning = 'assets/audios/pacman_beginning.wav';

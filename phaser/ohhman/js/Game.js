@@ -20,7 +20,7 @@ Game = function () {
 	var life = null;
 	var score = null;
 	var scaredGhost = null;
-	var mood = false;
+	var mood = null;	
 };
 
 Game.prototype = {
@@ -31,9 +31,10 @@ Game.prototype = {
 		this.loadLives();
 		this.loadScore();
 		this.loadScaredGhost();
+		this.loadSound();
 	},
 
-	create : function() {			
+	create : function() {		
 		map.create();
 		life.create();
 		ohhMan.create();
@@ -53,10 +54,11 @@ Game.prototype = {
 		clyde4.create(1548, 864, 'clyde');
 		inkey4.create(828, 1008, 'inkey');
 		pinky4.create(1368, 1007, 'pinky');		
-		score.create();				
+		score.create();
+		this.add.audio('aud_beginning', 1).play();		
 	},
 	
-	update : function() {				
+	update : function() {		
 		ohhMan.update();
 		blinky.update();
 		clyde.update();
@@ -73,7 +75,7 @@ Game.prototype = {
 		blinky4.update();
 		clyde4.update();
 		inkey4.update();
-		pinky4.update();	
+		pinky4.update();
 	},
 	
 	loadMap : function() {
@@ -149,4 +151,8 @@ Game.prototype = {
 		scaredGhost = new ScaredGhost();
 		scaredGhost.preload();
 	},
+	
+	loadSound : function () {
+		game.load.audio('aud_beginning', fp_aud_beginning);
+	}
 };

@@ -14,6 +14,11 @@ Ohhman.prototype = {
 	preload : function() {
 		//Carrega o sprite do ohhMan
 		game.load.image('ohhMan', fp_ohhMan);
+		
+		//Carrega o audio para colisao com as bolinhas amarelas
+		game.load.audio('aud_chomp', fp_aud_chomp);
+		game.load.audio('aud_death', fp_aud_death);
+		game.load.audio('aud_eatghost', fp_aud_eatghost);
 	},
 
 	create : function() {
@@ -26,7 +31,9 @@ Ohhman.prototype = {
 		
 		//Faz a camera seguir o Ohhman
 		game.camera.follow(this.sprite);
-
+		
+		//Modo scared inicialmente falso
+		game.mood = false;
 	},
 	
 	update : function() {		
@@ -93,7 +100,7 @@ Ohhman.prototype = {
 	},
 	
 	//Verifica a colisão do ohhMan com os fantasminhas
-	verifyGhostCollision : function() {
+	verifyGhostCollision : function() {		
 		if (game.mood == false){
 			if (this.checkOverlap(this.sprite, blinky.sprite) ||
 				this.checkOverlap(this.sprite, clyde.sprite) ||
@@ -111,9 +118,10 @@ Ohhman.prototype = {
 				this.checkOverlap(this.sprite, clyde4.sprite) ||
 				this.checkOverlap(this.sprite, inkey4.sprite) ||
 				this.checkOverlap(this.sprite, pinky4.sprite)
-			)
-							
-				life.decreaseLivesNumber();			
+			){				
+				game.add.audio('aud_death', 1).play();
+				life.decreaseLivesNumber();				
+			}
 		}
 	},
 	
@@ -128,14 +136,15 @@ Ohhman.prototype = {
 	
 	//Verifica a colisão do ohhMan com as bolinhas amarelas
 	verifyBallCollision : function() {						
-		game.physics.arcade.overlap(this.sprite, map.balls, this.removeBall, null, this);						
+		game.physics.arcade.overlap(this.sprite, map.balls, this.removeBall, null, this);			
 	},
 	
 	//Remove a bolinha amarela após colisão com o Ohhman
-	removeBall : function(player, ball) {		 		 		 
-		 ball.kill();		
-		 score.punctuateBall();		 
-		 this.verifyBallQuantity();
+	removeBall : function(player, ball) {
+		game.add.audio('aud_chomp', 1).play();		
+		ball.kill();		
+		score.punctuateBall();		 
+		this.verifyBallQuantity();
 	},
 	
 	//Verifica a colisão do ohhman com o ponto de decisao
@@ -208,67 +217,83 @@ Ohhman.prototype = {
 	
 	verifyScaredGhostCollision : function () {
 		if (game.mood == true){
-			if (game.physics.arcade.overlap(this.sprite, blinky.sprite)){				
+			if (game.physics.arcade.overlap(this.sprite, blinky.sprite)){
+				game.add.audio('aud_eatghost', 1).play();			
 				blinky.kill();
 				score.punctuateScaredGhost();				
 			}
 			if (game.physics.arcade.overlap(this.sprite, clyde.sprite)) {
+				game.add.audio('aud_eatghost', 1).play();
 				clyde.kill();
 				score.punctuateScaredGhost();
 			}
 			if (game.physics.arcade.overlap(this.sprite, inkey.sprite)) {
+				game.add.audio('aud_eatghost', 1).play();
 				inkey.kill();
 				score.punctuateScaredGhost();
 			}
 			if (game.physics.arcade.overlap(this.sprite, pinky.sprite)) {
+				game.add.audio('aud_eatghost', 1).play();
 				pinky.kill();
 				score.punctuateScaredGhost();
 			}
 			if (game.physics.arcade.overlap(this.sprite, blinky2.sprite)){				
+				game.add.audio('aud_eatghost', 1).play();
 				blinky2.kill();
 				score.punctuateScaredGhost();
 			}
 			if (game.physics.arcade.overlap(this.sprite, clyde2.sprite)) {
+				game.add.audio('aud_eatghost', 1).play();
 				clyde2.kill();
 				score.punctuateScaredGhost();
 			}
 			if (game.physics.arcade.overlap(this.sprite, inkey2.sprite)) {
+				game.add.audio('aud_eatghost', 1).play();
 				inkey2.kill();
 				score.punctuateScaredGhost();
 			}
 			if (game.physics.arcade.overlap(this.sprite, pinky2.sprite)) {
+				game.add.audio('aud_eatghost', 1).play();
 				pinky2.kill();
 				score.punctuateScaredGhost();
 			}
 			if (game.physics.arcade.overlap(this.sprite, blinky3.sprite)){				
+				game.add.audio('aud_eatghost', 1).play();
 				blinky3.kill();
 				score.punctuateScaredGhost();
 			}
 			if (game.physics.arcade.overlap(this.sprite, clyde3.sprite)) {
+				game.add.audio('aud_eatghost', 1).play();
 				clyde3.kill();
 				score.punctuateScaredGhost();
 			}
 			if (game.physics.arcade.overlap(this.sprite, inkey3.sprite)) {
+				game.add.audio('aud_eatghost', 1).play();
 				inkey3.kill();
 				score.punctuateScaredGhost();
 			}
 			if (game.physics.arcade.overlap(this.sprite, pinky3.sprite)) {
+				game.add.audio('aud_eatghost', 1).play();
 				pinky3.kill();
 				score.punctuateScaredGhost();
 			}
 			if (game.physics.arcade.overlap(this.sprite, blinky4.sprite)){				
+				game.add.audio('aud_eatghost', 1).play();
 				blinky4.kill();
 				score.punctuateScaredGhost();
 			}
 			if (game.physics.arcade.overlap(this.sprite, clyde4.sprite)) {
+				game.add.audio('aud_eatghost', 1).play();
 				clyde4.kill();
 				score.punctuateScaredGhost();
 			}
 			if (game.physics.arcade.overlap(this.sprite, inkey4.sprite)) {
+				game.add.audio('aud_eatghost', 1).play();
 				inkey4.kill();
 				score.punctuateScaredGhost();
 			}
 			if (game.physics.arcade.overlap(this.sprite, pinky4.sprite)) {
+				game.add.audio('aud_eatghost', 1).play();
 				pinky4.kill();
 				score.punctuateScaredGhost();
 			}
