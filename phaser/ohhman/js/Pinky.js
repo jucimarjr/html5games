@@ -24,9 +24,9 @@ Pinky.prototype = {
 		game.load.image('pinky', fp_pinky);
 	},
 
-	create : function(xPosition, yPosition) {
+	create : function(xPosition, yPosition, type) {
 		//Adiciona o pinky na tela		
-		this.sprite = game.add.sprite(xPosition, yPosition, 'pinky');
+		this.sprite = game.add.sprite(xPosition, yPosition, type);
 		game.physics.enable(this.sprite);
 
 		//Impede que o pinky saia dos limites da tela

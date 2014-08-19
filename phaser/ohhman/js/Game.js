@@ -19,6 +19,8 @@ Game = function () {
 	var pinky4 = null;
 	var life = null;
 	var score = null;
+	var scaredGhost = null;
+	var mood = false;
 };
 
 Game.prototype = {
@@ -28,28 +30,29 @@ Game.prototype = {
 		this.loadGhosts();	
 		this.loadLives();
 		this.loadScore();
+		this.loadScaredGhost();
 	},
 
 	create : function() {			
 		map.create();
 		life.create();
 		ohhMan.create();
-		blinky.create(396, 180);
-		clyde.create(396, 286);
-		inkey.create(432, 540);
-		pinky.create(36, 360);				
-		blinky2.create(1224, 108);
-		clyde2.create(1188, 252);
-		inkey2.create(1260, 540);
-		pinky2.create(828, 432);	
-		blinky3.create(144, 900);
-		clyde3.create(648, 1152);
-		inkey3.create(612, 828);
-		pinky3.create(504, 612);
-		blinky4.create(1152, 756);
-		clyde4.create(1548, 864);
-		inkey4.create(828, 1008);
-		pinky4.create(1368, 1007);		
+		blinky.create(396, 180, 'blinky');
+		clyde.create(396, 286, 'clyde');
+		inkey.create(432, 540, 'inkey');
+		pinky.create(36, 360, 'pinky');				
+		blinky2.create(1224, 108, 'blinky');
+		clyde2.create(1188, 252, 'clyde');
+		inkey2.create(1260, 540, 'inkey');
+		pinky2.create(828, 432, 'pinky');	
+		blinky3.create(144, 900, 'blinky');
+		clyde3.create(648, 1152, 'clyde');
+		inkey3.create(612, 828, 'inkey');
+		pinky3.create(504, 612, 'pinky');
+		blinky4.create(1152, 756, 'blinky');
+		clyde4.create(1548, 864, 'clyde');
+		inkey4.create(828, 1008, 'inkey');
+		pinky4.create(1368, 1007, 'pinky');		
 		score.create();				
 	},
 	
@@ -140,5 +143,10 @@ Game.prototype = {
 	
 	loadScore : function() {
 		score = new Score();		
-	}
+	},
+	
+	loadScaredGhost : function() {
+		scaredGhost = new ScaredGhost();
+		scaredGhost.preload();
+	},
 };

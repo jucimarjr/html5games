@@ -11,9 +11,9 @@ Inkey.prototype = {
 		game.load.image('inkey', fp_inkey);
 	},
 
-	create : function(xPosition, yPosition) {
+	create : function(xPosition, yPosition, type) {
 		//Adiciona o inkey na tela		
-		this.sprite = game.add.sprite(xPosition, yPosition, 'inkey');
+		this.sprite = game.add.sprite(xPosition, yPosition, type);
 		game.physics.enable(this.sprite);
 
 		//Impede que o inkey saia dos limites da tela

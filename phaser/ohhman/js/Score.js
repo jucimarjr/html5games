@@ -27,5 +27,11 @@ Score.prototype = {
 	punctuateFear : function () {
 		this.score += 25;
 	    this.scoreText.setText( "" + this.score );
+	},
+	
+	//Soma dozentos pontos a cada colisao com um fantasma no modo medo
+	punctuateScaredGhost : function () {
+		this.score += 200;
+	    this.scoreText.setText( "" + this.score );
 	}
 };

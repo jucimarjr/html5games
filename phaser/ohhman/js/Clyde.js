@@ -11,9 +11,9 @@ Clyde.prototype = {
 		game.load.image('clyde', fp_clyde);
 	},
 
-	create : function(xPosition, yPosition) {
+	create : function(xPosition, yPosition, type) {
 		//Adiciona o clyde na tela		
-		this.sprite = game.add.sprite(xPosition, yPosition, 'clyde');
+		this.sprite = game.add.sprite(xPosition, yPosition, type);
 		game.physics.enable(this.sprite);
 
 		//Impede que o clyde saia dos limites da tela

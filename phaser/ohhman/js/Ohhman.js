@@ -36,6 +36,7 @@ Ohhman.prototype = {
 		this.verifyBallCollision();		
 		this.verifyDecisionCollision();		
 		this.verifyFearCollision();
+		this.verifyScaredGhostCollision();
 	},
 	
 	
@@ -93,25 +94,27 @@ Ohhman.prototype = {
 	
 	//Verifica a colisão do ohhMan com os fantasminhas
 	verifyGhostCollision : function() {
-		if (this.checkOverlap(this.sprite, blinky.sprite) ||
-			this.checkOverlap(this.sprite, clyde.sprite) ||
-			this.checkOverlap(this.sprite, inkey.sprite) ||
-			this.checkOverlap(this.sprite, pinky.sprite) ||
-			this.checkOverlap(this.sprite, blinky2.sprite) ||
-			this.checkOverlap(this.sprite, clyde2.sprite) ||
-			this.checkOverlap(this.sprite, inkey2.sprite) ||
-			this.checkOverlap(this.sprite, pinky2.sprite) ||
-			this.checkOverlap(this.sprite, blinky3.sprite) ||
-			this.checkOverlap(this.sprite, clyde3.sprite) ||
-			this.checkOverlap(this.sprite, inkey3.sprite) ||
-			this.checkOverlap(this.sprite, pinky3.sprite) ||
-			this.checkOverlap(this.sprite, blinky4.sprite) ||
-			this.checkOverlap(this.sprite, clyde4.sprite) ||
-			this.checkOverlap(this.sprite, inkey4.sprite) ||
-			this.checkOverlap(this.sprite, pinky4.sprite)
-		)
-						
-			life.decreaseLivesNumber();			
+		if (game.mood == false){
+			if (this.checkOverlap(this.sprite, blinky.sprite) ||
+				this.checkOverlap(this.sprite, clyde.sprite) ||
+				this.checkOverlap(this.sprite, inkey.sprite) ||
+				this.checkOverlap(this.sprite, pinky.sprite) ||
+				this.checkOverlap(this.sprite, blinky2.sprite) ||
+				this.checkOverlap(this.sprite, clyde2.sprite) ||
+				this.checkOverlap(this.sprite, inkey2.sprite) ||
+				this.checkOverlap(this.sprite, pinky2.sprite) ||
+				this.checkOverlap(this.sprite, blinky3.sprite) ||
+				this.checkOverlap(this.sprite, clyde3.sprite) ||
+				this.checkOverlap(this.sprite, inkey3.sprite) ||
+				this.checkOverlap(this.sprite, pinky3.sprite) ||
+				this.checkOverlap(this.sprite, blinky4.sprite) ||
+				this.checkOverlap(this.sprite, clyde4.sprite) ||
+				this.checkOverlap(this.sprite, inkey4.sprite) ||
+				this.checkOverlap(this.sprite, pinky4.sprite)
+			)
+							
+				life.decreaseLivesNumber();			
+		}
 	},
 	
 	//Verifica se 2 sprites se sobreporam, ou seja, se eles colidiram
@@ -192,14 +195,83 @@ Ohhman.prototype = {
 	
 	//Remove o quadrado grande após colisão com o Ohhman
 	removeFear : function(player, fear) {		 		 		 
-		 fear.kill();		
-		 score.punctuateFear();		 
+		fear.kill();		
+		score.punctuateFear();		
+		scaredGhost.changeMood();
 	},
 	
 	verifyBallQuantity : function() {
-		
 		if (map.balls.total <=0){
 			game.state.start('sceneWin');
+		}
+	},
+	
+	verifyScaredGhostCollision : function () {
+		if (game.mood == true){
+			if (game.physics.arcade.overlap(this.sprite, blinky.sprite)){				
+				blinky.kill();
+				score.punctuateScaredGhost();				
+			}
+			if (game.physics.arcade.overlap(this.sprite, clyde.sprite)) {
+				clyde.kill();
+				score.punctuateScaredGhost();
+			}
+			if (game.physics.arcade.overlap(this.sprite, inkey.sprite)) {
+				inkey.kill();
+				score.punctuateScaredGhost();
+			}
+			if (game.physics.arcade.overlap(this.sprite, pinky.sprite)) {
+				pinky.kill();
+				score.punctuateScaredGhost();
+			}
+			if (game.physics.arcade.overlap(this.sprite, blinky2.sprite)){				
+				blinky2.kill();
+				score.punctuateScaredGhost();
+			}
+			if (game.physics.arcade.overlap(this.sprite, clyde2.sprite)) {
+				clyde2.kill();
+				score.punctuateScaredGhost();
+			}
+			if (game.physics.arcade.overlap(this.sprite, inkey2.sprite)) {
+				inkey2.kill();
+				score.punctuateScaredGhost();
+			}
+			if (game.physics.arcade.overlap(this.sprite, pinky2.sprite)) {
+				pinky2.kill();
+				score.punctuateScaredGhost();
+			}
+			if (game.physics.arcade.overlap(this.sprite, blinky3.sprite)){				
+				blinky3.kill();
+				score.punctuateScaredGhost();
+			}
+			if (game.physics.arcade.overlap(this.sprite, clyde3.sprite)) {
+				clyde3.kill();
+				score.punctuateScaredGhost();
+			}
+			if (game.physics.arcade.overlap(this.sprite, inkey3.sprite)) {
+				inkey3.kill();
+				score.punctuateScaredGhost();
+			}
+			if (game.physics.arcade.overlap(this.sprite, pinky3.sprite)) {
+				pinky3.kill();
+				score.punctuateScaredGhost();
+			}
+			if (game.physics.arcade.overlap(this.sprite, blinky4.sprite)){				
+				blinky4.kill();
+				score.punctuateScaredGhost();
+			}
+			if (game.physics.arcade.overlap(this.sprite, clyde4.sprite)) {
+				clyde4.kill();
+				score.punctuateScaredGhost();
+			}
+			if (game.physics.arcade.overlap(this.sprite, inkey4.sprite)) {
+				inkey4.kill();
+				score.punctuateScaredGhost();
+			}
+			if (game.physics.arcade.overlap(this.sprite, pinky4.sprite)) {
+				pinky4.kill();
+				score.punctuateScaredGhost();
+			}
 		}
 	},
 	

@@ -21,12 +21,12 @@ Blinky = function () {
 Blinky.prototype = {
 	preload : function() {
 		//Carrega o sprite do fantasminha blinky
-		game.load.image('blinky', fp_blinky);
+		game.load.image('blinky', fp_blinky);		
 	},
 
-	create : function(xPosition, yPosition) {
+	create : function(xPosition, yPosition, type) {
 		//Adiciona o blinky na tela		
-		this.sprite = game.add.sprite(xPosition, yPosition, 'blinky');
+		this.sprite = game.add.sprite(xPosition, yPosition, type);
 		game.physics.enable(this.sprite);
 
 		//Impede que o blinky saia dos limites da tela
@@ -192,5 +192,5 @@ Blinky.prototype = {
 		this.rightDistance = 2000;
 		this.upDistance = 2000;
 		this.downDistance = 2000;
-	}
+	},
 };
