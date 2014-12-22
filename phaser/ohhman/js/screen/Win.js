@@ -12,9 +12,8 @@ Win.prototype = {
 		
 		game.input.onDown.add(function() {
 			var fadeout = game.add.tween(bg).to( { alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 0, 0, true);
-			fadeout.onComplete.add(function() {
-				//Chamada do Menu
-				game.state.start('sceneMenu');
+			fadeout.onComplete.add(function() {				
+				game.state.start('highScoresInput');
 			});
 		});
 	}
