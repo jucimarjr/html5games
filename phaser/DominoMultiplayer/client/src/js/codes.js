@@ -1,6 +1,9 @@
-/* This object contains codes created to comunicate functions results, and codes from the http protocol, css, php, keyboard and states of javascript requests*/
+/* This object contains codes created to comunicate functions results, codes from the http protocol, css, php, javascript, keyboard and the version number*/
 
 var Codes = Object.freeze({
+
+    /* Version number*/
+    VERSION_NUMBER: 0.0,
 
     /* Keyboard */
     KEYBOARD_ENTER_KEY: 13,
@@ -15,7 +18,7 @@ var Codes = Object.freeze({
     /* PHP*/
     PHP_GET_METHOD: "GET",
 
-    /* Javascript requests*/
+    /* Javascript*/
     XML_HTTP_REQUEST_COMPLETED: 4,
 
     /* Created to comunicate function results*/

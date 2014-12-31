@@ -2,6 +2,9 @@
 
 var Config = Object.freeze({
 
+    /* System Name */
+    SYSTEM_NAME: "Dominó Amazonense",
+
     /* Texts */
     LOGIN_INVALID_TEXT: "Usuário ou senha inválidos",
     ERROR_CONNECTION_TEXT: "Não foi possível se conectar com o servidor",

@@ -1,6 +1,6 @@
 /*This document contains the first line of code executed*/
 
-/*global Utils, Events, DominoSystem, window*/
+/*global console, window, Config, Utils, Events, DominoSystem, Codes*/
 
 var dominoSystem;
 
@@ -11,4 +11,5 @@ function main() {
     window.onkeypress = Utils.onKeyPressed;
 }
 
+console.log(Config.SYSTEM_NAME + " - V." + Codes.VERSION_NUMBER);
 window.onload = main;
