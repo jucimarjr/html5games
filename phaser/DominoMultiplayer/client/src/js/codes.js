@@ -3,7 +3,7 @@
 var Codes = Object.freeze({
 
     /* Version number*/
-    VERSION_NUMBER: 0.0,
+    VERSION_NUMBER: "0.1.0",
 
     /* Keyboard */
     KEYBOARD_ENTER_KEY: 13,
