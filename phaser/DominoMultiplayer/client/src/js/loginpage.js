@@ -1,5 +1,7 @@
 /*global Utils*/
 
+/* Not called */
+
 var LoginPage = function () {
     'use strict';
     return this;

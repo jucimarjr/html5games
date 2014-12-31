@@ -48,7 +48,7 @@ FSMachine.prototype = {
             }
         }
         if (flagFoundTransition === false) {
-            console.warn("fsm.js - FSMachine.nextTransition - No transition found " + this.currentState + " - " + event);
+            console.warn("fsm.js - FSMachine.nextTransition - No transition found: " + this.currentState + " -> " + event);
         }
     },
     enqueueEvent: function (event) {

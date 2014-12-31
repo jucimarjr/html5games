@@ -1,4 +1,4 @@
-/*global console, XMLHttpRequest, Codes, Config*/
+/*global console, XMLHttpRequest, Codes, dominoSystem, Config, Events*/
 
 /* This object is a library of useful functions*/
 
@@ -9,16 +9,25 @@ var Utils = {
         xmlhttp.onreadystatechange = function () {
             if (xmlhttp.readyState === 4) {
                 if (xmlhttp.status === 200) {
-                    var result = parseInt(xmlhttp.responseText, 10);
-                    if (result === 1) {
-                        console.log(Codes.LOGIN_CONFIRMED);
+                    var result = xmlhttp.responseText.toString();
+                    switch (result) {
+                    case Codes.ERROR_CONNECTION:
+                        dominoSystem.enqueueEvent(Events.ERROR_CONNECTION);
+                        return;
+                    case Codes.LOGIN_CONFIRMED:
+                        dominoSystem.enqueueEvent(Events.LOGIN_CONFIRMED);
+                        return;
+                    case Codes.LOGIN_REFUSED:
+                        dominoSystem.enqueueEvent(Events.LOGIN_REFUSED);
+                        return;
+                    default:
+                        console.log("utils.js - validateLogin - PHP unrecognized answer: " + result);
+                        dominoSystem.enqueueEvent(Events.ERROR_CONNECTION);
                         return;
                     }
-                    console.log(Codes.LOGIN_ERROR);
-                    return;
                 }
                 if (xmlhttp.status > 400) {
-                    console.log(Codes.ERROR_CONNECTION);
+                    dominoSystem.enqueueEvent(Events.ERROR_CONNECTION);
                 }
             }
         };
