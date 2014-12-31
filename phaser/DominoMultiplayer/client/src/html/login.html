@@ -5,14 +5,16 @@
         <title>Dominó</title>
         <link href='http://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
         <link href="../css/login.css" rel="stylesheet" type="text/css">
-        <script type="text/javascript" src="../js/loginpage.js"></script>
     </head>
-    <body >
+    <body>
         <div>
             <div class="top">
                 Dominó Amazonense
             </div>
             <div class="loginbox">
+                <div id="LoginErrorDiv"
+                     class="error">
+                </div>
                 <div class="text">
                     Usuário
                 </div>
@@ -32,7 +34,7 @@
                            size="50">
                 </div>
                 <div class="container">
-                    <button onclick="parent.dominoSystem.enqueueEvent(parent.Events.LOGIN_TRY)">
+                    <button onclick="parent.dominoSystem.enqueueEvent(parent.Events.LOGIN_BUTTON_CLICK)">
                         Entrar
                     </button>
                 </div>

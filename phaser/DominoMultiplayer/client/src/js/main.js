@@ -1,13 +1,14 @@
 /*This document contains the first line of code executed*/
 
-/*global Events, DominoSystem, window*/
+/*global Utils, Events, DominoSystem, window*/
 
 var dominoSystem;
 
 function main() {
     'use strict';
+    dominoSystem = new DominoSystem();
     dominoSystem.enqueueEvent(Events.INIT);
+    window.onkeypress = Utils.onKeyPressed;
 }
 
-var dominoSystem = new DominoSystem();
 window.onload = main;

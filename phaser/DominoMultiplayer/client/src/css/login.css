@@ -33,6 +33,11 @@ button {
     font-size: 2em;
 }
 
+.error {
+    color: #FF0000;
+    font-size: 1em;
+}
+
 .text {
     padding-top: 0.5%;
     padding-bottom: 0.5%;

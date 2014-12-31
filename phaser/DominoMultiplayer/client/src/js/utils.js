@@ -5,10 +5,10 @@
 var Utils = {
     validateLogin: function (login, password) {
         'use strict';
-        var xmlhttp = new XMLHttpRequest(), dir = Config.PHP_VALIDATE_LOGIN_URL;
+        var xmlhttp = new XMLHttpRequest(), dir = Config.PHP_VALIDATE_LOGIN_ADDRESS;
         xmlhttp.onreadystatechange = function () {
-            if (xmlhttp.readyState === 4) {
-                if (xmlhttp.status === 200) {
+            if (xmlhttp.readyState === Codes.XML_HTTP_REQUEST_COMPLETED) {
+                if (xmlhttp.status === Codes.HTTP_REQUEST_SUCCESSFUL) {
                     var result = xmlhttp.responseText.toString();
                     switch (result) {
                     case Codes.ERROR_CONNECTION:
@@ -26,12 +26,18 @@ var Utils = {
                         return;
                     }
                 }
-                if (xmlhttp.status > 400) {
+                if (xmlhttp.status > Codes.HTTP_REQUEST_ERROR) {
                     dominoSystem.enqueueEvent(Events.ERROR_CONNECTION);
                 }
             }
         };
-        xmlhttp.open("GET", dir + "?l=" + login + "&p=" + password, true);
+        xmlhttp.open(Codes.PHP_GET_METHOD, dir + "?l=" + login + "&p=" + password, true);
         xmlhttp.send();
+    },
+    onKeyPressed: function (event) {
+        'use strict';
+        if (event.keyCode === Codes.KEYBOARD_ENTER_KEY) {
+            dominoSystem.enqueueEvent(Events.ENTER_PRESSED);
+        }
     }
 };
