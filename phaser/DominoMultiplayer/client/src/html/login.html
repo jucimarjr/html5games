@@ -1,10 +1,11 @@
 <!doctype html>
 <html>
     <head>
-        <link href='http://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
         <meta charset="utf-8"/>
         <title>Dominó</title>
+        <link href='http://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
         <link href="../css/login.css" rel="stylesheet" type="text/css">
+        <script type="text/javascript" src="../js/loginpage.js"></script>
     </head>
     <body >
         <div>
@@ -16,7 +17,8 @@
                     Usuário
                 </div>
                 <div class="container">
-                    <input type="text"
+                    <input id="LoginInput"
+                           type="text"
                            autocomplete="on"
                            size="50">
                 </div>
@@ -24,12 +26,15 @@
                     Senha
                 </div>
                 <div class="container">
-                    <input type="password"
+                    <input id="PasswordInput"
+                           type="password"
                            autocomplete="on"
                            size="50">
                 </div>
                 <div class="container">
-                    <button>Entrar</button>
+                    <button onclick="parent.dominoSystem.enqueueEvent(parent.Events.LOGIN_TRY)">
+                        Entrar
+                    </button>
                 </div>
             </div>
             <div class="bottom">

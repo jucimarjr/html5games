@@ -6,7 +6,7 @@ var dominoSystem;
 
 function main() {
     'use strict';
-    dominoSystem.enqueueEvent(Events.LOGIN);
+    dominoSystem.enqueueEvent(Events.INIT);
 }
 
 var dominoSystem = new DominoSystem();

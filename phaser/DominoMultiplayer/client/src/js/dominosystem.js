@@ -1,11 +1,11 @@
-/*global FSMachine, initStateMachine*/
+/*global FSMachine, Rules*/
 
 /* The object that embodies all the system*/
 
 var DominoSystem = function () {
     'use strict';
     this.stateMachine = new FSMachine();
-    initStateMachine(this.stateMachine);
+    Rules.initStateMachine(this.stateMachine);
 };
 DominoSystem.prototype = {
     enqueueEvent: function (event) {

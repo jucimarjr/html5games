@@ -2,5 +2,5 @@
 
 var States = Object.freeze({
     FIRST: 1,
-    INITIATED: 2
+    LOGIN: 2
 });
