@@ -1,6 +1,6 @@
-/*This document contains the first line of code executed*/
-
 /*global console, window, Config, Utils, Events, DominoSystem, Codes*/
+
+/* This document contains the first line of code executed */
 
 var dominoSystem;
 

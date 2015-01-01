@@ -1,4 +1,4 @@
-/* This object is a container of magic numbers and strings which were considered interesting to be centralized in only one file*/
+/* This object is a container of magic numbers and strings which were considered interesting to be centralized in only one file */
 
 var Config = Object.freeze({
 

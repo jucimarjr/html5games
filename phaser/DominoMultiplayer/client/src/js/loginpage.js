@@ -1,6 +1,6 @@
 /*global document, window, Config, Utils*/
 
-/* this object is used to control the login iframe */
+/* This object is used to control the login iframe */
 
 var LoginPage = function () {
     'use strict';

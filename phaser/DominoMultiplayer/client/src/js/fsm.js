@@ -1,6 +1,6 @@
 /*global console, Queue, States*/
 
-/* The object that represent a transition in the finite state machine*/
+/* The object that represent a transition in the finite state machine */
 
 var Transition = function (origin, event, destine, actions) {
     'use strict';
@@ -14,7 +14,7 @@ var Transition = function (origin, event, destine, actions) {
     this.actions = actions;
 };
 
-/*the object that represents the state machine, it is a singleton*/
+/* The object that represents the state machine */
 
 var FSMachine = function () {
     'use strict';

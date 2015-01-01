@@ -1,6 +1,6 @@
 /*global FSMachine, Rules, LoginPage*/
 
-/* The object that embodies all the system*/
+/* The object that embodies all the system */
 
 var DominoSystem = function () {
     'use strict';

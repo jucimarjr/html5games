@@ -1,6 +1,6 @@
 /*global console, XMLHttpRequest, Codes, dominoSystem, Config, Events*/
 
-/* This object is a library of useful functions*/
+/* This object is a library of useful functions */
 
 var Utils = {
     validateLogin: function (login, password) {

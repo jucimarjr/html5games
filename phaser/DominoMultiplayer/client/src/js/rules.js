@@ -1,6 +1,6 @@
 /*global Config, Actions, States, Events*/
 
-/* this object contains the function which defines all transitions in the state machine*/
+/* This object contains the function which defines all transitions in the state machine */
 
 var Rules = {
     initStateMachine: function (stateMachine) {

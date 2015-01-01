@@ -1,6 +1,6 @@
 /*global Config, Codes, Utils, document, console, window, dominoSystem*/
 
-/* this objects contains a library of all functions called in transitions in the state machine*/
+/* This object contains a library of all functions called in transitions in the state machine */
 
 var Actions = {
     showLoginPage: function () {

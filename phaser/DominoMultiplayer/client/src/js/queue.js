@@ -1,6 +1,6 @@
 /*global console*/
 
-/*Defines the object which can be enqueued*/
+/* Defines the object which can be enqueued */
 
 var QCell = function (content, next) {
     'use strict';
@@ -8,7 +8,7 @@ var QCell = function (content, next) {
     this.next = next;
 };
 
-/*Defines a object to represent a queue*/
+/* Defines a object to represent a queue */
 
 var Queue = function (maxSize) {
     'use strict';
