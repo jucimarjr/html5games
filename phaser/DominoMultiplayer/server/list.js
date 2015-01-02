@@ -37,7 +37,7 @@ List.prototype = {
         var cell, i;
         if (this.isEmpty() || position >= this.count) {
             console.error("list.js - List.get: LIST IS EMPTY OR POSITION TOO HIGH");
-            return;
+            return null;
         }
         cell = this.first.next;
         for (i = 0; i < position; i = i + 1) {
@@ -50,7 +50,7 @@ List.prototype = {
         var cell, i = 0;
         if (this.isEmpty()) {
             console.error("list.js - List.get: LIST IS EMPTY");
-            return;
+            return null;
         }
         cell = this.first.next;
         while (cell.content !== content) {
@@ -65,6 +65,9 @@ List.prototype = {
     remove: function (position) {
         'use strict';
         var i, cell = this.first;
+        if (position >= this.count) {
+            return;
+        }
         for (i = 0; i < position; i = i + 1) {
             cell = cell.next;
         }
