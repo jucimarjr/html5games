@@ -1,5 +1,6 @@
 /*global require*/
+var Config = require('./config.js');
+var Server = require(Config.PATH_SERVER);
 
-var Server = require('./server.js');
 Server.getInstance().start(3001);
 

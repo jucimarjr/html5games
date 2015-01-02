@@ -1,9 +1,10 @@
 /*global module, require, console*/
 
-var List = require('./list.js');
-var User = require('../shared/user.js');
-var ServerSocket = require('../shared/socket.io');
-var EmitEvents = require('../shared/emitevents.js');
+var Config = require('./config.js');
+var List = require(Config.PATH_LIST);
+var User = require(Config.PATH_USER);
+var ServerSocket = require(Config.PATH_SOCKETIO);
+var EmitEvents = require(Config.PATH_EMIT_EVENTS);
 
 /* This object is used to communicate with the users */
 
