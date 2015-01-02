@@ -6,7 +6,7 @@ var User = require(Config.PATH_USER);
 var ServerSocket = require(Config.PATH_SOCKETIO);
 var EmitEvents = require(Config.PATH_EMIT_EVENTS);
 
-/* This object is used to communicate with the users */
+/* This object is used to communicate with the users, it is a singleton */
 
 var Server = function () {
     'use strict';
@@ -34,6 +34,7 @@ Server.prototype = {
         var server = new Server();
         server.socket.to(socketClient.id).emit(EmitEvents.SERVER_SEND_ID, socketClient.id);
         socketClient.on(EmitEvents.CLIENT_SEND_LOGIN, server.onLoginReceived);
+        socketClient.on(EmitEvents.CLIENT_REQUEST_ROOMS_INFO, server.onRequestRoomsInfo);
         socketClient.on(EmitEvents.DISCONNECTION, function () { server.onSocketDisconnection(socketClient); });
         return;
     },
@@ -55,6 +56,10 @@ Server.prototype = {
             user = new User(pack.id, pack.login),
             server = new Server();
         server.userList.add(user);
+    },
+    onRequestRoomsInfo: function () {
+        'use strict';
+        return;
     }
 };
 
