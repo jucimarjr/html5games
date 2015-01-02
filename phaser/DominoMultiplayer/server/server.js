@@ -42,20 +42,15 @@ Server.prototype = {
         socketClient.on(EmitEvents.CLIENT_SEND_LOGIN, server.onLoginReceived);
         socketClient.on(EmitEvents.CLIENT_REQUEST_ROOMS_INFO, server.sendRoomsInfo);
         socketClient.on(EmitEvents.CLIENT_REQUEST_ENTER_ROOM, server.answerEnterRoom);
+        socketClient.on(EmitEvents.CLIENT_REQUEST_EXIT_ROOM, server.answerExitRoom);
         return;
     },
     onLoginReceived: function (json) {
         'use strict';
         var pack = JSON.parse(json),
             server = new Server(),
-            user;
-        if (!server.userList.contains('login', pack.login)) {
             user = new User(pack.id, pack.login);
-            server.userList.add(user);
-        } else {
-            user = server.userList.query('login', pack.login);
-            user.id = pack.id;
-        }
+        server.userList.add(user);
     },
     sendRoomsInfo: function (id) {
         'use strict';
@@ -78,23 +73,36 @@ Server.prototype = {
             login = pack.login,
             server = new Server(),
             room = server.roomList.query('number', number);
-        if (!room.isFull() && !room.userList.contains('login', login)) {
-            user = server.userList.query('login', login);
-            room.userList.add(user);
-            user.roomNumber = room.number;
-            pack = {
-                answer: true,
-                roomNumber: room.number
-            };
-            server.socket.to(id).emit(EmitEvents.SERVER_ANSWER_ENTER_ROOM, JSON.stringify(pack));
-            server.sendRoomsInfo();
-            return;
-        }
         pack = {
             answer: false,
             roomNumber: null
         };
+        if (!room.isFull()) {
+            user = server.userList.query('login', login);
+            room.userList.add(user);
+            user.roomNumber = room.number;
+            pack.answer = true;
+            pack.roomNumber = room.number;
+        }
         server.socket.to(id).emit(EmitEvents.SERVER_ANSWER_ENTER_ROOM, JSON.stringify(pack));
+        server.sendRoomsInfo();
+    },
+    answerExitRoom: function (json) {
+        'use strict';
+        var pack = JSON.parse(json),
+            id = pack.id,
+            login = pack.login,
+            server = new Server(),
+            user = server.userList.query('login', login),
+            room;
+        room = server.roomList.query('number', user.roomNumber);
+        room.userList.remove(room.userList.indexOf(user));
+        user.roomNumber = null;
+        pack = {
+            answer: true
+        };
+        server.socket.to(id).emit(EmitEvents.SERVER_ANSWER_EXIT_ROOM, JSON.stringify(pack));
+        server.sendRoomsInfo();
     }
 };
 

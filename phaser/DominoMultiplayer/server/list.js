@@ -70,8 +70,14 @@ List.prototype = {
         if (position >= this.count) {
             return;
         }
+        this.count = this.count - 1;
         for (i = 0; i < position; i = i + 1) {
             cell = cell.next;
+        }
+        if (cell.next === this.last) {
+            this.last = cell;
+            this.last.next = {};
+            return;
         }
         cell.next = cell.next.next;
     },
