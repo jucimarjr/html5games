@@ -6,6 +6,7 @@ var User = function (id, login) {
     'use strict';
     this.id = id;
     this.login = login;
+    this.roomNumber = null;
 };
 
 module.exports = User;

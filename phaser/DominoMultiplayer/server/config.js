@@ -4,15 +4,20 @@
 
 var Config = {
 
+    /* Room properties */
+    NUMBER_ROOMS: 10,
+    ROOM_CAPACITY: 4,
+
     /* Server port */
     SERVER_PORT: 3001,
 
     /* Relative paths */
-    PATH_LIST: './list.js',
-    PATH_USER: '../shared/user.js',
-    PATH_SERVER: './server.js',
-    PATH_SOCKETIO: '../shared/socket.io',
-    PATH_EMIT_EVENTS: '../shared/emitevents.js'
+    PATH_LIST: "./list.js",
+    PATH_USER: "../shared/user.js",
+    PATH_SERVER: "./server.js",
+    PATH_SOCKETIO: "../shared/socket.io",
+    PATH_EMIT_EVENTS: "../shared/emitevents.js",
+    PATH_ROOM: "../shared/room.js"
 
 };
 

@@ -90,6 +90,13 @@ List.prototype = {
             }
         }
         return cell.content;
+    },
+    contains: function (property, value) {
+        'use strict';
+        if (this.query(property, value)) {
+            return true;
+        }
+        return false;
     }
 };
 
