@@ -17,24 +17,21 @@ var Server = function () {
     this.socket = new ServerSocket();
     Server.prototype.instance = this;
 };
-Server.getInstance = function () {
-    'use strict';
-    return new Server();
-};
 Server.prototype = {
     getUserById: function (id) {
         'use strict';
-        return Server.getInstance().userList.query('id', id);
+        var server = new Server();
+        return server.userList.query('id', id);
     },
     start: function (port) {
         'use strict';
-        var server = Server.getInstance();
+        var server = new Server();
         server.socket = server.socket.listen(port);
-        server.socket.on(EmitEvents.CONNECTION, Server.getInstance().onSocketConnection);
+        server.socket.on(EmitEvents.CONNECTION, server.onSocketConnection);
     },
     onSocketConnection: function (socketClient) {
         'use strict';
-        var server = Server.getInstance();
+        var server = new Server();
         server.socket.to(socketClient.id).emit(EmitEvents.SERVER_SEND_ID, socketClient.id);
         socketClient.on(EmitEvents.CLIENT_SEND_LOGIN, server.onLoginReceived);
         socketClient.on(EmitEvents.DISCONNECTION, function () { server.onSocketDisconnection(socketClient); });
@@ -42,7 +39,7 @@ Server.prototype = {
     },
     onSocketDisconnection: function (socketClient) {
         'use strict';
-        var server = Server.getInstance(),
+        var server = new Server(),
             user = server.getUserById(socketClient.id),
             position;
         if (user !== null) {
@@ -55,8 +52,9 @@ Server.prototype = {
     onLoginReceived: function (json) {
         'use strict';
         var pack = JSON.parse(json),
-            user = new User(pack.id, pack.login);
-        Server.getInstance().userList.add(user);
+            user = new User(pack.id, pack.login),
+            server = new Server();
+        server.userList.add(user);
     }
 };
 
