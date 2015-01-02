@@ -1,5 +1,7 @@
 /*global console, module*/
 
+/* The object which holds a content added to a list  */
+
 var ListCell = function (content, next) {
     'use strict';
     this.content = content;

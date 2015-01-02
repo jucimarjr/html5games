@@ -1,5 +1,7 @@
 /*global module, exports*/
 
+/* This object holds the socket.io emit events tag names created */
+
 var EmitEvents = Object.freeze({
     CONNECTION: "connection",
     DISCONNECTION: "disconnection",

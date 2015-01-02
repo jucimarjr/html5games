@@ -1,6 +1,11 @@
 /*global module*/
 
+/* This object holds the paths used in require function calls and the port in which the server runs */
+
 var Config = {
+
+    /* Server port */
+    SERVER_PORT: 3001,
 
     /* Relative paths */
     PATH_LIST: './list.js',

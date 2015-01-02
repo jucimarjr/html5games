@@ -3,6 +3,8 @@
 var Config = require('./config.js');
 var Server = require(Config.PATH_SERVER);
 
+/* The first lines of server code to be executed */
+
 var server = new Server();
-server.start(3001);
+server.start(Config.SERVER_PORT);
 

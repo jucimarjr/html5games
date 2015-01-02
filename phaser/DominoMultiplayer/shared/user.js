@@ -1,6 +1,6 @@
 /*global module*/
 
-/* This object represents a connected user */
+/* This object holds information about a connected user */
 
 var User = function (id, login) {
     'use strict';
