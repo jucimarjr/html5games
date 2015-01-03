@@ -11,5 +11,5 @@ function main() {
     window.onkeypress = Utils.onKeyPressed;
 }
 
-console.log(Config.SYSTEM_NAME + " - v" + Codes.VERSION_NUMBER);
+console.log(Config.SYSTEM_NAME + " - v" + Config.VERSION_NUMBER);
 window.onload = main;
