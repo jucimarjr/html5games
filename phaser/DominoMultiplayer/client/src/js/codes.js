@@ -14,6 +14,7 @@ var Codes = Object.freeze({
 
     /* CSS */
     CSS_DISPLAY_BLOCK: "block",
+    CSS_DISPLAY_NONE: "none",
 
     /* PHP */
     PHP_GET_METHOD: "GET",

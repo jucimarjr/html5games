@@ -2,5 +2,6 @@
 
 var States = Object.freeze({
     FIRST: "States.FIRST",
-    LOGIN: "States.LOGIN"
+    LOGIN: "States.LOGIN",
+    ROOMS: "States.ROOMS"
 });

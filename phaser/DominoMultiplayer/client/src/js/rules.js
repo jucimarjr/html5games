@@ -10,5 +10,6 @@ var Rules = {
         stateMachine.addTransition(States.LOGIN, Events.ENTER_PRESSED, States.LOGIN, [Actions.validateLogin]);
         stateMachine.addTransition(States.LOGIN, Events.ERROR_CONNECTION, States.LOGIN, [Actions.showLoginErrorConnection]);
         stateMachine.addTransition(States.LOGIN, Events.LOGIN_REFUSED, States.LOGIN, [Actions.showLoginInvalid]);
+        stateMachine.addTransition(States.LOGIN, Events.LOGIN_CONFIRMED, States.ROOMS, [Actions.showRoomsPage]);
     }
 };

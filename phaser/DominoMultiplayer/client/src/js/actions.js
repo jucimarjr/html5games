@@ -5,7 +5,7 @@
 var Actions = {
     showLoginPage: function () {
         'use strict';
-        document.getElementById(Config.LOGIN_IFRAME_ID).style.display = Codes.CSS_DISPLAY_BLOCK;
+        dominoSystem.pages.login.show();
     },
     validateLogin: function () {
         'use strict';
@@ -21,5 +21,10 @@ var Actions = {
     showLoginErrorConnection: function () {
         'use strict';
         dominoSystem.pages.login.showErrorConnection();
+    },
+    showRoomsPage: function () {
+        'use strict';
+        dominoSystem.pages.login.hide();
+        dominoSystem.pages.rooms.show();
     }
 };

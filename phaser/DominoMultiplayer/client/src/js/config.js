@@ -16,6 +16,8 @@ var Config = Object.freeze({
     LOGIN_IFRAME_ID: "LoginIframe",
     LOGIN_INPUT_ID: "LoginInput",
     PASSWORD_INPUT_ID: "PasswordInput",
-    LOGIN_ERROR_DIV_ID: "LoginErrorDiv"
+    LOGIN_ERROR_DIV_ID: "LoginErrorDiv",
+
+    ROOMS_IFRAME_ID: "RoomsIframe"
 
 });
