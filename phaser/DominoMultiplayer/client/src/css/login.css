@@ -1,11 +1,14 @@
 body {
     margin: 0;
+    padding: 0;
     font-family: 'Poiret One', cursive;
 }
 
 input {
     height: 30px;
-    font-size: 1.5em;
+    width: 70%;
+    max-width: 400px;
+    font-size: 25px;
     font-family: 'Poiret One', cursive;
 }
 
@@ -13,46 +16,41 @@ button {
     width: 100px;
     height: 50px;
     font-family: 'Poiret One', cursive;
-    font-size: 1.5em;
+    font-size: 25px;
+    margin-bottom: 10px;
 }
 
 .top {
     background-color: #006400;
-    padding: 0.5%;
     color: #ffffff;
-    font-size: 2em;
+    height: 60px;
+}
+
+.headertitle {
+    max-width: 50%;
+    margin-left: 15px;
+    line-height: 60px;
+    vertical-align: middle;
+    font-size: 35px;
 }
 
 .loginbox {
+    margin-left: 15px;
     line-height: 50px;
-    width: 100%;
-    padding: 0.5%;
-}
-
-.title {
-    font-size: 2em;
+    padding: 0;
+    width: 95%;
 }
 
 .error {
     color: #FF0000;
-    font-size: 1em;
+    font-size: 18px;
 }
 
 .text {
-    padding-top: 0.5%;
-    padding-bottom: 0.5%;
-    font-size: 1.5em;
+    padding-top: 20px;
+    font-size: 25px;
 }
 
 .container {
-    padding-top: 0.5%;
-    padding-bottom: 0.5%;
-}
-
-.bottom {
-    position: absolute;
-    bottom: 0;
-    height: 10%;
-    width: 100%;
-    background-color: #dfdfdf;
+    padding-top: 20px;
 }
