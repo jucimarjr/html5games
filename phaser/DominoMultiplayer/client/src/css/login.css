@@ -42,12 +42,13 @@ button {
 }
 
 .error {
+    padding-top: 10px;
     color: #FF0000;
     font-size: 18px;
 }
 
 .text {
-    padding-top: 20px;
+    padding-top: 10px;
     font-size: 25px;
 }
 

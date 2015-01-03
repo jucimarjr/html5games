@@ -5,7 +5,7 @@
 var LoginPage = function () {
     'use strict';
     window.frames[Config.LOGIN_IFRAME_ID].onkeypress = Utils.onKeyPressed;
-    this.loginFrameDocument = window.frames[Config.LOGIN_IFRAME_ID].document;
+    this.loginFrameDocument = window.frames[Config.LOGIN_IFRAME_ID].contentWindow.document;
     return;
 };
 
