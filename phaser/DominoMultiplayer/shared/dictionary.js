@@ -43,4 +43,6 @@ Dictionary.prototype = {
     }
 };
 
-module.exports = Dictionary;
+try {
+    module.exports = Dictionary;
+} catch (ignore) {}

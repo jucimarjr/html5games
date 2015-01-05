@@ -9,6 +9,7 @@ var Codes = Object.freeze({
     KEYBOARD_ENTER_KEY: 13,
 
     /* HTTP protocol */
+    HTTP_PREFIX: "http://",
     HTTP_REQUEST_ERROR: 400,
     HTTP_REQUEST_SUCCESSFUL: 200,
 
@@ -20,7 +21,16 @@ var Codes = Object.freeze({
     PHP_GET_METHOD: "GET",
 
     /* Javascript */
+    WEBSOCKET_TRANSPORT: "websocket",
     XML_HTTP_REQUEST_COMPLETED: 4,
+
+    /* HTML */
+    HTML_UL_TAG: "ul",
+    HTML_LI_TAG: "li",
+    HTML_DIV_TAG: "div",
+    HTML_HEAD_TAG: "head",
+    HTML_SCRIPT_TAG: "script",
+    HTML_JAVASCRIPT_TEXT_TYPE: "text/javascript",
 
     /* Created to comunicate function results */
     ERROR_CONNECTION: "Codes.ERROR_CONNECTION",

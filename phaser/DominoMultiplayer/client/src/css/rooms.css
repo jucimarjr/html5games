@@ -1,0 +1,28 @@
+body {
+    display: table;
+}
+
+.table {
+    margin-top: 20px;
+    border: 1px solid black;
+    border-bottom: 0;
+}
+
+.table div {
+    text-align: center;
+    border-bottom: 1px solid black;
+    padding: 10px;
+}
+
+ul {
+    margin-left: 15px;
+    list-style: none;
+    padding: 0;
+    width: 95%;
+}
+
+li {
+    width: 200px;
+    margin-right: 15px;
+    float:left;
+}

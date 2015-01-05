@@ -4,27 +4,39 @@
 
 var Actions = {
     showLoginPage: function () {
-        'use strict';
+        "use strict";
         dominoSystem.pages.login.show();
     },
     validateLogin: function () {
-        'use strict';
+        "use strict";
         var login, password;
         login = dominoSystem.pages.login.getLoginInput();
         password = dominoSystem.pages.login.getPasswordInput();
         Utils.validateLogin(login, password);
     },
     showLoginInvalid: function () {
-        'use strict';
+        "use strict";
         dominoSystem.pages.login.showLoginInvalid();
     },
     showLoginErrorConnection: function () {
-        'use strict';
+        "use strict";
         dominoSystem.pages.login.showErrorConnection();
     },
     showRoomsPage: function () {
-        'use strict';
+        "use strict";
         dominoSystem.pages.login.hide();
         dominoSystem.pages.rooms.show();
+    },
+    requestServerAddress: function () {
+        "use strict";
+        dominoSystem.client.requestServerAddress();
+    },
+    connectToSever: function () {
+        "use strict";
+        dominoSystem.client.connect();
+    },
+    sendLoginToServer: function () {
+        "use strict";
+        dominoSystem.client.sendLogin();
     }
 };
