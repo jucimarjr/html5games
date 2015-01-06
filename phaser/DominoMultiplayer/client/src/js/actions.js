@@ -38,5 +38,9 @@ var Actions = {
     sendLoginToServer: function () {
         "use strict";
         dominoSystem.client.sendLogin();
+    },
+    requestRoomsInfo: function () {
+        "use strict";
+        dominoSystem.client.requestRoomsInfo();
     }
 };

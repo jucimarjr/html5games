@@ -1,11 +1,11 @@
-/*global document, io, XMLHttpRequest, Config, Codes, EmitEvents, EmitEventHandler, Events*/
+/*global console, document, io, XMLHttpRequest, Config, Codes, EmitEvents, Receiver, Events, window*/
 
 var Client = function (dominoSystem) {
     "use strict";
-    this.id = null;
+    this.socket = null;
     this.remoteAddress = null;
     this.dominoSystem = dominoSystem;
-    this.netEventHandler = new EmitEventHandler();
+    this.receiver = new Receiver(this, dominoSystem);
 };
 Client.prototype = {
     requestServerAddress: function () {
@@ -22,11 +22,11 @@ Client.prototype = {
             script = document.createElement(Codes.HTML_SCRIPT_TAG),
             self = this;
         script.type = Codes.HTML_JAVASCRIPT_TEXT_TYPE;
-        script.src = Codes.HTTP_PREFIX + this.remoteAddress + Config.SERVER_PORT_SUFFIX + Config.JAVASCRIPT_SOCKET_IO_ADDRESS;
         script.onload = function () {
             self.socket = io.connect(Codes.HTTP_PREFIX + self.remoteAddress + Config.SERVER_PORT_SUFFIX, {transports: [Codes.WEBSOCKET_TRANSPORT]});
-            self.emitEventHandler.registerCallbacks();
+            self.receiver.registerCallbacks(self.socket);
         };
+        script.src = Codes.HTTP_PREFIX + this.remoteAddress + Config.SERVER_PORT_SUFFIX + Config.JAVASCRIPT_SOCKET_IO_ADDRESS;
         head.appendChild(script);
     },
     makeRequest: function (dir, context, onSuccessCallback) {
@@ -47,7 +47,13 @@ Client.prototype = {
     },
     sendLogin: function () {
         "use strict";
-        var infoContainer = { login: "fpbfabio" };
+        var login = this.dominoSystem.user.login,
+            id = this.dominoSystem.user.id,
+            infoContainer = { id: id, login:  login};
         this.socket.emit(EmitEvents.CLIENT_SEND_LOGIN, JSON.stringify(infoContainer));
+    },
+    requestRoomsInfo: function () {
+        "use strict";
+        this.socket.emit(EmitEvents.CLIENT_REQUEST_ROOMS_INFO, this.dominoSystem.user.id);
     }
 };

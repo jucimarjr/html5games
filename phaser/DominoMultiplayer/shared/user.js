@@ -9,4 +9,6 @@ var User = function (id, login) {
     this.roomNumber = null;
 };
 
-module.exports = User;
+try {
+    module.exports = User;
+} catch (ignore) {}

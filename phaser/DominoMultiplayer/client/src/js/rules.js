@@ -14,6 +14,6 @@ var Rules = {
         stateMachine.addTransition(States.LOGIN, Events.IP_RECEIVED, States.LOGIN, [Actions.connectToSever]);
         stateMachine.addTransition(States.LOGIN, Events.CONNECTION_ESTABLISHED, States.LOGIN, [Actions.sendLoginToServer]);
         stateMachine.addTransition(States.LOGIN, Events.SERVER_ACK_LOGIN, States.LOGIN, [Actions.requestRoomsInfo]);
-        stateMachine.addTransition(States.LOGIN, Events.ROOMS_INFO_RECEIVED, States.ROOMS, [Actions.showRoomsPage, Actions.populateRooms]);
+        stateMachine.addTransition(States.LOGIN, Events.ROOMS_INFO_RECEIVED, States.ROOMS, [Actions.showRoomsPage]);
     }
 };

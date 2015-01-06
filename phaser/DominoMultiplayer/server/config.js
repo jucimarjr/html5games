@@ -12,7 +12,7 @@ var Config = {
     SERVER_PORT: 3001,
 
     /* Relative paths */
-    PATH_LIST: "./list.js",
+    PATH_LIST: "../shared/list.js",
     PATH_USER: "../shared/user.js",
     PATH_SERVER: "./server.js",
     PATH_SOCKETIO: "../shared/socket.io",

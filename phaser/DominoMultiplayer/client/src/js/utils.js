@@ -15,6 +15,7 @@ var Utils = {
                         dominoSystem.enqueueEvent(Events.ERROR_CONNECTION);
                         return;
                     case Codes.LOGIN_CONFIRMED:
+                        dominoSystem.user.login = login;
                         dominoSystem.enqueueEvent(Events.LOGIN_CONFIRMED);
                         return;
                     case Codes.LOGIN_REFUSED:

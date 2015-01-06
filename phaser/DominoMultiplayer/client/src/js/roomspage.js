@@ -1,6 +1,6 @@
 /*global document, window, console, Codes, Config, Utils, Dictionary*/
 
-/* This object is used to control the login iframe */
+/* This object is used to control the rooms iframe */
 
 var RoomsPage = function () {
     "use strict";
@@ -9,9 +9,7 @@ var RoomsPage = function () {
     this.roomList = null;
     this.dictionary = new Dictionary();
     this.hide();
-    return;
 };
-
 RoomsPage.prototype = {
     show: function () {
         "use strict";
@@ -29,7 +27,7 @@ RoomsPage.prototype = {
         this.roomList = roomList;
         ul = this.document.getElementById(Config.ROOMS_UL_ID);
         while (ul.hasChildNodes()) {
-            ul.removeChild(table.lastChild);
+            ul.removeChild(ul.lastChild);
         }
         for (i = 0; i < this.roomList.count; i = i + 1) {
             room = this.roomList.get(i);
@@ -41,10 +39,16 @@ RoomsPage.prototype = {
                 div.innerHTML = this.roomList.userList.get(j).login;
                 table.appendChild(div);
             }
+            for (j = room.userList.count; j < room.capacity; j = j + 1) {
+                div = this.document.createElement(Codes.HTML_DIV_TAG);
+                div.innerHTML = "-";
+                table.appendChild(div);
+            }
             li.appendChild(table);
             ul.appendChild(li);
             this.dictionary.add(Config.CSS_CLASS_TABLE + room.number, li);
         }
+
     },
     updateRoom: function (roomNumber) {
         "use strict";

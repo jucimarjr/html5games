@@ -106,4 +106,6 @@ List.prototype = {
     }
 };
 
-module.exports = List;
+try {
+    module.exports = List;
+} catch (ignore) {}

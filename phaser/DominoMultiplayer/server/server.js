@@ -55,6 +55,7 @@ Server.prototype = {
             user = new User(pack.id, pack.login);
         server.socketMap.add(user.login, socketClient);
         server.userList.add(user);
+        server.socket.to(user.id).emit(EmitEvents.SERVER_ACK_LOGIN);
     },
     sendRoomsInfo: function (identifier) {
         'use strict';
