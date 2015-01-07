@@ -47,10 +47,15 @@ Client.prototype = {
             script = this.document.createElement(Codes.HTML_SCRIPT_TAG);
         script.type = Codes.HTML_JAVASCRIPT_TEXT_TYPE;
         script.onload = function () {
-            this.socket = io.connect(Codes.HTTP_PREFIX + this.remoteAddress + Config.SERVER_PORT_SUFFIX, {transports: [Codes.WEBSOCKET_TRANSPORT]});
+            try {
+                this.socket = io.connect(Codes.HTTP_PREFIX + this.remoteAddress + Config.SERVER_PORT_SUFFIX, {transports: [Codes.WEBSOCKET_TRANSPORT]});
+            } catch (exception) {
+                this.dominoSystem.enqueueEvent(Events.ERROR_CONNECTION);
+            }
             this.receiver.registerCallbacks();
         }.bind(this);
         script.src = Codes.HTTP_PREFIX + this.remoteAddress + Config.SERVER_PORT_SUFFIX + Config.JAVASCRIPT_SOCKET_IO_ADDRESS;
+        script.onerror = function () { this.dominoSystem.enqueueEvent(Events.ERROR_CONNECTION); }.bind(this);
         head.appendChild(script);
     },
     makeRequest: function (dir, context, onSuccessCallback) {

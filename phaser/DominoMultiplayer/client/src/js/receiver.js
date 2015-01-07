@@ -11,11 +11,15 @@ var Receiver = function (client, dominoSystem) {
 Receiver.prototype = {
     registerCallbacks: function () {
         "use strict";
-        this.client.socket.on(EmitEvents.SERVER_SEND_ID, this.onServerSendID.bind(this));
-        this.client.socket.on(EmitEvents.SERVER_SEND_ROOMS_INFO, this.onServerSendRoomsInfo.bind(this));
-        this.client.socket.on(EmitEvents.SERVER_ACK_LOGIN, this.onServerAckLogin.bind(this));
-        this.client.socket.on(EmitEvents.SERVER_ACK_EXIT_ROOM, this.onServerAckExit.bind(this));
-        this.client.socket.on(EmitEvents.SERVER_ALLOW_ENTER_ROOM, this.onServerAllowEnterRoom.bind(this));
+        try {
+            this.client.socket.on(EmitEvents.SERVER_SEND_ID, this.onServerSendID.bind(this));
+            this.client.socket.on(EmitEvents.SERVER_SEND_ROOMS_INFO, this.onServerSendRoomsInfo.bind(this));
+            this.client.socket.on(EmitEvents.SERVER_ACK_LOGIN, this.onServerAckLogin.bind(this));
+            this.client.socket.on(EmitEvents.SERVER_ACK_EXIT_ROOM, this.onServerAckExit.bind(this));
+            this.client.socket.on(EmitEvents.SERVER_ALLOW_ENTER_ROOM, this.onServerAllowEnterRoom.bind(this));
+        } catch (exception) {
+            this.dominoSystem.enqueueEvent(Events.ERROR_CONNECTION);
+        }
     },
     onServerSendID: function (json) {
         "use strict";
