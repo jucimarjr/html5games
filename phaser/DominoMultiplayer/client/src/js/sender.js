@@ -10,10 +10,7 @@ var Sender = function (client, dominoSystem) {
 Sender.prototype = {
     sendLogin: function () {
         "use strict";
-        var login = this.dominoSystem.user.login,
-            id = this.dominoSystem.user.id,
-            infoContainer = { id: id, login:  login};
-        this.client.socket.emit(EmitEvents.CLIENT_SEND_LOGIN, JSON.stringify(infoContainer));
+        this.client.socket.emit(EmitEvents.CLIENT_SEND_LOGIN, JSON.stringify(this.dominoSystem.user));
     },
     requestRoomsInfo: function () {
         "use strict";
