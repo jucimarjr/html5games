@@ -1,14 +1,12 @@
-/*global console, window, Config, Utils, Events, DominoSystem, Codes*/
+/*global console, document, window, Config, Events, DominoSystem, Codes*/
 
 /* This document contains the first line of code executed */
 
-var dominoSystem;
-
 function main() {
-    'use strict';
-    dominoSystem = new DominoSystem();
+    "use strict";
+    var dominoSystem = new DominoSystem(window, document);
     dominoSystem.enqueueEvent(Events.INIT);
-    window.onkeypress = Utils.onKeyPressed;
+    window.onkeypress = dominoSystem.hardware.onKeyPressed.bind(dominoSystem.hardware);
 }
 
 console.log(Config.SYSTEM_NAME + " - v" + Codes.VERSION_NUMBER);

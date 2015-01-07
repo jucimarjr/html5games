@@ -1,11 +1,11 @@
-/*global document, window, console, Codes, Config, Utils, Dictionary*/
+/*global Codes, Config, Utils, Dictionary*/
 
 /* This object is used to control the rooms iframe */
 
-var RoomsPage = function () {
+var RoomsPage = function (window) {
     "use strict";
-    window.frames[Config.ROOMS_IFRAME_ID].onkeypress = Utils.onKeyPressed;
-    this.document = window.frames[Config.ROOMS_IFRAME_ID].contentWindow.document;
+    this.window = window;
+    this.document = this.window.frames[Config.ROOMS_IFRAME_ID].contentWindow.document;
     this.roomList = null;
     this.dictionary = new Dictionary();
     this.hide();
@@ -14,12 +14,12 @@ RoomsPage.prototype = {
     show: function () {
         "use strict";
         this.document.body.style.display = Codes.CSS_DISPLAY_BLOCK;
-        window.frames[Config.ROOMS_IFRAME_ID].style.zIndex = 1;
+        this.window.frames[Config.ROOMS_IFRAME_ID].style.zIndex = Config.Z_INDEX_FRONT;
     },
     hide: function () {
         "use strict";
         this.document.body.style.display = Codes.CSS_DISPLAY_NONE;
-        window.frames[Config.ROOMS_IFRAME_ID].style.zIndex = 0;
+        this.window.frames[Config.ROOMS_IFRAME_ID].style.zIndex = Config.Z_INDEX_BACK;
     },
     populateRooms: function (roomList) {
         "use strict";
@@ -41,7 +41,7 @@ RoomsPage.prototype = {
             }
             for (j = room.userList.count; j < room.capacity; j = j + 1) {
                 div = this.document.createElement(Codes.HTML_DIV_TAG);
-                div.innerHTML = "-";
+                div.innerHTML = Config.EMPTY_USER_TEXT;
                 table.appendChild(div);
             }
             li.appendChild(table);

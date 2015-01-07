@@ -11,6 +11,7 @@ var Config = Object.freeze({
     /* Texts */
     LOGIN_INVALID_TEXT: "Usuário ou senha inválidos",
     ERROR_CONNECTION_TEXT: "Não foi possível se conectar com o servidor",
+    EMPTY_USER_TEXT: "-",
 
     /* Addresses */
     PHP_VALIDATE_LOGIN_ADDRESS: "src/php/checklogin.php",
@@ -20,7 +21,12 @@ var Config = Object.freeze({
     /* CSS Classes */
     CSS_CLASS_TABLE: "table",
 
+    /* CSS Attributes */
+    Z_INDEX_FRONT: 1,
+    Z_INDEX_BACK: 0,
+
     /* HTML Identifiers */
+    LOGIN_BUTTON_ID: "LoginButton",
     LOGIN_IFRAME_ID: "LoginIframe",
     LOGIN_INPUT_ID: "LoginInput",
     PASSWORD_INPUT_ID: "PasswordInput",

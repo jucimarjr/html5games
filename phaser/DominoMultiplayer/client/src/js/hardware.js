@@ -1,0 +1,27 @@
+/*global Codes, Config, Events*/
+
+/* This object captures inputs sended by the user */
+
+var Hardware = function (dominoSystem, window) {
+    "use strict";
+    this.window = window;
+    this.dominoSystem = dominoSystem;
+};
+Hardware.prototype = {
+    registerCallbacks: function () {
+        "use strict";
+        this.window.frames[Config.LOGIN_IFRAME_ID].onkeypress = this.onKeyPressed.bind(this);
+        this.window.frames[Config.ROOMS_IFRAME_ID].onkeypress = this.onKeyPressed.bind(this);
+        this.dominoSystem.pages.login.setLoginButtonClickCallback(this.onLoginButtonClicked.bind(this));
+    },
+    onLoginButtonClicked: function () {
+        "use strict";
+        this.dominoSystem.enqueueEvent(Events.LOGIN_BUTTON_CLICK);
+    },
+    onKeyPressed: function (event) {
+        "use strict";
+        if (event.keyCode === Codes.KEYBOARD_ENTER_KEY) {
+            this.dominoSystem.enqueueEvent(Events.ENTER_PRESSED);
+        }
+    }
+};

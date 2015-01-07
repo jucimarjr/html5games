@@ -39,15 +39,15 @@ FSMachine.prototype = {
     },
     nextTransition: function () {
         'use strict';
-        var i, end, flagFoundTransition = false, event = this.queue.dequeue();
+        var i, end, found = false, event = this.queue.dequeue();
         end = this.rules.length;
         for (i = 0; i < end; i = i + 1) {
             if (this.rules[i].origin === this.currentState && this.rules[i].event === event) {
-                flagFoundTransition = true;
+                found = true;
                 this.execute(this.rules[i]);
             }
         }
-        if (flagFoundTransition === false) {
+        if (found === false) {
             console.warn("fsm.js - FSMachine.nextTransition - No transition found: " + this.currentState + " -> " + event);
         }
     },

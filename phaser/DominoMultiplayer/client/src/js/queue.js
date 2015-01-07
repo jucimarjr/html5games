@@ -22,7 +22,6 @@ var Queue = function (maxSize) {
     this.maxSize = maxSize;
     this.count = 0;
 };
-
 Queue.prototype = {
     makeEmpty: function () {
         'use strict';

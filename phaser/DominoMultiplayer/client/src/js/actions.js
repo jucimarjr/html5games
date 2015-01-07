@@ -1,46 +1,53 @@
-/*global Config, Codes, Utils, document, console, window, dominoSystem*/
+/*global Config, Codes*/
 
-/* This object contains a library of all functions called in transitions in the state machine */
+/* This object contains all functions called in transitions in the state machine */
 
-var Actions = {
+var Actions = function (dominoSystem) {
+    "use strict";
+    this.dominoSystem = dominoSystem;
+};
+Actions.prototype = {
+    registerInputCapture: function () {
+        "use strict";
+        this.dominoSystem.hardware.registerCallbacks();
+    },
     showLoginPage: function () {
         "use strict";
-        dominoSystem.pages.login.show();
+        this.dominoSystem.pages.login.show();
     },
     validateLogin: function () {
         "use strict";
-        var login, password;
-        login = dominoSystem.pages.login.getLoginInput();
-        password = dominoSystem.pages.login.getPasswordInput();
-        Utils.validateLogin(login, password);
+        var login = this.dominoSystem.pages.login.getLoginInput(),
+            password = this.dominoSystem.pages.login.getPasswordInput();
+        this.dominoSystem.client.requestLoginValidation(login, password);
     },
     showLoginInvalid: function () {
         "use strict";
-        dominoSystem.pages.login.showLoginInvalid();
+        this.dominoSystem.pages.login.showLoginInvalid();
     },
     showLoginErrorConnection: function () {
         "use strict";
-        dominoSystem.pages.login.showErrorConnection();
+        this.dominoSystem.pages.login.showErrorConnection();
     },
     showRoomsPage: function () {
         "use strict";
-        dominoSystem.pages.login.hide();
-        dominoSystem.pages.rooms.show();
+        this.dominoSystem.pages.login.hide();
+        this.dominoSystem.pages.rooms.show();
     },
     requestServerAddress: function () {
         "use strict";
-        dominoSystem.client.requestServerAddress();
+        this.dominoSystem.client.requestServerAddress();
     },
     connectToSever: function () {
         "use strict";
-        dominoSystem.client.connect();
+        this.dominoSystem.client.connect();
     },
     sendLoginToServer: function () {
         "use strict";
-        dominoSystem.client.sendLogin();
+        this.dominoSystem.client.sender.sendLogin();
     },
     requestRoomsInfo: function () {
         "use strict";
-        dominoSystem.client.requestRoomsInfo();
+        this.dominoSystem.client.sender.requestRoomsInfo();
     }
 };

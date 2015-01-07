@@ -1,13 +1,38 @@
-/*global console, document, io, XMLHttpRequest, Config, Codes, EmitEvents, Receiver, Events, window*/
+/*global console, io, XMLHttpRequest, Config, Codes, EmitEvents, Sender, Receiver, Events*/
 
-var Client = function (dominoSystem) {
+/* This object requests remote code to execute and connects to the server object. Also, it embodies all objects and functions related to communication with the server */
+
+var Client = function (dominoSystem, document) {
     "use strict";
     this.socket = null;
     this.remoteAddress = null;
+    this.document = document;
     this.dominoSystem = dominoSystem;
     this.receiver = new Receiver(this, dominoSystem);
+    this.sender = new Sender(this, dominoSystem);
 };
 Client.prototype = {
+    requestLoginValidation: function (login, password) {
+        "use strict";
+        var onLoginValidated = function (result) {
+            switch (result) {
+            case Codes.ERROR_CONNECTION:
+                this.dominoSystem.enqueueEvent(Events.ERROR_CONNECTION);
+                return;
+            case Codes.LOGIN_CONFIRMED:
+                this.dominoSystem.user.login = login;
+                this.dominoSystem.enqueueEvent(Events.LOGIN_CONFIRMED);
+                return;
+            case Codes.LOGIN_REFUSED:
+                this.dominoSystem.enqueueEvent(Events.LOGIN_REFUSED);
+                return;
+            default:
+                console.log("utils.js - validateLogin - PHP unrecognized answer: " + result);
+                this.dominoSystem.enqueueEvent(Events.ERROR_CONNECTION);
+            }
+        };
+        this.makeRequest(Config.PHP_VALIDATE_LOGIN_ADDRESS + "?l=" + login + "&p=" + password, this, onLoginValidated);
+    },
     requestServerAddress: function () {
         "use strict";
         var onReceiveServerAddress = function (remoteAddress) {
@@ -18,42 +43,30 @@ Client.prototype = {
     },
     connect: function () {
         "use strict";
-        var head = document.getElementsByTagName(Codes.HTML_HEAD_TAG)[0],
-            script = document.createElement(Codes.HTML_SCRIPT_TAG),
-            self = this;
+        var head = this.document.getElementsByTagName(Codes.HTML_HEAD_TAG)[0],
+            script = this.document.createElement(Codes.HTML_SCRIPT_TAG);
         script.type = Codes.HTML_JAVASCRIPT_TEXT_TYPE;
         script.onload = function () {
-            self.socket = io.connect(Codes.HTTP_PREFIX + self.remoteAddress + Config.SERVER_PORT_SUFFIX, {transports: [Codes.WEBSOCKET_TRANSPORT]});
-            self.receiver.registerCallbacks(self.socket);
-        };
+            this.socket = io.connect(Codes.HTTP_PREFIX + this.remoteAddress + Config.SERVER_PORT_SUFFIX, {transports: [Codes.WEBSOCKET_TRANSPORT]});
+            this.receiver.registerCallbacks();
+        }.bind(this);
         script.src = Codes.HTTP_PREFIX + this.remoteAddress + Config.SERVER_PORT_SUFFIX + Config.JAVASCRIPT_SOCKET_IO_ADDRESS;
         head.appendChild(script);
     },
     makeRequest: function (dir, context, onSuccessCallback) {
         "use strict";
-        var xmlhttp = new XMLHttpRequest(), self = this;
+        var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function () {
             if (xmlhttp.readyState === Codes.XML_HTTP_REQUEST_COMPLETED) {
                 if (xmlhttp.status === Codes.HTTP_REQUEST_SUCCESSFUL) {
                     onSuccessCallback.call(context, xmlhttp.responseText.toString());
                 }
                 if (xmlhttp.status > Codes.HTTP_REQUEST_ERROR) {
-                    self.dominoSystem.enqueueEvent(Events.ERROR_CONNECTION);
+                    this.dominoSystem.enqueueEvent(Events.ERROR_CONNECTION);
                 }
             }
-        };
+        }.bind(this);
         xmlhttp.open(Codes.PHP_GET_METHOD, dir, true);
         xmlhttp.send();
-    },
-    sendLogin: function () {
-        "use strict";
-        var login = this.dominoSystem.user.login,
-            id = this.dominoSystem.user.id,
-            infoContainer = { id: id, login:  login};
-        this.socket.emit(EmitEvents.CLIENT_SEND_LOGIN, JSON.stringify(infoContainer));
-    },
-    requestRoomsInfo: function () {
-        "use strict";
-        this.socket.emit(EmitEvents.CLIENT_REQUEST_ROOMS_INFO, this.dominoSystem.user.id);
     }
 };

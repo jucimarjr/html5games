@@ -1,11 +1,11 @@
-/* This object contains codes created to comunicate functions results, codes from the http protocol, css, php, javascript, keyboard and the version number */
+/* This object contains codes created to comunicate functions results, codes from the http protocol, css, php, javascript, hardware and the version number */
 
 var Codes = Object.freeze({
 
     /* Version number */
     VERSION_NUMBER: "0.1.0",
 
-    /* Keyboard */
+    /* Hardware */
     KEYBOARD_ENTER_KEY: 13,
 
     /* HTTP protocol */
