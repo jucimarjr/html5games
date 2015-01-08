@@ -27,33 +27,38 @@ FSMachine.prototype = {
         'use strict';
         this.rules.push(new Transition(origin, event, destine, actions));
     },
-    execute: function (transition) {
+    execute: function (transition, param) {
         'use strict';
         var i, end, action;
         end = transition.actions.length;
         for (i = 0; i < end; i = i + 1) {
             action = transition.actions[i];
-            action();
+            action(param);
         }
         this.currentState = transition.destine;
     },
     nextTransition: function () {
         'use strict';
-        var i, end, found = false, event = this.queue.dequeue();
+        var i,
+            end,
+            found = false,
+            dequeued = this.queue.dequeue(),
+            event = dequeued.event,
+            param = dequeued.param;
         end = this.rules.length;
         for (i = 0; i < end; i = i + 1) {
             if (this.rules[i].origin === this.currentState && this.rules[i].event === event) {
                 found = true;
-                this.execute(this.rules[i]);
+                this.execute(this.rules[i], param);
             }
         }
         if (found === false) {
             console.warn("fsm.js - FSMachine.nextTransition - No transition found: " + this.currentState + " -> " + event);
         }
     },
-    enqueueEvent: function (event) {
+    enqueueEvent: function (event, param) {
         'use strict';
-        this.queue.enqueue(event);
+        this.queue.enqueue({event: event, param: param});
         this.nextTransition();
     }
 };

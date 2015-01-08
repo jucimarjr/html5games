@@ -38,3 +38,8 @@ button {
 .headertitle:after {
     content: "Dominó Amazonense";
 }
+
+.text {
+    padding-top: 10px;
+    font-size: 25px;
+}

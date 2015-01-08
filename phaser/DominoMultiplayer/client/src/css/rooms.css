@@ -2,20 +2,30 @@ body {
     display: table;
 }
 
-.table {
+.everything {
     margin-top: 20px;
-    border: 1px solid black;
-    border-bottom: 0;
+    margin-left: 15px;
 }
 
-.table div {
+.room {
+    margin-top: 20px;
+    border: 1px solid black;
+}
+
+.room div {
     text-align: center;
-    border-bottom: 1px solid black;
     padding: 10px;
 }
 
+.room:hover {
+    background-color: #F6F6F6;
+}
+
+.room:active {
+    background-color: #B2D0B2;
+}
+
 ul {
-    margin-left: 15px;
     list-style: none;
     padding: 0;
     width: 95%;

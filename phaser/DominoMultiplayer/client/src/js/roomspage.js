@@ -8,6 +8,7 @@ var RoomsPage = function (window) {
     this.document = this.window.frames[Config.ROOMS_IFRAME_ID].contentWindow.document;
     this.roomList = null;
     this.dictionary = new Dictionary();
+    this.onRoomClick = null;
     this.hide();
 };
 RoomsPage.prototype = {
@@ -23,45 +24,58 @@ RoomsPage.prototype = {
     },
     populateRooms: function (roomList) {
         "use strict";
-        var i, j, li, table, div, ul, room;
+        var i, j, li, roomDiv, div, ul, room, onclick;
         this.roomList = roomList;
         ul = this.document.getElementById(Config.ROOMS_UL_ID);
         while (ul.hasChildNodes()) {
             ul.removeChild(ul.lastChild);
         }
+        onclick = function (number) { return function () { this.roomClicked(number); }.bind(this); }.bind(this);
         for (i = 0; i < this.roomList.count; i = i + 1) {
             room = this.roomList.get(i);
             li = this.document.createElement(Codes.HTML_LI_TAG);
-            table = this.document.createElement(Codes.HTML_DIV_TAG);
-            table.className = Config.CSS_CLASS_TABLE;
+            roomDiv = this.document.createElement(Codes.HTML_DIV_TAG);
+            roomDiv.className = Config.CSS_CLASS_ROOM;
+            roomDiv.onclick = onclick(room.number);
             for (j = 0; j < room.userList.count; j = j + 1) {
                 div = this.document.createElement(Codes.HTML_DIV_TAG);
                 div.innerHTML = this.roomList.userList.get(j).login;
-                table.appendChild(div);
+                roomDiv.appendChild(div);
             }
             for (j = room.userList.count; j < room.capacity; j = j + 1) {
                 div = this.document.createElement(Codes.HTML_DIV_TAG);
                 div.innerHTML = Config.EMPTY_USER_TEXT;
-                table.appendChild(div);
+                roomDiv.appendChild(div);
             }
-            li.appendChild(table);
+            li.appendChild(roomDiv);
             ul.appendChild(li);
-            this.dictionary.add(Config.CSS_CLASS_TABLE + room.number, li);
+            this.dictionary.add(Config.CSS_CLASS_ROOM + room.number, roomDiv);
         }
 
     },
     updateRoom: function (roomNumber) {
         "use strict";
-        var i, table, div, room;
+        var i, roomDiv, div, room;
         room = this.roomList.query("number", roomNumber);
-        table = this.dictionary.get(Config.CSS_CLASS_TABLE + roomNumber);
-        while (table.hasChildNodes()) {
-            table.removeChild(table.lastChild);
+        roomDiv = this.dictionary.get(Config.CSS_CLASS_ROOM + roomNumber);
+        while (roomDiv.hasChildNodes()) {
+            roomDiv.removeChild(roomDiv.lastChild);
         }
         for (i = 0; i < room.userList.count; i = i + 1) {
             div = this.document.createElement(Codes.HTML_DIV_TAG);
             div.innerHTML = room.userList.get(i).login;
-            table.appendChild(div);
+            roomDiv.appendChild(div);
+        }
+        for (i = room.userList.count; i < room.capacity; i = i + 1) {
+            div = this.document.createElement(Codes.HTML_DIV_TAG);
+            div.innerHTML = Config.EMPTY_USER_TEXT;
+            roomDiv.appendChild(div);
+        }
+    },
+    roomClicked: function (roomNumber) {
+        "use strict";
+        if (this.onRoomClick !== null) {
+            this.onRoomClick(roomNumber);
         }
     }
 };

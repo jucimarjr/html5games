@@ -19,7 +19,7 @@ var Config = Object.freeze({
     JAVASCRIPT_SOCKET_IO_ADDRESS: "socket.io/socket.io.js",
 
     /* CSS Classes */
-    CSS_CLASS_TABLE: "table",
+    CSS_CLASS_ROOM: "room",
 
     /* CSS Attributes */
     Z_INDEX_FRONT: 1,
