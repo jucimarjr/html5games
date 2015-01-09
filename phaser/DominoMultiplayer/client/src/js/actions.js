@@ -7,13 +7,23 @@ var Actions = function (dominoSystem) {
     this.dominoSystem = dominoSystem;
 };
 Actions.prototype = {
-    registerInputCapture: function () {
-        "use strict";
-        this.dominoSystem.hardware.registerCallbacks();
-    },
     showLoginPage: function () {
         "use strict";
         this.dominoSystem.pages.login.show();
+    },
+    showRoomsPage: function () {
+        "use strict";
+        this.dominoSystem.pages.login.hide();
+        this.dominoSystem.pages.rooms.show();
+    },
+    showWaitMorePlayersPage: function () {
+        "use strict";
+        this.dominoSystem.pages.rooms.hide();
+        this.dominoSystem.pages.waitMorePlayers.show();
+    },
+    registerInputCapture: function () {
+        "use strict";
+        this.dominoSystem.hardware.registerCallbacks();
     },
     validateLogin: function () {
         "use strict";
@@ -28,11 +38,6 @@ Actions.prototype = {
     showLoginErrorConnection: function () {
         "use strict";
         this.dominoSystem.pages.login.showErrorConnection();
-    },
-    showRoomsPage: function () {
-        "use strict";
-        this.dominoSystem.pages.login.hide();
-        this.dominoSystem.pages.rooms.show();
     },
     requestServerAddress: function () {
         "use strict";
@@ -49,5 +54,15 @@ Actions.prototype = {
     requestRoomsInfo: function () {
         "use strict";
         this.dominoSystem.client.sender.requestRoomsInfo();
+    },
+    requestEnterRoom: function () {
+        "use strict";
+        var roomNumber = this.dominoSystem.hardware.inputValues.roomNumber;
+        this.dominoSystem.client.sender.requestEnterRoom(roomNumber);
+    },
+    populateRoomsPage: function () {
+        "use strict";
+        var roomList = this.dominoSystem.client.receiver.receivedValues.roomList;
+        this.dominoSystem.pages.rooms.populateRooms(roomList);
     }
 };

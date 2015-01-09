@@ -6,6 +6,7 @@ var Hardware = function (dominoSystem, window) {
     "use strict";
     this.window = window;
     this.dominoSystem = dominoSystem;
+    this.inputValues = {};
 };
 Hardware.prototype = {
     registerCallbacks: function () {
@@ -27,6 +28,7 @@ Hardware.prototype = {
     },
     onRoomClick: function (roomNumber) {
         "use strict";
-        this.dominoSystem.enqueueEvent(Events.ROOM_CLICKED, roomNumber);
+        this.inputValues.roomNumber = roomNumber;
+        this.dominoSystem.enqueueEvent(Events.ROOM_CLICKED);
     }
 };

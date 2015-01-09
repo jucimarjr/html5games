@@ -33,6 +33,8 @@ var Config = Object.freeze({
     LOGIN_ERROR_DIV_ID: "LoginErrorDiv",
 
     ROOMS_IFRAME_ID: "RoomsIframe",
-    ROOMS_UL_ID: "RoomsUl"
+    ROOMS_UL_ID: "RoomsUl",
+
+    WAIT_MORE_PLAYERS_IFRAME_ID: "WaitMorePlayersIframe"
 
 });

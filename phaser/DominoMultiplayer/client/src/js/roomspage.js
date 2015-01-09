@@ -39,7 +39,7 @@ RoomsPage.prototype = {
             roomDiv.onclick = onclick(room.number);
             for (j = 0; j < room.userList.count; j = j + 1) {
                 div = this.document.createElement(Codes.HTML_DIV_TAG);
-                div.innerHTML = this.roomList.userList.get(j).login;
+                div.innerHTML = this.roomList.get(i).userList.get(j).login;
                 roomDiv.appendChild(div);
             }
             for (j = room.userList.count; j < room.capacity; j = j + 1) {

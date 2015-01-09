@@ -10,12 +10,18 @@ var ListCell = function (content, next) {
 
 /* Defines a object to represent a list */
 
-var List = function () {
+var List = function (list) {
     'use strict';
-    var headCell = new ListCell();
-    this.first = headCell;
-    this.last = headCell;
-    this.count = 0;
+    if (list) {
+        this.first = list.first;
+        this.last = list.last;
+        this.count = list.count;
+    } else {
+        var headCell = new ListCell();
+        this.first = headCell;
+        this.last = headCell;
+        this.count = 0;
+    }
 };
 
 List.prototype = {

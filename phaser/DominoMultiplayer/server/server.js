@@ -36,60 +36,48 @@ Server.prototype = {
         this.socket.to(socketClient.id).emit(EmitEvents.SERVER_SEND_ID, JSON.stringify(socketClient.id));
         socketClient.on(EmitEvents.CLIENT_SEND_LOGIN, function (json) { this.onLoginReceived(json, socketClient); }.bind(this));
         socketClient.on(EmitEvents.CLIENT_REQUEST_ROOMS_INFO, this.sendRoomsInfo.bind(this));
-        socketClient.on(EmitEvents.CLIENT_REQUEST_ENTER_ROOM, this.answerEnterRoom.bind(this));
-        socketClient.on(EmitEvents.CLIENT_REQUEST_EXIT_ROOM, this.answerExitRoom.bind(this));
+        socketClient.on(EmitEvents.CLIENT_REQUEST_ENTER_ROOM, this.replyEnterRoom.bind(this));
+        socketClient.on(EmitEvents.CLIENT_REQUEST_EXIT_ROOM, this.replyExitRoom.bind(this));
         return;
     },
     onLoginReceived: function (json, socketClient) {
         'use strict';
-        var pack = JSON.parse(json),
-            user = new User(pack.id, pack.login);
+        var received = JSON.parse(json),
+            user = new User(received.id, received.login);
         this.socketMap.add(user.login, socketClient);
         this.userList.add(user);
         this.socket.to(user.id).emit(EmitEvents.SERVER_ACK_LOGIN);
     },
     sendRoomsInfo: function (identifier) {
         'use strict';
-        var emitter = this.socket;
-        if (identifier) {
-            emitter = emitter.to(identifier);
-        }
-        emitter.emit(EmitEvents.SERVER_SEND_ROOMS_INFO, JSON.stringify(this.roomList));
+        this.socket.to(identifier).emit(EmitEvents.SERVER_SEND_ROOMS_INFO, JSON.stringify(this.roomList));
     },
-    answerEnterRoom: function (json) {
+    replyEnterRoom: function (json) {
         'use strict';
-        var user,
-            pack = JSON.parse(json),
-            number = pack.roomNumber,
-            id = pack.id,
-            login = pack.login,
-            room = this.roomList.query('number', number);
-        pack = { answer: false, roomNumber: null };
-        if (!room.isFull()) {
-            user = this.userList.query('login', login);
-            room.userList.add(user);
-            this.socketMap.get(user.login).join(room.number);
-            user.roomNumber = room.number;
-            pack.answer = true;
-            pack.roomNumber = room.number;
+        var received = JSON.parse(json),
+            room = this.roomList.query('number', received.roomNumber),
+            user = this.userList.query('login', received.user.login);
+        if (room.isFull()) {
+            this.socket.to(user.id).emit(EmitEvents.SERVER_DENY_ENTER_ROOM);
+            return;
         }
-        this.socket.to(id).emit(EmitEvents.SERVER_ANSWER_ENTER_ROOM, JSON.stringify(pack));
-        this.sendRoomsInfo();
+        room.userList.add(user);
+        this.socketMap.get(user.login).join(room.number);
+        user.roomNumber = room.number;
+        this.socket.to(user.id).emit(EmitEvents.SERVER_ALLOW_ENTER_ROOM);
+        this.socket.emit(EmitEvents.SERVER_SEND_ROOMS_INFO, JSON.stringify(this.roomList));
     },
-    answerExitRoom: function (json) {
+    replyExitRoom: function (json) {
         'use strict';
-        var pack = JSON.parse(json),
-            id = pack.id,
-            login = pack.login,
-            user = this.userList.query('login', login),
+        var received = JSON.parse(json),
+            user = this.userList.query('login', received.login),
             room;
         room = this.roomList.query('number', user.roomNumber);
         room.userList.remove(room.userList.indexOf(user));
         this.socketMap.get(user.login).leave(room.number);
         user.roomNumber = null;
-        pack = { answer: true };
-        this.socket.to(id).emit(EmitEvents.SERVER_ANSWER_EXIT_ROOM, JSON.stringify(pack));
-        this.sendRoomsInfo();
+        this.socket.to(user.id).emit(EmitEvents.SERVER_ACK_EXIT_ROOM);
+        this.socket.emit(EmitEvents.SERVER_SEND_ROOMS_INFO, JSON.stringify(this.roomList));
     }
 };
 

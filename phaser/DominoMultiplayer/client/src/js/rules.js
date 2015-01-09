@@ -18,6 +18,8 @@ Rules.prototype = {
         stateMachine.addTransition(States.LOGIN, Events.IP_RECEIVED, States.LOGIN, [this.actions.connectToSever.bind(this.actions)]);
         stateMachine.addTransition(States.LOGIN, Events.CONNECTION_ESTABLISHED, States.LOGIN, [this.actions.sendLoginToServer.bind(this.actions)]);
         stateMachine.addTransition(States.LOGIN, Events.SERVER_ACK_LOGIN, States.LOGIN, [this.actions.requestRoomsInfo.bind(this.actions)]);
-        stateMachine.addTransition(States.LOGIN, Events.ROOMS_INFO_RECEIVED, States.ROOMS, [this.actions.showRoomsPage.bind(this.actions)]);
+        stateMachine.addTransition(States.LOGIN, Events.ROOMS_INFO_RECEIVED, States.ROOMS, [this.actions.populateRoomsPage.bind(this.actions), this.actions.showRoomsPage.bind(this.actions)]);
+        stateMachine.addTransition(States.ROOMS, Events.ROOM_CLICKED, States.ROOMS, [this.actions.requestEnterRoom.bind(this.actions)]);
+        stateMachine.addTransition(States.ROOMS, Events.SERVER_ALLOW_ENTER_ROOM, States.WAIT_MORE_PLAYERS, [this.actions.showWaitMorePlayersPage.bind(this.actions)]);
     }
 };

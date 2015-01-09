@@ -2,11 +2,6 @@ body {
     display: table;
 }
 
-.everything {
-    margin-top: 20px;
-    margin-left: 15px;
-}
-
 .room {
     margin-top: 20px;
     border: 1px solid black;

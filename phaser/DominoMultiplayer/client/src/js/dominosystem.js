@@ -1,4 +1,4 @@
-/*global Hardware, Actions, Client, FSMachine, Rules, LoginPage, RoomsPage, User*/
+/*global Hardware, Actions, Client, FSMachine, Rules, LoginPage, RoomsPage, User, WaitMorePlayersPage*/
 
 /* The object that embodies all the system */
 
@@ -12,13 +12,14 @@ var DominoSystem = function (window, document) {
     this.rules = new Rules(this.actions);
     this.rules.initStateMachine(this.stateMachine);
     this.pages = {
-        login: new LoginPage(window, this.hardware),
-        rooms: new RoomsPage(window, this.hardware)
+        login: new LoginPage(window),
+        rooms: new RoomsPage(window),
+        waitMorePlayers: new WaitMorePlayersPage(window)
     };
 };
 DominoSystem.prototype = {
-    enqueueEvent: function (event) {
+    enqueueEvent: function (event, param) {
         "use strict";
-        this.stateMachine.enqueueEvent(event);
+        this.stateMachine.enqueueEvent(event, param);
     }
 };
