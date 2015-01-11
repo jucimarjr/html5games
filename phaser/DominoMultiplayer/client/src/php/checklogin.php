@@ -2,7 +2,7 @@
 error_reporting(0);
 $l = filter_input(INPUT_GET, 'l');
 $p = filter_input(INPUT_GET, 'p');
-$con = mysqli_connect("localhost","root","","DominoMultiplayer");
+$con = mysqli_connect("localhost","domino","1234","domino_multiplayer");
 if (!$con) {
     echo "Codes.ERROR_CONNECTION";
     die();
