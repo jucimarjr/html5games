@@ -7,6 +7,7 @@ var WaitMorePlayersPage = function (window) {
     this.window = window;
     this.document = this.window.frames[Config.WAIT_MORE_PLAYERS_IFRAME_ID].contentWindow.document;
     this.hide();
+    this.backButton = this.document.getElementById(Config.BACK_BUTTON_ID);
 };
 WaitMorePlayersPage.prototype = {
     show: function () {

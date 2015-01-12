@@ -24,13 +24,14 @@ button {
 .top {
     background-color: #006400;
     color: #ffffff;
-    height: 60px;
+    height: 70px;
 }
 
 .headertitle {
+    display: inline-block;
     max-width: 50%;
     margin-left: 15px;
-    line-height: 60px;
+    line-height: 70px;
     vertical-align: middle;
     font-size: 35px;
 }
@@ -47,4 +48,16 @@ button {
 .everything {
     margin-top: 20px;
     margin-left: 15px;
+}
+
+.backbutton {
+    margin-top: 5px;
+    margin-right: 10px;
+    line-height: 70px;
+    vertical-align: middle;
+    float: right;
+}
+
+.backbutton button:after{
+    content: "voltar";
 }

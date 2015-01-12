@@ -13,6 +13,7 @@ Actions.prototype = {
     },
     showRoomsPage: function () {
         "use strict";
+        this.dominoSystem.pages.waitMorePlayers.hide();
         this.dominoSystem.pages.login.hide();
         this.dominoSystem.pages.rooms.show();
     },
@@ -64,5 +65,9 @@ Actions.prototype = {
         "use strict";
         var roomList = this.dominoSystem.client.receiver.receivedValues.roomList;
         this.dominoSystem.pages.rooms.populateRooms(roomList);
+    },
+    requestExitRoom: function () {
+        "use strict";
+        this.dominoSystem.client.sender.requestExitRoom();
     }
 };

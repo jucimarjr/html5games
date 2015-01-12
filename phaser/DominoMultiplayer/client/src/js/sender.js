@@ -20,5 +20,9 @@ Sender.prototype = {
         "use strict";
         var toSend = {user: this.dominoSystem.user, roomNumber: roomNumber};
         this.client.socket.emit(EmitEvents.CLIENT_REQUEST_ENTER_ROOM, JSON.stringify(toSend));
+    },
+    requestExitRoom: function () {
+        "use strict";
+        this.client.socket.emit(EmitEvents.CLIENT_REQUEST_EXIT_ROOM, JSON.stringify(this.dominoSystem.user));
     }
 };

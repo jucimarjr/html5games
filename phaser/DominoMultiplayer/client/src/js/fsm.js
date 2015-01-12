@@ -3,7 +3,7 @@
 /* The object that represent a transition in the finite state machine */
 
 var Transition = function (origin, event, destine, actions) {
-    'use strict';
+    "use strict";
     if (!origin || !destine || !actions) {
         console.error("fsm.js - Transition.Transition - CONSTRUCTOR PARAMETERS NOT DEFINED");
         return;
@@ -17,18 +17,18 @@ var Transition = function (origin, event, destine, actions) {
 /* The object that represents the state machine */
 
 var FSMachine = function () {
-    'use strict';
+    "use strict";
     this.currentState = States.FIRST;
     this.rules = [];
     this.queue = new Queue(5);
 };
 FSMachine.prototype = {
     addTransition: function (origin, event, destine, actions) {
-        'use strict';
+        "use strict";
         this.rules.push(new Transition(origin, event, destine, actions));
     },
     execute: function (transition) {
-        'use strict';
+        "use strict";
         var i, end, action;
         end = transition.actions.length;
         for (i = 0; i < end; i = i + 1) {
@@ -38,7 +38,7 @@ FSMachine.prototype = {
         this.currentState = transition.destine;
     },
     nextTransition: function () {
-        'use strict';
+        "use strict";
         var i,
             found = false,
             event = this.queue.dequeue(),
@@ -54,7 +54,7 @@ FSMachine.prototype = {
         }
     },
     enqueueEvent: function (event) {
-        'use strict';
+        "use strict";
         this.queue.enqueue(event);
         this.nextTransition();
     }

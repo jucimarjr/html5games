@@ -12,9 +12,10 @@ Hardware.prototype = {
     registerCallbacks: function () {
         "use strict";
         this.dominoSystem.pages.login.onkeypress = this.onKeyPressed.bind(this);
-        this.dominoSystem.pages.rooms.onkeypress = this.onKeyPressed.bind(this);
         this.dominoSystem.pages.login.setLoginButtonClickCallback(this.onLoginButtonClicked.bind(this));
+        this.dominoSystem.pages.rooms.onkeypress = this.onKeyPressed.bind(this);
         this.dominoSystem.pages.rooms.onRoomClick = this.onRoomClick.bind(this);
+        this.dominoSystem.pages.waitMorePlayers.backButton.onclick = this.onBackClicked.bind(this);
     },
     onLoginButtonClicked: function () {
         "use strict";
@@ -30,5 +31,9 @@ Hardware.prototype = {
         "use strict";
         this.inputValues.roomNumber = roomNumber;
         this.dominoSystem.enqueueEvent(Events.ROOM_CLICKED);
+    },
+    onBackClicked: function () {
+        "use strict";
+        this.dominoSystem.enqueueEvent(Events.BACK_CLICKED);
     }
 };

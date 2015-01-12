@@ -35,6 +35,7 @@ var Config = Object.freeze({
     ROOMS_IFRAME_ID: "RoomsIframe",
     ROOMS_UL_ID: "RoomsUl",
 
-    WAIT_MORE_PLAYERS_IFRAME_ID: "WaitMorePlayersIframe"
+    WAIT_MORE_PLAYERS_IFRAME_ID: "WaitMorePlayersIframe",
+    BACK_BUTTON_ID: "BackButton"
 
 });

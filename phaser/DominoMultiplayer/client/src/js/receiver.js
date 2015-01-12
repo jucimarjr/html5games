@@ -14,6 +14,7 @@ Receiver.prototype = {
         this.client.socket.on(EmitEvents.SERVER_SEND_ID, this.onServerSendID.bind(this));
         this.client.socket.on(EmitEvents.SERVER_SEND_ROOMS_INFO, this.onServerSendRoomsInfo.bind(this));
         this.client.socket.on(EmitEvents.SERVER_ACK_LOGIN, this.onServerAckLogin.bind(this));
+        this.client.socket.on(EmitEvents.SERVER_ACK_EXIT_ROOM, this.onServerAckExit.bind(this));
         this.client.socket.on(EmitEvents.SERVER_ALLOW_ENTER_ROOM, this.onServerAllowEnterRoom.bind(this));
     },
     onServerSendID: function (json) {
@@ -40,5 +41,9 @@ Receiver.prototype = {
     onServerAllowEnterRoom: function () {
         "use strict";
         this.dominoSystem.enqueueEvent(Events.SERVER_ALLOW_ENTER_ROOM);
+    },
+    onServerAckExit: function () {
+        "use strict";
+        this.dominoSystem.enqueueEvent(Events.SERVER_ACK_EXIT_ROOM);
     }
 };
