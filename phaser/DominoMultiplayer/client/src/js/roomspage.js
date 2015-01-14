@@ -6,6 +6,7 @@ var RoomsPage = function (window) {
     "use strict";
     this.window = window;
     this.document = this.window.frames[Config.ROOMS_IFRAME_ID].contentWindow.document;
+    this.logoutButton = this.document.getElementById(Config.LOGOUT_BUTTON_ID);
     this.roomList = null;
     this.dictionary = new Dictionary();
     this.onRoomClick = null;
@@ -49,6 +50,7 @@ RoomsPage.prototype = {
             }
             li.appendChild(roomDiv);
             ul.appendChild(li);
+            this.dictionary.remove(Config.CSS_CLASS_ROOM + room.number);
             this.dictionary.add(Config.CSS_CLASS_ROOM + room.number, roomDiv);
         }
 

@@ -9,6 +9,7 @@ var Actions = function (dominoSystem) {
 Actions.prototype = {
     showLoginPage: function () {
         "use strict";
+        this.dominoSystem.pages.rooms.hide();
         this.dominoSystem.pages.login.show();
     },
     showRoomsPage: function () {
@@ -69,5 +70,9 @@ Actions.prototype = {
     requestExitRoom: function () {
         "use strict";
         this.dominoSystem.client.sender.requestExitRoom();
+    },
+    disconnect: function () {
+        "use strict";
+        this.dominoSystem.client.sender.requestDisconnection();
     }
 };

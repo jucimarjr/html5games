@@ -16,6 +16,7 @@ Hardware.prototype = {
         this.dominoSystem.pages.rooms.onkeypress = this.onKeyPressed.bind(this);
         this.dominoSystem.pages.rooms.onRoomClick = this.onRoomClick.bind(this);
         this.dominoSystem.pages.waitMorePlayers.backButton.onclick = this.onBackClicked.bind(this);
+        this.dominoSystem.pages.rooms.logoutButton.onclick = this.onLogoutClicked.bind(this);
     },
     onLoginButtonClicked: function () {
         "use strict";
@@ -35,5 +36,9 @@ Hardware.prototype = {
     onBackClicked: function () {
         "use strict";
         this.dominoSystem.enqueueEvent(Events.BACK_CLICKED);
+    },
+    onLogoutClicked: function () {
+        "use strict";
+        this.dominoSystem.enqueueEvent(Events.LOGOUT_CLICKED);
     }
 };

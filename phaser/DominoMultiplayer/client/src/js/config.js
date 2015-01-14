@@ -12,6 +12,7 @@ var Config = Object.freeze({
     LOGIN_INVALID_TEXT: "Usuário ou senha inválidos",
     ERROR_CONNECTION_TEXT: "Não foi possível se conectar com o servidor",
     EMPTY_USER_TEXT: "-",
+    LOGOUT_TEXT: "logout",
 
     /* Addresses */
     PHP_VALIDATE_LOGIN_ADDRESS: "src/php/checklogin.php",
@@ -34,6 +35,7 @@ var Config = Object.freeze({
 
     ROOMS_IFRAME_ID: "RoomsIframe",
     ROOMS_UL_ID: "RoomsUl",
+    LOGOUT_BUTTON_ID: "LogoutButton",
 
     WAIT_MORE_PLAYERS_IFRAME_ID: "WaitMorePlayersIframe",
     BACK_BUTTON_ID: "BackButton"

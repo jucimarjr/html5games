@@ -24,5 +24,9 @@ Sender.prototype = {
     requestExitRoom: function () {
         "use strict";
         this.client.socket.emit(EmitEvents.CLIENT_REQUEST_EXIT_ROOM, JSON.stringify(this.dominoSystem.user));
+    },
+    requestDisconnection: function () {
+        "use strict";
+        this.client.socket.emit(EmitEvents.CLIENT_REQUEST_DISCONNECTION, JSON.stringify(this.dominoSystem.user));
     }
 };

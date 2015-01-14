@@ -20,6 +20,10 @@ body {
     background-color: #B2D0B2;
 }
 
+.logoutbutton:after {
+    content: "logout";
+}
+
 ul {
     list-style: none;
     padding: 0;
