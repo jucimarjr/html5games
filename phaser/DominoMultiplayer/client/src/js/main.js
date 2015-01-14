@@ -9,5 +9,5 @@ function main() {
     window.onkeypress = dominoSystem.hardware.onKeyPressed.bind(dominoSystem.hardware);
 }
 
-console.log(Config.SYSTEM_NAME + " - v" + Codes.VERSION_NUMBER);
+console.log(Config.SYSTEM_NAME + " - v" + Config.VERSION_NUMBER);
 window.onload = main;

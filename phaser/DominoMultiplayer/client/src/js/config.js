@@ -5,6 +5,9 @@ var Config = Object.freeze({
     /* SERVER */
     SERVER_PORT_SUFFIX: ":3001/",
 
+    /* Version number */
+    VERSION_NUMBER: "0.1.0",
+
     /* System Name */
     SYSTEM_NAME: "Dominó Amazonense",
 
