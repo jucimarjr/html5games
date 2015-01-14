@@ -11,9 +11,8 @@ var Hardware = function (dominoSystem, window) {
 Hardware.prototype = {
     registerCallbacks: function () {
         "use strict";
-        this.dominoSystem.pages.login.onkeypress = this.onKeyPressed.bind(this);
+        this.dominoSystem.pages.login.document.onkeypress = this.onKeyPressed.bind(this);
         this.dominoSystem.pages.login.setLoginButtonClickCallback(this.onLoginButtonClicked.bind(this));
-        this.dominoSystem.pages.rooms.onkeypress = this.onKeyPressed.bind(this);
         this.dominoSystem.pages.rooms.onRoomClick = this.onRoomClick.bind(this);
         this.dominoSystem.pages.waitMorePlayers.backButton.onclick = this.onBackClicked.bind(this);
         this.dominoSystem.pages.rooms.logoutButton.onclick = this.onLogoutClicked.bind(this);
