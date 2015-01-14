@@ -53,26 +53,6 @@ RoomsPage.prototype = {
             this.dictionary.remove(Config.CSS_CLASS_ROOM + room.number);
             this.dictionary.add(Config.CSS_CLASS_ROOM + room.number, roomDiv);
         }
-
-    },
-    updateRoom: function (roomNumber) {
-        "use strict";
-        var i, roomDiv, div, room;
-        room = this.roomList.query("number", roomNumber);
-        roomDiv = this.dictionary.get(Config.CSS_CLASS_ROOM + roomNumber);
-        while (roomDiv.hasChildNodes()) {
-            roomDiv.removeChild(roomDiv.lastChild);
-        }
-        for (i = 0; i < room.userList.count; i = i + 1) {
-            div = this.document.createElement(Codes.HTML_DIV_TAG);
-            div.innerHTML = room.userList.get(i).login;
-            roomDiv.appendChild(div);
-        }
-        for (i = room.userList.count; i < room.capacity; i = i + 1) {
-            div = this.document.createElement(Codes.HTML_DIV_TAG);
-            div.innerHTML = Config.EMPTY_USER_TEXT;
-            roomDiv.appendChild(div);
-        }
     },
     roomClicked: function (roomNumber) {
         "use strict";
