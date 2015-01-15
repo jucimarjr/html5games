@@ -17,6 +17,8 @@ Receiver.prototype = {
             this.client.socket.on(EmitEvents.SERVER_ACK_LOGIN, this.onServerAckLogin.bind(this));
             this.client.socket.on(EmitEvents.SERVER_ACK_EXIT_ROOM, this.onServerAckExit.bind(this));
             this.client.socket.on(EmitEvents.SERVER_ALLOW_ENTER_ROOM, this.onServerAllowEnterRoom.bind(this));
+            this.client.socket.on(EmitEvents.ERROR_CONNECTION, this.onConnectionError.bind(this));
+            this.client.socket.on(EmitEvents.CONNECTION_TIMEOUT, this.onConnectionError.bind(this));
         } catch (exception) {
             this.dominoSystem.enqueueEvent(Events.ERROR_CONNECTION);
         }
@@ -50,5 +52,9 @@ Receiver.prototype = {
     onServerAckExit: function () {
         "use strict";
         this.dominoSystem.enqueueEvent(Events.SERVER_ACK_EXIT_ROOM);
+    },
+    onConnectionError: function () {
+        "use strict";
+        this.dominoSystem.enqueueEvent(Events.ERROR_CONNECTION);
     }
 };
