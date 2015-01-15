@@ -79,5 +79,9 @@ Actions.prototype = {
     disconnect: function () {
         "use strict";
         this.dominoSystem.client.sender.requestDisconnection();
+    },
+    showReconnectPage: function () {
+        "use strict";
+        this.dominoSystem.pages.reconnect.show();
     }
 };

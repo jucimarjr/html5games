@@ -1,0 +1,16 @@
+.reconnectdiv {
+    width: 100%;
+    text-align: center;
+    height: 200px;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    font-size: 60px;
+    font-weight: bold;
+    margin: auto;}
+
+.reconnectdiv:after {
+    content: "Tentando reconectar";
+}

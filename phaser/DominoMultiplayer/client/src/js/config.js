@@ -26,6 +26,7 @@ var Config = Object.freeze({
     CSS_CLASS_ROOM: "room",
 
     /* CSS Attributes */
+    Z_INDEX_RECONNECT_PAGE: 2,
     Z_INDEX_FRONT: 1,
     Z_INDEX_BACK: 0,
 
@@ -42,5 +43,6 @@ var Config = Object.freeze({
 
     WAIT_PLAYERS_IFRAME_ID: "wait_players_iframe",
     BACK_BUTTON_ID: "back_button",
-    WAIT_PLAYERS_UL_ID: "wait_players_ul"
+    WAIT_PLAYERS_UL_ID: "wait_players_ul",
+    RECONNECT_IFRAME_ID: "ReconnectIframe"
 });

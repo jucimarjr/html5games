@@ -1,4 +1,4 @@
-/*global Hardware, Actions, Client, FSMachine, Rules, LoginPage, RoomsPage, User, WaitPlayersPage*/
+/*global Hardware, Actions, Client, FSMachine, Rules, LoginPage, RoomsPage, User, WaitPlayersPage, ReconnectPage*/
 
 /* The object that embodies all the system */
 
@@ -14,7 +14,8 @@ var DominoSystem = function (window, document) {
     this.pages = {
         login: new LoginPage(window),
         rooms: new RoomsPage(window),
-        waitPlayers: new WaitPlayersPage(window)
+        waitPlayers: new WaitPlayersPage(window),
+        reconnect: new ReconnectPage(window)
     };
 };
 DominoSystem.prototype = {
