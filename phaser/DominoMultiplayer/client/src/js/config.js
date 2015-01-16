@@ -2,8 +2,9 @@
 
 var Config = Object.freeze({
 
-    /* SERVER */
+    /* CONNECTION */
     SERVER_PORT_SUFFIX: ":3001/",
+    TIMEOUT: 3,
 
     /* Version number */
     VERSION_NUMBER: "0.2.0",

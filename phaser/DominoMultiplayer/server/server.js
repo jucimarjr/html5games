@@ -44,8 +44,14 @@ Server.prototype = {
     onLoginReceived: function (json, socketClient) {
         "use strict";
         var received = JSON.parse(json),
-            user = new User(received.id, received.login);
+            user = new User(received.id, received.login),
+            oldUser;
+        this.socketMap.remove(user.login);
         this.socketMap.add(user.login, socketClient);
+        oldUser = this.userList.query("login", user.login);
+        if (oldUser !== null) {
+            this.userList.remove(this.userList.indexOf(oldUser));
+        }
         this.userList.add(user);
         this.socket.to(user.id).emit(EmitEvents.SERVER_ACK_LOGIN);
     },
