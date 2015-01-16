@@ -6,6 +6,7 @@ var EmitEvents = Object.freeze({
     CONNECTION: "connection",
     DISCONNECTION: "disconnect",
     ERROR_CONNECTION: "connect_error",
+    RECONNECTION: "reconnect",
     CONNECTION_TIMEOUT: "connect_timeout",
     SERVER_SEND_ID: "EmitEvents.SERVER_SEND_ID",
     CLIENT_SEND_LOGIN: "EmitEvents.CLIENT_SEND_LOGIN",

@@ -83,5 +83,9 @@ Actions.prototype = {
     showReconnectPage: function () {
         "use strict";
         this.dominoSystem.pages.reconnect.show();
+    },
+    hideReconnectPage: function () {
+        "use strict";
+        this.dominoSystem.pages.reconnect.hide();
     }
 };
