@@ -50,6 +50,7 @@ Server.prototype = {
         if (user !== null) {
             this.removeFromRoom(user);
             this.userList.remove(this.userList.indexOf(user));
+            this.socketMap.get(user.login).disconnect();
             this.socketMap.remove(user.login);
         }
     },
@@ -109,7 +110,6 @@ Server.prototype = {
         "use strict";
         var received = JSON.parse(json),
             user = this.userList.query("login", received.login);
-        this.socketMap.get(user.login).disconnect();
         this.eraseUser(user.login);
     }
 };
