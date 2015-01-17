@@ -45,5 +45,5 @@ var Config = Object.freeze({
     WAIT_PLAYERS_IFRAME_ID: "wait_players_iframe",
     BACK_BUTTON_ID: "back_button",
     WAIT_PLAYERS_UL_ID: "wait_players_ul",
-    RECONNECT_IFRAME_ID: "ReconnectIframe"
+    RECONNECT_IFRAME_ID: "reconnect_iframe"
 });
