@@ -92,7 +92,7 @@ List.prototype = {
         var cell;
         if (this.isEmpty()) {
             console.error("list.js - List.query: LIST IS EMPTY");
-            return;
+            return null;
         }
         cell = this.first.next;
         while (cell.content[property] !== value) {

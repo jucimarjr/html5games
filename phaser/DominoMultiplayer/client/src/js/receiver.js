@@ -52,6 +52,7 @@ Receiver.prototype = {
     },
     onServerAckExit: function () {
         "use strict";
+        this.dominoSystem.user.roomNumber = null;
         this.dominoSystem.enqueueEvent(Events.SERVER_ACK_EXIT_ROOM);
     },
     onConnectionError: function () {

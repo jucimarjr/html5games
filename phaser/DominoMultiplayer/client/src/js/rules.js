@@ -28,5 +28,8 @@ Rules.prototype = {
         stateMachine.addTransition(States.WAIT_PLAYERS, Events.BACK_CLICKED, States.WAIT_PLAYERS, [this.actions.requestExitRoom.bind(this.actions)]);
         stateMachine.addTransition(States.WAIT_PLAYERS, Events.SERVER_ACK_EXIT_ROOM, States.ROOMS, [this.actions.showRoomsPage.bind(this.actions)]);
         stateMachine.addTransition(States.WAIT_PLAYERS, Events.ROOMS_INFO_RECEIVED, States.WAIT_PLAYERS, [this.actions.updatePlayers.bind(this.actions)]);
+        stateMachine.addTransition(States.WAIT_PLAYERS, Events.ERROR_CONNECTION, States.WAIT_PLAYERS, [this.actions.showReconnectPage.bind(this.actions)]);
+        stateMachine.addTransition(States.WAIT_PLAYERS, Events.RECONNECTION, States.WAIT_PLAYERS, [this.actions.hideReconnectPage.bind(this.actions)]);
+        stateMachine.addTransition(States.WAIT_PLAYERS, Events.CONNECTION_ESTABLISHED, States.WAIT_PLAYERS, [this.actions.sendLoginToServer.bind(this.actions)]);
     }
 };

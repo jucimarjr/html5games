@@ -2,11 +2,11 @@
 
 /* This object holds information about a connected user */
 
-var User = function (id, login) {
+var User = function (id, login, roomNumber) {
     'use strict';
     this.id = id;
     this.login = login;
-    this.roomNumber = null;
+    this.roomNumber = roomNumber;
 };
 
 try {
