@@ -85,6 +85,7 @@ button {
 }
 
 .point_one, .point_two, .point_three, .point_four, .point_five {
+    background-color: transparent;
     -webkit-animation: dots 5s;
     -moz-animation: dots 5s;
     -webkit-animation-iteration-count: infinite;
@@ -94,32 +95,32 @@ button {
 }
 
 .point_one {
-    -webkit-animation-delay: 1s;
-    -moz-animation-delay: 1s;
+    -webkit-animation-delay: 0s;
+    -moz-animation-delay: 0s;
 }
 
 .point_two {
-    -webkit-animation-delay: 1.2s;
-    -moz-animation-delay: 1.2s;
+    -webkit-animation-delay: 0.2s;
+    -moz-animation-delay: 0.2s;
 }
 
 .point_three {
-    -webkit-animation-delay: 1.4s;
-    -moz-animation-delay: 1.4s;
+    -webkit-animation-delay: 0.4s;
+    -moz-animation-delay: 0.4s;
 }
 
 .point_four {
-    -webkit-animation-delay: 1.6s;
-    -moz-animation-delay: 1.6s;
+    -webkit-animation-delay: 0.6s;
+    -moz-animation-delay: 0.6s;
 }
 
 .point_five {
-    -webkit-animation-delay: 1.8s;
-    -moz-animation-delay: 1.8s;
+    -webkit-animation-delay: 0.8s;
+    -moz-animation-delay: 0.8s;
 }
 
 @-webkit-keyframes dots {
-    0% {left: 25%;}
+    0% {left: 25%; background-color: #006400;}
     50% {left: 50%;}
     64% {background-color: #006400}
     65% {background-color: transparent}
@@ -127,7 +128,7 @@ button {
 }
 
 @-moz-keyframes dots {
-    0% {left: 25%;}
+    0% {left: 25%; background-color: #006400;}
     50% {left: 50%;}
     64% {background-color: #006400}
     65% {background-color: transparent}
