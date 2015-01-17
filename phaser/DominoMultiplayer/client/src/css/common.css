@@ -61,3 +61,75 @@ button {
 .backbutton:after{
     content: "voltar";
 }
+
+.center {
+    width: 100%;
+    text-align: center;
+    height: 200px;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    font-size: 60px;
+    font-weight: bold;
+    margin: auto;
+}
+
+.point-one, .point-two, .point-three, .point-four, .point-five {
+    margin-top: 40px;
+    background-color:#006400;
+    width: 5px;
+    height: 5px;
+    position: fixed;
+}
+
+.point-one, .point-two, .point-three, .point-four, .point-five {
+    -webkit-animation: dots 5s;
+    -moz-animation: dots 5s;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-iteration-count: infinite;
+    -webkit-animation-play-state: running;
+    -moz-animation-play-state: running;
+}
+
+.point-one {
+    -webkit-animation-delay: 1s;
+    -moz-animation-delay: 1s;
+}
+
+.point-two {
+    -webkit-animation-delay: 1.2s;
+    -moz-animation-delay: 1.2s;
+}
+
+.point-three {
+    -webkit-animation-delay: 1.4s;
+    -moz-animation-delay: 1.4s;
+}
+
+.point-four {
+    -webkit-animation-delay: 1.6s;
+    -moz-animation-delay: 1.6s;
+}
+
+.point-five {
+    -webkit-animation-delay: 1.8s;
+    -moz-animation-delay: 1.8s;
+}
+
+@-webkit-keyframes dots {
+    0% {left: 25%;}
+    50% {left: 50%;}
+    64% {background-color: #006400}
+    65% {background-color: transparent}
+    100% {left: 100%; background-color: transparent}
+}
+
+@-moz-keyframes dots {
+    0% {left: 25%;}
+    50% {left: 50%;}
+    64% {background-color: #006400}
+    65% {background-color: transparent}
+    100% {left: 100%; background-color: transparent}
+}
