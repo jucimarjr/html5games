@@ -41,6 +41,6 @@ var Config = Object.freeze({
     LOGOUT_BUTTON_ID: "LogoutButton",
 
     WAIT_MORE_PLAYERS_IFRAME_ID: "WaitMorePlayersIframe",
-    BACK_BUTTON_ID: "BackButton"
-
+    BACK_BUTTON_ID: "BackButton",
+    WAIT_MORE_PLAYERS_UL_ID: "WaitPlayersUl"
 });

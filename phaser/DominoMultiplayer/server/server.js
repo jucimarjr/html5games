@@ -65,7 +65,7 @@ Server.prototype = {
         room.userList.add(user);
         this.socketMap.get(user.login).join(room.number);
         user.roomNumber = room.number;
-        this.socket.to(user.id).emit(EmitEvents.SERVER_ALLOW_ENTER_ROOM);
+        this.socket.to(user.id).emit(EmitEvents.SERVER_ALLOW_ENTER_ROOM, user.roomNumber);
         this.socket.emit(EmitEvents.SERVER_SEND_ROOMS_INFO, JSON.stringify(this.roomList));
     },
     replyExitRoom: function (json) {

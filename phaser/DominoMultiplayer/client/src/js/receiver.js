@@ -38,8 +38,9 @@ Receiver.prototype = {
         "use strict";
         this.dominoSystem.enqueueEvent(Events.SERVER_ACK_LOGIN);
     },
-    onServerAllowEnterRoom: function () {
+    onServerAllowEnterRoom: function (roomNumber) {
         "use strict";
+        this.dominoSystem.user.roomNumber = roomNumber;
         this.dominoSystem.enqueueEvent(Events.SERVER_ALLOW_ENTER_ROOM);
     },
     onServerAckExit: function () {

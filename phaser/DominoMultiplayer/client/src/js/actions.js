@@ -71,6 +71,11 @@ Actions.prototype = {
         "use strict";
         this.dominoSystem.client.sender.requestExitRoom();
     },
+    updatePlayers: function () {
+        "use strict";
+        var roomList = this.dominoSystem.client.receiver.receivedValues.roomList;
+        this.dominoSystem.pages.waitMorePlayers.updatePlayers(roomList, this.dominoSystem.user);
+    },
     disconnect: function () {
         "use strict";
         this.dominoSystem.client.sender.requestDisconnection();

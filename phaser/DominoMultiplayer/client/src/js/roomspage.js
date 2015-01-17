@@ -7,7 +7,6 @@ var RoomsPage = function (window) {
     this.window = window;
     this.document = this.window.frames[Config.ROOMS_IFRAME_ID].contentWindow.document;
     this.logoutButton = this.document.getElementById(Config.LOGOUT_BUTTON_ID);
-    this.roomList = null;
     this.dictionary = new Dictionary();
     this.onRoomClick = null;
     this.hide();
@@ -26,21 +25,20 @@ RoomsPage.prototype = {
     populateRooms: function (roomList) {
         "use strict";
         var i, j, li, roomDiv, div, ul, room, onclick;
-        this.roomList = roomList;
         ul = this.document.getElementById(Config.ROOMS_UL_ID);
         while (ul.hasChildNodes()) {
             ul.removeChild(ul.lastChild);
         }
         onclick = function (number) { return function () { this.roomClicked(number); }.bind(this); }.bind(this);
-        for (i = 0; i < this.roomList.count; i = i + 1) {
-            room = this.roomList.get(i);
+        for (i = 0; i < roomList.count; i = i + 1) {
+            room = roomList.get(i);
             li = this.document.createElement(Codes.HTML_LI_TAG);
             roomDiv = this.document.createElement(Codes.HTML_DIV_TAG);
             roomDiv.className = Config.CSS_CLASS_ROOM;
             roomDiv.onclick = onclick(room.number);
             for (j = 0; j < room.userList.count; j = j + 1) {
                 div = this.document.createElement(Codes.HTML_DIV_TAG);
-                div.innerHTML = this.roomList.get(i).userList.get(j).login;
+                div.innerHTML = roomList.get(i).userList.get(j).login;
                 roomDiv.appendChild(div);
             }
             for (j = room.userList.count; j < room.capacity; j = j + 1) {
