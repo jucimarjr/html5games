@@ -21,13 +21,13 @@ button {
     margin-bottom: 10px;
 }
 
-.top {
+.header {
     background-color: #006400;
     color: #ffffff;
     height: 70px;
 }
 
-.headertitle {
+.header_title {
     display: inline-block;
     max-width: 50%;
     margin-left: 15px;
@@ -36,7 +36,7 @@ button {
     font-size: 35px;
 }
 
-.headertitle:after {
+.header_title:after {
     content: "Dominó Amazonense";
 }
 
@@ -50,7 +50,7 @@ button {
     margin-left: 15px;
 }
 
-.backdiv {
+.back_div {
     margin-top: 5px;
     margin-right: 10px;
     line-height: 70px;
@@ -58,7 +58,7 @@ button {
     float: right;
 }
 
-.backbutton:after{
+.back_button:after{
     content: "voltar";
 }
 
@@ -76,7 +76,7 @@ button {
     margin: auto;
 }
 
-.point-one, .point-two, .point-three, .point-four, .point-five {
+.point_one, .point_two, .point_three, .point_four, .point_five {
     margin-top: 40px;
     background-color:#006400;
     width: 5px;
@@ -84,7 +84,7 @@ button {
     position: fixed;
 }
 
-.point-one, .point-two, .point-three, .point-four, .point-five {
+.point_one, .point_two, .point_three, .point_four, .point_five {
     -webkit-animation: dots 5s;
     -moz-animation: dots 5s;
     -webkit-animation-iteration-count: infinite;
@@ -93,27 +93,27 @@ button {
     -moz-animation-play-state: running;
 }
 
-.point-one {
+.point_one {
     -webkit-animation-delay: 1s;
     -moz-animation-delay: 1s;
 }
 
-.point-two {
+.point_two {
     -webkit-animation-delay: 1.2s;
     -moz-animation-delay: 1.2s;
 }
 
-.point-three {
+.point_three {
     -webkit-animation-delay: 1.4s;
     -moz-animation-delay: 1.4s;
 }
 
-.point-four {
+.point_four {
     -webkit-animation-delay: 1.6s;
     -moz-animation-delay: 1.6s;
 }
 
-.point-five {
+.point_five {
     -webkit-animation-delay: 1.8s;
     -moz-animation-delay: 1.8s;
 }

@@ -30,17 +30,17 @@ var Config = Object.freeze({
     Z_INDEX_BACK: 0,
 
     /* HTML Identifiers */
-    LOGIN_BUTTON_ID: "LoginButton",
-    LOGIN_IFRAME_ID: "LoginIframe",
-    LOGIN_INPUT_ID: "LoginInput",
-    PASSWORD_INPUT_ID: "PasswordInput",
-    LOGIN_ERROR_DIV_ID: "LoginErrorDiv",
+    LOGIN_BUTTON_ID: "login_button",
+    LOGIN_IFRAME_ID: "login_iframe",
+    LOGIN_INPUT_ID: "login_input",
+    PASSWORD_INPUT_ID: "password_input",
+    LOGIN_ERROR_DIV_ID: "login_error_div",
 
-    ROOMS_IFRAME_ID: "RoomsIframe",
-    ROOMS_UL_ID: "RoomsUl",
-    LOGOUT_BUTTON_ID: "LogoutButton",
+    ROOMS_IFRAME_ID: "rooms_iframe",
+    ROOMS_UL_ID: "rooms_ul",
+    LOGOUT_BUTTON_ID: "logout_button",
 
-    WAIT_MORE_PLAYERS_IFRAME_ID: "WaitMorePlayersIframe",
-    BACK_BUTTON_ID: "BackButton",
-    WAIT_MORE_PLAYERS_UL_ID: "WaitPlayersUl"
+    WAIT_PLAYERS_IFRAME_ID: "wait_players_iframe",
+    BACK_BUTTON_ID: "back_button",
+    WAIT_PLAYERS_UL_ID: "wait_players_ul"
 });

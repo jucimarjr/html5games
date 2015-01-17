@@ -20,7 +20,7 @@ body {
     background-color: #B2D0B2;
 }
 
-.logoutbutton:after {
+.logout_button:after {
     content: "logout";
 }
 
