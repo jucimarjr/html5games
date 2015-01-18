@@ -20,7 +20,7 @@ Rules.prototype = {
         stateMachine.addTransition(States.ROOMS, Events.SERVER_ACK_LOGIN, States.ROOMS, [this.actions.requestRoomsInfo.bind(this.actions)]);
         stateMachine.addTransition(States.ROOMS, Events.ROOMS_INFO_RECEIVED, States.ROOMS, [this.actions.populateRoomsPage.bind(this.actions), this.actions.showRoomsPage.bind(this.actions)]);
         stateMachine.addTransition(States.ROOMS, Events.ROOM_CLICKED, States.ROOMS, [this.actions.requestEnterRoom.bind(this.actions)]);
-        stateMachine.addTransition(States.ROOMS, Events.SERVER_ALLOW_ENTER_ROOM, States.WAIT_PLAYERS, [this.actions.showWaitMorePlayersPage.bind(this.actions)]);
+        stateMachine.addTransition(States.ROOMS, Events.SERVER_ALLOW_ENTER_ROOM, States.WAIT_PLAYERS, [this.actions.showWaitPlayersPage.bind(this.actions)]);
         stateMachine.addTransition(States.ROOMS, Events.LOGOUT_CLICKED, States.LOGIN, [this.actions.disconnect.bind(this.actions), this.actions.showLoginPage.bind(this.actions)]);
         stateMachine.addTransition(States.ROOMS, Events.ERROR_CONNECTION, States.ROOMS, [this.actions.showReconnectPage.bind(this.actions)]);
         stateMachine.addTransition(States.ROOMS, Events.RECONNECTION, States.ROOMS, [this.actions.hideReconnectPage.bind(this.actions)]);
