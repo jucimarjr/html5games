@@ -6,7 +6,7 @@ body {
     width: 100%;
     height: 100%;
     font-weight: bold;
-    font-family: 'Poiret One', cursive;
+    font-family: "Poiret One", cursive;
 }
 
 input {
@@ -14,13 +14,13 @@ input {
     width: 70%;
     max-width: 400px;
     font-size: 25px;
-    font-family: 'Poiret One', cursive;
+    font-family: "Poiret One", cursive;
 }
 
 button {
     width: 100px;
     height: 50px;
-    font-family: 'Poiret One', cursive;
+    font-family: "Poiret One", cursive;
     font-size: 25px;
     margin-bottom: 10px;
 }

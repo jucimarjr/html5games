@@ -67,6 +67,7 @@ Server.prototype = {
         socketClient.on(EmitEvents.CLIENT_REQUEST_ENTER_ROOM, this.replyEnterRoom.bind(this));
         socketClient.on(EmitEvents.CLIENT_REQUEST_EXIT_ROOM, this.replyExitRoom.bind(this));
         socketClient.on(EmitEvents.CLIENT_REQUEST_DISCONNECTION, this.disconnect.bind(this));
+        socketClient.on(EmitEvents.DISCONNECTION, function () { this.onLoseConnection(socketClient.id); }.bind(this));
         return;
     },
     onLoginReceived: function (json, socketClient) {
@@ -111,6 +112,14 @@ Server.prototype = {
         var received = JSON.parse(json),
             user = this.userList.query("login", received.login);
         this.eraseUser(user.login);
+    },
+    onLoseConnection: function (id) {
+        "use strict";
+        var user = this.userList.query("id", id);
+        if (user !== null) {
+            this.eraseUser(user.login);
+            this.socket.emit(EmitEvents.SERVER_SEND_ROOMS_INFO, JSON.stringify(this.roomList));
+        }
     }
 };
 
