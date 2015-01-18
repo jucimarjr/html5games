@@ -14,14 +14,14 @@ Actions.prototype = {
     },
     showRoomsPage: function () {
         "use strict";
-        this.dominoSystem.pages.waitMorePlayers.hide();
+        this.dominoSystem.pages.waitPlayers.hide();
         this.dominoSystem.pages.login.hide();
         this.dominoSystem.pages.rooms.show();
     },
-    showWaitMorePlayersPage: function () {
+    showWaitPlayersPage: function () {
         "use strict";
         this.dominoSystem.pages.rooms.hide();
-        this.dominoSystem.pages.waitMorePlayers.show();
+        this.dominoSystem.pages.waitPlayers.show();
     },
     registerInputCapture: function () {
         "use strict";
@@ -74,7 +74,7 @@ Actions.prototype = {
     updatePlayers: function () {
         "use strict";
         var roomList = this.dominoSystem.client.receiver.receivedValues.roomList;
-        this.dominoSystem.pages.waitMorePlayers.updatePlayers(roomList, this.dominoSystem.user);
+        this.dominoSystem.pages.waitPlayers.updatePlayers(roomList, this.dominoSystem.user);
     },
     disconnect: function () {
         "use strict";

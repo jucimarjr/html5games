@@ -4,5 +4,5 @@ var States = Object.freeze({
     FIRST: "States.FIRST",
     LOGIN: "States.LOGIN",
     ROOMS: "States.ROOMS",
-    WAIT_MORE_PLAYERS: "States.WAIT_MORE_PLAYERS"
+    WAIT_PLAYERS: "States.WAIT_PLAYERS"
 });
