@@ -82,9 +82,9 @@ Server.prototype = {
         }
         this.socket.to(user.id).emit(EmitEvents.SERVER_ACK_LOGIN);
     },
-    sendRoomsInfo: function (identifier) {
+    sendRoomsInfo: function () {
         "use strict";
-        this.socket.to(identifier).emit(EmitEvents.SERVER_SEND_ROOMS_INFO, JSON.stringify(this.roomList));
+        this.socket.emit(EmitEvents.SERVER_SEND_ROOMS_INFO, JSON.stringify(this.roomList));
     },
     replyEnterRoom: function (json) {
         "use strict";

@@ -14,7 +14,7 @@ Sender.prototype = {
     },
     requestRoomsInfo: function () {
         "use strict";
-        this.emit(EmitEvents.CLIENT_REQUEST_ROOMS_INFO, this.dominoSystem.user.id);
+        this.emit(EmitEvents.CLIENT_REQUEST_ROOMS_INFO);
     },
     requestEnterRoom: function (roomNumber) {
         "use strict";
