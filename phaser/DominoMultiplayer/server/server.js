@@ -84,7 +84,16 @@ Server.prototype = {
     },
     sendRoomsInfo: function () {
         "use strict";
+        var i, room;
         this.socket.emit(EmitEvents.SERVER_SEND_ROOMS_INFO, JSON.stringify(this.roomList));
+        for (i = 0; i < this.roomList.count; i = i + 1) {
+            room = this.roomList.get(i);
+            if (room.isFull()) {
+                this.socket.to(room.number).emit(EmitEvents.SERVER_ALLOW_GAME);
+            } else {
+                this.socket.to(room.number).emit(EmitEvents.SERVER_DISALLOW_GAME);
+            }
+        }
     },
     replyEnterRoom: function (json) {
         "use strict";
@@ -97,7 +106,7 @@ Server.prototype = {
         }
         this.addToRoom(user, room.number);
         this.socket.to(user.id).emit(EmitEvents.SERVER_ALLOW_ENTER_ROOM, room.number);
-        this.socket.emit(EmitEvents.SERVER_SEND_ROOMS_INFO, JSON.stringify(this.roomList));
+        this.sendRoomsInfo();
     },
     replyExitRoom: function (json) {
         "use strict";
@@ -105,7 +114,7 @@ Server.prototype = {
             user = this.userList.query("login", received.login);
         this.removeFromRoom(user);
         this.socket.to(user.id).emit(EmitEvents.SERVER_ACK_EXIT_ROOM);
-        this.socket.emit(EmitEvents.SERVER_SEND_ROOMS_INFO, JSON.stringify(this.roomList));
+        this.sendRoomsInfo();
     },
     disconnect: function (json) {
         "use strict";
@@ -118,7 +127,7 @@ Server.prototype = {
         var user = this.userList.query("id", id);
         if (user !== null) {
             this.eraseUser(user.login);
-            this.socket.emit(EmitEvents.SERVER_SEND_ROOMS_INFO, JSON.stringify(this.roomList));
+            this.sendRoomsInfo();
         }
     }
 };

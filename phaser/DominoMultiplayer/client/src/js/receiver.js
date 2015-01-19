@@ -20,6 +20,8 @@ Receiver.prototype = {
             this.client.socket.on(EmitEvents.ERROR_CONNECTION, this.onConnectionError.bind(this));
             this.client.socket.on(EmitEvents.CONNECTION_TIMEOUT, this.onConnectionError.bind(this));
             this.client.socket.on(EmitEvents.RECONNECTION, this.onReconnection.bind(this));
+            this.client.socket.on(EmitEvents.SERVER_ALLOW_GAME, this.onReadyForGame.bind(this));
+            this.client.socket.on(EmitEvents.SERVER_DISALLOW_GAME, this.onUnreadyForGame.bind(this));
         } catch (exception) {
             this.dominoSystem.enqueueEvent(Events.ERROR_CONNECTION);
         }
@@ -62,5 +64,13 @@ Receiver.prototype = {
     onReconnection: function () {
         "use strict";
         this.dominoSystem.enqueueEvent(Events.RECONNECTION);
+    },
+    onReadyForGame: function () {
+        "use strict";
+        this.dominoSystem.enqueueEvent(Events.READY_FOR_GAME);
+    },
+    onUnreadyForGame: function () {
+        "use strict";
+        this.dominoSystem.enqueueEvent(Events.UNREADY_FOR_GAME);
     }
 };
