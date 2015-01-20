@@ -20,6 +20,7 @@ var Codes = Object.freeze({
     /* Javascript */
     WEBSOCKET_TRANSPORT: "websocket",
     XML_HTTP_REQUEST_COMPLETED: 4,
+    DECIMAL_SYSTEM: 10,
 
     /* HTML */
     HTML_UL_TAG: "ul",

@@ -16,6 +16,7 @@ Hardware.prototype = {
         this.dominoSystem.pages.rooms.onRoomClick = this.onRoomClick.bind(this);
         this.dominoSystem.pages.waitPlayers.backButton.onclick = this.onBackClicked.bind(this);
         this.dominoSystem.pages.rooms.logoutButton.onclick = this.onLogoutClicked.bind(this);
+        this.dominoSystem.pages.ready.setInterval = this.setInterval.bind(this);
     },
     onLoginButtonClicked: function () {
         "use strict";
@@ -39,5 +40,13 @@ Hardware.prototype = {
     onLogoutClicked: function () {
         "use strict";
         this.dominoSystem.enqueueEvent(Events.LOGOUT_CLICKED);
+    },
+    setInterval: function (action, interval, timeFinish) {
+        "use strict";
+        var i;
+        for (i = 0; i < timeFinish; i = i + 1) {
+            this.window.setTimeout(action, interval * (i + 1));
+        }
+        this.window.setTimeout(function () { this.dominoSystem.enqueueEvent(Events.INTERVAL_TIMEOUT); }.bind(this), timeFinish);
     }
 };

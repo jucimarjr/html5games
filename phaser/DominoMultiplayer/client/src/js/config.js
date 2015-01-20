@@ -45,5 +45,11 @@ var Config = Object.freeze({
     WAIT_PLAYERS_IFRAME_ID: "wait_players_iframe",
     BACK_BUTTON_ID: "back_button",
     WAIT_PLAYERS_UL_ID: "wait_players_ul",
+
+    READY_IFRAME_ID: "ready_iframe",
+    READY_COUNTDOWN_DIV_ID: "ready_countdown",
+    READY_COUNTDOWN_SECONDS: 30,
+    READY_COUNTDOWN_TICK_MILIS: 1000,
+
     RECONNECT_IFRAME_ID: "reconnect_iframe"
 });

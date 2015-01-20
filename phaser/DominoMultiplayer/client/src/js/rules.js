@@ -32,5 +32,6 @@ Rules.prototype = {
         stateMachine.addTransition(States.WAIT_PLAYERS, Events.RECONNECTION, States.WAIT_PLAYERS, [this.actions.hideReconnectPage.bind(this.actions)]);
         stateMachine.addTransition(States.WAIT_PLAYERS, Events.CONNECTION_ESTABLISHED, States.WAIT_PLAYERS, [this.actions.sendLoginToServer.bind(this.actions)]);
         stateMachine.addTransition(States.WAIT_PLAYERS, Events.SERVER_ACK_LOGIN, States.WAIT_PLAYERS, [this.actions.requestRoomsInfo.bind(this.actions)]);
+        stateMachine.addTransition(States.WAIT_PLAYERS, Events.READY_FOR_GAME, States.READY, [this.actions.showReadyPage.bind(this.actions), this.actions.startCountdown.bind(this.actions)]);
     }
 };

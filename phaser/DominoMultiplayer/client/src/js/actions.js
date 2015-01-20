@@ -87,5 +87,17 @@ Actions.prototype = {
     hideReconnectPage: function () {
         "use strict";
         this.dominoSystem.pages.reconnect.hide();
+    },
+    showReadyPage: function () {
+        "use strict";
+        this.dominoSystem.pages.ready.show();
+    },
+    hideReadyPage: function () {
+        "use strict";
+        this.dominoSystem.pages.ready.hide();
+    },
+    startCountdown: function () {
+        "use strict";
+        this.dominoSystem.pages.ready.startCountdown();
     }
 };
