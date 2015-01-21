@@ -3,7 +3,7 @@
 /* The object which holds a content added to a list  */
 
 var ListCell = function (content, next) {
-    'use strict';
+    "use strict";
     this.content = content;
     this.next = next;
 };
@@ -11,7 +11,7 @@ var ListCell = function (content, next) {
 /* Defines a object to represent a list */
 
 var List = function (list) {
-    'use strict';
+    "use strict";
     if (list) {
         this.first = list.first;
         this.last = list.last;
@@ -26,22 +26,22 @@ var List = function (list) {
 
 List.prototype = {
     makeEmpty: function () {
-        'use strict';
+        "use strict";
         this.last = this.first;
         this.count = 0;
     },
     isEmpty: function () {
-        'use strict';
+        "use strict";
         return (this.count === 0);
     },
     add: function (content) {
-        'use strict';
+        "use strict";
         this.count = this.count + 1;
         this.last.next = new ListCell(content);
         this.last = this.last.next;
     },
     get: function (position) {
-        'use strict';
+        "use strict";
         var cell, i;
         if (this.isEmpty() || position >= this.count) {
             console.error("list.js - List.get: LIST IS EMPTY OR POSITION TOO HIGH");
@@ -54,7 +54,7 @@ List.prototype = {
         return cell.content;
     },
     indexOf: function (content) {
-        'use strict';
+        "use strict";
         var cell, i = 0;
         if (this.isEmpty()) {
             console.error("list.js - List.get: LIST IS EMPTY");
@@ -71,7 +71,7 @@ List.prototype = {
         return i;
     },
     remove: function (position) {
-        'use strict';
+        "use strict";
         var i, cell = this.first;
         if (position >= this.count) {
             return;
@@ -82,13 +82,13 @@ List.prototype = {
         }
         if (cell.next === this.last) {
             this.last = cell;
-            this.last.next = {};
+            this.last.next = null;
             return;
         }
         cell.next = cell.next.next;
     },
     query: function (property, value) {
-        'use strict';
+        "use strict";
         var cell;
         if (this.isEmpty()) {
             console.error("list.js - List.query: LIST IS EMPTY");
@@ -104,7 +104,7 @@ List.prototype = {
         return cell.content;
     },
     contains: function (property, value) {
-        'use strict';
+        "use strict";
         if (this.query(property, value)) {
             return true;
         }
