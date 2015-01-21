@@ -14,12 +14,14 @@ Actions.prototype = {
     },
     showRoomsPage: function () {
         "use strict";
+        this.dominoSystem.pages.ready.hide();
         this.dominoSystem.pages.waitPlayers.hide();
         this.dominoSystem.pages.login.hide();
         this.dominoSystem.pages.rooms.show();
     },
     showWaitPlayersPage: function () {
         "use strict";
+        this.dominoSystem.pages.ready.hide();
         this.dominoSystem.pages.rooms.hide();
         this.dominoSystem.pages.waitPlayers.show();
     },
@@ -90,11 +92,8 @@ Actions.prototype = {
     },
     showReadyPage: function () {
         "use strict";
+        this.dominoSystem.pages.waitPlayers.hide();
         this.dominoSystem.pages.ready.show();
-    },
-    hideReadyPage: function () {
-        "use strict";
-        this.dominoSystem.pages.ready.hide();
     },
     startCountdown: function () {
         "use strict";

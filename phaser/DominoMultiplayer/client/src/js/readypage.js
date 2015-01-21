@@ -7,6 +7,7 @@ var ReadyPage = function (window) {
     this.window = window;
     this.document = this.window.frames[Config.READY_IFRAME_ID].contentWindow.document;
     this.countdownDiv = this.document.getElementById(Config.READY_COUNTDOWN_DIV_ID);
+    this.backButton = this.document.getElementById(Config.BACK_BUTTON_ID);
     this.setInterval = null;
     this.clearInterval = null;
 };

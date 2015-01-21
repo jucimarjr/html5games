@@ -17,6 +17,7 @@ Hardware.prototype = {
         this.dominoSystem.pages.rooms.onRoomClick = this.onRoomClick.bind(this);
         this.dominoSystem.pages.waitPlayers.backButton.onclick = this.onBackClicked.bind(this);
         this.dominoSystem.pages.rooms.logoutButton.onclick = this.onLogoutClicked.bind(this);
+        this.dominoSystem.pages.ready.backButton.onclick = this.onBackClicked.bind(this);
         this.dominoSystem.pages.ready.setInterval = this.setInterval.bind(this);
         this.dominoSystem.pages.ready.clearInterval = this.clearInterval.bind(this);
     },

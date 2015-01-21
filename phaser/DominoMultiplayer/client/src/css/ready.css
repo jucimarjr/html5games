@@ -1,3 +1,7 @@
 .ready_title:after {
-    content: "Pronto";
+    content: "Pronto!";
+}
+
+.ready_countdown {
+    margin-top: 20px;
 }
