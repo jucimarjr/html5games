@@ -18,6 +18,7 @@ LoginPage.prototype = {
         "use strict";
         this.document.body.style.display = Codes.CSS_DISPLAY_NONE;
         this.window.frames[Config.LOGIN_IFRAME_ID].style.zIndex = Config.Z_INDEX_BACK;
+        this.hideErrorMessages();
     },
     getLoginInput: function () {
         "use strict";
@@ -33,10 +34,16 @@ LoginPage.prototype = {
     },
     showLoginInvalid: function () {
         "use strict";
+        this.document.getElementById(Config.LOGIN_ERROR_DIV_ID).style.display = Codes.CSS_DISPLAY_BLOCK;
         this.document.getElementById(Config.LOGIN_ERROR_DIV_ID).innerHTML = Config.LOGIN_INVALID_TEXT;
     },
     showErrorConnection: function () {
         "use strict";
+        this.document.getElementById(Config.LOGIN_ERROR_DIV_ID).style.display = Codes.CSS_DISPLAY_BLOCK;
         this.document.getElementById(Config.LOGIN_ERROR_DIV_ID).innerHTML = Config.ERROR_CONNECTION_TEXT;
+    },
+    hideErrorMessages: function () {
+        "use strict";
+        this.document.getElementById(Config.LOGIN_ERROR_DIV_ID).style.display = Codes.CSS_DISPLAY_NONE;
     }
 };
