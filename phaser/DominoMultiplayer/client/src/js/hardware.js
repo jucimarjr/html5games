@@ -1,4 +1,4 @@
-/*global Codes, Config, Events*/
+/*global Codes, Config, Events, List*/
 
 /* This object captures inputs sended by the user */
 
@@ -7,6 +7,7 @@ var Hardware = function (dominoSystem, window) {
     this.window = window;
     this.dominoSystem = dominoSystem;
     this.inputValues = {};
+    this.listTimeouts = new List();
 };
 Hardware.prototype = {
     registerCallbacks: function () {
@@ -17,6 +18,7 @@ Hardware.prototype = {
         this.dominoSystem.pages.waitPlayers.backButton.onclick = this.onBackClicked.bind(this);
         this.dominoSystem.pages.rooms.logoutButton.onclick = this.onLogoutClicked.bind(this);
         this.dominoSystem.pages.ready.setInterval = this.setInterval.bind(this);
+        this.dominoSystem.pages.ready.clearInterval = this.clearInterval.bind(this);
     },
     onLoginButtonClicked: function () {
         "use strict";
@@ -43,10 +45,19 @@ Hardware.prototype = {
     },
     setInterval: function (action, interval, timeFinish) {
         "use strict";
-        var i;
+        var i, id;
         for (i = 0; i < timeFinish; i = i + 1) {
-            this.window.setTimeout(action, interval * (i + 1));
+            id = this.window.setTimeout(action, interval * (i + 1));
+            this.listTimeouts.add(id);
         }
-        this.window.setTimeout(function () { this.dominoSystem.enqueueEvent(Events.INTERVAL_TIMEOUT); }.bind(this), timeFinish);
+        id = this.window.setTimeout(function () { this.dominoSystem.enqueueEvent(Events.INTERVAL_TIMEOUT); }.bind(this), timeFinish * interval);
+        this.listTimeouts.add(id);
+    },
+    clearInterval: function () {
+        "use strict";
+        var i;
+        for (i = 0; i < this.listTimeouts.count; i = i + 1) {
+            this.window.clearTimeout(this.listTimeouts.get(i));
+        }
     }
 };

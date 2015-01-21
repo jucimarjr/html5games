@@ -8,6 +8,7 @@ var ReadyPage = function (window) {
     this.document = this.window.frames[Config.READY_IFRAME_ID].contentWindow.document;
     this.countdownDiv = this.document.getElementById(Config.READY_COUNTDOWN_DIV_ID);
     this.setInterval = null;
+    this.clearInterval = null;
 };
 ReadyPage.prototype = {
     show: function () {
@@ -24,6 +25,11 @@ ReadyPage.prototype = {
         "use strict";
         this.countdownDiv.innerHTML = Config.READY_COUNTDOWN_SECONDS;
         this.setInterval(this.count.bind(this), Config.READY_COUNTDOWN_TICK_MILIS, Config.READY_COUNTDOWN_SECONDS);
+    },
+    stopCountdown: function () {
+        "use strict";
+        this.countdownDiv.innerHTML = Config.READY_COUNTDOWN_SECONDS;
+        this.clearInterval();
     },
     count: function () {
         "use strict";

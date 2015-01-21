@@ -99,5 +99,9 @@ Actions.prototype = {
     startCountdown: function () {
         "use strict";
         this.dominoSystem.pages.ready.startCountdown();
+    },
+    stopCountdown: function () {
+        "use strict";
+        this.dominoSystem.pages.ready.stopCountdown();
     }
 };

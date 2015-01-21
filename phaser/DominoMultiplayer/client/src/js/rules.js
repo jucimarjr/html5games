@@ -17,6 +17,7 @@ Rules.prototype = {
         stateMachine.addTransition(States.LOGIN, Events.LOGIN_CONFIRMED, States.LOGIN, [this.actions.requestServerAddress.bind(this.actions)]);
         stateMachine.addTransition(States.LOGIN, Events.IP_RECEIVED, States.LOGIN, [this.actions.connectToSever.bind(this.actions)]);
         stateMachine.addTransition(States.LOGIN, Events.CONNECTION_ESTABLISHED, States.ROOMS, [this.actions.sendLoginToServer.bind(this.actions)]);
+
         stateMachine.addTransition(States.ROOMS, Events.SERVER_ACK_LOGIN, States.ROOMS, [this.actions.requestRoomsInfo.bind(this.actions)]);
         stateMachine.addTransition(States.ROOMS, Events.ROOMS_INFO_RECEIVED, States.ROOMS, [this.actions.populateRoomsPage.bind(this.actions), this.actions.showRoomsPage.bind(this.actions)]);
         stateMachine.addTransition(States.ROOMS, Events.ROOM_CLICKED, States.ROOMS, [this.actions.requestEnterRoom.bind(this.actions)]);
@@ -25,6 +26,7 @@ Rules.prototype = {
         stateMachine.addTransition(States.ROOMS, Events.ERROR_CONNECTION, States.ROOMS, [this.actions.showReconnectPage.bind(this.actions)]);
         stateMachine.addTransition(States.ROOMS, Events.RECONNECTION, States.ROOMS, [this.actions.hideReconnectPage.bind(this.actions)]);
         stateMachine.addTransition(States.ROOMS, Events.CONNECTION_ESTABLISHED, States.ROOMS, [this.actions.sendLoginToServer.bind(this.actions)]);
+
         stateMachine.addTransition(States.WAIT_PLAYERS, Events.BACK_CLICKED, States.WAIT_PLAYERS, [this.actions.requestExitRoom.bind(this.actions)]);
         stateMachine.addTransition(States.WAIT_PLAYERS, Events.SERVER_ACK_EXIT_ROOM, States.ROOMS, [this.actions.showRoomsPage.bind(this.actions)]);
         stateMachine.addTransition(States.WAIT_PLAYERS, Events.ROOMS_INFO_RECEIVED, States.WAIT_PLAYERS, [this.actions.updatePlayers.bind(this.actions)]);
@@ -33,5 +35,11 @@ Rules.prototype = {
         stateMachine.addTransition(States.WAIT_PLAYERS, Events.CONNECTION_ESTABLISHED, States.WAIT_PLAYERS, [this.actions.sendLoginToServer.bind(this.actions)]);
         stateMachine.addTransition(States.WAIT_PLAYERS, Events.SERVER_ACK_LOGIN, States.WAIT_PLAYERS, [this.actions.requestRoomsInfo.bind(this.actions)]);
         stateMachine.addTransition(States.WAIT_PLAYERS, Events.READY_FOR_GAME, States.READY, [this.actions.showReadyPage.bind(this.actions), this.actions.startCountdown.bind(this.actions)]);
+
+        stateMachine.addTransition(States.READY, Events.UNREADY_FOR_GAME, States.WAIT_PLAYERS, [this.actions.stopCountdown.bind(this.actions), this.actions.hideReadyPage.bind(this.actions), this.actions.requestRoomsInfo.bind(this.actions), this.actions.showWaitPlayersPage.bind(this.actions)]);
+        stateMachine.addTransition(States.READY, Events.ERROR_CONNECTION, States.READY, [this.actions.stopCountdown.bind(this.actions), this.actions.showReconnectPage.bind(this.actions)]);
+        stateMachine.addTransition(States.READY, Events.RECONNECTION, States.READY, [this.actions.hideReconnectPage.bind(this.actions)]);
+        stateMachine.addTransition(States.READY, Events.CONNECTION_ESTABLISHED, States.READY, [this.actions.sendLoginToServer.bind(this.actions)]);
+        stateMachine.addTransition(States.READY, Events.SERVER_ACK_LOGIN, States.READY, [this.actions.startCountdown.bind(this.actions), this.actions.requestRoomsInfo.bind(this.actions)]);
     }
 };
