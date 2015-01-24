@@ -10,18 +10,12 @@ var ListCell = function (content, next) {
 
 /* Defines a object to represent a list */
 
-var List = function (list) {
+var List = function () {
     "use strict";
-    if (list) {
-        this.first = list.first;
-        this.last = list.last;
-        this.count = list.count;
-    } else {
-        var headCell = new ListCell();
-        this.first = headCell;
-        this.last = headCell;
-        this.count = 0;
-    }
+    var headCell = new ListCell();
+    this.first = headCell;
+    this.last = headCell;
+    this.count = 0;
 };
 
 List.prototype = {
@@ -109,6 +103,12 @@ List.prototype = {
             return true;
         }
         return false;
+    },
+    copyFrom: function (list) {
+        "use strict";
+        this.first = list.first;
+        this.last = list.last;
+        this.count = list.count;
     }
 };
 

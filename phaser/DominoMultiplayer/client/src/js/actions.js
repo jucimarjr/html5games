@@ -73,10 +73,10 @@ Actions.prototype = {
         "use strict";
         this.dominoSystem.client.sender.requestExitRoom();
     },
-    updatePlayers: function () {
+    showPlayers: function () {
         "use strict";
         var roomList = this.dominoSystem.client.receiver.receivedValues.roomList;
-        this.dominoSystem.pages.waitPlayers.updatePlayers(roomList, this.dominoSystem.user);
+        this.dominoSystem.pages.waitPlayers.showPlayers(roomList, this.dominoSystem.user);
     },
     disconnect: function () {
         "use strict";
@@ -95,6 +95,11 @@ Actions.prototype = {
         this.dominoSystem.pages.waitPlayers.hide();
         this.dominoSystem.pages.ready.show();
     },
+    showTeams: function () {
+        "use strict";
+        var userList = this.dominoSystem.client.receiver.receivedValues.userList;
+        this.dominoSystem.pages.ready.showTeams(userList, this.dominoSystem.user);
+    },
     startCountdown: function () {
         "use strict";
         this.dominoSystem.pages.ready.startCountdown();
@@ -102,5 +107,9 @@ Actions.prototype = {
     stopCountdown: function () {
         "use strict";
         this.dominoSystem.pages.ready.stopCountdown();
+    },
+    requestTeams: function () {
+        "use strict";
+        this.dominoSystem.client.sender.requestTeams();
     }
 };

@@ -7,8 +7,9 @@ var ServerSocket = require(Config.PATH_SOCKETIO);
 var EmitEvents = require(Config.PATH_EMIT_EVENTS);
 var Room = require(Config.PATH_ROOM);
 var Dictionary = require(Config.PATH_DICTIONARY);
+var Utils = require(Config.PATH_UTILS);
 
-/* This object is used to communicate with the users, it is a singleton */
+/* This object is used to communicate with the users */
 
 var Server = function () {
     "use strict";
@@ -67,6 +68,7 @@ Server.prototype = {
         socketClient.on(EmitEvents.CLIENT_REQUEST_ENTER_ROOM, this.replyEnterRoom.bind(this));
         socketClient.on(EmitEvents.CLIENT_REQUEST_EXIT_ROOM, this.replyExitRoom.bind(this));
         socketClient.on(EmitEvents.CLIENT_REQUEST_DISCONNECTION, this.disconnect.bind(this));
+        socketClient.on(EmitEvents.CLIENT_REQUEST_TEAMS, this.sendTeams.bind(this));
         socketClient.on(EmitEvents.DISCONNECTION, function () { this.onLoseConnection(socketClient.id); }.bind(this));
         return;
     },
@@ -84,16 +86,8 @@ Server.prototype = {
     },
     sendRoomsInfo: function () {
         "use strict";
-        var i, room;
         this.socket.emit(EmitEvents.SERVER_SEND_ROOMS_INFO, JSON.stringify(this.roomList));
-        for (i = 0; i < this.roomList.count; i = i + 1) {
-            room = this.roomList.get(i);
-            if (room.isFull()) {
-                this.socket.to(room.number).emit(EmitEvents.SERVER_ALLOW_GAME);
-            } else {
-                this.socket.to(room.number).emit(EmitEvents.SERVER_DISALLOW_GAME);
-            }
-        }
+        this.allowOrNotGame();
     },
     replyEnterRoom: function (json) {
         "use strict";
@@ -128,6 +122,35 @@ Server.prototype = {
         if (user !== null) {
             this.eraseUser(user.login);
             this.sendRoomsInfo();
+        }
+    },
+    allowOrNotGame: function () {
+        "use strict";
+        var i, room;
+        for (i = 0; i < this.roomList.count; i = i + 1) {
+            room = this.roomList.get(i);
+            if (room.isFull()) {
+                this.socket.to(room.number).emit(EmitEvents.SERVER_ALLOW_GAME);
+            } else {
+                this.socket.to(room.number).emit(EmitEvents.SERVER_DISALLOW_GAME);
+            }
+        }
+    },
+    formTeams: function (room) {
+        "use strict";
+        var i;
+        for (i = 0; i < room.userList.count; i = i + 2) {
+            room.userList.get(i).pair = room.userList.get(i + 1).login;
+            room.userList.get(i + 1).pair = room.userList.get(i).login;
+        }
+    },
+    sendTeams: function (id) {
+        "use strict";
+        var user = this.userList.query("id", id),
+            room = this.roomList.get(user.roomNumber);
+        if (room.isFull()) {
+            this.formTeams(room);
+            this.socket.to(id).emit(EmitEvents.SERVER_SEND_TEAMS, JSON.stringify(room.userList));
         }
     }
 };

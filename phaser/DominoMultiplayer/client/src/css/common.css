@@ -80,6 +80,12 @@ button {
     margin: auto;
 }
 
+ul {
+    list-style: none;
+    padding: 0;
+    width: 95%;
+}
+
 .point_one, .point_two, .point_three, .point_four, .point_five {
     margin-top: 40px;
     background-color:#006400;

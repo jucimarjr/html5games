@@ -17,6 +17,7 @@ var Config = Object.freeze({
     ERROR_CONNECTION_TEXT: "Não foi possível se conectar com o servidor",
     EMPTY_USER_TEXT: "-",
     LOGOUT_TEXT: "logout",
+    VERSUS_TEXT: "X",
 
     /* Addresses */
     PHP_VALIDATE_LOGIN_ADDRESS: "src/php/checklogin.php",
@@ -48,6 +49,7 @@ var Config = Object.freeze({
 
     READY_IFRAME_ID: "ready_iframe",
     READY_COUNTDOWN_DIV_ID: "ready_countdown",
+    READY_UL_ID: "ready_ul",
     READY_COUNTDOWN_SECONDS: 30,
     READY_COUNTDOWN_TICK_MILIS: 1000,
 

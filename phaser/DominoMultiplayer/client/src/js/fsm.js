@@ -30,12 +30,12 @@ FSMachine.prototype = {
     execute: function (transition) {
         "use strict";
         var i, end, action;
+        this.currentState = transition.destine;
         end = transition.actions.length;
         for (i = 0; i < end; i = i + 1) {
             action = transition.actions[i];
             action();
         }
-        this.currentState = transition.destine;
     },
     nextTransition: function () {
         "use strict";

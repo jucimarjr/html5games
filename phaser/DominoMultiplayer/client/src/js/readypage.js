@@ -35,5 +35,31 @@ ReadyPage.prototype = {
     count: function () {
         "use strict";
         this.countdownDiv.innerHTML = Utils.parseInt(this.countdownDiv.innerHTML, Codes.DECIMAL_SYSTEM) - 1;
+    },
+    showTeams: function (userList, user) {
+        "use strict";
+        var index = userList.indexOf(userList.query("login", user.login)),
+            ul = this.document.getElementById(Config.READY_UL_ID);
+        while (ul.hasChildNodes()) {
+            ul.removeChild(ul.lastChild);
+        }
+        userList.remove(index);
+        index = userList.indexOf(userList.query("login", user.pair));
+        userList.remove(index);
+        this.addListItem(user.login, ul);
+        this.addListItem(user.pair, ul);
+        this.addListItem(Config.VERSUS_TEXT, ul);
+        for (index = 0; index < userList.count; index = index + 1) {
+            this.addListItem(userList.get(index).login, ul);
+        }
+    },
+    addListItem: function (content, ul) {
+        "use strict";
+        var li, div;
+        li = this.document.createElement(Codes.HTML_LI_TAG);
+        div = this.document.createElement(Codes.HTML_DIV_TAG);
+        div.innerHTML = content;
+        li.appendChild(div);
+        ul.appendChild(li);
     }
 };

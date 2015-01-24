@@ -3,7 +3,7 @@
 /* Defines the object which can be enqueued */
 
 var QCell = function (content, next) {
-    'use strict';
+    "use strict";
     this.content = content;
     this.next = next;
 };
@@ -11,7 +11,7 @@ var QCell = function (content, next) {
 /* Defines a object to represent a queue */
 
 var Queue = function (maxSize) {
-    'use strict';
+    "use strict";
     if (!maxSize) {
         console.error("queue.js - Queue.Queue: maxSize is not valid");
         return;
@@ -24,16 +24,16 @@ var Queue = function (maxSize) {
 };
 Queue.prototype = {
     makeEmpty: function () {
-        'use strict';
+        "use strict";
         this.last = this.first;
         this.count = 0;
     },
     isEmpty: function () {
-        'use strict';
+        "use strict";
         return (this.count === 0);
     },
     enqueue: function (event) {
-        'use strict';
+        "use strict";
         if (this.count === this.maxSize) {
             console.error("queue.js - Queue.enqueue: QUEUE IS FULL");
             return;
@@ -43,7 +43,7 @@ Queue.prototype = {
         this.last = this.last.next;
     },
     dequeue: function () {
-        'use strict';
+        "use strict";
         if (this.isEmpty()) {
             console.error("queue.js - Queue.dequeue: QUEUE IS EMPTY");
             return;

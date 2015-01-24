@@ -5,3 +5,11 @@
 .ready_countdown {
     margin-top: 20px;
 }
+
+li {
+    margin-top: 20px;
+    width: 60px;
+    text-align: center;
+    margin-right: 10px;
+    float:left;
+}

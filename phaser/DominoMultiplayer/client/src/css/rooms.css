@@ -24,12 +24,6 @@ body {
     content: "logout";
 }
 
-ul {
-    list-style: none;
-    padding: 0;
-    width: 95%;
-}
-
 li {
     width: 200px;
     margin-right: 15px;

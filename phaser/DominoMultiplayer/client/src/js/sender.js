@@ -1,4 +1,4 @@
-/*global console, EmitEvents, Events*/
+/*global EmitEvents, Events, Utils*/
 
 /* This object is responsible for sending messages to the server */
 
@@ -10,7 +10,7 @@ var Sender = function (client, dominoSystem) {
 Sender.prototype = {
     sendLogin: function () {
         "use strict";
-        this.emit(EmitEvents.CLIENT_SEND_LOGIN, JSON.stringify(this.dominoSystem.user));
+        this.emit(EmitEvents.CLIENT_SEND_LOGIN, Utils.stringify(this.dominoSystem.user));
     },
     requestRoomsInfo: function () {
         "use strict";
@@ -19,23 +19,22 @@ Sender.prototype = {
     requestEnterRoom: function (roomNumber) {
         "use strict";
         var toSend = {user: this.dominoSystem.user, roomNumber: roomNumber};
-        this.emit(EmitEvents.CLIENT_REQUEST_ENTER_ROOM, JSON.stringify(toSend));
+        this.emit(EmitEvents.CLIENT_REQUEST_ENTER_ROOM, Utils.stringify(toSend));
     },
     requestExitRoom: function () {
         "use strict";
-        this.emit(EmitEvents.CLIENT_REQUEST_EXIT_ROOM, JSON.stringify(this.dominoSystem.user));
+        this.emit(EmitEvents.CLIENT_REQUEST_EXIT_ROOM, Utils.stringify(this.dominoSystem.user));
+    },
+    requestTeams: function () {
+        "use strict";
+        this.emit(EmitEvents.CLIENT_REQUEST_TEAMS, this.dominoSystem.user.id);
     },
     requestDisconnection: function () {
         "use strict";
-        this.emit(EmitEvents.CLIENT_REQUEST_DISCONNECTION, JSON.stringify(this.dominoSystem.user));
+        this.emit(EmitEvents.CLIENT_REQUEST_DISCONNECTION, Utils.stringify(this.dominoSystem.user));
     },
     emit: function (event, object) {
         "use strict";
-        try {
-            this.client.socket.emit(event, object);
-        } catch (exception) {
-            this.dominoSystem.enqueueEvent(Events.ERROR_CONNECTION);
-            console.log("sender.js - Sender.emit - exception: " + exception);
-        }
+        this.client.socket.emit(event, object);
     }
 };

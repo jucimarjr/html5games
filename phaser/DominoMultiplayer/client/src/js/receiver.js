@@ -1,4 +1,4 @@
-/*global console, List, EmitEvents, Events*/
+/*global console, List, EmitEvents, Events, Utils*/
 
 /* This object is responsible for capturing messages from server */
 
@@ -22,23 +22,27 @@ Receiver.prototype = {
             this.client.socket.on(EmitEvents.RECONNECTION, this.onReconnection.bind(this));
             this.client.socket.on(EmitEvents.SERVER_ALLOW_GAME, this.onReadyForGame.bind(this));
             this.client.socket.on(EmitEvents.SERVER_DISALLOW_GAME, this.onUnreadyForGame.bind(this));
+            this.client.socket.on(EmitEvents.SERVER_SEND_TEAMS, this.onReceiveTeams.bind(this));
         } catch (exception) {
             this.dominoSystem.enqueueEvent(Events.ERROR_CONNECTION);
         }
     },
     onServerSendID: function (json) {
         "use strict";
-        this.dominoSystem.user.id = JSON.parse(json);
+        this.dominoSystem.user.id = Utils.parse(json);
         this.dominoSystem.enqueueEvent(Events.CONNECTION_ESTABLISHED);
     },
     onServerSendRoomsInfo: function (json) {
         "use strict";
         var roomList = new List(),
-            received = JSON.parse(json),
+            received = Utils.parse(json),
+            list,
             i;
-        roomList = new List(received);
+        roomList.copyFrom(received);
         for (i = 0; i < roomList.count; i = i + 1) {
-            roomList.get(i).userList = new List(roomList.get(i).userList);
+            list = new List();
+            list.copyFrom(roomList.get(i).userList);
+            roomList.get(i).userList = list;
         }
         this.receivedValues.roomList = roomList;
         this.dominoSystem.enqueueEvent(Events.ROOMS_INFO_RECEIVED);
@@ -72,5 +76,14 @@ Receiver.prototype = {
     onUnreadyForGame: function () {
         "use strict";
         this.dominoSystem.enqueueEvent(Events.UNREADY_FOR_GAME);
+    },
+    onReceiveTeams: function (json) {
+        "use strict";
+        var userList = Utils.parse(json),
+            list = new List();
+        list.copyFrom(userList);
+        this.receivedValues.userList = list;
+        this.dominoSystem.user.pair = list.query("login", this.dominoSystem.user.login).pair;
+        this.dominoSystem.enqueueEvent(Events.TEAMS_RECEIVED);
     }
 };

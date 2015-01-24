@@ -27,7 +27,7 @@ Client.prototype = {
                 this.dominoSystem.enqueueEvent(Events.LOGIN_REFUSED);
                 return;
             default:
-                console.log("utils.js - validateLogin - PHP unrecognized answer: " + result);
+                console.log("client.js - requestLoginValidation - PHP unrecognized answer: " + result);
                 this.dominoSystem.enqueueEvent(Events.ERROR_CONNECTION);
             }
         };

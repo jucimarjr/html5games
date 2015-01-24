@@ -20,7 +20,7 @@ WaitPlayersPage.prototype = {
         this.document.body.style.display = Codes.CSS_DISPLAY_NONE;
         this.window.frames[Config.WAIT_PLAYERS_IFRAME_ID].style.zIndex = Config.Z_INDEX_BACK;
     },
-    updatePlayers: function (roomList, user) {
+    showPlayers: function (roomList, user) {
         "use strict";
         var room = roomList.query("number", user.roomNumber),
             index = room.userList.indexOf(room.userList.query("login", user.login)),

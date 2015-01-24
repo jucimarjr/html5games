@@ -2,12 +2,6 @@
     content: "Aguardando mais jogadores";
 }
 
-ul {
-    list-style: none;
-    padding: 0;
-    width: 95%;
-}
-
 li {
     margin-top: 20px;
     width: 75px;

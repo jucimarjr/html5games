@@ -18,7 +18,8 @@ var Config = {
     PATH_SOCKETIO: "../shared/socket.io",
     PATH_EMIT_EVENTS: "../shared/emitevents.js",
     PATH_ROOM: "../shared/room.js",
-    PATH_DICTIONARY: "../shared/dictionary.js"
+    PATH_DICTIONARY: "../shared/dictionary.js",
+    PATH_UTILS: "../shared/utils.js"
 
 };
 
