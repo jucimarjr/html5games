@@ -33,6 +33,10 @@ Sender.prototype = {
         "use strict";
         this.emit(EmitEvents.CLIENT_REQUEST_DISCONNECTION, Utils.stringify(this.dominoSystem.user));
     },
+    requestPieces: function () {
+        "use strict";
+        this.emit(EmitEvents.CLIENT_REQUEST_PIECES, Utils.stringify(this.dominoSystem.user));
+    },
     emit: function (event, object) {
         "use strict";
         this.client.socket.emit(event, object);

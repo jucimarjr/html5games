@@ -8,6 +8,7 @@ var User = function (id, login, roomNumber) {
     this.login = login;
     this.roomNumber = roomNumber;
     this.pair = null;
+    this.piecesInHand = null;
 };
 
 try {

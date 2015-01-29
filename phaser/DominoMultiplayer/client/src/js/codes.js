@@ -33,6 +33,8 @@ var Codes = Object.freeze({
     /* Created to comunicate function results */
     ERROR_CONNECTION: "Codes.ERROR_CONNECTION",
     LOGIN_CONFIRMED: "Codes.LOGIN_CONFIRMED",
-    LOGIN_REFUSED: "Codes.LOGIN_REFUSED"
+    LOGIN_REFUSED: "Codes.LOGIN_REFUSED",
+
+    PIECE_KEY: "Codes.PIECE"
 
 });

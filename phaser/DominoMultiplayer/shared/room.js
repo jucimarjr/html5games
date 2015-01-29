@@ -7,6 +7,7 @@ var Room = function (number, list, capacity) {
     this.number = number;
     this.userList = list;
     this.capacity = capacity;
+    this.availablePieces = null;
 };
 Room.prototype = {
     isFull: function () {

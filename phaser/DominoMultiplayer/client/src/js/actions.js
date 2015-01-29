@@ -111,5 +111,9 @@ Actions.prototype = {
     requestTeams: function () {
         "use strict";
         this.dominoSystem.client.sender.requestTeams();
+    },
+    requestPieces: function () {
+        "use strict";
+        this.dominoSystem.client.sender.requestPieces();
     }
 };

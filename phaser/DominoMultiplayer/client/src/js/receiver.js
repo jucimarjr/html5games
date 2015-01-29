@@ -23,6 +23,7 @@ Receiver.prototype = {
             this.client.socket.on(EmitEvents.SERVER_ALLOW_GAME, this.onReadyForGame.bind(this));
             this.client.socket.on(EmitEvents.SERVER_DISALLOW_GAME, this.onUnreadyForGame.bind(this));
             this.client.socket.on(EmitEvents.SERVER_SEND_TEAMS, this.onReceiveTeams.bind(this));
+            this.client.socket.on(EmitEvents.SERVER_SEND_PIECES, this.onReceivePieces.bind(this));
         } catch (exception) {
             this.dominoSystem.enqueueEvent(Events.ERROR_CONNECTION);
         }
@@ -85,5 +86,9 @@ Receiver.prototype = {
         this.receivedValues.userList = list;
         this.dominoSystem.user.pair = list.query("login", this.dominoSystem.user.login).pair;
         this.dominoSystem.enqueueEvent(Events.TEAMS_RECEIVED);
+    },
+    onReceivePieces: function (json) {
+        "use strict";
+        console.log(json);
     }
 };

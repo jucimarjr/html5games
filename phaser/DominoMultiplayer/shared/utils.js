@@ -15,13 +15,17 @@ var Utils = {
         "use strict";
         return Math.floor(number);
     },
-    stringfy: function (object) {
+    stringify: function (object) {
         "use strict";
         return JSON.stringify(object);
     },
     parse: function (string) {
         "use strict";
         return JSON.parse(string);
+    },
+    genPieceDictionaryKey: function (piece) {
+        "use strict";
+        return Codes.PIECE_KEY + "_" + piece.side1 + "_" + piece.side2;
     }
 };
 

@@ -8,6 +8,7 @@ var EmitEvents = require(Config.PATH_EMIT_EVENTS);
 var Room = require(Config.PATH_ROOM);
 var Dictionary = require(Config.PATH_DICTIONARY);
 var Utils = require(Config.PATH_UTILS);
+var GameManager = require(Config.PATH_GAME_MANAGER);
 
 /* This object is used to communicate with the users */
 
@@ -17,14 +18,17 @@ var Server = function () {
     this.userList = new List();
     this.roomList = new List();
     this.socket = new ServerSocket();
+    this.gameManager = new GameManager(this);
     this.addRooms();
 };
 Server.prototype = {
     addRooms: function () {
         "use strict";
-        var i;
+        var i, room;
         for (i = 0; i < Config.NUMBER_ROOMS; i = i + 1) {
-            this.roomList.add(new Room(i, new List(), Config.ROOM_CAPACITY));
+            room = new Room(i, new List(), Config.ROOM_CAPACITY);
+            this.gameManager.initRoomPieces(room);
+            this.roomList.add(room);
         }
     },
     removeFromRoom: function (user) {
@@ -70,6 +74,7 @@ Server.prototype = {
         socketClient.on(EmitEvents.CLIENT_REQUEST_DISCONNECTION, this.disconnect.bind(this));
         socketClient.on(EmitEvents.CLIENT_REQUEST_TEAMS, this.sendTeams.bind(this));
         socketClient.on(EmitEvents.DISCONNECTION, function () { this.onLoseConnection(socketClient.id); }.bind(this));
+        this.gameManager.registerCallbacks(socketClient);
         return;
     },
     onLoginReceived: function (json, socketClient) {
