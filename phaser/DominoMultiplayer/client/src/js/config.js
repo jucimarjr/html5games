@@ -53,5 +53,10 @@ var Config = Object.freeze({
     READY_COUNTDOWN_SECONDS: 30,
     READY_COUNTDOWN_TICK_MILIS: 1000,
 
+    GAME_IFRAME_ID: "game_iframe",
+    GAME_DIV_WIDTH: 960,
+    GAME_DIV_HEIGHT: 600,
+    GAME_DIV_ID: "game_div",
+    PLAY_STATE_KEY: "play_state",
     RECONNECT_IFRAME_ID: "reconnect_iframe"
 });

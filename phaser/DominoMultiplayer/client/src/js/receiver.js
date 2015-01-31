@@ -90,5 +90,6 @@ Receiver.prototype = {
     onReceivePieces: function (json) {
         "use strict";
         console.log(json);
+        this.dominoSystem.enqueueEvent(Events.PIECES_RECEIVED);
     }
 };

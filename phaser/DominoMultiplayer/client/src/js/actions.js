@@ -115,5 +115,14 @@ Actions.prototype = {
     requestPieces: function () {
         "use strict";
         this.dominoSystem.client.sender.requestPieces();
+    },
+    showGamePage: function () {
+        "use strict";
+        this.dominoSystem.pages.ready.hide();
+        this.dominoSystem.pages.game.show();
+    },
+    initGame: function () {
+        "use strict";
+        this.dominoSystem.initGame();
     }
 };

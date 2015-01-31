@@ -5,7 +5,6 @@ var List = require(Config.PATH_LIST);
 var Piece = require(Config.PATH_PIECE);
 var EmitEvents = require(Config.PATH_EMIT_EVENTS);
 var Utils = require(Config.PATH_UTILS);
-var Semaphore = require(Config.PATH_SEMAPHORE);
 
 var GameManager = function (server) {
     "use strict";
@@ -17,7 +16,6 @@ var GameManager = function (server) {
             this.allPieces.add(new Piece(i, j));
         }
     }
-    this.semaphore = new Semaphore(1);
 };
 GameManager.prototype = {
     initRoomPieces: function (room) {

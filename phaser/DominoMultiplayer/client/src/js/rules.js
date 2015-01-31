@@ -46,5 +46,6 @@ Rules.prototype = {
         stateMachine.addTransition(States.READY, Events.BACK_CLICKED, States.READY, [this.actions.requestExitRoom.bind(this.actions)]);
         stateMachine.addTransition(States.READY, Events.SERVER_ACK_EXIT_ROOM, States.ROOMS, [this.actions.stopCountdown.bind(this.actions), this.actions.showRoomsPage.bind(this.actions)]);
         stateMachine.addTransition(States.READY, Events.INTERVAL_TIMEOUT, States.READY, [this.actions.requestPieces.bind(this.actions)]);
+        stateMachine.addTransition(States.READY, Events.PIECES_RECEIVED, States.GAME, [this.actions.initGame.bind(this.actions), this.actions.showGamePage.bind(this.actions)]);
     }
 };
