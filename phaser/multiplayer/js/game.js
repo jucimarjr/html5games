@@ -2,7 +2,6 @@
 
 var game, socket, userroom, pieces, pieceWidth, pieceHeight, myPieces, selected, hint;
 
-
 function countCarroca(arrayName, branch) {
 	'use strict';
 	var i, counter = 0, size = pieces[arrayName].length;

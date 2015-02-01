@@ -2,6 +2,14 @@
 
 var Config = Object.freeze({
 
+    /* GAME */
+    PIECES_ASSET_KEY: "pieces",
+    PIECES_ASSET_PATH: "../../assets/spritesheets/domino.png",
+    PIECES_FRAME_WIDTH: 30,
+    PIECES_FRAME_HEIGHT: 60,
+    DOMINO_PIECES_MAX_VALUE: 6,
+    DOMINO_PIECES_NUMBER: 28,
+
     /* CONNECTION */
     SERVER_PORT_SUFFIX: ":3001/",
     TIMEOUT: 3,

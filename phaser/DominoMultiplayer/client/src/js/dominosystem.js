@@ -22,13 +22,11 @@ var DominoSystem = function (window, document) {
     };
 };
 DominoSystem.prototype = {
-    initGame: function () {
+    initGame: function (userPieces) {
         "use strict";
-        console.log("game start");
         this.game = new Phaser.Game(Config.GAME_DIV_WIDTH, Config.GAME_DIV_HEIGHT, Phaser.AUTO, this.pages.game.document.getElementById(Config.GAME_DIV_ID));
         this.game.state.add(Config.PLAY_STATE_KEY, PlayState);
-        this.game.state.start(Config.PLAY_STATE_KEY);
-        console.log("game start");
+        this.game.state.start(Config.PLAY_STATE_KEY, true, false, this, userPieces);
     },
     enqueueEvent: function (event) {
         "use strict";

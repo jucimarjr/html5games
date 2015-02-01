@@ -11,8 +11,8 @@ var GameManager = function (server) {
     var i, j;
     this.server = server;
     this.allPieces = new List();
-    for (i = 0; i <= Config.DOMINO_PIECES_MAX_VALUE; i = i + 1) {
-        for (j = i; j <= Config.DOMINO_PIECES_MAX_VALUE; j = j + 1) {
+    for (i = Config.DOMINO_PIECES_MAX_VALUE; i >= 0; i = i - 1) {
+        for (j = 0; j <= i; j = j + 1) {
             this.allPieces.add(new Piece(i, j));
         }
     }

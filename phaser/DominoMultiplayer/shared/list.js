@@ -37,8 +37,8 @@ List.prototype = {
     get: function (position) {
         "use strict";
         var cell, i;
-        if (this.isEmpty() || position >= this.count) {
-            console.error("list.js - List.get: LIST IS EMPTY OR POSITION TOO HIGH");
+        if (position >= this.count) {
+            console.error("list.js - List.get: OUT OF RANGE");
             return null;
         }
         cell = this.first.next;

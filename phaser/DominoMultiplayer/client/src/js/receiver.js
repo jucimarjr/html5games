@@ -89,7 +89,9 @@ Receiver.prototype = {
     },
     onReceivePieces: function (json) {
         "use strict";
-        console.log(json);
+        var userPieces = new List();
+        userPieces.copyFrom(Utils.parse(json));
+        this.receivedValues.pieces = userPieces;
         this.dominoSystem.enqueueEvent(Events.PIECES_RECEIVED);
     }
 };

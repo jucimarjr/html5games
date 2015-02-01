@@ -2,6 +2,8 @@
 
 var Codes = Object.freeze({
 
+    /* Colors */
+    WHITE_COLOR: "#ffffff",
     /* Hardware */
     KEYBOARD_ENTER_KEY: 13,
 

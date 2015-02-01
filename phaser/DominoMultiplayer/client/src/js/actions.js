@@ -123,6 +123,6 @@ Actions.prototype = {
     },
     initGame: function () {
         "use strict";
-        this.dominoSystem.initGame();
+        this.dominoSystem.initGame(this.dominoSystem.client.receiver.receivedValues.pieces);
     }
 };
